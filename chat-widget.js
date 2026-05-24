@@ -2,38 +2,38 @@
     var style = document.createElement('style');
     style.textContent = `
         .termuxpert-chat-btn {
-            position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+            position: fixed; bottom: 20px; right: 20px; z-index: 999999 !important;
             width: 60px; height: 60px; border-radius: 50%;
             background: linear-gradient(135deg, #45A29E, #66FCF1);
             color: #0B0C10; border: none; font-size: 28px;
             cursor: pointer; box-shadow: 0 4px 20px rgba(69,162,158,0.4);
-            display: flex; align-items: center; justify-content: center;
+            display: flex !important; align-items: center; justify-content: center;
             transition: transform 0.2s ease;
         }
         .termuxpert-chat-btn:hover { transform: scale(1.05); }
         .termuxpert-chat-box {
-            position: fixed; bottom: 90px; right: 20px; z-index: 9998;
+            position: fixed; bottom: 90px; right: 20px; z-index: 999998 !important;
             width: 380px; height: 500px; background: #15171E;
             border: 1px solid #2A3340; border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: none; flex-direction: column;
             overflow: hidden;
         }
-        .termuxpert-chat-box.open { display: flex; }
+        .termuxpert-chat-box.open { display: flex !important; }
         .termuxpert-chat-header {
             background: #1F2833; padding: 12px 16px; border-bottom: 1px solid #2A3340;
-            display: flex; align-items: center; gap: 10px;
+            display: flex !important; align-items: center; gap: 10px;
         }
         .termuxpert-chat-header .icon {
             width: 36px; height: 36px; border-radius: 50%;
             background: linear-gradient(135deg, #45A29E, #66FCF1);
-            display: flex; align-items: center; justify-content: center;
+            display: flex !important; align-items: center; justify-content: center;
             font-size: 18px; color: #0B0C10;
         }
         .termuxpert-chat-header .title { color: #FFFFFF; font-weight: 700; font-size: 16px; }
         .termuxpert-chat-header .status { font-size: 11px; color: #06D6A0; }
         .termuxpert-chat-messages {
             flex: 1; overflow-y: auto; padding: 16px;
-            display: flex; flex-direction: column; gap: 12px;
+            display: flex !important; flex-direction: column; gap: 12px;
         }
         .termuxpert-chat-messages .msg {
             max-width: 85%; padding: 10px 14px; border-radius: 14px;
@@ -60,7 +60,7 @@
         }
         .termuxpert-chat-messages pre code { background: none; padding: 0; display: block; }
         .termuxpert-chat-input {
-            display: flex; padding: 12px; border-top: 1px solid #2A3340; gap: 8px; background: #15171E;
+            display: flex !important; padding: 12px; border-top: 1px solid #2A3340; gap: 8px; background: #15171E;
         }
         .termuxpert-chat-input input {
             flex: 1; padding: 10px 14px; border-radius: 20px;
@@ -72,7 +72,7 @@
             width: 40px; height: 40px; border-radius: 50%;
             background: linear-gradient(135deg, #45A29E, #66FCF1);
             color: #0B0C10; border: none; font-size: 18px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
+            display: flex !important; align-items: center; justify-content: center;
         }
         .termuxpert-loading {
             display: inline-flex; gap: 4px; align-items: center; padding: 10px 14px;
