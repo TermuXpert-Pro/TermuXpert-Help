@@ -1,4 +1,3 @@
-```javascript
 (function() {
     var style = document.createElement('style');
     style.textContent = `
@@ -48,7 +47,6 @@
             align-self: flex-start; background: #1F2833; color: #C5C6C7;
             border-bottom-left-radius: 2px;
         }
-        /* تنسيق الأكواد البرمجية والمخرجات */
         .termuxpert-chat-messages pre {
             background: #0B0C10; border: 1px solid #2A3340;
             border-radius: 8px; padding: 8px; margin: 6px 0;
@@ -89,30 +87,28 @@
     `;
     document.head.appendChild(style);
 
-    var html = '<button class="termuxpert-chat-btn" onclick="toggleChat()">💬</button><div class="termuxpert-chat-box" id="chatBox"><div class="termuxpert-chat-header"><div class="icon">🤖</div><div><div class="title">TermuXpert AI</div><div class="status">🟢 متصل</div></div></div><div class="termuxpert-chat-messages" id="chatMessages"><div class="msg bot">👋 أهلًا! أنا TermuXpert، خبير أوامر Termux. اسألني أي شيء!</div></div><div class="termuxpert-chat-input"><input type="text" id="chatInput" placeholder="اكتب سؤالك..."><button id="sendBtn">➤</button></div></div>';
+    var html = '<button class="termuxpert-chat-btn">💬</button><div class="termuxpert-chat-box" id="chatBox"><div class="termuxpert-chat-header"><div class="icon">🤖</div><div><div class="title">TermuXpert AI</div><div class="status">🟢 متصل</div></div></div><div class="termuxpert-chat-messages" id="chatMessages"><div class="msg bot">👋 أهلًا! أنا TermuXpert، خبير أوامر Termux. اسألني أي شيء!</div></div><div class="termuxpert-chat-input"><input type="text" id="chatInput" placeholder="اكتب سؤالك..."><button id="sendBtn">➤</button></div></div>';
     document.body.insertAdjacentHTML('beforeend', html);
 
     var inputEl = document.getElementById('chatInput');
     var sendBtnEl = document.getElementById('sendBtn');
+    var chatBtnEl = document.querySelector('.termuxpert-chat-btn');
 
     inputEl.addEventListener('keypress', function(e) { if (e.key === 'Enter') sendMessage(); });
     sendBtnEl.addEventListener('click', sendMessage);
+    chatBtnEl.addEventListener('click', toggleChat);
     
-    window.toggleChat = function() { document.getElementById('chatBox').classList.toggle('open'); };
+    function toggleChat() { document.getElementById('chatBox').classList.toggle('open'); }
 
     function formatBotResponse(text) {
         var safeText = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        
         var blockPattern = new RegExp('\\x60{3}(?:bash|sh|json)?([\\s\\S]*?)\\x60{3}', 'g');
         safeText = safeText.replace(blockPattern, function(match, code) {
             return '<pre><code>' + code.trim() + '</code></pre>';
         });
-        
         var inlinePattern = new RegExp('\\x60([^\\x60]+)\\x60', 'g');
         safeText = safeText.replace(inlinePattern, '<code>$1</code>');
-        
         safeText = safeText.replace(/\n/g, '<br>');
-        
         return safeText;
     }
 
@@ -121,7 +117,6 @@
         if (!text) return;
         
         var msgs = document.getElementById('chatMessages');
-        
         var userMsgDiv = document.createElement('div');
         userMsgDiv.className = 'msg user';
         userMsgDiv.innerText = text;
@@ -143,20 +138,23 @@
                 body: JSON.stringify({ question: text })
             });
             var data = await resp.json();
-            
             loadingDiv.remove();
             
             var botMsgDiv = document.createElement('div');
             botMsgDiv.className = 'msg bot';
             botMsgDiv.innerHTML = formatBotResponse(data.answer);
             msgs.appendChild(botMsgDiv);
-            
         } catch(e) {
             loadingDiv.remove();
             var errorDiv = document.createElement('div');
             errorDiv.className = 'msg bot';
             errorDiv.innerText = '⚠️ تعذر الاتصال بالسيرفر. يرجى التأكد من تشغيل الـ Space وإعادة المحاولة.';
             msgs.appendChild(errorDiv);
+        }
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+})();
+rDiv);
         }
         msgs.scrollTop = msgs.scrollHeight;
     }
