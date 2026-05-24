@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TermuXpert - خبير Termux</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">&gt;_</div>
+            <div class="nav-logo-text">Term<span>uXpert</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="groups.html"><i class="fa-solid fa-layer-group"></i> المجموعات</a></li>
+            <li><a href="https://github.com/TermuXpert-Pro/TermuXpert"><i class="fa-brands fa-github"></i> GitHub</a></li>
+            <li><a href="groups.html" class="btn-nav"><i class="fa-solid fa-terminal"></i> تصفح الأوامر</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-label"><span class="dot"></span> متوفر الآن على Netlify</div>
+        <h1>منصة <span class="gradient-text">TermuXpert</span> المتكاملة</h1>
+        <p class="description">دليلك الشامل لأوامر Termux. منصة احترافية تجمع كل ما تحتاجه من أوامر وأدوات في مكان واحد.</p>
+        <div class="hero-buttons">
+            <a href="groups.html" class="btn btn-primary"><i class="fa-solid fa-terminal"></i> تصفح الأوامر</a>
+            <a href="https://github.com/TermuXpert-Pro/TermuXpert" class="btn btn-secondary"><i class="fa-brands fa-github"></i> المستودع</a>
+        </div>
+    </section>
+
+    <div class="terminal-mockup">
+        <div class="terminal-header">
+            <span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span>
+            <span class="terminal-title">TermuXpert@termux:~</span>
+        </div>
+        <div class="terminal-body">
+            <div><span class="prompt">$</span> pkg install termux-commands</div>
+            <div style="color:#06D6A0;">[OK] Downloading packages...</div>
+            <div><span class="prompt">$</span> termuxpert --help</div>
+            <div style="color:var(--text-secondary);">TermuXpert v2.0 - Expert Terminal Guide</div>
+            <div><span class="prompt">$</span> <span class="cursor"></span></div>
+        </div>
+    </div>
+
+    <section class="features">
+        <h2>لماذا TermuXpert؟</h2>
+        <p class="subtitle">منصة صممت خصيصاً لمستخدمي Termux المحترفين</p>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-bolt"></i></div><h3>تحديث مباشر</h3><p>البيانات تتزامن مع GitHub فوراً.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-copy"></i></div><h3>نسخ فوري</h3><p>انسخ أي أمر إلى الحافظة بضغطة زر.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-magnifying-glass"></i></div><h3>بحث ذكي</h3><p>ابحث في جميع المجموعات والأوامر.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-mobile-screen"></i></div><h3>متجاوب بالكامل</h3><p>يعمل على الهاتف، التابلت، والحاسوب.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-code"></i></div><h3>مفتوح المصدر</h3><p>الكود متاح على GitHub للجميع.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-palette"></i></div><h3>تصميم احترافي</h3><p>واجهة Cyberpunk عصرية.</p></div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>جاهز لاستكشاف الأوامر؟</h2>
+        <p>تصفح مئات الأوامر المنظمة في مجموعات.</p>
+        <a href="groups.html" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> ابدأ الآن</a>
+    </section>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>TermuXpert &copy; 2026 - TCSF2</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50));
+    </script>
+<script src="chat-widget.js"></script>
+</body>
+</html>
