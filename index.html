@@ -9,6 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+<script>
+    function toggleChat() {
+        const chatBox = document.getElementById("chat-box");
+        if (chatBox) {
+            chatBox.style.display = (chatBox.style.display === "none") ? "block" : "none";
+        } else {
+            console.error("عنصر المحادثة غير موجود في الصفحة!");
+        }
+    }
+</script>
 </head>
 <body>
     <div class="bg-grid"></div>
@@ -75,46 +85,8 @@
         <p>TermuXpert &copy; 2026 - TCSF2</p>
     </footer>
 
-<script>
-    document.getElementById("chat-trigger").addEventListener("click", function() {
-        if (typeof toggleChat === "function") {
-            toggleChat();
-        } else {
-            console.log("السكربت مدمج، جاري محاولة تشغيل الدالة...");
-            try { toggleChat(); } catch(e) { alert("حدث خطأ في تحميل وظيفة المحادثة"); }
-        }
-    });
-        e.preventDefault();
-        if (typeof toggleChat === "function") {
-            toggleChat();
-        } else {
-            console.error("Chat script not loaded yet!");
-            alert("عذراً، المحادثة لم تحمل بعد، يرجى الانتظار ثانية.");
-        }
-    });
-</script>
     
-    <button class="btn btn-primary" id="chat-trigger" style="position:fixed; bottom:20px; right:20px; z-index:9999; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 30px rgba(69,162,158,0.4);">💬</button>
-<script>
-    document.getElementById("chat-trigger").addEventListener("click", function() {
-        if (typeof toggleChat === "function") {
-            toggleChat();
-        } else {
-            console.log("السكربت مدمج، جاري محاولة تشغيل الدالة...");
-            try { toggleChat(); } catch(e) { alert("حدث خطأ في تحميل وظيفة المحادثة"); }
-        }
-    });
-        e.preventDefault();
-        if (typeof toggleChat === "function") {
-            toggleChat();
-        } else {
-            console.error("Chat script not loaded yet!");
-            alert("عذراً، المحادثة لم تحمل بعد، يرجى الانتظار ثانية.");
-        }
-    });
-</script>
-<script>
-</script>
+    <button class="btn btn-primary" id="chat-trigger" onclick="toggleChat()">💬</button>
 </body>
 </html>
 (function() {
