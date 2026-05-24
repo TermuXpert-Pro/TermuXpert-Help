@@ -4,17 +4,14 @@
   var API          = "https://termuxpert-termuxpert-chat.hf.space/ask";
   var PING_URL     = "https://termuxpert-termuxpert-chat.hf.space/";
   var MAX_HISTORY  = 12;
-  var TIMEOUT_MS   = 90000;   // ✅ 90 ثانية بدل 18
-  var MAX_RETRIES  = 3;       // ✅ 3 محاولات بدل 2
+  var TIMEOUT_MS   = 90000;
+  var MAX_RETRIES  = 3;
 
   var history  = [];
   var loading  = false;
   var lastQ    = "";
   var cache    = {};
 
-  // ══════════════════════════════════════════════════════════════
-  //  🔥 WAKE-UP SYSTEM — إيقاظ مضمون متعدد المراحل
-  // ══════════════════════════════════════════════════════════════
   var spaceReady = false;
 
   function ping() {
@@ -27,16 +24,11 @@
     }).catch(function(){});
   }
 
-  // موجة 1: فور فتح الصفحة
   ping();
-  // موجة 2 و3: تأكيد الاستيقاظ
   setTimeout(ping, 4000);
   setTimeout(ping, 10000);
-
-  // Keep-alive: كل 4 دقائق لمنع النوم
   setInterval(ping, 240000);
 
-  // DNS prefetch
   ["preconnect","dns-prefetch"].forEach(function(rel) {
     var l = document.createElement("link");
     l.rel  = rel;
@@ -44,9 +36,6 @@
     document.head.appendChild(l);
   });
 
-  // ══════════════════════════════════════════════════════════════
-  //  🎨 STYLES
-  // ══════════════════════════════════════════════════════════════
   var CSS = `
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Tajawal:wght@400;500;700;800&display=swap');
     :root {
@@ -170,7 +159,6 @@
     @keyframes tx-bounce { 0%,80%,100%{transform:scale(.35);opacity:.4} 40%{transform:scale(1);opacity:1} }
     .tx-typing-label { font-size:11px; color:var(--tx-muted); font-family:var(--tx-font); }
 
-    /* ── شريط انتظار مع عداد ── */
     .tx-wait-bar {
       align-self:flex-start; background:var(--tx-surface);
       border:1px solid var(--tx-border); border-radius:12px; padding:8px 14px;
@@ -222,9 +210,6 @@
   styleEl.textContent = CSS;
   document.head.appendChild(styleEl);
 
-  // ══════════════════════════════════════════════════════════════
-  //  🏗 HTML
-  // ══════════════════════════════════════════════════════════════
   var HTML = `
     <button class="tx-fab" id="txFab" aria-label="TermuXpert Chat">
       <svg viewBox="0 0 24 24" fill="none" stroke="#00E5C3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -277,9 +262,6 @@
   `;
   document.body.insertAdjacentHTML("beforeend", HTML);
 
-  // ══════════════════════════════════════════════════════════════
-  //  🎮 ELEMENTS
-  // ══════════════════════════════════════════════════════════════
   var fab        = document.getElementById("txFab");
   var box        = document.getElementById("txBox");
   var msgs       = document.getElementById("txMsgs");
@@ -290,9 +272,6 @@
   var progress   = document.getElementById("txProgress");
   var unread     = document.getElementById("txUnread");
 
-  // ══════════════════════════════════════════════════════════════
-  //  🔧 UTILS
-  // ══════════════════════════════════════════════════════════════
   function getTime() {
     var d = new Date();
     return d.getHours().toString().padStart(2,"0") + ":" + d.getMinutes().toString().padStart(2,"0");
@@ -304,7 +283,6 @@
   }
 
   function setStatus(state) {
-    // state: "online" | "offline" | "waiting"
     var labels = { online:"متصل", offline:"غير متصل", waiting:"جاري الإيقاظ..." };
     statusEl.className = "tx-status " + state;
     statusText.textContent = labels[state] || state;
@@ -330,9 +308,6 @@
     this.style.height = Math.min(this.scrollHeight, 120) + "px";
   });
 
-  // ══════════════════════════════════════════════════════════════
-  //  📝 MESSAGES
-  // ══════════════════════════════════════════════════════════════
   function addMsg(text, type, withRetry, skipAnim) {
     var wrap   = document.createElement("div");
     wrap.className = "tx-msg " + type;
@@ -371,7 +346,6 @@
     if (el) el.remove();
   }
 
-  // ── عداد الانتظار المرئي ─────────────────────────────────────
   var waitTimer = null;
 
   function showWaitBar(seconds) {
@@ -401,9 +375,6 @@
     if (el) el.remove();
   }
 
-  // ══════════════════════════════════════════════════════════════
-  //  🚀 SEND — Timeout 90s + Retry 3x + Wait Bar
-  // ══════════════════════════════════════════════════════════════
   async function sendMessage() {
     var text = input.value.trim();
     if (!text || loading) return;
@@ -411,7 +382,6 @@
     var chips = document.getElementById("txChips");
     if (chips) chips.style.display = "none";
 
-    // كاش سريع
     var cacheKey = text.toLowerCase().trim();
     if (cache[cacheKey]) {
       addMsg(text, "user", false, true);
@@ -432,7 +402,6 @@
     showTyping("يفكر...");
     setProgress(15);
 
-    // شريط التقدم التدريجي
     var pct = 15;
     var pInterval = setInterval(function() {
       if (pct < 80) { pct += 1.5; progress.style.width = pct + "%"; }
@@ -442,8 +411,117 @@
 
     for (var attempt = 1; attempt <= MAX_RETRIES; attempt++) {
       try {
-        // إذا لم يكن جاهزاً أعد الإيقاظ
         if (!spaceReady && attempt === 1) {
+          setStatus("waiting");
+          hideTyping();
+          showWaitBar(30);
+          showTyping("جاري إيقاظ الخادم...");
+          await ping();
+          await new Promise(function(r){ setTimeout(r, 2000); });
+        }
+
+        var ctrl  = new AbortController();
+        var timer = setTimeout(function(){ ctrl.abort(); }, TIMEOUT_MS);
+
+        var resp = await fetch(API, {
+          method:  "POST",
+          headers: { "Content-Type":"application/json" },
+          body:    JSON.stringify({ question:text, history:history.slice(0,-1) }),
+          signal:  ctrl.signal,
+          keepalive: true,
+        });
+
+        clearTimeout(timer);
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+
+        var data   = await resp.json();
+        var answer = (data.answer || "").trim() || "⚠️ لم أستطع الإجابة، حاول مرة أخرى.";
+
+        clearInterval(pInterval);
+        hideTyping();
+        hideWaitBar();
+        setProgress(100);
+
+        addMsg(answer, "bot");
+        cache[cacheKey] = answer;
+        history.push({ role:"assistant", content:answer });
+        if (history.length > MAX_HISTORY) history = history.slice(-MAX_HISTORY);
+
+        spaceReady = true;
+        setStatus("online");
+        success = true;
+
+        if (!box.classList.contains("open")) unread.style.display = "block";
+        break;
+
+      } catch (e) {
+        if (attempt < MAX_RETRIES) {
+          hideTyping();
+          hideWaitBar();
+          var waitSec = attempt * 8;
+          showWaitBar(waitSec);
+          showTyping("محاولة " + (attempt+1) + "/" + MAX_RETRIES + " خلال " + waitSec + "ث...");
+          await new Promise(function(r){ setTimeout(r, waitSec * 1000); });
+        } else {
+          clearInterval(pInterval);
+          hideTyping();
+          hideWaitBar();
+          setProgress(0);
+          var errMsg = e.name === "AbortError"
+            ? "⏱️ انتهت المهلة (" + (TIMEOUT_MS/1000) + "ث). النموذج مشغول — حاول بعد لحظة."
+            : "⚠️ تعذّر الاتصال بالخادم. تحقق من اتصالك.";
+          addMsg(errMsg, "bot", true, true);
+          setStatus("offline");
+        }
+      }
+    }
+
+    loading = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+
+  fab.addEventListener("click", function () {
+    box.classList.toggle("open");
+    if (box.classList.contains("open")) {
+      unread.style.display = "none";
+      input.focus();
+    }
+  });
+
+  document.getElementById("txClose").addEventListener("click", function () {
+    box.classList.remove("open");
+  });
+
+  document.getElementById("txClear").addEventListener("click", function () {
+    history = []; cache = {};
+    msgs.innerHTML = `
+      <div class="tx-msg bot">
+        <div class="tx-bubble">🔄 تمت إعادة المحادثة. كيف يمكنني مساعدتك؟</div>
+        <div class="tx-meta"><span>${getTime()}</span></div>
+      </div>`;
+    var chips = document.getElementById("txChips");
+    if (chips) chips.style.display = "flex";
+  });
+
+  document.getElementById("txChips").addEventListener("click", function (e) {
+    if (e.target.classList.contains("tx-chip")) {
+      input.value = e.target.textContent;
+      sendMessage();
+    }
+  });
+
+  sendBtn.addEventListener("click", sendMessage);
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      if (!loading) sendMessage();
+    }
+  });
+
+})();
+    if (!spaceReady && attempt === 1) {
           setStatus("waiting");
           hideTyping();
           showWaitBar(30);
