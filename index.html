@@ -76,14 +76,28 @@
         <p>TermuXpert &copy; 2026 - TCSF2</p>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50));
-    </script>
+<script>
+    document.getElementById("chat-trigger").addEventListener("click", function(e) {
+        e.preventDefault();
+        if (typeof toggleChat === "function") {
+            toggleChat();
+        } else {
+            console.error("Chat script not loaded yet!");
+            alert("عذراً، المحادثة لم تحمل بعد، يرجى الانتظار ثانية.");
+        }
+    });
+</script>
     
     <button class="btn btn-primary" id="chat-trigger" style="position:fixed; bottom:20px; right:20px; z-index:9999; border-radius:50%; width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 30px rgba(69,162,158,0.4);">💬</button>
 <script>
-    document.getElementById('chat-trigger').addEventListener('click', function() {
-        if (typeof toggleChat === 'function') { toggleChat(); }
+    document.getElementById("chat-trigger").addEventListener("click", function(e) {
+        e.preventDefault();
+        if (typeof toggleChat === "function") {
+            toggleChat();
+        } else {
+            console.error("Chat script not loaded yet!");
+            alert("عذراً، المحادثة لم تحمل بعد، يرجى الانتظار ثانية.");
+        }
     });
 </script>
 </body>
