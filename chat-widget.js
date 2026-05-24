@@ -6,11 +6,7 @@
     var html = '<button class="termuxpert-chat-btn">💬</button><div class="termuxpert-chat-box" id="chatBox"><div class="termuxpert-chat-header"><div class="icon">🤖</div><div><div class="title">TermuXpert AI</div><div class="status">🟢 متصل</div></div></div><div class="termuxpert-chat-messages" id="chatMessages"><div class="msg bot">👋 أهلًا! أنا TermuXpert، خبير أوامر Termux. اسألني أي شيء!</div></div><div class="termuxpert-chat-input"><input type="text" id="chatInput" placeholder="اكتب سؤالك..."><button id="sendBtn">➤</button></div></div>';
     document.body.insertAdjacentHTML('beforeend', html);
 
-    document.getElementById('sendBtn').addEventListener('click', sendMessage);
-    document.getElementById('chatInput').addEventListener('keypress', function(e) { if (e.key === 'Enter') sendMessage(); });
-    document.querySelector('.termuxpert-chat-btn').addEventListener('click', function() { document.getElementById('chatBox').classList.toggle('open'); });
-
-    async function sendMessage() {
+    function sendMessage() {
         var input = document.getElementById('chatInput');
         var text = input.value.trim();
         if (!text) return;
@@ -18,13 +14,13 @@
         msgs.innerHTML += '<div class="msg user">' + text + '</div>';
         input.value = '';
         msgs.scrollTop = msgs.scrollHeight;
-        try {
-            var resp = await fetch('https://termuxpert-termuxpert-chat.hf.space/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: text }) });
-            var data = await resp.json();
-            msgs.innerHTML += '<div class="msg bot">' + data.answer + '</div>';
-        } catch(e) {
-            msgs.innerHTML += '<div class="msg bot">⚠️ خطأ في الاتصال.</div>';
-        }
-        msgs.scrollTop = msgs.scrollHeight;
+        fetch('https://termuxpert-termuxpert-chat.hf.space/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: text }) })
+            .then(r => r.json())
+            .then(d => { msgs.innerHTML += '<div class="msg bot">' + d.answer + '</div>'; msgs.scrollTop = msgs.scrollHeight; })
+            .catch(() => { msgs.innerHTML += '<div class="msg bot">⚠️ خطأ في الاتصال.</div>'; msgs.scrollTop = msgs.scrollHeight; });
     }
+
+    document.getElementById('sendBtn').addEventListener('click', sendMessage);
+    document.getElementById('chatInput').addEventListener('keypress', function(e) { if (e.key === 'Enter') sendMessage(); });
+    document.querySelector('.termuxpert-chat-btn').addEventListener('click', function() { document.getElementById('chatBox').classList.toggle('open'); });
 })();
