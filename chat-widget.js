@@ -96,7 +96,7 @@
     document.head.appendChild(style);
 
     var html = '<button class="termuxpert-chat-btn">💬</button><div class="termuxpert-chat-box" id="chatBox"><div class="termuxpert-chat-header"><div class="icon">🤖</div><div><div class="title">TermuXpert AI</div><div class="status">🟢 متصل</div></div></div><div class="termuxpert-chat-messages" id="chatMessages"><div class="msg bot">👋 أهلًا! أنا TermuXpert، خبير أوامر Termux. اسألني أي شيء!</div></div><div class="termuxpert-chat-input"><input type="text" id="chatInput" placeholder="اكتب سؤالك..."><button id="sendBtn">➤</button></div></div>';
-    document.body.insertAdjacentHTML('beforeend', html);
+    // document.body.insertAdjacentHTML("beforeend", html);
 
     var inputEl = document.getElementById('chatInput');
     var sendBtnEl = document.getElementById('sendBtn');
