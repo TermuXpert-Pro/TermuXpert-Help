@@ -4,13 +4,21 @@
         .termuxpert-chat-btn {
             position: fixed; bottom: 20px; right: 20px; z-index: 999999 !important;
             width: 60px; height: 60px; border-radius: 50%;
+            background: var(--gradient, linear-gradient(135deg, #45A29E, #66FCF1));
+            color: var(--bg-primary, #0B0C10); border: none; font-size: 28px;
+            cursor: pointer; box-shadow: 0 8px 30px rgba(69,162,158,0.25);
+            display: flex !important; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+            position: fixed; bottom: 20px; right: 20px; z-index: 999999 !important;
+            width: 60px; height: 60px; border-radius: 50%;
             background: linear-gradient(135deg, #45A29E, #66FCF1);
             color: #0B0C10; border: none; font-size: 28px;
             cursor: pointer; box-shadow: 0 4px 20px rgba(69,162,158,0.4);
             display: flex !important; align-items: center; justify-content: center;
             transition: transform 0.2s ease;
         }
-        .termuxpert-chat-btn:hover { transform: scale(1.05); }
+        .termuxpert-chat-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 12px 40px rgba(69,162,158,0.4); }
         .termuxpert-chat-box {
             position: fixed; bottom: 90px; right: 20px; z-index: 999998 !important;
             width: 380px; height: 500px; background: #15171E;
