@@ -11,8 +11,22 @@
   var cache      = {};
   var spaceReady = false;
 
+  // 🧠 المتغيرات الجديدة للذاكرة والذكاء
+  var conversationHistory = []; // تخزين آخر 10 رسائل للسياق
+  var SYSTEM_PROMPT = `أنت TermuXpert، خبير أوامر Termux حصراً. تجيب بالعربية الفصحى أو العامية المفهومة. تقدم الأوامر الجاهزة للنسخ داخل علامات \` ... \`. أنت لطيف ومفيد ومباشر.`;
+  
+  // 🎯 اقتراحات ذكية (تظهر تحت الرد)
+  var SMART_SUGGESTIONS = {
+    "default": ["كيف أثبت بايثون؟", "ما هي أوامر الملفات؟", "كيف أحل مشكلة pkg؟"],
+    "تثبيت|pkg install|apt|حزمة|packages": ["كيف أحدث الحزم؟", "كيف أبحث عن حزمة؟", "كيف أحذف حزمة؟"],
+    "خطأ|مشكلة|error|failed|لا يعمل|issue": ["كيف أصلح مشكلة pkg؟", "كيف أتحقق من الاتصال؟", "كيف أشخص خطأ؟"],
+    "ssh|اتصال|خادم|server": ["كيف أعد SSH؟", "كيف أتصل بخادم؟", "كيف أولد مفتاح SSH؟"],
+    "git|مستودع|clone|commit": ["كيف أرفع لمستودع؟", "كيف أحل تعارض؟", "كيف أنشئ فرعاً؟"],
+    "python|pip|بايثون": ["كيف أثبت pip؟", "كيف أنشئ بيئة افتراضية؟", "كيف أثبت مكتبة؟"]
+  };
+
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // Keep-alive
+  // Keep-alive (دون تغيير)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   function ping() {
     return fetch(PING_URL, { method: "GET", keepalive: true, cache: "no-store" })
@@ -31,7 +45,7 @@
   });
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // CSS — تصميم محسّن ومتناسق
+  // CSS (مضافاً إليه أنماط العناصر الجديدة)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   var CSS = `
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Cairo:wght@400;500;600;700;800&display=swap');
@@ -58,7 +72,7 @@
       --tx-shadow: 0 24px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,229,195,0.06);
     }
 
-    /* ═══ FAB ═══ */
+    /* ═══ FAB (دون تغيير) ═══ */
     .tx-fab {
       position: fixed; bottom: 28px; right: 28px; z-index: 99999;
       width: 62px; height: 62px; border-radius: 50%; border: none;
@@ -85,7 +99,7 @@
     }
     @keyframes tx-pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
 
-    /* ═══ BOX ═══ */
+    /* ═══ BOX (دون تغيير) ═══ */
     .tx-box {
       position: fixed; bottom: 108px; right: 28px; z-index: 99998;
       width: 430px; height: 620px;
@@ -113,7 +127,7 @@
       box-shadow: 0 0 10px var(--tx-accent);
     }
 
-    /* ═══ HEADER ═══ */
+    /* ═══ HEADER (دون تغيير) ═══ */
     .tx-header {
       background: linear-gradient(180deg, #0A0E18 0%, var(--tx-bg) 100%);
       border-bottom: 1px solid var(--tx-border);
@@ -162,7 +176,7 @@
     .tx-icon-btn:hover { background: rgba(0,229,195,0.08); border-color: rgba(0,229,195,0.4); color: var(--tx-accent); }
     .tx-icon-btn.danger:hover { background: rgba(244,63,94,0.1); border-color: rgba(244,63,94,0.4); color: var(--tx-danger); }
 
-    /* ═══ MESSAGES ═══ */
+    /* ═══ MESSAGES (دون تغيير) ═══ */
     .tx-msgs {
       flex: 1; overflow-y: auto; padding: 18px 16px;
       display: flex; flex-direction: column; gap: 14px;
@@ -264,26 +278,43 @@
     }
     .tx-typing-label { font-size: 11px; color: var(--tx-muted); }
 
-    /* ═══ CHIPS ═══ */
+    /* ═══ CHIPS (دون تغيير) ═══ */
     .tx-chips {
       padding: 4px 14px 10px;
       display: flex; flex-wrap: wrap; gap: 6px;
       flex-shrink: 0;
     }
-    .tx-chip {
+    .tx-chip, .tx-suggest-btn {
       background: var(--tx-surface); border: 1px solid var(--tx-border);
       color: var(--tx-text2); border-radius: 20px;
       padding: 5px 13px; font-size: 11.5px; cursor: pointer;
       font-family: var(--tx-font); transition: all .2s;
       white-space: nowrap;
     }
-    .tx-chip:hover {
+    .tx-chip:hover, .tx-suggest-btn:hover {
       border-color: rgba(0,229,195,0.5); color: var(--tx-accent);
       background: rgba(0,229,195,0.05); transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0,229,195,0.1);
     }
 
-    /* ═══ INPUT BAR ═══ */
+    /* ✨ اقتراحات ذكية */
+    .tx-suggestions {
+      align-self: flex-start; display: flex; flex-wrap: wrap; gap: 6px;
+      margin-top: -8px; padding-left: 16px;
+    }
+
+    /* ✨ أزرار التقييم */
+    .tx-feedback {
+      display: flex; gap: 4px; margin-top: 6px;
+    }
+    .tx-fb-btn {
+      background: none; border: 1px solid var(--tx-border);
+      border-radius: 6px; padding: 2px 6px; cursor: pointer;
+      font-size: 12px; opacity: 0.5; transition: opacity .2s;
+    }
+    .tx-fb-btn:hover { opacity: 1; }
+
+    /* ═══ INPUT BAR (دون تغيير) ═══ */
     .tx-bar {
       display: flex; align-items: center; gap: 8px;
       padding: 12px 14px; border-top: 1px solid var(--tx-border);
@@ -317,7 +348,7 @@
     }
     .tx-send:disabled { opacity: .35; cursor: not-allowed; transform: none; }
 
-    /* ═══ RESPONSIVE ═══ */
+    /* ═══ RESPONSIVE (دون تغيير) ═══ */
     @media(max-width:480px) {
       .tx-box { width:100vw; height:100dvh; bottom:0; right:0; border-radius:0; }
       .tx-fab { bottom:20px; right:20px; }
@@ -329,7 +360,7 @@
   document.head.appendChild(styleEl);
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // HTML
+  // HTML (دون تغيير)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   var HTML = `
     <button class="tx-fab" id="txFab" aria-label="TermuXpert Chat">
@@ -394,7 +425,7 @@
   document.body.insertAdjacentHTML("beforeend", HTML);
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // عناصر الواجهة
+  // عناصر الواجهة (دون تغيير)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   var fab        = document.getElementById("txFab");
   var box        = document.getElementById("txBox");
@@ -407,7 +438,68 @@
   var unread     = document.getElementById("txUnread");
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // أدوات مساعدة
+  // ✨ دوال ذكية جديدة
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  // 1. تحليل نية المستخدم
+  function detectIntent(text) {
+    var intents = {
+      "تثبيت|pkg install|apt|حزمة|packages|نصب|ثبت": "install",
+      "خطأ|مشكلة|error|failed|لا يعمل|issue|علّق|عطلان": "problem",
+      "شكراً|ممتاز|رائع|يعطيك العافية": "positive",
+      "مرحبا|السلام|هاي|أهلاً": "greeting"
+    };
+    for (var pattern in intents) {
+      if (new RegExp(pattern).test(text)) {
+        return intents[pattern];
+      }
+    }
+    return "general";
+  }
+
+  // 2. إظهار اقتراحات ذكية تحت الرد
+  function showSuggestions(botMessageText) {
+    var suggestions = SMART_SUGGESTIONS["default"];
+    Object.keys(SMART_SUGGESTIONS).forEach(function(keyword) {
+      if (keyword !== "default" && new RegExp(keyword).test(botMessageText)) {
+        suggestions = SMART_SUGGESTIONS[keyword];
+      }
+    });
+    var suggestDiv = document.createElement("div");
+    suggestDiv.className = "tx-suggestions";
+    suggestDiv.innerHTML = suggestions.map(function(s) {
+      return '<button class="tx-suggest-btn" onclick="window._txQuickSend(\'' + s + '\')">' + s + '</button>';
+    }).join("");
+    msgs.appendChild(suggestDiv);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  // 3. إضافة أزرار تقييم لرسالة البوت
+  function addFeedbackButtons(botMsgDiv) {
+    var fb = document.createElement("div");
+    fb.className = "tx-feedback";
+    fb.innerHTML = '<button class="tx-fb-btn" data-vote="up">👍</button><button class="tx-fb-btn" data-vote="down">👎</button>';
+    fb.querySelector(".tx-fb-btn[data-vote='up']").onclick = function() {
+      this.style.opacity = "1"; fb.querySelector(".tx-fb-btn[data-vote='down']").style.opacity = "0.5";
+    };
+    fb.querySelector(".tx-fb-btn[data-vote='down']").onclick = function() {
+      this.style.opacity = "1"; fb.querySelector(".tx-fb-btn[data-vote='up']").style.opacity = "0.5";
+    };
+    botMsgDiv.querySelector(".tx-bubble").appendChild(fb);
+  }
+
+  // 4. حفظ آخر المحادثات في Local Storage
+  function saveToHistory(userMsg, botMsg) {
+    try {
+      var history = JSON.parse(localStorage.getItem("tx_history") || "[]");
+      history.push({ user: userMsg, bot: botMsg, time: getTime() });
+      if (history.length > 5) history.shift();
+      localStorage.setItem("tx_history", JSON.stringify(history));
+    } catch(e) {}
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // أدوات مساعدة (دون تغيير)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   function getTime() {
     var d = new Date();
@@ -445,7 +537,7 @@
   });
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // إضافة رسائل
+  // إضافة رسائل (مُحسَّنة)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   function addMsg(text, type, withRetry) {
     var wrap = document.createElement("div");
@@ -467,6 +559,7 @@
     wrap.appendChild(meta);
     msgs.appendChild(wrap);
     msgs.scrollTop = msgs.scrollHeight;
+    return wrap; // نرجع العنصر لإضافة أزرار التقييم
   }
 
   function showTyping(label) {
@@ -483,6 +576,7 @@
     if (el) el.remove();
   }
 
+  // (دوال showWaitBar و hideWaitBar دون تغيير)
   var waitTimer = null;
   function showWaitBar(seconds) {
     hideWaitBar();
@@ -500,7 +594,6 @@
       if (sec)  sec.textContent  = "⏳ " + Math.max(seconds-elapsed, 0) + "ث";
     }, 1000);
   }
-
   function hideWaitBar() {
     if (waitTimer) { clearInterval(waitTimer); waitTimer = null; }
     var el = document.getElementById("txWaitBar");
@@ -508,13 +601,12 @@
   }
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // إرسال السؤال
+  // ✨ إرسال السؤال (مُحسَّن بالذاكرة والاقتراحات)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   async function sendMessage() {
     var text = input.value.trim();
     if (!text || loading) return;
 
-    // ✅ حماية: حد أقصى متطابق مع الـ backend
     if (text.length > 500) {
       addMsg("⚠️ السؤال طويل جداً، اختصره من فضلك (أقصى 500 حرف).", "bot");
       return;
@@ -523,15 +615,7 @@
     var chips = document.getElementById("txChips");
     if (chips) chips.style.display = "none";
 
-    var cacheKey = text.toLowerCase().trim();
-    if (cache[cacheKey]) {
-      addMsg(text, "user");
-      input.value = ""; input.style.height = "44px";
-      addMsg(cache[cacheKey], "bot");
-      return;
-    }
-
-    lastQ   = text;
+    lastQ = text;
     loading = true;
     sendBtn.disabled = true;
     input.value = ""; input.style.height = "44px";
@@ -544,6 +628,10 @@
     var pInterval = setInterval(function() {
       if (pct < 80) { pct += 1.5; progress.style.width = pct + "%"; }
     }, 600);
+
+    // 1. تحديث ذاكرة المحادثة
+    conversationHistory.push({ role: "user", content: text });
+    if (conversationHistory.length > 10) conversationHistory = conversationHistory.slice(-10);
 
     for (var attempt = 1; attempt <= MAX_RETRIES; attempt++) {
       try {
@@ -559,10 +647,16 @@
         var ctrl  = new AbortController();
         var timer = setTimeout(function(){ ctrl.abort(); }, TIMEOUT_MS);
 
+        // 2. إرسال السياق والنظام برومبت مع السؤال
         var resp = await fetch(API, {
           method:  "POST",
           headers: { "Content-Type": "application/json" },
-          body:    JSON.stringify({ question: text, consistency: text.length > 50 }),
+          body:    JSON.stringify({
+            question: text,
+            messages: conversationHistory, // التاريخ
+            system: SYSTEM_PROMPT,         // النظام برومبت
+            consistency: text.length > 50
+          }),
           signal:  ctrl.signal,
           keepalive: true,
         });
@@ -576,10 +670,19 @@
         clearInterval(pInterval);
         hideTyping(); hideWaitBar();
         setProgress(100);
-        addMsg(answer, "bot");
-        cache[cacheKey] = answer;
+        var botDiv = addMsg(answer, "bot");
+        cache[lastQ.toLowerCase().trim()] = answer;
         spaceReady = true;
         setStatus("online");
+
+        // 3. إضافة الرد للذاكرة
+        conversationHistory.push({ role: "assistant", content: answer });
+        if (conversationHistory.length > 10) conversationHistory = conversationHistory.slice(-10);
+
+        // 4. تفعيل الميزات الذكية
+        addFeedbackButtons(botDiv);
+        showSuggestions(answer);
+        saveToHistory(text, answer);
 
         if (!box.classList.contains("open")) unread.style.display = "block";
         break;
@@ -608,8 +711,14 @@
     input.focus();
   }
 
+  // 5. دالة عامة للإرسال السريع من الاقتراحات
+  window._txQuickSend = function(question) {
+    input.value = question;
+    sendMessage();
+  };
+
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // أحداث الواجهة
+  // أحداث الواجهة (مُضافة إليها الاختصارات)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   fab.addEventListener("click", function () {
     box.classList.toggle("open");
@@ -625,6 +734,7 @@
 
   document.getElementById("txClear").addEventListener("click", function () {
     cache = {};
+    conversationHistory = []; // مسح الذاكرة أيضاً
     msgs.innerHTML = `
       <div class="tx-msg bot">
         <div class="tx-bubble">🔄 تمت إعادة المحادثة. كيف يمكنني مساعدتك؟</div>
@@ -647,6 +757,18 @@
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (!loading) sendMessage();
+    }
+  });
+
+  // ✨ اختصار Ctrl+K لفتح/إغلاق النافذة
+  document.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && e.key === "k") {
+      e.preventDefault();
+      box.classList.toggle("open");
+      if (box.classList.contains("open")) {
+        unread.style.display = "none";
+        input.focus();
+      }
     }
   });
 
