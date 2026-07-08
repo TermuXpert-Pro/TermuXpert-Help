@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TermuXpert - المجموعات</title>
+    <title>TermuXpert - المواد الدراسية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -11,29 +11,66 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="chat-widget.js"></script>
     <div class="bg-grid"></div>
     <nav class="navbar">
         <a href="index.html" class="nav-logo">
-            <div class="nav-logo-icon">&gt;_</div>
+            <div class="nav-logo-icon">&sum;</div>
             <div class="nav-logo-text">Term<span>uXpert</span></div>
         </a>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
-            <li><a href="https://github.com/TermuXpert-Pro/TermuXpert"><i class="fa-brands fa-github"></i> GitHub</a></li>
         </ul>
     </nav>
     <div class="hero" style="min-height:auto; padding:100px 20px 50px;">
-        <h1 style="font-size:40px;">جميع <span class="gradient-text">المجموعات</span></h1>
-        <p class="description">تصفح جميع مجموعات الأوامر المنظمة</p>
+        <h1 style="font-size:40px;">المواد <span class="gradient-text">الدراسية</span></h1>
+        <p class="description">اختر مادتك لتبدأ التعلم</p>
     </div>
     <div style="max-width:1100px; margin:0 auto; padding:0 20px 60px;">
-        <div class="search-box"><input type="text" id="searchInput" placeholder="ابحث عن مجموعة..." oninput="filterGroups('searchInput', 'groupsGrid')"></div>
+        <div class="search-box"><input type="text" id="searchInput" placeholder="ابحث عن مادة..." oninput="filterGroups('searchInput', 'groupsGrid')"></div>
         <div class="grid" id="groupsGrid"><div class="no-data">جاري التحميل...</div></div>
     </div>
-    <footer class="footer"><div class="divider"></div><p>TermuXpert &copy; 2026 - TCSF2</p></footer>
+    <footer class="footer"><div class="divider"></div><p>TermuXpert &copy; 2026 - 1 Bac Sciences Expérimentales</p></footer>
     <script src="script.js"></script>
-    <script>(async () => { await loadStats(); renderGroups(allGroups, 'groupsGrid'); })();</script>
-    
+    <script>
+        // تعريف المواد الدراسية مباشرة
+        const subjects = [
+            { id: "math", title: "📐 الرياضيات", description: "الدوال، الهندسة، الجبر، الاحتمالات", icon: "fa-square-root-variable", color: "#4ECDC4" },
+            { id: "physique", title: "⚡ الفيزياء", description: "الميكانيك، الكهرباء، الموجات، الطاقة", icon: "fa-atom", color: "#FF6B6B" },
+            { id: "chimie", title: "🧪 الكيمياء", description: "الذرة، التفاعلات، الأحماض والقواعد", icon: "fa-flask", color: "#F4D03F" }
+        ];
+
+        function renderSubjects() {
+            const grid = document.getElementById('groupsGrid');
+            grid.innerHTML = subjects.map(s => `
+                <div class="card" onclick="location.href='lessons.html?subject=${s.id}'" style="border-right-color: ${s.color};">
+                    <div style="font-size:32px; margin-bottom:8px;"><i class="fa-solid ${s.icon}" style="color:${s.color};"></i></div>
+                    <h3>${s.title}</h3>
+                    <p>${s.description}</p>
+                    <span class="badge" style="background:${s.color}22; color:${s.color};">تصفح الدروس</span>
+                </div>
+            `).join('');
+        }
+
+        function filterGroups(inputId, containerId) {
+            const q = document.getElementById(inputId).value.toLowerCase();
+            const grid = document.getElementById(containerId);
+            if (!q) { renderSubjects(); return; }
+            const filtered = subjects.filter(s => 
+                s.title.toLowerCase().includes(q) || 
+                s.description.toLowerCase().includes(q)
+            );
+            grid.innerHTML = filtered.length === 0 ? '<div class="no-data">لا توجد نتائج</div>' :
+                filtered.map(s => `
+                    <div class="card" onclick="location.href='lessons.html?subject=${s.id}'" style="border-right-color: ${s.color};">
+                        <div style="font-size:32px; margin-bottom:8px;"><i class="fa-solid ${s.icon}" style="color:${s.color};"></i></div>
+                        <h3>${s.title}</h3>
+                        <p>${s.description}</p>
+                        <span class="badge" style="background:${s.color}22; color:${s.color};">تصفح الدروس</span>
+                    </div>
+                `).join('');
+        }
+
+        renderSubjects();
+    </script>
 </body>
 </html>

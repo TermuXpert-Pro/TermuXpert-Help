@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TermuXpert - الدروس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">&sum;</div>
+            <div class="nav-logo-text">Term<span>uXpert</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+            <li><a href="groups.html"><i class="fa-solid fa-book"></i> المواد</a></li>
+        </ul>
+    </nav>
+    <div class="hero" style="min-height:auto; padding:100px 20px 40px;">
+        <h1 style="font-size:36px;" id="subjectTitle">الدروس</h1>
+    </div>
+    <div style="max-width:800px; margin:0 auto; padding:0 20px 60px;">
+        <a href="groups.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i> العودة للمواد</a>
+        <div id="lessonsList"><div class="no-data">جاري التحميل...</div></div>
+    </div>
+    <footer class="footer"><div class="divider"></div><p>TermuXpert &copy; 2026 - 1 Bac Sciences Expérimentales</p></footer>
+    <script src="script.js"></script>
+    <script>
+        // بيانات الدروس لكل مادة
+        const lessonsData = {
+            math: {
+                title: "📐 الرياضيات",
+                lessons: [
+                    { title: "Généralités sur les fonctions", content: "$$f(x) = ax^2 + bx + c$$" },
+                    { title: "Logique mathématique", content: "$$\\forall x \\in \\mathbb{R}, x^2 \\ge 0$$" },
+                    { title: "Raisonnement par récurrence", content: "$$P(n) \\Rightarrow P(n+1)$$" },
+                    { title: "Les suites numériques", content: "$$u_{n+1} = f(u_n)$$" },
+                    { title: "Fonctions trigonométriques", content: "$$\\sin^2 x + \\cos^2 x = 1$$" }
+                ]
+            },
+            physique: {
+                title: "⚡ الفيزياء",
+                lessons: [
+                    { title: "Mouvement rectiligne", content: "$$x(t) = x_0 + v_0 t + \\frac{1}{2} a t^2$$" },
+                    { title: "Lois de Newton", content: "$$\\sum \\vec{F} = m \\vec{a}$$" },
+                    { title: "Énergie cinétique", content: "$$E_c = \\frac{1}{2} m v^2$$" },
+                    { title: "Ondes mécaniques", content: "$$v = \\lambda \\cdot f$$" },
+                    { title: "Loi d'Ohm", content: "$$U = R \\cdot I$$" }
+                ]
+            },
+            chimie: {
+                title: "🧪 الكيمياء",
+                lessons: [
+                    { title: "Structure de l'atome", content: "$$\\ce{^{A}_{Z}X}$$" },
+                    { title: "Réactions chimiques", content: "$$\\ce{2H2 + O2 -> 2H2O}$$" },
+                    { title: "Acides et bases", content: "$$\\ce{pH} = -\\log[\\ce{H3O+}]$$" },
+                    { title: "Oxydoréduction", content: "$$\\ce{Zn + Cu^{2+} -> Zn^{2+} + Cu}$$" },
+                    { title: "Cinétique chimique", content: "$$v = -\\frac{1}{a}\\frac{d[A]}{dt}$$" }
+                ]
+            }
+        };
+
+        function loadLessons() {
+            const params = new URLSearchParams(window.location.search);
+            const subjectId = params.get('subject');
+            const data = lessonsData[subjectId];
+            
+            if (!data) {
+                document.getElementById('lessonsList').innerHTML = '<div class="no-data">المادة غير موجودة</div>';
+                return;
+            }
+            
+            document.getElementById('subjectTitle').textContent = data.title;
+            
+            document.getElementById('lessonsList').innerHTML = data.lessons.map((l, i) => `
+                <div class="command-card">
+                    <div class="command-title">${i+1}. ${l.title}</div>
+                    <div class="code-block" style="padding:16px; background:#0D1117;">
+                        <div class="code-content" style="font-size:18px; text-align:center;">${l.content}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // إعادة تحميل MathJax
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        loadLessons();
+    </script>
+</body>
+</html>
