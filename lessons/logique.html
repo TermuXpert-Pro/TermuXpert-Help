@@ -20,533 +20,379 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
     <style>
-        .lesson-container {
-            max-width: 900px;
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            padding-top: 70px;
+        }
+        .container {
+            max-width: 820px;
             margin: 0 auto;
             padding: 20px;
         }
-        .lesson-title {
-            color: #4ECDC4;
-            font-size: 32px;
-            font-weight: 900;
-            text-align: center;
+        
+        /* ====== TOOLBAR SANS COULEUR ====== */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
             margin-bottom: 30px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 15px;
+            background: transparent !important;
         }
+        .toolbar .back {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .toolbar .back:hover {
+            color: var(--accent-light);
+        }
+        .toolbar .title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .toolbar .title span {
+            color: #4ECDC4;
+        }
+
+        /* ====== TITRE PRINCIPAL ====== */
+        .main-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .main-title .highlight {
+            color: #4ECDC4;
+        }
+        .main-sub {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+        }
+
+        /* ====== SECTIONS ====== */
         .section {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
         }
         .section h2 {
-            color: #66FCF1;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .section h2 .num {
-            background: var(--gradient);
-            color: var(--bg-primary);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 900;
+            color: #4ECDC4;
         }
         .section h3 {
-            color: #FF6B6B;
-            font-size: 18px;
-            font-weight: 700;
-            margin: 16px 0 8px;
-        }
-        .section h4 {
-            color: #F4D03F;
             font-size: 16px;
             font-weight: 700;
-            margin: 12px 0 6px;
+            color: #66FCF1;
+            margin: 16px 0 8px;
         }
         .section p {
             color: var(--text-secondary);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.8;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .section ul {
+
+        /* ====== DÉFINITION ====== */
+        .def-box {
+            background: rgba(78, 205, 196, 0.06);
+            border-left: 3px solid #4ECDC4;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin: 10px 0 14px;
+        }
+        .def-box .label {
+            font-weight: 700;
+            color: #4ECDC4;
+            font-size: 13px;
+        }
+        .def-box p {
             color: var(--text-secondary);
-            font-size: 15px;
-            line-height: 1.8;
-            padding-right: 25px;
-            margin-bottom: 10px;
+            font-size: 14px;
+            margin-top: 4px;
         }
-        .section ul li {
-            margin-bottom: 4px;
-        }
-        .formula-block {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin: 12px 0;
-            text-align: center;
-            overflow-x: auto;
-            font-size: 18px;
-        }
-        .formula-block .math {
-            color: var(--accent-light);
-            font-family: var(--font-mono);
-        }
-        .highlight-box {
-            background: rgba(69, 162, 158, 0.08);
-            border-right: 4px solid var(--accent);
-            padding: 14px 18px;
-            border-radius: 8px;
-            margin: 12px 0;
-        }
-        .highlight-box.green {
-            border-color: #4ECDC4;
-            background: rgba(78, 205, 196, 0.08);
-        }
-        .highlight-box.red {
-            border-color: #FF6B6B;
-            background: rgba(255, 107, 107, 0.08);
-        }
-        .highlight-box.yellow {
-            border-color: #F4D03F;
-            background: rgba(244, 208, 63, 0.08);
-        }
-        .highlight-box.purple {
-            border-color: #BB8FCE;
-            background: rgba(187, 143, 206, 0.08);
-        }
-        .highlight-box strong {
+        .def-box strong {
             color: var(--text-primary);
         }
-        .highlight-box .label {
-            display: inline-block;
-            font-weight: 700;
-            font-size: 13px;
-            padding: 2px 12px;
-            border-radius: 20px;
-            margin-bottom: 6px;
+
+        /* ====== EXEMPLE ====== */
+        .ex-box {
+            background: rgba(244, 208, 63, 0.05);
+            border-left: 3px solid #F4D03F;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin: 8px 0 12px;
         }
-        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
-        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
-        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
-        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .ex-box .label {
+            font-weight: 700;
+            color: #F4D03F;
+            font-size: 13px;
+        }
+        .ex-box p, .ex-box li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .ex-box ul {
+            padding-right: 20px;
+            margin: 4px 0;
+        }
+
+        /* ====== TABLEAUX - RÉDUITS ET UNIFORMES ====== */
         .table-wrap {
             overflow-x: auto;
-            margin: 12px 0;
+            margin: 8px 0 14px;
         }
         .table-wrap table {
             width: 100%;
+            max-width: 280px;
             border-collapse: collapse;
-            background: var(--bg-primary);
-            border-radius: 10px;
+            background: var(--bg-secondary);
+            border-radius: 6px;
             overflow: hidden;
+            font-size: 14px;
         }
-        .table-wrap th {
-            background: var(--bg-card);
-            color: var(--accent-light);
-            padding: 10px 14px;
-            border: 1px solid var(--border);
-            font-weight: 700;
-            text-align: center;
-        }
+        /* TOUTES LES CELLULES (thead + tbody) ont le même style */
+        .table-wrap th,
         .table-wrap td {
-            padding: 10px 14px;
+            padding: 6px 16px;
             border: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
+            font-size: 13px;
+            background: var(--bg-secondary);
+            font-weight: 400;
         }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
-        .badge-math {
-            display: inline-block;
-            background: #4ECDC422;
-            color: #4ECDC4;
-            padding: 2px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+        /* Les valeurs V et F */
+        .table-wrap .v { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .f { color: #FF6B6B; font-weight: 700; }
+
+        /* ====== FORMULE ====== */
+        .formula-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            text-align: center;
+            overflow-x: auto;
         }
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .formula-box .math {
             color: var(--accent-light);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 18px;
-            border-radius: 10px;
-            transition: all 0.2s ease;
-            margin-bottom: 25px;
-            font-size: 15px;
+            font-family: var(--font-mono);
+            font-size: 17px;
         }
-        .back-btn:hover { background: rgba(69, 162, 158, 0.1); }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 6px 0 10px;
+        }
+
         @media (max-width: 600px) {
-            .lesson-container { padding: 10px; }
-            .section { padding: 14px 16px; }
-            .lesson-title { font-size: 24px; }
-            .formula-block { font-size: 15px; padding: 12px 14px; }
-            .section h2 { font-size: 18px; }
+            .container { padding: 12px; }
+            .main-title { font-size: 22px; }
+            .toolbar .title { font-size: 15px; }
+            .table-wrap table { max-width: 100%; }
+            .table-wrap th, .table-wrap td { padding: 5px 10px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="glow-orb glow-orb-1"></div>
-    <div class="glow-orb glow-orb-2"></div>
 
-    <nav class="navbar" id="navbar">
-        <a href="../index.html" class="nav-logo">
-            <div class="nav-logo-icon">X</div>
-            <div class="nav-logo-text"><span>X</span>pert</div>
+<div class="container">
+
+    <!-- ====== TOOLBAR SANS COULEUR ====== -->
+    <div class="toolbar">
+        <a href="../subject.html?subject=math" class="back">
+            <i class="fas fa-arrow-right"></i> Retour
         </a>
-        <ul class="nav-links">
-            <li><a href="../index.html"><i class="fas fa-house"></i> Accueil</a></li>
-            <li><a href="../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
-        </ul>
-    </nav>
+        <div class="title"><span>X</span>pert</div>
+    </div>
 
-    <div style="max-width:900px; margin:0 auto; padding:100px 20px 40px;">
-        <a href="../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
-        
-        <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-square-root-variable" style="color:#4ECDC4;"></i> Logique mathématique</h1>
+    <!-- ====== TITRE ====== -->
+    <h1 class="main-title">Logique <span class="highlight">mathématique</span></h1>
+    <p class="main-sub">1 Bac Sciences Expérimentales</p>
 
-            <!-- ============================================================ -->
-            <!-- SECTION 1: PROPOSITION -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">1</span> Proposition</h2>
-                <div class="highlight-box green">
-                    <span class="label def">Définition</span>
-                    <p>Une <strong>proposition</strong> est une phrase soit <span style="color:#4ECDC4;">vraie</span>, soit <span style="color:#FF6B6B;">fausse</span>, pas les deux en même temps.</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemples :</strong></p>
-                    <ul>
-                        <li>« \(2 + 2 = 4\) » est une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
-                        <li>« \(3 \times 5 = 10\) » est une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
-                        <li>« Il fait beau aujourd'hui » n'est pas une proposition (dépend du contexte).</li>
-                    </ul>
-                </div>
+    <!-- ============================================================ -->
+    <!-- SECTION 1: PROPOSITION -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <h2><span class="num">1.</span> Proposition</h2>
+        <div class="def-box">
+            <span class="label">Définition</span>
+            <p>Une <strong>proposition</strong> est une phrase soit <span style="color:#4ECDC4;">vraie</span>, soit <span style="color:#FF6B6B;">fausse</span>, pas les deux en même temps.</p>
+        </div>
+        <div class="ex-box">
+            <span class="label">Exemples</span>
+            <ul>
+                <li>\( 2 + 2 = 4 \) est une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
+                <li>\( 3 \times 5 = 10 \) est une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
+                <li>« Il fait beau aujourd'hui » n'est pas une proposition.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 2: OPÉRATIONS LOGIQUES -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <h2><span class="num">2.</span> Opérations logiques</h2>
+
+        <!-- 2-1 ET -->
+        <h3>2-1 « et » ∧</h3>
+        <p>« P et Q » est <span style="color:#4ECDC4;">vraie</span> si P et Q sont vraies.</p>
+        <div class="table-wrap">
+            <table>
+                <tr><th>P</th><th>Q</th><th>P ∧ Q</th></tr>
+                <tr><td class="v">V</td><td class="v">V</td><td class="v">V</td></tr>
+                <tr><td class="v">V</td><td class="f">F</td><td class="f">F</td></tr>
+                <tr><td class="f">F</td><td class="v">V</td><td class="f">F</td></tr>
+                <tr><td class="f">F</td><td class="f">F</td><td class="f">F</td></tr>
+            </table>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 2-2 OU -->
+        <h3>2-2 « ou » ∨</h3>
+        <p>« P ou Q » est <span style="color:#4ECDC4;">vraie</span> si l'une au moins est vraie.</p>
+        <div class="table-wrap">
+            <table>
+                <tr><th>P</th><th>Q</th><th>P ∨ Q</th></tr>
+                <tr><td class="v">V</td><td class="v">V</td><td class="v">V</td></tr>
+                <tr><td class="v">V</td><td class="f">F</td><td class="v">V</td></tr>
+                <tr><td class="f">F</td><td class="v">V</td><td class="v">V</td></tr>
+                <tr><td class="f">F</td><td class="f">F</td><td class="f">F</td></tr>
+            </table>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 2-3 NÉGATION -->
+        <h3>2-3 « non » ¬</h3>
+        <p>« non P » est <span style="color:#4ECDC4;">vraie</span> si P est fausse.</p>
+        <div class="table-wrap">
+            <table>
+                <tr><th>P</th><th>¬P</th></tr>
+                <tr><td class="v">V</td><td class="f">F</td></tr>
+                <tr><td class="f">F</td><td class="v">V</td></tr>
+            </table>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 2-4 IMPLICATION -->
+        <h3>2-4 Implication ⇒</h3>
+        <p>« P ⇒ Q » se lit « P implique Q ».</p>
+        <div class="table-wrap">
+            <table>
+                <tr><th>P</th><th>Q</th><th>P ⇒ Q</th></tr>
+                <tr><td class="v">V</td><td class="v">V</td><td class="v">V</td></tr>
+                <tr><td class="v">V</td><td class="f">F</td><td class="f">F</td></tr>
+                <tr><td class="f">F</td><td class="v">V</td><td class="v">V</td></tr>
+                <tr><td class="f">F</td><td class="f">F</td><td class="v">V</td></tr>
+            </table>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 2-5 ÉQUIVALENCE -->
+        <h3>2-5 Équivalence ⇔</h3>
+        <p>« P ⇔ Q » se lit « P équivaut à Q ».</p>
+        <div class="table-wrap">
+            <table>
+                <tr><th>P</th><th>Q</th><th>P ⇔ Q</th></tr>
+                <tr><td class="v">V</td><td class="v">V</td><td class="v">V</td></tr>
+                <tr><td class="v">V</td><td class="f">F</td><td class="f">F</td></tr>
+                <tr><td class="f">F</td><td class="v">V</td><td class="f">F</td></tr>
+                <tr><td class="f">F</td><td class="f">F</td><td class="v">V</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3: LOIS LOGIQUES -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <h2><span class="num">3.</span> Lois logiques (Tautologies)</h2>
+        <div class="def-box">
+            <span class="label">Définition</span>
+            <p>Une <strong>tautologie</strong> est une proposition toujours <span style="color:#4ECDC4;">vraie</span>.</p>
+        </div>
+        <div class="formula-box">
+            <div class="math">
+                <p>\( P \Leftrightarrow \neg(\neg P) \)</p>
+                <p>\( (P \land Q) \Leftrightarrow (Q \land P) \)</p>
+                <p>\( (P \lor Q) \Leftrightarrow (Q \lor P) \)</p>
+                <p>\( \neg(P \land Q) \Leftrightarrow (\neg P) \lor (\neg Q) \)</p>
+                <p>\( \neg(P \lor Q) \Leftrightarrow (\neg P) \land (\neg Q) \)</p>
             </div>
+        </div>
+        <div class="ex-box">
+            <span class="label">Lois de Morgan</span>
+            <p>\( \neg(P \land Q) \Leftrightarrow (\neg P) \lor (\neg Q) \)</p>
+            <p>\( \neg(P \lor Q) \Leftrightarrow (\neg P) \land (\neg Q) \)</p>
+        </div>
+    </div>
 
-            <!-- ============================================================ -->
-            <!-- SECTION 2: OPÉRATIONS LOGIQUES -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">2</span> Opérations logiques</h2>
+    <!-- ============================================================ -->
+    <!-- SECTION 4: QUANTIFICATEURS -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <h2><span class="num">4.</span> Quantificateurs</h2>
 
-                <!-- 2-1 ET -->
-                <h3>2-1 L'opérateur logique « et » ($\land$)</h3>
-                <p>La proposition « <strong>P et Q</strong> » est <span style="color:#4ECDC4;">vraie</span> si <strong>P</strong> est vraie et <strong>Q</strong> est vraie. Elle est <span style="color:#FF6B6B;">fausse</span> sinon.</p>
-                
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$P$</th><th>$Q$</th><th>$P \land Q$</th></tr>
-                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
-                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
-                        <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
-                        <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
-                    </table>
-                </div>
+        <h3>4-1 Universel « pour tout » ∀</h3>
+        <div class="def-box">
+            <span class="label">Définition</span>
+            <p>\( \forall x \in E : P(x) \) se lit « <strong>Pour tout</strong> \(x\) appartenant à \(E\), \(P(x)\) est vraie ».</p>
+        </div>
+        <div class="ex-box">
+            <span class="label">Exemple</span>
+            <p>\( \forall x \in [1; +\infty[ : x^2 \ge 1 \) est <span style="color:#4ECDC4;">vraie</span>.</p>
+        </div>
 
-                <!-- 2-2 OU -->
-                <h3 style="margin-top:20px;">2-2 L'opérateur logique « ou » ($\lor$)</h3>
-                <p>La proposition « <strong>P ou Q</strong> » est <span style="color:#4ECDC4;">vraie</span> si l'une (au moins) des deux propositions P ou Q est vraie. Elle est <span style="color:#FF6B6B;">fausse</span> si les deux sont fausses.</p>
-                
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$P$</th><th>$Q$</th><th>$P \lor Q$</th></tr>
-                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
-                        <tr><td class="true">V</td><td class="false">F</td><td class="true">V</td></tr>
-                        <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
-                        <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
-                    </table>
-                </div>
+        <h3>4-2 Existentiel « il existe » ∃</h3>
+        <div class="def-box">
+            <span class="label">Définition</span>
+            <p>\( \exists x \in E : P(x) \) se lit « <strong>Il existe</strong> \(x\) appartenant à \(E\) tel que \(P(x)\) est vraie ».</p>
+        </div>
+        <div class="ex-box">
+            <span class="label">Exemples</span>
+            <ul>
+                <li>\( \exists n \in \mathbb{N} : n^2 - n \ge n \) est <span style="color:#4ECDC4;">vraie</span> (ex: \(n = 3\)).</li>
+                <li>\( \exists x \in \mathbb{R} : x^2 = -1 \) est <span style="color:#FF6B6B;">fausse</span>.</li>
+            </ul>
+        </div>
 
-                <!-- 2-3 NÉGATION -->
-                <h3 style="margin-top:20px;">2-3 La négation « non » ($\neg$)</h3>
-                <p>La proposition « <strong>non P</strong> » est <span style="color:#4ECDC4;">vraie</span> si P est fausse, et <span style="color:#FF6B6B;">fausse</span> si P est vraie.</p>
-                
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$P$</th><th>$\neg P$</th></tr>
-                        <tr><td class="true">V</td><td class="false">F</td></tr>
-                        <tr><td class="false">F</td><td class="true">V</td></tr>
-                    </table>
-                </div>
-
-                <!-- 2-4 IMPLICATION -->
-                <h3 style="margin-top:20px;">2-4 L'implication ($\Rightarrow$)</h3>
-                <p>La proposition « <strong>P $\Rightarrow$ Q</strong> » se lit « <strong>P implique Q</strong> » ou « <strong>si P est vraie alors Q est vraie</strong> ».</p>
-                <p>Elle est équivalente à « (non P) ou Q ».</p>
-                
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$P$</th><th>$Q$</th><th>$P \Rightarrow Q$</th></tr>
-                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
-                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
-                        <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
-                        <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
-                    </table>
-                </div>
-
-                <!-- 2-5 ÉQUIVALENCE -->
-                <h3 style="margin-top:20px;">2-5 L'équivalence ($\Leftrightarrow$)</h3>
-                <p>La proposition « <strong>P $\Leftrightarrow$ Q</strong> » se lit « <strong>P équivaut à Q</strong> » ou « <strong>P si et seulement si Q</strong> ».</p>
-                <p>Elle est vraie lorsque <strong>P</strong> et <strong>Q</strong> ont la même valeur de vérité.</p>
-                
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$P$</th><th>$Q$</th><th>$P \Leftrightarrow Q$</th></tr>
-                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
-                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
-                        <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
-                        <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 3: LOIS LOGIQUES (TAUTOLOGIES) -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">3</span> Lois logiques (Tautologies)</h2>
-                <div class="highlight-box green">
-                    <span class="label def">Définition</span>
-                    <p>Une <strong>loi logique</strong> (ou <strong>tautologie</strong>) est une proposition qui est toujours <span style="color:#4ECDC4;">vraie</span>, quelle que soit la valeur de vérité des propositions qui la constituent.</p>
-                </div>
-
-                <h3>Propriétés fondamentales</h3>
-                <p>Soient $P$, $Q$, $R$ trois propositions. Nous avons les équivalences suivantes :</p>
-                
-                <div class="formula-block">
-                    <p>1. $P \Leftrightarrow \neg(\neg P)$</p>
-                    <p>2. $(P \land Q) \Leftrightarrow (Q \land P)$</p>
-                    <p>3. $(P \lor Q) \Leftrightarrow (Q \lor P)$</p>
-                    <p>4. $\neg(P \land Q) \Leftrightarrow (\neg P) \lor (\neg Q)$</p>
-                    <p>5. $\neg(P \lor Q) \Leftrightarrow (\neg P) \land (\neg Q)$</p>
-                    <p>6. $P \land (Q \lor R) \Leftrightarrow (P \land Q) \lor (P \land R)$</p>
-                    <p>7. $P \lor (Q \land R) \Leftrightarrow (P \lor Q) \land (P \lor R)$</p>
-                    <p>8. $(P \Rightarrow Q) \Leftrightarrow (\neg Q \Rightarrow \neg P)$</p>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label ex">Remarque</span>
-                    <p>Les lois 4 et 5 sont appelées les <strong>lois de Morgan</strong>.</p>
-                    <p>La loi 8 est la <strong>contraposée</strong>.</p>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 4: QUANTIFICATEURS -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">4</span> Quantificateurs</h2>
-
-                <h3>4-1 Quantificateur universel « pour tout » ($\forall$)</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Définition</span>
-                    <p>La proposition « $\forall x \in E : P(x)$ » se lit « <strong>Pour tout</strong> $x$ appartenant à $E$, $P(x)$ est vraie ».</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>« $\forall x \in [1; +\infty[ : x^2 \ge 1$ » est une proposition <span style="color:#4ECDC4;">vraie</span>.</p>
-                </div>
-
-                <h3 style="margin-top:20px;">4-2 Quantificateur existentiel « il existe » ($\exists$)</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Définition</span>
-                    <p>La proposition « $\exists x \in E : P(x)$ » se lit « <strong>Il existe</strong> $x$ appartenant à $E$ tel que $P(x)$ est vraie ».</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemples :</strong></p>
-                    <ul>
-                        <li>« $\exists n \in \mathbb{N} : n^2 - n \ge n$ » est <span style="color:#4ECDC4;">vraie</span> (par exemple $n = 3$).</li>
-                        <li>« $\exists x \in \mathbb{R} : x^2 = -1$ » est <span style="color:#FF6B6B;">fausse</span>.</li>
-                    </ul>
-                </div>
-
-                <h3 style="margin-top:20px;">4-3 Négation des quantificateurs</h3>
-                <div class="formula-block">
-                    <p>$\neg(\forall x \in E : P(x)) \Leftrightarrow \exists x \in E : \neg P(x)$</p>
-                    <p>$\neg(\exists x \in E : P(x)) \Leftrightarrow \forall x \in E : \neg P(x)$</p>
-                </div>
-                <div class="highlight-box red">
-                    <span class="label rem">Remarque</span>
-                    <p>Pour nier une phrase logique, on change le « pour tout » en « il existe » et inversement.</p>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 5: RAISONNEMENTS -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">5</span> Raisonnements</h2>
-
-                <!-- 5.1 Raisonnement direct -->
-                <h3>5.1 Raisonnement direct</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Principe</span>
-                    <p>Pour montrer que $P \Rightarrow Q$ est vraie, on suppose que $P$ est vraie et on montre qu'alors $Q$ est vraie.</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>Montrer que : $\begin{cases} 0 \le x < 2 \\ 0 \le y < 2 \end{cases} \Rightarrow \frac{1}{x} + \frac{1}{y} > 1$</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        <p>$0 \le x < 2 \Rightarrow \frac{1}{x} \ge \frac{1}{2}$</p>
-                        <p>$0 \le y < 2 \Rightarrow \frac{1}{y} \ge \frac{1}{2}$</p>
-                        <p>$\Rightarrow \frac{1}{x} + \frac{1}{y} > 1$</p>
-                    </div>
-                </div>
-
-                <!-- 5.2 Disjonction des cas -->
-                <h3 style="margin-top:20px;">5.2 Raisonnement par disjonction des cas</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Principe</span>
-                    <p>On montre une proposition pour les $x$ dans une partie $A$ de $E$, puis pour les $x$ n'appartenant pas à $A$.</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>Montrer que : $\forall x \in \mathbb{R} : |x-1| \le x^2 - x + 1$</p>
-                    <p><strong>Cas 1 :</strong> $x > 1$</p>
-                    <div class="formula-block" style="font-size:15px;">
-                        <p>$|x-1| = x-1$</p>
-                        <p>$(x^2 - x + 1) - (x - 1) = (x-1)^2 + 1 \ge 0$</p>
-                    </div>
-                    <p><strong>Cas 2 :</strong> $x < 1$</p>
-                    <div class="formula-block" style="font-size:15px;">
-                        <p>$|x-1| = -(x-1)$</p>
-                        <p>$(x^2 - x + 1) + (x - 1) = x^2 \ge 0$</p>
-                    </div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> Dans tous les cas, $x^2 - x + 1 \ge |x-1|$.</p>
-                </div>
-
-                <!-- 5.3 Contraposition -->
-                <h3 style="margin-top:20px;">5.3 Raisonnement par contraposition</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Principe</span>
-                    <p>$(P \Rightarrow Q) \Leftrightarrow (\neg Q \Rightarrow \neg P)$</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>Montrer que : $x \neq -8 \Rightarrow \frac{x+2}{x+5} \neq 2$</p>
-                    <p>Par contraposition : montrons que $\frac{x+2}{x+5} = 2 \Rightarrow x = -8$</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        <p>$\frac{x+2}{x+5} = 2 \Rightarrow x+2 = 2(x+5)$</p>
-                        <p>$\Rightarrow x+2 = 2x+10 \Rightarrow x = -8$</p>
-                    </div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x \neq -8 \Rightarrow \frac{x+2}{x+5} \neq 2$</p>
-                </div>
-
-                <!-- 5.4 Absurde -->
-                <h3 style="margin-top:20px;">5.4 Raisonnement par l'absurde</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Principe</span>
-                    <p>Pour montrer $P \Rightarrow Q$, on suppose $P$ vraie et $Q$ fausse, puis on cherche une contradiction.</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>Montrer que si $\frac{a}{1+b} = \frac{b}{1+a}$ alors $a = b$ (avec $a > 0$, $b > 0$).</p>
-                    <div class="formula-block" style="font-size:15px;">
-                        <p>Supposons $\frac{a}{1+b} = \frac{b}{1+a}$ et $a \neq b$.</p>
-                        <p>$a(1+a) = b(1+b) \Rightarrow a+a^2 = b+b^2$</p>
-                        <p>$\Rightarrow a^2 - b^2 = b - a$</p>
-                        <p>$\Rightarrow (a-b)(a+b) = -(a-b)$</p>
-                        <p>Comme $a \neq b$, on divise par $a-b$ : $a+b = -1$</p>
-                    </div>
-                    <p>Contradiction car $a > 0$ et $b > 0$ donc $a+b > 0$.</p>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = b$.</p>
-                </div>
-
-                <!-- 5.5 Contre-exemple -->
-                <h3 style="margin-top:20px;">5.5 Raisonnement par contre-exemple</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Principe</span>
-                    <p>Pour montrer que $\forall x \in E : P(x)$ est fausse, il suffit de trouver un $x \in E$ tel que $P(x)$ soit fausse.</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>Montrer que $P : (\forall x \in [0;1]) : x^2 \ge x$ est fausse.</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        <p>Contre-exemple : $x = \frac{1}{2}$</p>
-                        <p>$\left(\frac{1}{2}\right)^2 = \frac{1}{4} < \frac{1}{2}$</p>
-                    </div>
-                    <p style="color:#FF6B6B;"><strong>Conclusion :</strong> $P$ est fausse.</p>
-                </div>
-
-                <!-- 5.6 Équivalence -->
-                <h3 style="margin-top:20px;">5.6 Raisonnement par équivalence</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Principe</span>
-                    <p>Pour montrer que $P$ est vraie, on montre que $P \Leftrightarrow Q$ est vraie et que $Q$ est vraie.</p>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>Montrer que $\forall x > 0 : x + \frac{1}{x} \ge 2$</p>
-                    <div class="formula-block" style="font-size:15px;">
-                        <p>$x + \frac{1}{x} \ge 2 \Leftrightarrow \frac{x^2+1}{x} \ge 2$</p>
-                        <p>$\Leftrightarrow \frac{x^2+1-2x}{x} \ge 0$</p>
-                        <p>$\Leftrightarrow \frac{(x-1)^2}{x} \ge 0$</p>
-                    </div>
-                    <p>Comme $(x-1)^2 \ge 0$ et $x > 0$, l'inégalité est vraie.</p>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall x > 0 : x + \frac{1}{x} \ge 2$.</p>
-                </div>
-
-                <!-- 5.7 Récurrence -->
-                <h3 style="margin-top:20px;">5.7 Raisonnement par récurrence</h3>
-                <div class="highlight-box green">
-                    <span class="label def">Principe</span>
-                    <p>Pour montrer que $P(n)$ est vraie pour tout $n \in \mathbb{N}$ :</p>
-                    <ul>
-                        <li><strong>Initialisation :</strong> $P(0)$ est vraie.</li>
-                        <li><strong>Hérédité :</strong> Si $P(n)$ est vraie, alors $P(n+1)$ est vraie.</li>
-                    </ul>
-                </div>
-                <div class="highlight-box">
-                    <p><strong>Exemple :</strong></p>
-                    <p>Montrer que $\forall n \in \mathbb{N} : n^3 + 2n$ est divisible par 3.</p>
-                    <p><strong>Initialisation :</strong> $n=0 \Rightarrow 0^3 + 2 \times 0 = 0$ divisible par 3. ✅</p>
-                    <p><strong>Hérédité :</strong> Supposons $\exists k \in \mathbb{N} / n^3 + 2n = 3k$</p>
-                    <div class="formula-block" style="font-size:14px;">
-                        <p>$(n+1)^3 + 2(n+1) = n^3 + 3n^2 + 3n + 1 + 2n + 2$</p>
-                        <p>$= (n^3 + 2n) + 3n^2 + 3n + 3$</p>
-                        <p>$= 3k + 3(n^2 + n + 1) = 3(k + n^2 + n + 1)$</p>
-                    </div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $n^3 + 2n$ est divisible par 3 pour tout $n \in \mathbb{N}$.</p>
-                </div>
-            </div>
-
-            <div style="text-align:center; margin-top:30px; padding:20px; background:var(--bg-card); border-radius:16px; border:1px solid var(--border);">
-                <p style="color:var(--text-muted); font-size:14px;">
-                    <i class="fas fa-check-circle" style="color:#4ECDC4;"></i>
-                    Fin du cours - Logique mathématique
-                </p>
+        <h3>4-3 Négation des quantificateurs</h3>
+        <div class="formula-box">
+            <div class="math">
+                <p>\( \neg(\forall x \in E : P(x)) \Leftrightarrow \exists x \in E : \neg P(x) \)</p>
+                <p>\( \neg(\exists x \in E : P(x)) \Leftrightarrow \forall x \in E : \neg P(x) \)</p>
             </div>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="divider"></div>
-        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-    </footer>
+</div>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
 </body>
 </html>
