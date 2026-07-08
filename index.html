@@ -116,42 +116,6 @@
         .hidden-content .all-content {
             display: block;
         }
-
-        /* ====== BANNIÈRE D'AVERTISSEMENT EN HAUT ====== */
-        .desktop-warning-banner {
-            background: linear-gradient(135deg, #2A1A1A, #1A0A0A);
-            border-bottom: 2px solid #FF6B6B;
-            padding: 10px 16px;
-            text-align: center;
-            display: none;
-            position: sticky;
-            top: 0;
-            z-index: 1001;
-        }
-        .desktop-warning-banner.show {
-            display: block;
-        }
-        .desktop-warning-banner p {
-            color: #FF6B6B;
-            font-size: 13px;
-            font-weight: 600;
-            margin: 0;
-        }
-        .desktop-warning-banner p i {
-            margin-right: 8px;
-        }
-        .desktop-warning-banner .close-banner {
-            background: none;
-            border: none;
-            color: #FF6B6B;
-            font-size: 16px;
-            cursor: pointer;
-            margin-left: 10px;
-            opacity: 0.7;
-        }
-        .desktop-warning-banner .close-banner:hover {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
@@ -173,17 +137,6 @@
             <i class="fas fa-sync-alt"></i> Actualiser
         </button>
         <p style="font-size:12px; color:#666; margin-top:16px;">Si le problème persiste, essayez un autre navigateur.</p>
-    </div>
-
-    <!-- ====== BANNIÈRE D'AVERTISSEMENT ====== -->
-    <div id="warningBanner" class="desktop-warning-banner">
-        <p>
-            <i class="fas fa-exclamation-triangle"></i>
-            Vous n'êtes pas en mode Desktop. Le site risque de ne pas s'afficher correctement.
-            <button class="close-banner" onclick="document.getElementById('warningBanner').classList.remove('show')">
-                <i class="fas fa-times"></i>
-            </button>
-        </p>
     </div>
 
     <!-- ====== CONTENU CACHÉ ====== -->
@@ -266,61 +219,18 @@
         function checkDesktopMode() {
             var overlay = document.getElementById('blockerOverlay');
             var content = document.getElementById('mainContent');
-            var banner = document.getElementById('warningBanner');
             
-            // Détection du mode Desktop (largeur > 768px)
             var isDesktop = window.innerWidth > 768;
             
-            // Si ce n'est pas le mode Desktop
             if (!isDesktop) {
-                // Afficher le bloqueur
                 overlay.classList.add('show');
                 content.classList.remove('show');
-                banner.classList.remove('show');
             } else {
-                // Mode Desktop : afficher le contenu
                 overlay.classList.remove('show');
                 content.classList.add('show');
-                // Ajouter une classe au body pour le mode desktop
                 document.body.classList.add('desktop-mode');
-                banner.classList.remove('show');
             }
         }
-
-        // ====== VÉRIFICATION CONTINUE (toutes les 2 secondes) ======
-        var intervalId = setInterval(function() {
-            var overlay = document.getElementById('blockerOverlay');
-            var content = document.getElementById('mainContent');
-            var banner = document.getElementById('warningBanner');
-            
-            var isDesktop = window.innerWidth > 768;
-            
-            // Si le contenu est affiché ET que l'utilisateur n'est plus en mode Desktop
-            if (content.classList.contains('show') && !isDesktop) {
-                // Afficher la bannière d'avertissement
-                banner.classList.add('show');
-                
-                // Optionnel: rediriger vers le bloqueur après 30 secondes si l'utilisateur ne réactive pas
-                // (décommenter pour activer)
-                /*
-                setTimeout(function() {
-                    if (!window.innerWidth > 768) {
-                        overlay.classList.add('show');
-                        content.classList.remove('show');
-                        banner.classList.remove('show');
-                    }
-                }, 30000);
-                */
-            } else if (content.classList.contains('show') && isDesktop) {
-                banner.classList.remove('show');
-            } else if (!content.classList.contains('show') && isDesktop) {
-                // Si le bloqueur est affiché mais que l'utilisateur est en mode Desktop
-                overlay.classList.remove('show');
-                content.classList.add('show');
-                document.body.classList.add('desktop-mode');
-                banner.classList.remove('show');
-            }
-        }, 2000);
 
         // ====== VÉRIFICATION AU CHARGEMENT ======
         document.addEventListener('DOMContentLoaded', function() {
