@@ -142,41 +142,33 @@
         .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
         .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
         .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
-
-        /* ====== TABLEAUX AMÉLIORÉS ====== */
         .table-wrap {
             overflow-x: auto;
             margin: 12px 0;
         }
         .table-wrap table {
             width: 100%;
-            max-width: 350px;
             border-collapse: collapse;
             background: var(--bg-primary);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
         }
         .table-wrap th {
             background: var(--bg-card);
-            color: var(--text-secondary);
-            padding: 8px 14px;
+            color: var(--accent-light);
+            padding: 10px 14px;
             border: 1px solid var(--border);
             font-weight: 700;
             text-align: center;
-            font-size: 14px;
         }
         .table-wrap td {
-            padding: 8px 14px;
+            padding: 10px 14px;
             border: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
-            font-size: 14px;
         }
-        .table-wrap .vrai { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .faux { color: #FF6B6B; font-weight: 700; }
-        .table-wrap .un { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .zero { color: #FF6B6B; font-weight: 700; }
-
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         .badge-math {
             display: inline-block;
             background: #4ECDC422;
@@ -206,8 +198,6 @@
             .lesson-title { font-size: 24px; }
             .formula-block { font-size: 15px; padding: 12px 14px; }
             .section h2 { font-size: 18px; }
-            .table-wrap table { max-width: 100%; }
-            .table-wrap th, .table-wrap td { padding: 6px 10px; font-size: 13px; }
         }
     </style>
 </head>
@@ -240,14 +230,14 @@
                 <h2><span class="num">1</span> Proposition</h2>
                 <div class="highlight-box green">
                     <span class="label def">Définition</span>
-                    <p>Une <strong>proposition</strong> est une phrase soit <span style="color:#4ECDC4;">vraie</span> (1), soit <span style="color:#FF6B6B;">fausse</span> (0), pas les deux en même temps.</p>
+                    <p>Une <strong>proposition</strong> est une phrase soit <span style="color:#4ECDC4;">vraie</span>, soit <span style="color:#FF6B6B;">fausse</span>, pas les deux en même temps.</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemples :</strong></p>
                     <ul>
-                        <li>« \(2 + 2 = 4\) » est une proposition <span style="color:#4ECDC4;">vraie</span> (1).</li>
-                        <li>« \(3 \times 5 = 10\) » est une proposition <span style="color:#FF6B6B;">fausse</span> (0).</li>
-                        <li>« Il fait beau aujourd'hui » n'est pas une proposition.</li>
+                        <li>« \(2 + 2 = 4\) » est une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
+                        <li>« \(3 \times 5 = 10\) » est une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
+                        <li>« Il fait beau aujourd'hui » n'est pas une proposition (dépend du contexte).</li>
                     </ul>
                 </div>
             </div>
@@ -259,67 +249,72 @@
                 <h2><span class="num">2</span> Opérations logiques</h2>
 
                 <!-- 2-1 ET -->
-                <h3>2-1 « et » ($\land$)</h3>
-                <p>« <strong>P et Q</strong> » est <span style="color:#4ECDC4;">vraie</span> (1) si <strong>P</strong> et <strong>Q</strong> sont vraies (1). Elle est <span style="color:#FF6B6B;">fausse</span> (0) sinon.</p>
+                <h3>2-1 L'opérateur logique « et » ($\land$)</h3>
+                <p>La proposition « <strong>P et Q</strong> » est <span style="color:#4ECDC4;">vraie</span> si <strong>P</strong> est vraie et <strong>Q</strong> est vraie. Elle est <span style="color:#FF6B6B;">fausse</span> sinon.</p>
+                
                 <div class="table-wrap">
                     <table>
                         <tr><th>$P$</th><th>$Q$</th><th>$P \land Q$</th></tr>
-                        <tr><td class="un">1</td><td class="un">1</td><td class="un">1</td></tr>
-                        <tr><td class="un">1</td><td class="zero">0</td><td class="zero">0</td></tr>
-                        <tr><td class="zero">0</td><td class="un">1</td><td class="zero">0</td></tr>
-                        <tr><td class="zero">0</td><td class="zero">0</td><td class="zero">0</td></tr>
+                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
                     </table>
                 </div>
 
                 <!-- 2-2 OU -->
-                <h3 style="margin-top:20px;">2-2 « ou » ($\lor$)</h3>
-                <p>« <strong>P ou Q</strong> » est <span style="color:#4ECDC4;">vraie</span> (1) si l'une (au moins) des deux est vraie. Elle est <span style="color:#FF6B6B;">fausse</span> (0) si les deux sont fausses.</p>
+                <h3 style="margin-top:20px;">2-2 L'opérateur logique « ou » ($\lor$)</h3>
+                <p>La proposition « <strong>P ou Q</strong> » est <span style="color:#4ECDC4;">vraie</span> si l'une (au moins) des deux propositions P ou Q est vraie. Elle est <span style="color:#FF6B6B;">fausse</span> si les deux sont fausses.</p>
+                
                 <div class="table-wrap">
                     <table>
                         <tr><th>$P$</th><th>$Q$</th><th>$P \lor Q$</th></tr>
-                        <tr><td class="un">1</td><td class="un">1</td><td class="un">1</td></tr>
-                        <tr><td class="un">1</td><td class="zero">0</td><td class="un">1</td></tr>
-                        <tr><td class="zero">0</td><td class="un">1</td><td class="un">1</td></tr>
-                        <tr><td class="zero">0</td><td class="zero">0</td><td class="zero">0</td></tr>
+                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td><td class="true">V</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
                     </table>
                 </div>
 
                 <!-- 2-3 NÉGATION -->
-                <h3 style="margin-top:20px;">2-3 « non » ($\neg$)</h3>
-                <p>« <strong>non P</strong> » est <span style="color:#4ECDC4;">vraie</span> (1) si P est fausse (0), et <span style="color:#FF6B6B;">fausse</span> (0) si P est vraie (1).</p>
+                <h3 style="margin-top:20px;">2-3 La négation « non » ($\neg$)</h3>
+                <p>La proposition « <strong>non P</strong> » est <span style="color:#4ECDC4;">vraie</span> si P est fausse, et <span style="color:#FF6B6B;">fausse</span> si P est vraie.</p>
+                
                 <div class="table-wrap">
                     <table>
                         <tr><th>$P$</th><th>$\neg P$</th></tr>
-                        <tr><td class="un">1</td><td class="zero">0</td></tr>
-                        <tr><td class="zero">0</td><td class="un">1</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td></tr>
                     </table>
                 </div>
 
                 <!-- 2-4 IMPLICATION -->
-                <h3 style="margin-top:20px;">2-4 Implication ($\Rightarrow$)</h3>
-                <p>« <strong>P $\Rightarrow$ Q</strong> » se lit « <strong>P implique Q</strong> » ou « <strong>si P alors Q</strong> ».</p>
+                <h3 style="margin-top:20px;">2-4 L'implication ($\Rightarrow$)</h3>
+                <p>La proposition « <strong>P $\Rightarrow$ Q</strong> » se lit « <strong>P implique Q</strong> » ou « <strong>si P est vraie alors Q est vraie</strong> ».</p>
                 <p>Elle est équivalente à « (non P) ou Q ».</p>
+                
                 <div class="table-wrap">
                     <table>
                         <tr><th>$P$</th><th>$Q$</th><th>$P \Rightarrow Q$</th></tr>
-                        <tr><td class="un">1</td><td class="un">1</td><td class="un">1</td></tr>
-                        <tr><td class="un">1</td><td class="zero">0</td><td class="zero">0</td></tr>
-                        <tr><td class="zero">0</td><td class="un">1</td><td class="un">1</td></tr>
-                        <tr><td class="zero">0</td><td class="zero">0</td><td class="un">1</td></tr>
+                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
                     </table>
                 </div>
 
                 <!-- 2-5 ÉQUIVALENCE -->
-                <h3 style="margin-top:20px;">2-5 Équivalence ($\Leftrightarrow$)</h3>
-                <p>« <strong>P $\Leftrightarrow$ Q</strong> » se lit « <strong>P équivaut à Q</strong> » ou « <strong>P si et seulement si Q</strong> ».</p>
-                <p>Elle est <span style="color:#4ECDC4;">vraie</span> (1) lorsque P et Q ont la même valeur.</p>
+                <h3 style="margin-top:20px;">2-5 L'équivalence ($\Leftrightarrow$)</h3>
+                <p>La proposition « <strong>P $\Leftrightarrow$ Q</strong> » se lit « <strong>P équivaut à Q</strong> » ou « <strong>P si et seulement si Q</strong> ».</p>
+                <p>Elle est vraie lorsque <strong>P</strong> et <strong>Q</strong> ont la même valeur de vérité.</p>
+                
                 <div class="table-wrap">
                     <table>
                         <tr><th>$P$</th><th>$Q$</th><th>$P \Leftrightarrow Q$</th></tr>
-                        <tr><td class="un">1</td><td class="un">1</td><td class="un">1</td></tr>
-                        <tr><td class="un">1</td><td class="zero">0</td><td class="zero">0</td></tr>
-                        <tr><td class="zero">0</td><td class="un">1</td><td class="zero">0</td></tr>
-                        <tr><td class="zero">0</td><td class="zero">0</td><td class="un">1</td></tr>
+                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
                     </table>
                 </div>
             </div>
@@ -331,24 +326,26 @@
                 <h2><span class="num">3</span> Lois logiques (Tautologies)</h2>
                 <div class="highlight-box green">
                     <span class="label def">Définition</span>
-                    <p>Une <strong>loi logique</strong> (ou <strong>tautologie</strong>) est une proposition toujours <span style="color:#4ECDC4;">vraie</span> (1).</p>
+                    <p>Une <strong>loi logique</strong> (ou <strong>tautologie</strong>) est une proposition qui est toujours <span style="color:#4ECDC4;">vraie</span>, quelle que soit la valeur de vérité des propositions qui la constituent.</p>
                 </div>
-                <div class="highlight-box">
-                    <p><strong>Propriétés fondamentales :</strong></p>
-                    <div class="formula-block">
-                        <p>1. $P \Leftrightarrow \neg(\neg P)$</p>
-                        <p>2. $(P \land Q) \Leftrightarrow (Q \land P)$</p>
-                        <p>3. $(P \lor Q) \Leftrightarrow (Q \lor P)$</p>
-                        <p>4. $\neg(P \land Q) \Leftrightarrow (\neg P) \lor (\neg Q)$</p>
-                        <p>5. $\neg(P \lor Q) \Leftrightarrow (\neg P) \land (\neg Q)$</p>
-                        <p>6. $P \land (Q \lor R) \Leftrightarrow (P \land Q) \lor (P \land R)$</p>
-                        <p>7. $P \lor (Q \land R) \Leftrightarrow (P \lor Q) \land (P \lor R)$</p>
-                        <p>8. $(P \Rightarrow Q) \Leftrightarrow (\neg Q \Rightarrow \neg P)$</p>
-                    </div>
+
+                <h3>Propriétés fondamentales</h3>
+                <p>Soient $P$, $Q$, $R$ trois propositions. Nous avons les équivalences suivantes :</p>
+                
+                <div class="formula-block">
+                    <p>1. $P \Leftrightarrow \neg(\neg P)$</p>
+                    <p>2. $(P \land Q) \Leftrightarrow (Q \land P)$</p>
+                    <p>3. $(P \lor Q) \Leftrightarrow (Q \lor P)$</p>
+                    <p>4. $\neg(P \land Q) \Leftrightarrow (\neg P) \lor (\neg Q)$</p>
+                    <p>5. $\neg(P \lor Q) \Leftrightarrow (\neg P) \land (\neg Q)$</p>
+                    <p>6. $P \land (Q \lor R) \Leftrightarrow (P \land Q) \lor (P \land R)$</p>
+                    <p>7. $P \lor (Q \land R) \Leftrightarrow (P \lor Q) \land (P \lor R)$</p>
+                    <p>8. $(P \Rightarrow Q) \Leftrightarrow (\neg Q \Rightarrow \neg P)$</p>
                 </div>
+
                 <div class="highlight-box yellow">
                     <span class="label ex">Remarque</span>
-                    <p>Les lois 4 et 5 sont les <strong>lois de Morgan</strong>.</p>
+                    <p>Les lois 4 et 5 sont appelées les <strong>lois de Morgan</strong>.</p>
                     <p>La loi 8 est la <strong>contraposée</strong>.</p>
                 </div>
             </div>
@@ -362,23 +359,23 @@
                 <h3>4-1 Quantificateur universel « pour tout » ($\forall$)</h3>
                 <div class="highlight-box green">
                     <span class="label def">Définition</span>
-                    <p>« $\forall x \in E : P(x)$ » se lit « <strong>Pour tout</strong> $x$ dans $E$, $P(x)$ est vraie ».</p>
+                    <p>La proposition « $\forall x \in E : P(x)$ » se lit « <strong>Pour tout</strong> $x$ appartenant à $E$, $P(x)$ est vraie ».</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
-                    <p>« $\forall x \in [1; +\infty[ : x^2 \ge 1$ » est <span style="color:#4ECDC4;">vraie</span> (1).</p>
+                    <p>« $\forall x \in [1; +\infty[ : x^2 \ge 1$ » est une proposition <span style="color:#4ECDC4;">vraie</span>.</p>
                 </div>
 
                 <h3 style="margin-top:20px;">4-2 Quantificateur existentiel « il existe » ($\exists$)</h3>
                 <div class="highlight-box green">
                     <span class="label def">Définition</span>
-                    <p>« $\exists x \in E : P(x)$ » se lit « <strong>Il existe</strong> $x$ dans $E$ tel que $P(x)$ est vraie ».</p>
+                    <p>La proposition « $\exists x \in E : P(x)$ » se lit « <strong>Il existe</strong> $x$ appartenant à $E$ tel que $P(x)$ est vraie ».</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemples :</strong></p>
                     <ul>
-                        <li>« $\exists n \in \mathbb{N} : n^2 - n \ge n$ » est <span style="color:#4ECDC4;">vraie</span> (1) (ex: $n=3$).</li>
-                        <li>« $\exists x \in \mathbb{R} : x^2 = -1$ » est <span style="color:#FF6B6B;">fausse</span> (0).</li>
+                        <li>« $\exists n \in \mathbb{N} : n^2 - n \ge n$ » est <span style="color:#4ECDC4;">vraie</span> (par exemple $n = 3$).</li>
+                        <li>« $\exists x \in \mathbb{R} : x^2 = -1$ » est <span style="color:#FF6B6B;">fausse</span>.</li>
                     </ul>
                 </div>
 
@@ -389,7 +386,7 @@
                 </div>
                 <div class="highlight-box red">
                     <span class="label rem">Remarque</span>
-                    <p>Pour nier : on change « pour tout » en « il existe » et inversement.</p>
+                    <p>Pour nier une phrase logique, on change le « pour tout » en « il existe » et inversement.</p>
                 </div>
             </div>
 
@@ -403,76 +400,82 @@
                 <h3>5.1 Raisonnement direct</h3>
                 <div class="highlight-box green">
                     <span class="label def">Principe</span>
-                    <p>Pour montrer $P \Rightarrow Q$, on suppose P vraie et on montre Q vraie.</p>
+                    <p>Pour montrer que $P \Rightarrow Q$ est vraie, on suppose que $P$ est vraie et on montre qu'alors $Q$ est vraie.</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
-                    <p>Montrer : $\begin{cases} 0 \le x < 2 \\ 0 \le y < 2 \end{cases} \Rightarrow \frac{1}{x} + \frac{1}{y} > 1$</p>
+                    <p>Montrer que : $\begin{cases} 0 \le x < 2 \\ 0 \le y < 2 \end{cases} \Rightarrow \frac{1}{x} + \frac{1}{y} > 1$</p>
                     <div class="formula-block" style="font-size:16px;">
-                        <p>$0 \le x < 2 \Rightarrow \frac{1}{x} \ge \frac{1}{2}$ &nbsp; et &nbsp; $0 \le y < 2 \Rightarrow \frac{1}{y} \ge \frac{1}{2}$</p>
+                        <p>$0 \le x < 2 \Rightarrow \frac{1}{x} \ge \frac{1}{2}$</p>
+                        <p>$0 \le y < 2 \Rightarrow \frac{1}{y} \ge \frac{1}{2}$</p>
                         <p>$\Rightarrow \frac{1}{x} + \frac{1}{y} > 1$</p>
                     </div>
                 </div>
 
                 <!-- 5.2 Disjonction des cas -->
-                <h3 style="margin-top:20px;">5.2 Disjonction des cas</h3>
+                <h3 style="margin-top:20px;">5.2 Raisonnement par disjonction des cas</h3>
                 <div class="highlight-box green">
                     <span class="label def">Principe</span>
-                    <p>On montre la proposition pour une partie A de E, puis pour le reste.</p>
+                    <p>On montre une proposition pour les $x$ dans une partie $A$ de $E$, puis pour les $x$ n'appartenant pas à $A$.</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
-                    <p>Montrer : $\forall x \in \mathbb{R} : |x-1| \le x^2 - x + 1$</p>
-                    <p><strong>Cas 1 :</strong> $x \ge 1 \Rightarrow |x-1| = x-1$</p>
+                    <p>Montrer que : $\forall x \in \mathbb{R} : |x-1| \le x^2 - x + 1$</p>
+                    <p><strong>Cas 1 :</strong> $x > 1$</p>
                     <div class="formula-block" style="font-size:15px;">
-                        <p>$(x^2 - x + 1) - (x-1) = (x-1)^2 + 1 \ge 0$</p>
+                        <p>$|x-1| = x-1$</p>
+                        <p>$(x^2 - x + 1) - (x - 1) = (x-1)^2 + 1 \ge 0$</p>
                     </div>
-                    <p><strong>Cas 2 :</strong> $x < 1 \Rightarrow |x-1| = -(x-1)$</p>
+                    <p><strong>Cas 2 :</strong> $x < 1$</p>
                     <div class="formula-block" style="font-size:15px;">
-                        <p>$(x^2 - x + 1) + (x-1) = x^2 \ge 0$</p>
+                        <p>$|x-1| = -(x-1)$</p>
+                        <p>$(x^2 - x + 1) + (x - 1) = x^2 \ge 0$</p>
                     </div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> L'inégalité est vraie dans les deux cas.</p>
+                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> Dans tous les cas, $x^2 - x + 1 \ge |x-1|$.</p>
                 </div>
 
                 <!-- 5.3 Contraposition -->
-                <h3 style="margin-top:20px;">5.3 Contraposition</h3>
+                <h3 style="margin-top:20px;">5.3 Raisonnement par contraposition</h3>
                 <div class="highlight-box green">
                     <span class="label def">Principe</span>
                     <p>$(P \Rightarrow Q) \Leftrightarrow (\neg Q \Rightarrow \neg P)$</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
-                    <p>Montrer : $x \neq -8 \Rightarrow \frac{x+2}{x+5} \neq 2$</p>
-                    <p>Par contraposition : montrons $\frac{x+2}{x+5} = 2 \Rightarrow x = -8$</p>
+                    <p>Montrer que : $x \neq -8 \Rightarrow \frac{x+2}{x+5} \neq 2$</p>
+                    <p>Par contraposition : montrons que $\frac{x+2}{x+5} = 2 \Rightarrow x = -8$</p>
                     <div class="formula-block" style="font-size:16px;">
-                        <p>$\frac{x+2}{x+5} = 2 \Rightarrow x+2 = 2x+10 \Rightarrow x = -8$</p>
+                        <p>$\frac{x+2}{x+5} = 2 \Rightarrow x+2 = 2(x+5)$</p>
+                        <p>$\Rightarrow x+2 = 2x+10 \Rightarrow x = -8$</p>
                     </div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie.</p>
+                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x \neq -8 \Rightarrow \frac{x+2}{x+5} \neq 2$</p>
                 </div>
 
                 <!-- 5.4 Absurde -->
                 <h3 style="margin-top:20px;">5.4 Raisonnement par l'absurde</h3>
                 <div class="highlight-box green">
                     <span class="label def">Principe</span>
-                    <p>Pour montrer $P \Rightarrow Q$, on suppose P vraie et Q fausse, on cherche une contradiction.</p>
+                    <p>Pour montrer $P \Rightarrow Q$, on suppose $P$ vraie et $Q$ fausse, puis on cherche une contradiction.</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
-                    <p>Montrer : $\frac{a}{1+b} = \frac{b}{1+a} \Rightarrow a = b$ (avec $a,b > 0$).</p>
+                    <p>Montrer que si $\frac{a}{1+b} = \frac{b}{1+a}$ alors $a = b$ (avec $a > 0$, $b > 0$).</p>
                     <div class="formula-block" style="font-size:15px;">
                         <p>Supposons $\frac{a}{1+b} = \frac{b}{1+a}$ et $a \neq b$.</p>
-                        <p>$a(1+a) = b(1+b) \Rightarrow a^2 - b^2 = b - a$</p>
-                        <p>$(a-b)(a+b) = -(a-b) \Rightarrow a+b = -1$</p>
+                        <p>$a(1+a) = b(1+b) \Rightarrow a+a^2 = b+b^2$</p>
+                        <p>$\Rightarrow a^2 - b^2 = b - a$</p>
+                        <p>$\Rightarrow (a-b)(a+b) = -(a-b)$</p>
+                        <p>Comme $a \neq b$, on divise par $a-b$ : $a+b = -1$</p>
                     </div>
-                    <p>Contradiction car $a+b > 0$.</p>
+                    <p>Contradiction car $a > 0$ et $b > 0$ donc $a+b > 0$.</p>
                     <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = b$.</p>
                 </div>
 
                 <!-- 5.5 Contre-exemple -->
-                <h3 style="margin-top:20px;">5.5 Contre-exemple</h3>
+                <h3 style="margin-top:20px;">5.5 Raisonnement par contre-exemple</h3>
                 <div class="highlight-box green">
                     <span class="label def">Principe</span>
-                    <p>Pour montrer $\forall x \in E : P(x)$ est fausse, il suffit de trouver un $x$ tel que $P(x)$ soit fausse.</p>
+                    <p>Pour montrer que $\forall x \in E : P(x)$ est fausse, il suffit de trouver un $x \in E$ tel que $P(x)$ soit fausse.</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
@@ -481,45 +484,48 @@
                         <p>Contre-exemple : $x = \frac{1}{2}$</p>
                         <p>$\left(\frac{1}{2}\right)^2 = \frac{1}{4} < \frac{1}{2}$</p>
                     </div>
-                    <p style="color:#FF6B6B;"><strong>Conclusion :</strong> $P$ est fausse (0).</p>
+                    <p style="color:#FF6B6B;"><strong>Conclusion :</strong> $P$ est fausse.</p>
                 </div>
 
                 <!-- 5.6 Équivalence -->
-                <h3 style="margin-top:20px;">5.6 Équivalence</h3>
+                <h3 style="margin-top:20px;">5.6 Raisonnement par équivalence</h3>
                 <div class="highlight-box green">
                     <span class="label def">Principe</span>
-                    <p>Pour montrer P vraie, on montre $P \Leftrightarrow Q$ et Q vraie.</p>
+                    <p>Pour montrer que $P$ est vraie, on montre que $P \Leftrightarrow Q$ est vraie et que $Q$ est vraie.</p>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
-                    <p>Montrer : $\forall x > 0 : x + \frac{1}{x} \ge 2$</p>
+                    <p>Montrer que $\forall x > 0 : x + \frac{1}{x} \ge 2$</p>
                     <div class="formula-block" style="font-size:15px;">
-                        <p>$x + \frac{1}{x} \ge 2 \Leftrightarrow \frac{x^2+1}{x} \ge 2 \Leftrightarrow \frac{(x-1)^2}{x} \ge 0$</p>
+                        <p>$x + \frac{1}{x} \ge 2 \Leftrightarrow \frac{x^2+1}{x} \ge 2$</p>
+                        <p>$\Leftrightarrow \frac{x^2+1-2x}{x} \ge 0$</p>
+                        <p>$\Leftrightarrow \frac{(x-1)^2}{x} \ge 0$</p>
                     </div>
                     <p>Comme $(x-1)^2 \ge 0$ et $x > 0$, l'inégalité est vraie.</p>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie.</p>
+                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall x > 0 : x + \frac{1}{x} \ge 2$.</p>
                 </div>
 
                 <!-- 5.7 Récurrence -->
-                <h3 style="margin-top:20px;">5.7 Récurrence</h3>
+                <h3 style="margin-top:20px;">5.7 Raisonnement par récurrence</h3>
                 <div class="highlight-box green">
                     <span class="label def">Principe</span>
-                    <p>Pour montrer $P(n)$ vraie $\forall n \in \mathbb{N}$ :</p>
+                    <p>Pour montrer que $P(n)$ est vraie pour tout $n \in \mathbb{N}$ :</p>
                     <ul>
-                        <li><strong>Initialisation :</strong> $P(0)$ vraie.</li>
-                        <li><strong>Hérédité :</strong> $P(n) \Rightarrow P(n+1)$.</li>
+                        <li><strong>Initialisation :</strong> $P(0)$ est vraie.</li>
+                        <li><strong>Hérédité :</strong> Si $P(n)$ est vraie, alors $P(n+1)$ est vraie.</li>
                     </ul>
                 </div>
                 <div class="highlight-box">
                     <p><strong>Exemple :</strong></p>
-                    <p>Montrer : $\forall n \in \mathbb{N} : n^3 + 2n$ divisible par 3.</p>
-                    <p><strong>Initialisation :</strong> $n=0 \Rightarrow 0$ divisible par 3. ✅</p>
-                    <p><strong>Hérédité :</strong> Supposons $\exists k / n^3 + 2n = 3k$</p>
+                    <p>Montrer que $\forall n \in \mathbb{N} : n^3 + 2n$ est divisible par 3.</p>
+                    <p><strong>Initialisation :</strong> $n=0 \Rightarrow 0^3 + 2 \times 0 = 0$ divisible par 3. </p>
+                    <p><strong>Hérédité :</strong> Supposons $\exists k \in \mathbb{N} / n^3 + 2n = 3k$</p>
                     <div class="formula-block" style="font-size:14px;">
-                        <p>$(n+1)^3 + 2(n+1) = (n^3+2n) + 3n^2 + 3n + 3$</p>
-                        <p>$= 3k + 3(n^2+n+1) = 3(k+n^2+n+1)$</p>
+                        <p>$(n+1)^3 + 2(n+1) = n^3 + 3n^2 + 3n + 1 + 2n + 2$</p>
+                        <p>$= (n^3 + 2n) + 3n^2 + 3n + 3$</p>
+                        <p>$= 3k + 3(n^2 + n + 1) = 3(k + n^2 + n + 1)$</p>
                     </div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
+                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $n^3 + 2n$ est divisible par 3 pour tout $n \in \mathbb{N}$.</p>
                 </div>
             </div>
 
