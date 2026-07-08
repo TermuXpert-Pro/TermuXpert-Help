@@ -9,6 +9,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-size: 14px !important; }
+        .navbar { height: 50px !important; padding: 0 12px !important; }
+        .nav-logo-icon { width: 28px !important; height: 28px !important; font-size: 14px !important; }
+        .nav-logo-text { font-size: 16px !important; }
+        .nav-links a { font-size: 12px !important; padding: 4px 10px !important; }
+        .hero { padding: 60px 20px 30px !important; min-height: auto !important; }
+        .hero h1 { font-size: 28px !important; }
+        .hero .description { font-size: 14px !important; }
+        .search-box input { padding: 8px 16px !important; font-size: 13px !important; }
+        .grid { gap: 12px !important; }
+        .card { padding: 14px 16px !important; }
+        .card .card-icon { width: 48px !important; height: 48px !important; font-size: 22px !important; }
+        .card h3 { font-size: 16px !important; }
+        .card p { font-size: 12px !important; }
+        .card .badge { font-size: 11px !important; padding: 2px 10px !important; }
+        .footer p { font-size: 12px !important; }
+        @media (max-width: 768px) {
+            body { font-size: 13px !important; }
+            .hero h1 { font-size: 22px !important; }
+            .grid { grid-template-columns: 1fr 1fr !important; }
+            .card { padding: 10px 12px !important; }
+            .card .card-icon { width: 40px !important; height: 40px !important; font-size: 18px !important; }
+        }
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr !important; }
+            .nav-links a { font-size: 11px !important; padding: 4px 8px !important; }
+            .hero h1 { font-size: 20px !important; }
+        }
+    </style>
 </head>
 <body>
     <div class="bg-grid"></div>
@@ -22,12 +52,12 @@
         </ul>
     </nav>
     
-    <div class="hero" style="min-height:auto; padding:100px 20px 50px;">
-        <h1 style="font-size:40px;">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
-        <p class="description">Choisissez votre matière pour découvrir tout son contenu</p>
+    <div class="hero" style="min-height:auto; padding:60px 20px 30px;">
+        <h1 style="font-size:28px;">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
+        <p class="description" style="font-size:14px;">Choisissez votre matière pour découvrir tout son contenu</p>
     </div>
     
-    <div style="max-width:1100px; margin:0 auto; padding:0 20px 60px;">
+    <div style="max-width:1100px; margin:0 auto; padding:0 20px 40px;">
         <div class="grid" id="subjectsGrid">
             <div class="no-data">Chargement...</div>
         </div>
