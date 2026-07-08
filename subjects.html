@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xpert - المواد الدراسية</title>
+    <title>Xpert - Matières</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,44 +18,61 @@
             <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
         <ul class="nav-links">
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+            <li><a href="index.html"><i class="fas fa-house"></i> Accueil</a></li>
         </ul>
     </nav>
+    
     <div class="hero" style="min-height:auto; padding:100px 20px 50px;">
-        <h1 style="font-size:40px;">المواد <span class="gradient-text">الدراسية</span></h1>
-        <p class="description">اختر مادتك لتكتشف كل المحتويات</p>
+        <h1 style="font-size:40px;">Matières <span class="gradient-text">scolaires</span></h1>
+        <p class="description">Choisissez votre matière pour découvrir tout son contenu</p>
     </div>
+    
     <div style="max-width:1100px; margin:0 auto; padding:0 20px 60px;">
-        <div class="search-box"><input type="text" id="searchInput" placeholder="ابحث عن مادة..." oninput="filterSubjects()"></div>
-        <div class="grid" id="subjectsGrid"><div class="no-data">جاري التحميل...</div></div>
+        <!-- Barre de recherche -->
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Rechercher une matière..." oninput="filterSubjects()">
+        </div>
+        
+        <div class="grid" id="subjectsGrid">
+            <div class="no-data">Chargement...</div>
+        </div>
     </div>
-    <footer class="footer"><div class="divider"></div><p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p></footer>
+    
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+    
     <script>
         const subjects = [
             { 
                 id: "math", 
-                title: "📐 الرياضيات", 
-                description: "الدوال، الهندسة، الجبر، الاحتمالات، المتتاليات",
+                title: "Mathématiques", 
+                description: "Fonctions, géométrie, algèbre, probabilités, suites",
                 icon: "fa-square-root-variable", 
                 color: "#4ECDC4",
+                bgColor: "#4ECDC422",
                 lessons: 8,
                 exercises: 15
             },
             { 
                 id: "physique", 
-                title: "⚡ الفيزياء", 
-                description: "الميكانيك، الكهرباء، الموجات، الطاقة، الحرارة",
+                title: "Physique", 
+                description: "Mécanique, électricité, ondes, énergie, thermique",
                 icon: "fa-atom", 
                 color: "#FF6B6B",
+                bgColor: "#FF6B6B22",
                 lessons: 6,
                 exercises: 12
             },
             { 
                 id: "chimie", 
-                title: "🧪 الكيمياء", 
-                description: "الذرة، التفاعلات، الأحماض والقواعد، الأكسدة والاختزال",
+                title: "Chimie", 
+                description: "Atome, réactions, acides et bases, oxydoréduction",
                 icon: "fa-flask", 
                 color: "#F4D03F",
+                bgColor: "#F4D03F22",
                 lessons: 5,
                 exercises: 10
             }
@@ -64,30 +81,39 @@
         function renderSubjects(filtered) {
             const grid = document.getElementById('subjectsGrid');
             const data = filtered || subjects;
+            
+            if (data.length === 0) {
+                grid.innerHTML = '<div class="no-data"><i class="fas fa-search" style="font-size:32px; display:block; margin-bottom:12px; color:var(--text-muted);"></i>Aucune matière trouvée</div>';
+                return;
+            }
+            
             grid.innerHTML = data.map(s => `
                 <div class="card" onclick="location.href='subject.html?subject=${s.id}'" style="border-right-color: ${s.color};">
-                    <div style="font-size:36px; margin-bottom:8px;"><i class="fa-solid ${s.icon}" style="color:${s.color};"></i></div>
-                    <h3>${s.title}</h3>
+                    <div class="card-icon" style="background:${s.bgColor}; color:${s.color};">
+                        <i class="fas ${s.icon}"></i>
+                    </div>
+                    <h3 style="color:${s.color};">${s.title}</h3>
                     <p>${s.description}</p>
-                    <div style="display:flex; gap:12px; margin-top:10px; flex-wrap:wrap;">
-                        <span class="badge" style="background:${s.color}22; color:${s.color};"><i class="fa-solid fa-book"></i> ${s.lessons} دروس</span>
-                        <span class="badge" style="background:${s.color}22; color:${s.color};"><i class="fa-solid fa-list-check"></i> ${s.exercises} تمارين</span>
+                    <div class="card-badges">
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color};">
+                            <i class="fas fa-book"></i> ${s.lessons} cours
+                        </span>
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color};">
+                            <i class="fas fa-list-check"></i> ${s.exercises} exercices
+                        </span>
                     </div>
                 </div>
             `).join('');
         }
 
         function filterSubjects() {
-            const q = document.getElementById('searchInput').value.toLowerCase();
+            const q = document.getElementById('searchInput').value.toLowerCase().trim();
             if (!q) { renderSubjects(); return; }
             const filtered = subjects.filter(s => 
                 s.title.toLowerCase().includes(q) || 
                 s.description.toLowerCase().includes(q)
             );
-            renderSubjects(filtered.length ? filtered : null);
-            if (filtered.length === 0) {
-                document.getElementById('subjectsGrid').innerHTML = '<div class="no-data">لا توجد نتائج</div>';
-            }
+            renderSubjects(filtered);
         }
 
         renderSubjects();
