@@ -1,99 +1,99 @@
 /* ============================================================
    LESSON-COMMON.CSS
-   Styles communs pour tous les cours
+   Styles communs pour tous les cours (Version optimisée)
    ============================================================ */
 
 .lesson-container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 12px;
 }
 
 .lesson-title {
     color: #4ECDC4;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 900;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border-bottom: 2px solid var(--border);
-    padding-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 /* ====== SECTIONS ====== */
 .section {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
 }
 
 .section h2 {
     color: #66FCF1;
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .section h2 .num {
     background: var(--gradient);
     color: var(--bg-primary);
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 900;
 }
 
 .section h3 {
     color: #FF6B6B;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 700;
-    margin: 16px 0 8px;
+    margin: 10px 0 6px;
 }
 
 .section h4 {
     color: #F4D03F;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
-    margin: 12px 0 6px;
+    margin: 8px 0 4px;
 }
 
 .section p {
     color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 6px;
 }
 
 .section ul {
     color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.8;
-    padding-right: 25px;
-    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    padding-right: 18px;
+    margin-bottom: 6px;
 }
 
 .section ul li {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 /* ====== FORMULES ====== */
 .formula-block {
     background: var(--bg-primary);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin: 12px 0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 8px 0;
     text-align: center;
     overflow-x: auto;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .formula-block .math {
@@ -105,9 +105,9 @@
 .highlight-box {
     background: rgba(69, 162, 158, 0.08);
     border-right: 4px solid var(--accent);
-    padding: 14px 18px;
+    padding: 10px 14px;
     border-radius: 8px;
-    margin: 12px 0;
+    margin: 8px 0;
 }
 
 .highlight-box.green {
@@ -137,10 +137,10 @@
 .highlight-box .label {
     display: inline-block;
     font-weight: 700;
-    font-size: 13px;
-    padding: 2px 12px;
-    border-radius: 20px;
-    margin-bottom: 6px;
+    font-size: 11px;
+    padding: 1px 10px;
+    border-radius: 16px;
+    margin-bottom: 4px;
 }
 
 .highlight-box .label.def   { background: #4ECDC422; color: #4ECDC4; }
@@ -153,31 +153,34 @@
 /* ====== TABLEAUX ====== */
 .table-wrap {
     overflow-x: auto;
-    margin: 12px 0;
+    margin: 6px 0;
 }
 
 .table-wrap table {
     width: 100%;
     border-collapse: collapse;
     background: var(--bg-primary);
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
+    max-width: 280px;
 }
 
 .table-wrap th {
     background: var(--bg-card);
     color: var(--accent-light);
-    padding: 10px 14px;
+    padding: 5px 12px;
     border: 1px solid var(--border);
     font-weight: 700;
     text-align: center;
+    font-size: 12px;
 }
 
 .table-wrap td {
-    padding: 10px 14px;
+    padding: 5px 12px;
     border: 1px solid var(--border);
     text-align: center;
     color: var(--text-secondary);
+    font-size: 12px;
 }
 
 .table-wrap .true  { color: #4ECDC4; font-weight: 700; }
@@ -187,32 +190,33 @@
 .step {
     background: var(--bg-primary);
     border-right: 3px solid #4ECDC4;
-    padding: 8px 14px;
-    margin: 6px 0;
+    padding: 5px 12px;
+    margin: 4px 0;
     border-radius: 6px;
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .step .step-num {
     color: #4ECDC4;
     font-weight: 700;
     margin-left: 6px;
+    font-size: 12px;
 }
 
 /* ====== BOUTON RETOUR ====== */
 .back-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     color: var(--accent-light);
     text-decoration: none;
     font-weight: 600;
-    padding: 10px 18px;
-    border-radius: 10px;
+    padding: 6px 14px;
+    border-radius: 8px;
     transition: all 0.2s ease;
-    margin-bottom: 25px;
-    font-size: 15px;
+    margin-bottom: 16px;
+    font-size: 13px;
 }
 
 .back-btn:hover {
@@ -224,17 +228,29 @@
     display: inline-block;
     background: #4ECDC422;
     color: #4ECDC4;
-    padding: 2px 12px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 16px;
+    font-size: 11px;
     font-weight: 600;
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 600px) {
-    .lesson-container { padding: 10px; }
-    .section { padding: 14px 16px; }
-    .lesson-title { font-size: 24px; }
-    .formula-block { font-size: 15px; padding: 12px 14px; }
-    .section h2 { font-size: 18px; }
+@media (max-width: 768px) {
+    .lesson-title { font-size: 20px; }
+    .section { padding: 10px 12px; }
+    .section h2 { font-size: 15px; }
+    .table-wrap table { max-width: 100%; }
+    .table-wrap th, .table-wrap td { padding: 4px 8px; font-size: 11px; }
+    .formula-block { font-size: 13px; padding: 8px 12px; }
+}
+
+@media (max-width: 480px) {
+    .lesson-title { font-size: 17px; }
+    .section h2 { font-size: 13px; }
+    .section h3 { font-size: 13px; }
+    .section p { font-size: 12px; }
+    .formula-block { font-size: 12px; padding: 6px 10px; }
+    .table-wrap th, .table-wrap td { padding: 3px 6px; font-size: 10px; }
+    .step { font-size: 11px; padding: 4px 10px; }
+    .back-btn { font-size: 12px; padding: 4px 12px; }
 }
