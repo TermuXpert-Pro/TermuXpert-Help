@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpert - المادة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+            <li><a href="subjects.html"><i class="fa-solid fa-book"></i> المواد</a></li>
+        </ul>
+    </nav>
+    <div class="hero" style="min-height:auto; padding:100px 20px 40px;">
+        <h1 style="font-size:36px;" id="subjectTitle">المادة</h1>
+        <p class="description" id="subjectDesc">جميع محتويات المادة في مكان واحد</p>
+    </div>
+    <div style="max-width:900px; margin:0 auto; padding:0 20px 60px;">
+        <a href="subjects.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i> العودة للمواد</a>
+        
+        <!-- تبويبات -->
+        <div class="tabs" style="display:flex; gap:8px; margin-bottom:30px; flex-wrap:wrap; border-bottom:2px solid var(--border); padding-bottom:12px;">
+            <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fa-solid fa-book"></i> الدروس</button>
+            <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fa-solid fa-list-check"></i> سلاسل التمارين</button>
+            <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fa-solid fa-pen-to-square"></i> فروض وامتحانات</button>
+        </div>
+        
+        <!-- محتوى التبويبات -->
+        <div id="tabContent"><div class="no-data">جاري التحميل...</div></div>
+    </div>
+    <footer class="footer"><div class="divider"></div><p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p></footer>
+    <script>
+        // ====== بيانات المواد ======
+        const data = {
+            math: {
+                title: "📐 الرياضيات",
+                desc: "دروس، سلاسل، فروض، وامتحانات جهوية في الرياضيات",
+                lessons: [
+                    { title: "Généralités sur les fonctions", content: "$$f(x) = ax^2 + bx + c$$", pdf: "" },
+                    { title: "Logique mathématique", content: "$$\\forall x \\in \\mathbb{R}, x^2 \\ge 0$$", pdf: "" },
+                    { title: "Raisonnement par récurrence", content: "$$P(n) \\Rightarrow P(n+1)$$", pdf: "" },
+                    { title: "Les suites numériques", content: "$$u_{n+1} = f(u_n)$$", pdf: "" },
+                    { title: "Fonctions trigonométriques", content: "$$\\sin^2 x + \\cos^2 x = 1$$", pdf: "" }
+                ],
+                series: [
+                    { title: "سلسلة 1: الدوال", items: 8, pdf: "" },
+                    { title: "سلسلة 2: المنطق", items: 10, pdf: "" },
+                    { title: "سلسلة 3: المتتاليات", items: 6, pdf: "" }
+                ],
+                exams: [
+                    { title: "فرض 1: الدوال", type: "فرض", pdf: "" },
+                    { title: "فرض 2: المنطق والمتتاليات", type: "فرض", pdf: "" },
+                    { title: "امتحان جهوي 2024", type: "امتحان", pdf: "" },
+                    { title: "امتحان جهوي 2023", type: "امتحان", pdf: "" }
+                ]
+            },
+            physique: {
+                title: "⚡ الفيزياء",
+                desc: "دروس، سلاسل، فروض، وامتحانات جهوية في الفيزياء",
+                lessons: [
+                    { title: "Mouvement rectiligne", content: "$$x(t) = x_0 + v_0 t + \\frac{1}{2} a t^2$$", pdf: "" },
+                    { title: "Lois de Newton", content: "$$\\sum \\vec{F} = m \\vec{a}$$", pdf: "" },
+                    { title: "Énergie cinétique", content: "$$E_c = \\frac{1}{2} m v^2$$", pdf: "" },
+                    { title: "Ondes mécaniques", content: "$$v = \\lambda \\cdot f$$", pdf: "" }
+                ],
+                series: [
+                    { title: "سلسلة 1: الميكانيك", items: 8, pdf: "" },
+                    { title: "سلسلة 2: الموجات", items: 6, pdf: "" }
+                ],
+                exams: [
+                    { title: "فرض 1: الميكانيك", type: "فرض", pdf: "" },
+                    { title: "امتحان جهوي 2024", type: "امتحان", pdf: "" }
+                ]
+            },
+            chimie: {
+                title: "🧪 الكيمياء",
+                desc: "دروس، سلاسل، فروض، وامتحانات جهوية في الكيمياء",
+                lessons: [
+                    { title: "Structure de l'atome", content: "$$\\ce{^{A}_{Z}X}$$", pdf: "" },
+                    { title: "Réactions chimiques", content: "$$\\ce{2H2 + O2 -> 2H2O}$$", pdf: "" },
+                    { title: "Acides et bases", content: "$$\\ce{pH} = -\\log[\\ce{H3O+}]$$", pdf: "" }
+                ],
+                series: [
+                    { title: "سلسلة 1: الذرة", items: 6, pdf: "" },
+                    { title: "سلسلة 2: التفاعلات", items: 8, pdf: "" }
+                ],
+                exams: [
+                    { title: "فرض 1: الذرة", type: "فرض", pdf: "" },
+                    { title: "امتحان جهوي 2024", type: "امتحان", pdf: "" }
+                ]
+            }
+        };
+
+        // ====== دوال التبويبات ======
+        let currentSubject = null;
+        let currentTab = 'lessons';
+
+        function loadSubject() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('subject');
+            currentSubject = data[id];
+            
+            if (!currentSubject) {
+                document.getElementById('subjectTitle').textContent = '⚠️ المادة غير موجودة';
+                document.getElementById('tabContent').innerHTML = '<div class="no-data">المادة غير موجودة</div>';
+                return;
+            }
+            
+            document.getElementById('subjectTitle').textContent = currentSubject.title;
+            document.getElementById('subjectDesc').textContent = currentSubject.desc;
+            
+            switchTab('lessons');
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // تحديث الأزرار
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+            
+            // عرض المحتوى
+            const container = document.getElementById('tabContent');
+            
+            if (tab === 'lessons') {
+                container.innerHTML = currentSubject.lessons.map((l, i) => `
+                    <div class="command-card" onclick="location.href='lesson.html?subject=${getSubjectId()}&lesson=${i}'">
+                        <div class="command-title">${i+1}. ${l.title}</div>
+                        <div class="code-block" style="padding:16px; background:#0D1117;">
+                            <div class="code-content" style="font-size:18px; text-align:center;">${l.content}</div>
+                        </div>
+                        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                            <span class="badge" style="background:#4ECDC422; color:#4ECDC4;"><i class="fa-solid fa-eye"></i> عرض الدرس</span>
+                        </div>
+                    </div>
+                `).join('');
+            } else if (tab === 'series') {
+                container.innerHTML = currentSubject.series.map((s, i) => `
+                    <div class="command-card">
+                        <div class="command-title">${i+1}. ${s.title}</div>
+                        <p style="color:var(--text-secondary);">${s.items} تمارين</p>
+                        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                            <span class="badge" style="background:#F4D03F22; color:#F4D03F;"><i class="fa-solid fa-download"></i> تحميل PDF</span>
+                        </div>
+                    </div>
+                `).join('');
+            } else if (tab === 'exams') {
+                container.innerHTML = currentSubject.exams.map((e, i) => `
+                    <div class="command-card">
+                        <div class="command-title">${i+1}. ${e.title}</div>
+                        <p style="color:var(--text-secondary);"><span class="badge" style="background:${e.type === 'فرض' ? '#FF6B6B22' : '#BB8FCE22'}; color:${e.type === 'فرض' ? '#FF6B6B' : '#BB8FCE'};">${e.type}</span></p>
+                        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                            <span class="badge" style="background:#4ECDC422; color:#4ECDC4;"><i class="fa-solid fa-download"></i> تحميل PDF</span>
+                            <span class="badge" style="background:#A8FF7822; color:#A8FF78;"><i class="fa-solid fa-check"></i> التصحيح</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // إعادة تحميل MathJax
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function getSubjectId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('subject');
+        }
+
+        loadSubject();
+    </script>
+</body>
+</html>
