@@ -173,6 +173,68 @@
             border-radius: 8px;
             background: #0D1117;
         }
+        .exercice-box {
+            background: #1A2A2A;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .exercice-box .ex-title {
+            color: #E8873A;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .exercice-box .ex-question {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 6px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .sub-section {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
         @media (max-width: 600px) {
             .lesson-container { padding: 10px; }
             .section { padding: 14px 16px; }
@@ -280,6 +342,46 @@
                         <li>Sommet $\displaystyle S\left(-\frac{b}{2a}, f\left(-\frac{b}{2a}\right)\right)$</li>
                     </ul>
                 </div>
+
+                <!-- Exercice 1 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 1</div>
+                        <div class="ex-question">
+                            <p>Déterminer le sommet de $f(x) = 2x^2 - 4x + 3$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol1')">Voir la solution</button>
+                        <div id="sol1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$a = 2$, $b = -4$.</p>
+                                <p>$-\frac{b}{2a} = -\frac{-4}{4} = 1$.</p>
+                                <p>$f(1) = 2(1)^2 - 4(1) + 3 = 1$.</p>
+                                <p>Donc <strong>$S(1, 1)$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 2 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 2</div>
+                        <div class="ex-question">
+                            <p>Déterminer le sommet de $f(x) = -x^2 + 6x - 5$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol2')">Voir la solution</button>
+                        <div id="sol2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$a = -1$, $b = 6$.</p>
+                                <p>$-\frac{b}{2a} = -\frac{6}{-2} = 3$.</p>
+                                <p>$f(3) = -(3)^2 + 6(3) - 5 = -9 + 18 - 5 = 4$.</p>
+                                <p>Donc <strong>$S(3, 4)$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -337,6 +439,42 @@
                         <li>$a > 0$ : croissante.</li>
                         <li>$a < 0$ : décroissante.</li>
                     </ul>
+                </div>
+
+                <!-- Exercice 3 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 3</div>
+                        <div class="ex-question">
+                            <p>Étudier la monotonie de $f(x) = 4x^3$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol3')">Voir la solution</button>
+                        <div id="sol3" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$a = 4 > 0$.</p>
+                                <p>Donc <strong>$f$ est strictement croissante sur $\mathbb{R}$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 4 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 4</div>
+                        <div class="ex-question">
+                            <p>Étudier la monotonie de $f(x) = -\frac{1}{2}x^3$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol4')">Voir la solution</button>
+                        <div id="sol4" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$a = -\frac{1}{2} < 0$.</p>
+                                <p>Donc <strong>$f$ est strictement décroissante sur $\mathbb{R}$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -406,6 +544,42 @@
                         <li>Asymptotes : $x = -\frac{d}{c}$ et $y = \frac{a}{c}$.</li>
                     </ul>
                 </div>
+
+                <!-- Exercice 5 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 5</div>
+                        <div class="ex-question">
+                            <p>Déterminer $D_f$ de $f(x) = \frac{2x+1}{x-3}$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol5')">Voir la solution</button>
+                        <div id="sol5" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>On doit avoir $x-3 \neq 0 \Rightarrow x \neq 3$.</p>
+                                <p>Donc <strong>$D_f = \mathbb{R} \setminus \{3\}$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 6 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 6</div>
+                        <div class="ex-question">
+                            <p>Déterminer $D_f$ de $f(x) = \frac{x+1}{2x-4}$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol6')">Voir la solution</button>
+                        <div id="sol6" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>On doit avoir $2x-4 \neq 0 \Rightarrow x \neq 2$.</p>
+                                <p>Donc <strong>$D_f = \mathbb{R} \setminus \{2\}$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -455,6 +629,42 @@
                         <li>$\sqrt{a-x}$ : décroissante sur $]-\infty, a]$.</li>
                     </ul>
                 </div>
+
+                <!-- Exercice 7 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 7</div>
+                        <div class="ex-question">
+                            <p>Déterminer $D_f$ de $f(x) = \sqrt{x-2}$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol7')">Voir la solution</button>
+                        <div id="sol7" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>On doit avoir $x-2 \ge 0 \Rightarrow x \ge 2$.</p>
+                                <p>Donc <strong>$D_f = [2, +\infty[$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 8 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 8</div>
+                        <div class="ex-question">
+                            <p>Déterminer $D_f$ de $f(x) = \sqrt{4-x}$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol8')">Voir la solution</button>
+                        <div id="sol8" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>On doit avoir $4-x \ge 0 \Rightarrow x \le 4$.</p>
+                                <p>Donc <strong>$D_f = ]-\infty, 4]$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -477,6 +687,18 @@
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
 
         // ============================================================
         // GRAPHIQUES

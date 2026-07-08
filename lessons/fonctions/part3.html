@@ -173,6 +173,68 @@
             border-radius: 8px;
             background: #0D1117;
         }
+        .exercice-box {
+            background: #1A2A2A;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .exercice-box .ex-title {
+            color: #E8873A;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .exercice-box .ex-question {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 6px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .sub-section {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
         @media (max-width: 600px) {
             .lesson-container { padding: 10px; }
             .section { padding: 14px 16px; }
@@ -251,6 +313,42 @@
                         <li><strong>Bornée :</strong> les deux à la fois ($|f(x)| \le A$).</li>
                     </ul>
                 </div>
+
+                <!-- Exercice 1 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 1</div>
+                        <div class="ex-question">
+                            <p>Montrer que $f(x) = x^2$ est minorée sur $\mathbb{R}$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol1')">Voir la solution</button>
+                        <div id="sol1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$x^2 \ge 0$ pour tout $x \in \mathbb{R}$.</p>
+                                <p>Donc $f$ est minorée par $0$ sur $\mathbb{R}$.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 2 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 2</div>
+                        <div class="ex-question">
+                            <p>Montrer que $f(x) = -x^2$ est majorée sur $\mathbb{R}$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol2')">Voir la solution</button>
+                        <div id="sol2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$-x^2 \le 0$ pour tout $x \in \mathbb{R}$.</p>
+                                <p>Donc $f$ est majorée par $0$ sur $\mathbb{R}$.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -260,21 +358,7 @@
                 <h2><span class="num">2</span> Applications</h2>
 
                 <div class="highlight-box">
-                    <p><strong>Exercice 1 :</strong> Soit $f$ une fonction définie sur $[-3, +\infty[$.</p>
-                    <div class="step"><span class="step-num">1.</span> $f$ est-elle majorée ? minorée ? bornée ? sur $[-3, +\infty[$.</div>
-                    <div class="step"><span class="step-num">2.</span> Que représente $7$ puis $-14$ pour $f$ sur $[-3, 11]$ ?</div>
-                    <div class="step"><span class="step-num">3.</span> Que représente $7$ puis $-6$ pour $f$ ?</div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label ex">Solution</span>
-                    <div class="step"><span class="step-num">1.</span> $f$ est majorée par $7$ et minorée par $-14$ sur $[-3, +\infty[$, donc bornée.</div>
-                    <div class="step"><span class="step-num">2.</span> $7$ est un maximum absolu, $-14$ est un minimum absolu sur $[-3, 11]$.</div>
-                    <div class="step"><span class="step-num">3.</span> $7$ est un maximum absolu sur $[-3, +\infty[$, $-6$ est un minimum relatif.</div>
-                </div>
-
-                <div class="highlight-box" style="margin-top:16px;">
-                    <p><strong>Exercice 2 :</strong> $f(x) = \frac{1}{x}$ sur $I = [1, +\infty[$.</p>
+                    <p><strong>Exercice :</strong> $f(x) = \frac{1}{x}$ sur $I = [1, +\infty[$.</p>
                     <div class="step"><span class="step-num">1.</span> Montrer que $f$ est majorée par $1$ sur $I$.</div>
                     <div class="step"><span class="step-num">2.</span> Montrer que $f$ est minorée sur $I$.</div>
                     <div class="step"><span class="step-num">3.</span> $f$ est-elle bornée sur $I$ ?</div>
@@ -285,6 +369,25 @@
                     <div class="step"><span class="step-num">1.</span> Pour $x \ge 1$, on a $0 < \frac{1}{x} \le 1$, donc $f$ est majorée par $1$.</div>
                     <div class="step"><span class="step-num">2.</span> Pour $x \ge 1$, on a $\frac{1}{x} > 0$, donc $f$ est minorée par $0$ (par exemple).</div>
                     <div class="step"><span class="step-num">3.</span> $f$ est majorée et minorée → $f$ est bornée sur $I$.</div>
+                </div>
+
+                <!-- Exercice 3 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 3</div>
+                        <div class="ex-question">
+                            <p>Étudier si $f(x) = \frac{1}{x}$ est bornée sur $]0, 1]$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol3')">Voir la solution</button>
+                        <div id="sol3" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>Sur $]0, 1]$, $\frac{1}{x} \ge 1$ et peut être aussi grand que l'on veut.</p>
+                                <p>Donc $f$ est minorée par $1$ mais <strong>n'est pas majorée</strong>.</p>
+                                <p>Donc <strong>$f$ n'est pas bornée</strong> sur $]0, 1]$.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -321,6 +424,24 @@
                         <li><strong>Positive :</strong> $f(x) \ge 0$ → courbe au-dessus de l'axe $Ox$.</li>
                         <li><strong>Négative :</strong> $f(x) < 0$ → courbe en dessous de l'axe $Ox$.</li>
                     </ul>
+                </div>
+
+                <!-- Exercice 4 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 4</div>
+                        <div class="ex-question">
+                            <p>Étudier le signe de $f(x) = x^2 - 4$ sur $\mathbb{R}$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol4')">Voir la solution</button>
+                        <div id="sol4" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$x^2 - 4 \ge 0 \iff x \le -2$ ou $x \ge 2$.</p>
+                                <p>Donc $f$ est positive sur $]-\infty, -2] \cup [2, +\infty[$ et négative sur $]-2, 2[$.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -373,6 +494,42 @@
                         <li>$f = g$ : courbes confondues.</li>
                     </ul>
                 </div>
+
+                <!-- Exercice 5 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 5</div>
+                        <div class="ex-question">
+                            <p>Comparer $f(x) = x$ et $g(x) = x^2$ sur $[0, 1]$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol5')">Voir la solution</button>
+                        <div id="sol5" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>Sur $[0, 1]$, on a $x^2 \le x$.</p>
+                                <p>Donc <strong>$g \le f$ sur $[0, 1]$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 6 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 6</div>
+                        <div class="ex-question">
+                            <p>Comparer $f(x) = x$ et $g(x) = x^2$ sur $[1, +\infty[$.</p>
+                        </div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol6')">Voir la solution</button>
+                        <div id="sol6" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>Sur $[1, +\infty[$, on a $x^2 \ge x$.</p>
+                                <p>Donc <strong>$f \le g$ sur $[1, +\infty[$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -395,6 +552,18 @@
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
 
         // ============================================================
         // GRAPHIQUE COMPARAISON
