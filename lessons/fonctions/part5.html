@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 5 - Étude des fonctions de référence - Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/lesson-common.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+        }
+        .lesson-title {
+            color: #4ECDC4;
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .highlight-box {
+            background: rgba(69, 162, 158, 0.08);
+            border-right: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box .label {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+        }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box strong { color: var(--text-primary); }
+        .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 8px 14px;
+            margin: 6px 0;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+        }
+        .table-wrap td {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 18px;
+        }
+        .formula-block .math {
+            color: var(--accent-light);
+            font-family: var(--font-mono);
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        .back-btn:hover { background: rgba(69, 162, 158, 0.1); }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            float: right;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 8px;
+            background: #0D1117;
+        }
+        @media (max-width: 600px) {
+            .lesson-container { padding: 10px; }
+            .section { padding: 14px 16px; }
+            .lesson-title { font-size: 24px; }
+            .formula-block { font-size: 15px; padding: 12px 14px; }
+            .nav-buttons { flex-direction: column; align-items: stretch; }
+            .next-btn { float: none; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:100px 20px 40px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-chart-simple" style="color:#4ECDC4;"></i> Partie 5 : Étude des fonctions de référence</h1>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: FONCTION DU SECOND DEGRÉ -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Fonction du second degré : $f(x) = ax^2 + bx + c$</h2>
+
+                <div class="highlight-box">
+                    <p><strong>Forme canonique :</strong></p>
+                    <div class="formula-block">
+                        $$f(x) = a\left(x + \frac{b}{2a}\right)^2 + f\left(-\frac{b}{2a}\right)$$
+                    </div>
+                    <p>avec $\displaystyle f\left(-\frac{b}{2a}\right) = -\frac{\Delta}{4a}$</p>
+                </div>
+
+                <div class="highlight-box green" style="border-color:#4ECDC4;">
+                    <span class="label def">Cas $a > 0$</span>
+                    <p>Parabole orientée vers le <strong>haut</strong>.</p>
+                    <div class="formula-block">
+                        $$f(x) - f\left(-\frac{b}{2a}\right) = a\left(x + \frac{b}{2a}\right)^2 \ge 0$$
+                    </div>
+                    <p style="color:#4ECDC4;"><strong>Minimum absolu :</strong> $\displaystyle f\left(-\frac{b}{2a}\right)$</p>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>$x$</th><th>$-\infty$</th><th>$-\frac{b}{2a}$</th><th>$+\infty$</th></tr>
+                        <tr><td>$f(x)$</td><td style="color:#FF6B6B;">↘</td><td style="color:#4ECDC4; font-weight:bold;">$f(-\frac{b}{2a})$</td><td style="color:#4ECDC4;">↗</td></tr>
+                    </table>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Parabole $a > 0$</p>
+                    <canvas id="parabolaUpGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">Parabole orientée vers le haut</p>
+                </div>
+
+                <div class="highlight-box red" style="border-color:#FF6B6B; margin-top:16px;">
+                    <span class="label def">Cas $a < 0$</span>
+                    <p>Parabole orientée vers le <strong>bas</strong>.</p>
+                    <div class="formula-block">
+                        $$f(x) - f\left(-\frac{b}{2a}\right) = a\left(x + \frac{b}{2a}\right)^2 \le 0$$
+                    </div>
+                    <p style="color:#FF6B6B;"><strong>Maximum absolu :</strong> $\displaystyle f\left(-\frac{b}{2a}\right)$</p>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>$x$</th><th>$-\infty$</th><th>$-\frac{b}{2a}$</th><th>$+\infty$</th></tr>
+                        <tr><td>$f(x)$</td><td style="color:#4ECDC4;">↗</td><td style="color:#FF6B6B; font-weight:bold;">$f(-\frac{b}{2a})$</td><td style="color:#FF6B6B;">↘</td></tr>
+                    </table>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#FF6B6B; font-weight:bold; margin-bottom:8px;">📈 Parabole $a < 0$</p>
+                    <canvas id="parabolaDownGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">Parabole orientée vers le bas</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Vocabulaire</span>
+                    <ul>
+                        <li>La courbe s'appelle une <strong>parabole</strong>.</li>
+                        <li><strong>Sommet :</strong> $\displaystyle S\left(-\frac{b}{2a}, f\left(-\frac{b}{2a}\right)\right)$</li>
+                        <li><strong>Axe de symétrie :</strong> $\displaystyle x = -\frac{b}{2a}$</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$a > 0$ : parabole vers le haut, minimum.</li>
+                        <li>$a < 0$ : parabole vers le bas, maximum.</li>
+                        <li>Sommet $\displaystyle S\left(-\frac{b}{2a}, f\left(-\frac{b}{2a}\right)\right)$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: FONCTION CUBE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Fonction cube : $f(x) = ax^3$</h2>
+
+                <div class="highlight-box">
+                    <ul>
+                        <li>$D_f = \mathbb{R}$</li>
+                        <li>$f$ est <strong>impaire</strong> : $f(-x) = -f(x)$</li>
+                        <li>Ensemble d'étude : $D_E = \mathbb{R}^+$</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green" style="border-color:#4ECDC4;">
+                    <span class="label def">Cas $a > 0$</span>
+                    <p>$f$ est <strong>strictement croissante</strong> sur $\mathbb{R}$.</p>
+                    <div class="formula-block">
+                        $$x < x' \Rightarrow ax^3 < a(x')^3 \Rightarrow f(x) < f(x')$$
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Fonction cube $a > 0$</p>
+                    <canvas id="cubeUpGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = x^3$</p>
+                </div>
+
+                <div class="highlight-box red" style="border-color:#FF6B6B;">
+                    <span class="label def">Cas $a < 0$</span>
+                    <p>$f$ est <strong>strictement décroissante</strong> sur $\mathbb{R}$.</p>
+                    <div class="formula-block">
+                        $$x < x' \Rightarrow ax^3 > a(x')^3 \Rightarrow f(x) > f(x')$$
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#FF6B6B; font-weight:bold; margin-bottom:8px;">📈 Fonction cube $a < 0$</p>
+                    <canvas id="cubeDownGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = -x^3$</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Applications :</strong></p>
+                    <div class="step"><span class="step-num">1.</span> $f(x) = \frac{1}{2}x^3$ : $a = \frac{1}{2} > 0$ → $f$ est strictement croissante sur $\mathbb{R}$.</div>
+                    <div class="step"><span class="step-num">2.</span> $f(x) = -\frac{2}{3}x^3$ : $a = -\frac{2}{3} < 0$ → $f$ est strictement décroissante sur $\mathbb{R}$.</div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Fonction impaire : $f(-x) = -f(x)$.</li>
+                        <li>$a > 0$ : croissante.</li>
+                        <li>$a < 0$ : décroissante.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: FONCTION HOMOGRAPHIQUE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Fonction homographique : $f(x) = \frac{ax+b}{cx+d}$</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>$c \neq 0$ et $\Delta = ad - bc$</p>
+                    <div class="formula-block">
+                        $$D_f = \mathbb{R} \setminus \left\{-\frac{d}{c}\right\}$$
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Taux d'accroissement :</strong></p>
+                    <div class="formula-block">
+                        $$T_f = \frac{\Delta}{(cx+d)(cx'+d)}$$
+                    </div>
+                    <p>Le signe de $T_f$ est celui de $\Delta$.</p>
+                </div>
+
+                <div class="highlight-box green" style="border-color:#4ECDC4;">
+                    <span class="label def">Cas $\Delta > 0$</span>
+                    <p>$f$ est <strong>strictement croissante</strong> sur $]-\infty, -\frac{d}{c}[$ et $]-\frac{d}{c}, +\infty[$.</p>
+                </div>
+
+                <div class="highlight-box red" style="border-color:#FF6B6B;">
+                    <span class="label def">Cas $\Delta < 0$</span>
+                    <p>$f$ est <strong>strictement décroissante</strong> sur $]-\infty, -\frac{d}{c}[$ et $]-\frac{d}{c}, +\infty[$.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Vocabulaire</span>
+                    <ul>
+                        <li>La courbe est une <strong>hyperbole</strong>.</li>
+                        <li><strong>Centre de symétrie :</strong> $\displaystyle \Omega\left(-\frac{d}{c}, \frac{a}{c}\right)$</li>
+                        <li><strong>Asymptote verticale :</strong> $\displaystyle x = -\frac{d}{c}$</li>
+                        <li><strong>Asymptote horizontale :</strong> $\displaystyle y = \frac{a}{c}$</li>
+                    </ul>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Hyperbole</p>
+                    <canvas id="hyperbolaGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = \frac{2x+1}{x+1}$ avec asymptotes $x = -1$ et $y = 2$</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Application :</strong> $f(x) = \frac{2x+1}{x+1}$</p>
+                    <div class="step"><span class="step-num">Étape 1 :</span> $\Delta = 2 \times 1 - 1 \times 1 = 1 > 0$</div>
+                    <div class="step"><span class="step-num">Étape 2 :</span> $D_f = \mathbb{R} \setminus \{-1\}$</div>
+                    <div class="step"><span class="step-num">Étape 3 :</span> Asymptote verticale : $x = -1$</div>
+                    <div class="step"><span class="step-num">Étape 4 :</span> Asymptote horizontale : $y = 2$</div>
+                    <div class="step"><span class="step-num">Étape 5 :</span> Centre de symétrie : $\Omega(-1, 2)$</div>
+                    <p style="color:#4ECDC4; margin-top:8px;"><strong>Conclusion :</strong> Hyperbole avec $f$ strictement croissante sur chaque intervalle.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$\Delta > 0$ : croissante.</li>
+                        <li>$\Delta < 0$ : décroissante.</li>
+                        <li>Asymptotes : $x = -\frac{d}{c}$ et $y = \frac{a}{c}$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: FONCTION RACINE CARRÉE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Fonction racine carrée</h2>
+
+                <div class="highlight-box green" style="border-color:#4ECDC4;">
+                    <span class="label def">Cas $f(x) = \sqrt{x+a}$</span>
+                    <ul>
+                        <li>$D_f = [-a, +\infty[$</li>
+                        <li>$f$ est <strong>strictement croissante</strong> sur $D_f$.</li>
+                    </ul>
+                    <div class="formula-block">
+                        $$x < x' \Rightarrow \sqrt{x+a} < \sqrt{x'+a} \Rightarrow f(x) < f(x')$$
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 $f(x) = \sqrt{x}$</p>
+                    <canvas id="sqrtGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">Fonction racine carrée</p>
+                </div>
+
+                <div class="highlight-box red" style="border-color:#FF6B6B;">
+                    <span class="label def">Cas $f(x) = \sqrt{a-x}$</span>
+                    <ul>
+                        <li>$D_f = ]-\infty, a]$</li>
+                        <li>$f$ est <strong>strictement décroissante</strong> sur $D_f$.</li>
+                    </ul>
+                    <div class="formula-block">
+                        $$x < x' \Rightarrow \sqrt{a-x} > \sqrt{a-x'} \Rightarrow f(x) > f(x')$$
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#FF6B6B; font-weight:bold; margin-bottom:8px;">📈 $f(x) = \sqrt{1-x}$</p>
+                    <canvas id="sqrtDownGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">Fonction racine carrée décroissante</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$\sqrt{x+a}$ : croissante sur $[-a, +\infty[$.</li>
+                        <li>$\sqrt{a-x}$ : décroissante sur $]-\infty, a]$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part4.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 4</a>
+                <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawParabolaUp() {
+            var canvas = document.getElementById('parabolaUpGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scale = 25;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = -10; i <= 10; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx + i * scale, 0);
+                ctx.lineTo(cx + i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Parabole f(x) = x²
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (var px = 0; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = x * x;
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -50 || screenY > h + 50) { continue; }
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+
+            // Sommet
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.fillText('S(0,0)', cx + 10, cy - 8);
+        }
+
+        function drawParabolaDown() {
+            var canvas = document.getElementById('parabolaDownGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scale = 25;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = -10; i <= 10; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx + i * scale, 0);
+                ctx.lineTo(cx + i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Parabole f(x) = -x²
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (var px = 0; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = -x * x;
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -50 || screenY > h + 50) { continue; }
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+
+            // Sommet
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('S(0,0)', cx + 10, cy - 8);
+        }
+
+        function drawCubeUp() {
+            var canvas = document.getElementById('cubeUpGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scale = 30;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = -5; i <= 5; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx + i * scale, 0);
+                ctx.lineTo(cx + i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Cube f(x) = x³
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (var px = 0; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = x * x * x;
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -100 || screenY > h + 100) { continue; }
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+        }
+
+        function drawCubeDown() {
+            var canvas = document.getElementById('cubeDownGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scale = 30;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = -5; i <= 5; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx + i * scale, 0);
+                ctx.lineTo(cx + i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Cube f(x) = -x³
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (var px = 0; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = -x * x * x;
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -100 || screenY > h + 100) { continue; }
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+        }
+
+        function drawHyperbola() {
+            var canvas = document.getElementById('hyperbolaGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scale = 30;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = -10; i <= 10; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx + i * scale, 0);
+                ctx.lineTo(cx + i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Asymptotes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([6, 6]);
+            // x = -1
+            ctx.beginPath();
+            ctx.moveTo(cx - 1 * scale, 0);
+            ctx.lineTo(cx - 1 * scale, h);
+            ctx.stroke();
+            ctx.fillStyle = '#888888';
+            ctx.font = '12px Arial';
+            ctx.fillText('x = -1', cx - 1 * scale - 30, 16);
+            // y = 2
+            ctx.beginPath();
+            ctx.moveTo(0, cy - 2 * scale);
+            ctx.lineTo(w, cy - 2 * scale);
+            ctx.stroke();
+            ctx.fillText('y = 2', w - 50, cy - 2 * scale - 6);
+            ctx.setLineDash([]);
+
+            // Courbe f(x) = (2x+1)/(x+1)
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2.5;
+            // Branche gauche
+            ctx.beginPath();
+            var first = true;
+            for (var px = 0; px <= cx - 1 * scale - 5; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = (2 * x + 1) / (x + 1);
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (Math.abs(x + 1) < 0.02) { first = true; continue; }
+                if (screenY < -100 || screenY > h + 100) { first = true; continue; }
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
+                else { ctx.lineTo(screenX, screenY); }
+            }
+            ctx.stroke();
+            // Branche droite
+            ctx.beginPath();
+            first = true;
+            for (var px = cx - 1 * scale + 5; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = (2 * x + 1) / (x + 1);
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (Math.abs(x + 1) < 0.02) { first = true; continue; }
+                if (screenY < -100 || screenY > h + 100) { first = true; continue; }
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
+                else { ctx.lineTo(screenX, screenY); }
+            }
+            ctx.stroke();
+
+            // Centre de symétrie Ω(-1, 2)
+            var ox = cx - 1 * scale;
+            var oy = cy - 2 * scale;
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(ox, oy, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '12px Arial';
+            ctx.fillText('Ω(-1, 2)', ox + 8, oy - 6);
+        }
+
+        function drawSqrt() {
+            var canvas = document.getElementById('sqrtGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = 50, cy = h - 50;
+            var scale = 40;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = 0; i <= 10; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx + i * scale, 0);
+                ctx.lineTo(cx + i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Courbe f(x) = √x
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (var px = cx; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                if (x < 0) continue;
+                var y = Math.sqrt(x);
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -50 || screenY > h + 50) { continue; }
+                if (px === cx) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('f(x) = √x', w - 100, 20);
+        }
+
+        function drawSqrtDown() {
+            var canvas = document.getElementById('sqrtDownGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w - 50, cy = h - 50;
+            var scale = 40;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = 0; i <= 10; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx - i * scale, 0);
+                ctx.lineTo(cx - i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Courbe f(x) = √(1-x)
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (var px = 0; px <= cx; px += 0.5) {
+                var x = (px - cx) / scale + 1;
+                if (x > 1) continue;
+                var y = Math.sqrt(1 - x);
+                var screenX = cx + (x - 1) * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -50 || screenY > h + 50) { continue; }
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.fillText('f(x) = √(1-x)', w - 130, 20);
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                drawParabolaUp();
+                drawParabolaDown();
+                drawCubeUp();
+                drawCubeDown();
+                drawHyperbola();
+                drawSqrt();
+                drawSqrtDown();
+            }, 500);
+        };
+    </script>
+</body>
+</html>

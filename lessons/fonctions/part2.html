@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 2 - Taux d'accroissement - Fonction périodique - Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/lesson-common.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+        }
+        .lesson-title {
+            color: #4ECDC4;
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .highlight-box {
+            background: rgba(69, 162, 158, 0.08);
+            border-right: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box .label {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+        }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box strong { color: var(--text-primary); }
+        .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 8px 14px;
+            margin: 6px 0;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+        }
+        .table-wrap td {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 18px;
+        }
+        .formula-block .math {
+            color: var(--accent-light);
+            font-family: var(--font-mono);
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        .back-btn:hover { background: rgba(69, 162, 158, 0.1); }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            float: right;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 8px;
+            background: #0D1117;
+        }
+        @media (max-width: 600px) {
+            .lesson-container { padding: 10px; }
+            .section { padding: 14px 16px; }
+            .lesson-title { font-size: 24px; }
+            .formula-block { font-size: 15px; padding: 12px 14px; }
+            .nav-buttons { flex-direction: column; align-items: stretch; }
+            .next-btn { float: none; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:100px 20px 40px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-wave-square" style="color:#4ECDC4;"></i> Partie 2 : Taux d'accroissement - Fonction périodique</h1>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: TAUX D'ACCROISSEMENT -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Taux d'accroissement d'une fonction</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>$f$ est une fonction définie sur un intervalle $I$.</p>
+                    <p>Pour $x$ et $x'$ de $I$ avec $x \neq x'$, le nombre :</p>
+                    <div class="formula-block">
+                        $$T_f = \frac{f(x) - f(x')}{x - x'}$$
+                    </div>
+                    <p>s'appelle le <strong>taux d'accroissement</strong> de $f$ entre $x$ et $x'$.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Application :</strong> Calculer le taux d'accroissement de $f(x) = 2x$ sur $\mathbb{R}$.</p>
+                    <div class="step"><span class="step-num">Solution :</span></div>
+                    <div class="formula-block">
+                        $$T_f = \frac{2x - 2x'}{x - x'} = \frac{2(x - x')}{x - x'} = 2$$
+                    </div>
+                    <p style="color:#4ECDC4;">Donc $T_f = 2$ pour tout $x \neq x'$.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Propriétés</span>
+                    <p>Soit $T$ le taux d'accroissement de $f$ sur $I$.</p>
+                    <ul>
+                        <li>Si $T \le 0$ alors $f$ est décroissante sur $I$.</li>
+                        <li>Si $T < 0$ alors $f$ est strictement décroissante sur $I$.</li>
+                        <li>Si $T \ge 0$ alors $f$ est croissante sur $I$.</li>
+                        <li>Si $T > 0$ alors $f$ est strictement croissante sur $I$.</li>
+                        <li>Si $T = 0$ alors $f$ est constante sur $I$.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Le taux d'accroissement mesure la "pente" de $f$.</li>
+                        <li>$T > 0$ → $f$ croissante.</li>
+                        <li>$T < 0$ → $f$ décroissante.</li>
+                        <li>$T = 0$ → $f$ constante.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: FONCTION PÉRIODIQUE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Fonction périodique</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>$f$ est périodique de période $T > 0$ sur $D_f$ ssi :</p>
+                    <div class="formula-block">
+                        <p>$$x \in D_f \Rightarrow (x+T \in D_f \text{ et } x-T \in D_f)$$</p>
+                        <p>$$\forall x \in D_f : f(x+T) = f(x)$$</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Remarque</span>
+                    <ul>
+                        <li>$T$ est la <strong>plus petite</strong> période strictement positive.</li>
+                        <li>$f(x) = \sin x$ et $f(x) = \cos x$ ont pour période $T = 2\pi$.</li>
+                        <li>$f(x) = \tan x$ a pour période $T = \pi$.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Application :</strong> Montrer que $f(x) = \sin(ax)$ avec $a \neq 0$ est périodique de période $T = \frac{2\pi}{|a|}$.</p>
+                    <div class="step"><span class="step-num">Étape 1 :</span> On a $\sin(ax + 2\pi) = \sin(ax)$</div>
+                    <div class="step"><span class="step-num">Étape 2 :</span> $\sin(a(x + \frac{2\pi}{a})) = \sin(ax + 2\pi) = \sin(ax)$</div>
+                    <div class="step"><span class="step-num">Étape 3 :</span> Donc $T = \frac{2\pi}{a}$ pour $a > 0$, $T = \frac{2\pi}{|a|}$ pour $a \neq 0$.</div>
+                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $f(x) = \sin(ax)$ est périodique de période $T = \frac{2\pi}{|a|}$.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Une fonction périodique se répète à intervalles réguliers.</li>
+                        <li>$T$ est la période (plus petit $T > 0$).</li>
+                        <li>La courbe se répète par translation de vecteur $T\vec{i}$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: COURBE D'UNE FONCTION PÉRIODIQUE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Courbe d'une fonction périodique</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Méthode de construction</span>
+                    <p>$f$ est périodique de période $T$ sur $D_f$.</p>
+                    <ul>
+                        <li>On choisit un intervalle $I_0 = [a, a+T]$.</li>
+                        <li>On construit $C_0$ sur $I_0$.</li>
+                        <li>On translate $C_0$ par des translations de vecteur $kT\vec{i}$ avec $k \in \mathbb{Z}$.</li>
+                    </ul>
+                </div>
+
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Exemple : Fonction périodique de période $T = 2$</p>
+                    <canvas id="periodicGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">La courbe se répète sur chaque intervalle de longueur $T$.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Vocabulaire :</strong></p>
+                    <ul>
+                        <li>$C_k$ : courbe sur $I_k = [a+kT, a+(k+1)T]$</li>
+                        <li>On construit $C_0$ puis on translate.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>On construit la courbe sur une période.</li>
+                        <li>On la répète par translation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part1.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 1</a>
+                <a href="part3.html" class="next-btn">Partie 3 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ============================================================
+        // GRAPHIQUE FONCTION PÉRIODIQUE
+        // ============================================================
+        function drawPeriodicGraph() {
+            var canvas = document.getElementById('periodicGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = 60, cy = h/2;
+            var scale = 40;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+            ctx.fillText('O', cx+4, cy+18);
+
+            // Tracer la fonction périodique (période T=2)
+            // f(x) = sin(πx) sur [0,2] puis répétée
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 3;
+
+            // Période 1 : [-4, -2]
+            ctx.beginPath();
+            var first = true;
+            for (var px = 0; px <= cx - 2 * scale; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = Math.sin(Math.PI * (x + 4));
+                var screenX = cx + x * scale;
+                var screenY = cy - y * 45;
+                if (screenY < -10 || screenY > h + 10) { first = true; continue; }
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
+                else { ctx.lineTo(screenX, screenY); }
+            }
+            ctx.stroke();
+
+            // Période 2 : [-2, 0]
+            ctx.beginPath();
+            first = true;
+            for (var px = cx - 2 * scale; px <= cx; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = Math.sin(Math.PI * (x + 2));
+                var screenX = cx + x * scale;
+                var screenY = cy - y * 45;
+                if (screenY < -10 || screenY > h + 10) { first = true; continue; }
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
+                else { ctx.lineTo(screenX, screenY); }
+            }
+            ctx.stroke();
+
+            // Période 3 : [0, 2]
+            ctx.beginPath();
+            first = true;
+            for (var px = cx; px <= cx + 2 * scale; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = Math.sin(Math.PI * x);
+                var screenX = cx + x * scale;
+                var screenY = cy - y * 45;
+                if (screenY < -10 || screenY > h + 10) { first = true; continue; }
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
+                else { ctx.lineTo(screenX, screenY); }
+            }
+            ctx.stroke();
+
+            // Période 4 : [2, 4]
+            ctx.beginPath();
+            first = true;
+            for (var px = cx + 2 * scale; px <= cx + 4 * scale; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = Math.sin(Math.PI * (x - 2));
+                var screenX = cx + x * scale;
+                var screenY = cy - y * 45;
+                if (screenY < -10 || screenY > h + 10) { first = true; continue; }
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
+                else { ctx.lineTo(screenX, screenY); }
+            }
+            ctx.stroke();
+
+            // Période 5 : [4, 6]
+            ctx.beginPath();
+            first = true;
+            for (var px = cx + 4 * scale; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = Math.sin(Math.PI * (x - 4));
+                var screenX = cx + x * scale;
+                var screenY = cy - y * 45;
+                if (screenY < -10 || screenY > h + 10) { first = true; continue; }
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
+                else { ctx.lineTo(screenX, screenY); }
+            }
+            ctx.stroke();
+
+            // Marquer les périodes
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '12px Arial';
+            var periods = [-4, -2, 0, 2, 4, 6];
+            for (var i = 0; i < periods.length; i++) {
+                var px = cx + periods[i] * scale;
+                ctx.fillStyle = '#F4D03F';
+                ctx.fillText(periods[i], px - 6, cy + 20);
+                ctx.fillStyle = '#2A2A3E';
+                ctx.beginPath();
+                ctx.moveTo(px, cy - 8);
+                ctx.lineTo(px, cy + 8);
+                ctx.stroke();
+            }
+
+            // Légende
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '12px Arial';
+            ctx.fillText('période T = 2', w - 130, 20);
+        }
+
+        window.onload = function() {
+            setTimeout(drawPeriodicGraph, 500);
+        };
+    </script>
+</body>
+</html>
