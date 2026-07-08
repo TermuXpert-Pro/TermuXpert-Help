@@ -122,3 +122,130 @@ input{font-family:inherit;border:none;outline:none}
 .tab-btn:hover{border-color:var(--accent);color:var(--accent-light)}
 .tab-btn.active{background:var(--gradient);color:var(--bg-primary);border-color:transparent}
 .tab-btn i{margin-left:8px}
+
+/* ====== MODE DESKTOP ====== */
+body.desktop-mode .hero {
+    min-height: 80vh;
+}
+
+body.desktop-mode .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+body.desktop-mode .stats-bar {
+    max-width: 700px;
+}
+
+/* ====== OVERLAY ====== */
+#blockerOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999999;
+    background: #0D0D0D;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    text-align: center;
+}
+
+#blockerOverlay.show {
+    display: flex;
+}
+
+#blockerOverlay .icon {
+    font-size: 60px;
+    color: #E8873A;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+#blockerOverlay h1 {
+    color: #E8873A;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+#blockerOverlay p {
+    color: #C8C8B4;
+    font-size: 16px;
+    max-width: 500px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+#blockerOverlay .steps {
+    background: #1A1A2E;
+    border: 1px solid #2A2A3E;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    text-align: left;
+    max-width: 400px;
+    width: 100%;
+}
+
+#blockerOverlay .steps li {
+    color: #C8C8B4;
+    font-size: 14px;
+    padding: 6px 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #1A1A2A;
+}
+
+#blockerOverlay .steps li:last-child {
+    border-bottom: none;
+}
+
+#blockerOverlay .steps li .num {
+    background: #E8873A;
+    color: #0D0D0D;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+#blockerOverlay .btn-retry {
+    background: #E8873A;
+    color: #0D0D0D;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+}
+
+#blockerOverlay .btn-retry:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 30px rgba(232, 135, 58, 0.4);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.hidden-content {
+    display: none;
+}
+
+.hidden-content.show {
+    display: block;
+}
