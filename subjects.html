@@ -23,17 +23,11 @@
     </nav>
     
     <div class="hero" style="min-height:auto; padding:100px 20px 50px;">
-        <h1 style="font-size:40px;">Matières <span class="gradient-text">scolaires</span></h1>
+        <h1 style="font-size:40px;">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
         <p class="description">Choisissez votre matière pour découvrir tout son contenu</p>
     </div>
     
     <div style="max-width:1100px; margin:0 auto; padding:0 20px 60px;">
-        <!-- Barre de recherche -->
-        <div class="search-box">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="searchInput" placeholder="Rechercher une matière..." oninput="filterSubjects()">
-        </div>
-        
         <div class="grid" id="subjectsGrid">
             <div class="no-data">Chargement...</div>
         </div>
@@ -78,16 +72,10 @@
             }
         ];
 
-        function renderSubjects(filtered) {
+        function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
-            const data = filtered || subjects;
             
-            if (data.length === 0) {
-                grid.innerHTML = '<div class="no-data"><i class="fas fa-search" style="font-size:32px; display:block; margin-bottom:12px; color:var(--text-muted);"></i>Aucune matière trouvée</div>';
-                return;
-            }
-            
-            grid.innerHTML = data.map(s => `
+            grid.innerHTML = subjects.map(s => `
                 <div class="card" onclick="location.href='subject.html?subject=${s.id}'" style="border-right-color: ${s.color};">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color};">
                         <i class="fas ${s.icon}"></i>
@@ -104,16 +92,6 @@
                     </div>
                 </div>
             `).join('');
-        }
-
-        function filterSubjects() {
-            const q = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (!q) { renderSubjects(); return; }
-            const filtered = subjects.filter(s => 
-                s.title.toLowerCase().includes(q) || 
-                s.description.toLowerCase().includes(q)
-            );
-            renderSubjects(filtered);
         }
 
         renderSubjects();

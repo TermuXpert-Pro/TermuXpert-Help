@@ -40,26 +40,6 @@
         <div class="hero-buttons">
             <a href="subjects.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Commencer</a>
         </div>
-        
-        <!-- ==== STATISTIQUES RÉELLES ==== -->
-        <div class="stats-bar">
-            <div class="stat-item">
-                <span class="stat-number" id="statSubjects">3</span>
-                <span class="stat-label">Matières</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="statLessons">14</span>
-                <span class="stat-label">Cours</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="statSeries">25</span>
-                <span class="stat-label">Séries & Exercices</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="statExams">12</span>
-                <span class="stat-label">Devoirs & Examens</span>
-            </div>
-        </div>
     </section>
 
     <section class="features">
@@ -111,30 +91,6 @@
     </footer>
 
     <script>
-        // Animation des statistiques
-        document.addEventListener('DOMContentLoaded', function() {
-            const stats = [
-                { id: 'statSubjects', target: 3 },
-                { id: 'statLessons', target: 14 },
-                { id: 'statSeries', target: 25 },
-                { id: 'statExams', target: 12 }
-            ];
-            
-            stats.forEach(stat => {
-                const el = document.getElementById(stat.id);
-                let current = 0;
-                const increment = Math.ceil(stat.target / 30);
-                const interval = setInterval(() => {
-                    current += increment;
-                    if (current >= stat.target) {
-                        current = stat.target;
-                        clearInterval(interval);
-                    }
-                    el.textContent = current;
-                }, 50);
-            });
-        });
-
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
