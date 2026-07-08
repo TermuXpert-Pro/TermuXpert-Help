@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 3 - Fonction majorée, minorée, bornée - Comparaison - Xpert</title>
+    <title>Partie 3 - Comparaison de fonctions - Composée - Xpert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -265,191 +265,36 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-arrow-up" style="color:#4ECDC4;"></i> Partie 3 : Fonction majorée - minorée - bornée - Comparaison</h1>
+            <h1 class="lesson-title"><i class="fas fa-cubes" style="color:#4ECDC4;"></i> Partie 3 : Comparaison de fonctions - Composée</h1>
 
             <!-- ============================================================ -->
-            <!-- SECTION 1: FONCTION MAJORÉE - MINORÉE - BORNÉE -->
+            <!-- SECTION 1: ÉGALITÉ DE DEUX FONCTIONS -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">1</span> Fonction majorée - minorée - bornée</h2>
+                <h2><span class="num">1</span> Égalité de deux fonctions</h2>
 
                 <div class="highlight-box green">
-                    <span class="label def">Définitions</span>
-                    <p>$f$ est définie sur $I$ ($I \subset D_f$). $M$ et $m$ sont des réels.</p>
-                </div>
-
-                <div class="highlight-box" style="border-color:#4ECDC4;">
-                    <p><strong>Fonction majorée :</strong></p>
+                    <span class="label def">Définition</span>
+                    <p>Soient $f$ et $g$ deux fonctions numériques dont les ensembles de définition sont respectivement $D_f$ et $D_g$.</p>
                     <div class="formula-block">
-                        $$\forall x \in I : f(x) \le M$$
-                    </div>
-                    <p>La fonction est majorée par $M$ sur $I$.</p>
-                </div>
-
-                <div class="highlight-box" style="border-color:#FF6B6B;">
-                    <p><strong>Fonction minorée :</strong></p>
-                    <div class="formula-block">
-                        $$\forall x \in I : m \le f(x)$$
-                    </div>
-                    <p>La fonction est minorée par $m$ sur $I$.</p>
-                </div>
-
-                <div class="highlight-box" style="border-color:#F4D03F;">
-                    <p><strong>Fonction bornée :</strong></p>
-                    <div class="formula-block">
-                        $$f \text{ est bornée sur } I \iff f \text{ est majorée et minorée sur } I$$
-                    </div>
-                    <p>Équivalent à :</p>
-                    <div class="formula-block">
-                        $$\exists A \in \mathbb{R}^+ : \forall x \in I, |f(x)| \le A$$
+                        $$f = g \iff \begin{cases} D_f = D_g \\ \forall x \in D_f : f(x) = g(x) \end{cases}$$
                     </div>
                 </div>
 
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
-                        <li><strong>Majorée :</strong> il existe un nombre plus grand que toutes les valeurs.</li>
-                        <li><strong>Minorée :</strong> il existe un nombre plus petit que toutes les valeurs.</li>
-                        <li><strong>Bornée :</strong> les deux à la fois ($|f(x)| \le A$).</li>
+                        <li>Pour que deux fonctions soient égales, elles doivent avoir le <strong>même ensemble de définition</strong>.</li>
+                        <li>Elles doivent avoir la <strong>même image</strong> pour tout $x$.</li>
                     </ul>
                 </div>
-
-                <!-- Exercice 1 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 1</div>
-                        <div class="ex-question">
-                            <p>Montrer que $f(x) = x^2$ est minorée sur $\mathbb{R}$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol1')">Voir la solution</button>
-                        <div id="sol1" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>$x^2 \ge 0$ pour tout $x \in \mathbb{R}$.</p>
-                                <p>Donc $f$ est minorée par $0$ sur $\mathbb{R}$.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercice 2 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 2</div>
-                        <div class="ex-question">
-                            <p>Montrer que $f(x) = -x^2$ est majorée sur $\mathbb{R}$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol2')">Voir la solution</button>
-                        <div id="sol2" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>$-x^2 \le 0$ pour tout $x \in \mathbb{R}$.</p>
-                                <p>Donc $f$ est majorée par $0$ sur $\mathbb{R}$.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 2: APPLICATIONS -->
+            <!-- SECTION 2: COMPARAISON DE DEUX FONCTIONS -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">2</span> Applications</h2>
-
-                <div class="highlight-box">
-                    <p><strong>Exercice :</strong> $f(x) = \frac{1}{x}$ sur $I = [1, +\infty[$.</p>
-                    <div class="step"><span class="step-num">1.</span> Montrer que $f$ est majorée par $1$ sur $I$.</div>
-                    <div class="step"><span class="step-num">2.</span> Montrer que $f$ est minorée sur $I$.</div>
-                    <div class="step"><span class="step-num">3.</span> $f$ est-elle bornée sur $I$ ?</div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label ex">Solution</span>
-                    <div class="step"><span class="step-num">1.</span> Pour $x \ge 1$, on a $0 < \frac{1}{x} \le 1$, donc $f$ est majorée par $1$.</div>
-                    <div class="step"><span class="step-num">2.</span> Pour $x \ge 1$, on a $\frac{1}{x} > 0$, donc $f$ est minorée par $0$ (par exemple).</div>
-                    <div class="step"><span class="step-num">3.</span> $f$ est majorée et minorée → $f$ est bornée sur $I$.</div>
-                </div>
-
-                <!-- Exercice 3 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 3</div>
-                        <div class="ex-question">
-                            <p>Étudier si $f(x) = \frac{1}{x}$ est bornée sur $]0, 1]$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol3')">Voir la solution</button>
-                        <div id="sol3" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>Sur $]0, 1]$, $\frac{1}{x} \ge 1$ et peut être aussi grand que l'on veut.</p>
-                                <p>Donc $f$ est minorée par $1$ mais <strong>n'est pas majorée</strong>.</p>
-                                <p>Donc <strong>$f$ n'est pas bornée</strong> sur $]0, 1]$.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 3: FONCTION POSITIVE - NÉGATIVE -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">3</span> Fonction positive - négative</h2>
-
-                <div class="highlight-box green">
-                    <span class="label def">Définitions</span>
-                    <p>$f$ est définie sur $D_f$.</p>
-                </div>
-
-                <div class="highlight-box" style="border-color:#4ECDC4;">
-                    <p><strong>Fonction positive :</strong></p>
-                    <div class="formula-block">
-                        $$\forall x \in D_f : f(x) \ge 0$$
-                    </div>
-                    <p>La courbe est située <strong>au-dessus</strong> de l'axe des abscisses.</p>
-                </div>
-
-                <div class="highlight-box" style="border-color:#FF6B6B;">
-                    <p><strong>Fonction négative :</strong></p>
-                    <div class="formula-block">
-                        $$\forall x \in D_f : f(x) < 0$$
-                    </div>
-                    <p>La courbe est située <strong>au-dessous</strong> de l'axe des abscisses.</p>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li><strong>Positive :</strong> $f(x) \ge 0$ → courbe au-dessus de l'axe $Ox$.</li>
-                        <li><strong>Négative :</strong> $f(x) < 0$ → courbe en dessous de l'axe $Ox$.</li>
-                    </ul>
-                </div>
-
-                <!-- Exercice 4 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 4</div>
-                        <div class="ex-question">
-                            <p>Étudier le signe de $f(x) = x^2 - 4$ sur $\mathbb{R}$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol4')">Voir la solution</button>
-                        <div id="sol4" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>$x^2 - 4 \ge 0 \iff x \le -2$ ou $x \ge 2$.</p>
-                                <p>Donc $f$ est positive sur $]-\infty, -2] \cup [2, +\infty[$ et négative sur $]-2, 2[$.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 4: COMPARAISON DE DEUX FONCTIONS -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">4</span> Comparaison de deux fonctions</h2>
+                <h2><span class="num">2</span> Comparaison de deux fonctions</h2>
 
                 <div class="highlight-box green">
                     <span class="label def">Définitions</span>
@@ -480,10 +325,20 @@
                     <p>Les courbes de $f$ et $g$ sont <strong>confondues</strong> sur $I$.</p>
                 </div>
 
-                <div class="graph-container">
-                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Comparaison de deux fonctions</p>
-                    <canvas id="comparisonGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = x$ (vert) et $g(x) = x^2$ (rouge). Sur $[0,1]$, $f \ge g$. Sur $[1,+\infty[$, $f \le g$.</p>
+                <div class="highlight-box" style="border-color:#4ECDC4;">
+                    <p><strong>Fonction positive :</strong></p>
+                    <div class="formula-block">
+                        $$\forall x \in D_f : f(x) \ge 0$$
+                    </div>
+                    <p>La courbe de $f$ est située <strong>au-dessus</strong> de l'axe des abscisses.</p>
+                </div>
+
+                <div class="highlight-box" style="border-color:#FF6B6B;">
+                    <p><strong>Fonction strictement négative :</strong></p>
+                    <div class="formula-block">
+                        $$\forall x \in D_f : f(x) < 0$$
+                    </div>
+                    <p>La courbe de $f$ est située <strong>strictement au-dessous</strong> de l'axe des abscisses.</p>
                 </div>
 
                 <div class="highlight-box purple">
@@ -492,43 +347,59 @@
                         <li>$f \le g$ : $f$ en dessous de $g$.</li>
                         <li>$f > g$ : $f$ au-dessus de $g$.</li>
                         <li>$f = g$ : courbes confondues.</li>
+                        <li>$f \ge 0$ : courbe au-dessus de l'axe $Ox$.</li>
+                        <li>$f < 0$ : courbe en dessous de l'axe $Ox$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: COMPOSÉE DE DEUX FONCTIONS -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Composée de deux fonctions</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Vocabulaire</span>
+                    <p>La fonction $h : x \mapsto h(x) = g(f(x))$ se note :</p>
+                    <div class="formula-block">
+                        $$h = g \circ f \quad \text{et} \quad h(x) = g \circ f(x) = g(f(x))$$
+                    </div>
+                    <p>$g \circ f$ est la <strong>composée</strong> de $f$ et $g$ <strong>dans cet ordre</strong>.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Diagramme :</strong></p>
+                    <div class="formula-block" style="font-size:16px;">
+                        $$h = g \circ f : D_f \xrightarrow{f} f(D_f) \subset D_g \xrightarrow{g} \mathbb{R}$$
+                        $$x \mapsto f(x) \in D_g \mapsto g(f(x)) = g \circ f(x) = h(x)$$
+                    </div>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Soient $f$ et $g$ deux fonctions définies respectivement sur $D_f$ et $D_g$ avec $f(D_f) \subset D_g$.</p>
+                    <div class="formula-block">
+                        $$D_{g \circ f} = \{ x \in \mathbb{R} \mid x \in D_f \text{ et } f(x) \in D_g \}$$
+                    </div>
+                    <p>La fonction $h$ définie sur $D_{g \circ f}$ par $h(x) = g(f(x))$ est la composée de $f$ et $g$ dans cet ordre.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Propriétés</span>
+                    <ul>
+                        <li>Si $f$ et $g$ ont <strong>même monotonie</strong> → $g \circ f$ est <strong>croissante</strong>.</li>
+                        <li>Si $f$ et $g$ ont des monotonies <strong>opposées</strong> → $g \circ f$ est <strong>décroissante</strong>.</li>
                     </ul>
                 </div>
 
-                <!-- Exercice 5 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 5</div>
-                        <div class="ex-question">
-                            <p>Comparer $f(x) = x$ et $g(x) = x^2$ sur $[0, 1]$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol5')">Voir la solution</button>
-                        <div id="sol5" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>Sur $[0, 1]$, on a $x^2 \le x$.</p>
-                                <p>Donc <strong>$g \le f$ sur $[0, 1]$</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercice 6 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 6</div>
-                        <div class="ex-question">
-                            <p>Comparer $f(x) = x$ et $g(x) = x^2$ sur $[1, +\infty[$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol6')">Voir la solution</button>
-                        <div id="sol6" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>Sur $[1, +\infty[$, on a $x^2 \ge x$.</p>
-                                <p>Donc <strong>$f \le g$ sur $[1, +\infty[$</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$g \circ f$ : on applique $f$ puis $g$.</li>
+                        <li>$f \circ g$ : on applique $g$ puis $f$.</li>
+                        <li>$g \circ f \neq f \circ g$ en général.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -552,132 +423,6 @@
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
-
-        function toggleSolution(id) {
-            var el = document.getElementById(id);
-            var btn = el.previousElementSibling;
-            if (el.classList.contains('show')) {
-                el.classList.remove('show');
-                btn.textContent = 'Voir la solution';
-            } else {
-                el.classList.add('show');
-                btn.textContent = 'Cacher la solution';
-            }
-        }
-
-        // ============================================================
-        // GRAPHIQUE COMPARAISON
-        // ============================================================
-        function drawComparisonGraph() {
-            var canvas = document.getElementById('comparisonGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = 50, cy = h/2;
-            var scale = 40;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-            ctx.fillText('O', cx+4, cy+18);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = -5; i <= 6; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // f(x) = x (vert)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('f(x) = x', w - 100, 20);
-
-            // g(x) = x² (rouge)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            var first = true;
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = x * x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { first = true; continue; }
-                if (first) { ctx.moveTo(screenX, screenY); first = false; }
-                else { ctx.lineTo(screenX, screenY); }
-            }
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.fillText('g(x) = x²', w - 100, 40);
-
-            // Point d'intersection (0,0) et (1,1)
-            ctx.fillStyle = '#F4D03F';
-            var pts = [[0, 0], [1, 1]];
-            for (var i = 0; i < pts.length; i++) {
-                var px = cx + pts[i][0] * scale;
-                var py = cy - pts[i][1] * scale;
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2 * Math.PI);
-                ctx.fill();
-            }
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '12px Arial';
-            ctx.fillText('(0,0)', cx + 4, cy + 18);
-            ctx.fillText('(1,1)', cx + 1 * scale + 4, cy - 1 * scale - 4);
-
-            // Zones
-            ctx.fillStyle = '#4ECDC422';
-            ctx.fillRect(cx, 0, scale, h);
-            ctx.fillStyle = '#FF6B6B22';
-            ctx.fillRect(cx + scale, 0, w - cx - scale, h);
-            ctx.fillStyle = '#888888';
-            ctx.font = '12px Arial';
-            ctx.fillText('f ≥ g', cx + 10, 16);
-            ctx.fillText('f ≤ g', cx + scale + 10, 16);
-        }
-
-        window.onload = function() {
-            setTimeout(drawComparisonGraph, 500);
-        };
     </script>
 </body>
 </html>

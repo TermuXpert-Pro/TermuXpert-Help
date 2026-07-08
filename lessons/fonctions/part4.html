@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 4 - Composée de fonctions - Monotonie - Xpert</title>
+    <title>Partie 4 - Étude des fonctions de référence - Xpert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -160,6 +160,103 @@
             flex-wrap: wrap;
             gap: 10px;
         }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 8px;
+            background: #0D1117;
+        }
+        .exercice-box {
+            background: #1A2A2A;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .exercice-box .ex-title {
+            color: #E8873A;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .exercice-box .ex-question {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 6px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .sub-section {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+        .function-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 12px 0;
+        }
+        .function-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            text-align: center;
+        }
+        .function-card h4 {
+            color: #4ECDC4;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        .function-card p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
         @media (max-width: 600px) {
             .lesson-container { padding: 10px; }
             .section { padding: 14px 16px; }
@@ -167,6 +264,7 @@
             .formula-block { font-size: 15px; padding: 12px 14px; }
             .nav-buttons { flex-direction: column; align-items: stretch; }
             .next-btn { float: none; justify-content: center; }
+            .function-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -190,198 +288,77 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-cubes" style="color:#4ECDC4;"></i> Partie 4 : Composée de fonctions - Monotonie</h1>
+            <h1 class="lesson-title"><i class="fas fa-chart-simple" style="color:#4ECDC4;"></i> Partie 4 : Étude des fonctions de référence</h1>
 
             <!-- ============================================================ -->
-            <!-- SECTION 1: COMPOSÉE DE DEUX FONCTIONS -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">1</span> Composée de deux fonctions</h2>
-
-                <div class="highlight-box green">
-                    <span class="label def">Activité</span>
-                    <p>Soient $f$ et $g$ définies sur $\mathbb{R}$ par :</p>
-                    <div class="formula-block">
-                        $$f(x) = 2x + 3 \quad ; \quad g(x) = x^2 + 1$$
-                    </div>
-                    <div class="step"><span class="step-num">1.</span> Déterminer $D_f$ et $D_g$.</div>
-                    <div class="step"><span class="step-num">2.</span> Calculer $f(1)$, $g(5)$ puis écrire $g(5)$ en fonction de $f$ et $1$.</div>
-                    <div class="step"><span class="step-num">3.</span> Calculer $g(f(3))$ puis $g(f(x))$.</div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label ex">Solution</span>
-                    <div class="step"><span class="step-num">1.</span> $D_f = \mathbb{R}$ et $D_g = \mathbb{R}$.</div>
-                    <div class="step"><span class="step-num">2.</span> $f(1) = 2(1)+3 = 5$, $g(5) = 5^2+1 = 26$, $g(5) = g(f(1))$.</div>
-                    <div class="step"><span class="step-num">3.</span> $g(f(3)) = g(2(3)+3) = g(9) = 9^2+1 = 82$.</div>
-                    <div class="formula-block">
-                        $$g(f(x)) = (2x+3)^2 + 1 = 4x^2 + 12x + 10$$
-                    </div>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rappel">Vocabulaire et notation</span>
-                    <p>La fonction $h : x \mapsto h(x) = g(f(x))$ se note :</p>
-                    <div class="formula-block">
-                        $$h = g \circ f \quad \text{et} \quad h(x) = g \circ f(x) = g(f(x))$$
-                    </div>
-                    <p>$g \circ f$ est la <strong>composée</strong> de $f$ et $g$ <strong>dans cet ordre</strong>.</p>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label def">Diagramme</span>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$h = g \circ f : D_f \xrightarrow{f} f(D_f) \subset D_g \xrightarrow{g} \mathbb{R}$$
-                        $$x \mapsto f(x) \in D_g \mapsto g(f(x)) = g \circ f(x) = h(x)$$
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <p><strong>Domaine de définition :</strong></p>
-                    <div class="formula-block">
-                        $$D_{g \circ f} = \{ x \in \mathbb{R} \mid x \in D_f \text{ et } f(x) \in D_g \}$$
-                    </div>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>$g \circ f$ : on applique $f$ puis $g$.</li>
-                        <li>$f \circ g$ : on applique $g$ puis $f$.</li>
-                        <li>$g \circ f \neq f \circ g$ en général.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 2: APPLICATION -->
+            <!-- SECTION 1: FONCTION f(x) = ax³ -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">2</span> Application</h2>
+                <h2><span class="num">1</span> Fonction $f(x) = ax^3$ $(a \neq 0)$</h2>
 
-                <div class="highlight-box">
-                    <p><strong>Exercice :</strong> Soient $f$ et $g$ définies par :</p>
-                    <div class="formula-block">
-                        $$f(x) = 2x^2 + 3x \quad ; \quad g(x) = 5x - 7$$
+                <div class="function-grid">
+                    <div class="function-card" style="border-color:#4ECDC4;">
+                        <h4 style="color:#4ECDC4;">Cas $a > 0$</h4>
+                        <p>$f$ est <strong>strictement croissante</strong> sur $\mathbb{R}$.</p>
+                        <div class="graph-container" style="margin-top:8px; padding:8px;">
+                            <canvas id="cubeUpGraph" width="400" height="180"></canvas>
+                        </div>
                     </div>
-                    <div class="step"><span class="step-num">1.</span> Déterminer $D_{g \circ f}$ et $D_{f \circ g}$.</div>
-                    <div class="step"><span class="step-num">2.</span> Calculer $g \circ f$ et $f \circ g$.</div>
-                    <div class="step"><span class="step-num">3.</span> Calculer $g \circ f(2)$ et $f \circ g(2)$. Que remarquez-vous ?</div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label ex">Solution</span>
-                    <div class="step"><span class="step-num">1.</span> $D_{g \circ f} = \mathbb{R}$ et $D_{f \circ g} = \mathbb{R}$ (car $f$ et $g$ sont définies sur $\mathbb{R}$).</div>
-                    <div class="step"><span class="step-num">2.</span></div>
-                    <div class="formula-block">
-                        $$g \circ f(x) = g(2x^2+3x) = 5(2x^2+3x) - 7 = 10x^2 + 15x - 7$$
+                    <div class="function-card" style="border-color:#FF6B6B;">
+                        <h4 style="color:#FF6B6B;">Cas $a < 0$</h4>
+                        <p>$f$ est <strong>strictement décroissante</strong> sur $\mathbb{R}$.</p>
+                        <div class="graph-container" style="margin-top:8px; padding:8px;">
+                            <canvas id="cubeDownGraph" width="400" height="180"></canvas>
+                        </div>
                     </div>
-                    <div class="formula-block">
-                        $$f \circ g(x) = f(5x-7) = 2(5x-7)^2 + 3(5x-7) = 50x^2 - 125x + 77$$
-                    </div>
-                    <div class="step"><span class="step-num">3.</span></div>
-                    <div class="formula-block">
-                        $$g \circ f(2) = 10(2)^2 + 15(2) - 7 = 40 + 30 - 7 = 63$$
-                    </div>
-                    <div class="formula-block">
-                        $$f \circ g(2) = 50(2)^2 - 125(2) + 77 = 200 - 250 + 77 = 27$$
-                    </div>
-                    <p style="color:#FF6B6B;"><strong>Remarque :</strong> $g \circ f(2) \neq f \circ g(2)$.</p>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>$g \circ f$ et $f \circ g$ sont <strong>différentes</strong> en général.</li>
-                        <li>L'ordre de composition est <strong>important</strong>.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 3: MONOTONIE DE f + c ET c.f -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">3</span> Monotonie de $f + c$ et $c \cdot f$</h2>
-
-                <div class="highlight-box green">
-                    <span class="label def">Activité</span>
-                    <p>$f$ définie sur $I$. $T$ est le taux d'accroissement de $f$ sur $I$.</p>
-                    <div class="step"><span class="step-num">1.</span> Déterminer $T_h$ pour $h(x) = f(x) + c$ avec $c \in \mathbb{R}$.</div>
-                    <div class="step"><span class="step-num">2.</span> Déterminer $T_g$ pour $g(x) = c \times f(x)$ avec $c \in \mathbb{R}$.</div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label ex">Correction</span>
-                    <p><strong>1. Calcul de $T_h$ :</strong></p>
-                    <div class="formula-block">
-                        $$T_h = \frac{h(x) - h(x')}{x - x'} = \frac{f(x) + c - (f(x') + c)}{x - x'} = \frac{f(x) - f(x')}{x - x'} = T_f$$
-                    </div>
-                    <p style="color:#4ECDC4;">Donc $T_h = T_{f+c} = T_f$.</p>
-
-                    <p style="margin-top:12px;"><strong>2. Calcul de $T_g$ :</strong></p>
-                    <div class="formula-block">
-                        $$T_g = \frac{g(x) - g(x')}{x - x'} = \frac{c f(x) - c f(x')}{x - x'} = c \times \frac{f(x) - f(x')}{x - x'} = c \times T_f$$
-                    </div>
-                    <p style="color:#4ECDC4;">Donc $T_g = T_{cf} = c \times T_f$.</p>
                 </div>
 
                 <div class="highlight-box yellow">
                     <span class="label rappel">Propriétés</span>
                     <ul>
-                        <li><strong>$f + c$ :</strong> $f$ et $f+c$ ont le <strong>même sens</strong> de variation sur $I$.</li>
-                        <li><strong>$c \cdot f$ :</strong>
-                            <ul>
-                                <li>Si $c > 0$ : $f$ et $c \cdot f$ ont le <strong>même sens</strong> de variation.</li>
-                                <li>Si $c < 0$ : $f$ et $c \cdot f$ ont des <strong>sens opposés</strong> de variation.</li>
-                            </ul>
-                        </li>
+                        <li>$D_f = \mathbb{R}$</li>
+                        <li>$f$ est <strong>impaire</strong> : $f(-x) = -f(x)$</li>
+                        <li>Ensemble d'étude : $D_E = \mathbb{R}^+$</li>
                     </ul>
                 </div>
 
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
-                        <li>$f + c$ : même sens.</li>
-                        <li>$c \cdot f$ : même sens si $c > 0$, sens opposé si $c < 0$.</li>
+                        <li>$a > 0$ : $f$ est strictement croissante sur $\mathbb{R}$.</li>
+                        <li>$a < 0$ : $f$ est strictement décroissante sur $\mathbb{R}$.</li>
                     </ul>
                 </div>
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 4: MONOTONIE DE g ∘ f -->
+            <!-- SECTION 2: FONCTION f(x) = √x + a -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">4</span> Monotonie de $g \circ f$</h2>
+                <h2><span class="num">2</span> Fonction $f(x) = \sqrt{x} + a$</h2>
 
                 <div class="highlight-box green">
-                    <span class="label def">Activité</span>
-                    <p>$f$ définie sur $D_f$ et $g$ définie sur $D_g$ avec $f(D_f) \subset D_g$.</p>
-                    <div class="step"><span class="step-num">1.</span> Montrer que si $f$ et $g$ varient dans le <strong>même sens</strong>, alors $g \circ f$ est <strong>croissante</strong> sur $D_f$.</div>
-                    <div class="step"><span class="step-num">2.</span> Montrer que si $f$ et $g$ ont des variations <strong>opposées</strong>, alors $g \circ f$ est <strong>décroissante</strong> sur $D_f$.</div>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rappel">Propriétés</span>
+                    <span class="label def">Étude</span>
                     <ul>
-                        <li>Si $f$ et $g$ ont <strong>même monotonie</strong> → $g \circ f$ est <strong>croissante</strong>.</li>
-                        <li>Si $f$ et $g$ ont des monotonies <strong>opposées</strong> → $g \circ f$ est <strong>décroissante</strong>.</li>
+                        <li>$D_f = [0, +\infty[$</li>
+                        <li>$f$ est <strong>strictement croissante</strong> sur $D_f$.</li>
                     </ul>
+                    <div class="formula-block">
+                        $$x < x' \Rightarrow \sqrt{x} < \sqrt{x'} \Rightarrow f(x) < f(x')$$
+                    </div>
                 </div>
 
-                <div class="highlight-box">
-                    <p><strong>Application :</strong> $f(x) = |x| + 5$ et $g(x) = x^2$</p>
-                    <div class="step"><span class="step-num">1.</span> $D_f = \mathbb{R}$ et $D_g = \mathbb{R}$.</div>
-                    <div class="step"><span class="step-num">2.</span> $f$ est décroissante sur $]-\infty, 0]$ et croissante sur $[0, +\infty[$.</div>
-                    <div class="step"><span class="step-num">3.</span> $g$ est décroissante sur $]-\infty, 0]$ et croissante sur $[0, +\infty[$.</div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $g \circ f$ est croissante sur $\mathbb{R}$ (même sens).</p>
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 $f(x) = \sqrt{x} + a$</p>
+                    <canvas id="sqrtGraph" width="500" height="250"></canvas>
+                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = \sqrt{x}$ (a=0)</p>
                 </div>
 
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
-                        <li><strong>Même sens :</strong> $g \circ f$ croissante.</li>
-                        <li><strong>Sens opposés :</strong> $g \circ f$ décroissante.</li>
+                        <li>$D_f = [0, +\infty[$</li>
+                        <li>$f$ est strictement croissante sur $[0, +\infty[$</li>
                     </ul>
                 </div>
             </div>
@@ -406,6 +383,160 @@
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawCubeUp() {
+            var canvas = document.getElementById('cubeUpGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scale = 25;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '10px Arial';
+            ctx.fillText('x', w-12, cy+14);
+            ctx.fillText('y', cx+6, 10);
+
+            // Cube f(x) = x³
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            for (var px = 0; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = x * x * x;
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -50 || screenY > h + 50) { continue; }
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+        }
+
+        function drawCubeDown() {
+            var canvas = document.getElementById('cubeDownGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scale = 25;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '10px Arial';
+            ctx.fillText('x', w-12, cy+14);
+            ctx.fillText('y', cx+6, 10);
+
+            // Cube f(x) = -x³
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            for (var px = 0; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                var y = -x * x * x;
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -50 || screenY > h + 50) { continue; }
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+        }
+
+        function drawSqrt() {
+            var canvas = document.getElementById('sqrtGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = 40, cy = h - 40;
+            var scale = 35;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grille
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var i = 0; i <= 10; i++) {
+                if (i === 0) continue;
+                ctx.beginPath();
+                ctx.moveTo(cx + i * scale, 0);
+                ctx.lineTo(cx + i * scale, h);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, cy - i * scale);
+                ctx.lineTo(w, cy - i * scale);
+                ctx.stroke();
+            }
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+
+            // Flèches
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('x', w-16, cy+18);
+            ctx.fillText('y', cx+10, 16);
+
+            // Courbe f(x) = √x
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (var px = cx; px <= w; px += 0.5) {
+                var x = (px - cx) / scale;
+                if (x < 0) continue;
+                var y = Math.sqrt(x);
+                var screenX = cx + x * scale;
+                var screenY = cy - y * scale;
+                if (screenY < -50 || screenY > h + 50) { continue; }
+                if (px === cx) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '14px Arial';
+            ctx.fillText('f(x) = √x', w - 100, 20);
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                drawCubeUp();
+                drawCubeDown();
+                drawSqrt();
+            }, 500);
+        };
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 5 - Étude des fonctions de référence - Xpert</title>
+    <title>Partie 5 - Exercices - Xpert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -160,19 +160,6 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        .graph-container {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            margin: 12px 0;
-            text-align: center;
-        }
-        .graph-container canvas {
-            max-width: 100%;
-            border-radius: 8px;
-            background: #0D1117;
-        }
         .exercice-box {
             background: #1A2A2A;
             border: 1px solid var(--border);
@@ -265,119 +252,109 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-chart-simple" style="color:#4ECDC4;"></i> Partie 5 : Étude des fonctions de référence</h1>
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Partie 5 : Exercices</h1>
 
             <!-- ============================================================ -->
-            <!-- SECTION 1: FONCTION DU SECOND DEGRÉ -->
+            <!-- EXERCICE 1 -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">1</span> Fonction du second degré : $f(x) = ax^2 + bx + c$</h2>
+                <h2><span class="num">1</span> Exercice 1</h2>
 
                 <div class="highlight-box">
-                    <p><strong>Forme canonique :</strong></p>
-                    <div class="formula-block">
-                        $$f(x) = a\left(x + \frac{b}{2a}\right)^2 + f\left(-\frac{b}{2a}\right)$$
-                    </div>
-                    <p>avec $\displaystyle f\left(-\frac{b}{2a}\right) = -\frac{\Delta}{4a}$</p>
-                </div>
-
-                <div class="highlight-box green" style="border-color:#4ECDC4;">
-                    <span class="label def">Cas $a > 0$</span>
-                    <p>Parabole orientée vers le <strong>haut</strong>.</p>
-                    <div class="formula-block">
-                        $$f(x) - f\left(-\frac{b}{2a}\right) = a\left(x + \frac{b}{2a}\right)^2 \ge 0$$
-                    </div>
-                    <p style="color:#4ECDC4;"><strong>Minimum absolu :</strong> $\displaystyle f\left(-\frac{b}{2a}\right)$</p>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$x$</th><th>$-\infty$</th><th>$-\frac{b}{2a}$</th><th>$+\infty$</th></tr>
-                        <tr><td>$f(x)$</td><td style="color:#FF6B6B;">↘</td><td style="color:#4ECDC4; font-weight:bold;">$f(-\frac{b}{2a})$</td><td style="color:#4ECDC4;">↗</td></tr>
-                    </table>
-                </div>
-
-                <div class="graph-container">
-                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Parabole $a > 0$</p>
-                    <canvas id="parabolaUpGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">Parabole orientée vers le haut</p>
-                </div>
-
-                <div class="highlight-box red" style="border-color:#FF6B6B; margin-top:16px;">
-                    <span class="label def">Cas $a < 0$</span>
-                    <p>Parabole orientée vers le <strong>bas</strong>.</p>
-                    <div class="formula-block">
-                        $$f(x) - f\left(-\frac{b}{2a}\right) = a\left(x + \frac{b}{2a}\right)^2 \le 0$$
-                    </div>
-                    <p style="color:#FF6B6B;"><strong>Maximum absolu :</strong> $\displaystyle f\left(-\frac{b}{2a}\right)$</p>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$x$</th><th>$-\infty$</th><th>$-\frac{b}{2a}$</th><th>$+\infty$</th></tr>
-                        <tr><td>$f(x)$</td><td style="color:#4ECDC4;">↗</td><td style="color:#FF6B6B; font-weight:bold;">$f(-\frac{b}{2a})$</td><td style="color:#FF6B6B;">↘</td></tr>
-                    </table>
-                </div>
-
-                <div class="graph-container">
-                    <p style="color:#FF6B6B; font-weight:bold; margin-bottom:8px;">📈 Parabole $a < 0$</p>
-                    <canvas id="parabolaDownGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">Parabole orientée vers le bas</p>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rappel">Vocabulaire</span>
-                    <ul>
-                        <li>La courbe s'appelle une <strong>parabole</strong>.</li>
-                        <li><strong>Sommet :</strong> $\displaystyle S\left(-\frac{b}{2a}, f\left(-\frac{b}{2a}\right)\right)$</li>
-                        <li><strong>Axe de symétrie :</strong> $\displaystyle x = -\frac{b}{2a}$</li>
-                    </ul>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>$a > 0$ : parabole vers le haut, minimum.</li>
-                        <li>$a < 0$ : parabole vers le bas, maximum.</li>
-                        <li>Sommet $\displaystyle S\left(-\frac{b}{2a}, f\left(-\frac{b}{2a}\right)\right)$</li>
-                    </ul>
-                </div>
-
-                <!-- Exercice 1 -->
-                <div class="sub-section">
+                    <p><strong>1. Montrer que la fonction $f$ est majorée par $M$ dans chacune des cas suivantes :</strong></p>
+                    
                     <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 1</div>
-                        <div class="ex-question">
-                            <p>Déterminer le sommet de $f(x) = 2x^2 - 4x + 3$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol1')">Voir la solution</button>
-                        <div id="sol1" class="solution-box">
+                        <div class="ex-title">a) $f(x) = -x^2 + 2x$ et $M = 1$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol1a')">Voir la solution</button>
+                        <div id="sol1a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>$a = 2$, $b = -4$.</p>
-                                <p>$-\frac{b}{2a} = -\frac{-4}{4} = 1$.</p>
-                                <p>$f(1) = 2(1)^2 - 4(1) + 3 = 1$.</p>
-                                <p>Donc <strong>$S(1, 1)$</strong>.</p>
+                                <p>$-x^2 + 2x = -(x^2 - 2x) = -(x-1)^2 + 1$</p>
+                                <p>$(x-1)^2 \ge 0 \Rightarrow -(x-1)^2 \le 0 \Rightarrow f(x) \le 1$</p>
+                                <p>Donc <strong>$f$ est majorée par $M=1$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">b) $f(x) = \frac{3x^2+2}{x^2+1}$ et $M = 3$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol1b')">Voir la solution</button>
+                        <div id="sol1b" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$\frac{3x^2+2}{x^2+1} = \frac{3(x^2+1)-1}{x^2+1} = 3 - \frac{1}{x^2+1}$</p>
+                                <p>$\frac{1}{x^2+1} \ge 0 \Rightarrow 3 - \frac{1}{x^2+1} \le 3$</p>
+                                <p>Donc <strong>$f$ est majorée par $M=3$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">c) $f(x) = \frac{4}{x^2+2}$ et $M = 2$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol1c')">Voir la solution</button>
+                        <div id="sol1c" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$x^2+2 \ge 2 \Rightarrow \frac{4}{x^2+2} \le \frac{4}{2} = 2$</p>
+                                <p>Donc <strong>$f$ est majorée par $M=2$</strong>.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Exercice 2 -->
-                <div class="sub-section">
+                <div class="highlight-box" style="margin-top:16px;">
+                    <p><strong>2. Montrer que la fonction $f$ est minorée par $m$ :</strong></p>
+
                     <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 2</div>
-                        <div class="ex-question">
-                            <p>Déterminer le sommet de $f(x) = -x^2 + 6x - 5$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol2')">Voir la solution</button>
-                        <div id="sol2" class="solution-box">
+                        <div class="ex-title">a) $f(x) = x^2 + 4x$ et $m = -4$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol2a')">Voir la solution</button>
+                        <div id="sol2a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>$a = -1$, $b = 6$.</p>
-                                <p>$-\frac{b}{2a} = -\frac{6}{-2} = 3$.</p>
-                                <p>$f(3) = -(3)^2 + 6(3) - 5 = -9 + 18 - 5 = 4$.</p>
-                                <p>Donc <strong>$S(3, 4)$</strong>.</p>
+                                <p>$x^2 + 4x = (x+2)^2 - 4$</p>
+                                <p>$(x+2)^2 \ge 0 \Rightarrow (x+2)^2 - 4 \ge -4$</p>
+                                <p>Donc <strong>$f$ est minorée par $m=-4$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">b) $f(x) = \sqrt{x^2+1}$ et $m = 1$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol2b')">Voir la solution</button>
+                        <div id="sol2b" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$x^2+1 \ge 1 \Rightarrow \sqrt{x^2+1} \ge 1$</p>
+                                <p>Donc <strong>$f$ est minorée par $m=1$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top:16px;">
+                    <p><strong>3. Montrer que la fonction $f$ est bornée par $M$ et $m$ :</strong></p>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">a) $f(x) = \frac{1}{x^2+1}$ et $M = 1$, $m = 0$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol3a')">Voir la solution</button>
+                        <div id="sol3a" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$x^2+1 \ge 1 \Rightarrow 0 < \frac{1}{x^2+1} \le 1$</p>
+                                <p>Donc <strong>$f$ est bornée : $0 < f(x) \le 1$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">b) $f(x) = \sin x + \sqrt{3}$ et $M = 3$, $m = 0$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol3b')">Voir la solution</button>
+                        <div id="sol3b" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$-1 \le \sin x \le 1 \Rightarrow -1+\sqrt{3} \le f(x) \le 1+\sqrt{3}$</p>
+                                <p>$\sqrt{3} \approx 1.73$ donc $0 < f(x) < 3$</p>
+                                <p>Donc <strong>$f$ est bornée : $0 < f(x) < 3$</strong>.</p>
                             </div>
                         </div>
                     </div>
@@ -385,197 +362,40 @@
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 2: FONCTION CUBE -->
+            <!-- EXERCICE 2 -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">2</span> Fonction cube : $f(x) = ax^3$</h2>
+                <h2><span class="num">2</span> Exercice 2</h2>
 
                 <div class="highlight-box">
-                    <ul>
-                        <li>$D_f = \mathbb{R}$</li>
-                        <li>$f$ est <strong>impaire</strong> : $f(-x) = -f(x)$</li>
-                        <li>Ensemble d'étude : $D_E = \mathbb{R}^+$</li>
-                    </ul>
-                </div>
-
-                <div class="highlight-box green" style="border-color:#4ECDC4;">
-                    <span class="label def">Cas $a > 0$</span>
-                    <p>$f$ est <strong>strictement croissante</strong> sur $\mathbb{R}$.</p>
-                    <div class="formula-block">
-                        $$x < x' \Rightarrow ax^3 < a(x')^3 \Rightarrow f(x) < f(x')$$
-                    </div>
-                </div>
-
-                <div class="graph-container">
-                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Fonction cube $a > 0$</p>
-                    <canvas id="cubeUpGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = x^3$</p>
-                </div>
-
-                <div class="highlight-box red" style="border-color:#FF6B6B;">
-                    <span class="label def">Cas $a < 0$</span>
-                    <p>$f$ est <strong>strictement décroissante</strong> sur $\mathbb{R}$.</p>
-                    <div class="formula-block">
-                        $$x < x' \Rightarrow ax^3 > a(x')^3 \Rightarrow f(x) > f(x')$$
-                    </div>
-                </div>
-
-                <div class="graph-container">
-                    <p style="color:#FF6B6B; font-weight:bold; margin-bottom:8px;">📈 Fonction cube $a < 0$</p>
-                    <canvas id="cubeDownGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = -x^3$</p>
-                </div>
-
-                <div class="highlight-box">
-                    <p><strong>Applications :</strong></p>
-                    <div class="step"><span class="step-num">1.</span> $f(x) = \frac{1}{2}x^3$ : $a = \frac{1}{2} > 0$ → $f$ est strictement croissante sur $\mathbb{R}$.</div>
-                    <div class="step"><span class="step-num">2.</span> $f(x) = -\frac{2}{3}x^3$ : $a = -\frac{2}{3} < 0$ → $f$ est strictement décroissante sur $\mathbb{R}$.</div>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>Fonction impaire : $f(-x) = -f(x)$.</li>
-                        <li>$a > 0$ : croissante.</li>
-                        <li>$a < 0$ : décroissante.</li>
-                    </ul>
-                </div>
-
-                <!-- Exercice 3 -->
-                <div class="sub-section">
+                    <p><strong>Soit $f$ définie par : $f(x) = x^2 + 2x + 3$</strong></p>
                     <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 3</div>
-                        <div class="ex-question">
-                            <p>Étudier la monotonie de $f(x) = 4x^3$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol3')">Voir la solution</button>
-                        <div id="sol3" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>$a = 4 > 0$.</p>
-                                <p>Donc <strong>$f$ est strictement croissante sur $\mathbb{R}$</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercice 4 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 4</div>
-                        <div class="ex-question">
-                            <p>Étudier la monotonie de $f(x) = -\frac{1}{2}x^3$.</p>
-                        </div>
+                        <div class="ex-title">1. Montrer que $f(-1)$ est le minimum de $f$ sur $\mathbb{R}$.</div>
                         <button class="toggle-sol" onclick="toggleSolution('sol4')">Voir la solution</button>
                         <div id="sol4" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>$a = -\frac{1}{2} < 0$.</p>
-                                <p>Donc <strong>$f$ est strictement décroissante sur $\mathbb{R}$</strong>.</p>
+                                <p>$f(x) = (x+1)^2 + 2$</p>
+                                <p>$(x+1)^2 \ge 0 \Rightarrow f(x) \ge 2$</p>
+                                <p>$f(-1) = 2$</p>
+                                <p>Donc <strong>$f(-1) = 2$ est le minimum absolu</strong>.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ============================================================ -->
-            <!-- SECTION 3: FONCTION HOMOGRAPHIQUE -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">3</span> Fonction homographique : $f(x) = \frac{ax+b}{cx+d}$</h2>
-
-                <div class="highlight-box green">
-                    <span class="label def">Définition</span>
-                    <p>$c \neq 0$ et $\Delta = ad - bc$</p>
-                    <div class="formula-block">
-                        $$D_f = \mathbb{R} \setminus \left\{-\frac{d}{c}\right\}$$
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <p><strong>Taux d'accroissement :</strong></p>
-                    <div class="formula-block">
-                        $$T_f = \frac{\Delta}{(cx+d)(cx'+d)}$$
-                    </div>
-                    <p>Le signe de $T_f$ est celui de $\Delta$.</p>
-                </div>
-
-                <div class="highlight-box green" style="border-color:#4ECDC4;">
-                    <span class="label def">Cas $\Delta > 0$</span>
-                    <p>$f$ est <strong>strictement croissante</strong> sur $]-\infty, -\frac{d}{c}[$ et $]-\frac{d}{c}, +\infty[$.</p>
-                </div>
-
-                <div class="highlight-box red" style="border-color:#FF6B6B;">
-                    <span class="label def">Cas $\Delta < 0$</span>
-                    <p>$f$ est <strong>strictement décroissante</strong> sur $]-\infty, -\frac{d}{c}[$ et $]-\frac{d}{c}, +\infty[$.</p>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rappel">Vocabulaire</span>
-                    <ul>
-                        <li>La courbe est une <strong>hyperbole</strong>.</li>
-                        <li><strong>Centre de symétrie :</strong> $\displaystyle \Omega\left(-\frac{d}{c}, \frac{a}{c}\right)$</li>
-                        <li><strong>Asymptote verticale :</strong> $\displaystyle x = -\frac{d}{c}$</li>
-                        <li><strong>Asymptote horizontale :</strong> $\displaystyle y = \frac{a}{c}$</li>
-                    </ul>
-                </div>
-
-                <div class="graph-container">
-                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 Hyperbole</p>
-                    <canvas id="hyperbolaGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = \frac{2x+1}{x+1}$ avec asymptotes $x = -1$ et $y = 2$</p>
-                </div>
-
-                <div class="highlight-box">
-                    <p><strong>Application :</strong> $f(x) = \frac{2x+1}{x+1}$</p>
-                    <div class="step"><span class="step-num">Étape 1 :</span> $\Delta = 2 \times 1 - 1 \times 1 = 1 > 0$</div>
-                    <div class="step"><span class="step-num">Étape 2 :</span> $D_f = \mathbb{R} \setminus \{-1\}$</div>
-                    <div class="step"><span class="step-num">Étape 3 :</span> Asymptote verticale : $x = -1$</div>
-                    <div class="step"><span class="step-num">Étape 4 :</span> Asymptote horizontale : $y = 2$</div>
-                    <div class="step"><span class="step-num">Étape 5 :</span> Centre de symétrie : $\Omega(-1, 2)$</div>
-                    <p style="color:#4ECDC4; margin-top:8px;"><strong>Conclusion :</strong> Hyperbole avec $f$ strictement croissante sur chaque intervalle.</p>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>$\Delta > 0$ : croissante.</li>
-                        <li>$\Delta < 0$ : décroissante.</li>
-                        <li>Asymptotes : $x = -\frac{d}{c}$ et $y = \frac{a}{c}$.</li>
-                    </ul>
-                </div>
-
-                <!-- Exercice 5 -->
-                <div class="sub-section">
+                <div class="highlight-box" style="margin-top:16px;">
+                    <p><strong>Soit $g$ définie par : $g(x) = \frac{x^2+1}{x^2+x+1}$</strong></p>
                     <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 5</div>
-                        <div class="ex-question">
-                            <p>Déterminer $D_f$ de $f(x) = \frac{2x+1}{x-3}$.</p>
-                        </div>
+                        <div class="ex-title">2. Montrer que $g(-1)$ est le maximum de $g$ sur $\mathbb{R}$.</div>
                         <button class="toggle-sol" onclick="toggleSolution('sol5')">Voir la solution</button>
                         <div id="sol5" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>On doit avoir $x-3 \neq 0 \Rightarrow x \neq 3$.</p>
-                                <p>Donc <strong>$D_f = \mathbb{R} \setminus \{3\}$</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercice 6 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 6</div>
-                        <div class="ex-question">
-                            <p>Déterminer $D_f$ de $f(x) = \frac{x+1}{2x-4}$.</p>
-                        </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol6')">Voir la solution</button>
-                        <div id="sol6" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>On doit avoir $2x-4 \neq 0 \Rightarrow x \neq 2$.</p>
-                                <p>Donc <strong>$D_f = \mathbb{R} \setminus \{2\}$</strong>.</p>
+                                <p>$g(x) = 1 - \frac{x}{x^2+x+1}$</p>
+                                <p>$x^2+x+1 = (x+\frac{1}{2})^2 + \frac{3}{4} > 0$</p>
+                                <p>$g(-1) = \frac{2}{1} = 2$</p>
+                                <p>Donc <strong>$g(-1) = 2$ est le maximum absolu</strong>.</p>
                             </div>
                         </div>
                     </div>
@@ -583,84 +403,161 @@
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 4: FONCTION RACINE CARRÉE -->
+            <!-- EXERCICE 3 -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">4</span> Fonction racine carrée</h2>
+                <h2><span class="num">3</span> Exercice 3</h2>
 
-                <div class="highlight-box green" style="border-color:#4ECDC4;">
-                    <span class="label def">Cas $f(x) = \sqrt{x+a}$</span>
-                    <ul>
-                        <li>$D_f = [-a, +\infty[$</li>
-                        <li>$f$ est <strong>strictement croissante</strong> sur $D_f$.</li>
-                    </ul>
-                    <div class="formula-block">
-                        $$x < x' \Rightarrow \sqrt{x+a} < \sqrt{x'+a} \Rightarrow f(x) < f(x')$$
-                    </div>
-                </div>
+                <div class="highlight-box">
+                    <p><strong>Déterminer les variations de la fonction $f$ dans chacune des cas suivantes :</strong></p>
 
-                <div class="graph-container">
-                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 $f(x) = \sqrt{x}$</p>
-                    <canvas id="sqrtGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">Fonction racine carrée</p>
-                </div>
-
-                <div class="highlight-box red" style="border-color:#FF6B6B;">
-                    <span class="label def">Cas $f(x) = \sqrt{a-x}$</span>
-                    <ul>
-                        <li>$D_f = ]-\infty, a]$</li>
-                        <li>$f$ est <strong>strictement décroissante</strong> sur $D_f$.</li>
-                    </ul>
-                    <div class="formula-block">
-                        $$x < x' \Rightarrow \sqrt{a-x} > \sqrt{a-x'} \Rightarrow f(x) > f(x')$$
-                    </div>
-                </div>
-
-                <div class="graph-container">
-                    <p style="color:#FF6B6B; font-weight:bold; margin-bottom:8px;">📈 $f(x) = \sqrt{1-x}$</p>
-                    <canvas id="sqrtDownGraph" width="500" height="250"></canvas>
-                    <p style="color:#888888; font-size:13px; margin-top:8px;">Fonction racine carrée décroissante</p>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>$\sqrt{x+a}$ : croissante sur $[-a, +\infty[$.</li>
-                        <li>$\sqrt{a-x}$ : décroissante sur $]-\infty, a]$.</li>
-                    </ul>
-                </div>
-
-                <!-- Exercice 7 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 7</div>
-                        <div class="ex-question">
-                            <p>Déterminer $D_f$ de $f(x) = \sqrt{x-2}$.</p>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+                        <div class="exercice-box">
+                            <div class="ex-title">1) $f(x) = x^2 + \sqrt{2}$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6a')">Voir</button>
+                            <div id="sol6a" class="solution-box">
+                                <div class="sol-content"><strong>Décroissante</strong> sur $]-\infty,0]$, <strong>croissante</strong> sur $[0,+\infty[$.</div>
+                            </div>
                         </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol7')">Voir la solution</button>
-                        <div id="sol7" class="solution-box">
-                            <div class="sol-title">✅ Solution</div>
-                            <div class="sol-content">
-                                <p>On doit avoir $x-2 \ge 0 \Rightarrow x \ge 2$.</p>
-                                <p>Donc <strong>$D_f = [2, +\infty[$</strong>.</p>
+                        <div class="exercice-box">
+                            <div class="ex-title">2) $f(x) = x^3 - 5$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6b')">Voir</button>
+                            <div id="sol6b" class="solution-box">
+                                <div class="sol-content"><strong>Strictement croissante</strong> sur $\mathbb{R}$.</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">3) $f(x) = \frac{8}{x}$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6c')">Voir</button>
+                            <div id="sol6c" class="solution-box">
+                                <div class="sol-content"><strong>Décroissante</strong> sur $]-\infty,0[$ et $]0,+\infty[$.</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">4) $f(x) = -3\sqrt{x-3} + 5$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6d')">Voir</button>
+                            <div id="sol6d" class="solution-box">
+                                <div class="sol-content"><strong>Décroissante</strong> sur $[3,+\infty[$.</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">5) $f(x) = x^2 - 6$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6e')">Voir</button>
+                            <div id="sol6e" class="solution-box">
+                                <div class="sol-content"><strong>Décroissante</strong> sur $]-\infty,0]$, <strong>croissante</strong> sur $[0,+\infty[$.</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">6) $f(x) = \frac{-\sqrt{3}+1}{x}$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6f')">Voir</button>
+                            <div id="sol6f" class="solution-box">
+                                <div class="sol-content">$-\sqrt{3}+1 < 0$ donc <strong>décroissante</strong> sur chaque intervalle.</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">7) $f(x) = \sqrt{x-5} + 6$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6g')">Voir</button>
+                            <div id="sol6g" class="solution-box">
+                                <div class="sol-content"><strong>Croissante</strong> sur $[5,+\infty[$.</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">8) $f(x) = -6x^3 + 9$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol6h')">Voir</button>
+                            <div id="sol6h" class="solution-box">
+                                <div class="sol-content">$-6 < 0$ donc <strong>strictement décroissante</strong> sur $\mathbb{R}$.</div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Exercice 8 -->
-                <div class="sub-section">
-                    <div class="exercice-box">
-                        <div class="ex-title">📝 Exercice 8</div>
-                        <div class="ex-question">
-                            <p>Déterminer $D_f$ de $f(x) = \sqrt{4-x}$.</p>
+            <!-- ============================================================ -->
+            <!-- EXERCICE 4 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Exercice 4</h2>
+
+                <div class="highlight-box">
+                    <p><strong>Déterminer $D_{g \circ f}$ et $D_{f \circ g}$ et les expressions $g \circ f(x)$ et $f \circ g(x)$ :</strong></p>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+                        <div class="exercice-box">
+                            <div class="ex-title">1) $f(x)=x^2$, $g(x)=x^3$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol7a')">Voir</button>
+                            <div id="sol7a" class="solution-box">
+                                <div class="sol-content">$g \circ f(x)=x^6$, $f \circ g(x)=x^6$, $D=\mathbb{R}$</div>
+                            </div>
                         </div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol8')">Voir la solution</button>
-                        <div id="sol8" class="solution-box">
+                        <div class="exercice-box">
+                            <div class="ex-title">2) $f(x)=x^2-5$, $g(x)=\frac{1}{x}$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol7b')">Voir</button>
+                            <div id="sol7b" class="solution-box">
+                                <div class="sol-content">$g \circ f(x)=\frac{1}{x^2-5}$, $D_{g\circ f}=\mathbb{R}\setminus\{\pm\sqrt{5}\}$</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">3) $f(x)=\sqrt{x}$, $g(x)=x^2$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol7c')">Voir</button>
+                            <div id="sol7c" class="solution-box">
+                                <div class="sol-content">$g \circ f(x)=x$, $D_{g\circ f}=[0,+\infty[$</div>
+                            </div>
+                        </div>
+                        <div class="exercice-box">
+                            <div class="ex-title">4) $f(x)=\sqrt{x-8}$, $g(x)=x^3$</div>
+                            <button class="toggle-sol" onclick="toggleSolution('sol7d')">Voir</button>
+                            <div id="sol7d" class="solution-box">
+                                <div class="sol-content">$g \circ f(x)=(\sqrt{x-8})^3=(x-8)^{3/2}$, $D=[8,+\infty[$</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 5 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">5</span> Exercice 5</h2>
+
+                <div class="highlight-box">
+                    <p><strong>En utilisant la monotonie de la composée, étudier la monotonie de $f$ sur $I$ et $J$ :</strong></p>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">1) $f(x) = \sqrt{x^2+1}$ sur $I=\mathbb{R}^+$, $J=\mathbb{R}^-$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol8a')">Voir la solution</button>
+                        <div id="sol8a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>On doit avoir $4-x \ge 0 \Rightarrow x \le 4$.</p>
-                                <p>Donc <strong>$D_f = ]-\infty, 4]$</strong>.</p>
+                                <p>$u(x)=x^2+1$ est décroissante sur $\mathbb{R}^-$ et croissante sur $\mathbb{R}^+$.</p>
+                                <p>$v(t)=\sqrt{t}$ est croissante sur $\mathbb{R}^+$.</p>
+                                <p>Donc <strong>$f$ est décroissante sur $\mathbb{R}^-$ et croissante sur $\mathbb{R}^+$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">2) $f(x) = \frac{1}{x^2+3}$ sur $I=\mathbb{R}^+$, $J=\mathbb{R}^-$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol8b')">Voir la solution</button>
+                        <div id="sol8b" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$u(x)=x^2+3$ est décroissante sur $\mathbb{R}^-$ et croissante sur $\mathbb{R}^+$.</p>
+                                <p>$v(t)=\frac{1}{t}$ est décroissante sur $\mathbb{R}^+$.</p>
+                                <p>Donc <strong>$f$ est croissante sur $\mathbb{R}^-$ et décroissante sur $\mathbb{R}^+$</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box">
+                        <div class="ex-title">3) $f(x) = \sin^2 x$ sur $I=[0,\frac{\pi}{2}]$, $J=[\frac{\pi}{2},\pi]$</div>
+                        <button class="toggle-sol" onclick="toggleSolution('sol8c')">Voir la solution</button>
+                        <div id="sol8c" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <p>$u(x)=\sin x$ est croissante sur $[0,\frac{\pi}{2}]$ et décroissante sur $[\frac{\pi}{2},\pi]$.</p>
+                                <p>$v(t)=t^2$ est croissante sur $\mathbb{R}^+$.</p>
+                                <p>Donc <strong>$f$ est croissante sur $[0,\frac{\pi}{2}]$ et décroissante sur $[\frac{\pi}{2},\pi]$</strong>.</p>
                             </div>
                         </div>
                     </div>
@@ -699,516 +596,6 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawParabolaUp() {
-            var canvas = document.getElementById('parabolaUpGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var scale = 25;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = -10; i <= 10; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Parabole f(x) = x²
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = x * x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-
-            // Sommet
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.fillText('S(0,0)', cx + 10, cy - 8);
-        }
-
-        function drawParabolaDown() {
-            var canvas = document.getElementById('parabolaDownGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var scale = 25;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = -10; i <= 10; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Parabole f(x) = -x²
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = -x * x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-
-            // Sommet
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('S(0,0)', cx + 10, cy - 8);
-        }
-
-        function drawCubeUp() {
-            var canvas = document.getElementById('cubeUpGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var scale = 30;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = -5; i <= 5; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Cube f(x) = x³
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = x * x * x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -100 || screenY > h + 100) { continue; }
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-        }
-
-        function drawCubeDown() {
-            var canvas = document.getElementById('cubeDownGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var scale = 30;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = -5; i <= 5; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Cube f(x) = -x³
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = -x * x * x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -100 || screenY > h + 100) { continue; }
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-        }
-
-        function drawHyperbola() {
-            var canvas = document.getElementById('hyperbolaGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var scale = 30;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = -10; i <= 10; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Asymptotes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([6, 6]);
-            // x = -1
-            ctx.beginPath();
-            ctx.moveTo(cx - 1 * scale, 0);
-            ctx.lineTo(cx - 1 * scale, h);
-            ctx.stroke();
-            ctx.fillStyle = '#888888';
-            ctx.font = '12px Arial';
-            ctx.fillText('x = -1', cx - 1 * scale - 30, 16);
-            // y = 2
-            ctx.beginPath();
-            ctx.moveTo(0, cy - 2 * scale);
-            ctx.lineTo(w, cy - 2 * scale);
-            ctx.stroke();
-            ctx.fillText('y = 2', w - 50, cy - 2 * scale - 6);
-            ctx.setLineDash([]);
-
-            // Courbe f(x) = (2x+1)/(x+1)
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            // Branche gauche
-            ctx.beginPath();
-            var first = true;
-            for (var px = 0; px <= cx - 1 * scale - 5; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = (2 * x + 1) / (x + 1);
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (Math.abs(x + 1) < 0.02) { first = true; continue; }
-                if (screenY < -100 || screenY > h + 100) { first = true; continue; }
-                if (first) { ctx.moveTo(screenX, screenY); first = false; }
-                else { ctx.lineTo(screenX, screenY); }
-            }
-            ctx.stroke();
-            // Branche droite
-            ctx.beginPath();
-            first = true;
-            for (var px = cx - 1 * scale + 5; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = (2 * x + 1) / (x + 1);
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (Math.abs(x + 1) < 0.02) { first = true; continue; }
-                if (screenY < -100 || screenY > h + 100) { first = true; continue; }
-                if (first) { ctx.moveTo(screenX, screenY); first = false; }
-                else { ctx.lineTo(screenX, screenY); }
-            }
-            ctx.stroke();
-
-            // Centre de symétrie Ω(-1, 2)
-            var ox = cx - 1 * scale;
-            var oy = cy - 2 * scale;
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(ox, oy, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '12px Arial';
-            ctx.fillText('Ω(-1, 2)', ox + 8, oy - 6);
-        }
-
-        function drawSqrt() {
-            var canvas = document.getElementById('sqrtGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = 50, cy = h - 50;
-            var scale = 40;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = 0; i <= 10; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Courbe f(x) = √x
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = cx; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                if (x < 0) continue;
-                var y = Math.sqrt(x);
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                if (px === cx) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('f(x) = √x', w - 100, 20);
-        }
-
-        function drawSqrtDown() {
-            var canvas = document.getElementById('sqrtDownGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w - 50, cy = h - 50;
-            var scale = 40;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = 0; i <= 10; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx - i * scale, 0);
-                ctx.lineTo(cx - i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Courbe f(x) = √(1-x)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = 0; px <= cx; px += 0.5) {
-                var x = (px - cx) / scale + 1;
-                if (x > 1) continue;
-                var y = Math.sqrt(1 - x);
-                var screenX = cx + (x - 1) * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.fillText('f(x) = √(1-x)', w - 130, 20);
-        }
-
-        window.onload = function() {
-            setTimeout(function() {
-                drawParabolaUp();
-                drawParabolaDown();
-                drawCubeUp();
-                drawCubeDown();
-                drawHyperbola();
-                drawSqrt();
-                drawSqrtDown();
-            }, 500);
-        };
     </script>
 </body>
 </html>
