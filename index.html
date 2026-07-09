@@ -12,138 +12,78 @@
     <style>
         /* ====== الشعار ====== */
         .hero-logo {
-            position: relative;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 6px;
             margin-bottom: 30px;
-            padding: 20px 0;
-            width: 100%;
-            min-height: 180px;
+            padding: 10px 0;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 20px;
-            padding: 20px 40px;
+            border-radius: 16px;
+            padding: 12px 30px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid transparent;
+            flex-wrap: nowrap;
         }
         .hero-logo:hover {
             background: rgba(78, 205, 196, 0.05);
-            border-color: rgba(78, 205, 196, 0.15);
-            transform: scale(1.01);
+            border-color: rgba(78, 205, 196, 0.1);
+            transform: scale(1.02);
         }
         .hero-logo:active {
             transform: scale(0.97);
         }
         
-        /* JAOUAD - فوق اليسار */
-        .hero-logo .name-top-left {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-family: 'Great Vibes', cursive;
-            font-size: 18px;
-            font-weight: 400;
+        /* JAOUAD */
+        .hero-logo .name-left {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
             color: #4ECDC4;
             letter-spacing: 2px;
-            opacity: 0.8;
-            text-shadow: 0 0 30px rgba(78, 205, 196, 0.15);
-            transform: rotate(-2deg);
+            text-shadow: 0 0 30px rgba(78, 205, 196, 0.1);
         }
         
-        /* MOROCCO - كبير في المنتصف */
+        /* MOROCCO */
         .hero-logo .name-center {
             font-family: 'Playfair Display', serif;
-            font-size: 72px;
+            font-size: 28px;
             font-weight: 900;
-            background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 40%, #F4D03F 70%, #FF6B6B 100%);
+            background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 30%, #F4D03F 60%, #FF6B6B 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 12px;
-            text-shadow: none;
-            position: relative;
-            padding: 10px 30px;
-            line-height: 1.1;
+            letter-spacing: 4px;
+            padding: 0 4px;
         }
         
-        /* زخرفة حول MOROCCO */
-        .hero-logo .name-center::before {
-            content: "✦ ✧ ✦";
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            color: #F4D03F;
-            -webkit-text-fill-color: #F4D03F;
-            letter-spacing: 10px;
-            opacity: 0.6;
-        }
-        .hero-logo .name-center::after {
-            content: "✦ ✧ ✦";
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            color: #F4D03F;
-            -webkit-text-fill-color: #F4D03F;
-            letter-spacing: 10px;
-            opacity: 0.6;
-        }
-        
-        /* ELKHAYATY - تحت اليمين */
-        .hero-logo .name-bottom-right {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            font-family: 'Great Vibes', cursive;
-            font-size: 18px;
-            font-weight: 400;
+        /* ELKHAYATY */
+        .hero-logo .name-right {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
             color: #FF6B6B;
             letter-spacing: 2px;
-            opacity: 0.8;
-            text-shadow: 0 0 30px rgba(255, 107, 107, 0.15);
-            transform: rotate(2deg);
-        }
-        
-        /* زخارف مغربية */
-        .hero-logo .moroccan-pattern {
-            position: absolute;
-            font-size: 12px;
-            color: #F4D03F;
-            -webkit-text-fill-color: #F4D03F;
-            letter-spacing: 4px;
-            opacity: 0.3;
-        }
-        .hero-logo .pattern-top {
-            top: -10px;
-            right: 20%;
-        }
-        .hero-logo .pattern-bottom {
-            bottom: -10px;
-            left: 20%;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.1);
         }
         
         /* أيقونة التصميم */
         .logo-edit-icon {
-            position: absolute;
-            bottom: -8px;
-            right: -8px;
-            background: rgba(78, 205, 196, 0.15);
-            border: 1px solid rgba(78, 205, 196, 0.2);
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid rgba(78, 205, 196, 0.15);
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #4ECDC4;
-            font-size: 12px;
+            font-size: 10px;
             opacity: 0;
             transition: all 0.3s ease;
+            margin-left: 4px;
+            flex-shrink: 0;
         }
         .hero-logo:hover .logo-edit-icon {
             opacity: 1;
@@ -152,58 +92,48 @@
         /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .hero-logo {
-                min-height: 150px;
-                padding: 15px 0;
+                padding: 8px 16px;
+                gap: 4px;
+            }
+            .hero-logo .name-left {
+                font-size: 16px;
+                letter-spacing: 1px;
             }
             .hero-logo .name-center {
-                font-size: 40px;
-                letter-spacing: 6px;
-                padding: 8px 15px;
+                font-size: 20px;
+                letter-spacing: 2px;
             }
-            .hero-logo .name-top-left {
-                font-size: 14px;
+            .hero-logo .name-right {
+                font-size: 16px;
+                letter-spacing: 1px;
             }
-            .hero-logo .name-bottom-right {
-                font-size: 14px;
-            }
-            .hero-logo .name-center::before,
-            .hero-logo .name-center::after {
-                font-size: 10px;
-                letter-spacing: 6px;
+            .logo-edit-icon {
+                width: 22px;
+                height: 22px;
+                font-size: 8px;
             }
         }
         @media (max-width: 480px) {
             .hero-logo {
-                min-height: 120px;
-                padding: 10px 0;
+                padding: 6px 10px;
+                gap: 2px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-logo .name-left {
+                font-size: 13px;
             }
             .hero-logo .name-center {
-                font-size: 28px;
-                letter-spacing: 4px;
-                padding: 6px 10px;
+                font-size: 16px;
+                letter-spacing: 1px;
             }
-            .hero-logo .name-top-left {
-                font-size: 11px;
-                top: -5px;
-            }
-            .hero-logo .name-bottom-right {
-                font-size: 11px;
-                bottom: -5px;
-            }
-            .hero-logo .name-center::before,
-            .hero-logo .name-center::after {
-                font-size: 8px;
-                letter-spacing: 4px;
-                top: -12px;
-            }
-            .hero-logo .name-center::after {
-                bottom: -12px;
-                top: auto;
+            .hero-logo .name-right {
+                font-size: 13px;
             }
             .logo-edit-icon {
-                width: 24px;
-                height: 24px;
-                font-size: 10px;
+                width: 18px;
+                height: 18px;
+                font-size: 7px;
             }
         }
     </style>
@@ -237,20 +167,9 @@
     <section class="hero">
         <!-- ====== الشعار ====== -->
         <div class="hero-logo" onclick="window.location.href='logo-design.html'">
-            <!-- JAOUAD - فوق اليسار -->
-            <span class="name-top-left">JAOUAD</span>
-            
-            <!-- MOROCCO - كبير في المنتصف -->
+            <span class="name-left">JAOUAD</span>
             <span class="name-center">MOROCCO</span>
-            
-            <!-- ELKHAYATY - تحت اليمين -->
-            <span class="name-bottom-right">ELKHAYATY</span>
-            
-            <!-- زخارف مغربية -->
-            <span class="moroccan-pattern pattern-top">✦ ✧ ✦</span>
-            <span class="moroccan-pattern pattern-bottom">✦ ✧ ✦</span>
-
-            <!-- أيقونة التصميم -->
+            <span class="name-right">ELKHAYATY</span>
             <span class="logo-edit-icon"><i class="fas fa-pen"></i></span>
         </div>
 
