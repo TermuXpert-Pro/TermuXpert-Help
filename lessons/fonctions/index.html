@@ -34,10 +34,9 @@
         .step { font-size: 11px !important; padding: 3px 10px !important; margin: 3px 0 !important; }
         .step .step-num { font-size: 11px !important; }
         .part-link { padding: 8px 12px !important; margin-bottom: 8px !important; border-radius: 8px !important; }
-        .part-link .part-num { font-size: 13px !important; }
-        .part-link .part-title { font-size: 12px !important; }
-        .part-link .part-icon { font-size: 18px !important; }
-        .part-link .part-desc { font-size: 11px !important; color: var(--text-secondary); }
+        .part-link .part-num { font-size: 13px !important; color: #4ECDC4; font-weight: 700; }
+        .part-link .part-title { font-size: 12px !important; color: var(--text-secondary); }
+        .part-link .part-icon { font-size: 18px !important; flex-shrink: 0; }
         .footer p { font-size: 10px !important; }
         .lesson-container { padding: 8px !important; }
         .glow-orb { display: none !important; }
@@ -48,6 +47,7 @@
         .part-link:active { transform: scale(0.97); opacity: 0.8; }
         .part-link:hover { border-color: #4ECDC4; transform: translateX(-3px); }
         .section-list-title { color: #4ECDC4; font-size: 13px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+        .part-link .part-arrow { color: var(--text-muted); font-size: 12px; flex-shrink: 0; }
         @media (max-width: 768px) {
             body { font-size: 11px !important; }
             .lesson-title { font-size: 17px !important; }
@@ -63,7 +63,6 @@
             .part-link { padding: 6px 10px !important; }
             .part-link .part-num { font-size: 12px !important; }
             .part-link .part-title { font-size: 11px !important; }
-            .part-link .part-desc { font-size: 10px !important; }
         }
         @media (max-width: 480px) {
             body { font-size: 10px !important; }
@@ -81,7 +80,7 @@
             .part-link .part-num { font-size: 11px !important; }
             .part-link .part-title { font-size: 10px !important; }
             .part-link .part-icon { font-size: 14px !important; }
-            .part-link .part-desc { font-size: 9px !important; }
+            .part-link .part-arrow { font-size: 10px !important; }
         }
     </style>
     <script>
@@ -125,81 +124,59 @@
                         <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-book"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 1</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Rappels : Fonction numérique, parité, monotonie, extrémums</div>
-                            <div style="color:var(--text-muted); font-size:10px; margin-top:2px;"><i class="fas fa-check-circle" style="color:#4ECDC4;"></i> 6 exercices inclus</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Rappels</div>
                         </div>
-                        <span style="color:var(--text-muted); font-size:12px;"><i class="fas fa-chevron-left"></i></span>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
                 <!-- Partie 2 -->
                 <a href="part2.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-wave-square"></i></span>
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-arrow-up"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 2</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Fonction périodique - Taux d'accroissement</div>
-                            <div style="color:var(--text-muted); font-size:10px; margin-top:2px;"><i class="fas fa-check-circle" style="color:#4ECDC4;"></i> 4 exercices inclus</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Fonction majorée - minorée - bornée - Extremums</div>
                         </div>
-                        <span style="color:var(--text-muted); font-size:12px;"><i class="fas fa-chevron-left"></i></span>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
                 <!-- Partie 3 -->
                 <a href="part3.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-arrow-up"></i></span>
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-cubes"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 3</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Fonction majorée, minorée, bornée - Comparaison de fonctions</div>
-                            <div style="color:var(--text-muted); font-size:10px; margin-top:2px;"><i class="fas fa-check-circle" style="color:#4ECDC4;"></i> 6 exercices inclus</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Comparaison de fonctions - Composée</div>
                         </div>
-                        <span style="color:var(--text-muted); font-size:12px;"><i class="fas fa-chevron-left"></i></span>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
                 <!-- Partie 4 -->
                 <a href="part4.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-cubes"></i></span>
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-chart-simple"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 4</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Composée de deux fonctions - Monotonie de f+c, c.f, f∘g</div>
-                            <div style="color:var(--text-muted); font-size:10px; margin-top:2px;"><i class="fas fa-check-circle" style="color:#4ECDC4;"></i> 6 exercices inclus</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Étude des fonctions de référence</div>
                         </div>
-                        <span style="color:var(--text-muted); font-size:12px;"><i class="fas fa-chevron-left"></i></span>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
                 <!-- Partie 5 -->
                 <a href="part5.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-chart-simple"></i></span>
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-pencil"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 5</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Étude des fonctions de référence (parabole, cube, hyperbole, racine)</div>
-                            <div style="color:var(--text-muted); font-size:10px; margin-top:2px;"><i class="fas fa-check-circle" style="color:#4ECDC4;"></i> 8 exercices + 7 graphiques</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Exercices</div>
                         </div>
-                        <span style="color:var(--text-muted); font-size:12px;"><i class="fas fa-chevron-left"></i></span>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
-
-                <!-- Note supplémentaire -->
-                <div style="text-align:center; margin-top:12px; padding:8px; background:var(--bg-secondary); border-radius:8px; border:1px solid var(--border);">
-                    <p style="color:var(--text-muted); font-size:10px;">
-                        <i class="fas fa-info-circle" style="color:#4ECDC4;"></i>
-                        Total: <strong style="color:#4ECDC4;">5 parties</strong> • 
-                        <strong style="color:#FF6B6B;">30 exercices</strong> • 
-                        <strong style="color:#F4D03F;">7 graphiques</strong>
-                    </p>
-                </div>
-            </div>
-
-            <div style="text-align:center; margin-top:16px; padding:10px; background:var(--bg-card); border-radius:10px; border:1px solid var(--border);">
-                <p style="color:var(--text-muted); font-size:10px;">
-                    <i class="fas fa-arrow-left" style="color:#4ECDC4;"></i>
-                    Cliquez sur une partie pour commencer l'apprentissage
-                </p>
             </div>
         </div>
     </div>
