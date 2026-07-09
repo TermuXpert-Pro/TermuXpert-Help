@@ -499,3 +499,105 @@ details div {
 .geo-pattern-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
 .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
 .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
+
+/* ====== تأثيرات إضافية للدروس ====== */
+
+/* عنوان الدرس مع تأثير تدرج */
+.lesson-title {
+    position: relative;
+    display: inline-block;
+}
+.lesson-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 3px;
+    background: var(--gradient);
+    transition: width 0.6s ease;
+}
+.lesson-title:hover::after {
+    width: 80%;
+}
+
+/* بطاقات الأقسام */
+.part-link, .ex-link {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.part-link::before, .ex-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.03), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.part-link:hover::before, .ex-link:hover::before {
+    opacity: 1;
+}
+
+/* صناديق التمارين */
+.exercice-box {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+.exercice-box:hover {
+    border-left-color: #4ECDC4;
+}
+
+/* أزرار الحل */
+.toggle-sol {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.toggle-sol::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(78, 205, 196, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+.toggle-sol:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* الخطوات */
+.step {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+.step:hover {
+    border-left-color: #4ECDC4;
+    transform: translateX(4px);
+}
+
+/* الصيغ الرياضية */
+.formula-block {
+    transition: all 0.3s ease;
+}
+.formula-block:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 20px rgba(78, 205, 196, 0.05);
+}
+
+/* الجداول */
+.table-wrap table {
+    transition: all 0.3s ease;
+}
+.table-wrap:hover table {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
