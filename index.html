@@ -309,8 +309,8 @@
             <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
         <ul class="nav-links">
-            <li><a href="subjects.html" onclick="sessionStorage.removeItem('subjects_animation_done'); sessionStorage.removeItem('subject_animation_done');"><i class="fas fa-book-open"></i> Matières</a></li>
-            <li><a href="subjects.html" class="btn-nav" onclick="sessionStorage.removeItem('subjects_animation_done'); sessionStorage.removeItem('subject_animation_done');"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
+            <li><a href="subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+            <li><a href="subjects.html" class="btn-nav"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
         </ul>
     </nav>
 
@@ -331,7 +331,7 @@
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
             <div class="hero-buttons" id="buttons">
-                <a href="subjects.html" class="btn btn-primary" id="btnCommencer" onclick="sessionStorage.removeItem('subjects_animation_done'); sessionStorage.removeItem('subject_animation_done');"><i class="fas fa-graduation-cap"></i> Commencer</a>
+                <a href="subjects.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
     </section>
@@ -349,118 +349,202 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // ============================================================
-            // التحقق من نوع التنقل
-            // ============================================================
-            const navType = performance.navigation.type;
-            
-            // المفتاح في sessionStorage
-            const animationKey = 'index_animation_done';
-            
-            // ============================================================
-            // دالة لتشغيل الأنميشن
-            // ============================================================
-            function runAnimation() {
-                const tl = gsap.timeline({
-                    defaults: { ease: 'power3.out' }
+            const tl = gsap.timeline({
+                defaults: {
+                    ease: 'power3.out'
+                }
+            });
+
+            // 1. ظهور الخلفيات (مثل subjects)
+            tl
+                .to('.moroccan-bg', {
+                    opacity: 0.6,
+                    duration: 1.8,
+                    ease: 'power1.out'
+                })
+                .to('.moroccan-shadow', {
+                    opacity: 0.08,
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
+                .to('.moroccan-star', {
+                    opacity: 0.04,
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
+                .to('.geo-pattern', {
+                    opacity: 0.03,
+                    duration: 1.8,
+                    stagger: 0.08,
+                    ease: 'power1.out'
+                }, '-=1.4')
+
+            // 2. ظهور الهيرو
+            .to('#heroSection', {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.5')
+
+            // 3. ظهور البروفايل
+            .to('#profileWrapper', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'back.out(1.7)'
+            }, '-=0.3')
+            .to('#profileImg', {
+                scale: 1,
+                duration: 0.8,
+                ease: 'back.out(2)',
+                onStart: function() {
+                    gsap.fromTo('#profileImg', 
+                        { scale: 0.6, opacity: 0, rotation: -10 },
+                        { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: 'back.out(2)' }
+                    );
+                }
+            }, '-=0.6')
+
+            // 4. ظهور البطاقة
+            .to('#heroCard', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.3')
+
+            // 5. ظهور الشعار
+            .to('#logo', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'back.out(1.7)'
+            }, '-=0.4')
+            .fromTo('.name-center', 
+                { scale: 0.8, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
+                '-=0.4'
+            )
+
+            // 6. ظهور باقي العناصر
+            .to('.hero-label', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('#title', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('#desc', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('#buttons', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('.dot', {
+                scale: 1.2,
+                duration: 0.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            }, '-=0.2');
+
+            // ====== حركات مستمرة (مثل subjects) ======
+            gsap.to('.moroccan-bg', {
+                opacity: 0.8,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            gsap.to('.moroccan-star', {
+                rotation: 360,
+                duration: 30,
+                repeat: -1,
+                ease: 'none'
+            });
+
+            gsap.to('.geo-pattern-1', {
+                x: 20,
+                y: 10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            gsap.to('.geo-pattern-2', {
+                x: -20,
+                y: -10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1
+            });
+            gsap.to('.geo-pattern-3', {
+                x: 15,
+                y: -15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 0.5
+            });
+            gsap.to('.geo-pattern-4', {
+                x: -15,
+                y: 15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1.5
+            });
+
+            // ====== Hover ======
+            const card = document.querySelector('.hero-card');
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    scale: 1.01,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    boxShadow: '0 40px 100px rgba(0,0,0,0.4)'
                 });
-
-                tl
-                    .to('.moroccan-bg', { opacity: 0.6, duration: 1.8, ease: 'power1.out' })
-                    .to('.moroccan-shadow', { opacity: 0.08, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-                    .to('.moroccan-star', { opacity: 0.04, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-                    .to('.geo-pattern', { opacity: 0.03, duration: 1.8, stagger: 0.08, ease: 'power1.out' }, '-=1.4')
-                    .to('#heroSection', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-                    .to('#profileWrapper', { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)' }, '-=0.3')
-                    .to('#profileImg', { scale: 1, duration: 0.8, ease: 'back.out(2)' }, '-=0.6')
-                    .to('#heroCard', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-                    .to('#logo', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
-                    .to('.hero-label', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                    .to('#title', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                    .to('#desc', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                    .to('#buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                    .to('.dot', { scale: 1.2, duration: 0.5, repeat: -1, yoyo: true, ease: 'sine.inOut' }, '-=0.2')
-                    .call(() => {
-                        // تخزين أن الأنميشن تم تشغيله
-                        sessionStorage.setItem(animationKey, 'true');
-                        console.log('✅ index.html - Animation jouée');
-                    });
-
-                // ====== حركات مستمرة ======
-                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-                gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-                gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
-                gsap.to('.geo-pattern-3', { x: 15, y: -15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.5 });
-                gsap.to('.geo-pattern-4', { x: -15, y: 15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5 });
-
-                // ====== Hover ======
-                const card = document.querySelector('.hero-card');
-                card.addEventListener('mouseenter', () => {
-                    gsap.to(card, { scale: 1.01, duration: 0.3, ease: 'power2.out', boxShadow: '0 40px 100px rgba(0,0,0,0.4)' });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 30px 80px rgba(0,0,0,0.3)'
                 });
-                card.addEventListener('mouseleave', () => {
-                    gsap.to(card, { scale: 1, duration: 0.3, ease: 'power2.inOut', boxShadow: '0 30px 80px rgba(0,0,0,0.3)' });
+            });
+
+            const btn = document.querySelector('.btn-primary');
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
                 });
-
-                const btn = document.querySelector('.btn-primary');
-                btn.addEventListener('mouseenter', () => {
-                    gsap.to(btn, { scale: 1.05, duration: 0.2, ease: 'power2.out', boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)' });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
                 });
-                btn.addEventListener('mouseleave', () => {
-                    gsap.to(btn, { scale: 1, duration: 0.2, ease: 'power2.inOut', boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)' });
-                });
-            }
+            });
 
-            // ============================================================
-            // دالة للعرض المباشر
-            // ============================================================
-            function showDirect() {
-                gsap.set('.moroccan-bg', { opacity: 0.6 });
-                gsap.set('.moroccan-shadow', { opacity: 0.08 });
-                gsap.set('.moroccan-star', { opacity: 0.04 });
-                gsap.set('.geo-pattern', { opacity: 0.03 });
-                gsap.set('#heroSection', { opacity: 1 });
-                gsap.set('#profileWrapper', { opacity: 1, y: 0 });
-                gsap.set('#profileImg', { scale: 1 });
-                gsap.set('#heroCard', { opacity: 1, y: 0 });
-                gsap.set('#logo', { opacity: 1, y: 0 });
-                gsap.set('.hero-label', { opacity: 1, y: 0 });
-                gsap.set('#title', { opacity: 1, y: 0 });
-                gsap.set('#desc', { opacity: 1, y: 0 });
-                gsap.set('#buttons', { opacity: 1, y: 0 });
-                console.log('✅ index.html - Affichage direct');
-
-                // ====== حركات مستمرة ======
-                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-                gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-                gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
-                gsap.to('.geo-pattern-3', { x: 15, y: -15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.5 });
-                gsap.to('.geo-pattern-4', { x: -15, y: 15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5 });
-            }
-
-            // ============================================================
-            // المنطق الرئيسي
-            // ============================================================
-            
-            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
-            if (navType === 2) {
-                showDirect();
-                console.log('📌 index.html - Navigation depuis Back/Forward → Affichage direct');
-                return;
-            }
-
-            // 2. إذا كان المفتاح موجوداً في sessionStorage → عرض مباشر
-            if (sessionStorage.getItem(animationKey) === 'true') {
-                showDirect();
-                console.log('📌 index.html - Animation déjà jouée dans cette session → Affichage direct');
-                return;
-            }
-
-            // 3. في جميع الحالات الأخرى → تشغيل الأنميشن
-            runAnimation();
-            console.log('📌 index.html - Première visite ou Refresh → Animation jouée');
+            console.log('✅ GSAP - Animation complète avec background style subjects');
         });
     </script>
 </body>
