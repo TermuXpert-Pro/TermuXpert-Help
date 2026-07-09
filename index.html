@@ -94,7 +94,7 @@
             z-index: 2;
             margin-bottom: 0px;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
         }
         .profile-outer .profile-ring {
             position: absolute;
@@ -145,7 +145,7 @@
             overflow: hidden;
             margin-top: 10px;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
         }
 
         .hero-logo {
@@ -189,7 +189,7 @@
             color: #66FCF1;
             padding: 4px 16px;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
             margin-bottom: 14px;
             opacity: 0;
@@ -256,7 +256,7 @@
             .hero-logo .name-center { font-size: 22px; letter-spacing: 4px; }
             .moroccan-shadow { width: 200px; height: 200px; }
             .moroccan-star { font-size: 40px; }
-            .geo-pattern { font-size: 13px; letter-spacing: 8px; }
+            .geo-pattern { font-size: 10px; letter-spacing: 8px; }
             .profile-outer .profile-image { width: 80px; height: 80px; }
             .profile-outer .profile-ring { width: 104px; height: 104px; top: -12px; left: -12px; }
             .hero { padding: 70px 12px 30px; }
@@ -346,5 +346,206 @@
     </button>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const tl = gsap.timeline({
+                defaults: {
+                    ease: 'power3.out'
+                }
+            });
+
+            // 1. ظهور الخلفيات
+            tl
+                .to('.moroccan-bg', {
+                    opacity: 0.6,
+                    duration: 1.0,
+                    ease: 'power1.out'
+                })
+                .to('.moroccan-shadow', {
+                    opacity: 0.08,
+                    duration: 1.0,
+                    ease: 'power1.out'
+                }, '-=0.8')
+                .to('.moroccan-star', {
+                    opacity: 0.04,
+                    duration: 1.0,
+                    ease: 'power1.out'
+                }, '-=0.8')
+                .to('.geo-pattern', {
+                    opacity: 0.03,
+                    duration: 1.0,
+                    stagger: 0.08,
+                    ease: 'power1.out'
+                }, '-=0.8')
+
+            // 2. ظهور الهيرو
+            .to('#heroSection', {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.5')
+
+            // 3. ظهور البروفايل
+            .to('#profileWrapper', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'back.out(1.7)'
+            }, '-=0.3')
+            .to('#profileImg', {
+                scale: 1,
+                duration: 0.6,
+                ease: 'back.out(2)',
+                onStart: function() {
+                    gsap.fromTo('#profileImg', 
+                        { scale: 0.6, opacity: 0, rotation: -10 },
+                        { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: 'back.out(2)' }
+                    );
+                }
+            }, '-=0.5')
+
+            // 4. ظهور البطاقة
+            .to('#heroCard', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.3')
+
+            // 5. ظهور الشعار
+            .to('#logo', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'back.out(1.7)'
+            }, '-=0.4')
+            .fromTo('.name-center', 
+                { scale: 0.8, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(2)' },
+                '-=0.4'
+            )
+
+            // 6. ظهور باقي العناصر
+            .to('.hero-label', {
+                opacity: 1,
+                y: 0,
+                duration: 0.5
+            }, '-=0.3')
+            .to('#title', {
+                opacity: 1,
+                y: 0,
+                duration: 0.5
+            }, '-=0.3')
+            .to('#desc', {
+                opacity: 1,
+                y: 0,
+                duration: 0.5
+            }, '-=0.3')
+            .to('#buttons', {
+                opacity: 1,
+                y: 0,
+                duration: 0.5
+            }, '-=0.3')
+            .to('.dot', {
+                scale: 1.2,
+                duration: 0.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            }, '-=0.2');
+
+            // ====== حركات مستمرة ======
+            gsap.to('.moroccan-bg', {
+                opacity: 0.8,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            gsap.to('.moroccan-star', {
+                rotation: 360,
+                duration: 30,
+                repeat: -1,
+                ease: 'none'
+            });
+
+            gsap.to('.geo-pattern-1', {
+                x: 20,
+                y: 10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            gsap.to('.geo-pattern-2', {
+                x: -20,
+                y: -10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1
+            });
+            gsap.to('.geo-pattern-3', {
+                x: 15,
+                y: -15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 0.5
+            });
+            gsap.to('.geo-pattern-4', {
+                x: -15,
+                y: 15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1.5
+            });
+
+            // ====== Hover ======
+            const card = document.querySelector('.hero-card');
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    scale: 1.01,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    boxShadow: '0 40px 100px rgba(0,0,0,0.4)'
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 30px 80px rgba(0,0,0,0.3)'
+                });
+            });
+
+            const btn = document.querySelector('.btn-primary');
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
+                });
+            });
+
+            console.log('✅ GSAP - Index page with profile and card');
+        });
+    </script>
 </body>
 </html>
