@@ -9,10 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
-        /* ====== خلفية زليج مغربية ====== */
         .moroccan-bg {
             position: fixed;
             top: 0;
@@ -24,12 +22,8 @@
             overflow: hidden;
             opacity: 0.6;
         }
-        .moroccan-bg svg {
-            width: 100%;
-            height: 100%;
-        }
+        .moroccan-bg svg { width: 100%; height: 100%; }
 
-        /* ====== ظل زخرفي ====== */
         .moroccan-shadow {
             position: fixed;
             top: 50%;
@@ -50,7 +44,6 @@
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
         }
 
-        /* ====== نجمة مغربية ====== */
         .moroccan-star {
             position: fixed;
             z-index: 0;
@@ -69,7 +62,6 @@
             100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
         }
 
-        /* ====== زخارف هندسية ====== */
         .geo-pattern {
             position: fixed;
             z-index: 0;
@@ -84,7 +76,6 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
-        /* ====== Hero ====== */
         .hero {
             position: relative;
             z-index: 1;
@@ -97,7 +88,6 @@
             justify-content: center;
         }
 
-        /* ====== البطاقة ====== */
         .hero-card {
             position: relative;
             background: rgba(255, 255, 255, 0.02);
@@ -111,7 +101,50 @@
             overflow: hidden;
         }
 
-        /* ====== الشعار ====== */
+        /* ====== صورة البروفايل ====== */
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 0 40px rgba(78, 205, 196, 0.15);
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.05);
+        }
+        .profile-image:hover {
+            transform: scale(1.05);
+            border-color: rgba(78, 205, 196, 0.6);
+            box-shadow: 0 0 60px rgba(78, 205, 196, 0.25);
+        }
+        /* زخرفة حول الصورة */
+        .profile-ring {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 116px;
+            height: 116px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, #4ECDC4, #F4D03F, #FF6B6B) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
+            animation: ringSpin 10s linear infinite;
+        }
+        @keyframes ringSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .hero-logo {
             display: flex;
             align-items: center;
@@ -205,13 +238,14 @@
             transform: translateY(20px);
         }
 
-        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .hero-card { padding: 30px 20px 40px; }
             .hero-logo .name-center { font-size: 32px; letter-spacing: 8px; }
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
             .geo-pattern { font-size: 14px; letter-spacing: 12px; }
+            .profile-image { width: 75px; height: 75px; }
+            .profile-ring { width: 91px; height: 91px; top: -8px; left: -8px; }
         }
         @media (max-width: 480px) {
             .hero-card { padding: 20px 12px 30px; }
@@ -219,12 +253,13 @@
             .moroccan-shadow { width: 200px; height: 200px; }
             .moroccan-star { font-size: 40px; }
             .geo-pattern { font-size: 10px; letter-spacing: 8px; }
+            .profile-image { width: 60px; height: 60px; }
+            .profile-ring { width: 76px; height: 76px; top: -8px; left: -8px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ====== خلفية زليج مغربية ====== -->
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -249,21 +284,15 @@
         </svg>
     </div>
 
-    <!-- ====== ظل زخرفي ====== -->
     <div class="moroccan-shadow"></div>
-
-    <!-- ====== نجمة مغربية ====== -->
     <div class="moroccan-star">✦</div>
 
-    <!-- ====== زخارف هندسية ====== -->
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
-    <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
-
     <div class="bg-grid"></div>
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
@@ -281,7 +310,14 @@
 
     <section class="hero">
         <div class="hero-card">
-            <!-- الشعار -->
+            <!-- ====== صورة البروفايل ====== -->
+            <div class="profile-wrapper" id="profileWrapper">
+                <div style="position:relative; display:inline-block;">
+                    <div class="profile-ring"></div>
+                    <img src="photos/profile.png" alt="Profile" class="profile-image" id="profileImg">
+                </div>
+            </div>
+
             <div class="hero-logo" id="logo">
                 <span class="name-center">MOROCCO</span>
             </div>
@@ -293,49 +329,6 @@
                 <a href="subjects.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
-    </section>
-
-    <section class="features">
-        <h2>Que trouverez-vous sur <span style="color:#4ECDC4;">Xpert</span> ?</h2>
-        <p class="subtitle">Tout ce dont vous avez besoin pour réussir la 1 Bac Sciences Expérimentales</p>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-book-open"></i></div>
-                <h3>Cours</h3>
-                <p>Cours complets et simplifiés avec des exemples illustratifs.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-list-check"></i></div>
-                <h3>Séries d'exercices</h3>
-                <p>Séries d'exercices corrigés et non corrigés pour chaque cours.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-pen-to-square"></i></div>
-                <h3>Devoirs</h3>
-                <p>Devoirs surveillés avec corrections pour évaluer votre progression.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>Examens régionaux</h3>
-                <p>Examens régionaux antérieurs avec solutions détaillées.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-copy"></i></div>
-                <h3>Copier les formules</h3>
-                <p>Copiez n'importe quelle formule ou loi en un clic.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-mobile-screen"></i></div>
-                <h3>Responsive</h3>
-                <p>Fonctionne sur téléphone, tablette et ordinateur.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta">
-        <h2>Prêt à exceller ?</h2>
-        <p>Rejoignez des milliers d'élèves qui font confiance à Xpert.</p>
-        <a href="subjects.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Commencer maintenant</a>
     </section>
 
     <footer class="footer">
@@ -359,22 +352,39 @@
             });
 
             tl
-                .to('#logo', {
+                .to('#profileWrapper', {
                     opacity: 1,
                     y: 0,
                     duration: 1,
                     ease: 'back.out(1.7)'
                 })
+                .to('#profileImg', {
+                    scale: 1,
+                    duration: 0.8,
+                    ease: 'back.out(2)',
+                    onStart: function() {
+                        gsap.fromTo('#profileImg', 
+                            { scale: 0.6, opacity: 0, rotation: -10 },
+                            { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: 'back.out(2)' }
+                        );
+                    }
+                }, '-=0.6')
+                .to('#logo', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'back.out(1.7)'
+                }, '-=0.4')
                 .fromTo('.name-center', 
                     { scale: 0.8, opacity: 0 },
                     { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
-                    '-=0.6'
+                    '-=0.4'
                 )
                 .to('.hero-label', {
                     opacity: 1,
                     y: 0,
                     duration: 0.6
-                }, '-=0.2')
+                }, '-=0.3')
                 .to('#title', {
                     opacity: 1,
                     y: 0,
@@ -485,7 +495,7 @@
                 });
             });
 
-            console.log('✅ GSAP - خلفية مغربية مع حركات زخرفية');
+            console.log('✅ GSAP - Page avec profil et design marocain');
         });
     </script>
 </body>
