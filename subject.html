@@ -9,10 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
-        /* ====== خلفية زليج مغربية ====== */
         .moroccan-bg {
             position: fixed;
             top: 0;
@@ -24,12 +22,8 @@
             overflow: hidden;
             opacity: 0;
         }
-        .moroccan-bg svg {
-            width: 100%;
-            height: 100%;
-        }
+        .moroccan-bg svg { width: 100%; height: 100%; }
 
-        /* ====== ظل زخرفي ====== */
         .moroccan-shadow {
             position: fixed;
             top: 50%;
@@ -50,7 +44,6 @@
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
         }
 
-        /* ====== نجمة مغربية ====== */
         .moroccan-star {
             position: fixed;
             z-index: 0;
@@ -69,7 +62,6 @@
             100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
         }
 
-        /* ====== زخارف هندسية ====== */
         .geo-pattern {
             position: fixed;
             z-index: 0;
@@ -84,7 +76,6 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
-        /* ====== حاوية العنوان ====== */
         .hero-wrapper {
             position: fixed;
             top: 0;
@@ -99,7 +90,6 @@
             pointer-events: none;
             opacity: 0;
         }
-
         .hero-wrapper h1 {
             font-size: clamp(40px, 7vw, 64px);
             font-weight: 900;
@@ -121,7 +111,6 @@
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-
         .hero-wrapper .subtitle {
             color: var(--text-muted);
             font-size: clamp(16px, 2vw, 22px);
@@ -133,7 +122,6 @@
             transform: translateY(30px);
         }
 
-        /* ====== المحتوى ====== */
         .content-wrapper {
             position: relative;
             z-index: 1;
@@ -144,9 +132,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            opacity: 0;
         }
 
-        /* ====== الأزرار (Tabs) ====== */
         .tabs-wrapper {
             display: flex;
             gap: 8px;
@@ -155,6 +143,14 @@
             justify-content: center;
             opacity: 0;
             transform: translateY(30px);
+            position: sticky;
+            top: 70px;
+            z-index: 10;
+            background: rgba(11, 12, 16, 0.7);
+            backdrop-filter: blur(20px);
+            padding: 10px 15px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .tab-btn {
@@ -188,34 +184,26 @@
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-        .tab-btn:hover::before {
-            opacity: 1;
-        }
+        .tab-btn:hover::before { opacity: 1; }
         .tab-btn:hover {
             border-color: rgba(78, 205, 196, 0.15);
             transform: translateY(-2px);
             color: var(--text-primary);
         }
-        .tab-btn:active {
-            transform: scale(0.95);
-        }
+        .tab-btn:active { transform: scale(0.95); }
         .tab-btn.active {
             background: rgba(78, 205, 196, 0.08);
             border-color: rgba(78, 205, 196, 0.15);
             color: #4ECDC4;
         }
-        .tab-btn i {
-            font-size: 14px;
-        }
+        .tab-btn i { font-size: 14px; }
 
-        /* ====== البطاقات ====== */
         .cards-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
             width: 100%;
-            opacity: 1;
-            transform: none;
+            min-height: 200px;
         }
 
         .command-card {
@@ -244,17 +232,13 @@
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-        .command-card:hover::before {
-            opacity: 1;
-        }
+        .command-card:hover::before { opacity: 1; }
         .command-card:hover {
             transform: translateY(-4px) scale(1.01);
             border-color: rgba(78, 205, 196, 0.1);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
-        .command-card:active {
-            transform: scale(0.97);
-        }
+        .command-card:active { transform: scale(0.97); }
 
         .command-card .command-title {
             font-size: 17px;
@@ -297,14 +281,20 @@
             z-index: 1;
         }
 
-        /* ====== RESPONSIVE ====== */
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
         @media (max-width: 768px) {
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
             .geo-pattern { font-size: 14px; letter-spacing: 12px; }
             .hero-wrapper h1 { font-size: 32px; }
             .hero-wrapper .subtitle { font-size: 14px; }
-            .tabs-wrapper { gap: 6px; }
+            .tabs-wrapper { gap: 6px; padding: 8px 10px; top: 60px; }
             .tab-btn { padding: 8px 14px; font-size: 12px; }
             .command-card { padding: 14px 16px; }
             .command-card .command-title { font-size: 15px; }
@@ -315,6 +305,7 @@
             .geo-pattern { font-size: 10px; letter-spacing: 8px; }
             .hero-wrapper h1 { font-size: 24px; }
             .hero-wrapper .subtitle { font-size: 13px; }
+            .tabs-wrapper { padding: 6px 8px; top: 50px; }
             .tab-btn { padding: 6px 10px; font-size: 11px; }
             .tab-btn i { font-size: 11px; }
             .command-card { padding: 12px 12px; }
@@ -325,7 +316,6 @@
 </head>
 <body>
 
-    <!-- ====== خلفية زليج مغربية ====== -->
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -350,21 +340,15 @@
         </svg>
     </div>
 
-    <!-- ====== ظل زخرفي ====== -->
     <div class="moroccan-shadow"></div>
-
-    <!-- ====== نجمة مغربية ====== -->
     <div class="moroccan-star">✦</div>
 
-    <!-- ====== زخارف هندسية ====== -->
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
-    <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
-
     <div class="bg-grid"></div>
 
     <nav class="navbar">
@@ -378,15 +362,12 @@
         </ul>
     </nav>
 
-    <!-- ====== العنوان في المنتصف ====== -->
     <div class="hero-wrapper" id="heroWrapper">
         <h1 id="mainTitle"><span class="gradient-text" id="subjectTitle">Matière</span></h1>
         <p class="subtitle" id="subTitle">Tous les contenus de la matière</p>
     </div>
 
-    <!-- ====== المحتوى ====== -->
     <div class="content-wrapper" id="contentWrapper">
-        <!-- الأزرار -->
         <div class="tabs-wrapper" id="tabsWrapper">
             <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
             <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
@@ -394,7 +375,6 @@
             <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
 
-        <!-- المحتوى -->
         <div class="cards-grid" id="tabContent"></div>
     </div>
 
@@ -474,14 +454,33 @@
             
             if (!currentSubject) {
                 document.getElementById('subjectTitle').textContent = '⚠️ Matière non trouvée';
-                document.getElementById('tabContent').innerHTML = '';
+                document.getElementById('tabContent').innerHTML = '<div class="no-data">Matière non trouvée</div>';
                 return;
             }
             
             document.getElementById('subjectTitle').textContent = currentSubject.title;
             document.getElementById('subTitle').textContent = currentSubject.desc;
             
-            switchTab('lessons');
+            // عرض البطاقات مباشرة
+            renderContent(document.getElementById('tabContent'), 'lessons');
+            
+            // تحريك البطاقات بعد تحميل الصفحة
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.command-card');
+                if (cards.length > 0) {
+                    gsap.fromTo(cards,
+                        { opacity: 0, y: 40, scale: 0.95 },
+                        { 
+                            opacity: 1, 
+                            y: 0, 
+                            scale: 1, 
+                            duration: 0.6, 
+                            stagger: 0.08,
+                            ease: 'back.out(1.4)'
+                        }
+                    );
+                }
+            }, 600);
         }
 
         function switchTab(tab) {
@@ -496,6 +495,7 @@
             
             const container = document.getElementById('tabContent');
             
+            // إخفاء البطاقات الحالية
             const currentCards = container.querySelectorAll('.command-card');
             if (currentCards.length > 0) {
                 gsap.to(currentCards, {
@@ -606,99 +606,22 @@
             loadSubject();
 
             const tl = gsap.timeline({
-                defaults: {
-                    ease: 'power3.out'
-                }
+                defaults: { ease: 'power3.out' }
             });
 
             tl
-                .to('.moroccan-bg', {
-                    opacity: 0.6,
-                    duration: 2,
-                    ease: 'power1.out'
-                })
-                .to('.moroccan-shadow', {
-                    opacity: 0.08,
-                    duration: 2,
-                    ease: 'power1.out'
-                }, '-=1.4')
-                .to('.moroccan-star', {
-                    opacity: 0.04,
-                    duration: 2,
-                    ease: 'power1.out'
-                }, '-=1.4')
-                .to('.geo-pattern', {
-                    opacity: 0.03,
-                    duration: 2,
-                    stagger: 0.08,
-                    ease: 'power1.out'
-                }, '-=1.6')
-                .to('#heroWrapper', {
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: 'power2.out'
-                }, '-=0.5')
-                .to('#mainTitle', {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 1.4,
-                    ease: 'back.out(2)'
-                }, '-=0.3')
-                .to('#subTitle', {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: 'power3.out'
-                }, '-=0.5')
-                .to('#mainTitle', {
-                    opacity: 0,
-                    y: -80,
-                    scale: 0.7,
-                    duration: 1.6,
-                    ease: 'power3.inOut',
-                    delay: 1.8
-                })
-                .to('#subTitle', {
-                    opacity: 0,
-                    y: -50,
-                    duration: 1.4,
-                    ease: 'power3.inOut',
-                    delay: 1.6
-                }, '-=0.8')
-                .to('#heroWrapper', {
-                    opacity: 0,
-                    duration: 0.6,
-                    ease: 'power2.in'
-                }, '-=0.4')
-                .to('#contentWrapper', {
-                    opacity: 1,
-                    duration: 0.6,
-                    ease: 'power2.out'
-                }, '-=0.2')
-                .to('#tabsWrapper', {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'back.out(1.2)'
-                }, '-=0.3');
-
-            // ظهور البطاقات بعد تحميل المحتوى
-            setTimeout(() => {
-                const cards = document.querySelectorAll('.command-card');
-                if (cards.length > 0) {
-                    gsap.fromTo(cards,
-                        { opacity: 0, y: 40, scale: 0.95 },
-                        { 
-                            opacity: 1, 
-                            y: 0, 
-                            scale: 1, 
-                            duration: 0.6, 
-                            stagger: 0.08,
-                            ease: 'back.out(1.4)'
-                        }
-                    );
-                }
-            }, 300);
+                .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
+                .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
+                .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
+                .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
+                .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
+                .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                .to('#mainTitle', { opacity: 0, y: -80, scale: 0.7, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
+                .to('#subTitle', { opacity: 0, y: -50, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
+                .to('#heroWrapper', { opacity: 0, duration: 0.6, ease: 'power2.in' }, '-=0.4')
+                .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+                .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3');
 
             // حركات مستمرة
             gsap.to('.moroccan-bg', {
@@ -719,18 +642,10 @@
             // Hover على الأزرار
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.addEventListener('mouseenter', function() {
-                    gsap.to(this, {
-                        scale: 1.05,
-                        duration: 0.2,
-                        ease: 'power2.out'
-                    });
+                    gsap.to(this, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
                 });
                 btn.addEventListener('mouseleave', function() {
-                    gsap.to(this, {
-                        scale: 1,
-                        duration: 0.2,
-                        ease: 'power2.inOut'
-                    });
+                    gsap.to(this, { scale: 1, duration: 0.2, ease: 'power2.inOut' });
                 });
             });
 
