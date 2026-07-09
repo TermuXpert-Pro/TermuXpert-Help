@@ -461,10 +461,8 @@
             document.getElementById('subjectTitle').textContent = currentSubject.title;
             document.getElementById('subTitle').textContent = currentSubject.desc;
             
-            // عرض البطاقات مباشرة
             renderContent(document.getElementById('tabContent'), 'lessons');
             
-            // تحريك البطاقات بعد تحميل الصفحة
             setTimeout(() => {
                 const cards = document.querySelectorAll('.command-card');
                 if (cards.length > 0) {
@@ -495,7 +493,6 @@
             
             const container = document.getElementById('tabContent');
             
-            // إخفاء البطاقات الحالية
             const currentCards = container.querySelectorAll('.command-card');
             if (currentCards.length > 0) {
                 gsap.to(currentCards, {
@@ -599,12 +596,31 @@
         }
 
         // ============================================================
-        // GSAP - تأثيرات عند تحميل الصفحة
+        // GSAP - تأثيرات عند تحميل الصفحة (مرة واحدة فقط)
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             loadSubject();
 
+            // التحقق مما إذا كان الأنميشن قد تم تشغيله من قبل في هذه الجلسة
+            const animationKey = 'subject_animation_done';
+            
+            if (sessionStorage.getItem(animationKey) === 'true') {
+                // إظهار كل شيء مباشرة
+                gsap.set('.moroccan-bg', { opacity: 0.6 });
+                gsap.set('.moroccan-shadow', { opacity: 0.08 });
+                gsap.set('.moroccan-star', { opacity: 0.04 });
+                gsap.set('.geo-pattern', { opacity: 0.03 });
+                gsap.set('#heroWrapper', { opacity: 1 });
+                gsap.set('#mainTitle', { opacity: 1, scale: 1 });
+                gsap.set('#subTitle', { opacity: 1, y: 0 });
+                gsap.set('#contentWrapper', { opacity: 1 });
+                gsap.set('#tabsWrapper', { opacity: 1, y: 0 });
+                console.log('✅ subject.html - Animation déjà jouée, affichage direct');
+                return;
+            }
+
+            // تشغيل الأنميشن لأول مرة
             const tl = gsap.timeline({
                 defaults: { ease: 'power3.out' }
             });
@@ -621,7 +637,11 @@
                 .to('#subTitle', { opacity: 0, y: -50, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
                 .to('#heroWrapper', { opacity: 0, duration: 0.6, ease: 'power2.in' }, '-=0.4')
                 .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
-                .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3');
+                .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
+                .call(() => {
+                    sessionStorage.setItem(animationKey, 'true');
+                    console.log('✅ subject.html - Animation jouée une fois');
+                });
 
             // حركات مستمرة
             gsap.to('.moroccan-bg', {
@@ -639,7 +659,6 @@
                 ease: 'none'
             });
 
-            // Hover على الأزرار
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.addEventListener('mouseenter', function() {
                     gsap.to(this, { scale: 1.05, duration: 0.2, ease: 'power2.out' });

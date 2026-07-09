@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
-        /* ====== خلفية زليج مغربية ====== */
         .moroccan-bg {
             position: fixed;
             top: 0;
@@ -23,12 +22,8 @@
             overflow: hidden;
             opacity: 0;
         }
-        .moroccan-bg svg {
-            width: 100%;
-            height: 100%;
-        }
+        .moroccan-bg svg { width: 100%; height: 100%; }
 
-        /* ====== ظل زخرفي ====== */
         .moroccan-shadow {
             position: fixed;
             top: 50%;
@@ -49,7 +44,6 @@
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
         }
 
-        /* ====== نجمة مغربية ====== */
         .moroccan-star {
             position: fixed;
             z-index: 0;
@@ -68,7 +62,6 @@
             100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
         }
 
-        /* ====== زخارف هندسية ====== */
         .geo-pattern {
             position: fixed;
             z-index: 0;
@@ -83,7 +76,6 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
-        /* ====== حاوية العنوان ====== */
         .hero-wrapper {
             position: fixed;
             top: 0;
@@ -132,7 +124,6 @@
             transform: translateY(30px);
         }
 
-        /* ====== البطاقات ====== */
         .cards-wrapper {
             position: relative;
             z-index: 1;
@@ -153,7 +144,6 @@
             padding: 30px 0;
         }
 
-        /* ====== بطاقة زجاجية مبهرة ====== */
         .card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -170,7 +160,6 @@
             transform: translateY(60px) scale(0.9);
         }
 
-        /* تأثير الخلفية المتدرجة لكل بطاقة */
         .card::before {
             content: '';
             position: absolute;
@@ -184,11 +173,8 @@
             opacity: 0;
             transition: opacity 0.6s ease;
         }
-        .card:hover::before {
-            opacity: 1;
-        }
+        .card:hover::before { opacity: 1; }
 
-        /* حدود متوهجة */
         .card::after {
             content: '';
             position: absolute;
@@ -202,18 +188,14 @@
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-        .card:hover::after {
-            opacity: 1;
-        }
+        .card:hover::after { opacity: 1; }
 
         .card:hover {
             transform: translateY(-10px) scale(1.02);
             border-color: rgba(78, 205, 196, 0.15);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
         }
-        .card:active {
-            transform: scale(0.97);
-        }
+        .card:active { transform: scale(0.97); }
 
         .card .card-icon {
             width: 72px;
@@ -228,9 +210,7 @@
             position: relative;
             z-index: 1;
         }
-        .card:hover .card-icon {
-            transform: scale(1.1) rotate(-5deg);
-        }
+        .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); }
 
         .card h3 {
             font-size: clamp(20px, 2.2vw, 26px);
@@ -270,11 +250,8 @@
             backdrop-filter: blur(4px);
             transition: all 0.3s ease;
         }
-        .card:hover .badge {
-            transform: translateY(-2px);
-        }
+        .card:hover .badge { transform: translateY(-2px); }
 
-        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
@@ -297,7 +274,6 @@
 </head>
 <body>
 
-    <!-- ====== خلفية زليج مغربية ====== -->
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -322,21 +298,15 @@
         </svg>
     </div>
 
-    <!-- ====== ظل زخرفي ====== -->
     <div class="moroccan-shadow"></div>
-
-    <!-- ====== نجمة مغربية ====== -->
     <div class="moroccan-star">✦</div>
 
-    <!-- ====== زخارف هندسية ====== -->
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
-    <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
-
     <div class="bg-grid"></div>
 
     <nav class="navbar">
@@ -349,13 +319,11 @@
         </ul>
     </nav>
 
-    <!-- ====== العنوان في المنتصف ====== -->
     <div class="hero-wrapper" id="heroWrapper">
         <h1 id="mainTitle">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
         <p class="subtitle" id="subTitle">Choisissez votre matière pour découvrir tout son contenu</p>
     </div>
 
-    <!-- ====== البطاقات ====== -->
     <div class="cards-wrapper" id="cardsWrapper">
         <div class="grid" id="subjectsGrid">
             <div class="no-data">Chargement...</div>
@@ -417,7 +385,6 @@
 
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
-            
             grid.innerHTML = subjects.map((s, index) => `
                 <div class="card" data-index="${index}" onclick="location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
@@ -440,118 +407,66 @@
         renderSubjects();
 
         // ============================================================
-        // GSAP - تأثيرات مبهرة
+        // GSAP - تأثيرات مبهرة (مرة واحدة فقط لكل صفحة)
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
+            // التحقق مما إذا كان الأنميشن قد تم تشغيله من قبل في هذه الجلسة
+            const animationKey = 'subjects_animation_done';
+            
+            // إذا كان الأنميشن قد تم تشغيله، نظهر كل شيء مباشرة
+            if (sessionStorage.getItem(animationKey) === 'true') {
+                // إظهار جميع العناصر مباشرة
+                gsap.set('.moroccan-bg', { opacity: 0.6 });
+                gsap.set('.moroccan-shadow', { opacity: 0.08 });
+                gsap.set('.moroccan-star', { opacity: 0.04 });
+                gsap.set('.geo-pattern', { opacity: 0.03 });
+                gsap.set('#heroWrapper', { opacity: 1 });
+                gsap.set('#mainTitle', { opacity: 1, scale: 1 });
+                gsap.set('#subTitle', { opacity: 1, y: 0 });
+                gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
+                console.log('✅ subjects.html - Animation déjà jouée, affichage direct');
+                return;
+            }
+
+            // تشغيل الأنميشن لأول مرة
             const tl = gsap.timeline({
-                defaults: {
-                    ease: 'power3.out'
-                }
+                defaults: { ease: 'power3.out' }
             });
 
-            // 1. ظهور الخلفيات
             tl
-                .to('.moroccan-bg', {
-                    opacity: 0.6,
-                    duration: 2,
-                    ease: 'power1.out'
-                })
-                .to('.moroccan-shadow', {
-                    opacity: 0.08,
-                    duration: 2,
-                    ease: 'power1.out'
-                }, '-=1.4')
-                .to('.moroccan-star', {
-                    opacity: 0.04,
-                    duration: 2,
-                    ease: 'power1.out'
-                }, '-=1.4')
-                .to('.geo-pattern', {
-                    opacity: 0.03,
-                    duration: 2,
-                    stagger: 0.08,
-                    ease: 'power1.out'
-                }, '-=1.6')
-
-            // 2. ظهور العنوان بشكل أنيق
-            .to('#heroWrapper', {
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power2.out'
-            }, '-=0.5')
-            .to('#mainTitle', {
-                opacity: 1,
-                scale: 1,
-                duration: 1.4,
-                ease: 'back.out(2)',
-                onStart: function() {
-                    gsap.fromTo('#mainTitle', 
-                        { scale: 0.6, opacity: 0, rotation: -5 },
-                        { scale: 1, opacity: 1, rotation: 0, duration: 1.4, ease: 'back.out(2)' }
-                    );
-                }
-            }, '-=0.3')
-            .to('#subTitle', {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: 'power3.out'
-            }, '-=0.5')
-
-            // 3. تلاشي العنوان (يختفي بشكل جميل)
-            .to('#mainTitle', {
-                opacity: 0,
-                y: -60,
-                scale: 0.8,
-                duration: 1.6,
-                ease: 'power3.inOut',
-                delay: 1.8
-            })
-            .to('#subTitle', {
-                opacity: 0,
-                y: -40,
-                duration: 1.4,
-                ease: 'power3.inOut',
-                delay: 1.6
-            }, '-=0.8')
-            .to('#heroWrapper', {
-                opacity: 0,
-                duration: 0.6,
-                ease: 'power2.in'
-            }, '-=0.4')
-
-            // 4. ظهور البطاقات بشكل مبهر
-            .to('#cardsWrapper', {
-                opacity: 1,
-                duration: 0.6,
-                ease: 'power2.out'
-            }, '-=0.2')
-
-            // 5. كل بطاقة تظهر بتأثير مختلف
-            .to('.card', {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 1.2,
-                stagger: {
-                    each: 0.2,
-                    from: 'start',
-                    ease: 'back.out(1.8)'
-                },
-                ease: 'power3.out'
-            }, '-=0.3')
-
-            // 6. تأثير إضافي: دوران خفيف لكل بطاقة
-            .to('.card', {
-                rotation: 0,
-                duration: 1.2,
-                stagger: 0.2,
-                ease: 'power3.out'
-            }, '-=0.8');
+                .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
+                .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
+                .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
+                .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
+                .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
+                .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                .to('#mainTitle', { opacity: 0, y: -60, scale: 0.8, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
+                .to('#subTitle', { opacity: 0, y: -40, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
+                .to('#heroWrapper', { opacity: 0, duration: 0.6, ease: 'power2.in' }, '-=0.4')
+                .to('#cardsWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+                .to('.card', {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 1.2,
+                    stagger: { each: 0.2, from: 'start', ease: 'back.out(1.8)' },
+                    ease: 'power3.out'
+                }, '-=0.3')
+                .to('.card', {
+                    rotation: 0,
+                    duration: 1.2,
+                    stagger: 0.2,
+                    ease: 'power3.out'
+                }, '-=0.8')
+                .call(() => {
+                    // تخزين أن الأنميشن تم تشغيله
+                    sessionStorage.setItem(animationKey, 'true');
+                    console.log('✅ subjects.html - Animation jouée une fois');
+                });
 
             // ====== حركات مستمرة ======
-            // توهج البطاقات بشكل دوري
             document.querySelectorAll('.card').forEach((card, i) => {
                 const icon = card.querySelector('.card-icon');
                 gsap.to(icon, {
@@ -564,7 +479,6 @@
                 });
             });
 
-            // حركة الخلفية
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
                 duration: 4,
@@ -598,7 +512,6 @@
                 delay: 1.2
             });
 
-            // ====== Hover على البطاقات ======
             document.querySelectorAll('.card').forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     const icon = this.querySelector('.card-icon');
@@ -629,8 +542,6 @@
                     });
                 });
             });
-
-            console.log('✅ GSAP - تصميم مبهر: عنوان يظهر ثم يتلاشى، بطاقات تظهر بأناقة');
         });
     </script>
 </body>
