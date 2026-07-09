@@ -12,7 +12,6 @@
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
-        /* ====== خلفية زليج مغربية ====== */
         .moroccan-bg {
             position: fixed;
             top: 0;
@@ -24,12 +23,8 @@
             overflow: hidden;
             opacity: 0;
         }
-        .moroccan-bg svg {
-            width: 100%;
-            height: 100%;
-        }
+        .moroccan-bg svg { width: 100%; height: 100%; }
 
-        /* ====== ظل زخرفي ====== */
         .moroccan-shadow {
             position: fixed;
             top: 50%;
@@ -50,7 +45,6 @@
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
         }
 
-        /* ====== نجمة مغربية ====== */
         .moroccan-star {
             position: fixed;
             z-index: 0;
@@ -69,7 +63,6 @@
             100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
         }
 
-        /* ====== زخارف هندسية ====== */
         .geo-pattern {
             position: fixed;
             z-index: 0;
@@ -84,7 +77,7 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
-        /* ====== منع التمرير والتفاعل ====== */
+        /* ====== منع التمرير ====== */
         .no-scroll {
             overflow: hidden !important;
             height: 100% !important;
@@ -105,23 +98,13 @@
             width: 100%;
             height: 100%;
             z-index: 9999;
-            cursor: wait;
             pointer-events: none;
             display: none;
-            background: rgba(11, 12, 16, 0.3);
-            backdrop-filter: blur(0px);
-            transition: all 0.8s ease;
         }
         .loading-overlay.active {
             display: block;
-            backdrop-filter: blur(4px);
-        }
-        .loading-overlay.fade-out {
-            backdrop-filter: blur(0px);
-            opacity: 0;
         }
 
-        /* ====== Hero ====== */
         .hero {
             position: relative;
             z-index: 1;
@@ -135,7 +118,6 @@
             opacity: 0;
         }
 
-        /* ====== البطاقة ====== */
         .hero-card {
             position: relative;
             background: rgba(255, 255, 255, 0.02);
@@ -151,7 +133,6 @@
             opacity: 0;
         }
 
-        /* ====== الشعار ====== */
         .hero-logo {
             display: flex;
             align-items: center;
@@ -250,7 +231,6 @@
             opacity: 0.5 !important;
         }
 
-        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .hero-card { padding: 30px 20px 40px; }
             .hero-logo .name-center { font-size: 32px; letter-spacing: 8px; }
@@ -269,10 +249,8 @@
 </head>
 <body>
 
-    <!-- ====== تراكب لمنع التفاعل ====== -->
     <div class="loading-overlay" id="loadingOverlay"></div>
 
-    <!-- ====== خلفية زليج مغربية ====== -->
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -297,21 +275,15 @@
         </svg>
     </div>
 
-    <!-- ====== ظل زخرفي ====== -->
     <div class="moroccan-shadow"></div>
-
-    <!-- ====== نجمة مغربية ====== -->
     <div class="moroccan-star">✦</div>
 
-    <!-- ====== زخارف هندسية ====== -->
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
-    <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
-
     <div class="bg-grid"></div>
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
@@ -328,9 +300,7 @@
     </nav>
 
     <section class="hero" id="heroSection">
-        <!-- ====== البطاقة ====== -->
         <div class="hero-card" id="heroCard">
-            <!-- الشعار -->
             <div class="hero-logo" id="logo">
                 <span class="name-center">MOROCCO</span>
             </div>
@@ -344,7 +314,7 @@
         </div>
     </section>
 
-    <section class="features" id="featuresSection">
+    <section class="features">
         <h2>Que trouverez-vous sur <span style="color:#4ECDC4;">Xpert</span> ?</h2>
         <p class="subtitle">Tout ce dont vous avez besoin pour réussir la 1 Bac Sciences Expérimentales</p>
         <div class="features-grid">
@@ -398,13 +368,10 @@
 
     <script src="script.js"></script>
     <script>
-        // ============================================================
-        // GSAP - الأنميشن مع تأثير أنيق عند السماح بالتمرير
-        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             // ====== منع التمرير والتفاعل ======
-            function blockScrollAndInteraction() {
+            function blockAll() {
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.overflow = 'hidden';
                 document.body.style.height = '100%';
@@ -413,8 +380,7 @@
                 document.body.style.top = '0';
                 document.body.style.left = '0';
                 
-                const overlay = document.getElementById('loadingOverlay');
-                overlay.classList.add('active');
+                document.getElementById('loadingOverlay').classList.add('active');
                 
                 document.querySelectorAll('.nav-link-disabled').forEach(el => {
                     el.style.pointerEvents = 'none';
@@ -424,66 +390,40 @@
                 document.getElementById('startBtn').classList.add('btn-disabled');
             }
 
-            function allowScrollAndInteraction() {
-                const overlay = document.getElementById('loadingOverlay');
+            function allowAll() {
+                // السماح بالتمرير فوراً
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
+                document.body.style.height = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+                document.body.style.top = '';
+                document.body.style.left = '';
                 
-                // تأثير تلاشي للتراكب
-                overlay.classList.add('fade-out');
+                document.getElementById('loadingOverlay').classList.remove('active');
                 
-                setTimeout(() => {
-                    overlay.classList.remove('active');
-                    overlay.classList.remove('fade-out');
-                    
-                    // السماح بالتمرير مع تأثير ناعم
-                    document.documentElement.style.overflow = '';
-                    document.body.style.overflow = '';
-                    document.body.style.height = '';
-                    document.body.style.position = '';
-                    document.body.style.width = '';
-                    document.body.style.top = '';
-                    document.body.style.left = '';
-                    
-                    document.querySelectorAll('.nav-link-disabled').forEach(el => {
-                        el.style.pointerEvents = '';
-                        el.style.opacity = '';
-                    });
-                    
-                    document.getElementById('startBtn').classList.remove('btn-disabled');
-                    
-                    // تأثير ظهور ناعم للصفحة (Scroll Reveal)
-                    gsap.from('.feature-card', {
-                        scrollTrigger: {
-                            trigger: '.features-grid',
-                            start: 'top 80%',
-                            end: 'top 30%',
-                            scrub: 0.5,
-                            toggleActions: 'play none none reverse'
-                        },
-                        opacity: 0,
-                        y: 50,
-                        scale: 0.9,
-                        stagger: 0.1,
-                        duration: 1,
-                        ease: 'power3.out'
-                    });
-                    
-                }, 800);
+                document.querySelectorAll('.nav-link-disabled').forEach(el => {
+                    el.style.pointerEvents = '';
+                    el.style.opacity = '';
+                });
+                
+                document.getElementById('startBtn').classList.remove('btn-disabled');
+                
+                console.log('✅ Défilement autorisé');
             }
 
             // تطبيق المنع
-            blockScrollAndInteraction();
+            blockAll();
 
-            // ====== الأنميشن الرئيسي ======
+            // ====== الأنميشن ======
             const tl = gsap.timeline({
                 defaults: {
                     duration: 0.8,
                     ease: 'power3.out'
                 },
                 onComplete: function() {
-                    setTimeout(function() {
-                        allowScrollAndInteraction();
-                        console.log('✅ Animation terminée - défilement autorisé avec effet');
-                    }, 400);
+                    // السماح بالتمرير فوراً بعد الانتهاء
+                    allowAll();
                 }
             });
 
@@ -575,7 +515,7 @@
                 ease: 'none'
             });
 
-            // ====== Hover على البطاقة ======
+            // ====== Hover ======
             const card = document.querySelector('.hero-card');
             card.addEventListener('mouseenter', () => {
                 gsap.to(card, {
@@ -594,7 +534,6 @@
                 });
             });
 
-            // ====== Hover على الزر ======
             const btn = document.querySelector('#startBtn');
             btn.addEventListener('mouseenter', () => {
                 if (!btn.classList.contains('btn-disabled')) {
@@ -617,7 +556,7 @@
                 }
             });
 
-            console.log('✅ GSAP - Animation avec effet de déblocage fluide');
+            console.log('✅ Animation chargée - défilement bloqué jusqu\'à la fin');
         });
     </script>
 </body>
