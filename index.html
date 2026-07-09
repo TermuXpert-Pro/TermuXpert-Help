@@ -6,199 +6,317 @@
     <title>Xpert - 1 Bac Sciences Expérimentales</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Great+Vibes&family=MedievalSharp&family=Cinzel:wght@700;900&family=Marcellus&family=Tangerine:wght@700&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Great+Vibes&family=Cinzel:wght@700;900&family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Exo+2:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ====== الشعار المغربي المهيب ====== */
+        /* ====== خلفية متحركة ====== */
+        .bg-animated {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-animated .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #4ECDC4;
+            border-radius: 50%;
+            animation: particleFloat 20s infinite linear;
+            opacity: 0.15;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* ====== الشعار ====== */
+        .hero-logo-wrapper {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px 40px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(78, 205, 196, 0.08);
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 80px rgba(78, 205, 196, 0.03);
+        }
+        .hero-logo-wrapper:hover {
+            transform: scale(1.04);
+            border-color: rgba(78, 205, 196, 0.2);
+            background: rgba(78, 205, 196, 0.05);
+            box-shadow: 0 0 100px rgba(78, 205, 196, 0.08);
+        }
+        .hero-logo-wrapper:active {
+            transform: scale(0.96);
+        }
+
+        /* ====== الحلقة الخارجية ====== */
+        .logo-ring {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 1px solid rgba(78, 205, 196, 0.08);
+            animation: ringRotate 30s linear infinite;
+            pointer-events: none;
+        }
+        .logo-ring:nth-child(2) {
+            width: 340px;
+            height: 340px;
+            border-color: rgba(255, 107, 107, 0.05);
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+        @keyframes ringRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ====== النص الرئيسي ====== */
         .hero-logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 30px;
-            padding: 14px 32px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid transparent;
+            gap: 16px;
             position: relative;
-            flex-wrap: nowrap;
+            z-index: 2;
+            padding: 10px 20px;
         }
-        .hero-logo:hover {
-            background: rgba(78, 205, 196, 0.06);
-            border-color: rgba(78, 205, 196, 0.15);
-            transform: scale(1.03);
-            box-shadow: 0 0 60px rgba(78, 205, 196, 0.05);
-        }
-        .hero-logo:active {
-            transform: scale(0.97);
-        }
-        
-        /* ====== JAOUAD ====== */
+
+        /* JAOUAD - 3D Effect */
         .hero-logo .name-left {
             font-family: 'Cinzel', serif;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 900;
             color: #4ECDC4;
-            letter-spacing: 4px;
-            text-shadow: 0 0 40px rgba(78, 205, 196, 0.15);
+            letter-spacing: 6px;
+            text-shadow: 
+                0 0 20px rgba(78, 205, 196, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 8px 16px rgba(0, 0, 0, 0.2);
             position: relative;
             text-transform: uppercase;
+            transition: all 0.3s ease;
         }
         .hero-logo .name-left::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -4px;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(to right, #4ECDC4, transparent);
-            opacity: 0.3;
+            border-radius: 2px;
+            opacity: 0.4;
+            transition: all 0.3s ease;
         }
-        
-        /* ====== MOROCCO ====== */
+        .hero-logo-wrapper:hover .name-left::after {
+            opacity: 0.8;
+            width: 120%;
+        }
+
+        /* MOROCCO - Effet de lumière */
         .hero-logo .name-center {
             font-family: 'Cinzel', serif;
-            font-size: 34px;
+            font-size: 42px;
             font-weight: 900;
             background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 25%, #F4D03F 50%, #FF6B6B 75%, #A8FF78 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 8px;
-            padding: 0 8px;
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease-in-out infinite;
+            letter-spacing: 10px;
+            padding: 0 10px;
             position: relative;
             text-transform: uppercase;
-            text-shadow: none;
-            filter: drop-shadow(0 0 30px rgba(78, 205, 196, 0.1));
+            filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.15));
+            transition: all 0.3s ease;
         }
-        /* زخرفة خفيفة تحت MOROCCO */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* خط تحت MOROCCO */
         .hero-logo .name-center::before {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -6px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60%;
+            width: 40%;
             height: 2px;
             background: linear-gradient(to right, transparent, #F4D03F, transparent);
-            opacity: 0.4;
+            border-radius: 2px;
+            opacity: 0.5;
+            transition: all 0.4s ease;
         }
-        
-        /* ====== ELKHAYATY ====== */
+        .hero-logo-wrapper:hover .name-center::before {
+            width: 70%;
+            opacity: 0.8;
+        }
+        /* نقطة ذهبية */
+        .hero-logo .name-center::after {
+            content: '✦';
+            position: absolute;
+            top: -12px;
+            right: -10px;
+            font-size: 12px;
+            color: #F4D03F;
+            -webkit-text-fill-color: #F4D03F;
+            opacity: 0.3;
+            animation: starPulse 3s ease-in-out infinite;
+        }
+        @keyframes starPulse {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* ELKHAYATY - 3D Effect */
         .hero-logo .name-right {
             font-family: 'Cinzel', serif;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 900;
             color: #FF6B6B;
-            letter-spacing: 4px;
-            text-shadow: 0 0 40px rgba(255, 107, 107, 0.15);
+            letter-spacing: 6px;
+            text-shadow: 
+                0 0 20px rgba(255, 107, 107, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 8px 16px rgba(0, 0, 0, 0.2);
             position: relative;
             text-transform: uppercase;
+            transition: all 0.3s ease;
         }
         .hero-logo .name-right::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -4px;
             right: 0;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(to left, #FF6B6B, transparent);
-            opacity: 0.3;
+            border-radius: 2px;
+            opacity: 0.4;
+            transition: all 0.3s ease;
         }
-        
+        .hero-logo-wrapper:hover .name-right::after {
+            opacity: 0.8;
+            width: 120%;
+        }
+
         /* ====== أيقونة التصميم ====== */
         .logo-edit-icon {
-            background: rgba(78, 205, 196, 0.1);
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            background: rgba(78, 205, 196, 0.12);
             border: 1px solid rgba(78, 205, 196, 0.15);
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #4ECDC4;
-            font-size: 11px;
+            font-size: 12px;
             opacity: 0;
-            transition: all 0.3s ease;
-            margin-left: 6px;
-            flex-shrink: 0;
+            transition: all 0.4s ease;
+            z-index: 5;
+            backdrop-filter: blur(10px);
         }
-        .hero-logo:hover .logo-edit-icon {
+        .hero-logo-wrapper:hover .logo-edit-icon {
             opacity: 1;
+            transform: translateY(-4px);
         }
-        
-        /* ====== خطوط مغربية ====== */
-        .moroccan-line {
-            width: 30px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #F4D03F);
-            opacity: 0.2;
-        }
-        .moroccan-line.right {
-            background: linear-gradient(to left, transparent, #F4D03F);
-        }
-        
+
         /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
+            .hero-logo-wrapper {
+                padding: 14px 20px;
+                border-radius: 16px;
+            }
             .hero-logo {
-                padding: 10px 16px;
-                gap: 6px;
+                gap: 8px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
             .hero-logo .name-left {
-                font-size: 16px;
-                letter-spacing: 2px;
+                font-size: 18px;
+                letter-spacing: 3px;
             }
             .hero-logo .name-center {
-                font-size: 22px;
-                letter-spacing: 4px;
+                font-size: 26px;
+                letter-spacing: 5px;
             }
             .hero-logo .name-right {
-                font-size: 16px;
-                letter-spacing: 2px;
+                font-size: 18px;
+                letter-spacing: 3px;
+            }
+            .logo-ring {
+                width: 200px;
+                height: 200px;
+            }
+            .logo-ring:nth-child(2) {
+                width: 220px;
+                height: 220px;
             }
             .logo-edit-icon {
-                width: 24px;
-                height: 24px;
-                font-size: 9px;
-            }
-            .moroccan-line {
-                width: 15px;
+                width: 26px;
+                height: 26px;
+                font-size: 10px;
             }
         }
         @media (max-width: 480px) {
+            .hero-logo-wrapper {
+                padding: 10px 12px;
+                border-radius: 12px;
+            }
             .hero-logo {
-                padding: 6px 10px;
                 gap: 4px;
-                flex-wrap: wrap;
-                justify-content: center;
             }
             .hero-logo .name-left {
                 font-size: 13px;
-                letter-spacing: 1px;
+                letter-spacing: 2px;
             }
             .hero-logo .name-center {
-                font-size: 17px;
-                letter-spacing: 2px;
+                font-size: 18px;
+                letter-spacing: 3px;
             }
             .hero-logo .name-right {
                 font-size: 13px;
-                letter-spacing: 1px;
+                letter-spacing: 2px;
+            }
+            .logo-ring {
+                width: 160px;
+                height: 160px;
+            }
+            .logo-ring:nth-child(2) {
+                width: 180px;
+                height: 180px;
+            }
+            .hero-logo .name-center::before {
+                width: 30%;
             }
             .logo-edit-icon {
                 width: 20px;
                 height: 20px;
-                font-size: 7px;
-            }
-            .moroccan-line {
-                width: 10px;
-            }
-            .hero-logo .name-center::before {
-                width: 40%;
+                font-size: 8px;
+                bottom: 4px;
+                right: 6px;
             }
         }
     </style>
@@ -211,6 +329,9 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 </head>
 <body>
+    <!-- ====== خلفية متحركة بالجسيمات ====== -->
+    <div class="bg-animated" id="particles"></div>
+
     <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
 
@@ -230,13 +351,18 @@
     </nav>
 
     <section class="hero">
-        <!-- ====== الشعار المغربي المهيب ====== -->
-        <div class="hero-logo" onclick="window.location.href='logo-design.html'">
-            <span class="moroccan-line"></span>
-            <span class="name-left">JAOUAD</span>
-            <span class="name-center">MOROCCO</span>
-            <span class="name-right">ELKHAYATY</span>
-            <span class="moroccan-line right"></span>
+        <!-- ====== الشعار الإحترافي ====== -->
+        <div class="hero-logo-wrapper" onclick="window.location.href='logo-design.html'">
+            <!-- حلقات زخرفية -->
+            <div class="logo-ring"></div>
+            <div class="logo-ring"></div>
+
+            <div class="hero-logo">
+                <span class="name-left">JAOUAD</span>
+                <span class="name-center">MOROCCO</span>
+                <span class="name-right">ELKHAYATY</span>
+            </div>
+
             <span class="logo-edit-icon"><i class="fas fa-pen"></i></span>
         </div>
 
@@ -302,5 +428,22 @@
     </button>
 
     <script src="script.js"></script>
+    <script>
+        // ====== جسيمات الخلفية ======
+        (function() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 3 + 1) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 20) + 's';
+                particle.style.opacity = (Math.random() * 0.1 + 0.05);
+                container.appendChild(particle);
+            }
+        })();
+    </script>
 </body>
 </html>
