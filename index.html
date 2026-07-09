@@ -1,8 +1,11 @@
-<!-- Xpert - Page mise à jour -->
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Xpert - Plateforme éducative pour 1 Bac Sciences Expérimentales. Cours, exercices, séries et examens en Mathématiques, Physique et Chimie.">
+    <meta name="keywords" content="Xpert, 1 Bac, Sciences Expérimentales, Maths, Physique, Chimie, cours, exercices, séries, examens">
+    <meta name="author" content="Xpert">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xpert - 1 Bac Sciences Expérimentales</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +15,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
-        /* ====== طبقة الحماية ====== */
+        /* ====== طبقة الحماية غير المرئية ====== */
         .overlay-protection {
             position: fixed;
             top: 0;
@@ -31,13 +34,82 @@
             opacity: 1 !important;
             pointer-events: all !important;
         }
+        .overlay-protection.fade-out {
+            transition: opacity 0.5s ease;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
         .overlay-protection.hidden {
             display: none !important;
             opacity: 0 !important;
             pointer-events: none !important;
         }
 
-        /* ====== المحتوى الرئيسي ====== */
+        .moroccan-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .moroccan-bg svg { width: 100%; height: 100%; }
+
+        .moroccan-shadow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(circle at center, #4ECDC4 0%, #FF6B6B 40%, #F4D03F 70%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: shadowPulse 8s ease-in-out infinite;
+        }
+        @keyframes shadowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
+        }
+
+        .moroccan-star {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            font-size: 120px;
+            color: #4ECDC4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: starSpin 20s linear infinite;
+        }
+        @keyframes starSpin {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+        }
+
+        .geo-pattern {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            color: #F4D03F;
+            font-size: 20px;
+            letter-spacing: 20px;
+        }
+        .geo-pattern-1 { top: 10%; left: 5%; transform: rotate(-15deg); }
+        .geo-pattern-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
+        .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
+        .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
+
         .hero {
             position: relative;
             z-index: 1;
@@ -91,6 +163,7 @@
         .profile-outer .profile-image:hover {
             transform: scale(1.05);
             border-color: rgba(78, 205, 196, 0.5);
+            box-shadow: 0 0 70px rgba(78, 205, 196, 0.2);
         }
 
         .hero-card {
@@ -102,7 +175,6 @@
             max-width: 700px;
             width: 100%;
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             margin-top: 10px;
@@ -120,6 +192,7 @@
             opacity: 0;
             transform: translateY(20px);
         }
+
         .hero-logo .name-center {
             font-family: 'Playfair Display', serif;
             font-size: 52px;
@@ -131,8 +204,10 @@
             background-size: 300% 300%;
             animation: gradientShift 6s ease-in-out infinite;
             letter-spacing: 14px;
+            padding: 0 8px;
             text-transform: uppercase;
             filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.15));
+            position: relative;
         }
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
@@ -203,26 +278,31 @@
         @media (max-width: 768px) {
             .hero-card { padding: 30px 20px 40px; }
             .hero-logo .name-center { font-size: 32px; letter-spacing: 8px; }
+            .moroccan-shadow { width: 300px; height: 300px; }
+            .moroccan-star { font-size: 60px; }
+            .geo-pattern { font-size: 14px; letter-spacing: 12px; }
             .profile-outer .profile-image { width: 100px; height: 100px; }
             .profile-outer .profile-ring { width: 124px; height: 124px; top: -12px; left: -12px; }
+            .hero-card { margin-top: 15px; }
         }
         @media (max-width: 480px) {
             .hero-card { padding: 20px 12px 30px; }
             .hero-logo .name-center { font-size: 22px; letter-spacing: 4px; }
+            .moroccan-shadow { width: 200px; height: 200px; }
+            .moroccan-star { font-size: 40px; }
+            .geo-pattern { font-size: 10px; letter-spacing: 8px; }
             .profile-outer .profile-image { width: 80px; height: 80px; }
             .profile-outer .profile-ring { width: 104px; height: 104px; top: -12px; left: -12px; }
-            .hero { padding: 70px 12px 30px; min-height: 60vh; }
-            .hero-buttons { flex-direction: column; width: 100%; }
-            .hero-buttons .btn { width: 100%; justify-content: center; }
+            .hero { padding: 70px 12px 30px; }
+            .hero-card { margin-top: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ====== طبقة الحماية ====== -->
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
 
-    <!-- ====== الخلفية المغربية (مدمجة مباشرة) ====== -->
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -255,11 +335,11 @@
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
+    <div class="progress-bar" id="progressBar"></div>
     <div class="bg-grid"></div>
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
 
-    <!-- ====== شريط التنقل ====== -->
     <nav class="navbar" id="navbar">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
@@ -271,7 +351,6 @@
         </ul>
     </nav>
 
-    <!-- ====== المحتوى ====== -->
     <section class="hero" id="heroSection">
         <div class="profile-outer" id="profileWrapper">
             <div style="position:relative; display:inline-block;">
@@ -284,6 +363,7 @@
             <div class="hero-logo" id="logo">
                 <span class="name-center">MOROCCO</span>
             </div>
+
             <div class="hero-label" id="label"><span class="dot"></span> 1 Bac Sciences Expérimentales</div>
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
@@ -293,7 +373,6 @@
         </div>
     </section>
 
-    <!-- ====== التذييل ====== -->
     <footer class="footer">
         <div class="divider"></div>
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
@@ -303,7 +382,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- ====== السكريبتات ====== -->
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -313,122 +391,186 @@
             // ====== تفعيل طبقة الحماية ======
             overlay.classList.add('active');
             
-            // ====== أنميشن الخلفيات ======
-            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            const tl = gsap.timeline({
+                defaults: {
+                    ease: 'power3.out'
+                }
+            });
 
+            // 1. ظهور الخلفيات (مثل subjects)
             tl
-                // 1. ظهور الخلفيات
-                .to('.moroccan-bg', { opacity: 0.6, duration: 1.8, ease: 'power1.out' })
-                .to('.moroccan-shadow', { opacity: 0.08, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-                .to('.moroccan-star', { opacity: 0.04, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-                .to('.geo-pattern', { opacity: 0.03, duration: 1.8, stagger: 0.08, ease: 'power1.out' }, '-=1.4')
-                
-                // 2. ظهور الهيرو
-                .to('#heroSection', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-                
-                // 3. ظهور البروفايل
-                .to('#profileWrapper', { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)' }, '-=0.3')
-                .to('#profileImg', { 
-                    scale: 1, 
-                    duration: 0.8, 
-                    ease: 'back.out(2)',
-                    onStart: function() {
-                        gsap.fromTo('#profileImg', 
-                            { scale: 0.6, opacity: 0, rotation: -10 },
-                            { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: 'back.out(2)' }
-                        );
-                    }
-                }, '-=0.6')
-                
-                // 4. ظهور البطاقة
-                .to('#heroCard', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-                
-                // 5. ظهور الشعار
-                .to('#logo', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
-                .fromTo('.name-center', 
-                    { scale: 0.8, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
-                    '-=0.4'
-                )
-                
-                // 6. ظهور باقي العناصر
-                .to('.hero-label', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#title', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#desc', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                
-                // 7. إزالة طبقة الحماية
-                .call(function() {
-                    overlay.classList.remove('active');
-                    overlay.classList.add('hidden');
-                    overlay.style.display = 'none';
-                    overlay.style.pointerEvents = 'none';
-                    console.log('✅ Overlay protection removed');
-                });
+                .to('.moroccan-bg', {
+                    opacity: 0.6,
+                    duration: 1.8,
+                    ease: 'power1.out'
+                })
+                .to('.moroccan-shadow', {
+                    opacity: 0.08,
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
+                .to('.moroccan-star', {
+                    opacity: 0.04,
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
+                .to('.geo-pattern', {
+                    opacity: 0.03,
+                    duration: 1.8,
+                    stagger: 0.08,
+                    ease: 'power1.out'
+                }, '-=1.4')
 
-            // ====== حركات مستمرة ======
+            // 2. ظهور الهيرو
+            .to('#heroSection', {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.5')
+
+            // 3. ظهور البروفايل
+            .to('#profileWrapper', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'back.out(1.7)'
+            }, '-=0.3')
+            .to('#profileImg', {
+                scale: 1,
+                duration: 0.8,
+                ease: 'back.out(2)',
+                onStart: function() {
+                    gsap.fromTo('#profileImg', 
+                        { scale: 0.6, opacity: 0, rotation: -10 },
+                        { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: 'back.out(2)' }
+                    );
+                }
+            }, '-=0.6')
+
+            // 4. ظهور البطاقة
+            .to('#heroCard', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.3')
+
+            // 5. ظهور الشعار
+            .to('#logo', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'back.out(1.7)'
+            }, '-=0.4')
+            .fromTo('.name-center', 
+                { scale: 0.8, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
+                '-=0.4'
+            )
+
+            // 6. ظهور باقي العناصر
+            .to('.hero-label', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('#title', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('#desc', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('#buttons', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('.dot', {
+                scale: 1.2,
+                duration: 0.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            }, '-=0.2')
+            
+            // ====== بعد انتهاء الأنميشن، إزالة طبقة الحماية ======
+            .call(function() {
+                // إزالة طبقة الحماية بشكل نهائي
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ Overlay protection removed - buttons are now clickable');
+            });
+
+            // ====== حركات مستمرة (مثل subjects) ======
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
                 duration: 3,
                 repeat: -1,
                 yoyo: true,
-                ease: 'sine.inOut',
-                delay: 2
+                ease: 'sine.inOut'
             });
 
             gsap.to('.moroccan-star', {
                 rotation: 360,
                 duration: 30,
                 repeat: -1,
-                ease: 'none',
-                delay: 2
+                ease: 'none'
             });
 
             gsap.to('.geo-pattern-1', {
-                x: 20, y: 10,
+                x: 20,
+                y: 10,
                 duration: 4,
                 repeat: -1,
                 yoyo: true,
-                ease: 'sine.inOut',
-                delay: 2
+                ease: 'sine.inOut'
             });
             gsap.to('.geo-pattern-2', {
-                x: -20, y: -10,
+                x: -20,
+                y: -10,
                 duration: 4,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
-                delay: 3
+                delay: 1
             });
             gsap.to('.geo-pattern-3', {
-                x: 15, y: -15,
+                x: 15,
+                y: -15,
                 duration: 5,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
-                delay: 2.5
+                delay: 0.5
             });
             gsap.to('.geo-pattern-4', {
-                x: -15, y: 15,
+                x: -15,
+                y: 15,
                 duration: 5,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
-                delay: 3.5
+                delay: 1.5
             });
 
-            // ====== Hover Effects ======
+            // ====== Hover ======
             const card = document.querySelector('.hero-card');
-            card.addEventListener('mouseenter', function() {
-                gsap.to(this, {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
                     scale: 1.01,
                     duration: 0.3,
                     ease: 'power2.out',
                     boxShadow: '0 40px 100px rgba(0,0,0,0.4)'
                 });
             });
-            card.addEventListener('mouseleave', function() {
-                gsap.to(this, {
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
                     scale: 1,
                     duration: 0.3,
                     ease: 'power2.inOut',
@@ -437,26 +579,24 @@
             });
 
             const btn = document.querySelector('.btn-primary');
-            if (btn) {
-                btn.addEventListener('mouseenter', function() {
-                    gsap.to(this, {
-                        scale: 1.05,
-                        duration: 0.2,
-                        ease: 'power2.out',
-                        boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
-                    });
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
                 });
-                btn.addEventListener('mouseleave', function() {
-                    gsap.to(this, {
-                        scale: 1,
-                        duration: 0.2,
-                        ease: 'power2.inOut',
-                        boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
-                    });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
                 });
-            }
+            });
 
-            console.log('✅ Home page animation complete!');
+            console.log('✅ GSAP - Animation complète avec overlay protection');
         });
     </script>
 </body>
