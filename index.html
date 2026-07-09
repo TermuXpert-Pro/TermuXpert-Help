@@ -50,22 +50,23 @@
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
         }
 
-        /* ====== علم مغربي ====== */
-        .moroccan-flag {
+        /* ====== نجمة مغربية ====== */
+        .moroccan-star {
             position: fixed;
             z-index: 0;
             pointer-events: none;
-            font-size: 100px;
-            color: #C41E24;
-            opacity: 0.08;
+            opacity: 0.04;
+            font-size: 120px;
+            color: #4ECDC4;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: flagFloat 10s ease-in-out infinite;
+            animation: starSpin 20s linear infinite;
         }
-        @keyframes flagFloat {
-            0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-            50% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+        @keyframes starSpin {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
         }
 
         /* ====== زخارف هندسية ====== */
@@ -110,13 +111,37 @@
             overflow: hidden;
         }
 
-        /* ====== العلم في البطاقة ====== */
-        .card-flag {
-            font-size: 60px;
+        /* ====== الشعار ====== */
+        .hero-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             margin-bottom: 10px;
-            display: block;
+            flex-wrap: wrap;
             opacity: 0;
             transform: translateY(20px);
+        }
+
+        .hero-logo .name-center {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 25%, #F4D03F 50%, #FF6B6B 75%, #A8FF78 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease-in-out infinite;
+            letter-spacing: 14px;
+            padding: 0 8px;
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.15));
+            position: relative;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-label {
@@ -183,17 +208,17 @@
         /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .hero-card { padding: 30px 20px 40px; }
+            .hero-logo .name-center { font-size: 32px; letter-spacing: 8px; }
             .moroccan-shadow { width: 300px; height: 300px; }
-            .moroccan-flag { font-size: 60px; }
+            .moroccan-star { font-size: 60px; }
             .geo-pattern { font-size: 14px; letter-spacing: 12px; }
-            .card-flag { font-size: 40px; }
         }
         @media (max-width: 480px) {
             .hero-card { padding: 20px 12px 30px; }
+            .hero-logo .name-center { font-size: 22px; letter-spacing: 4px; }
             .moroccan-shadow { width: 200px; height: 200px; }
-            .moroccan-flag { font-size: 40px; }
+            .moroccan-star { font-size: 40px; }
             .geo-pattern { font-size: 10px; letter-spacing: 8px; }
-            .card-flag { font-size: 30px; }
         }
     </style>
 </head>
@@ -227,8 +252,8 @@
     <!-- ====== ظل زخرفي ====== -->
     <div class="moroccan-shadow"></div>
 
-    <!-- ====== علم مغربي ====== -->
-    <div class="moroccan-flag">🇲🇦</div>
+    <!-- ====== نجمة مغربية ====== -->
+    <div class="moroccan-star">✦</div>
 
     <!-- ====== زخارف هندسية ====== -->
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
@@ -255,10 +280,11 @@
     </nav>
 
     <section class="hero">
-        <!-- ====== البطاقة ====== -->
         <div class="hero-card">
-            <!-- العلم في البطاقة -->
-            <span class="card-flag" id="flag">🇲🇦</span>
+            <!-- الشعار -->
+            <div class="hero-logo" id="logo">
+                <span class="name-center">MOROCCO</span>
+            </div>
 
             <div class="hero-label" id="label"><span class="dot"></span> 1 Bac Sciences Expérimentales</div>
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
@@ -323,9 +349,6 @@
 
     <script src="script.js"></script>
     <script>
-        // ============================================================
-        // GSAP - الرسوم المتحركة
-        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             const tl = gsap.timeline({
@@ -335,14 +358,18 @@
                 }
             });
 
-            // === تسلسل الظهور ===
             tl
-                .to('#flag', {
+                .to('#logo', {
                     opacity: 1,
                     y: 0,
                     duration: 1,
                     ease: 'back.out(1.7)'
                 })
+                .fromTo('.name-center', 
+                    { scale: 0.8, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
+                    '-=0.6'
+                )
                 .to('.hero-label', {
                     opacity: 1,
                     y: 0,
@@ -371,15 +398,6 @@
                     ease: 'sine.inOut'
                 }, '-=0.2');
 
-            // === حركة العلم في الخلفية ===
-            gsap.to('.moroccan-flag', {
-                rotation: 360,
-                duration: 25,
-                repeat: -1,
-                ease: 'none'
-            });
-
-            // === حركة خلفية الزليج ===
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
                 duration: 3,
@@ -388,7 +406,13 @@
                 ease: 'sine.inOut'
             });
 
-            // === حركة الزخارف الهندسية ===
+            gsap.to('.moroccan-star', {
+                rotation: 360,
+                duration: 30,
+                repeat: -1,
+                ease: 'none'
+            });
+
             gsap.to('.geo-pattern-1', {
                 x: 20,
                 y: 10,
@@ -425,7 +449,6 @@
                 delay: 1.5
             });
 
-            // === Hover على البطاقة ===
             const card = document.querySelector('.hero-card');
             card.addEventListener('mouseenter', () => {
                 gsap.to(card, {
@@ -444,7 +467,6 @@
                 });
             });
 
-            // === Hover على الزر ===
             const btn = document.querySelector('.btn-primary');
             btn.addEventListener('mouseenter', () => {
                 gsap.to(btn, {
@@ -463,7 +485,7 @@
                 });
             });
 
-            console.log('✅ GSAP - خلفية مغربية مع علم 🇲🇦');
+            console.log('✅ GSAP - خلفية مغربية مع حركات زخرفية');
         });
     </script>
 </body>
