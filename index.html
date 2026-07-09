@@ -79,7 +79,8 @@
         /* ====== منع التمرير ====== */
         .no-scroll {
             overflow: hidden !important;
-            height: 100% !important;
+            height: 100vh !important;
+            position: relative !important;
         }
 
         .loading-overlay {
@@ -221,6 +222,10 @@
             pointer-events: none !important;
             opacity: 0.5 !important;
         }
+        .nav-link-disabled {
+            pointer-events: none !important;
+            opacity: 0.5 !important;
+        }
 
         @media (max-width: 768px) {
             .hero-card { padding: 30px 20px 40px; }
@@ -357,39 +362,63 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="script.js"></script>
     <script>
+        // ============================================================
+        // GSAP - الأنميشن مع منع/السماح بالتمرير
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
+            // العناصر
+            const html = document.documentElement;
+            const body = document.body;
+            const overlay = document.getElementById('loadingOverlay');
+            const navLinks = document.querySelectorAll('.nav-link-disabled');
+            const startBtn = document.getElementById('startBtn');
+
             // ====== منع التمرير ======
-            function blockScroll() {
-                document.body.classList.add('no-scroll');
-                document.getElementById('loadingOverlay').classList.add('active');
+            function blockAll() {
+                // منع التمرير
+                html.style.overflow = 'hidden';
+                body.style.overflow = 'hidden';
+                body.style.height = '100vh';
                 
-                document.querySelectorAll('.nav-link-disabled').forEach(el => {
+                // إظهار التراكب
+                overlay.classList.add('active');
+                
+                // تعطيل الروابط
+                navLinks.forEach(el => {
                     el.style.pointerEvents = 'none';
                     el.style.opacity = '0.5';
                 });
-                document.getElementById('startBtn').classList.add('btn-disabled');
+                
+                // تعطيل زر البداية
+                startBtn.classList.add('btn-disabled');
             }
 
-            function allowScroll() {
-                // إزالة كل ما يمنع التمرير
-                document.body.classList.remove('no-scroll');
-                document.getElementById('loadingOverlay').classList.remove('active');
+            // ====== السماح بالتمرير ======
+            function allowAll() {
+                // السماح بالتمرير
+                html.style.overflow = '';
+                body.style.overflow = '';
+                body.style.height = '';
                 
-                // إعادة تفعيل الروابط
-                document.querySelectorAll('.nav-link-disabled').forEach(el => {
+                // إخفاء التراكب
+                overlay.classList.remove('active');
+                
+                // تفعيل الروابط
+                navLinks.forEach(el => {
                     el.style.pointerEvents = '';
                     el.style.opacity = '';
                 });
-                document.getElementById('startBtn').classList.remove('btn-disabled');
+                
+                // تفعيل زر البداية
+                startBtn.classList.remove('btn-disabled');
                 
                 console.log('✅ Défilement et interactions autorisés');
             }
 
             // ====== تطبيق المنع ======
-            blockScroll();
+            blockAll();
 
             // ====== الأنميشن ======
             const tl = gsap.timeline({
@@ -398,8 +427,8 @@
                     ease: 'power3.out'
                 },
                 onComplete: function() {
-                    // السماح فوراً بعد الأنميشن
-                    allowScroll();
+                    // السماح بعد الأنميشن مباشرة
+                    allowAll();
                 }
             });
 
