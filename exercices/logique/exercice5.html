@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 5 - Logique - Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/lesson-common.css">
+    <link rel="stylesheet" href="../../css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        body { font-size: 12px !important; }
+        .navbar { height: 44px !important; padding: 0 10px !important; }
+        .nav-logo-icon { width: 24px !important; height: 24px !important; font-size: 12px !important; }
+        .nav-logo-text { font-size: 14px !important; }
+        .nav-links a { font-size: 11px !important; padding: 3px 8px !important; }
+        .back-btn { font-size: 11px !important; padding: 4px 12px !important; margin-bottom: 12px !important; }
+        .lesson-title { font-size: 20px !important; padding-bottom: 8px !important; margin-bottom: 14px !important; }
+        .section { padding: 10px 12px !important; margin-bottom: 10px !important; border-radius: 10px !important; }
+        .section h2 { font-size: 14px !important; margin-bottom: 6px !important; }
+        .section h2 .num { width: 22px !important; height: 22px !important; font-size: 11px !important; }
+        .section p { font-size: 11.5px !important; margin-bottom: 4px !important; line-height: 1.5 !important; }
+        .section ul { font-size: 11.5px !important; padding-right: 14px !important; margin-bottom: 4px !important; }
+        .section ul li { margin-bottom: 4px !important; }
+        .highlight-box { padding: 6px 10px !important; margin: 4px 0 !important; border-right-width: 3px !important; }
+        .highlight-box .label { font-size: 10px !important; padding: 1px 8px !important; margin-bottom: 2px !important; }
+        .formula-block { padding: 6px 10px !important; margin: 4px 0 !important; font-size: 13px !important; border-radius: 6px !important; }
+        .step { font-size: 11px !important; padding: 3px 10px !important; margin: 3px 0 !important; }
+        .step .step-num { font-size: 11px !important; }
+        .footer p { font-size: 10px !important; }
+        .lesson-container { padding: 8px !important; }
+        .glow-orb { display: none !important; }
+        .bg-grid { opacity: 0.3 !important; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important; }
+        .progress-bar { display: none !important; }
+        .scroll-top-btn { display: none !important; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 10px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 11px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        @media (max-width: 768px) {
+            body { font-size: 11px !important; }
+            .lesson-title { font-size: 17px !important; }
+            .section { padding: 6px 8px !important; }
+            .section h2 { font-size: 12px !important; }
+            .section p { font-size: 10.5px !important; }
+            .nav-links a { font-size: 10px !important; padding: 2px 6px !important; }
+            .sub-question { padding: 6px 8px !important; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 10px !important; }
+            .lesson-title { font-size: 15px !important; }
+            .section h2 { font-size: 11px !important; }
+            .section p { font-size: 10px !important; }
+            .back-btn { font-size: 10px !important; padding: 3px 10px !important; }
+            .nav-logo-text { font-size: 12px !important; }
+            .nav-logo-icon { width: 20px !important; height: 20px !important; font-size: 10px !important; }
+            .sub-question { padding: 4px 6px !important; }
+            .sub-question .letter { font-size: 11px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <nav class="navbar" id="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux exercices</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 5</h1>
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Lois logiques</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+            </p>
+
+            <div class="section">
+                <h2><span class="num">5</span> Lois logiques</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Montrer par deux méthodes différentes que chaque proposition est une loi logique.</p>
+
+                <!-- a -->
+                <div class="sub-question">
+                    <div class="letter">a.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $p \Rightarrow (q \Rightarrow p)$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol5a')">Voir la solution</button>
+                    <div id="sol5a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Méthode 1 - Table de vérité :</strong></p>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$p$</th><th>$q$</th><th>$q \Rightarrow p$</th><th>$p \Rightarrow (q \Rightarrow p)$</th></tr>
+                                    <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                                    <tr><td class="true">V</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                                    <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td><td class="true">V</td></tr>
+                                    <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                                </table>
+                            </div>
+                            <p><strong>Méthode 2 - Équivalences :</strong></p>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $p \Rightarrow (q \Rightarrow p) \equiv \neg p \lor (\neg q \lor p)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $\equiv (\neg p \lor p) \lor \neg q$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $\equiv V \lor \neg q \equiv V$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> C'est une <span style="color:#4ECDC4;">tautologie</span>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- b -->
+                <div class="sub-question">
+                    <div class="letter">b.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $p \Rightarrow (p \Rightarrow q)$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol5b')">Voir la solution</button>
+                    <div id="sol5b" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Méthode 1 - Table de vérité :</strong></p>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$p$</th><th>$q$</th><th>$p \Rightarrow q$</th><th>$p \Rightarrow (p \Rightarrow q)$</th></tr>
+                                    <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                                    <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                                    <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                                    <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                                </table>
+                            </div>
+                            <p>Ce n'est pas une tautologie car elle est fausse pour $p=V$ et $q=F$.</p>
+                            <p style="color:#FF6B6B;"><strong>Conclusion :</strong> Ce n'est <span style="color:#FF6B6B;">pas</span> une loi logique.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- c -->
+                <div class="sub-question">
+                    <div class="letter">c.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $(\neg p \Rightarrow q) \Rightarrow p$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol5c')">Voir la solution</button>
+                    <div id="sol5c" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Méthode 1 - Table de vérité :</strong></p>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$p$</th><th>$q$</th><th>$\neg p$</th><th>$\neg p \Rightarrow q$</th><th>$(\neg p \Rightarrow q) \Rightarrow p$</th></tr>
+                                    <tr><td class="true">V</td><td class="true">V</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                                    <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                                    <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td><td class="true">V</td><td class="false">F</td></tr>
+                                    <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td><td class="false">F</td><td class="true">V</td></tr>
+                                </table>
+                            </div>
+                            <p>Ce n'est pas une tautologie car elle est fausse pour $p=F$ et $q=V$.</p>
+                            <p style="color:#FF6B6B;"><strong>Conclusion :</strong> Ce n'est <span style="color:#FF6B6B;">pas</span> une loi logique.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- d - Disjonction des cas -->
+                <div class="sub-question">
+                    <div class="letter">d.</div>
+                    <p style="font-size:11.5px; margin:4px 0;"><strong>Disjonction des cas :</strong> Montrer que :</p>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\forall n \in \mathbb{N}, \frac{n(n^2+1)}{2} \in \mathbb{N}$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol5d')">Voir la solution</button>
+                    <div id="sol5d" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Cas 1 :</strong> $n$ est pair ($n = 2k$)</p>
+                            <div class="step"><span class="step-num">Étape :</span> $\frac{n(n^2+1)}{2} = \frac{2k(4k^2+1)}{2} = k(4k^2+1) \in \mathbb{N}$</div>
+                            <p><strong>Cas 2 :</strong> $n$ est impair ($n = 2k+1$)</p>
+                            <div class="step"><span class="step-num">Étape :</span> $n^2+1 = (2k+1)^2+1 = 4k^2+4k+2 = 2(2k^2+2k+1)$</div>
+                            <div class="step"><span class="step-num">Étape :</span> Donc $\frac{n(n^2+1)}{2} = n(2k^2+2k+1) \in \mathbb{N}$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- e - Équivalences successives -->
+                <div class="sub-question">
+                    <div class="letter">e.</div>
+                    <p style="font-size:11.5px; margin:4px 0;"><strong>Équivalences successives :</strong> Montrer que :</p>
+                    <div class="formula-block" style="font-size:13px;">
+                        $(p \Rightarrow (q \Rightarrow r)) \Leftrightarrow ((p \land q) \Rightarrow r)$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol5e')">Voir la solution</button>
+                    <div id="sol5e" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $p \Rightarrow (q \Rightarrow r)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $\equiv \neg p \lor (\neg q \lor r)$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $\equiv (\neg p \lor \neg q) \lor r$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $\equiv \neg(p \land q) \lor r$</div>
+                            <div class="step"><span class="step-num">Étape 5 :</span> $\equiv (p \land q) \Rightarrow r$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> Les deux propositions sont <span style="color:#4ECDC4;">équivalentes</span>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- f -->
+                <div class="sub-question">
+                    <div class="letter">f.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soient $x, y \in \mathbb{R}^+$, montrer que :</p>
+                    <div class="formula-block" style="font-size:13px;">
+                        $x + y + 2 = 2\sqrt{x} + 2\sqrt{y} \Rightarrow x = y = 1$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol5f')">Voir la solution</button>
+                    <div id="sol5f" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $x + y + 2 = 2\sqrt{x} + 2\sqrt{y}$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $x - 2\sqrt{x} + 1 + y - 2\sqrt{y} + 1 = 0$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = 0$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $(\sqrt{x} - 1)^2 = 0$ et $(\sqrt{y} - 1)^2 = 0$</div>
+                            <div class="step"><span class="step-num">Étape 5 :</span> $\sqrt{x} = 1$ et $\sqrt{y} = 1$</div>
+                            <div class="step"><span class="step-num">Étape 6 :</span> $x = 1$ et $y = 1$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x = y = 1$.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="exercice4.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 4</a>
+                <a href="exercice6.html" class="next-btn">Exercice 6 <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+</body>
+</html>
