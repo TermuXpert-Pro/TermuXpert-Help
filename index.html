@@ -30,13 +30,19 @@
             display: none;
         }
         .overlay-protection.active {
-            display: block;
-            opacity: 1;
+            display: block !important;
+            opacity: 1 !important;
+            pointer-events: all !important;
         }
         .overlay-protection.fade-out {
-            transition: opacity 0.6s ease;
-            opacity: 0;
-            pointer-events: none;
+            transition: opacity 0.5s ease;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        .overlay-protection.hidden {
+            display: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
 
         .moroccan-bg {
@@ -388,15 +394,6 @@
             const tl = gsap.timeline({
                 defaults: {
                     ease: 'power3.out'
-                },
-                onComplete: function() {
-                    // ====== إزالة طبقة الحماية بشكل غير ملحوظ ======
-                    overlay.classList.add('fade-out');
-                    setTimeout(function() {
-                        overlay.classList.remove('active', 'fade-out');
-                        overlay.style.display = 'none';
-                        console.log('✅ Overlay protection removed');
-                    }, 700);
                 }
             });
 
@@ -498,7 +495,17 @@
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut'
-            }, '-=0.2');
+            }, '-=0.2')
+            
+            // ====== بعد انتهاء الأنميشن، إزالة طبقة الحماية ======
+            .call(function() {
+                // إزالة طبقة الحماية بشكل نهائي
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ Overlay protection removed - buttons are now clickable');
+            });
 
             // ====== حركات مستمرة (مثل subjects) ======
             gsap.to('.moroccan-bg', {
