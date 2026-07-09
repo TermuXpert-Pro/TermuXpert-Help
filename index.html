@@ -9,8 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
+        /* ====== خلفية زليج مغربية ====== */
         .moroccan-bg {
             position: fixed;
             top: 0;
@@ -20,10 +22,14 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
-            opacity: 0;
+            opacity: 0.6;
         }
-        .moroccan-bg svg { width: 100%; height: 100%; }
+        .moroccan-bg svg {
+            width: 100%;
+            height: 100%;
+        }
 
+        /* ====== ظل زخرفي ====== */
         .moroccan-shadow {
             position: fixed;
             top: 50%;
@@ -33,7 +39,7 @@
             height: 600px;
             z-index: 0;
             pointer-events: none;
-            opacity: 0;
+            opacity: 0.08;
             background: radial-gradient(circle at center, #4ECDC4 0%, #FF6B6B 40%, #F4D03F 70%, transparent 100%);
             border-radius: 50%;
             filter: blur(80px);
@@ -44,11 +50,12 @@
             50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
         }
 
+        /* ====== نجمة مغربية ====== */
         .moroccan-star {
             position: fixed;
             z-index: 0;
             pointer-events: none;
-            opacity: 0;
+            opacity: 0.04;
             font-size: 120px;
             color: #4ECDC4;
             top: 50%;
@@ -62,11 +69,12 @@
             100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
         }
 
+        /* ====== زخارف هندسية ====== */
         .geo-pattern {
             position: fixed;
             z-index: 0;
             pointer-events: none;
-            opacity: 0;
+            opacity: 0.03;
             color: #F4D03F;
             font-size: 20px;
             letter-spacing: 20px;
@@ -76,26 +84,7 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
-        /* ====== منع التمرير ====== */
-        .no-scroll {
-            overflow: hidden !important;
-            height: 100vh !important;
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            pointer-events: none;
-            display: none;
-        }
-        .loading-overlay.active {
-            display: block;
-        }
-
+        /* ====== Hero ====== */
         .hero {
             position: relative;
             z-index: 1;
@@ -106,9 +95,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0;
         }
 
+        /* ====== البطاقة ====== */
         .hero-card {
             position: relative;
             background: rgba(255, 255, 255, 0.02);
@@ -120,10 +109,9 @@
             backdrop-filter: blur(20px);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            transform: translateY(30px);
-            opacity: 0;
         }
 
+        /* ====== الشعار ====== */
         .hero-logo {
             display: flex;
             align-items: center;
@@ -217,21 +205,7 @@
             transform: translateY(20px);
         }
 
-        /* ====== تعطيل الأزرار ====== */
-        .btn-disabled {
-            pointer-events: none !important;
-            opacity: 0.5 !important;
-            cursor: default !important;
-        }
-        .nav-link-disabled {
-            pointer-events: none !important;
-            opacity: 0.5 !important;
-        }
-        .all-disabled {
-            pointer-events: none !important;
-            user-select: none !important;
-        }
-
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .hero-card { padding: 30px 20px 40px; }
             .hero-logo .name-center { font-size: 32px; letter-spacing: 8px; }
@@ -250,8 +224,7 @@
 </head>
 <body>
 
-    <div class="loading-overlay" id="loadingOverlay"></div>
-
+    <!-- ====== خلفية زليج مغربية ====== -->
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -276,15 +249,21 @@
         </svg>
     </div>
 
+    <!-- ====== ظل زخرفي ====== -->
     <div class="moroccan-shadow"></div>
+
+    <!-- ====== نجمة مغربية ====== -->
     <div class="moroccan-star">✦</div>
 
+    <!-- ====== زخارف هندسية ====== -->
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
+    <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
+
     <div class="bg-grid"></div>
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
@@ -294,14 +273,15 @@
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="subjects.html" class="nav-link-disabled" id="navMatiere"><i class="fas fa-book-open"></i> Matières</a></li>
-            <li><a href="subjects.html" class="btn-nav nav-link-disabled" id="navCommencer"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
+        <ul class="nav-links">
+            <li><a href="subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+            <li><a href="subjects.html" class="btn-nav"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
         </ul>
     </nav>
 
-    <section class="hero" id="heroSection">
-        <div class="hero-card" id="heroCard">
+    <section class="hero">
+        <div class="hero-card">
+            <!-- الشعار -->
             <div class="hero-logo" id="logo">
                 <span class="name-center">MOROCCO</span>
             </div>
@@ -310,7 +290,7 @@
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
             <div class="hero-buttons" id="buttons">
-                <a href="subjects.html" class="btn btn-primary btn-disabled" id="startBtn"><i class="fas fa-graduation-cap"></i> Commencer</a>
+                <a href="subjects.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
     </section>
@@ -367,67 +347,10 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <script src="script.js"></script>
     <script>
-        // ============================================================
-        // GSAP - الأنميشن مع تعطيل الأزرار لمدة 4 ثوانٍ
-        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
-
-            // العناصر
-            const html = document.documentElement;
-            const body = document.body;
-            const overlay = document.getElementById('loadingOverlay');
-            const navMatiere = document.getElementById('navMatiere');
-            const navCommencer = document.getElementById('navCommencer');
-            const startBtn = document.getElementById('startBtn');
-            const allDisabledElements = [navMatiere, navCommencer, startBtn];
-
-            // ====== تعطيل كل شيء ======
-            function disableAll() {
-                // منع التمرير
-                html.style.overflow = 'hidden';
-                body.style.overflow = 'hidden';
-                body.style.height = '100vh';
-                
-                // إظهار التراكب
-                overlay.classList.add('active');
-                
-                // تعطيل جميع الأزرار والروابط
-                allDisabledElements.forEach(el => {
-                    if (el) {
-                        el.style.pointerEvents = 'none';
-                        el.style.opacity = '0.5';
-                        el.classList.add('btn-disabled');
-                    }
-                });
-            }
-
-            // ====== تفعيل كل شيء بعد 4 ثوانٍ ======
-            function enableAll() {
-                // السماح بالتمرير
-                html.style.overflow = '';
-                body.style.overflow = '';
-                body.style.height = '';
-                
-                // إخفاء التراكب
-                overlay.classList.remove('active');
-                
-                // تفعيل جميع الأزرار والروابط
-                allDisabledElements.forEach(el => {
-                    if (el) {
-                        el.style.pointerEvents = '';
-                        el.style.opacity = '';
-                        el.classList.remove('btn-disabled');
-                    }
-                });
-                
-                console.log('✅ Défilement et interactions activés après 4 secondes');
-            }
-
-            // ====== تطبيق التعطيل ======
-            disableAll();
-
-            // ====== الأنميشن ======
+            
             const tl = gsap.timeline({
                 defaults: {
                     duration: 0.8,
@@ -436,54 +359,22 @@
             });
 
             tl
-                .to('.moroccan-bg', {
-                    opacity: 0.6,
-                    duration: 1.8,
-                    ease: 'power1.out'
-                })
-                .to('.moroccan-shadow', {
-                    opacity: 0.08,
-                    duration: 1.8,
-                    ease: 'power1.out'
-                }, '-=1.2')
-                .to('.moroccan-star', {
-                    opacity: 0.04,
-                    duration: 1.8,
-                    ease: 'power1.out'
-                }, '-=1.2')
-                .to('.geo-pattern', {
-                    opacity: 0.03,
-                    duration: 1.8,
-                    stagger: 0.08,
-                    ease: 'power1.out'
-                }, '-=1.4')
-                .to('#heroSection', {
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: 'power2.out'
-                }, '-=0.5')
-                .to('#heroCard', {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                }, '-=0.3')
                 .to('#logo', {
                     opacity: 1,
                     y: 0,
-                    duration: 0.8,
+                    duration: 1,
                     ease: 'back.out(1.7)'
-                }, '-=0.4')
+                })
                 .fromTo('.name-center', 
                     { scale: 0.8, opacity: 0 },
                     { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
-                    '-=0.4'
+                    '-=0.6'
                 )
                 .to('.hero-label', {
                     opacity: 1,
                     y: 0,
                     duration: 0.6
-                }, '-=0.3')
+                }, '-=0.2')
                 .to('#title', {
                     opacity: 1,
                     y: 0,
@@ -507,12 +398,6 @@
                     ease: 'sine.inOut'
                 }, '-=0.2');
 
-            // ====== تفعيل كل شيء بعد 4 ثوانٍ من بدء الصفحة ======
-            setTimeout(function() {
-                enableAll();
-            }, 4000);
-
-            // ====== حركات مستمرة ======
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
                 duration: 3,
@@ -528,7 +413,42 @@
                 ease: 'none'
             });
 
-            // ====== Hover ======
+            gsap.to('.geo-pattern-1', {
+                x: 20,
+                y: 10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            gsap.to('.geo-pattern-2', {
+                x: -20,
+                y: -10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1
+            });
+            gsap.to('.geo-pattern-3', {
+                x: 15,
+                y: -15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 0.5
+            });
+            gsap.to('.geo-pattern-4', {
+                x: -15,
+                y: 15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1.5
+            });
+
             const card = document.querySelector('.hero-card');
             card.addEventListener('mouseenter', () => {
                 gsap.to(card, {
@@ -547,7 +467,25 @@
                 });
             });
 
-            console.log('✅ Animation chargée - les boutons seront activés dans 4 secondes');
+            const btn = document.querySelector('.btn-primary');
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
+                });
+            });
+
+            console.log('✅ GSAP - خلفية مغربية مع حركات زخرفية');
         });
     </script>
 </body>
