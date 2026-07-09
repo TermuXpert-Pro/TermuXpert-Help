@@ -209,14 +209,14 @@
                 <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
-            <div class="section" style="opacity:0; transform:translateY(30px);">
+            <div class="section">
                 <h2><span class="num">8</span> Récurrence - Partie 2</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Montrer par récurrence les formules de sommes suivantes.</p>
 
                 <!-- g -->
                 <div class="sub-question">
                     <div class="letter">g.</div>
-                    <div class="formula-block" style="opacity:0; transform:translateY(20px);" style="font-size:13px;">
+                    <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N} : 1 + 3 + 5 + \cdots + (2n+1) = \sum_{i=0}^{n} (2i+1) = (n+1)^2$
                     </div>
                     <button class="toggle-sol" onclick="toggleSolution('sol8g')">Voir la solution</button>
@@ -224,12 +224,12 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <p><strong>Initialisation :</strong> $n=0$</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape :</span> $\sum_{i=0}^{0} (2i+1) = 1 = (0+1)^2 = 1$ ✅</div>
+                            <div class="step"><span class="step-num">Étape :</span> $\sum_{i=0}^{0} (2i+1) = 1 = (0+1)^2 = 1$ ✅</div>
                             <p><strong>Hérédité :</strong> Supposons que $\sum_{i=0}^{n} (2i+1) = (n+1)^2$.</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 1 :</span> $\sum_{i=0}^{n+1} (2i+1) = \sum_{i=0}^{n} (2i+1) + (2n+3)$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 2 :</span> $= (n+1)^2 + 2n + 3$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 3 :</span> $= n^2 + 2n + 1 + 2n + 3$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 4 :</span> $= n^2 + 4n + 4 = (n+2)^2$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{i=0}^{n+1} (2i+1) = \sum_{i=0}^{n} (2i+1) + (2n+3)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= (n+1)^2 + 2n + 3$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= n^2 + 2n + 1 + 2n + 3$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $= n^2 + 4n + 4 = (n+2)^2$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}$.</p>
                         </div>
                     </div>
@@ -238,7 +238,7 @@
                 <!-- h -->
                 <div class="sub-question">
                     <div class="letter">h.</div>
-                    <div class="formula-block" style="opacity:0; transform:translateY(20px);" style="font-size:13px;">
+                    <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N}^* : \sum_{i=1}^{n} \frac{1}{i(i+1)} = \frac{n}{n+1}$
                     </div>
                     <button class="toggle-sol" onclick="toggleSolution('sol8h')">Voir la solution</button>
@@ -246,12 +246,12 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <p><strong>Initialisation :</strong> $n=1$</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape :</span> $\frac{1}{1 \times 2} = \frac{1}{2} = \frac{1}{1+1}$ ✅</div>
+                            <div class="step"><span class="step-num">Étape :</span> $\frac{1}{1 \times 2} = \frac{1}{2} = \frac{1}{1+1}$ ✅</div>
                             <p><strong>Hérédité :</strong> Supposons que $\sum_{i=1}^{n} \frac{1}{i(i+1)} = \frac{n}{n+1}$.</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 1 :</span> $\sum_{i=1}^{n+1} \frac{1}{i(i+1)} = \frac{n}{n+1} + \frac{1}{(n+1)(n+2)}$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 2 :</span> $= \frac{n(n+2) + 1}{(n+1)(n+2)}$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 3 :</span> $= \frac{n^2 + 2n + 1}{(n+1)(n+2)}$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 4 :</span> $= \frac{(n+1)^2}{(n+1)(n+2)} = \frac{n+1}{n+2}$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{i=1}^{n+1} \frac{1}{i(i+1)} = \frac{n}{n+1} + \frac{1}{(n+1)(n+2)}$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{n(n+2) + 1}{(n+1)(n+2)}$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{n^2 + 2n + 1}{(n+1)(n+2)}$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $= \frac{(n+1)^2}{(n+1)(n+2)} = \frac{n+1}{n+2}$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$.</p>
                         </div>
                     </div>
@@ -260,7 +260,7 @@
                 <!-- i -->
                 <div class="sub-question">
                     <div class="letter">i.</div>
-                    <div class="formula-block" style="opacity:0; transform:translateY(20px);" style="font-size:13px;">
+                    <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N}^* : \sum_{i=1}^{n} \frac{1}{(2i-1)(2i+1)} = \frac{n}{2n+1}$
                     </div>
                     <button class="toggle-sol" onclick="toggleSolution('sol8i')">Voir la solution</button>
@@ -268,12 +268,12 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <p><strong>Initialisation :</strong> $n=1$</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape :</span> $\frac{1}{1 \times 3} = \frac{1}{3} = \frac{1}{2(1)+1}$ ✅</div>
+                            <div class="step"><span class="step-num">Étape :</span> $\frac{1}{1 \times 3} = \frac{1}{3} = \frac{1}{2(1)+1}$ ✅</div>
                             <p><strong>Hérédité :</strong> Supposons que $\sum_{i=1}^{n} \frac{1}{(2i-1)(2i+1)} = \frac{n}{2n+1}$.</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 1 :</span> $\sum_{i=1}^{n+1} \frac{1}{(2i-1)(2i+1)} = \frac{n}{2n+1} + \frac{1}{(2n+1)(2n+3)}$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 2 :</span> $= \frac{n(2n+3) + 1}{(2n+1)(2n+3)}$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 3 :</span> $= \frac{2n^2 + 3n + 1}{(2n+1)(2n+3)}$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 4 :</span> $= \frac{(2n+1)(n+1)}{(2n+1)(2n+3)} = \frac{n+1}{2n+3}$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{i=1}^{n+1} \frac{1}{(2i-1)(2i+1)} = \frac{n}{2n+1} + \frac{1}{(2n+1)(2n+3)}$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{n(2n+3) + 1}{(2n+1)(2n+3)}$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{2n^2 + 3n + 1}{(2n+1)(2n+3)}$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $= \frac{(2n+1)(n+1)}{(2n+1)(2n+3)} = \frac{n+1}{2n+3}$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$.</p>
                         </div>
                     </div>
@@ -282,7 +282,7 @@
                 <!-- j -->
                 <div class="sub-question">
                     <div class="letter">j.</div>
-                    <div class="formula-block" style="opacity:0; transform:translateY(20px);" style="font-size:13px;">
+                    <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N}^* : \sum_{k=1}^{n} k(k+2) = \frac{n(n+1)(2n+7)}{6}$
                     </div>
                     <button class="toggle-sol" onclick="toggleSolution('sol8j')">Voir la solution</button>
@@ -290,14 +290,14 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <p><strong>Initialisation :</strong> $n=1$</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape :</span> $1 \times 3 = 3$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape :</span> $\frac{1 \times 2 \times 9}{6} = \frac{18}{6} = 3$ ✅</div>
+                            <div class="step"><span class="step-num">Étape :</span> $1 \times 3 = 3$</div>
+                            <div class="step"><span class="step-num">Étape :</span> $\frac{1 \times 2 \times 9}{6} = \frac{18}{6} = 3$ ✅</div>
                             <p><strong>Hérédité :</strong> Supposons que $\sum_{k=1}^{n} k(k+2) = \frac{n(n+1)(2n+7)}{6}$.</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k(k+2) = \frac{n(n+1)(2n+7)}{6} + (n+1)(n+3)$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)}{6}[n(2n+7) + 6(n+3)]$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)}{6}[2n^2 + 7n + 6n + 18]$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 4 :</span> $= \frac{(n+1)}{6}[2n^2 + 13n + 18]$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 5 :</span> $= \frac{(n+1)(n+2)(2n+9)}{6}$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k(k+2) = \frac{n(n+1)(2n+7)}{6} + (n+1)(n+3)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)}{6}[n(2n+7) + 6(n+3)]$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)}{6}[2n^2 + 7n + 6n + 18]$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $= \frac{(n+1)}{6}[2n^2 + 13n + 18]$</div>
+                            <div class="step"><span class="step-num">Étape 5 :</span> $= \frac{(n+1)(n+2)(2n+9)}{6}$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$.</p>
                         </div>
                     </div>
@@ -306,7 +306,7 @@
                 <!-- k -->
                 <div class="sub-question">
                     <div class="letter">k.</div>
-                    <div class="formula-block" style="opacity:0; transform:translateY(20px);" style="font-size:13px;">
+                    <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N}^* : \sum_{k=1}^{n} (k^2 + k) = \frac{n(n+1)(n+2)}{3}$
                     </div>
                     <button class="toggle-sol" onclick="toggleSolution('sol8k')">Voir la solution</button>
@@ -315,12 +315,12 @@
                         <div class="sol-content">
                             <p><strong>Remarque :</strong> $\sum_{k=1}^{n} (k^2 + k) = \sum_{k=1}^{n} k(k+1)$</p>
                             <p><strong>Initialisation :</strong> $n=1$</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape :</span> $1 \times 2 = 2$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape :</span> $\frac{1 \times 2 \times 3}{3} = 2$ ✅</div>
+                            <div class="step"><span class="step-num">Étape :</span> $1 \times 2 = 2$</div>
+                            <div class="step"><span class="step-num">Étape :</span> $\frac{1 \times 2 \times 3}{3} = 2$ ✅</div>
                             <p><strong>Hérédité :</strong> Supposons que $\sum_{k=1}^{n} k(k+1) = \frac{n(n+1)(n+2)}{3}$.</p>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k(k+1) = \frac{n(n+1)(n+2)}{3} + (n+1)(n+2)$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)(n+2)}{3}(n + 3)$</div>
-                            <div class="step" style="opacity:0; transform:translateX(-10px);"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)(n+2)(n+3)}{3}$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k(k+1) = \frac{n(n+1)(n+2)}{3} + (n+1)(n+2)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)(n+2)}{3}(n + 3)$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)(n+2)(n+3)}{3}$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$.</p>
                         </div>
                     </div>
