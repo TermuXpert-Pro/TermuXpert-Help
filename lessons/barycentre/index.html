@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barycentre dans le plan - Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/lesson-common.css">
+    <link rel="stylesheet" href="../../css/global-control.css">
+    <style>
+        body { font-size: 12px !important; }
+        .navbar { height: 44px !important; padding: 0 10px !important; }
+        .nav-logo-icon { width: 24px !important; height: 24px !important; font-size: 12px !important; }
+        .nav-logo-text { font-size: 14px !important; }
+        .nav-links a { font-size: 11px !important; padding: 3px 8px !important; }
+        .back-btn { font-size: 11px !important; padding: 4px 12px !important; margin-bottom: 12px !important; }
+        .lesson-title { font-size: 20px !important; padding-bottom: 8px !important; margin-bottom: 14px !important; }
+        .section { padding: 10px 12px !important; margin-bottom: 10px !important; border-radius: 10px !important; }
+        .section h2 { font-size: 14px !important; margin-bottom: 6px !important; }
+        .section h2 .num { width: 22px !important; height: 22px !important; font-size: 11px !important; }
+        .section h3 { font-size: 13px !important; margin: 6px 0 4px !important; }
+        .section p { font-size: 11.5px !important; margin-bottom: 4px !important; line-height: 1.5 !important; }
+        .section ul { font-size: 11.5px !important; padding-right: 14px !important; margin-bottom: 4px !important; }
+        .section ul li { margin-bottom: 1px !important; }
+        .highlight-box { padding: 6px 10px !important; margin: 4px 0 !important; border-right-width: 3px !important; }
+        .highlight-box .label { font-size: 10px !important; padding: 1px 8px !important; margin-bottom: 2px !important; }
+        .formula-block { padding: 6px 10px !important; margin: 4px 0 !important; font-size: 13px !important; border-radius: 6px !important; }
+        .table-wrap { margin: 4px 0 !important; }
+        .table-wrap table { font-size: 11px !important; max-width: 240px !important; }
+        .table-wrap th, .table-wrap td { padding: 3px 8px !important; font-size: 11px !important; }
+        .step { font-size: 11px !important; padding: 3px 10px !important; margin: 3px 0 !important; }
+        .step .step-num { font-size: 11px !important; }
+        .part-link { padding: 8px 12px !important; margin-bottom: 8px !important; border-radius: 8px !important; }
+        .part-link .part-num { font-size: 13px !important; color: #4ECDC4; font-weight: 700; }
+        .part-link .part-title { font-size: 12px !important; color: var(--text-secondary); }
+        .part-link .part-icon { font-size: 18px !important; flex-shrink: 0; }
+        .footer p { font-size: 10px !important; }
+        .lesson-container { padding: 8px !important; }
+        .glow-orb { display: none !important; }
+        .bg-grid { opacity: 0.3 !important; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important; }
+        .progress-bar { display: none !important; }
+        .scroll-top-btn { display: none !important; }
+        .part-link:active { transform: scale(0.97); opacity: 0.8; }
+        .part-link:hover { border-color: #4ECDC4; transform: translateX(-3px); }
+        .section-list-title { color: #4ECDC4; font-size: 13px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+        .part-link .part-arrow { color: var(--text-muted); font-size: 12px; flex-shrink: 0; }
+        @media (max-width: 768px) {
+            body { font-size: 11px !important; }
+            .lesson-title { font-size: 17px !important; }
+            .section { padding: 6px 8px !important; }
+            .section h2 { font-size: 12px !important; }
+            .section h3 { font-size: 11.5px !important; }
+            .section p { font-size: 10.5px !important; }
+            .table-wrap table { max-width: 100% !important; font-size: 10px !important; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px !important; font-size: 10px !important; }
+            .formula-block { font-size: 11px !important; }
+            .highlight-box { padding: 4px 8px !important; }
+            .nav-links a { font-size: 10px !important; padding: 2px 6px !important; }
+            .part-link { padding: 6px 10px !important; }
+            .part-link .part-num { font-size: 12px !important; }
+            .part-link .part-title { font-size: 11px !important; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 10px !important; }
+            .lesson-title { font-size: 15px !important; }
+            .section h2 { font-size: 11px !important; }
+            .section h3 { font-size: 10.5px !important; }
+            .section p { font-size: 10px !important; }
+            .formula-block { font-size: 10px !important; padding: 4px 6px !important; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px !important; font-size: 9px !important; }
+            .step { font-size: 10px !important; padding: 2px 8px !important; }
+            .back-btn { font-size: 10px !important; padding: 3px 10px !important; }
+            .nav-logo-text { font-size: 12px !important; }
+            .nav-logo-icon { width: 20px !important; height: 20px !important; font-size: 10px !important; }
+            .part-link { padding: 4px 8px !important; }
+            .part-link .part-num { font-size: 11px !important; }
+            .part-link .part-title { font-size: 10px !important; }
+            .part-link .part-icon { font-size: 14px !important; }
+            .part-link .part-arrow { font-size: 10px !important; }
+        }
+    </style>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-balance-scale" style="color:#4ECDC4;"></i> Barycentre dans le plan</h1>
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">Choisissez une partie pour commencer</p>
+
+            <div class="section-list" style="max-width:700px; margin:0 auto;">
+                <!-- Partie 1 -->
+                <a href="part1.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-balance-scale"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 1</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Barycentre de deux points pondérés</div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Partie 2 -->
+                <a href="part2.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-balance-scale"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 2</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Barycentre de trois points pondérés</div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Partie 3 -->
+                <a href="part3.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-balance-scale"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 3</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Barycentre de quatre points pondérés</div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+            </div>
+
+            <div style="text-align:center; margin-top:16px; padding:10px; background:var(--bg-card); border-radius:10px; border:1px solid var(--border);">
+                <p style="color:var(--text-muted); font-size:10px;">
+                    <i class="fas fa-arrow-left" style="color:#4ECDC4;"></i>
+                    Cliquez sur une partie pour commencer l'apprentissage
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <!-- ====== زر العودة للأعلى ====== -->
+    <button class="scroll-top-btn" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../../script.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+</body>
+</html>
