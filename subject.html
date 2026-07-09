@@ -151,8 +151,6 @@
                 exercices: [
                     {
                         title: "Logique mathématique",
-                        icon: "🧠",
-                        file: "exercices/logique/index.html",
                         list: [
                             { num: 1, title: "Valeur de vérité et négation", file: "exercices/logique/exercice1.html", diff: "Facile" },
                             { num: 2, title: "Quantificateurs", file: "exercices/logique/exercice2.html", diff: "Facile" },
@@ -166,8 +164,6 @@
                     },
                     {
                         title: "Généralités sur les fonctions",
-                        icon: "📈",
-                        file: "exercices/fonctions/index.html",
                         list: [
                             { num: 1, title: "Rappels", file: "exercices/fonctions/exercice1.html", diff: "Facile" },
                             { num: 2, title: "Fonction majorée/minorée/bornée", file: "exercices/fonctions/exercice2.html", diff: "Facile" },
@@ -178,8 +174,6 @@
                     },
                     {
                         title: "Barycentre dans le plan",
-                        icon: "⚖️",
-                        file: "exercices/barycentre/index.html",
                         list: [
                             { num: 1, title: "Barycentre de deux points", file: "exercices/barycentre/exercice1.html", diff: "Facile" },
                             { num: 2, title: "Barycentre de trois points", file: "exercices/barycentre/exercice2.html", diff: "Moyen" },
@@ -210,8 +204,6 @@
                 exercices: [
                     {
                         title: "Mécanique",
-                        icon: "⚡",
-                        file: "exercices/mecanique/index.html",
                         list: [
                             { num: 1, title: "Exercice 1", file: "exercices/mecanique/exercice1.html", diff: "Facile" },
                             { num: 2, title: "Exercice 2", file: "exercices/mecanique/exercice2.html", diff: "Moyen" }
@@ -237,8 +229,6 @@
                 exercices: [
                     {
                         title: "Atome",
-                        icon: "🧪",
-                        file: "exercices/atome/index.html",
                         list: [
                             { num: 1, title: "Exercice 1", file: "exercices/atome/exercice1.html", diff: "Facile" },
                             { num: 2, title: "Exercice 2", file: "exercices/atome/exercice2.html", diff: "Moyen" }
@@ -294,7 +284,7 @@
                     <i class="fas fa-arrow-right"></i> Retour aux exercices
                 </button>
                 <div style="margin-bottom:12px;">
-                    <h2 style="color:#4ECDC4; font-size:18px;">${group.icon} ${group.title}</h2>
+                    <h2 style="color:#4ECDC4; font-size:18px;">${group.title}</h2>
                     <p style="color:var(--text-muted); font-size:13px;">${group.list.length} exercices</p>
                 </div>
                 ${group.list.map(ex => `
@@ -319,7 +309,7 @@
             
             container.innerHTML = currentSubject.exercices.map((e, i) => `
                 <div class="command-card" onclick="showExerciceGroup(${i})">
-                    <div class="command-title">${e.icon} ${e.title}</div>
+                    <div class="command-title">${i+1}. ${e.title}</div>
                     <p style="color:var(--text-secondary);">${e.list.length} exercices</p>
                     <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                         <span class="badge" style="background:#E8873A22; color:#E8873A;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
