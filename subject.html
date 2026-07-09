@@ -462,23 +462,6 @@
             document.getElementById('subTitle').textContent = currentSubject.desc;
             
             renderContent(document.getElementById('tabContent'), 'lessons');
-            
-            setTimeout(() => {
-                const cards = document.querySelectorAll('.command-card');
-                if (cards.length > 0) {
-                    gsap.fromTo(cards,
-                        { opacity: 0, y: 40, scale: 0.95 },
-                        { 
-                            opacity: 1, 
-                            y: 0, 
-                            scale: 1, 
-                            duration: 0.6, 
-                            stagger: 0.08,
-                            ease: 'back.out(1.4)'
-                        }
-                    );
-                }
-            }, 600);
         }
 
         function switchTab(tab) {
@@ -596,79 +579,88 @@
         }
 
         // ============================================================
-        // GSAP - تأثيرات عند تحميل الصفحة (مرة واحدة فقط)
+        // GSAP - إدارة الأنميشن
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             loadSubject();
 
-            // التحقق مما إذا كان الأنميشن قد تم تشغيله من قبل في هذه الجلسة
             const animationKey = 'subject_animation_done';
             
-            if (sessionStorage.getItem(animationKey) === 'true') {
-                // إظهار كل شيء مباشرة
+            // ====== دالة للعرض المباشر (بدون أنميشن) ======
+            function showDirect() {
+                // إخفاء hero-wrapper نهائياً
+                gsap.set('#heroWrapper', { display: 'none' });
+                
+                // إظهار الخلفيات
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
                 gsap.set('.geo-pattern', { opacity: 0.03 });
-                gsap.set('#heroWrapper', { opacity: 1 });
-                gsap.set('#mainTitle', { opacity: 1, scale: 1 });
-                gsap.set('#subTitle', { opacity: 1, y: 0 });
+                
+                // إظهار المحتوى مباشرة
                 gsap.set('#contentWrapper', { opacity: 1 });
                 gsap.set('#tabsWrapper', { opacity: 1, y: 0 });
-                console.log('✅ subject.html - Animation déjà jouée, affichage direct');
-                return;
+                
+                console.log('✅ subject.html - Affichage direct (sans titre)');
+                
+                // حركات مستمرة
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
             }
 
-            // تشغيل الأنميشن لأول مرة
-            const tl = gsap.timeline({
-                defaults: { ease: 'power3.out' }
-            });
+            // ====== دالة لتشغيل الأنميشن ======
+            function runAnimation() {
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-            tl
-                .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
-                .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
-                .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
-                .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
-                .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-                .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
-                .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
-                .to('#mainTitle', { opacity: 0, y: -80, scale: 0.7, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
-                .to('#subTitle', { opacity: 0, y: -50, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
-                .to('#heroWrapper', { opacity: 0, duration: 0.6, ease: 'power2.in' }, '-=0.4')
-                .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
-                .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
-                .call(() => {
-                    sessionStorage.setItem(animationKey, 'true');
-                    console.log('✅ subject.html - Animation jouée une fois');
+                tl
+                    .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
+                    .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
+                    .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
+                    .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 0, y: -80, scale: 0.7, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
+                    .to('#subTitle', { opacity: 0, y: -50, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
+                    .to('#heroWrapper', { 
+                        opacity: 0, 
+                        duration: 0.6, 
+                        ease: 'power2.in',
+                        onComplete: function() {
+                            // إخفاء hero-wrapper نهائياً بعد اختفائه
+                            gsap.set('#heroWrapper', { display: 'none' });
+                        }
+                    }, '-=0.4')
+                    .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+                    .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
+                    .call(() => {
+                        sessionStorage.setItem(animationKey, 'true');
+                        console.log('✅ subject.html - Animation jouée une fois');
+                    });
+
+                // حركات مستمرة
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.addEventListener('mouseenter', function() {
+                        gsap.to(this, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
+                    });
+                    btn.addEventListener('mouseleave', function() {
+                        gsap.to(this, { scale: 1, duration: 0.2, ease: 'power2.inOut' });
+                    });
                 });
+            }
 
-            // حركات مستمرة
-            gsap.to('.moroccan-bg', {
-                opacity: 0.8,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
-
-            gsap.to('.moroccan-star', {
-                rotation: 360,
-                duration: 30,
-                repeat: -1,
-                ease: 'none'
-            });
-
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.addEventListener('mouseenter', function() {
-                    gsap.to(this, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
-                });
-                btn.addEventListener('mouseleave', function() {
-                    gsap.to(this, { scale: 1, duration: 0.2, ease: 'power2.inOut' });
-                });
-            });
-
-            console.log('✅ GSAP - Page matière avec animation fluide');
+            // ============================================================
+            // التحقق: هل الأنميشن تم تشغيله من قبل؟
+            // ============================================================
+            if (sessionStorage.getItem(animationKey) === 'true') {
+                showDirect();
+            } else {
+                runAnimation();
+            }
         });
     </script>
 </body>
