@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Babylon.js -->
-    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        /* ====== حاوية Babylon.js ====== */
-        #babylon-container {
+        /* ====== حاوية three.js ====== */
+        #three-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -23,7 +23,7 @@
             pointer-events: none;
             overflow: hidden;
         }
-        #babylon-container canvas {
+        #three-container canvas {
             display: block;
             width: 100% !important;
             height: 100% !important;
@@ -49,22 +49,11 @@
             align-items: center;
             margin-bottom: 30px;
             padding: 20px 40px;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             border-radius: 24px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(78, 205, 196, 0.08);
             backdrop-filter: blur(10px);
             box-shadow: 0 0 80px rgba(78, 205, 196, 0.03);
-        }
-        .hero-logo-wrapper:hover {
-            transform: scale(1.04);
-            border-color: rgba(78, 205, 196, 0.2);
-            background: rgba(78, 205, 196, 0.05);
-            box-shadow: 0 0 100px rgba(78, 205, 196, 0.08);
-        }
-        .hero-logo-wrapper:active {
-            transform: scale(0.96);
         }
 
         .hero-logo {
@@ -116,30 +105,6 @@
             text-transform: uppercase;
         }
 
-        .logo-edit-icon {
-            position: absolute;
-            bottom: 8px;
-            right: 12px;
-            background: rgba(78, 205, 196, 0.12);
-            border: 1px solid rgba(78, 205, 196, 0.15);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4ECDC4;
-            font-size: 12px;
-            opacity: 0;
-            transition: all 0.4s ease;
-            z-index: 5;
-            backdrop-filter: blur(10px);
-        }
-        .hero-logo-wrapper:hover .logo-edit-icon {
-            opacity: 1;
-            transform: translateY(-4px);
-        }
-
         /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .hero-logo-wrapper { padding: 14px 20px; border-radius: 16px; }
@@ -147,7 +112,6 @@
             .hero-logo .name-left { font-size: 18px; letter-spacing: 3px; }
             .hero-logo .name-center { font-size: 26px; letter-spacing: 5px; }
             .hero-logo .name-right { font-size: 18px; letter-spacing: 3px; }
-            .logo-edit-icon { width: 26px; height: 26px; font-size: 10px; }
         }
         @media (max-width: 480px) {
             .hero-logo-wrapper { padding: 10px 12px; border-radius: 12px; }
@@ -155,16 +119,26 @@
             .hero-logo .name-left { font-size: 13px; letter-spacing: 2px; }
             .hero-logo .name-center { font-size: 18px; letter-spacing: 3px; }
             .hero-logo .name-right { font-size: 13px; letter-spacing: 2px; }
-            .logo-edit-icon { width: 20px; height: 20px; font-size: 8px; bottom: 4px; right: 6px; }
         }
     </style>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 </head>
 <body>
-    <!-- ====== Babylon.js كخلفية ====== -->
-    <div id="babylon-container"></div>
+    <!-- ====== Three.js كخلفية ====== -->
+    <div id="three-container"></div>
 
     <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
+
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
 
     <nav class="navbar" id="navbar">
         <a href="index.html" class="nav-logo">
@@ -179,13 +153,12 @@
 
     <section class="hero">
         <!-- ====== الشعار ====== -->
-        <div class="hero-logo-wrapper" onclick="window.location.href='logo-design.html'">
+        <div class="hero-logo-wrapper">
             <div class="hero-logo">
                 <span class="name-left">JAOUAD</span>
                 <span class="name-center">MOROCCO</span>
                 <span class="name-right">ELKHAYATY</span>
             </div>
-            <span class="logo-edit-icon"><i class="fas fa-pen"></i></span>
         </div>
 
         <div class="hero-label"><span class="dot"></span> 1 Bac Sciences Expérimentales</div>
@@ -251,296 +224,327 @@
     <script src="script.js"></script>
     <script>
         // ============================================================
-        // BABYLON.JS - مشهد خلفية متحركة (شخص يلقي التحية)
+        // THREE.JS - شخصية تطفو في الصفحة
         // ============================================================
         (function() {
-            const container = document.getElementById('babylon-container');
+            const container = document.getElementById('three-container');
             
-            // === المحرك ===
-            const engine = new BABYLON.Engine(container, true, {
-                preserveDrawingBuffer: true,
-                stencil: true
-            });
-
             // === المشهد ===
-            const scene = new BABYLON.Scene(engine);
-            scene.clearColor = new BABYLON.Color4(0.043, 0.047, 0.063, 0);
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0B0C10);
 
             // === الكاميرا ===
-            const camera = new BABYLON.ArcRotateCamera(
-                "camera",
-                -Math.PI / 2,
-                1.2,
-                8,
-                new BABYLON.Vector3(0, 1.5, 0),
-                scene
-            );
-            camera.attachControl(container, true);
-            camera.wheelPrecision = 50;
-            camera.lowerRadiusLimit = 4;
-            camera.upperRadiusLimit = 15;
-            camera.panningSensibility = 0;
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 2, 6);
+            camera.lookAt(0, 1.5, 0);
 
-            // === الإضاءة ===
-            const ambientLight = new BABYLON.HemisphericLight(
-                "ambient",
-                new BABYLON.Vector3(0, 1, 0),
-                scene
-            );
-            ambientLight.intensity = 0.3;
+            // === المُصوّر ===
+            const renderer = new THREE.WebGLRenderer({ 
+                antialias: true, 
+                alpha: false 
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            container.appendChild(renderer.domElement);
 
-            const mainLight = new BABYLON.DirectionalLight(
-                "main",
-                new BABYLON.Vector3(1, 2, 1),
-                scene
-            );
-            mainLight.intensity = 0.8;
-            mainLight.position = new BABYLON.Vector3(5, 10, 5);
+            // === إضاءة ===
+            // إضاءة محيطية
+            const ambientLight = new THREE.AmbientLight(0x404060, 0.3);
+            scene.add(ambientLight);
 
-            const backLight = new BABYLON.DirectionalLight(
-                "back",
-                new BABYLON.Vector3(-1, 0.5, -1),
-                scene
-            );
-            backLight.intensity = 0.4;
+            // إضاءة رئيسية
+            const mainLight = new THREE.DirectionalLight(0x66FCF1, 0.8);
+            mainLight.position.set(3, 5, 4);
+            mainLight.castShadow = true;
+            scene.add(mainLight);
 
-            // === أرضية شفافة ===
-            const ground = BABYLON.MeshBuilder.CreateGround(
-                "ground",
-                { width: 12, height: 12 },
-                scene
-            );
-            const groundMat = new BABYLON.StandardMaterial("groundMat", scene);
-            groundMat.diffuseColor = new BABYLON.Color3(0.08, 0.09, 0.12);
-            groundMat.specularColor = new BABYLON.Color3(0, 0, 0);
-            groundMat.emissiveColor = new BABYLON.Color3(0.02, 0.025, 0.035);
-            groundMat.alpha = 0.5;
-            ground.material = groundMat;
-            ground.position.y = -0.5;
+            // إضاءة حارة
+            const warmLight = new THREE.DirectionalLight(0xF4D03F, 0.4);
+            warmLight.position.set(-3, 2, 3);
+            scene.add(warmLight);
 
-            // === شبكة للأرضية ===
-            const gridMat = new BABYLON.StandardMaterial("gridMat", scene);
-            gridMat.diffuseColor = new BABYLON.Color3(0.1, 0.12, 0.16);
-            gridMat.emissiveColor = new BABYLON.Color3(0.05, 0.06, 0.08);
-            gridMat.alpha = 0.2;
-            const grid = BABYLON.MeshBuilder.CreateGround(
-                "grid",
-                { width: 10, height: 10, subdivisions: 20 },
-                scene
-            );
-            grid.material = gridMat;
-            grid.position.y = -0.48;
+            // إضاءة خلفية
+            const backLight = new THREE.DirectionalLight(0x4ECDC4, 0.3);
+            backLight.position.set(-2, 1, -4);
+            scene.add(backLight);
 
             // === مجموعة الشخصية ===
-            const characterGroup = new BABYLON.TransformNode("character", scene);
-            
-            // الألوان
-            const skinColor = new BABYLON.Color3(0.95, 0.78, 0.6);
-            const clothColor = new BABYLON.Color3(0.2, 0.5, 0.8);
-            const pantsColor = new BABYLON.Color3(0.15, 0.2, 0.35);
-            const shoeColor = new BABYLON.Color3(0.1, 0.1, 0.12);
+            const characterGroup = new THREE.Group();
+            scene.add(characterGroup);
 
-            function createMat(color, emissive = null, specular = null) {
-                const mat = new BABYLON.StandardMaterial("mat", scene);
-                mat.diffuseColor = color;
-                if (emissive) mat.emissiveColor = emissive;
-                if (specular) mat.specularColor = specular;
-                else mat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
-                mat.backFaceCulling = false;
-                return mat;
+            // الألوان
+            const skinColor = 0xF5C8A0;
+            const clothColor = 0x2A7FFF;
+            const pantsColor = 0x1A2A4A;
+            const shoeColor = 0x1A1A2A;
+            const eyeColor = 0xFFFFFF;
+            const pupilColor = 0x1A1A3A;
+            const hairColor = 0x2A1A0A;
+
+            // === المواد ===
+            function createMat(color, emissive = 0x000000, roughness = 0.6, metalness = 0.1) {
+                return new THREE.MeshStandardMaterial({
+                    color: color,
+                    emissive: emissive,
+                    roughness: roughness,
+                    metalness: metalness,
+                });
             }
 
             // === الجسم ===
-            const body = BABYLON.MeshBuilder.CreateBox("body", { width: 0.8, height: 1, depth: 0.5 }, scene);
-            body.material = createMat(clothColor);
+            const bodyGeo = new THREE.BoxGeometry(0.8, 1, 0.5);
+            const bodyMat = createMat(clothColor);
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
             body.position.y = 1.3;
-            body.parent = characterGroup;
+            body.castShadow = true;
+            characterGroup.add(body);
 
             // === الرأس ===
-            const head = BABYLON.MeshBuilder.CreateSphere("head", { diameter: 0.5 }, scene);
-            head.material = createMat(skinColor);
+            const headGeo = new THREE.SphereGeometry(0.3, 32, 32);
+            const headMat = createMat(skinColor);
+            const head = new THREE.Mesh(headGeo, headMat);
             head.position.y = 2.1;
-            head.parent = characterGroup;
+            head.castShadow = true;
+            characterGroup.add(head);
 
             // === العينان ===
-            const eyeMat = createMat(new BABYLON.Color3(1, 1, 1));
             function createEye(x, z) {
-                const eye = BABYLON.MeshBuilder.CreateSphere("eye", { diameter: 0.12 }, scene);
-                eye.material = eyeMat;
-                eye.position.set(x, 2.2, 0.35 + z);
-                eye.parent = characterGroup;
+                const eyeGroup = new THREE.Group();
                 
-                const pupil = BABYLON.MeshBuilder.CreateSphere("pupil", { diameter: 0.06 }, scene);
-                pupil.material = createMat(new BABYLON.Color3(0.05, 0.05, 0.1));
-                pupil.position.set(x, 2.18, 0.45 + z);
-                pupil.parent = characterGroup;
+                const eyeGeo = new THREE.SphereGeometry(0.08, 16, 16);
+                const eyeMat = createMat(eyeColor);
+                const eye = new THREE.Mesh(eyeGeo, eyeMat);
+                eye.position.set(x, 2.2, 0.2 + z);
+                characterGroup.add(eye);
+                
+                const pupilGeo = new THREE.SphereGeometry(0.04, 16, 16);
+                const pupilMat = createMat(pupilColor);
+                const pupil = new THREE.Mesh(pupilGeo, pupilMat);
+                pupil.position.set(x, 2.18, 0.28 + z);
+                characterGroup.add(pupil);
             }
-            createEye(-0.15, 0);
-            createEye(0.15, 0);
+            createEye(-0.1, 0);
+            createEye(0.1, 0);
 
             // === الفم ===
-            const mouth = BABYLON.MeshBuilder.CreateBox("mouth", { width: 0.15, height: 0.03, depth: 0.02 }, scene);
-            mouth.material = createMat(new BABYLON.Color3(0.4, 0.2, 0.15));
-            mouth.position.set(0, 1.92, 0.32);
-            mouth.parent = characterGroup;
+            const mouthGeo = new THREE.BoxGeometry(0.12, 0.025, 0.02);
+            const mouthMat = createMat(0x4A2A1A);
+            const mouth = new THREE.Mesh(mouthGeo, mouthMat);
+            mouth.position.set(0, 1.92, 0.28);
+            characterGroup.add(mouth);
 
-            // === الذراعان ===
-            const armL = BABYLON.MeshBuilder.CreateBox("armL", { width: 0.2, height: 0.7, depth: 0.2 }, scene);
-            armL.material = createMat(clothColor);
-            armL.position.set(-0.5, 1.45, 0);
-            armL.parent = characterGroup;
+            // === الذراع الأيسر ===
+            const armGeo = new THREE.BoxGeometry(0.18, 0.7, 0.18);
+            const armMat = createMat(clothColor);
+            const armL = new THREE.Mesh(armGeo, armMat);
+            armL.position.set(-0.45, 1.45, 0);
+            armL.castShadow = true;
+            characterGroup.add(armL);
 
-            const armR = BABYLON.MeshBuilder.CreateBox("armR", { width: 0.2, height: 0.7, depth: 0.2 }, scene);
-            armR.material = createMat(clothColor);
-            armR.position.set(0.5, 1.45, 0);
-            armR.parent = characterGroup;
+            // === الذراع الأيمن ===
+            const armR = new THREE.Mesh(armGeo.clone(), armMat);
+            armR.position.set(0.45, 1.45, 0);
+            armR.castShadow = true;
+            characterGroup.add(armR);
 
             // === اليدان ===
-            const handR = BABYLON.MeshBuilder.CreateSphere("handR", { diameter: 0.15 }, scene);
-            handR.material = createMat(skinColor);
-            handR.position.set(0.5, 1.1, 0);
-            handR.parent = characterGroup;
+            const handGeo = new THREE.SphereGeometry(0.08, 16, 16);
+            const handMat = createMat(skinColor);
+            
+            const handL = new THREE.Mesh(handGeo, handMat);
+            handL.position.set(-0.45, 1.1, 0);
+            characterGroup.add(handL);
 
-            const handL = BABYLON.MeshBuilder.CreateSphere("handL", { diameter: 0.15 }, scene);
-            handL.material = createMat(skinColor);
-            handL.position.set(-0.5, 1.1, 0);
-            handL.parent = characterGroup;
+            const handR = new THREE.Mesh(handGeo, handMat);
+            handR.position.set(0.45, 1.1, 0);
+            characterGroup.add(handR);
 
             // === الساقان ===
+            const legGeo = new THREE.BoxGeometry(0.22, 0.6, 0.22);
             const legMat = createMat(pantsColor);
-            const legL = BABYLON.MeshBuilder.CreateBox("legL", { width: 0.25, height: 0.6, depth: 0.25 }, scene);
-            legL.material = legMat;
-            legL.position.set(-0.25, 0.5, 0);
-            legL.parent = characterGroup;
+            
+            const legL = new THREE.Mesh(legGeo, legMat);
+            legL.position.set(-0.2, 0.5, 0);
+            legL.castShadow = true;
+            characterGroup.add(legL);
 
-            const legR = BABYLON.MeshBuilder.CreateBox("legR", { width: 0.25, height: 0.6, depth: 0.25 }, scene);
-            legR.material = legMat;
-            legR.position.set(0.25, 0.5, 0);
-            legR.parent = characterGroup;
+            const legR = new THREE.Mesh(legGeo, legMat);
+            legR.position.set(0.2, 0.5, 0);
+            legR.castShadow = true;
+            characterGroup.add(legR);
 
             // === الحذاءان ===
+            const shoeGeo = new THREE.BoxGeometry(0.26, 0.1, 0.35);
             const shoeMat = createMat(shoeColor);
-            const shoeL = BABYLON.MeshBuilder.CreateBox("shoeL", { width: 0.3, height: 0.1, depth: 0.4 }, scene);
-            shoeL.material = shoeMat;
-            shoeL.position.set(-0.25, 0.15, 0.05);
-            shoeL.parent = characterGroup;
+            
+            const shoeL = new THREE.Mesh(shoeGeo, shoeMat);
+            shoeL.position.set(-0.2, 0.15, 0.04);
+            shoeL.castShadow = true;
+            characterGroup.add(shoeL);
 
-            const shoeR = BABYLON.MeshBuilder.CreateBox("shoeR", { width: 0.3, height: 0.1, depth: 0.4 }, scene);
-            shoeR.material = shoeMat;
-            shoeR.position.set(0.25, 0.15, 0.05);
-            shoeR.parent = characterGroup;
+            const shoeR = new THREE.Mesh(shoeGeo, shoeMat);
+            shoeR.position.set(0.2, 0.15, 0.04);
+            shoeR.castShadow = true;
+            characterGroup.add(shoeR);
 
             // === شعر ===
-            const hair = BABYLON.MeshBuilder.CreateBox("hair", { width: 0.5, height: 0.08, depth: 0.35 }, scene);
-            hair.material = createMat(new BABYLON.Color3(0.2, 0.15, 0.1));
+            const hairGeo = new THREE.BoxGeometry(0.44, 0.06, 0.3);
+            const hairMat = createMat(hairColor);
+            const hair = new THREE.Mesh(hairGeo, hairMat);
             hair.position.set(0, 2.32, 0);
-            hair.parent = characterGroup;
+            characterGroup.add(hair);
 
             // === أنف ===
-            const nose = BABYLON.MeshBuilder.CreateSphere("nose", { diameter: 0.06 }, scene);
-            nose.material = createMat(new BABYLON.Color3(0.85, 0.7, 0.55));
-            nose.position.set(0, 2.02, 0.35);
-            nose.parent = characterGroup;
+            const noseGeo = new THREE.SphereGeometry(0.04, 8, 8);
+            const noseMat = createMat(0xD4A080);
+            const nose = new THREE.Mesh(noseGeo, noseMat);
+            nose.position.set(0, 2.02, 0.32);
+            characterGroup.add(nose);
 
-            // === منصة ===
-            const platformMat = new BABYLON.StandardMaterial("platformMat", scene);
-            platformMat.diffuseColor = new BABYLON.Color3(0.08, 0.09, 0.12);
-            platformMat.emissiveColor = new BABYLON.Color3(0.03, 0.04, 0.06);
-            platformMat.specularColor = new BABYLON.Color3(0, 0, 0);
-            platformMat.alpha = 0.3;
+            // === منصة دائرية ===
+            const platformGeo = new THREE.CylinderGeometry(0.6, 0.7, 0.08, 32);
+            const platformMat = new THREE.MeshStandardMaterial({
+                color: 0x1A2A3A,
+                emissive: 0x0A1A2A,
+                roughness: 0.4,
+                metalness: 0.6,
+                transparent: true,
+                opacity: 0.8,
+            });
+            const platform = new THREE.Mesh(platformGeo, platformMat);
+            platform.position.y = -0.1;
+            platform.receiveShadow = true;
+            characterGroup.add(platform);
 
-            const platform = BABYLON.MeshBuilder.CreateCylinder(
-                "platform",
-                { height: 0.1, diameter: 1.2, tessellation: 32 },
-                scene
-            );
-            platform.material = platformMat;
-            platform.position.y = -0.45;
-            platform.parent = characterGroup;
+            // === حلقة حول الشخصية ===
+            const ringGeo = new THREE.TorusGeometry(0.7, 0.02, 16, 64);
+            const ringMat = new THREE.MeshStandardMaterial({
+                color: 0x4ECDC4,
+                emissive: 0x4ECDC4,
+                emissiveIntensity: 0.2,
+                transparent: true,
+                opacity: 0.5,
+            });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.position.y = 1.5;
+            ring.rotation.x = Math.PI / 2;
+            characterGroup.add(ring);
 
-            // === جسيمات ===
-            const particleSystem = new BABYLON.ParticleSystem("particles", 100, scene);
-            particleSystem.particleTexture = new BABYLON.Texture(
-                "https://www.babylonjs-playground.com/textures/particles/circle.png",
-                scene
-            );
-            particleSystem.emitter = new BABYLON.Vector3(0, 2, 0);
-            particleSystem.minEmitBox = new BABYLON.Vector3(-3, 0, -3);
-            particleSystem.maxEmitBox = new BABYLON.Vector3(3, 4, 3);
-            particleSystem.color1 = new BABYLON.Color4(0.3, 0.8, 0.77, 0.3);
-            particleSystem.color2 = new BABYLON.Color4(0.7, 0.9, 0.3, 0.2);
-            particleSystem.minSize = 0.02;
-            particleSystem.maxSize = 0.06;
-            particleSystem.minLifeTime = 2;
-            particleSystem.maxLifeTime = 5;
-            particleSystem.emitRate = 15;
-            particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ADD;
-            particleSystem.gravity = new BABYLON.Vector3(0, -0.01, 0);
-            particleSystem.direction1 = new BABYLON.Vector3(-0.5, 0.5, -0.5);
-            particleSystem.direction2 = new BABYLON.Vector3(0.5, 1, 0.5);
-            particleSystem.start();
+            // === جسيمات حول الشخصية ===
+            const particleCount = 300;
+            const particleGeo = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
 
-            // === الرسوم المتحركة ===
-            let animationTime = 0;
-            const cycleDuration = 6;
-            const armRStartPos = armR.position.clone();
-            const armRStartRot = armR.rotation.clone();
-            const handRStartPos = handR.position.clone();
-
-            characterGroup.position.x = 4.5;
-            characterGroup.position.y = 0;
-
-            scene.registerBeforeRender(() => {
-                animationTime += engine.getDeltaTime() / 1000;
-                const cycle = (animationTime % cycleDuration) / cycleDuration;
+            for (let i = 0; i < particleCount; i++) {
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                const radius = 1.5 + Math.random() * 1.5;
                 
-                let xPos;
-                if (cycle < 0.2) {
-                    const t = cycle / 0.2;
-                    const ease = t * t * (3 - 2 * t);
-                    xPos = 4.5 - ease * 4.5;
-                } else if (cycle < 0.5) {
-                    xPos = 0;
-                } else if (cycle < 0.8) {
-                    const t = (cycle - 0.5) / 0.3;
-                    const ease = t * t * (3 - 2 * t);
-                    xPos = -ease * 4.5;
-                } else {
-                    xPos = -4.5;
-                }
-                characterGroup.position.x = xPos;
-
-                let armWave = 0;
-                if (cycle >= 0.2 && cycle < 0.5) {
-                    const t = (cycle - 0.2) / 0.3;
-                    armWave = Math.sin(t * Math.PI * 4) * 0.6;
-                }
+                positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) + 1.5;
+                positions[i * 3 + 2] = radius * Math.cos(phi);
                 
-                armR.rotation.z = armRStartRot.z + armWave;
-                armR.rotation.x = armRStartRot.x + armWave * 0.3;
-                handR.position.x = handRStartPos.x + armWave * 0.1;
-                handR.position.y = handRStartPos.y + armWave * 0.1;
+                const color = new THREE.Color().setHSL(0.5 + Math.random() * 0.3, 0.7, 0.5 + Math.random() * 0.3);
+                colors[i * 3] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+                
+                sizes[i] = 0.02 + Math.random() * 0.04;
+            }
 
-                if (cycle >= 0.2 && cycle < 0.5) {
-                    const t = (cycle - 0.2) / 0.3;
-                    head.rotation.z = Math.sin(t * Math.PI * 3) * 0.08;
-                    head.rotation.y = Math.sin(t * Math.PI * 3) * 0.05;
-                } else {
-                    head.rotation.z *= 0.95;
-                    head.rotation.y *= 0.95;
-                }
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            particleGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-                platform.rotation.y += 0.005;
+            const particleMat = new THREE.PointsMaterial({
+                size: 0.05,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending,
+                sizeAttenuation: true,
             });
 
-            // === إعادة الحجم ===
+            const particles = new THREE.Points(particleGeo, particleMat);
+            characterGroup.add(particles);
+
+            // === خلفية نجوم ===
+            const starsCount = 500;
+            const starsGeo = new THREE.BufferGeometry();
+            const starsPos = new Float32Array(starsCount * 3);
+            for (let i = 0; i < starsCount * 3; i++) {
+                starsPos[i] = (Math.random() - 0.5) * 50;
+            }
+            starsGeo.setAttribute('position', new THREE.BufferAttribute(starsPos, 3));
+            const starsMat = new THREE.PointsMaterial({
+                color: 0x4ECDC4,
+                size: 0.02,
+                transparent: true,
+                opacity: 0.3,
+                sizeAttenuation: true,
+            });
+            const stars = new THREE.Points(starsGeo, starsMat);
+            scene.add(stars);
+
+            // === متغيرات التحريك ===
+            let time = 0;
+
+            // === التحريك ===
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                time += 0.008;
+                
+                // === حركة الشخصية (تطفو) ===
+                // حركة لأعلى ولأسفل
+                characterGroup.position.y = Math.sin(time * 0.5) * 0.15;
+                
+                // دوران خفيف
+                characterGroup.rotation.y = Math.sin(time * 0.2) * 0.1;
+                
+                // === حركة الذراعين (تمايل) ===
+                const armSwing = Math.sin(time * 0.8) * 0.15;
+                armL.rotation.z = -armSwing;
+                armR.rotation.z = armSwing;
+                armL.rotation.x = Math.sin(time * 0.6) * 0.1;
+                armR.rotation.x = -Math.sin(time * 0.6) * 0.1;
+                
+                // === حركة الرأس ===
+                head.rotation.z = Math.sin(time * 0.3) * 0.03;
+                head.rotation.y = Math.sin(time * 0.2) * 0.05;
+                
+                // === دوران الحلقة ===
+                ring.rotation.z += 0.005;
+                
+                // === دوران الجسيمات ===
+                particles.rotation.y += 0.002;
+                particles.rotation.x = Math.sin(time * 0.1) * 0.03;
+                
+                // === دوران النجوم ===
+                stars.rotation.y += 0.0003;
+                
+                // === تغير لون الحلقة ===
+                const hue = (Math.sin(time * 0.1) * 0.1 + 0.5);
+                ringMat.color.setHSL(hue, 0.8, 0.5);
+                
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // === إعادة الحجم عند تغيير النافذة ===
             window.addEventListener('resize', function() {
-                engine.resize();
-            });
-
-            // === بدء التصيير ===
-            engine.runRenderLoop(function() {
-                scene.render();
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
             });
 
         })();
