@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ====== حركات مستمرة ======
-    // دوران النجمة
     gsap.to('.moroccan-star', {
         rotation: 360,
         duration: 30,
@@ -83,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: 'none'
     });
     
-    // حركة الزخارف
     gsap.to('.geo-pattern-1', {
         x: 20,
         y: 10,
