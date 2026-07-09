@@ -11,6 +11,31 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
+        /* ====== طبقة الحماية غير المرئية ====== */
+        .overlay-protection {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: transparent;
+            pointer-events: all;
+            cursor: default;
+            opacity: 0;
+            display: none;
+        }
+        .overlay-protection.active {
+            display: block !important;
+            opacity: 1 !important;
+            pointer-events: all !important;
+        }
+        .overlay-protection.hidden {
+            display: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
         .moroccan-bg {
             position: fixed;
             top: 0;
@@ -274,6 +299,9 @@
 </head>
 <body>
 
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -411,6 +439,8 @@
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
+            const overlay = document.getElementById('overlayProtection');
+            
             // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
             
@@ -420,7 +450,7 @@
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
                 // إخفاء hero-wrapper نهائياً
-                gsap.set('#heroWrapper', { display: 'none' });
+                gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
                 
                 // إظهار الخلفيات
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
@@ -430,6 +460,12 @@
                 
                 // إظهار البطاقات مباشرة
                 gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
+                
+                // إزالة طبقة الحماية فوراً (لأنه لا يوجد أنميشن)
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
                 
                 console.log('✅ subjects.html - Affichage direct (sans animation)');
                 
@@ -467,6 +503,12 @@
 
             // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
+                // ====== تفعيل طبقة الحماية ======
+                overlay.classList.add('active');
+                
+                // التأكد من أن hero-wrapper ظاهر قبل بدء الأنميشن
+                gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
+                
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
                 tl
@@ -506,7 +548,14 @@
                     .call(() => {
                         // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
                         sessionStorage.removeItem('animation_allowed');
-                        console.log('✅ subjects.html - Animation jouée une fois');
+                        
+                        // ====== إزالة طبقة الحماية ======
+                        overlay.classList.remove('active');
+                        overlay.classList.add('hidden');
+                        overlay.style.display = 'none';
+                        overlay.style.pointerEvents = 'none';
+                        
+                        console.log('✅ subjects.html - Animation jouée une fois, overlay removed');
                     });
 
                 // ====== حركات مستمرة ======
