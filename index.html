@@ -76,38 +76,37 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
-        /* ====== تعطيل التفاعل أثناء الأنميشن ====== */
-        .disable-interactions {
-            pointer-events: none !important;
-            cursor: default !important;
-            opacity: 0.6 !important;
-            user-select: none !important;
+        /* ====== طبقة حاجبة شفافة ====== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: all;
+            display: block;
+            background: rgba(11, 12, 16, 0.4);
+            backdrop-filter: blur(8px);
+            transition: opacity 0.6s ease;
+            opacity: 1;
         }
-        .disable-interactions a,
-        .disable-interactions button,
-        .disable-interactions .btn,
-        .disable-interactions .btn-nav,
-        .disable-interactions .nav-links a,
-        .disable-interactions .hero-buttons a {
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* ====== تعطيل الأزرار أثناء الأنميشن ====== */
+        .btn-disabled {
             pointer-events: none !important;
-            cursor: default !important;
             opacity: 0.5 !important;
+            filter: blur(2px);
+            transition: all 0.4s ease;
         }
-        .enable-interactions {
+        .btn-enabled {
             pointer-events: auto !important;
-            cursor: pointer !important;
             opacity: 1 !important;
-            user-select: auto !important;
-        }
-        .enable-interactions a,
-        .enable-interactions button,
-        .enable-interactions .btn,
-        .enable-interactions .btn-nav,
-        .enable-interactions .nav-links a,
-        .enable-interactions .hero-buttons a {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-            opacity: 1 !important;
+            filter: blur(0px);
         }
 
         .hero {
@@ -300,6 +299,9 @@
 </head>
 <body>
 
+    <!-- ====== طبقة حاجبة شفافة ====== -->
+    <div class="loading-overlay" id="loadingOverlay"></div>
+
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -337,14 +339,14 @@
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
 
-    <nav class="navbar" id="navbar" class="disable-interactions">
+    <nav class="navbar" id="navbar">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
         <ul class="nav-links">
-            <li><a href="subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
-            <li><a href="subjects.html" class="btn-nav"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
+            <li><a href="subjects.html" class="btn-disabled"><i class="fas fa-book-open"></i> Matières</a></li>
+            <li><a href="subjects.html" class="btn-nav btn-disabled"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
         </ul>
     </nav>
 
@@ -365,7 +367,7 @@
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
             <div class="hero-buttons" id="buttons">
-                <a href="subjects.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Commencer</a>
+                <a href="subjects.html" class="btn btn-primary btn-disabled" id="startBtn"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
     </section>
@@ -383,31 +385,40 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // ====== تعطيل جميع الأزرار والروابط ======
-            function disableAllInteractions() {
-                document.querySelectorAll('a, button, .btn, .btn-nav, .nav-links a, .hero-buttons a, .navbar, .nav-logo, .nav-links li, .scroll-top-btn').forEach(el => {
-                    el.style.pointerEvents = 'none';
-                    el.style.cursor = 'default';
-                    el.style.opacity = '0.6';
+            // ====== تفعيل الأزرار بعد الأنميشن ======
+            function enableInteractions() {
+                // إخفاء الطبقة الحاجبة
+                const overlay = document.getElementById('loadingOverlay');
+                overlay.classList.add('hidden');
+                
+                // تفعيل الأزرار
+                document.querySelectorAll('.btn-disabled').forEach(el => {
+                    el.classList.remove('btn-disabled');
+                    el.classList.add('btn-enabled');
                 });
-                document.querySelector('.navbar')?.classList.add('disable-interactions');
+                
+                // إعادة التمرير
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                
+                // تأثير نبض خفيف للأزرار عند التفعيل
+                gsap.to('.btn-enabled', {
+                    scale: 1.02,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    yoyo: true,
+                    repeat: 1,
+                    stagger: 0.05
+                });
+                
+                console.log('✅ Interactions activées avec effet de pulse');
             }
 
-            function enableAllInteractions() {
-                document.querySelectorAll('a, button, .btn, .btn-nav, .nav-links a, .hero-buttons a, .navbar, .nav-logo, .nav-links li, .scroll-top-btn').forEach(el => {
-                    el.style.pointerEvents = '';
-                    el.style.cursor = '';
-                    el.style.opacity = '';
-                });
-                document.querySelector('.navbar')?.classList.remove('disable-interactions');
-            }
+            // ====== تعطيل التمرير مبدئياً ======
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
 
-            // تطبيق التعطيل
-            disableAllInteractions();
-
-            // حساب مدة الأنميشن الكلية
-            const totalDuration = 1.0 + 0.8 + 0.8 + 0.6 + 0.6 + 0.5 + 0.5 + 0.5 + 0.5 + 0.2; // ~5.5 secondes
-
+            // ====== الأنميشن مع onComplete ======
             const tl = gsap.timeline({
                 defaults: {
                     ease: 'power3.out'
@@ -415,9 +426,8 @@
                 onComplete: function() {
                     // تفعيل كل شيء بعد انتهاء الأنميشن
                     setTimeout(function() {
-                        enableAllInteractions();
-                        console.log('✅ Interactions activées');
-                    }, 300);
+                        enableInteractions();
+                    }, 200);
                 }
             });
 
@@ -594,23 +604,27 @@
 
             const btn = document.querySelector('.btn-primary');
             btn.addEventListener('mouseenter', () => {
-                gsap.to(btn, {
-                    scale: 1.05,
-                    duration: 0.2,
-                    ease: 'power2.out',
-                    boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
-                });
+                if (!btn.classList.contains('btn-disabled')) {
+                    gsap.to(btn, {
+                        scale: 1.05,
+                        duration: 0.2,
+                        ease: 'power2.out',
+                        boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
+                    });
+                }
             });
             btn.addEventListener('mouseleave', () => {
-                gsap.to(btn, {
-                    scale: 1,
-                    duration: 0.2,
-                    ease: 'power2.inOut',
-                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
-                });
+                if (!btn.classList.contains('btn-disabled')) {
+                    gsap.to(btn, {
+                        scale: 1,
+                        duration: 0.2,
+                        ease: 'power2.inOut',
+                        boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
+                    });
+                }
             });
 
-            console.log('✅ GSAP - Index page avec interactions bloquées');
+            console.log('✅ GSAP - Index avec overlay et onComplete');
         });
     </script>
 </body>
