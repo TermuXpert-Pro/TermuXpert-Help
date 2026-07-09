@@ -39,41 +39,16 @@
         .badge-facile { background: #4ECDC422; color: #4ECDC4; }
         .badge-moyen { background: #F4D03F22; color: #F4D03F; }
         .badge-difficile { background: #FF6B6B22; color: #FF6B6B; }
-        .ex-link {
-            display: block;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 12px;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .ex-link:hover { border-color: #4ECDC4; transform: translateX(-3px); }
-        .ex-link:active { transform: scale(0.97); opacity: 0.8; }
-        .ex-link .ex-icon { font-size: 18px; flex-shrink: 0; }
-        .ex-link .ex-num { font-size: 13px; color: #4ECDC4; font-weight: 700; }
-        .ex-link .ex-title { font-size: 12px; color: var(--text-secondary); }
-        .ex-link .ex-arrow { color: var(--text-muted); font-size: 12px; flex-shrink: 0; }
         @media (max-width: 768px) {
             body { font-size: 13px !important; }
             .hero h1 { font-size: 20px !important; }
             .tabs { gap: 4px !important; }
             .tab-btn { font-size: 12px !important; padding: 4px 10px !important; }
-            .ex-link { padding: 6px 10px !important; }
-            .ex-link .ex-num { font-size: 12px !important; }
-            .ex-link .ex-title { font-size: 11px !important; }
         }
         @media (max-width: 480px) {
             .nav-links a { font-size: 11px !important; padding: 4px 8px !important; }
             .hero h1 { font-size: 18px !important; }
             .tabs { flex-wrap: wrap; }
-            .ex-link { padding: 4px 8px !important; }
-            .ex-link .ex-num { font-size: 11px !important; }
-            .ex-link .ex-title { font-size: 10px !important; }
-            .ex-link .ex-icon { font-size: 14px !important; }
         }
     </style>
     <script>
@@ -131,46 +106,14 @@
                     { title: "Raisonnement par récurrence", file: "lessons/recurrence.html", desc: "Principe de récurrence, exemples" }
                 ],
                 exercices: [
-                    { 
-                        title: "🧠 Logique mathématique", 
-                        file: "exercices/logique/index.html", 
-                        items: 8, 
-                        difficulty: "Tous niveaux",
-                        list: [
-                            { num: 1, title: "Valeur de vérité et négation", file: "exercices/logique/exercice1.html", diff: "Facile" },
-                            { num: 2, title: "Quantificateurs", file: "exercices/logique/exercice2.html", diff: "Facile" },
-                            { num: 3, title: "Valeur de vérité", file: "exercices/logique/exercice3.html", diff: "Facile" },
-                            { num: 4, title: "Raisonnement (Contre-exemple, Contraposée, Absurde)", file: "exercices/logique/exercice4.html", diff: "Moyen" },
-                            { num: 5, title: "Lois logiques - Tautologies", file: "exercices/logique/exercice5.html", diff: "Moyen" },
-                            { num: 6, title: "Implication - Contraposée - Négation", file: "exercices/logique/exercice6.html", diff: "Moyen" },
-                            { num: 7, title: "Récurrence - Divisibilité", file: "exercices/logique/exercice7.html", diff: "Difficile" },
-                            { num: 8, title: "Récurrence - Sommes", file: "exercices/logique/exercice8.html", diff: "Difficile" }
-                        ]
-                    },
-                    { 
-                        title: "📈 Généralités sur les fonctions", 
-                        file: "exercices/fonctions/index.html", 
-                        items: 5, 
-                        difficulty: "Tous niveaux",
-                        list: [
-                            { num: 1, title: "Rappels", file: "exercices/fonctions/exercice1.html", diff: "Facile" },
-                            { num: 2, title: "Fonction majorée/minorée/bornée", file: "exercices/fonctions/exercice2.html", diff: "Facile" },
-                            { num: 3, title: "Comparaison de fonctions", file: "exercices/fonctions/exercice3.html", diff: "Moyen" },
-                            { num: 4, title: "Étude des fonctions de référence", file: "exercices/fonctions/exercice4.html", diff: "Moyen" },
-                            { num: 5, title: "Exercices", file: "exercices/fonctions/exercice5.html", diff: "Difficile" }
-                        ]
-                    },
-                    { 
-                        title: "⚖️ Barycentre dans le plan", 
-                        file: "exercices/barycentre/index.html", 
-                        items: 3, 
-                        difficulty: "Tous niveaux",
-                        list: [
-                            { num: 1, title: "Barycentre de deux points", file: "exercices/barycentre/exercice1.html", diff: "Facile" },
-                            { num: 2, title: "Barycentre de trois points", file: "exercices/barycentre/exercice2.html", diff: "Moyen" },
-                            { num: 3, title: "Barycentre de quatre points", file: "exercices/barycentre/exercice3.html", diff: "Difficile" }
-                        ]
-                    }
+                    { title: "🧠 Exercice 1 - Logique mathématique", file: "exercices/logique/exercice1.html", desc: "Valeur de vérité et négation" },
+                    { title: "🧠 Exercice 2 - Logique mathématique", file: "exercices/logique/exercice2.html", desc: "Quantificateurs" },
+                    { title: "🧠 Exercice 3 - Logique mathématique", file: "exercices/logique/exercice3.html", desc: "Valeur de vérité" },
+                    { title: "🧠 Exercice 4 - Logique mathématique", file: "exercices/logique/exercice4.html", desc: "Raisonnement" },
+                    { title: "🧠 Exercice 5 - Logique mathématique", file: "exercices/logique/exercice5.html", desc: "Lois logiques" },
+                    { title: "🧠 Exercice 6 - Logique mathématique", file: "exercices/logique/exercice6.html", desc: "Implication" },
+                    { title: "🧠 Exercice 7 - Logique mathématique", file: "exercices/logique/exercice7.html", desc: "Récurrence - Divisibilité" },
+                    { title: "🧠 Exercice 8 - Logique mathématique", file: "exercices/logique/exercice8.html", desc: "Récurrence - Sommes" }
                 ],
                 series: [
                     { title: "Série 1: Logique mathématique", items: 10 },
@@ -247,13 +190,6 @@
             switchTab('lessons');
         }
 
-        function getBadgeClass(diff) {
-            if (diff === 'Facile') return 'badge-facile';
-            if (diff === 'Moyen') return 'badge-moyen';
-            if (diff === 'Difficile') return 'badge-difficile';
-            return 'badge-exercice';
-        }
-
         function switchTab(tab) {
             currentTab = tab;
             
@@ -273,45 +209,15 @@
                     </div>
                 `).join('');
             } else if (tab === 'exercices') {
-                container.innerHTML = currentSubject.exercices.map((e, i) => {
-                    // Si l'exercice a une liste de sous-exercices
-                    if (e.list && e.list.length > 0) {
-                        return `
-                            <div style="margin-bottom:16px;">
-                                <div class="command-card" style="cursor:default; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-bottom:8px;">
-                                    <div class="command-title" style="font-size:14px;">${e.title}</div>
-                                    <p style="color:var(--text-secondary); font-size:12px;">${e.items} exercices - ${e.difficulty}</p>
-                                </div>
-                                <div style="padding-right:12px;">
-                                    ${e.list.map(ex => `
-                                        <a href="${ex.file}" class="ex-link">
-                                            <div style="display:flex; align-items:center; gap:10px;">
-                                                <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
-                                                <div style="flex:1;">
-                                                    <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice ${ex.num}</div>
-                                                    <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">${ex.title}</div>
-                                                </div>
-                                                <span class="badge ${getBadgeClass(ex.diff)}" style="flex-shrink:0;">${ex.diff}</span>
-                                                <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                                            </div>
-                                        </a>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `;
-                    }
-                    // Sinon affichage simple
-                    return `
-                        <div class="command-card" onclick="location.href='${e.file}'">
-                            <div class="command-title">${i+1}. ${e.title}</div>
-                            <p style="color:var(--text-secondary);">${e.items} exercices</p>
-                            <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-                                <span class="badge" style="background:#E8873A22; color:#E8873A;"><i class="fas fa-download"></i> Télécharger PDF</span>
-                                <span class="badge" style="background:#A8FF7822; color:#A8FF78;"><i class="fas fa-check"></i> Correction</span>
-                            </div>
+                container.innerHTML = currentSubject.exercices.map((e, i) => `
+                    <div class="command-card" onclick="location.href='${e.file}'">
+                        <div class="command-title">${i+1}. ${e.title}</div>
+                        <p style="color:var(--text-secondary);">${e.desc || e.items + ' exercices'}</p>
+                        <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
+                            <span class="badge" style="background:#E8873A22; color:#E8873A;"><i class="fas fa-pencil"></i> Voir l'exercice</span>
                         </div>
-                    `;
-                }).join('');
+                    </div>
+                `).join('');
             } else if (tab === 'series') {
                 container.innerHTML = currentSubject.series.map((s, i) => `
                     <div class="command-card">
