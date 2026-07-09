@@ -80,7 +80,6 @@
         .no-scroll {
             overflow: hidden !important;
             height: 100vh !important;
-            position: relative !important;
         }
 
         .loading-overlay {
@@ -218,13 +217,19 @@
             transform: translateY(20px);
         }
 
+        /* ====== تعطيل الأزرار ====== */
         .btn-disabled {
             pointer-events: none !important;
             opacity: 0.5 !important;
+            cursor: default !important;
         }
         .nav-link-disabled {
             pointer-events: none !important;
             opacity: 0.5 !important;
+        }
+        .all-disabled {
+            pointer-events: none !important;
+            user-select: none !important;
         }
 
         @media (max-width: 768px) {
@@ -289,9 +294,9 @@
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
-        <ul class="nav-links">
-            <li><a href="subjects.html" class="nav-link-disabled"><i class="fas fa-book-open"></i> Matières</a></li>
-            <li><a href="subjects.html" class="btn-nav nav-link-disabled"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="subjects.html" class="nav-link-disabled" id="navMatiere"><i class="fas fa-book-open"></i> Matières</a></li>
+            <li><a href="subjects.html" class="btn-nav nav-link-disabled" id="navCommencer"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
         </ul>
     </nav>
 
@@ -364,19 +369,21 @@
 
     <script>
         // ============================================================
-        // GSAP - الأنميشن مع منع/السماح بالتمرير
+        // GSAP - الأنميشن مع تعطيل الأزرار لمدة 4 ثوانٍ
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             // العناصر
             const html = document.documentElement;
             const body = document.body;
             const overlay = document.getElementById('loadingOverlay');
-            const navLinks = document.querySelectorAll('.nav-link-disabled');
+            const navMatiere = document.getElementById('navMatiere');
+            const navCommencer = document.getElementById('navCommencer');
             const startBtn = document.getElementById('startBtn');
+            const allDisabledElements = [navMatiere, navCommencer, startBtn];
 
-            // ====== منع التمرير ======
-            function blockAll() {
+            // ====== تعطيل كل شيء ======
+            function disableAll() {
                 // منع التمرير
                 html.style.overflow = 'hidden';
                 body.style.overflow = 'hidden';
@@ -385,18 +392,18 @@
                 // إظهار التراكب
                 overlay.classList.add('active');
                 
-                // تعطيل الروابط
-                navLinks.forEach(el => {
-                    el.style.pointerEvents = 'none';
-                    el.style.opacity = '0.5';
+                // تعطيل جميع الأزرار والروابط
+                allDisabledElements.forEach(el => {
+                    if (el) {
+                        el.style.pointerEvents = 'none';
+                        el.style.opacity = '0.5';
+                        el.classList.add('btn-disabled');
+                    }
                 });
-                
-                // تعطيل زر البداية
-                startBtn.classList.add('btn-disabled');
             }
 
-            // ====== السماح بالتمرير ======
-            function allowAll() {
+            // ====== تفعيل كل شيء بعد 4 ثوانٍ ======
+            function enableAll() {
                 // السماح بالتمرير
                 html.style.overflow = '';
                 body.style.overflow = '';
@@ -405,30 +412,26 @@
                 // إخفاء التراكب
                 overlay.classList.remove('active');
                 
-                // تفعيل الروابط
-                navLinks.forEach(el => {
-                    el.style.pointerEvents = '';
-                    el.style.opacity = '';
+                // تفعيل جميع الأزرار والروابط
+                allDisabledElements.forEach(el => {
+                    if (el) {
+                        el.style.pointerEvents = '';
+                        el.style.opacity = '';
+                        el.classList.remove('btn-disabled');
+                    }
                 });
                 
-                // تفعيل زر البداية
-                startBtn.classList.remove('btn-disabled');
-                
-                console.log('✅ Défilement et interactions autorisés');
+                console.log('✅ Défilement et interactions activés après 4 secondes');
             }
 
-            // ====== تطبيق المنع ======
-            blockAll();
+            // ====== تطبيق التعطيل ======
+            disableAll();
 
             // ====== الأنميشن ======
             const tl = gsap.timeline({
                 defaults: {
                     duration: 0.8,
                     ease: 'power3.out'
-                },
-                onComplete: function() {
-                    // السماح بعد الأنميشن مباشرة
-                    allowAll();
                 }
             });
 
@@ -504,6 +507,11 @@
                     ease: 'sine.inOut'
                 }, '-=0.2');
 
+            // ====== تفعيل كل شيء بعد 4 ثوانٍ من بدء الصفحة ======
+            setTimeout(function() {
+                enableAll();
+            }, 4000);
+
             // ====== حركات مستمرة ======
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
@@ -539,29 +547,7 @@
                 });
             });
 
-            const btn = document.querySelector('#startBtn');
-            btn.addEventListener('mouseenter', () => {
-                if (!btn.classList.contains('btn-disabled')) {
-                    gsap.to(btn, {
-                        scale: 1.05,
-                        duration: 0.2,
-                        ease: 'power2.out',
-                        boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
-                    });
-                }
-            });
-            btn.addEventListener('mouseleave', () => {
-                if (!btn.classList.contains('btn-disabled')) {
-                    gsap.to(btn, {
-                        scale: 1,
-                        duration: 0.2,
-                        ease: 'power2.inOut',
-                        boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
-                    });
-                }
-            });
-
-            console.log('✅ Animation chargée');
+            console.log('✅ Animation chargée - les boutons seront activés dans 4 secondes');
         });
     </script>
 </body>
