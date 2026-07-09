@@ -1,1 +1,522 @@
-✅ تم إنشاء مشهد three.js مع شخصية تطفوcat
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpert - 1 Bac Sciences Expérimentales</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* ====== حاوية three.js فوق الشعار ====== */
+        #three-container {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            z-index: 10;
+            pointer-events: none;
+            overflow: visible;
+        }
+        #three-container canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ====== Hero ====== */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: clamp(60px, 12vh, 100px) var(--container-padding) clamp(40px, 6vh, 60px);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ====== البطاقة ====== */
+        .hero-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(78, 205, 196, 0.1);
+            border-radius: 30px;
+            padding: 60px 50px 50px;
+            max-width: 700px;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            overflow: visible;
+            margin-top: 40px;
+        }
+
+        /* ====== الشعار ====== */
+        .hero-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-logo .name-left {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #4ECDC4;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
+            text-transform: uppercase;
+        }
+
+        .hero-logo .name-center {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 25%, #F4D03F 50%, #FF6B6B 75%, #A8FF78 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease-in-out infinite;
+            letter-spacing: 8px;
+            padding: 0 8px;
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.15));
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-logo .name-right {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #FF6B6B;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.2);
+            text-transform: uppercase;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(69, 162, 158, 0.1);
+            border: 1px solid rgba(69, 162, 158, 0.2);
+            color: #66FCF1;
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .hero-label .dot {
+            width: 6px;
+            height: 6px;
+            background: #06D6A0;
+            border-radius: 50%;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #4ECDC4, #66FCF1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .description {
+            color: var(--text-muted);
+            font-size: clamp(12px, 1.5vw, 15px);
+            max-width: 500px;
+            margin: 0 auto 16px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .hero-card { padding: 50px 20px 40px; margin-top: 30px; }
+            .hero-logo .name-left { font-size: 16px; letter-spacing: 2px; }
+            .hero-logo .name-center { font-size: 22px; letter-spacing: 4px; }
+            .hero-logo .name-right { font-size: 16px; letter-spacing: 2px; }
+            #three-container {
+                width: 150px;
+                height: 150px;
+                top: -50px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-card { padding: 40px 12px 30px; margin-top: 20px; }
+            .hero-logo .name-left { font-size: 12px; letter-spacing: 1px; }
+            .hero-logo .name-center { font-size: 16px; letter-spacing: 2px; }
+            .hero-logo .name-right { font-size: 12px; letter-spacing: 1px; }
+            #three-container {
+                width: 120px;
+                height: 120px;
+                top: -40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== شريط تقدم القراءة ====== -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+            <li><a href="subjects.html" class="btn-nav"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <!-- ====== البطاقة ====== -->
+        <div class="hero-card">
+            <!-- ====== Three.js - الكائن الفضائي فوق الشعار ====== -->
+            <div id="three-container"></div>
+
+            <div class="hero-logo">
+                <span class="name-left">JAOUAD</span>
+                <span class="name-center">MOROCCO</span>
+                <span class="name-right">ELKHAYATY</span>
+            </div>
+
+            <div class="hero-label"><span class="dot"></span> 1 Bac Sciences Expérimentales</div>
+            <h1>Plateforme <span class="gradient-text">Xpert</span></h1>
+            <p class="description">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
+            <div class="hero-buttons">
+                <a href="subjects.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Commencer</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Que trouverez-vous sur <span style="color:#4ECDC4;">Xpert</span> ?</h2>
+        <p class="subtitle">Tout ce dont vous avez besoin pour réussir la 1 Bac Sciences Expérimentales</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+                <h3>Cours</h3>
+                <p>Cours complets et simplifiés avec des exemples illustratifs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-list-check"></i></div>
+                <h3>Séries d'exercices</h3>
+                <p>Séries d'exercices corrigés et non corrigés pour chaque cours.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-pen-to-square"></i></div>
+                <h3>Devoirs</h3>
+                <p>Devoirs surveillés avec corrections pour évaluer votre progression.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-file-pdf"></i></div>
+                <h3>Examens régionaux</h3>
+                <p>Examens régionaux antérieurs avec solutions détaillées.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-copy"></i></div>
+                <h3>Copier les formules</h3>
+                <p>Copiez n'importe quelle formule ou loi en un clic.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-mobile-screen"></i></div>
+                <h3>Responsive</h3>
+                <p>Fonctionne sur téléphone, tablette et ordinateur.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Prêt à exceller ?</h2>
+        <p>Rejoignez des milliers d'élèves qui font confiance à Xpert.</p>
+        <a href="subjects.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Commencer maintenant</a>
+    </section>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <button class="scroll-top-btn" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // ============================================================
+        // THREE.JS - كائن فضائي يطفو فوق الشعار
+        // ============================================================
+        (function() {
+            const container = document.getElementById('three-container');
+            
+            // === المشهد ===
+            const scene = new THREE.Scene();
+            scene.background = null;
+
+            // === الكاميرا ===
+            const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 0.5, 5);
+            camera.lookAt(0, 0.5, 0);
+
+            // === المُصوّر ===
+            const renderer = new THREE.WebGLRenderer({ 
+                antialias: true, 
+                alpha: true 
+            });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            container.appendChild(renderer.domElement);
+
+            // === إضاءة ===
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
+            directionalLight.position.set(5, 8, 7);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+
+            const pointLight = new THREE.PointLight(0xfeb7c3, 0.5);
+            pointLight.position.set(-4, -2, 3);
+            scene.add(pointLight);
+
+            const backLight = new THREE.DirectionalLight(0x4ECDC4, 0.4);
+            backLight.position.set(-2, 1, -3);
+            scene.add(backLight);
+
+            // === مجموعة الكائن ===
+            const alienGroup = new THREE.Group();
+            scene.add(alienGroup);
+
+            // مواد
+            const bodyMat = new THREE.MeshStandardMaterial({
+                color: 0xbae1ff,
+                roughness: 0.3,
+                metalness: 0.1,
+            });
+
+            const limbMat = new THREE.MeshStandardMaterial({
+                color: 0xffdfba,
+                roughness: 0.2,
+                metalness: 0.05,
+            });
+
+            const headMat = new THREE.MeshStandardMaterial({
+                color: 0xf2f2f2,
+                roughness: 0.1,
+                metalness: 0.2,
+            });
+
+            // === الجسد ===
+            const bodyGeo = new THREE.SphereGeometry(0.7, 32, 32);
+            bodyGeo.scale(0.8, 1.3, 0.7);
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.castShadow = true;
+            alienGroup.add(body);
+
+            // === الرأس ===
+            const headGeo = new THREE.SphereGeometry(0.5, 32, 32);
+            headGeo.scale(1.1, 1, 1.1);
+            const head = new THREE.Mesh(headGeo, headMat);
+            head.position.y = 1.5;
+            head.castShadow = true;
+            alienGroup.add(head);
+
+            // === العينان ===
+            function createEye(x, z) {
+                const eyeGeo = new THREE.SphereGeometry(0.08, 16, 16);
+                const eyeMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+                const eye = new THREE.Mesh(eyeGeo, eyeMat);
+                eye.position.set(x, 1.6, 0.35 + z);
+                alienGroup.add(eye);
+                
+                const pupilGeo = new THREE.SphereGeometry(0.04, 16, 16);
+                const pupilMat = new THREE.MeshStandardMaterial({ color: 0x1a1a2a });
+                const pupil = new THREE.Mesh(pupilGeo, pupilMat);
+                pupil.position.set(x, 1.58, 0.42 + z);
+                alienGroup.add(pupil);
+            }
+            createEye(-0.12, 0);
+            createEye(0.12, 0);
+
+            // === الفم ===
+            const mouthGeo = new THREE.BoxGeometry(0.1, 0.02, 0.02);
+            const mouthMat = new THREE.MeshStandardMaterial({ color: 0x3a2a1a });
+            const mouth = new THREE.Mesh(mouthGeo, mouthMat);
+            mouth.position.set(0, 1.32, 0.4);
+            alienGroup.add(mouth);
+
+            // === الأيدي ===
+            const handGeo = new THREE.SphereGeometry(0.18, 24, 24);
+            
+            const leftHand = new THREE.Mesh(handGeo, limbMat);
+            leftHand.position.set(-1.1, 0.4, 0);
+            leftHand.castShadow = true;
+            alienGroup.add(leftHand);
+
+            const rightHand = new THREE.Mesh(handGeo, limbMat);
+            rightHand.position.set(1.1, 0.4, 0);
+            rightHand.castShadow = true;
+            alienGroup.add(rightHand);
+
+            // === حلقة زخرفية ===
+            const ringGeo = new THREE.TorusGeometry(0.9, 0.015, 16, 64);
+            const ringMat = new THREE.MeshStandardMaterial({
+                color: 0x4ECDC4,
+                emissive: 0x4ECDC4,
+                emissiveIntensity: 0.15,
+                transparent: true,
+                opacity: 0.5,
+            });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.position.y = 0.5;
+            ring.rotation.x = Math.PI / 2;
+            alienGroup.add(ring);
+
+            // === جسيمات ===
+            const particleCount = 100;
+            const particleGeo = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount; i++) {
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                const radius = 1.2 + Math.random() * 0.8;
+                positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) + 0.5;
+                positions[i * 3 + 2] = radius * Math.cos(phi);
+                const color = new THREE.Color().setHSL(0.5 + Math.random() * 0.2, 0.7, 0.5);
+                colors[i * 3] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+            }
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            const particleMat = new THREE.PointsMaterial({
+                size: 0.03,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.4,
+                blending: THREE.AdditiveBlending,
+                sizeAttenuation: true,
+            });
+            const particles = new THREE.Points(particleGeo, particleMat);
+            alienGroup.add(particles);
+
+            // === كرة صغيرة تطفو ===
+            const orbGeo = new THREE.SphereGeometry(0.04, 8, 8);
+            const orbMat = new THREE.MeshStandardMaterial({
+                color: 0x4ECDC4,
+                emissive: 0x4ECDC4,
+                emissiveIntensity: 0.3,
+            });
+            const orb = new THREE.Mesh(orbGeo, orbMat);
+            orb.position.set(0.6, 1.2, 0.6);
+            alienGroup.add(orb);
+
+            // === التحريك ===
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+                const t = clock.getElapsedTime();
+
+                // طفو الكائن
+                alienGroup.position.y = Math.sin(t * 0.5) * 0.2;
+                alienGroup.rotation.y = Math.sin(t * 0.25) * 0.08;
+
+                // حركة الأيدي
+                leftHand.position.y = 0.4 + Math.sin(t * 0.8) * 0.2;
+                leftHand.position.x = -1.1 + Math.cos(t * 0.5) * 0.1;
+                leftHand.scale.setScalar(1 + Math.sin(t * 0.6) * 0.05);
+                
+                rightHand.position.y = 0.4 + Math.cos(t * 0.7) * 0.2;
+                rightHand.position.x = 1.1 + Math.sin(t * 0.5) * 0.1;
+                rightHand.scale.setScalar(1 + Math.cos(t * 0.6) * 0.05);
+
+                // حركة الرأس
+                head.rotation.x = Math.sin(t * 0.4) * 0.05;
+                head.rotation.y = Math.sin(t * 0.3) * 0.05;
+                head.position.y = 1.5 + Math.sin(t * 0.7) * 0.05;
+
+                // دوران الحلقة
+                ring.rotation.z += 0.008;
+                ring.scale.setScalar(1 + Math.sin(t * 0.3) * 0.03);
+
+                // دوران الجسيمات
+                particles.rotation.y += 0.003;
+                particles.rotation.x = Math.sin(t * 0.1) * 0.02;
+
+                // حركة الكرة
+                orb.position.x = 0.6 + Math.sin(t * 0.7) * 0.2;
+                orb.position.y = 1.2 + Math.sin(t * 0.5 + 0.5) * 0.2;
+                orb.position.z = 0.6 + Math.cos(t * 0.6) * 0.2;
+
+                // تغير لون الحلقة
+                const hue = (Math.sin(t * 0.15) * 0.1 + 0.5);
+                ringMat.color.setHSL(hue, 0.8, 0.5);
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // === إعادة الحجم ===
+            function resize() {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            }
+
+            window.addEventListener('resize', resize);
+            const resizeObserver = new ResizeObserver(() => resize());
+            resizeObserver.observe(container);
+
+        })();
+    </script>
+</body>
+</html>
