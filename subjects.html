@@ -95,6 +95,7 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
+            min-height: 50vh;
         }
 
         .hero h1 {
@@ -103,7 +104,7 @@
             line-height: 1.2;
             margin-bottom: 8px;
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(0) scale(0.95);
         }
         .hero h1 .gradient-text {
             background: linear-gradient(135deg, #4ECDC4, #66FCF1);
@@ -118,7 +119,7 @@
             margin: 0 auto;
             line-height: 1.8;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
         }
 
         /* ====== Grid ====== */
@@ -129,7 +130,7 @@
             margin: 0 auto;
             padding: 0 20px 50px;
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(60px);
         }
 
         .grid {
@@ -150,7 +151,7 @@
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             text-align: center;
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(80px);
             position: relative;
             overflow: hidden;
         }
@@ -233,7 +234,7 @@
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
             .geo-pattern { font-size: 14px; letter-spacing: 12px; }
-            .hero { padding: 100px 20px 30px; }
+            .hero { padding: 100px 20px 30px; min-height: 40vh; }
             .card { padding: 16px 14px; }
         }
         @media (max-width: 480px) {
@@ -381,13 +382,13 @@
         renderSubjects();
 
         // ============================================================
-        // GSAP - الرسوم المتحركة الأنيقة
+        // GSAP - تأثيرات أنيقة مع تأخير زمني
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             const tl = gsap.timeline({
                 defaults: {
-                    ease: 'power2.out'
+                    ease: 'power3.out'
                 }
             });
 
@@ -415,53 +416,58 @@
                     ease: 'power1.out'
                 }, '-=1.4')
 
-            // 2. ظهور الهيرو (النص يتحرك للأعلى)
+            // 2. ظهور النص في الوسط (ثم يتحرك للأعلى)
             .to('#heroSection', {
                 opacity: 1,
                 duration: 0.8,
                 ease: 'power2.out'
             }, '-=0.5')
+
+            // النص يظهر في المنتصف أولاً
             .to('#title', {
                 opacity: 1,
                 y: 0,
+                scale: 1,
                 duration: 1.2,
-                ease: 'power3.out',
-                onStart: function() {
-                    gsap.fromTo('#title', 
-                        { y: 60, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }
-                    );
-                }
-            }, '-=0.6')
+                ease: 'power3.out'
+            }, '-=0.3')
             .to('#desc', {
                 opacity: 1,
                 y: 0,
                 duration: 1,
-                ease: 'power3.out',
-                onStart: function() {
-                    gsap.fromTo('#desc', 
-                        { y: 40, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
-                    );
-                }
-            }, '-=0.4')
+                ease: 'power3.out'
+            }, '-=0.5')
 
-            // 3. ظهور الـ Grid (يخرج من الأسفل للأعلى)
+            // 3. بعد 0.8 ثانية، النص يتحرك للأعلى
+            .to('#title', {
+                y: -40,
+                duration: 1.4,
+                ease: 'power3.out',
+                delay: 0.8
+            })
+            .to('#desc', {
+                y: -25,
+                duration: 1.2,
+                ease: 'power3.out',
+                delay: 0.6
+            }, '-=0.8')
+
+            // 4. المواد تتدفق من الأسفل للأعلى
             .to('#gridContainer', {
                 opacity: 1,
                 y: 0,
-                duration: 1,
+                duration: 1.2,
                 ease: 'power3.out'
             }, '-=0.3')
 
-            // 4. ظهور البطاقات بتتابع أنيق (من الأسفل للأعلى)
+            // 5. البطاقات تظهر بتتابع مع تأثير ناعم
             .to('.card', {
                 opacity: 1,
                 y: 0,
-                duration: 0.7,
-                stagger: 0.12,
-                ease: 'back.out(1.4)'
-            }, '-=0.5');
+                duration: 0.8,
+                stagger: 0.15,
+                ease: 'back.out(1.2)'
+            }, '-=0.6');
 
             // ====== حركات مستمرة ناعمة ======
             gsap.to('.moroccan-bg', {
@@ -533,7 +539,7 @@
                 });
             });
 
-            console.log('✅ GSAP - صفحة المواد بتصميم زجاجي أنيق');
+            console.log('✅ GSAP - صفحة المواد: نص في الوسط ثم يتحرك للأعلى، مواد تتدفق من الأسفل');
         });
     </script>
 </body>
