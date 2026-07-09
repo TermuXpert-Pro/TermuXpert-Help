@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ====== الشعار الجديد ====== */
+        /* ====== الشعار ====== */
         .hero-logo {
             position: relative;
             display: flex;
@@ -21,6 +21,20 @@
             padding: 20px 0;
             width: 100%;
             min-height: 180px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+        }
+        .hero-logo:hover {
+            background: rgba(78, 205, 196, 0.05);
+            border-color: rgba(78, 205, 196, 0.15);
+            transform: scale(1.01);
+        }
+        .hero-logo:active {
+            transform: scale(0.97);
         }
         
         /* JAOUAD - فوق اليسار */
@@ -95,7 +109,7 @@
             transform: rotate(2deg);
         }
         
-        /* زخرفة مغربية */
+        /* زخارف مغربية */
         .hero-logo .moroccan-pattern {
             position: absolute;
             font-size: 12px;
@@ -111,6 +125,28 @@
         .hero-logo .pattern-bottom {
             bottom: -10px;
             left: 20%;
+        }
+        
+        /* أيقونة التصميم */
+        .logo-edit-icon {
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+            background: rgba(78, 205, 196, 0.15);
+            border: 1px solid rgba(78, 205, 196, 0.2);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4ECDC4;
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .hero-logo:hover .logo-edit-icon {
+            opacity: 1;
         }
         
         /* ====== RESPONSIVE ====== */
@@ -164,6 +200,11 @@
                 bottom: -12px;
                 top: auto;
             }
+            .logo-edit-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
         }
     </style>
     <script>
@@ -194,8 +235,8 @@
     </nav>
 
     <section class="hero">
-        <!-- ====== الشعار الجديد ====== -->
-        <div class="hero-logo">
+        <!-- ====== الشعار ====== -->
+        <div class="hero-logo" onclick="window.location.href='logo-design.html'">
             <!-- JAOUAD - فوق اليسار -->
             <span class="name-top-left">JAOUAD</span>
             
@@ -208,6 +249,9 @@
             <!-- زخارف مغربية -->
             <span class="moroccan-pattern pattern-top">✦ ✧ ✦</span>
             <span class="moroccan-pattern pattern-bottom">✦ ✧ ✦</span>
+
+            <!-- أيقونة التصميم -->
+            <span class="logo-edit-icon"><i class="fas fa-pen"></i></span>
         </div>
 
         <div class="hero-label"><span class="dot"></span> 1 Bac Sciences Expérimentales</div>
