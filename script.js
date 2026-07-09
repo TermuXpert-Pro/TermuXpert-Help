@@ -1,10 +1,9 @@
 // ============================================================
-// script.js - الوظائف العامة للموقع
+// script.js - الوظائف العامة للموقع (محسّن)
 // ============================================================
 
 // ====== زر العودة للأعلى ======
 (function() {
-    // إنشاء زر العودة للأعلى
     var scrollBtn = document.createElement('button');
     scrollBtn.className = 'scroll-top-btn';
     scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -26,21 +25,23 @@
     });
 })();
 
-// ====== شريط تقدم القراءة ======
+// ====== شريط تقدم القراءة (محسّن) ======
 (function() {
-    // إنشاء شريط التقدم
     var progressBar = document.createElement('div');
     progressBar.className = 'progress-bar';
     progressBar.id = 'progressBar';
     document.body.appendChild(progressBar);
 
-    // تحديث شريط التقدم عند التمرير
-    window.addEventListener('scroll', function() {
+    function updateProgress() {
         var scrollTop = window.scrollY;
         var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        var progress = (scrollTop / docHeight) * 100;
-        progressBar.style.width = progress + '%';
-    });
+        var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = Math.min(progress, 100) + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
 })();
 
 // ====== تأثير القائمة عند التمرير ======
@@ -57,10 +58,7 @@ window.addEventListener('scroll', function() {
 
 // ====== تأثيرات عند تحميل الصفحة ======
 document.addEventListener('DOMContentLoaded', function() {
-    // إضافة تأثير انتقالي للصفحة
     document.body.classList.add('page-transition');
-    
-    // إزالة الفئة بعد ثانية
     setTimeout(function() {
         document.body.classList.remove('page-transition');
     }, 1000);
