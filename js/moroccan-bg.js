@@ -1,0 +1,66 @@
+// ============================================================
+// moroccan-bg.js - إضافة الخلفية المغربية ديناميكياً
+// ============================================================
+
+(function() {
+    'use strict';
+    
+    // التحقق من وجود الخلفية بالفعل
+    if (document.querySelector('.moroccan-bg')) return;
+    
+    // ====== إنشاء الخلفية الزليجية ======
+    var moroccanBg = document.createElement('div');
+    moroccanBg.className = 'moroccan-bg';
+    moroccanBg.innerHTML = `
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    `;
+    document.body.prepend(moroccanBg);
+    
+    // ====== إنشاء الظل الزخرفي ======
+    var shadow = document.createElement('div');
+    shadow.className = 'moroccan-shadow';
+    document.body.prepend(shadow);
+    
+    // ====== إنشاء النجمة الدوارة ======
+    var star = document.createElement('div');
+    star.className = 'moroccan-star';
+    star.textContent = '✦';
+    document.body.prepend(star);
+    
+    // ====== إنشاء الزخارف الهندسية ======
+    var patterns = [
+        '✦ ✧ ✦ ✧ ✦',
+        '✦ ✧ ✦ ✧ ✦',
+        '✦ ✧ ✦ ✧ ✦',
+        '✦ ✧ ✦ ✧ ✦'
+    ];
+    
+    patterns.forEach(function(text, index) {
+        var geo = document.createElement('div');
+        geo.className = 'geo-pattern geo-pattern-' + (index + 1);
+        geo.textContent = text;
+        document.body.prepend(geo);
+    });
+    
+    console.log('✅ الخلفية المغربية تمت إضافتها بنجاح');
+})();
