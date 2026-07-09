@@ -214,8 +214,8 @@
             grid-template-columns: 1fr;
             gap: 16px;
             width: 100%;
-            opacity: 0;
-            transform: translateY(40px);
+            opacity: 1;
+            transform: none;
         }
 
         .command-card {
@@ -295,15 +295,6 @@
             margin-top: 8px;
             position: relative;
             z-index: 1;
-        }
-
-        /* ====== سطر فاصل ====== */
-        .divider-line {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(78, 205, 196, 0.1), transparent);
-            margin: 4px 0;
-            opacity: 0;
         }
 
         /* ====== RESPONSIVE ====== */
@@ -476,6 +467,7 @@
 
         let currentSubject = null;
         let currentTab = 'lessons';
+        let isAnimating = false;
 
         function loadSubject() {
             const params = new URLSearchParams(window.location.search);
@@ -495,15 +487,42 @@
         }
 
         function switchTab(tab) {
+            if (isAnimating) return;
+            if (tab === currentTab) return;
+            
+            isAnimating = true;
             currentTab = tab;
             
+            // تحديث الأزرار
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
             
             const container = document.getElementById('tabContent');
             
+            // إخفاء البطاقات الحالية
+            const currentCards = container.querySelectorAll('.command-card');
+            if (currentCards.length > 0) {
+                gsap.to(currentCards, {
+                    opacity: 0,
+                    y: -20,
+                    scale: 0.95,
+                    duration: 0.3,
+                    ease: 'power2.in',
+                    stagger: 0.05,
+                    onComplete: function() {
+                        renderContent(container, tab);
+                    }
+                });
+            } else {
+                renderContent(container, tab);
+            }
+        }
+
+        function renderContent(container, tab) {
+            let html = '';
+            
             if (tab === 'lessons') {
-                container.innerHTML = currentSubject.lessons.map((l, i) => `
+                html = currentSubject.lessons.map((l, i) => `
                     <div class="command-card" onclick="location.href='${l.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${l.title}
@@ -513,7 +532,7 @@
                     </div>
                 `).join('');
             } else if (tab === 'exercices') {
-                container.innerHTML = currentSubject.exercices.map((e, i) => `
+                html = currentSubject.exercices.map((e, i) => `
                     <div class="command-card" onclick="location.href='${e.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${e.title}
@@ -523,7 +542,7 @@
                     </div>
                 `).join('');
             } else if (tab === 'series') {
-                container.innerHTML = currentSubject.series.map((s, i) => `
+                html = currentSubject.series.map((s, i) => `
                     <div class="command-card" onclick="location.href='${s.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${s.title}
@@ -534,7 +553,7 @@
                 `).join('');
             } else if (tab === 'exams') {
                 if (currentSubject.exams.length === 0) {
-                    container.innerHTML = `
+                    html = `
                         <div class="command-card" style="cursor:default; opacity:0.7;">
                             <div class="command-title">
                                 <span class="num">📅</span> Prochainement
@@ -544,7 +563,7 @@
                         </div>
                     `;
                 } else {
-                    container.innerHTML = currentSubject.exams.map((e, i) => `
+                    html = currentSubject.exams.map((e, i) => `
                         <div class="command-card">
                             <div class="command-title">
                                 <span class="num">${i+1}</span> ${e.title}
@@ -556,21 +575,28 @@
                 }
             }
             
-            // GSAP - تحريك البطاقات الجديدة
-            setTimeout(() => {
-                gsap.fromTo('.command-card', 
+            container.innerHTML = html;
+            
+            // ظهور البطاقات الجديدة مع أنيميشن
+            const newCards = container.querySelectorAll('.command-card');
+            if (newCards.length > 0) {
+                gsap.fromTo(newCards, 
                     { opacity: 0, y: 40, scale: 0.95 },
                     { 
                         opacity: 1, 
                         y: 0, 
                         scale: 1, 
-                        duration: 0.6, 
+                        duration: 0.5, 
                         stagger: 0.08,
                         ease: 'power3.out',
-                        clearProps: 'all'
+                        onComplete: function() {
+                            isAnimating = false;
+                        }
                     }
                 );
-            }, 50);
+            } else {
+                isAnimating = false;
+            }
             
             if (window.MathJax && MathJax.typesetPromise) {
                 MathJax.typesetPromise();
@@ -578,7 +604,7 @@
         }
 
         // ============================================================
-        // GSAP - تأثيرات مبهرة عند تحميل الصفحة
+        // GSAP - تأثيرات عند تحميل الصفحة
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -722,25 +748,7 @@
                 });
             });
 
-            // ====== تأثير hover على البطاقات ======
-            document.querySelectorAll('.command-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    gsap.to(this, {
-                        scale: 1.02,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                });
-                card.addEventListener('mouseleave', function() {
-                    gsap.to(this, {
-                        scale: 1,
-                        duration: 0.3,
-                        ease: 'power2.inOut'
-                    });
-                });
-            });
-
-            console.log('✅ GSAP - Page matière avec design époustouflant');
+            console.log('✅ GSAP - Page matière avec animation fluide');
         });
     </script>
 </body>
