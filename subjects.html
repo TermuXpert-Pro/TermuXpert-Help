@@ -76,6 +76,22 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
+        /* ====== تعطيل التفاعل أثناء الأنميشن ====== */
+        .disable-interactions {
+            pointer-events: none !important;
+            cursor: default !important;
+            opacity: 0.6 !important;
+            user-select: none !important;
+        }
+        .disable-interactions a,
+        .disable-interactions button,
+        .disable-interactions .btn,
+        .disable-interactions .nav-links a {
+            pointer-events: none !important;
+            cursor: default !important;
+            opacity: 0.5 !important;
+        }
+
         .hero {
             position: relative;
             z-index: 1;
@@ -228,7 +244,7 @@
         @media (max-width: 480px) {
             .moroccan-shadow { width: 200px; height: 200px; }
             .moroccan-star { font-size: 40px; }
-            .geo-pattern { font-size: 13px; letter-spacing: 8px; }
+            .geo-pattern { font-size: 10px; letter-spacing: 8px; }
             .hero h1 { font-size: 24px; }
             .hero .description { font-size: 13px; }
             .card { padding: 14px 10px; }
@@ -273,7 +289,7 @@
     <div class="progress-bar" id="progressBar"></div>
     <div class="bg-grid"></div>
 
-    <nav class="navbar">
+    <nav class="navbar disable-interactions">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -289,9 +305,7 @@
     </section>
 
     <div class="grid-container" id="gridContainer">
-        <div class="grid" id="subjectsGrid">
-            <div class="no-data">Chargement...</div>
-        </div>
+        <div class="grid" id="subjectsGrid"></div>
     </div>
 
     <footer class="footer">
@@ -306,67 +320,36 @@
     <script src="script.js"></script>
     <script>
         const subjects = [
-
             { 
-
                 id: "math", 
-
                 title: "Mathématiques", 
-
                 description: "Fonctions, géométrie, algèbre, probabilités, suites",
-
                 icon: "fa-square-root-variable", 
-
                 color: "#4ECDC4",
-
                 bgColor: "rgba(78, 205, 196, 0.12)",
-
                 lessons: 8,
-
                 exercises: 15
-
             },
-
             { 
-
                 id: "physique", 
-
                 title: "Physique", 
-
                 description: "Mécanique, électricité, ondes, énergie, thermique",
-
                 icon: "fa-atom", 
-
                 color: "#FF6B6B",
-
                 bgColor: "rgba(255, 107, 107, 0.12)",
-
                 lessons: 6,
-
                 exercises: 12
-
             },
-
             { 
-
                 id: "chimie", 
-
                 title: "Chimie", 
-
                 description: "Atome, réactions, acides et bases, oxydoréduction",
-
                 icon: "fa-flask", 
-
                 color: "#F4D03F",
-
                 bgColor: "rgba(244, 208, 63, 0.12)",
-
                 lessons: 5,
-
                 exercises: 10
-
             }
-
         ];
 
         function renderSubjects() {
@@ -395,9 +378,36 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             
+            // ====== تعطيل جميع الأزرار والروابط ======
+            function disableAllInteractions() {
+                document.querySelectorAll('a, button, .btn, .btn-nav, .nav-links a, .card, .scroll-top-btn').forEach(el => {
+                    el.style.pointerEvents = 'none';
+                    el.style.cursor = 'default';
+                    el.style.opacity = '0.6';
+                });
+                document.querySelector('.navbar')?.classList.add('disable-interactions');
+            }
+
+            function enableAllInteractions() {
+                document.querySelectorAll('a, button, .btn, .btn-nav, .nav-links a, .card, .scroll-top-btn').forEach(el => {
+                    el.style.pointerEvents = '';
+                    el.style.cursor = '';
+                    el.style.opacity = '';
+                });
+                document.querySelector('.navbar')?.classList.remove('disable-interactions');
+            }
+
+            disableAllInteractions();
+
             const tl = gsap.timeline({
                 defaults: {
                     ease: 'power2.out'
+                },
+                onComplete: function() {
+                    setTimeout(function() {
+                        enableAllInteractions();
+                        console.log('✅ Interactions activées');
+                    }, 300);
                 }
             });
 

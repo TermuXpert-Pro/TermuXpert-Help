@@ -76,6 +76,40 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
+        /* ====== تعطيل التفاعل أثناء الأنميشن ====== */
+        .disable-interactions {
+            pointer-events: none !important;
+            cursor: default !important;
+            opacity: 0.6 !important;
+            user-select: none !important;
+        }
+        .disable-interactions a,
+        .disable-interactions button,
+        .disable-interactions .btn,
+        .disable-interactions .btn-nav,
+        .disable-interactions .nav-links a,
+        .disable-interactions .hero-buttons a {
+            pointer-events: none !important;
+            cursor: default !important;
+            opacity: 0.5 !important;
+        }
+        .enable-interactions {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            opacity: 1 !important;
+            user-select: auto !important;
+        }
+        .enable-interactions a,
+        .enable-interactions button,
+        .enable-interactions .btn,
+        .enable-interactions .btn-nav,
+        .enable-interactions .nav-links a,
+        .enable-interactions .hero-buttons a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            opacity: 1 !important;
+        }
+
         .hero {
             position: relative;
             z-index: 1;
@@ -303,7 +337,7 @@
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
 
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" class="disable-interactions">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -349,9 +383,41 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
+            // ====== تعطيل جميع الأزرار والروابط ======
+            function disableAllInteractions() {
+                document.querySelectorAll('a, button, .btn, .btn-nav, .nav-links a, .hero-buttons a, .navbar, .nav-logo, .nav-links li, .scroll-top-btn').forEach(el => {
+                    el.style.pointerEvents = 'none';
+                    el.style.cursor = 'default';
+                    el.style.opacity = '0.6';
+                });
+                document.querySelector('.navbar')?.classList.add('disable-interactions');
+            }
+
+            function enableAllInteractions() {
+                document.querySelectorAll('a, button, .btn, .btn-nav, .nav-links a, .hero-buttons a, .navbar, .nav-logo, .nav-links li, .scroll-top-btn').forEach(el => {
+                    el.style.pointerEvents = '';
+                    el.style.cursor = '';
+                    el.style.opacity = '';
+                });
+                document.querySelector('.navbar')?.classList.remove('disable-interactions');
+            }
+
+            // تطبيق التعطيل
+            disableAllInteractions();
+
+            // حساب مدة الأنميشن الكلية
+            const totalDuration = 1.0 + 0.8 + 0.8 + 0.6 + 0.6 + 0.5 + 0.5 + 0.5 + 0.5 + 0.2; // ~5.5 secondes
+
             const tl = gsap.timeline({
                 defaults: {
                     ease: 'power3.out'
+                },
+                onComplete: function() {
+                    // تفعيل كل شيء بعد انتهاء الأنميشن
+                    setTimeout(function() {
+                        enableAllInteractions();
+                        console.log('✅ Interactions activées');
+                    }, 300);
                 }
             });
 
@@ -544,7 +610,7 @@
                 });
             });
 
-            console.log('✅ GSAP - Index page with profile and card');
+            console.log('✅ GSAP - Index page avec interactions bloquées');
         });
     </script>
 </body>
