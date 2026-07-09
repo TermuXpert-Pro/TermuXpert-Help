@@ -1,59 +1,12 @@
 /* ============================================================
-   moroccan-script.js - سكريبت الزليج المغربي والأنميشن
+   moroccan-script.js - سكريبت الزليج المغربي (معدل)
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ====== حركات مستمرة للخلفيات ======
-    gsap.to('.moroccan-bg', { 
-        opacity: 0.8, 
-        duration: 4, 
-        repeat: -1, 
-        yoyo: true, 
-        ease: 'sine.inOut' 
-    });
+    console.log('🟢 Moroccan script loaded');
     
-    gsap.to('.moroccan-star', { 
-        rotation: 360, 
-        duration: 30, 
-        repeat: -1, 
-        ease: 'none' 
-    });
-    
-    // ====== حركات الزخارف ======
-    gsap.to('.geo-pattern-1', { 
-        x: 25, y: 12, 
-        duration: 5, 
-        repeat: -1, 
-        yoyo: true, 
-        ease: 'sine.inOut' 
-    });
-    gsap.to('.geo-pattern-2', { 
-        x: -25, y: -12, 
-        duration: 5, 
-        repeat: -1, 
-        yoyo: true, 
-        ease: 'sine.inOut', 
-        delay: 1.2 
-    });
-    gsap.to('.geo-pattern-3', { 
-        x: 15, y: -15, 
-        duration: 5, 
-        repeat: -1, 
-        yoyo: true, 
-        ease: 'sine.inOut', 
-        delay: 0.5 
-    });
-    gsap.to('.geo-pattern-4', { 
-        x: -15, y: 15, 
-        duration: 5, 
-        repeat: -1, 
-        yoyo: true, 
-        ease: 'sine.inOut', 
-        delay: 1.5 
-    });
-    
-    // ====== وظائف لإظهار الخلفيات ======
+    // ====== إظهار الخلفيات ======
     window.showMoroccanBg = function(duration = 1.8) {
         const tl = gsap.timeline();
         tl
@@ -64,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return tl;
     };
     
-    // ====== وظائف لإخفاء الخلفيات ======
+    // ====== إخفاء الخلفيات ======
     window.hideMoroccanBg = function(duration = 0.5) {
         const tl = gsap.timeline();
         tl
@@ -74,6 +27,72 @@ document.addEventListener('DOMContentLoaded', function() {
             .to('.geo-pattern', { opacity: 0, duration: duration }, '-=0.3');
         return tl;
     };
+    
+    // ====== حركات مستمرة (تبدأ بعد 2 ثانية) ======
+    setTimeout(function() {
+        // تأكد من وجود العناصر قبل تشغيل الحركات
+        if (document.querySelector('.moroccan-bg')) {
+            gsap.to('.moroccan-bg', { 
+                opacity: 0.8, 
+                duration: 4, 
+                repeat: -1, 
+                yoyo: true, 
+                ease: 'sine.inOut',
+                delay: 2
+            });
+        }
+        
+        if (document.querySelector('.moroccan-star')) {
+            gsap.to('.moroccan-star', { 
+                rotation: 360, 
+                duration: 30, 
+                repeat: -1, 
+                ease: 'none',
+                delay: 2
+            });
+        }
+        
+        if (document.querySelector('.geo-pattern-1')) {
+            gsap.to('.geo-pattern-1', { 
+                x: 25, y: 12, 
+                duration: 5, 
+                repeat: -1, 
+                yoyo: true, 
+                ease: 'sine.inOut',
+                delay: 2
+            });
+        }
+        if (document.querySelector('.geo-pattern-2')) {
+            gsap.to('.geo-pattern-2', { 
+                x: -25, y: -12, 
+                duration: 5, 
+                repeat: -1, 
+                yoyo: true, 
+                ease: 'sine.inOut', 
+                delay: 3.2 
+            });
+        }
+        if (document.querySelector('.geo-pattern-3')) {
+            gsap.to('.geo-pattern-3', { 
+                x: 15, y: -15, 
+                duration: 5, 
+                repeat: -1, 
+                yoyo: true, 
+                ease: 'sine.inOut', 
+                delay: 2.5 
+            });
+        }
+        if (document.querySelector('.geo-pattern-4')) {
+            gsap.to('.geo-pattern-4', { 
+                x: -15, y: 15, 
+                duration: 5, 
+                repeat: -1, 
+                yoyo: true, 
+                ease: 'sine.inOut', 
+                delay: 3.5 
+            });
+        }
+    }, 500);
     
     console.log('✅ Moroccan background components loaded!');
 });

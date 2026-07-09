@@ -1,12 +1,7 @@
 /* ============================================================
-   style.css - الملف الرئيسي للتنسيق (مبسط)
+   style.css - التنسيق العام للموقع
    ============================================================ */
 
-/* ====== Import المكونات ====== */
-@import url('components/moroccan-styles.css');
-@import url('components/overlay-styles.css');
-
-/* ====== المتغيرات العامة ====== */
 :root {
     --bg-primary: #0B0C10;
     --bg-secondary: #15171E;
@@ -22,14 +17,12 @@
     --font-mono: 'JetBrains Mono', monospace;
     --navbar-height: 50px;
     --container-padding: clamp(10px, 2vw, 20px);
-    --section-gap: clamp(20px, 4vh, 40px);
 }
 
 /* ====== Reset ====== */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{font-size:14px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-main);line-height:1.7;overflow-x:hidden;min-height:100vh}
-img,svg{max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
 button{cursor:pointer;font-family:inherit}
@@ -38,10 +31,6 @@ button{cursor:pointer;font-family:inherit}
 * {
     -webkit-tap-highlight-color: transparent !important;
     outline: none !important;
-}
-a:focus, button:focus, input:focus, textarea:focus {
-    outline: none !important;
-    box-shadow: none !important;
 }
 a:active, button:active {
     opacity: 0.7;
@@ -61,10 +50,11 @@ a:active, button:active {
 .nav-logo-text{font-size:clamp(14px,2vw,18px);font-weight:900;color:var(--text-primary);white-space:nowrap}
 .nav-logo-text span{color:var(--accent-light)}
 .nav-links{display:flex;gap:clamp(3px,0.8vw,6px);align-items:center}
-.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:clamp(10px,1.2vw,12px);font-weight:600;padding:clamp(4px,0.8vw,8px) clamp(8px,1.2vw,14px);border-radius:8px;transition:all 0.2s ease;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.nav-links a{color:var(--text-secondary);font-size:clamp(10px,1.2vw,12px);font-weight:600;padding:clamp(4px,0.8vw,8px) clamp(8px,1.2vw,14px);border-radius:8px;transition:all 0.2s ease;display:flex;align-items:center;gap:4px;white-space:nowrap}
 .nav-links a:hover{color:var(--accent-light);background:rgba(69,162,158,0.08)}
 .nav-links .btn-nav{background:var(--gradient);color:var(--bg-primary);font-weight:700}
 .nav-links .btn-nav:hover{color:var(--bg-primary);opacity:0.9;transform:translateY(-1px)}
+@media(max-width:768px){:root{--navbar-height:44px}.nav-links a{font-size:10px;padding:3px 6px}}
 
 /* ====== Footer ====== */
 .footer{position:relative;z-index:1;text-align:center;padding:clamp(16px,3vw,24px) var(--container-padding);color:var(--text-muted);font-size:clamp(10px,1.2vw,12px)}
@@ -80,10 +70,6 @@ a:active, button:active {
 .scroll-top-btn{position:fixed;bottom:20px;right:20px;z-index:9999;background:var(--gradient);color:var(--bg-primary);width:40px;height:40px;border-radius:50%;border:none;font-size:18px;cursor:pointer;opacity:0;transform:translateY(20px);transition:all 0.3s ease;box-shadow:0 4px 20px rgba(69,162,158,0.3)}
 .scroll-top-btn.visible{opacity:1;transform:translateY(0)}
 .scroll-top-btn:hover{transform:translateY(-3px);box-shadow:0 6px 30px rgba(69,162,158,0.4)}
-.scroll-top-btn:active{transform:scale(0.9)}
 
 /* ====== شريط التقدم ====== */
 .progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--gradient);z-index:10000;transition:width 0.1s linear}
-
-/* ====== CSS Variables للتحكم ====== */
-@media (max-width: 768px){:root{--navbar-height:44px}.nav-links a{font-size:10px;padding:3px 6px}}
