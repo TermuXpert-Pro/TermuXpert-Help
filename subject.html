@@ -99,14 +99,9 @@
                     { title: "Barycentre dans le plan", file: "exercices/barycentre/index.html", desc: "3 exercices" }
                 ],
                 series: [
-                    { title: "Série 1: Logique mathématique", file: "series/logique/serie1.html", items: 10, desc: "Exercices 1 à 10" },
-                    { title: "Série 2: Logique mathématique", file: "series/logique/serie2.html", items: 10, desc: "Exercices 11 à 20" },
-                    { title: "Série 3: Logique mathématique", file: "series/logique/serie3.html", items: 10, desc: "Exercices 21 à 30" },
-                    { title: "Série 4: Logique mathématique", file: "series/logique/serie4.html", items: 10, desc: "Exercices 31 à 40" },
-                    { title: "Série 5: Logique mathématique", file: "series/logique/serie5.html", items: 14, desc: "Exercices 41 à 54" },
-                    { title: "Série 1: Fonctions", file: "series/fonctions/serie1.html", items: 10, desc: "Exercices 1 à 10" },
-                    { title: "Série 2: Fonctions", file: "series/fonctions/serie2.html", items: 10, desc: "Exercices 11 à 20" },
-                    { title: "Série 1: Barycentre", file: "series/barycentre/serie1.html", items: 10, desc: "Exercices 1 à 10" }
+                    { title: "Logique mathématique", file: "series/logique/index.html", desc: "5 séries" },
+                    { title: "Généralités sur les fonctions", file: "series/fonctions/index.html", desc: "2 séries" },
+                    { title: "Barycentre dans le plan", file: "series/barycentre/index.html", desc: "1 série" }
                 ],
                 exams: [
                     { title: "Devoir 1: Logique", type: "Devoir" },
@@ -126,14 +121,7 @@
                     { title: "Mécanique", file: "exercices/mecanique/index.html", desc: "2 exercices" }
                 ],
                 series: [
-                    { title: "Série 1: Logique mathématique", file: "series/logique/serie1.html", items: 10, desc: "Exercices 1 à 10" },
-                    { title: "Série 2: Logique mathématique", file: "series/logique/serie2.html", items: 10, desc: "Exercices 11 à 20" },
-                    { title: "Série 3: Logique mathématique", file: "series/logique/serie3.html", items: 10, desc: "Exercices 21 à 30" },
-                    { title: "Série 4: Logique mathématique", file: "series/logique/serie4.html", items: 10, desc: "Exercices 31 à 40" },
-                    { title: "Série 5: Logique mathématique", file: "series/logique/serie5.html", items: 14, desc: "Exercices 41 à 54" },
-                    { title: "Série 1: Fonctions", file: "series/fonctions/serie1.html", items: 10, desc: "Exercices 1 à 10" },
-                    { title: "Série 2: Fonctions", file: "series/fonctions/serie2.html", items: 10, desc: "Exercices 11 à 20" },
-                    { title: "Série 1: Barycentre", file: "series/barycentre/serie1.html", items: 10, desc: "Exercices 1 à 10" }
+                    { title: "Mécanique", file: "series/mecanique/index.html", desc: "2 séries" }
                 ],
                 exams: [
                     { title: "Devoir 1: Mécanique", type: "Devoir" },
@@ -151,14 +139,7 @@
                     { title: "Atome", file: "exercices/atome/index.html", desc: "2 exercices" }
                 ],
                 series: [
-                    { title: "Série 1: Logique mathématique", file: "series/logique/serie1.html", items: 10, desc: "Exercices 1 à 10" },
-                    { title: "Série 2: Logique mathématique", file: "series/logique/serie2.html", items: 10, desc: "Exercices 11 à 20" },
-                    { title: "Série 3: Logique mathématique", file: "series/logique/serie3.html", items: 10, desc: "Exercices 21 à 30" },
-                    { title: "Série 4: Logique mathématique", file: "series/logique/serie4.html", items: 10, desc: "Exercices 31 à 40" },
-                    { title: "Série 5: Logique mathématique", file: "series/logique/serie5.html", items: 14, desc: "Exercices 41 à 54" },
-                    { title: "Série 1: Fonctions", file: "series/fonctions/serie1.html", items: 10, desc: "Exercices 1 à 10" },
-                    { title: "Série 2: Fonctions", file: "series/fonctions/serie2.html", items: 10, desc: "Exercices 11 à 20" },
-                    { title: "Série 1: Barycentre", file: "series/barycentre/serie1.html", items: 10, desc: "Exercices 1 à 10" }
+                    { title: "Atome", file: "series/atome/index.html", desc: "2 séries" }
                 ],
                 exams: [
                     { title: "Devoir 1: Atome", type: "Devoir" },
@@ -217,11 +198,11 @@
                 `).join('');
             } else if (tab === 'series') {
                 container.innerHTML = currentSubject.series.map((s, i) => `
-                    <div class="command-card">
+                    <div class="command-card" onclick="location.href='${s.file}'">
                         <div class="command-title">${i+1}. ${s.title}</div>
-                        <p style="color:var(--text-secondary);">${s.items} exercices</p>
+                        <p style="color:var(--text-secondary);">${s.desc}</p>
                         <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-                            <span class="badge" style="background:#F4D03F22; color:#F4D03F;"><i class="fas fa-download"></i> Télécharger PDF</span>
+                            <span class="badge" style="background:#F4D03F22; color:#F4D03F;"><i class="fas fa-folder-open"></i> Voir les séries</span>
                         </div>
                     </div>
                 `).join('');
