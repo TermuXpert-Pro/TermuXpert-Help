@@ -89,8 +89,7 @@
             position: relative;
             z-index: 1;
             text-align: center;
-            padding: clamp(60px, 12vh, 100px) var(--container-padding) clamp(40px, 6vh, 60px);
-            min-height: 100vh;
+            padding: clamp(80px, 15vh, 120px) var(--container-padding) clamp(30px, 4vh, 50px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -99,12 +98,12 @@
         }
 
         .hero h1 {
-            font-size: clamp(28px, 5vw, 40px);
+            font-size: clamp(32px, 5vw, 48px);
             font-weight: 900;
             line-height: 1.2;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(40px);
         }
         .hero h1 .gradient-text {
             background: linear-gradient(135deg, #4ECDC4, #66FCF1);
@@ -114,12 +113,12 @@
         }
         .hero .description {
             color: var(--text-muted);
-            font-size: clamp(12px, 1.5vw, 15px);
-            max-width: 500px;
-            margin: 0 auto 16px;
+            font-size: clamp(14px, 1.8vw, 18px);
+            max-width: 550px;
+            margin: 0 auto;
             line-height: 1.8;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
         }
 
         /* ====== Grid ====== */
@@ -128,73 +127,101 @@
             z-index: 1;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px 40px;
+            padding: 0 20px 50px;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
-            gap: clamp(10px, 1.5vw, 14px);
+            grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+            gap: clamp(16px, 2vw, 24px);
         }
 
+        /* ====== بطاقة زجاجية ====== */
         .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-right: 3px solid var(--accent);
-            border-radius: 12px;
-            padding: clamp(12px, 1.8vw, 16px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: clamp(20px, 2.5vw, 30px) clamp(16px, 2vw, 24px);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             text-align: center;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(50px);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.03), rgba(255, 107, 107, 0.03));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .card:hover::before {
+            opacity: 1;
         }
         .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(78, 205, 196, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
         .card:active {
             transform: scale(0.97);
-            opacity: 0.8;
         }
+
         .card .card-icon {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 10px;
-            font-size: 24px;
+            margin: 0 auto 12px;
+            font-size: 28px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-icon {
+            transform: scale(1.1);
         }
         .card h3 {
-            font-size: clamp(15px, 1.8vw, 18px);
-            margin-bottom: 4px;
+            font-size: clamp(18px, 2vw, 22px);
+            margin-bottom: 6px;
             font-weight: 700;
+            letter-spacing: 0.5px;
         }
         .card p {
             color: var(--text-secondary);
-            font-size: clamp(11px, 1.2vw, 12px);
+            font-size: clamp(12px, 1.2vw, 14px);
             line-height: 1.6;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            opacity: 0.8;
         }
         .card .card-badges {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
         }
         .card .badge {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            padding: 2px 10px;
-            border-radius: 16px;
-            font-size: clamp(10px, 1.1vw, 11px);
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: clamp(11px, 1.1vw, 12px);
             font-weight: 600;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
         }
         .card .badge:active {
             opacity: 0.7;
@@ -206,11 +233,17 @@
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
             .geo-pattern { font-size: 14px; letter-spacing: 12px; }
+            .hero { padding: 100px 20px 30px; }
+            .card { padding: 16px 14px; }
         }
         @media (max-width: 480px) {
             .moroccan-shadow { width: 200px; height: 200px; }
             .moroccan-star { font-size: 40px; }
             .geo-pattern { font-size: 10px; letter-spacing: 8px; }
+            .hero h1 { font-size: 24px; }
+            .hero .description { font-size: 13px; }
+            .card { padding: 14px 10px; }
+            .card .card-icon { width: 48px; height: 48px; font-size: 20px; }
         }
     </style>
 </head>
@@ -297,7 +330,7 @@
                 description: "Fonctions, géométrie, algèbre, probabilités, suites",
                 icon: "fa-square-root-variable", 
                 color: "#4ECDC4",
-                bgColor: "#4ECDC422",
+                bgColor: "rgba(78, 205, 196, 0.12)",
                 lessons: 8,
                 exercises: 15
             },
@@ -307,7 +340,7 @@
                 description: "Mécanique, électricité, ondes, énergie, thermique",
                 icon: "fa-atom", 
                 color: "#FF6B6B",
-                bgColor: "#FF6B6B22",
+                bgColor: "rgba(255, 107, 107, 0.12)",
                 lessons: 6,
                 exercises: 12
             },
@@ -317,7 +350,7 @@
                 description: "Atome, réactions, acides et bases, oxydoréduction",
                 icon: "fa-flask", 
                 color: "#F4D03F",
-                bgColor: "#F4D03F22",
+                bgColor: "rgba(244, 208, 63, 0.12)",
                 lessons: 5,
                 exercises: 10
             }
@@ -327,17 +360,17 @@
             const grid = document.getElementById('subjectsGrid');
             
             grid.innerHTML = subjects.map((s, index) => `
-                <div class="card" data-index="${index}" onclick="location.href='subject.html?subject=${s.id}'" style="border-right-color: ${s.color};">
+                <div class="card" data-index="${index}" onclick="location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color};">
                         <i class="fas ${s.icon}"></i>
                     </div>
                     <h3 style="color:${s.color};">${s.title}</h3>
                     <p>${s.description}</p>
                     <div class="card-badges">
-                        <span class="badge" style="background:${s.bgColor}; color:${s.color};">
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
                             <i class="fas fa-book"></i> ${s.lessons} cours
                         </span>
-                        <span class="badge" style="background:${s.bgColor}; color:${s.color};">
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
                             <i class="fas fa-list-check"></i> ${s.exercises} exercices
                         </span>
                     </div>
@@ -348,7 +381,7 @@
         renderSubjects();
 
         // ============================================================
-        // GSAP - الرسوم المتحركة مع تلاشي الخلفية
+        // GSAP - الرسوم المتحركة الأنيقة
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -358,63 +391,82 @@
                 }
             });
 
-            // 1. ظهور الخلفيات
+            // 1. ظهور الخلفيات بتلاشي
             tl
                 .to('.moroccan-bg', {
                     opacity: 0.6,
-                    duration: 1.5
+                    duration: 1.8,
+                    ease: 'power1.out'
                 })
                 .to('.moroccan-shadow', {
                     opacity: 0.08,
-                    duration: 1.5
-                }, '-=1')
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
                 .to('.moroccan-star', {
                     opacity: 0.04,
-                    duration: 1.5
-                }, '-=1')
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
                 .to('.geo-pattern', {
                     opacity: 0.03,
-                    duration: 1.5,
-                    stagger: 0.1
-                }, '-=1.2')
+                    duration: 1.8,
+                    stagger: 0.08,
+                    ease: 'power1.out'
+                }, '-=1.4')
 
-            // 2. ظهور الهيرو
+            // 2. ظهور الهيرو (النص يتحرك للأعلى)
             .to('#heroSection', {
                 opacity: 1,
-                duration: 0.8
+                duration: 0.8,
+                ease: 'power2.out'
             }, '-=0.5')
             .to('#title', {
                 opacity: 1,
                 y: 0,
-                duration: 0.6
-            }, '-=0.3')
+                duration: 1.2,
+                ease: 'power3.out',
+                onStart: function() {
+                    gsap.fromTo('#title', 
+                        { y: 60, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }
+                    );
+                }
+            }, '-=0.6')
             .to('#desc', {
                 opacity: 1,
                 y: 0,
-                duration: 0.6
-            }, '-=0.3')
+                duration: 1,
+                ease: 'power3.out',
+                onStart: function() {
+                    gsap.fromTo('#desc', 
+                        { y: 40, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
+                    );
+                }
+            }, '-=0.4')
 
-            // 3. ظهور الـ Grid
+            // 3. ظهور الـ Grid (يخرج من الأسفل للأعلى)
             .to('#gridContainer', {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
+                duration: 1,
                 ease: 'power3.out'
             }, '-=0.3')
 
-            // 4. ظهور البطاقات بتتابع
+            // 4. ظهور البطاقات بتتابع أنيق (من الأسفل للأعلى)
             .to('.card', {
                 opacity: 1,
                 y: 0,
-                duration: 0.5,
-                stagger: 0.15,
-                ease: 'back.out(1.7)'
-            }, '-=0.4');
+                duration: 0.7,
+                stagger: 0.12,
+                ease: 'back.out(1.4)'
+            }, '-=0.5');
 
-            // ====== حركات مستمرة ======
+            // ====== حركات مستمرة ناعمة ======
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
-                duration: 3,
+                duration: 4,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut'
@@ -428,42 +480,60 @@
             });
 
             gsap.to('.geo-pattern-1', {
-                x: 20,
-                y: 10,
-                duration: 4,
+                x: 25,
+                y: 12,
+                duration: 5,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut'
             });
             gsap.to('.geo-pattern-2', {
-                x: -20,
-                y: -10,
-                duration: 4,
+                x: -25,
+                y: -12,
+                duration: 5,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
-                delay: 1
+                delay: 1.2
             });
             gsap.to('.geo-pattern-3', {
-                x: 15,
-                y: -15,
-                duration: 5,
+                x: 18,
+                y: -18,
+                duration: 6,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
-                delay: 0.5
+                delay: 0.6
             });
             gsap.to('.geo-pattern-4', {
-                x: -15,
-                y: 15,
-                duration: 5,
+                x: -18,
+                y: 18,
+                duration: 6,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
-                delay: 1.5
+                delay: 1.8
             });
 
-            console.log('✅ GSAP - صفحة المواد مع خلفية مغربية');
+            // ====== تأثير hover على البطاقات ======
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    gsap.to(card, {
+                        scale: 1.02,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        scale: 1,
+                        duration: 0.3,
+                        ease: 'power2.inOut'
+                    });
+                });
+            });
+
+            console.log('✅ GSAP - صفحة المواد بتصميم زجاجي أنيق');
         });
     </script>
 </body>
