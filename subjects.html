@@ -407,16 +407,14 @@
         renderSubjects();
 
         // ============================================================
-        // GSAP - تأثيرات مبهرة (مرة واحدة فقط لكل صفحة)
+        // GSAP - تأثيرات (مرة واحدة فقط، أو عند reset من index)
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
-            // التحقق مما إذا كان الأنميشن قد تم تشغيله من قبل في هذه الجلسة
             const animationKey = 'subjects_animation_done';
             
             // إذا كان الأنميشن قد تم تشغيله، نظهر كل شيء مباشرة
             if (sessionStorage.getItem(animationKey) === 'true') {
-                // إظهار جميع العناصر مباشرة
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
@@ -425,14 +423,43 @@
                 gsap.set('#mainTitle', { opacity: 1, scale: 1 });
                 gsap.set('#subTitle', { opacity: 1, y: 0 });
                 gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
-                console.log('✅ subjects.html - Animation déjà jouée, affichage direct');
+                console.log('✅ subjects.html - Affichage direct (animation déjà jouée)');
+                
+                // ====== حركات مستمرة ======
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
+                });
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+                
+                // Hover effects
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
+                    });
+                });
                 return;
             }
 
-            // تشغيل الأنميشن لأول مرة
-            const tl = gsap.timeline({
-                defaults: { ease: 'power3.out' }
-            });
+            // ====== تشغيل الأنميشن ======
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
             tl
                 .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
@@ -461,7 +488,6 @@
                     ease: 'power3.out'
                 }, '-=0.8')
                 .call(() => {
-                    // تخزين أن الأنميشن تم تشغيله
                     sessionStorage.setItem(animationKey, 'true');
                     console.log('✅ subjects.html - Animation jouée une fois');
                 });
@@ -479,67 +505,21 @@
                 });
             });
 
-            gsap.to('.moroccan-bg', {
-                opacity: 0.8,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
-
-            gsap.to('.moroccan-star', {
-                rotation: 360,
-                duration: 30,
-                repeat: -1,
-                ease: 'none'
-            });
-
-            gsap.to('.geo-pattern-1', {
-                x: 25,
-                y: 12,
-                duration: 5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
-            gsap.to('.geo-pattern-2', {
-                x: -25,
-                y: -12,
-                duration: 5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                delay: 1.2
-            });
+            gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+            gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
 
             document.querySelectorAll('.card').forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     const icon = this.querySelector('.card-icon');
-                    gsap.to(icon, {
-                        scale: 1.15,
-                        rotation: -8,
-                        duration: 0.4,
-                        ease: 'back.out(2)'
-                    });
-                    gsap.to(this, {
-                        scale: 1.03,
-                        duration: 0.4,
-                        ease: 'power2.out'
-                    });
+                    gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                    gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
                 });
                 card.addEventListener('mouseleave', function() {
                     const icon = this.querySelector('.card-icon');
-                    gsap.to(icon, {
-                        scale: 1,
-                        rotation: 0,
-                        duration: 0.4,
-                        ease: 'power2.inOut'
-                    });
-                    gsap.to(this, {
-                        scale: 1,
-                        duration: 0.4,
-                        ease: 'power2.inOut'
-                    });
+                    gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                    gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
                 });
             });
         });
