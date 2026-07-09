@@ -69,6 +69,7 @@
         
         <div class="tabs" style="display:flex; gap:6px; margin-bottom:20px; flex-wrap:wrap; border-bottom:2px solid var(--border); padding-bottom:10px;">
             <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
+            <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
             <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
             <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
@@ -87,33 +88,41 @@
         const data = {
             math: {
                 title: "Mathématiques",
-                desc: "Cours, séries, devoirs et examens régionaux",
+                desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Barycentre dans le plan", file: "lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
-                    { title: "Barycentre dans le plan", file: "lessons/barycentre.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
                     { title: "Logique mathématique", file: "lessons/logique.html", desc: "Propositions, opérateurs, quantificateurs, raisonnements" },
                     { title: "Généralités sur les fonctions", file: "lessons/fonctions/index.html", desc: "Fonctions numériques, parité, monotonie, études de fonctions" },
+                    { title: "Barycentre dans le plan", file: "lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
                     { title: "Raisonnement par récurrence", file: "lessons/recurrence.html", desc: "Principe de récurrence, exemples" }
+                ],
+                exercices: [
+                    { title: "Exercices - Logique mathématique", file: "exercices/logique.html", items: 10 },
+                    { title: "Exercices - Généralités sur les fonctions", file: "exercices/fonctions.html", items: 8 },
+                    { title: "Exercices - Barycentre", file: "exercices/barycentre.html", items: 6 }
                 ],
                 series: [
                     { title: "Série 1: Logique mathématique", items: 10 },
                     { title: "Série 2: Fonctions", items: 8 },
-                    { title: "Série 3: Récurrence", items: 6 }
+                    { title: "Série 3: Barycentre", items: 6 },
+                    { title: "Série 4: Récurrence", items: 6 }
                 ],
                 exams: [
                     { title: "Devoir 1: Logique", type: "Devoir" },
                     { title: "Devoir 2: Fonctions", type: "Devoir" },
+                    { title: "Devoir 3: Barycentre", type: "Devoir" },
                     { title: "Examen régional 2024", type: "Examen" }
                 ]
             },
             physique: {
                 title: "Physique",
-                desc: "Cours, séries, devoirs et examens régionaux",
+                desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Barycentre dans le plan", file: "lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
-                    { title: "Barycentre dans le plan", file: "lessons/barycentre.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
                     { title: "Mouvement rectiligne", file: "lessons/mouvement.html", desc: "Position, vitesse, accélération" },
                     { title: "Lois de Newton", file: "lessons/newton.html", desc: "Les trois lois de Newton" }
+                ],
+                exercices: [
+                    { title: "Exercices - Mécanique", file: "exercices/mecanique.html", items: 8 },
+                    { title: "Exercices - Ondes", file: "exercices/ondes.html", items: 6 }
                 ],
                 series: [
                     { title: "Série 1: Mécanique", items: 8 },
@@ -126,12 +135,14 @@
             },
             chimie: {
                 title: "Chimie",
-                desc: "Cours, séries, devoirs et examens régionaux",
+                desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Barycentre dans le plan", file: "lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
-                    { title: "Barycentre dans le plan", file: "lessons/barycentre.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
                     { title: "Structure de l'atome", file: "lessons/atome.html", desc: "Noyau, électrons, configuration" },
                     { title: "Réactions chimiques", file: "lessons/reactions.html", desc: "Équations bilan, stoechiométrie" }
+                ],
+                exercices: [
+                    { title: "Exercices - Atome", file: "exercices/atome.html", items: 6 },
+                    { title: "Exercices - Réactions", file: "exercices/reactions.html", items: 8 }
                 ],
                 series: [
                     { title: "Série 1: Atome", items: 6 },
@@ -179,6 +190,17 @@
                         <p style="color:var(--text-secondary);">${l.desc}</p>
                         <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                             <span class="badge" style="background:#4ECDC422; color:#4ECDC4;"><i class="fas fa-eye"></i> Voir le cours</span>
+                        </div>
+                    </div>
+                `).join('');
+            } else if (tab === 'exercices') {
+                container.innerHTML = currentSubject.exercices.map((e, i) => `
+                    <div class="command-card">
+                        <div class="command-title">${i+1}. ${e.title}</div>
+                        <p style="color:var(--text-secondary);">${e.items} exercices</p>
+                        <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
+                            <span class="badge" style="background:#E8873A22; color:#E8873A;"><i class="fas fa-download"></i> Télécharger PDF</span>
+                            <span class="badge" style="background:#A8FF7822; color:#A8FF78;"><i class="fas fa-check"></i> Correction</span>
                         </div>
                     </div>
                 `).join('');
