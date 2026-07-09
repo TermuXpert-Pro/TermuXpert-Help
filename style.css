@@ -601,3 +601,54 @@ details div {
 .table-wrap:hover table {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
+/* ====== خلفية سوداء انتقالية قبل ظهور الزليج ====== */
+body {
+    background: #0B0C10;
+    transition: background 0.5s ease;
+}
+
+/* عند تحميل الخلفية الزليجية */
+.moroccan-bg.loaded {
+    opacity: 1 !important;
+    transition: opacity 1.2s ease-in-out;
+}
+
+/* تأثير تلاشي للخلفية السوداء */
+.bg-fade-out {
+    animation: bgFadeOut 1.5s ease forwards;
+}
+@keyframes bgFadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* تأثير ظهور الزليج */
+.zellij-appear {
+    animation: zellijAppear 1.8s ease forwards;
+}
+@keyframes zellijAppear {
+    0% { opacity: 0; transform: scale(1.05); }
+    60% { opacity: 0.6; transform: scale(0.98); }
+    100% { opacity: 0.4; transform: scale(1); }
+}
+
+/* توهج خفيف للخلفية */
+.moroccan-bg::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(78, 205, 196, 0.03), transparent 60%),
+                radial-gradient(circle at 70% 80%, rgba(255, 107, 107, 0.03), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}

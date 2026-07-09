@@ -4,99 +4,112 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ====== خلفية زليج ======
-    gsap.to('.moroccan-bg', {
-        opacity: 0.4,
-        duration: 1.2,
-        ease: 'power1.out',
-        delay: 0.2
-    });
+    // ====== 1. ظهور الخلفية الزليجية بشكل جميل ======
     
+    // إضافة class للخلفية السوداء لتتلاشى
+    document.body.classList.add('bg-fade-out');
+    
+    // ظهور الزليج بتأثير رائع
+    const bg = document.querySelector('.moroccan-bg');
+    if (bg) {
+        // إضافة تأثير ظهور تدريجي
+        bg.classList.add('zellij-appear');
+        
+        // بعد انتهاء التأثير، نضيف class loaded للحفاظ على الشفافية
+        setTimeout(function() {
+            bg.classList.add('loaded');
+        }, 1800);
+    }
+    
+    // ====== 2. ظهور العناصر الزخرفية ======
+    
+    // الظل الزخرفي
     gsap.to('.moroccan-shadow', {
         opacity: 0.06,
-        duration: 1.2,
-        ease: 'power1.out',
-        delay: 0.4
+        duration: 1.8,
+        ease: 'power2.out',
+        delay: 0.3
     });
     
+    // النجمة المغربية
     gsap.to('.moroccan-star', {
         opacity: 0.03,
-        duration: 1.2,
-        ease: 'power1.out',
-        delay: 0.5
-    });
-    
-    gsap.to('.geo-pattern', {
-        opacity: 0.02,
-        duration: 1.2,
-        stagger: 0.08,
-        ease: 'power1.out',
-        delay: 0.6
-    });
-    
-    // ====== تأخير قبل ظهور المحتوى ======
-    // استخدام from بدلاً من to لضمان الظهور
-    
-    // ====== زر العودة ======
-    gsap.from('.back-btn', {
-        opacity: 0,
-        x: -20,
-        duration: 0.5,
+        duration: 1.8,
         ease: 'power2.out',
         delay: 0.5
     });
     
-    // ====== عنوان الدرس ======
+    // الزخارف الهندسية
+    gsap.to('.geo-pattern', {
+        opacity: 0.02,
+        duration: 1.5,
+        stagger: 0.1,
+        ease: 'power2.out',
+        delay: 0.7
+    });
+    
+    // ====== 3. ظهور المحتوى بتأخير ======
+    
+    // زر العودة
+    gsap.from('.back-btn', {
+        opacity: 0,
+        x: -20,
+        duration: 0.6,
+        ease: 'power2.out',
+        delay: 0.8
+    });
+    
+    // عنوان الدرس
     gsap.from('.lesson-title', {
         opacity: 0,
         y: -30,
         scale: 0.95,
         duration: 0.9,
         ease: 'back.out(1.8)',
-        delay: 0.8
+        delay: 1.0
     });
     
-    // ====== الأقسام (sections) ======
+    // الأقسام
     gsap.from('.section', {
         opacity: 0,
         y: 30,
         duration: 0.7,
         stagger: 0.15,
         ease: 'power3.out',
-        delay: 1.0
+        delay: 1.2
     });
     
-    // ====== صناديق التمارين ======
+    // صناديق التمارين
     gsap.from('.exercice-box', {
         opacity: 0,
         y: 20,
         duration: 0.6,
         stagger: 0.1,
         ease: 'power2.out',
-        delay: 1.3
+        delay: 1.5
     });
     
-    // ====== أزرار الحل ======
+    // أزرار الحل
     gsap.from('.toggle-sol', {
         opacity: 0,
         scale: 0.8,
         duration: 0.5,
         stagger: 0.08,
         ease: 'back.out(1.4)',
-        delay: 1.5
+        delay: 1.7
     });
     
-    // ====== بطاقات الأقسام (part-link, ex-link) ======
+    // بطاقات الأقسام
     gsap.from('.part-link, .ex-link', {
         opacity: 0,
         y: 20,
         duration: 0.6,
         stagger: 0.08,
         ease: 'power3.out',
-        delay: 0.9
+        delay: 1.1
     });
     
-    // ====== بطاقات الأوامر (command-card) ======
+    // بطاقات الأوامر
     gsap.from('.command-card', {
         opacity: 0,
         y: 20,
@@ -104,38 +117,38 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.6,
         stagger: 0.08,
         ease: 'back.out(1.4)',
-        delay: 1.1
+        delay: 1.3
     });
     
-    // ====== عناوين السلاسل ======
+    // عناوين السلاسل
     gsap.from('.serie-title, .exercice-count', {
         opacity: 0,
         y: 20,
         duration: 0.6,
         ease: 'power2.out',
-        delay: 0.7
+        delay: 0.9
     });
     
-    // ====== قوائم السلاسل ======
+    // قوائم السلاسل
     gsap.from('.section-list', {
         opacity: 0,
         y: 20,
         duration: 0.6,
         ease: 'power2.out',
-        delay: 0.8
+        delay: 1.0
     });
     
-    // ====== صناديق المعلومات ======
+    // صناديق المعلومات
     gsap.from('.highlight-box', {
         opacity: 0,
         y: 20,
         duration: 0.6,
         stagger: 0.08,
         ease: 'power2.out',
-        delay: 1.2
+        delay: 1.4
     });
     
-    // ====== الصيغ الرياضية ======
+    // الصيغ الرياضية
     gsap.from('.formula-block', {
         opacity: 0,
         y: 20,
@@ -143,47 +156,41 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.6,
         stagger: 0.06,
         ease: 'back.out(1.4)',
-        delay: 1.4
+        delay: 1.6
     });
     
-    // ====== الجداول ======
+    // الجداول
     gsap.from('.table-wrap', {
         opacity: 0,
         y: 20,
         duration: 0.5,
         stagger: 0.08,
         ease: 'power2.out',
-        delay: 1.3
+        delay: 1.5
     });
     
-    // ====== الخطوات ======
+    // الخطوات
     gsap.from('.step', {
         opacity: 0,
         x: -10,
         duration: 0.5,
         stagger: 0.06,
         ease: 'power2.out',
-        delay: 1.2
+        delay: 1.4
     });
     
-    // ====== أزرار التنقل ======
+    // أزرار التنقل
     gsap.from('.nav-buttons', {
         opacity: 0,
         y: 20,
         duration: 0.5,
         ease: 'power2.out',
-        delay: 1.6
+        delay: 1.8
     });
     
-    // ====== المحتوى العام ======
-    gsap.from('.lesson-container', {
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power2.out',
-        delay: 0.3
-    });
+    // ====== 4. حركات مستمرة ======
     
-    // ====== حركات مستمرة ======
+    // دوران النجمة
     gsap.to('.moroccan-star', {
         rotation: 360,
         duration: 30,
@@ -191,6 +198,17 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: 'none'
     });
     
+    // نبض خفيف للنجمة
+    gsap.to('.moroccan-star', {
+        scale: 1.05,
+        duration: 2.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: 0.3
+    });
+    
+    // حركة الزخارف
     gsap.to('.geo-pattern-1', {
         x: 20,
         y: 10,
@@ -227,17 +245,8 @@ document.addEventListener('DOMContentLoaded', function() {
         delay: 1.8
     });
     
-    // ====== نبض خفيف للنجمة ======
-    gsap.to('.moroccan-star', {
-        scale: 1.05,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: 0.5
-    });
+    // ====== 5. Hover effects ======
     
-    // ====== Hover على الصناديق ======
     document.querySelectorAll('.highlight-box').forEach(box => {
         box.addEventListener('mouseenter', function() {
             gsap.to(this, {
@@ -257,7 +266,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ====== Hover على الجداول ======
     document.querySelectorAll('.table-wrap').forEach(table => {
         table.addEventListener('mouseenter', function() {
             gsap.to(this, {
@@ -275,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ====== Hover على البطاقات ======
     document.querySelectorAll('.part-link, .ex-link, .command-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
             gsap.to(this, {
@@ -295,5 +302,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    console.log('✅ Lesson animation loaded successfully');
+    console.log('✅ Lesson animation loaded with beautiful background transition');
 });
