@@ -386,7 +386,7 @@
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
             grid.innerHTML = subjects.map((s, index) => `
-                <div class="card" data-index="${index}" onclick="location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
+                <div class="card" data-index="${index}" onclick="sessionStorage.setItem('animation_allowed', 'true'); location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
                         <i class="fas ${s.icon}"></i>
                     </div>
@@ -411,10 +411,11 @@
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
-            const animationKey = 'subjects_animation_done';
-            
             // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
+            
+            // ====== التحقق من إذن تشغيل الأنميشن ======
+            const animationAllowed = sessionStorage.getItem('animation_allowed');
             
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
@@ -430,7 +431,7 @@
                 // إظهار البطاقات مباشرة
                 gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
                 
-                console.log('✅ subjects.html - Affichage direct (sans titre)');
+                console.log('✅ subjects.html - Affichage direct (sans animation)');
                 
                 // ====== حركات مستمرة ======
                 document.querySelectorAll('.card').forEach((card, i) => {
@@ -503,7 +504,8 @@
                         ease: 'power3.out'
                     }, '-=0.8')
                     .call(() => {
-                        sessionStorage.setItem(animationKey, 'true');
+                        // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
+                        sessionStorage.removeItem('animation_allowed');
                         console.log('✅ subjects.html - Animation jouée une fois');
                     });
 
@@ -550,16 +552,16 @@
                 return;
             }
 
-            // 2. إذا كان المفتاح موجوداً في sessionStorage → عرض مباشر
-            if (sessionStorage.getItem(animationKey) === 'true') {
+            // 2. إذا لم يكن هناك إذن لتشغيل الأنميشن → عرض مباشر
+            if (animationAllowed !== 'true') {
                 showDirect();
-                console.log('📌 subjects.html - Animation déjà jouée dans cette session → Affichage direct');
+                console.log('📌 subjects.html - Animation non autorisée → Affichage direct');
                 return;
             }
 
-            // 3. في جميع الحالات الأخرى (أول تحميل أو تحديث) → تشغيل الأنميشن
+            // 3. في جميع الحالات الأخرى (مع الإذن) → تشغيل الأنميشن
             runAnimation();
-            console.log('📌 subjects.html - Première visite ou Refresh → Animation jouée');
+            console.log('📌 subjects.html - Animation autorisée → Animation jouée');
         });
     </script>
 </body>

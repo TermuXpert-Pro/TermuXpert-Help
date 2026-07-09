@@ -585,10 +585,11 @@
             
             loadSubject();
 
-            const animationKey = 'subject_animation_done';
-            
             // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
+            
+            // ====== التحقق من إذن تشغيل الأنميشن ======
+            const animationAllowed = sessionStorage.getItem('animation_allowed');
             
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
@@ -605,7 +606,7 @@
                 gsap.set('#contentWrapper', { opacity: 1 });
                 gsap.set('#tabsWrapper', { opacity: 1, y: 0 });
                 
-                console.log('✅ subject.html - Affichage direct (sans titre)');
+                console.log('✅ subject.html - Affichage direct (sans animation)');
                 
                 // حركات مستمرة
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
@@ -638,7 +639,8 @@
                     .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
                     .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
                     .call(() => {
-                        sessionStorage.setItem(animationKey, 'true');
+                        // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
+                        sessionStorage.removeItem('animation_allowed');
                         console.log('✅ subject.html - Animation jouée une fois');
                     });
 
@@ -667,16 +669,16 @@
                 return;
             }
 
-            // 2. إذا كان المفتاح موجوداً في sessionStorage → عرض مباشر
-            if (sessionStorage.getItem(animationKey) === 'true') {
+            // 2. إذا لم يكن هناك إذن لتشغيل الأنميشن → عرض مباشر
+            if (animationAllowed !== 'true') {
                 showDirect();
-                console.log('📌 subject.html - Animation déjà jouée dans cette session → Affichage direct');
+                console.log('📌 subject.html - Animation non autorisée → Affichage direct');
                 return;
             }
 
-            // 3. في جميع الحالات الأخرى (أول تحميل أو تحديث) → تشغيل الأنميشن
+            // 3. في جميع الحالات الأخرى (مع الإذن) → تشغيل الأنميشن
             runAnimation();
-            console.log('📌 subject.html - Première visite ou Refresh → Animation jouée');
+            console.log('📌 subject.html - Animation autorisée → Animation jouée');
         });
     </script>
 </body>
