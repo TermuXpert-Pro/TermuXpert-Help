@@ -6,13 +6,13 @@
     <title>Xpert - 1 Bac Sciences Expérimentales</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Great+Vibes&family=Cinzel:wght@700;900&family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Exo+2:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <!-- Babylon.js -->
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <style>
-        /* ====== حاوية Babylon.js كخلفية ====== */
+        /* ====== حاوية Babylon.js ====== */
         #babylon-container {
             position: fixed;
             top: 0;
@@ -29,10 +29,21 @@
             height: 100% !important;
         }
 
-        /* ====== الشعار فوق المشهد ====== */
-        .hero-logo-wrapper {
+        /* ====== Hero ====== */
+        .hero {
             position: relative;
             z-index: 1;
+            text-align: center;
+            padding: clamp(60px, 12vh, 100px) var(--container-padding) clamp(40px, 6vh, 60px);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ====== الشعار ====== */
+        .hero-logo-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,44 +72,22 @@
             align-items: center;
             justify-content: center;
             gap: 16px;
-            position: relative;
-            z-index: 2;
             padding: 10px 20px;
             flex-wrap: wrap;
         }
 
-        /* JAOUAD */
         .hero-logo .name-left {
-            font-family: 'Cinzel', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 28px;
-            font-weight: 900;
+            font-weight: 700;
             color: #4ECDC4;
             letter-spacing: 6px;
             text-shadow: 0 0 20px rgba(78, 205, 196, 0.2), 0 4px 8px rgba(0,0,0,0.3);
             text-transform: uppercase;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .hero-logo .name-left::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, #4ECDC4, transparent);
-            border-radius: 2px;
-            opacity: 0.4;
-            transition: all 0.3s ease;
-        }
-        .hero-logo-wrapper:hover .name-left::after {
-            opacity: 0.8;
-            width: 120%;
         }
 
-        /* MOROCCO */
         .hero-logo .name-center {
-            font-family: 'Cinzel', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 42px;
             font-weight: 900;
             background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 25%, #F4D03F 50%, #FF6B6B 75%, #A8FF78 100%);
@@ -111,57 +100,20 @@
             padding: 0 10px;
             text-transform: uppercase;
             filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.15));
-            position: relative;
         }
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-        .hero-logo .name-center::before {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40%;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #F4D03F, transparent);
-            border-radius: 2px;
-            opacity: 0.5;
-            transition: all 0.4s ease;
-        }
-        .hero-logo-wrapper:hover .name-center::before {
-            width: 70%;
-            opacity: 0.8;
-        }
 
-        /* ELKHAYATY */
         .hero-logo .name-right {
-            font-family: 'Cinzel', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 28px;
-            font-weight: 900;
+            font-weight: 700;
             color: #FF6B6B;
             letter-spacing: 6px;
             text-shadow: 0 0 20px rgba(255, 107, 107, 0.2), 0 4px 8px rgba(0,0,0,0.3);
             text-transform: uppercase;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .hero-logo .name-right::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            right: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to left, #FF6B6B, transparent);
-            border-radius: 2px;
-            opacity: 0.4;
-            transition: all 0.3s ease;
-        }
-        .hero-logo-wrapper:hover .name-right::after {
-            opacity: 0.8;
-            width: 120%;
         }
 
         .logo-edit-icon {
@@ -186,19 +138,6 @@
         .hero-logo-wrapper:hover .logo-edit-icon {
             opacity: 1;
             transform: translateY(-4px);
-        }
-
-        /* ====== Hero ====== */
-        .hero {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: clamp(60px, 12vh, 100px) var(--container-padding) clamp(40px, 6vh, 60px);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
         /* ====== RESPONSIVE ====== */
@@ -226,10 +165,6 @@
 
     <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
-
-    <div class="bg-grid"></div>
-    <div class="glow-orb glow-orb-1"></div>
-    <div class="glow-orb glow-orb-2"></div>
 
     <nav class="navbar" id="navbar">
         <a href="index.html" class="nav-logo">
@@ -316,7 +251,7 @@
     <script src="script.js"></script>
     <script>
         // ============================================================
-        // BABYLON.JS - مشهد خلفية متحركة
+        // BABYLON.JS - مشهد خلفية متحركة (شخص يلقي التحية)
         // ============================================================
         (function() {
             const container = document.getElementById('babylon-container');
