@@ -76,30 +76,6 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
-        /* ====== طبقة حاجبة - تختفي تماماً ====== */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            pointer-events: all;
-            background: rgba(11, 12, 16, 0.3);
-            backdrop-filter: blur(6px);
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        /* عند الانتهاء تماماً، يتم إزالتها من DOM */
-        .loading-overlay.removed {
-            display: none !important;
-        }
-
-        /* ====== الأزرار لا تحتوي على !important ====== */
         .hero {
             position: relative;
             z-index: 1;
@@ -118,7 +94,7 @@
             z-index: 2;
             margin-bottom: 0px;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
         }
         .profile-outer .profile-ring {
             position: absolute;
@@ -169,7 +145,7 @@
             overflow: hidden;
             margin-top: 10px;
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(30px);
         }
 
         .hero-logo {
@@ -265,12 +241,6 @@
             transform: translateY(20px);
         }
 
-        /* ====== منع التمرير مؤقتاً ====== */
-        .no-scroll {
-            overflow: hidden !important;
-            height: 100vh !important;
-        }
-
         @media (max-width: 768px) {
             .hero-card { padding: 30px 20px 40px; }
             .hero-logo .name-center { font-size: 32px; letter-spacing: 8px; }
@@ -295,9 +265,6 @@
     </style>
 </head>
 <body>
-
-    <!-- ====== طبقة حاجبة ====== -->
-    <div class="loading-overlay" id="loadingOverlay"></div>
 
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
@@ -336,7 +303,6 @@
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
 
-    <!-- ====== Navbar - أزرار طبيعية بدون كلاسات حجب ====== -->
     <nav class="navbar" id="navbar">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
@@ -365,7 +331,7 @@
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
             <div class="hero-buttons" id="buttons">
-                <a href="subjects.html" class="btn btn-primary" id="startBtn"><i class="fas fa-graduation-cap"></i> Commencer</a>
+                <a href="subjects.html" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
     </section>
@@ -383,76 +349,35 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // ====== عناصر ======
-            const overlay = document.getElementById('loadingOverlay');
-            const navbar = document.getElementById('navbar');
-            
-            // ====== منع التمرير مبدئياً ======
-            document.body.classList.add('no-scroll');
-
-            // ====== تفعيل كل شيء بعد الأنميشن ======
-            function enableInteractions() {
-                // 1. إزالة الطبقة الحاجبة تماماً من DOM
-                overlay.style.display = 'none';
-                
-                // 2. إزالة منع التمرير
-                document.body.classList.remove('no-scroll');
-                
-                // 3. إعادة تفعيل الروابط في النافبار
-                document.querySelectorAll('.nav-links a').forEach(el => {
-                    el.style.pointerEvents = 'auto';
-                    el.style.opacity = '1';
-                });
-                
-                // 4. تأثير نبض خفيف للأزرار
-                gsap.to('.btn-primary, .btn-nav', {
-                    scale: 1.03,
-                    duration: 0.2,
-                    ease: 'power2.out',
-                    yoyo: true,
-                    repeat: 1,
-                    stagger: 0.05
-                });
-                
-                console.log('✅ Overlay removed, interactions enabled');
-            }
-
-            // ====== الأنميشن مع onComplete ======
             const tl = gsap.timeline({
                 defaults: {
                     ease: 'power3.out'
-                },
-                onComplete: function() {
-                    // تفعيل كل شيء بعد الانتهاء
-                    setTimeout(function() {
-                        enableInteractions();
-                    }, 300);
                 }
             });
 
-            // 1. ظهور الخلفيات
+            // 1. ظهور الخلفيات (مثل subjects)
             tl
                 .to('.moroccan-bg', {
                     opacity: 0.6,
-                    duration: 1.0,
+                    duration: 1.8,
                     ease: 'power1.out'
                 })
                 .to('.moroccan-shadow', {
                     opacity: 0.08,
-                    duration: 1.0,
+                    duration: 1.8,
                     ease: 'power1.out'
-                }, '-=0.8')
+                }, '-=1.2')
                 .to('.moroccan-star', {
                     opacity: 0.04,
-                    duration: 1.0,
+                    duration: 1.8,
                     ease: 'power1.out'
-                }, '-=0.8')
+                }, '-=1.2')
                 .to('.geo-pattern', {
                     opacity: 0.03,
-                    duration: 1.0,
+                    duration: 1.8,
                     stagger: 0.08,
                     ease: 'power1.out'
-                }, '-=0.8')
+                }, '-=1.4')
 
             // 2. ظهور الهيرو
             .to('#heroSection', {
@@ -465,20 +390,20 @@
             .to('#profileWrapper', {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
+                duration: 1,
                 ease: 'back.out(1.7)'
             }, '-=0.3')
             .to('#profileImg', {
                 scale: 1,
-                duration: 0.6,
+                duration: 0.8,
                 ease: 'back.out(2)',
                 onStart: function() {
                     gsap.fromTo('#profileImg', 
                         { scale: 0.6, opacity: 0, rotation: -10 },
-                        { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: 'back.out(2)' }
+                        { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: 'back.out(2)' }
                     );
                 }
-            }, '-=0.5')
+            }, '-=0.6')
 
             // 4. ظهور البطاقة
             .to('#heroCard', {
@@ -492,12 +417,12 @@
             .to('#logo', {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
+                duration: 0.8,
                 ease: 'back.out(1.7)'
             }, '-=0.4')
             .fromTo('.name-center', 
                 { scale: 0.8, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(2)' },
+                { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
                 '-=0.4'
             )
 
@@ -505,22 +430,22 @@
             .to('.hero-label', {
                 opacity: 1,
                 y: 0,
-                duration: 0.5
+                duration: 0.6
             }, '-=0.3')
             .to('#title', {
                 opacity: 1,
                 y: 0,
-                duration: 0.5
+                duration: 0.6
             }, '-=0.3')
             .to('#desc', {
                 opacity: 1,
                 y: 0,
-                duration: 0.5
+                duration: 0.6
             }, '-=0.3')
             .to('#buttons', {
                 opacity: 1,
                 y: 0,
-                duration: 0.5
+                duration: 0.6
             }, '-=0.3')
             .to('.dot', {
                 scale: 1.2,
@@ -530,7 +455,7 @@
                 ease: 'sine.inOut'
             }, '-=0.2');
 
-            // ====== حركات مستمرة ======
+            // ====== حركات مستمرة (مثل subjects) ======
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
                 duration: 3,
@@ -601,7 +526,25 @@
                 });
             });
 
-            console.log('✅ GSAP - Index avec suppression totale du overlay');
+            const btn = document.querySelector('.btn-primary');
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
+                });
+            });
+
+            console.log('✅ GSAP - Animation complète avec background style subjects');
         });
     </script>
 </body>
