@@ -4,51 +4,42 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ====== 1. ظهور الخلفية الزليجية بشكل جميل ======
+    // ====== 1. إظهار الخلفية الزليجية مباشرة (مثل index) ======
     
-    // إضافة class للخلفية السوداء لتتلاشى
-    document.body.classList.add('bg-fade-out');
-    
-    // ظهور الزليج بتأثير رائع
-    const bg = document.querySelector('.moroccan-bg');
-    if (bg) {
-        // إضافة تأثير ظهور تدريجي
-        bg.classList.add('zellij-appear');
-        
-        // بعد انتهاء التأثير، نضيف class loaded للحفاظ على الشفافية
-        setTimeout(function() {
-            bg.classList.add('loaded');
-        }, 1800);
-    }
-    
-    // ====== 2. ظهور العناصر الزخرفية ======
+    // إظهار الخلفية الزليجية فوراً
+    gsap.to('.moroccan-bg', {
+        opacity: 0.4,
+        duration: 1.2,
+        ease: 'power1.out',
+        delay: 0.1
+    });
     
     // الظل الزخرفي
     gsap.to('.moroccan-shadow', {
         opacity: 0.06,
-        duration: 1.8,
-        ease: 'power2.out',
-        delay: 0.3
+        duration: 1.5,
+        ease: 'power1.out',
+        delay: 0.2
     });
     
     // النجمة المغربية
     gsap.to('.moroccan-star', {
         opacity: 0.03,
-        duration: 1.8,
-        ease: 'power2.out',
-        delay: 0.5
+        duration: 1.5,
+        ease: 'power1.out',
+        delay: 0.3
     });
     
     // الزخارف الهندسية
     gsap.to('.geo-pattern', {
         opacity: 0.02,
         duration: 1.5,
-        stagger: 0.1,
-        ease: 'power2.out',
-        delay: 0.7
+        stagger: 0.08,
+        ease: 'power1.out',
+        delay: 0.4
     });
     
-    // ====== 3. ظهور المحتوى بتأخير ======
+    // ====== 2. ظهور المحتوى بتأخير بسيط ======
     
     // زر العودة
     gsap.from('.back-btn', {
@@ -56,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         x: -20,
         duration: 0.6,
         ease: 'power2.out',
-        delay: 0.8
+        delay: 0.5
     });
     
     // عنوان الدرس
@@ -66,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         scale: 0.95,
         duration: 0.9,
         ease: 'back.out(1.8)',
-        delay: 1.0
+        delay: 0.7
     });
     
     // الأقسام
@@ -76,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.7,
         stagger: 0.15,
         ease: 'power3.out',
-        delay: 1.2
+        delay: 0.9
     });
     
     // صناديق التمارين
@@ -86,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.6,
         stagger: 0.1,
         ease: 'power2.out',
-        delay: 1.5
+        delay: 1.2
     });
     
     // أزرار الحل
@@ -96,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.5,
         stagger: 0.08,
         ease: 'back.out(1.4)',
-        delay: 1.7
+        delay: 1.4
     });
     
     // بطاقات الأقسام
@@ -106,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.6,
         stagger: 0.08,
         ease: 'power3.out',
-        delay: 1.1
+        delay: 0.8
     });
     
     // بطاقات الأوامر
@@ -117,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.6,
         stagger: 0.08,
         ease: 'back.out(1.4)',
-        delay: 1.3
+        delay: 1.0
     });
     
     // عناوين السلاسل
@@ -126,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         y: 20,
         duration: 0.6,
         ease: 'power2.out',
-        delay: 0.9
+        delay: 0.6
     });
     
     // قوائم السلاسل
@@ -135,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         y: 20,
         duration: 0.6,
         ease: 'power2.out',
-        delay: 1.0
+        delay: 0.7
     });
     
     // صناديق المعلومات
@@ -145,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.6,
         stagger: 0.08,
         ease: 'power2.out',
-        delay: 1.4
+        delay: 1.1
     });
     
     // الصيغ الرياضية
@@ -156,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.6,
         stagger: 0.06,
         ease: 'back.out(1.4)',
-        delay: 1.6
+        delay: 1.3
     });
     
     // الجداول
@@ -166,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.5,
         stagger: 0.08,
         ease: 'power2.out',
-        delay: 1.5
+        delay: 1.2
     });
     
     // الخطوات
@@ -176,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 0.5,
         stagger: 0.06,
         ease: 'power2.out',
-        delay: 1.4
+        delay: 1.1
     });
     
     // أزرار التنقل
@@ -185,10 +176,10 @@ document.addEventListener('DOMContentLoaded', function() {
         y: 20,
         duration: 0.5,
         ease: 'power2.out',
-        delay: 1.8
+        delay: 1.5
     });
     
-    // ====== 4. حركات مستمرة ======
+    // ====== 3. حركات مستمرة ======
     
     // دوران النجمة
     gsap.to('.moroccan-star', {
@@ -245,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
         delay: 1.8
     });
     
-    // ====== 5. Hover effects ======
+    // ====== 4. Hover effects ======
     
     document.querySelectorAll('.highlight-box').forEach(box => {
         box.addEventListener('mouseenter', function() {
@@ -302,5 +293,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    console.log('✅ Lesson animation loaded with beautiful background transition');
+    console.log('✅ Lesson animation loaded - like index.html');
 });
