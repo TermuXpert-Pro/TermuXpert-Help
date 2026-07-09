@@ -9,29 +9,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Great+Vibes&family=Cinzel:wght@700;900&family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Exo+2:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        /* ====== خلفية متحركة ====== */
-        .bg-animated {
+        /* ====== حاوية three.js ====== */
+        #three-container {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
             pointer-events: none;
-            overflow: hidden;
         }
-        .bg-animated .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #4ECDC4;
-            border-radius: 50%;
-            animation: particleFloat 20s infinite linear;
-            opacity: 0.15;
-        }
-        @keyframes particleFloat {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.15; }
-            90% { opacity: 0.15; }
-            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        #three-container canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
         }
 
         /* ====== الشعار ====== */
@@ -48,7 +42,6 @@
             border-radius: 24px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(78, 205, 196, 0.08);
-            position: relative;
             backdrop-filter: blur(10px);
             box-shadow: 0 0 80px rgba(78, 205, 196, 0.03);
         }
@@ -62,29 +55,6 @@
             transform: scale(0.96);
         }
 
-        /* ====== الحلقة الخارجية ====== */
-        .logo-ring {
-            position: absolute;
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            border: 1px solid rgba(78, 205, 196, 0.08);
-            animation: ringRotate 30s linear infinite;
-            pointer-events: none;
-        }
-        .logo-ring:nth-child(2) {
-            width: 340px;
-            height: 340px;
-            border-color: rgba(255, 107, 107, 0.05);
-            animation-duration: 25s;
-            animation-direction: reverse;
-        }
-        @keyframes ringRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* ====== النص الرئيسي ====== */
         .hero-logo {
             display: flex;
             align-items: center;
@@ -93,20 +63,17 @@
             position: relative;
             z-index: 2;
             padding: 10px 20px;
+            flex-wrap: wrap;
         }
 
-        /* JAOUAD - 3D Effect */
+        /* JAOUAD */
         .hero-logo .name-left {
             font-family: 'Cinzel', serif;
             font-size: 28px;
             font-weight: 900;
             color: #4ECDC4;
             letter-spacing: 6px;
-            text-shadow: 
-                0 0 20px rgba(78, 205, 196, 0.2),
-                0 4px 8px rgba(0, 0, 0, 0.3),
-                0 8px 16px rgba(0, 0, 0, 0.2);
-            position: relative;
+            text-shadow: 0 0 20px rgba(78, 205, 196, 0.2), 0 4px 8px rgba(0,0,0,0.3);
             text-transform: uppercase;
             transition: all 0.3s ease;
         }
@@ -122,12 +89,8 @@
             opacity: 0.4;
             transition: all 0.3s ease;
         }
-        .hero-logo-wrapper:hover .name-left::after {
-            opacity: 0.8;
-            width: 120%;
-        }
 
-        /* MOROCCO - Effet de lumière */
+        /* MOROCCO */
         .hero-logo .name-center {
             font-family: 'Cinzel', serif;
             font-size: 42px;
@@ -140,18 +103,14 @@
             animation: gradientShift 6s ease-in-out infinite;
             letter-spacing: 10px;
             padding: 0 10px;
-            position: relative;
             text-transform: uppercase;
             filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.15));
-            transition: all 0.3s ease;
         }
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
+            0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
-        /* خط تحت MOROCCO */
         .hero-logo .name-center::before {
             content: '';
             position: absolute;
@@ -169,35 +128,15 @@
             width: 70%;
             opacity: 0.8;
         }
-        /* نقطة ذهبية */
-        .hero-logo .name-center::after {
-            content: '✦';
-            position: absolute;
-            top: -12px;
-            right: -10px;
-            font-size: 12px;
-            color: #F4D03F;
-            -webkit-text-fill-color: #F4D03F;
-            opacity: 0.3;
-            animation: starPulse 3s ease-in-out infinite;
-        }
-        @keyframes starPulse {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 0.6; transform: scale(1.2); }
-        }
 
-        /* ELKHAYATY - 3D Effect */
+        /* ELKHAYATY */
         .hero-logo .name-right {
             font-family: 'Cinzel', serif;
             font-size: 28px;
             font-weight: 900;
             color: #FF6B6B;
             letter-spacing: 6px;
-            text-shadow: 
-                0 0 20px rgba(255, 107, 107, 0.2),
-                0 4px 8px rgba(0, 0, 0, 0.3),
-                0 8px 16px rgba(0, 0, 0, 0.2);
-            position: relative;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.2), 0 4px 8px rgba(0,0,0,0.3);
             text-transform: uppercase;
             transition: all 0.3s ease;
         }
@@ -213,12 +152,7 @@
             opacity: 0.4;
             transition: all 0.3s ease;
         }
-        .hero-logo-wrapper:hover .name-right::after {
-            opacity: 0.8;
-            width: 120%;
-        }
 
-        /* ====== أيقونة التصميم ====== */
         .logo-edit-icon {
             position: absolute;
             bottom: 8px;
@@ -243,94 +177,41 @@
             transform: translateY(-4px);
         }
 
+        /* ====== Hero ====== */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: clamp(60px, 12vh, 100px) var(--container-padding) clamp(40px, 6vh, 60px);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
-            .hero-logo-wrapper {
-                padding: 14px 20px;
-                border-radius: 16px;
-            }
-            .hero-logo {
-                gap: 8px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .hero-logo .name-left {
-                font-size: 18px;
-                letter-spacing: 3px;
-            }
-            .hero-logo .name-center {
-                font-size: 26px;
-                letter-spacing: 5px;
-            }
-            .hero-logo .name-right {
-                font-size: 18px;
-                letter-spacing: 3px;
-            }
-            .logo-ring {
-                width: 200px;
-                height: 200px;
-            }
-            .logo-ring:nth-child(2) {
-                width: 220px;
-                height: 220px;
-            }
-            .logo-edit-icon {
-                width: 26px;
-                height: 26px;
-                font-size: 10px;
-            }
+            .hero-logo-wrapper { padding: 14px 20px; border-radius: 16px; }
+            .hero-logo { gap: 8px; }
+            .hero-logo .name-left { font-size: 18px; letter-spacing: 3px; }
+            .hero-logo .name-center { font-size: 26px; letter-spacing: 5px; }
+            .hero-logo .name-right { font-size: 18px; letter-spacing: 3px; }
+            .logo-edit-icon { width: 26px; height: 26px; font-size: 10px; }
         }
         @media (max-width: 480px) {
-            .hero-logo-wrapper {
-                padding: 10px 12px;
-                border-radius: 12px;
-            }
-            .hero-logo {
-                gap: 4px;
-            }
-            .hero-logo .name-left {
-                font-size: 13px;
-                letter-spacing: 2px;
-            }
-            .hero-logo .name-center {
-                font-size: 18px;
-                letter-spacing: 3px;
-            }
-            .hero-logo .name-right {
-                font-size: 13px;
-                letter-spacing: 2px;
-            }
-            .logo-ring {
-                width: 160px;
-                height: 160px;
-            }
-            .logo-ring:nth-child(2) {
-                width: 180px;
-                height: 180px;
-            }
-            .hero-logo .name-center::before {
-                width: 30%;
-            }
-            .logo-edit-icon {
-                width: 20px;
-                height: 20px;
-                font-size: 8px;
-                bottom: 4px;
-                right: 6px;
-            }
+            .hero-logo-wrapper { padding: 10px 12px; border-radius: 12px; }
+            .hero-logo { gap: 4px; }
+            .hero-logo .name-left { font-size: 13px; letter-spacing: 2px; }
+            .hero-logo .name-center { font-size: 18px; letter-spacing: 3px; }
+            .hero-logo .name-right { font-size: 13px; letter-spacing: 2px; }
+            .logo-edit-icon { width: 20px; height: 20px; font-size: 8px; bottom: 4px; right: 6px; }
         }
     </style>
-    <script>
-        MathJax = {
-            tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 </head>
 <body>
-    <!-- ====== خلفية متحركة بالجسيمات ====== -->
-    <div class="bg-animated" id="particles"></div>
+    <!-- ====== حاوية three.js ====== -->
+    <div id="three-container"></div>
 
     <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
@@ -351,18 +232,13 @@
     </nav>
 
     <section class="hero">
-        <!-- ====== الشعار الإحترافي ====== -->
+        <!-- ====== الشعار ====== -->
         <div class="hero-logo-wrapper" onclick="window.location.href='logo-design.html'">
-            <!-- حلقات زخرفية -->
-            <div class="logo-ring"></div>
-            <div class="logo-ring"></div>
-
             <div class="hero-logo">
                 <span class="name-left">JAOUAD</span>
                 <span class="name-center">MOROCCO</span>
                 <span class="name-right">ELKHAYATY</span>
             </div>
-
             <span class="logo-edit-icon"><i class="fas fa-pen"></i></span>
         </div>
 
@@ -422,27 +298,165 @@
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
-    <!-- ====== زر العودة للأعلى ====== -->
     <button class="scroll-top-btn" aria-label="Retour en haut">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <script src="script.js"></script>
     <script>
-        // ====== جسيمات الخلفية ======
+        // ============================================================
+        // THREE.JS - مشهد ثلاثي الأبعاد مع شعار متحرك
+        // ============================================================
         (function() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.width = (Math.random() * 3 + 1) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
-                particle.style.animationDelay = (Math.random() * 20) + 's';
-                particle.style.opacity = (Math.random() * 0.1 + 0.05);
-                container.appendChild(particle);
+            const container = document.getElementById('three-container');
+            
+            // === المشهد ===
+            const scene = new THREE.Scene();
+            
+            // === الكاميرا ===
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+            
+            // === المُصوّر ===
+            const renderer = new THREE.WebGLRenderer({ 
+                antialias: true, 
+                alpha: true 
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setClearColor(0x0B0C10, 0);
+            container.appendChild(renderer.domElement);
+
+            // === إضاءة ===
+            const ambientLight = new THREE.AmbientLight(0x404060);
+            scene.add(ambientLight);
+            
+            const dirLight = new THREE.DirectionalLight(0x4ECDC4, 0.5);
+            dirLight.position.set(1, 1, 1);
+            scene.add(dirLight);
+            
+            const dirLight2 = new THREE.DirectionalLight(0xFF6B6B, 0.5);
+            dirLight2.position.set(-1, -1, 1);
+            scene.add(dirLight2);
+
+            // === مجموعة الشعار ===
+            const logoGroup = new THREE.Group();
+            scene.add(logoGroup);
+
+            // === إنشاء حلقات متحركة ===
+            function createRing(color, radius, tubeRadius, segments) {
+                const geometry = new THREE.TorusGeometry(radius, tubeRadius, segments, segments);
+                const material = new THREE.MeshPhongMaterial({
+                    color: color,
+                    emissive: color,
+                    emissiveIntensity: 0.2,
+                    transparent: true,
+                    opacity: 0.6,
+                    wireframe: false
+                });
+                const ring = new THREE.Mesh(geometry, material);
+                return ring;
             }
+
+            // حلقة خارجية - أخضر
+            const ring1 = createRing(0x4ECDC4, 1.8, 0.02, 64);
+            ring1.rotation.x = Math.PI / 2;
+            ring1.rotation.z = 0.3;
+            logoGroup.add(ring1);
+
+            // حلقة وسطى - ذهبي
+            const ring2 = createRing(0xF4D03F, 1.5, 0.015, 48);
+            ring2.rotation.x = Math.PI / 2;
+            ring2.rotation.z = -0.2;
+            logoGroup.add(ring2);
+
+            // حلقة داخلية - أحمر
+            const ring3 = createRing(0xFF6B6B, 1.2, 0.01, 32);
+            ring3.rotation.x = Math.PI / 2;
+            ring3.rotation.z = 0.1;
+            logoGroup.add(ring3);
+
+            // === جسيمات حول الشعار ===
+            const particleCount = 200;
+            const particleGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
+
+            for (let i = 0; i < particleCount; i++) {
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                const radius = 2 + Math.random() * 1.5;
+                
+                positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                positions[i * 3 + 2] = radius * Math.cos(phi);
+                
+                const color = new THREE.Color().setHSL(0.5 + Math.random() * 0.3, 0.8, 0.6);
+                colors[i * 3] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+                
+                sizes[i] = 0.02 + Math.random() * 0.04;
+            }
+
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.04,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending,
+                sizeAttenuation: true
+            });
+
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            logoGroup.add(particles);
+
+            // === متغيرات التحريك ===
+            let time = 0;
+
+            // === التحريك ===
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                time += 0.005;
+                
+                // دوران الحلقات
+                ring1.rotation.y += 0.005;
+                ring2.rotation.y -= 0.008;
+                ring3.rotation.y += 0.012;
+                
+                // دوران الجسيمات
+                particles.rotation.y += 0.001;
+                particles.rotation.x = Math.sin(time * 0.3) * 0.05;
+                
+                // حركة خفيفة للشعار
+                logoGroup.rotation.y = Math.sin(time * 0.2) * 0.05;
+                logoGroup.rotation.x = Math.sin(time * 0.15) * 0.02;
+                
+                // تغيير حجم الحلقات
+                ring1.scale.setScalar(1 + Math.sin(time * 0.3) * 0.02);
+                ring2.scale.setScalar(1 + Math.sin(time * 0.4 + 0.5) * 0.02);
+                ring3.scale.setScalar(1 + Math.sin(time * 0.5 + 1) * 0.02);
+                
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // === إعادة الحجم عند تغيير النافذة ===
+            window.addEventListener('resize', function() {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            });
+
         })();
     </script>
 </body>
