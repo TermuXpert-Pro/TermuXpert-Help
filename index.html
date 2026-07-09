@@ -15,6 +15,30 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
+        /* ====== طبقة الحماية غير المرئية ====== */
+        .overlay-protection {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: transparent;
+            pointer-events: all;
+            cursor: default;
+            opacity: 0;
+            display: none;
+        }
+        .overlay-protection.active {
+            display: block;
+            opacity: 1;
+        }
+        .overlay-protection.fade-out {
+            transition: opacity 0.6s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         .moroccan-bg {
             position: fixed;
             top: 0;
@@ -270,6 +294,9 @@
 </head>
 <body>
 
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
     <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -335,7 +362,7 @@
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
             <div class="hero-buttons" id="buttons">
-                <a href="subjects.html" class="btn btn-primary" onclick="sessionStorage.setItem('animation_allowed', 'true');" onclick="sessionStorage.setItem('animation_allowed', 'true');"><i class="fas fa-graduation-cap"></i> Commencer</a>
+                <a href="subjects.html" class="btn btn-primary" onclick="sessionStorage.setItem('animation_allowed', 'true');"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
     </section>
@@ -353,9 +380,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
+            const overlay = document.getElementById('overlayProtection');
+            
+            // ====== تفعيل طبقة الحماية ======
+            overlay.classList.add('active');
+            
             const tl = gsap.timeline({
                 defaults: {
                     ease: 'power3.out'
+                },
+                onComplete: function() {
+                    // ====== إزالة طبقة الحماية بشكل غير ملحوظ ======
+                    overlay.classList.add('fade-out');
+                    setTimeout(function() {
+                        overlay.classList.remove('active', 'fade-out');
+                        overlay.style.display = 'none';
+                        console.log('✅ Overlay protection removed');
+                    }, 700);
                 }
             });
 
@@ -548,7 +589,7 @@
                 });
             });
 
-            console.log('✅ GSAP - Animation complète avec background style subjects');
+            console.log('✅ GSAP - Animation complète avec overlay protection');
         });
     </script>
 </body>
