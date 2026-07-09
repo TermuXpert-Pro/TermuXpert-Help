@@ -386,7 +386,7 @@
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
             grid.innerHTML = subjects.map((s, index) => `
-                <div class="card" data-index="${index}" onclick="sessionStorage.removeItem('subject_animation_done'); location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
+                <div class="card" data-index="${index}" onclick="location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
                         <i class="fas ${s.icon}"></i>
                     </div>
@@ -407,23 +407,27 @@
         renderSubjects();
 
         // ============================================================
-        // GSAP - تأثيرات (مرة واحدة فقط، أو عند reset من index)
+        // GSAP - إدارة الأنميشن
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             const animationKey = 'subjects_animation_done';
             
-            // إذا كان الأنميشن قد تم تشغيله، نظهر كل شيء مباشرة
-            if (sessionStorage.getItem(animationKey) === 'true') {
+            // ====== دالة للعرض المباشر (بدون أنميشن) ======
+            function showDirect() {
+                // إخفاء hero-wrapper نهائياً
+                gsap.set('#heroWrapper', { display: 'none' });
+                
+                // إظهار الخلفيات
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
                 gsap.set('.geo-pattern', { opacity: 0.03 });
-                gsap.set('#heroWrapper', { opacity: 1 });
-                gsap.set('#mainTitle', { opacity: 1, scale: 1 });
-                gsap.set('#subTitle', { opacity: 1, y: 0 });
+                
+                // إظهار البطاقات مباشرة
                 gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
-                console.log('✅ subjects.html - Affichage direct (animation déjà jouée)');
+                
+                console.log('✅ subjects.html - Affichage direct (sans titre)');
                 
                 // ====== حركات مستمرة ======
                 document.querySelectorAll('.card').forEach((card, i) => {
@@ -441,7 +445,7 @@
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
                 gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
-                
+
                 // Hover effects
                 document.querySelectorAll('.card').forEach(card => {
                     card.addEventListener('mouseenter', function() {
@@ -455,73 +459,91 @@
                         gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
                     });
                 });
-                return;
             }
 
-            // ====== تشغيل الأنميشن ======
-            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            // ====== دالة لتشغيل الأنميشن ======
+            function runAnimation() {
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-            tl
-                .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
-                .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
-                .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
-                .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
-                .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-                .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
-                .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
-                .to('#mainTitle', { opacity: 0, y: -60, scale: 0.8, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
-                .to('#subTitle', { opacity: 0, y: -40, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
-                .to('#heroWrapper', { opacity: 0, duration: 0.6, ease: 'power2.in' }, '-=0.4')
-                .to('#cardsWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
-                .to('.card', {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 1.2,
-                    stagger: { each: 0.2, from: 'start', ease: 'back.out(1.8)' },
-                    ease: 'power3.out'
-                }, '-=0.3')
-                .to('.card', {
-                    rotation: 0,
-                    duration: 1.2,
-                    stagger: 0.2,
-                    ease: 'power3.out'
-                }, '-=0.8')
-                .call(() => {
-                    sessionStorage.setItem(animationKey, 'true');
-                    console.log('✅ subjects.html - Animation jouée une fois');
+                tl
+                    .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
+                    .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
+                    .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
+                    .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 0, y: -60, scale: 0.8, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
+                    .to('#subTitle', { opacity: 0, y: -40, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
+                    .to('#heroWrapper', { 
+                        opacity: 0, 
+                        duration: 0.6, 
+                        ease: 'power2.in',
+                        onComplete: function() {
+                            // إخفاء hero-wrapper نهائياً بعد اختفائه
+                            gsap.set('#heroWrapper', { display: 'none' });
+                        }
+                    }, '-=0.4')
+                    .to('#cardsWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+                    .to('.card', {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 1.2,
+                        stagger: { each: 0.2, from: 'start', ease: 'back.out(1.8)' },
+                        ease: 'power3.out'
+                    }, '-=0.3')
+                    .to('.card', {
+                        rotation: 0,
+                        duration: 1.2,
+                        stagger: 0.2,
+                        ease: 'power3.out'
+                    }, '-=0.8')
+                    .call(() => {
+                        sessionStorage.setItem(animationKey, 'true');
+                        console.log('✅ subjects.html - Animation jouée une fois');
+                    });
+
+                // ====== حركات مستمرة ======
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
                 });
 
-            // ====== حركات مستمرة ======
-            document.querySelectorAll('.card').forEach((card, i) => {
-                const icon = card.querySelector('.card-icon');
-                gsap.to(icon, {
-                    boxShadow: `0 0 80px ${subjects[i].glow}`,
-                    duration: 2,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: 'sine.inOut',
-                    delay: i * 0.3
-                });
-            });
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
 
-            gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-            gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-            gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-            gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
+                    });
+                });
+            }
 
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    const icon = this.querySelector('.card-icon');
-                    gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
-                    gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
-                });
-                card.addEventListener('mouseleave', function() {
-                    const icon = this.querySelector('.card-icon');
-                    gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
-                    gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
-                });
-            });
+            // ============================================================
+            // التحقق: هل الأنميشن تم تشغيله من قبل؟
+            // ============================================================
+            if (sessionStorage.getItem(animationKey) === 'true') {
+                showDirect();
+            } else {
+                runAnimation();
+            }
         });
     </script>
 </body>
