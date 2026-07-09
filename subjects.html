@@ -9,12 +9,255 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        /* ====== خلفية زليج مغربية ====== */
+        .moroccan-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .moroccan-bg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ====== ظل زخرفي ====== */
+        .moroccan-shadow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(circle at center, #4ECDC4 0%, #FF6B6B 40%, #F4D03F 70%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: shadowPulse 8s ease-in-out infinite;
+        }
+        @keyframes shadowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
+        }
+
+        /* ====== نجمة مغربية ====== */
+        .moroccan-star {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            font-size: 120px;
+            color: #4ECDC4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: starSpin 20s linear infinite;
+        }
+        @keyframes starSpin {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+        }
+
+        /* ====== زخارف هندسية ====== */
+        .geo-pattern {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            color: #F4D03F;
+            font-size: 20px;
+            letter-spacing: 20px;
+        }
+        .geo-pattern-1 { top: 10%; left: 5%; transform: rotate(-15deg); }
+        .geo-pattern-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
+        .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
+        .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
+
+        /* ====== Hero ====== */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: clamp(60px, 12vh, 100px) var(--container-padding) clamp(40px, 6vh, 60px);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #4ECDC4, #66FCF1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero .description {
+            color: var(--text-muted);
+            font-size: clamp(12px, 1.5vw, 15px);
+            max-width: 500px;
+            margin: 0 auto 16px;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* ====== Grid ====== */
+        .grid-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+            gap: clamp(10px, 1.5vw, 14px);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-right: 3px solid var(--accent);
+            border-radius: 12px;
+            padding: clamp(12px, 1.8vw, 16px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .card:active {
+            transform: scale(0.97);
+            opacity: 0.8;
+        }
+        .card .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 24px;
+        }
+        .card h3 {
+            font-size: clamp(15px, 1.8vw, 18px);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .card p {
+            color: var(--text-secondary);
+            font-size: clamp(11px, 1.2vw, 12px);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .card .card-badges {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 10px;
+            border-radius: 16px;
+            font-size: clamp(10px, 1.1vw, 11px);
+            font-weight: 600;
+        }
+        .card .badge:active {
+            opacity: 0.7;
+            transform: scale(0.95);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .moroccan-shadow { width: 300px; height: 300px; }
+            .moroccan-star { font-size: 60px; }
+            .geo-pattern { font-size: 14px; letter-spacing: 12px; }
+        }
+        @media (max-width: 480px) {
+            .moroccan-shadow { width: 200px; height: 200px; }
+            .moroccan-star { font-size: 40px; }
+            .geo-pattern { font-size: 10px; letter-spacing: 8px; }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- ====== خلفية زليج مغربية ====== -->
+    <div class="moroccan-bg">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+
+    <!-- ====== ظل زخرفي ====== -->
+    <div class="moroccan-shadow"></div>
+
+    <!-- ====== نجمة مغربية ====== -->
+    <div class="moroccan-star">✦</div>
+
+    <!-- ====== زخارف هندسية ====== -->
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
     <!-- ====== شريط تقدم القراءة ====== -->
     <div class="progress-bar" id="progressBar"></div>
 
     <div class="bg-grid"></div>
+
     <nav class="navbar">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
@@ -24,24 +267,23 @@
             <li><a href="index.html"><i class="fas fa-house"></i> Accueil</a></li>
         </ul>
     </nav>
-    
-    <div class="hero" style="min-height:auto; padding:60px 20px 30px;">
-        <h1 style="font-size:28px;">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
-        <p class="description" style="font-size:14px;">Choisissez votre matière pour découvrir tout son contenu</p>
-    </div>
-    
-    <div style="max-width:1100px; margin:0 auto; padding:0 20px 40px;">
+
+    <section class="hero" id="heroSection">
+        <h1 id="title">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
+        <p class="description" id="desc">Choisissez votre matière pour découvrir tout son contenu</p>
+    </section>
+
+    <div class="grid-container" id="gridContainer">
         <div class="grid" id="subjectsGrid">
             <div class="no-data">Chargement...</div>
         </div>
     </div>
-    
+
     <footer class="footer">
         <div class="divider"></div>
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
-    <!-- ====== زر العودة للأعلى ====== -->
     <button class="scroll-top-btn" aria-label="Retour en haut">
         <i class="fas fa-arrow-up"></i>
     </button>
@@ -84,8 +326,8 @@
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
             
-            grid.innerHTML = subjects.map(s => `
-                <div class="card" onclick="location.href='subject.html?subject=${s.id}'" style="border-right-color: ${s.color};">
+            grid.innerHTML = subjects.map((s, index) => `
+                <div class="card" data-index="${index}" onclick="location.href='subject.html?subject=${s.id}'" style="border-right-color: ${s.color};">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color};">
                         <i class="fas ${s.icon}"></i>
                     </div>
@@ -104,6 +346,125 @@
         }
 
         renderSubjects();
+
+        // ============================================================
+        // GSAP - الرسوم المتحركة مع تلاشي الخلفية
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const tl = gsap.timeline({
+                defaults: {
+                    ease: 'power2.out'
+                }
+            });
+
+            // 1. ظهور الخلفيات
+            tl
+                .to('.moroccan-bg', {
+                    opacity: 0.6,
+                    duration: 1.5
+                })
+                .to('.moroccan-shadow', {
+                    opacity: 0.08,
+                    duration: 1.5
+                }, '-=1')
+                .to('.moroccan-star', {
+                    opacity: 0.04,
+                    duration: 1.5
+                }, '-=1')
+                .to('.geo-pattern', {
+                    opacity: 0.03,
+                    duration: 1.5,
+                    stagger: 0.1
+                }, '-=1.2')
+
+            // 2. ظهور الهيرو
+            .to('#heroSection', {
+                opacity: 1,
+                duration: 0.8
+            }, '-=0.5')
+            .to('#title', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .to('#desc', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6
+            }, '-=0.3')
+
+            // 3. ظهور الـ Grid
+            .to('#gridContainer', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            }, '-=0.3')
+
+            // 4. ظهور البطاقات بتتابع
+            .to('.card', {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.15,
+                ease: 'back.out(1.7)'
+            }, '-=0.4');
+
+            // ====== حركات مستمرة ======
+            gsap.to('.moroccan-bg', {
+                opacity: 0.8,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            gsap.to('.moroccan-star', {
+                rotation: 360,
+                duration: 30,
+                repeat: -1,
+                ease: 'none'
+            });
+
+            gsap.to('.geo-pattern-1', {
+                x: 20,
+                y: 10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            gsap.to('.geo-pattern-2', {
+                x: -20,
+                y: -10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1
+            });
+            gsap.to('.geo-pattern-3', {
+                x: 15,
+                y: -15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 0.5
+            });
+            gsap.to('.geo-pattern-4', {
+                x: -15,
+                y: 15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1.5
+            });
+
+            console.log('✅ GSAP - صفحة المواد مع خلفية مغربية');
+        });
     </script>
 </body>
 </html>
