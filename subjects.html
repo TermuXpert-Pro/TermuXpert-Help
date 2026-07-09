@@ -386,7 +386,7 @@
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
             grid.innerHTML = subjects.map((s, index) => `
-                <div class="card" data-index="${index}" onclick="location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
+                <div class="card" data-index="${index}" onclick="sessionStorage.removeItem('subject_animation_done'); location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
                         <i class="fas ${s.icon}"></i>
                     </div>
