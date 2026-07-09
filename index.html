@@ -98,7 +98,6 @@
             height: 100% !important;
         }
 
-        /* تعطيل المؤشر أثناء الأنميشن */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -109,9 +108,17 @@
             cursor: wait;
             pointer-events: none;
             display: none;
+            background: rgba(11, 12, 16, 0.3);
+            backdrop-filter: blur(0px);
+            transition: all 0.8s ease;
         }
         .loading-overlay.active {
             display: block;
+            backdrop-filter: blur(4px);
+        }
+        .loading-overlay.fade-out {
+            backdrop-filter: blur(0px);
+            opacity: 0;
         }
 
         /* ====== Hero ====== */
@@ -238,7 +245,6 @@
             transform: translateY(20px);
         }
 
-        /* تعطيل الأزرار أثناء الأنميشن */
         .btn-disabled {
             pointer-events: none !important;
             opacity: 0.5 !important;
@@ -393,13 +399,12 @@
     <script src="script.js"></script>
     <script>
         // ============================================================
-        // GSAP - الرسوم المتحركة مع منع التمرير والتفاعل
+        // GSAP - الأنميشن مع تأثير أنيق عند السماح بالتمرير
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             // ====== منع التمرير والتفاعل ======
             function blockScrollAndInteraction() {
-                // منع التمرير
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.overflow = 'hidden';
                 document.body.style.height = '100%';
@@ -408,63 +413,80 @@
                 document.body.style.top = '0';
                 document.body.style.left = '0';
                 
-                // إظهار تراكب لمنع التفاعل
                 const overlay = document.getElementById('loadingOverlay');
                 overlay.classList.add('active');
                 
-                // تعطيل الروابط في navbar
                 document.querySelectorAll('.nav-link-disabled').forEach(el => {
                     el.style.pointerEvents = 'none';
                     el.style.opacity = '0.5';
                 });
                 
-                // تعطيل زر البداية
                 document.getElementById('startBtn').classList.add('btn-disabled');
             }
 
             function allowScrollAndInteraction() {
-                // السماح بالتمرير
-                document.documentElement.style.overflow = '';
-                document.body.style.overflow = '';
-                document.body.style.height = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
-                document.body.style.top = '';
-                document.body.style.left = '';
-                
-                // إخفاء التراكب
                 const overlay = document.getElementById('loadingOverlay');
-                overlay.classList.remove('active');
                 
-                // تفعيل الروابط في navbar
-                document.querySelectorAll('.nav-link-disabled').forEach(el => {
-                    el.style.pointerEvents = '';
-                    el.style.opacity = '';
-                });
+                // تأثير تلاشي للتراكب
+                overlay.classList.add('fade-out');
                 
-                // تفعيل زر البداية
-                document.getElementById('startBtn').classList.remove('btn-disabled');
+                setTimeout(() => {
+                    overlay.classList.remove('active');
+                    overlay.classList.remove('fade-out');
+                    
+                    // السماح بالتمرير مع تأثير ناعم
+                    document.documentElement.style.overflow = '';
+                    document.body.style.overflow = '';
+                    document.body.style.height = '';
+                    document.body.style.position = '';
+                    document.body.style.width = '';
+                    document.body.style.top = '';
+                    document.body.style.left = '';
+                    
+                    document.querySelectorAll('.nav-link-disabled').forEach(el => {
+                        el.style.pointerEvents = '';
+                        el.style.opacity = '';
+                    });
+                    
+                    document.getElementById('startBtn').classList.remove('btn-disabled');
+                    
+                    // تأثير ظهور ناعم للصفحة (Scroll Reveal)
+                    gsap.from('.feature-card', {
+                        scrollTrigger: {
+                            trigger: '.features-grid',
+                            start: 'top 80%',
+                            end: 'top 30%',
+                            scrub: 0.5,
+                            toggleActions: 'play none none reverse'
+                        },
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.9,
+                        stagger: 0.1,
+                        duration: 1,
+                        ease: 'power3.out'
+                    });
+                    
+                }, 800);
             }
 
-            // تطبيق المنع فوراً
+            // تطبيق المنع
             blockScrollAndInteraction();
 
-            // ====== الأنميشن ======
+            // ====== الأنميشن الرئيسي ======
             const tl = gsap.timeline({
                 defaults: {
                     duration: 0.8,
                     ease: 'power3.out'
                 },
                 onComplete: function() {
-                    // السماح بالتمرير والتفاعل بعد انتهاء الأنميشن
                     setTimeout(function() {
                         allowScrollAndInteraction();
-                        console.log('✅ Animation terminée - défilement et interactions autorisés');
-                    }, 500);
+                        console.log('✅ Animation terminée - défilement autorisé avec effet');
+                    }, 400);
                 }
             });
 
-            // 1. ظهور الخلفيات
             tl
                 .to('.moroccan-bg', {
                     opacity: 0.6,
@@ -487,63 +509,55 @@
                     stagger: 0.08,
                     ease: 'power1.out'
                 }, '-=1.4')
-
-            // 2. ظهور الهيرو
-            .to('#heroSection', {
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power2.out'
-            }, '-=0.5')
-
-            // 3. ظهور البطاقة
-            .to('#heroCard', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.3')
-
-            // 4. ظهور الشعار
-            .to('#logo', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'back.out(1.7)'
-            }, '-=0.4')
-            .fromTo('.name-center', 
-                { scale: 0.8, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
-                '-=0.4'
-            )
-
-            // 5. ظهور باقي العناصر
-            .to('.hero-label', {
-                opacity: 1,
-                y: 0,
-                duration: 0.6
-            }, '-=0.3')
-            .to('#title', {
-                opacity: 1,
-                y: 0,
-                duration: 0.6
-            }, '-=0.3')
-            .to('#desc', {
-                opacity: 1,
-                y: 0,
-                duration: 0.6
-            }, '-=0.3')
-            .to('#buttons', {
-                opacity: 1,
-                y: 0,
-                duration: 0.6
-            }, '-=0.3')
-            .to('.dot', {
-                scale: 1.2,
-                duration: 0.5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            }, '-=0.2');
+                .to('#heroSection', {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                }, '-=0.5')
+                .to('#heroCard', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                }, '-=0.3')
+                .to('#logo', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'back.out(1.7)'
+                }, '-=0.4')
+                .fromTo('.name-center', 
+                    { scale: 0.8, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
+                    '-=0.4'
+                )
+                .to('.hero-label', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6
+                }, '-=0.3')
+                .to('#title', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6
+                }, '-=0.3')
+                .to('#desc', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6
+                }, '-=0.3')
+                .to('#buttons', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6
+                }, '-=0.3')
+                .to('.dot', {
+                    scale: 1.2,
+                    duration: 0.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                }, '-=0.2');
 
             // ====== حركات مستمرة ======
             gsap.to('.moroccan-bg', {
@@ -603,7 +617,7 @@
                 }
             });
 
-            console.log('✅ GSAP - Animation chargée, interactions bloquées');
+            console.log('✅ GSAP - Animation avec effet de déblocage fluide');
         });
     </script>
 </body>
