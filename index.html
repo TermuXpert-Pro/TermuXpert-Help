@@ -84,6 +84,12 @@
         .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
         .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
 
+        /* ====== منع التمرير ====== */
+        .no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
+
         /* ====== Hero ====== */
         .hero {
             position: relative;
@@ -283,6 +289,7 @@
     </nav>
 
     <section class="hero" id="heroSection">
+        <!-- ====== البطاقة ====== -->
         <div class="hero-card" id="heroCard">
             <!-- الشعار -->
             <div class="hero-logo" id="logo">
@@ -352,39 +359,55 @@
 
     <script src="script.js"></script>
     <script>
+        // ============================================================
+        // GSAP - الرسوم المتحركة مع منع التمرير
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
-            // ====== تلاشي الخلفية عند تحميل الصفحة ======
+            // منع التمرير
+            document.body.classList.add('no-scroll');
+            
             const tl = gsap.timeline({
                 defaults: {
-                    ease: 'power2.out'
+                    duration: 0.8,
+                    ease: 'power3.out'
+                },
+                onComplete: function() {
+                    // السماح بالتمرير بعد انتهاء الأنميشن
+                    document.body.classList.remove('no-scroll');
+                    console.log('✅ Animation terminée - défilement autorisé');
                 }
             });
 
-            // 1. ظهور الخلفيات بشكل تدريجي
+            // 1. ظهور الخلفيات
             tl
                 .to('.moroccan-bg', {
                     opacity: 0.6,
-                    duration: 1.5
+                    duration: 1.8,
+                    ease: 'power1.out'
                 })
                 .to('.moroccan-shadow', {
                     opacity: 0.08,
-                    duration: 1.5
-                }, '-=1')
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
                 .to('.moroccan-star', {
                     opacity: 0.04,
-                    duration: 1.5
-                }, '-=1')
+                    duration: 1.8,
+                    ease: 'power1.out'
+                }, '-=1.2')
                 .to('.geo-pattern', {
                     opacity: 0.03,
-                    duration: 1.5,
-                    stagger: 0.1
-                }, '-=1.2')
+                    duration: 1.8,
+                    stagger: 0.08,
+                    ease: 'power1.out'
+                }, '-=1.4')
 
             // 2. ظهور الهيرو
             .to('#heroSection', {
                 opacity: 1,
-                duration: 0.8
+                duration: 0.8,
+                ease: 'power2.out'
             }, '-=0.5')
 
             // 3. ظهور البطاقة
@@ -453,43 +476,7 @@
                 ease: 'none'
             });
 
-            gsap.to('.geo-pattern-1', {
-                x: 20,
-                y: 10,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
-            gsap.to('.geo-pattern-2', {
-                x: -20,
-                y: -10,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                delay: 1
-            });
-            gsap.to('.geo-pattern-3', {
-                x: 15,
-                y: -15,
-                duration: 5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                delay: 0.5
-            });
-            gsap.to('.geo-pattern-4', {
-                x: -15,
-                y: 15,
-                duration: 5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                delay: 1.5
-            });
-
-            // ====== Hover Effects ======
+            // ====== Hover على البطاقة ======
             const card = document.querySelector('.hero-card');
             card.addEventListener('mouseenter', () => {
                 gsap.to(card, {
@@ -508,6 +495,7 @@
                 });
             });
 
+            // ====== Hover على الزر ======
             const btn = document.querySelector('.btn-primary');
             btn.addEventListener('mouseenter', () => {
                 gsap.to(btn, {
@@ -526,7 +514,7 @@
                 });
             });
 
-            console.log('✅ GSAP - خلفية مغربية مع تلاشي عند التحميل');
+            console.log('✅ GSAP - Animation chargée, défilement bloqué');
         });
     </script>
 </body>
