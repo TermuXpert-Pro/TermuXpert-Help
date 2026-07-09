@@ -309,7 +309,7 @@
             <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
         <ul class="nav-links">
-            <li><a href="subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+            <li><a href="subjects.html" onclick="sessionStorage.removeItem('subjects_animation_done'); sessionStorage.removeItem('subject_animation_done');"><i class="fas fa-book-open"></i> Matières</a></li>
             <li><a href="subjects.html" class="btn-nav" onclick="sessionStorage.removeItem('subjects_animation_done'); sessionStorage.removeItem('subject_animation_done');"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
         </ul>
     </nav>
@@ -331,7 +331,7 @@
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
             <div class="hero-buttons" id="buttons">
-                <a href="subjects.html" class="btn btn-primary" id="btnCommencer"><i class="fas fa-graduation-cap"></i> Commencer</a>
+                <a href="subjects.html" class="btn btn-primary" id="btnCommencer" onclick="sessionStorage.removeItem('subjects_animation_done'); sessionStorage.removeItem('subject_animation_done');"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
     </section>
@@ -350,10 +350,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             
             // ============================================================
-            // مفتاح الأنميشن في sessionStorage
+            // التحقق من نوع التنقل
             // ============================================================
+            const navType = performance.navigation.type;
+            
+            // المفتاح في sessionStorage
             const animationKey = 'index_animation_done';
-
+            
             // ============================================================
             // دالة لتشغيل الأنميشن
             // ============================================================
@@ -410,7 +413,7 @@
             }
 
             // ============================================================
-            // دالة لعرض كل شيء مباشرة (بدون أنميشن)
+            // دالة للعرض المباشر
             // ============================================================
             function showDirect() {
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
@@ -426,7 +429,7 @@
                 gsap.set('#title', { opacity: 1, y: 0 });
                 gsap.set('#desc', { opacity: 1, y: 0 });
                 gsap.set('#buttons', { opacity: 1, y: 0 });
-                console.log('✅ index.html - Affichage direct (animation déjà jouée)');
+                console.log('✅ index.html - Affichage direct');
 
                 // ====== حركات مستمرة ======
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
@@ -438,30 +441,26 @@
             }
 
             // ============================================================
-            // التحقق من وجود مفتاح الأنميشن
+            // المنطق الرئيسي
             // ============================================================
-            const animationDone = sessionStorage.getItem(animationKey);
-
-            if (animationDone === 'true') {
-                // الأنميشن تم تشغيله سابقاً → عرض مباشر
+            
+            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
+            if (navType === 2) {
                 showDirect();
-            } else {
-                // الأنميشن لم يتم تشغيله → تشغيله
-                runAnimation();
+                console.log('📌 index.html - Navigation depuis Back/Forward → Affichage direct');
+                return;
             }
 
-            // ============================================================
-            // عند الضغط على زر "Commencer" → إعادة تعيين المفتاح
-            // ============================================================
-            document.getElementById('btnCommencer').addEventListener('click', function() {
-                // حذف المفتاح من sessionStorage
-                sessionStorage.removeItem('subjects_animation_done'); sessionStorage.removeItem('subject_animation_done');
-                sessionStorage.removeItem('subject_animation_done');
-                // سيتم تشغيل أنميشن subjects عند تحميل الصفحة
-                console.log('🔄 Reset des animations - Commencer cliqué');
-            });
+            // 2. إذا كان المفتاح موجوداً في sessionStorage → عرض مباشر
+            if (sessionStorage.getItem(animationKey) === 'true') {
+                showDirect();
+                console.log('📌 index.html - Animation déjà jouée dans cette session → Affichage direct');
+                return;
+            }
 
-            console.log('✅ GSAP - Animation avec reset sur Commencer');
+            // 3. في جميع الحالات الأخرى → تشغيل الأنميشن
+            runAnimation();
+            console.log('📌 index.html - Première visite ou Refresh → Animation jouée');
         });
     </script>
 </body>
