@@ -496,3 +496,69 @@ details div {
 .geo-pattern-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
 .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
 .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
+
+/* ====== الخلفية المغربية ====== */
+.moroccan-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.6;
+}
+.moroccan-bg svg { width: 100%; height: 100%; }
+
+.moroccan-shadow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background: radial-gradient(circle at center, #4ECDC4 0%, #FF6B6B 40%, #F4D03F 70%, transparent 100%);
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: shadowPulse 8s ease-in-out infinite;
+}
+@keyframes shadowPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
+}
+
+.moroccan-star {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    font-size: 120px;
+    color: #4ECDC4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: starSpin 20s linear infinite;
+}
+@keyframes starSpin {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+.geo-pattern {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    color: #F4D03F;
+    font-size: 20px;
+    letter-spacing: 20px;
+}
+.geo-pattern-1 { top: 10%; left: 5%; transform: rotate(-15deg); }
+.geo-pattern-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
+.geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
+.geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }

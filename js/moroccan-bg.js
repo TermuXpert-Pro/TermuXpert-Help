@@ -11,6 +11,7 @@
     // ====== إنشاء الخلفية الزليجية ======
     var moroccanBg = document.createElement('div');
     moroccanBg.className = 'moroccan-bg';
+    moroccanBg.style.opacity = '0.6'; // جعلها ظاهرة فوراً
     moroccanBg.innerHTML = `
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -39,11 +40,13 @@
     // ====== إنشاء الظل الزخرفي ======
     var shadow = document.createElement('div');
     shadow.className = 'moroccan-shadow';
+    shadow.style.opacity = '0.08';
     document.body.prepend(shadow);
     
     // ====== إنشاء النجمة الدوارة ======
     var star = document.createElement('div');
     star.className = 'moroccan-star';
+    star.style.opacity = '0.04';
     star.textContent = '✦';
     document.body.prepend(star);
     
@@ -58,6 +61,7 @@
     patterns.forEach(function(text, index) {
         var geo = document.createElement('div');
         geo.className = 'geo-pattern geo-pattern-' + (index + 1);
+        geo.style.opacity = '0.03';
         geo.textContent = text;
         document.body.prepend(geo);
     });
