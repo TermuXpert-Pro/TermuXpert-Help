@@ -395,9 +395,7 @@
         </div>
 
         <!-- المحتوى -->
-        <div class="cards-grid" id="tabContent">
-            <div class="no-data">Chargement...</div>
-        </div>
+        <div class="cards-grid" id="tabContent"></div>
     </div>
 
     <footer class="footer">
@@ -476,7 +474,7 @@
             
             if (!currentSubject) {
                 document.getElementById('subjectTitle').textContent = '⚠️ Matière non trouvée';
-                document.getElementById('tabContent').innerHTML = '<div class="no-data">Matière non trouvée</div>';
+                document.getElementById('tabContent').innerHTML = '';
                 return;
             }
             
@@ -493,22 +491,20 @@
             isAnimating = true;
             currentTab = tab;
             
-            // تحديث الأزرار
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
             
             const container = document.getElementById('tabContent');
             
-            // إخفاء البطاقات الحالية
             const currentCards = container.querySelectorAll('.command-card');
             if (currentCards.length > 0) {
                 gsap.to(currentCards, {
                     opacity: 0,
                     y: -20,
                     scale: 0.95,
-                    duration: 0.3,
+                    duration: 0.25,
                     ease: 'power2.in',
-                    stagger: 0.05,
+                    stagger: 0.04,
                     onComplete: function() {
                         renderContent(container, tab);
                     }
@@ -577,7 +573,6 @@
             
             container.innerHTML = html;
             
-            // ظهور البطاقات الجديدة مع أنيميشن
             const newCards = container.querySelectorAll('.command-card');
             if (newCards.length > 0) {
                 gsap.fromTo(newCards, 
@@ -616,7 +611,6 @@
                 }
             });
 
-            // 1. ظهور الخلفيات
             tl
                 .to('.moroccan-bg', {
                     opacity: 0.6,
@@ -639,82 +633,74 @@
                     stagger: 0.08,
                     ease: 'power1.out'
                 }, '-=1.6')
+                .to('#heroWrapper', {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                }, '-=0.5')
+                .to('#mainTitle', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.4,
+                    ease: 'back.out(2)'
+                }, '-=0.3')
+                .to('#subTitle', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power3.out'
+                }, '-=0.5')
+                .to('#mainTitle', {
+                    opacity: 0,
+                    y: -80,
+                    scale: 0.7,
+                    duration: 1.6,
+                    ease: 'power3.inOut',
+                    delay: 1.8
+                })
+                .to('#subTitle', {
+                    opacity: 0,
+                    y: -50,
+                    duration: 1.4,
+                    ease: 'power3.inOut',
+                    delay: 1.6
+                }, '-=0.8')
+                .to('#heroWrapper', {
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: 'power2.in'
+                }, '-=0.4')
+                .to('#contentWrapper', {
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: 'power2.out'
+                }, '-=0.2')
+                .to('#tabsWrapper', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'back.out(1.2)'
+                }, '-=0.3');
 
-            // 2. ظهور العنوان
-            .to('#heroWrapper', {
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power2.out'
-            }, '-=0.5')
-            .to('#mainTitle', {
-                opacity: 1,
-                scale: 1,
-                duration: 1.4,
-                ease: 'back.out(2)',
-                onStart: function() {
-                    gsap.fromTo('#mainTitle', 
-                        { scale: 0.6, opacity: 0, rotation: -3 },
-                        { scale: 1, opacity: 1, rotation: 0, duration: 1.4, ease: 'back.out(2)' }
+            // ظهور البطاقات بعد تحميل المحتوى
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.command-card');
+                if (cards.length > 0) {
+                    gsap.fromTo(cards,
+                        { opacity: 0, y: 40, scale: 0.95 },
+                        { 
+                            opacity: 1, 
+                            y: 0, 
+                            scale: 1, 
+                            duration: 0.6, 
+                            stagger: 0.08,
+                            ease: 'back.out(1.4)'
+                        }
                     );
                 }
-            }, '-=0.3')
-            .to('#subTitle', {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: 'power3.out'
-            }, '-=0.5')
+            }, 300);
 
-            // 3. تلاشي العنوان
-            .to('#mainTitle', {
-                opacity: 0,
-                y: -80,
-                scale: 0.7,
-                duration: 1.6,
-                ease: 'power3.inOut',
-                delay: 1.8
-            })
-            .to('#subTitle', {
-                opacity: 0,
-                y: -50,
-                duration: 1.4,
-                ease: 'power3.inOut',
-                delay: 1.6
-            }, '-=0.8')
-            .to('#heroWrapper', {
-                opacity: 0,
-                duration: 0.6,
-                ease: 'power2.in'
-            }, '-=0.4')
-
-            // 4. ظهور المحتوى
-            .to('#contentWrapper', {
-                opacity: 1,
-                duration: 0.6,
-                ease: 'power2.out'
-            }, '-=0.2')
-            .to('#tabsWrapper', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'back.out(1.2)'
-            }, '-=0.3')
-            .to('#tabContent', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.4')
-            .to('.command-card', {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.6,
-                stagger: 0.08,
-                ease: 'back.out(1.4)'
-            }, '-=0.3');
-
-            // ====== حركات مستمرة ======
+            // حركات مستمرة
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
                 duration: 4,
@@ -730,7 +716,7 @@
                 ease: 'none'
             });
 
-            // ====== تأثير hover على الأزرار ======
+            // Hover على الأزرار
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.addEventListener('mouseenter', function() {
                     gsap.to(this, {
