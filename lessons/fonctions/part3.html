@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="../../css/lesson-common.css">
+    <link rel="stylesheet" href="../../css/parts-common.css">
     <script>
         MathJax = {
             tex: {
@@ -21,6 +22,70 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
     <style>
+        body { font-size: 12px !important; } 
+        .navbar { height: 44px !important; padding: 0 10px !important; } 
+        .nav-logo-icon { width: 24px !important; height: 24px !important; font-size: 12px !important; } 
+        .nav-logo-text { font-size: 14px !important; } 
+        .nav-links a { font-size: 11px !important; padding: 3px 8px !important; } 
+        .back-btn { font-size: 11px !important; padding: 4px 12px !important; margin-bottom: 12px !important; } 
+        .lesson-title { font-size: 20px !important; padding-bottom: 8px !important; margin-bottom: 14px !important; } 
+        .section { padding: 10px 12px !important; margin-bottom: 10px !important; border-radius: 10px !important; } 
+        .section h2 { font-size: 14px !important; margin-bottom: 6px !important; } 
+        .section h2 .num { width: 22px !important; height: 22px !important; font-size: 11px !important; } 
+        .section h3 { font-size: 13px !important; margin: 6px 0 4px !important; } 
+        .section p { font-size: 11.5px !important; margin-bottom: 4px !important; line-height: 1.5 !important; } 
+        .section ul { font-size: 11.5px !important; padding-right: 14px !important; margin-bottom: 4px !important; } 
+        .section ul li { margin-bottom: 1px !important; } 
+        .highlight-box { padding: 6px 10px !important; margin: 4px 0 !important; border-right-width: 3px !important; } 
+        .highlight-box .label { font-size: 10px !important; padding: 1px 8px !important; margin-bottom: 2px !important; } 
+        .formula-block { padding: 6px 10px !important; margin: 4px 0 !important; font-size: 13px !important; border-radius: 6px !important; } 
+        .table-wrap { margin: 4px 0 !important; } 
+        .table-wrap table { font-size: 11px !important; max-width: 240px !important; } 
+        .table-wrap th, .table-wrap td { padding: 3px 8px !important; font-size: 11px !important; } 
+        .step { font-size: 11px !important; padding: 3px 10px !important; margin: 3px 0 !important; } 
+        .step .step-num { font-size: 11px !important; } 
+        .exercice-box { padding: 8px 10px !important; margin: 4px 0 !important; } 
+        .exercice-box .ex-title { font-size: 12px !important; } 
+        .exercice-box .ex-question { font-size: 11.5px !important; } 
+        .solution-box .sol-content { font-size: 11.5px !important; } 
+        .toggle-sol { font-size: 10px !important; padding: 3px 10px !important; } 
+        .footer p { font-size: 10px !important; } 
+        .nav-buttons { margin-top: 14px !important; padding-top: 10px !important; } 
+        .back-btn, .next-btn { font-size: 11px !important; padding: 4px 12px !important; } 
+        .lesson-container { padding: 8px !important; } 
+        .glow-orb { display: none !important; } 
+        .bg-grid { opacity: 0.3 !important; } 
+        details summary { font-size: 11px !important; } 
+        details div { font-size: 11px !important; } 
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important; } 
+        .progress-bar { display: none !important; } 
+        .scroll-top-btn { display: none !important; } 
+        @media (max-width: 768px) { 
+            body { font-size: 11px !important; } 
+            .lesson-title { font-size: 17px !important; } 
+            .section { padding: 6px 8px !important; } 
+            .section h2 { font-size: 12px !important; } 
+            .section h3 { font-size: 11.5px !important; } 
+            .section p { font-size: 10.5px !important; } 
+            .table-wrap table { max-width: 100% !important; font-size: 10px !important; } 
+            .table-wrap th, .table-wrap td { padding: 2px 5px !important; font-size: 10px !important; } 
+            .formula-block { font-size: 11px !important; } 
+            .highlight-box { padding: 4px 8px !important; } 
+            .nav-links a { font-size: 10px !important; padding: 2px 6px !important; } 
+        } 
+        @media (max-width: 480px) { 
+            body { font-size: 10px !important; } 
+            .lesson-title { font-size: 15px !important; } 
+            .section h2 { font-size: 11px !important; } 
+            .section h3 { font-size: 10.5px !important; } 
+            .section p { font-size: 10px !important; } 
+            .formula-block { font-size: 10px !important; padding: 4px 6px !important; } 
+            .table-wrap th, .table-wrap td { padding: 2px 4px !important; font-size: 9px !important; } 
+            .step { font-size: 10px !important; padding: 2px 8px !important; } 
+            .back-btn { font-size: 10px !important; padding: 3px 10px !important; } 
+            .nav-logo-text { font-size: 12px !important; } 
+            .nav-logo-icon { width: 20px !important; height: 20px !important; font-size: 10px !important; } 
+        }
         .section {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -261,7 +326,7 @@
         </ul>
     </nav>
 
-    <div style="max-width:900px; margin:0 auto; padding:100px 20px 40px;">
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
@@ -424,5 +489,10 @@
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
     </script>
+    <!-- ====== زر العودة للأعلى ====== --> 
+    <button class="scroll-top-btn" aria-label="Retour en haut"> 
+        <i class="fas fa-arrow-up"></i> 
+    </button> 
+    <script src="../../script.js"></script>
 </body>
 </html>
