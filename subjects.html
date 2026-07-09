@@ -413,6 +413,9 @@
             
             const animationKey = 'subjects_animation_done';
             
+            // ====== التحقق من نوع التنقل ======
+            const navType = performance.navigation.type;
+            
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
                 // إخفاء hero-wrapper نهائياً
@@ -537,13 +540,26 @@
             }
 
             // ============================================================
-            // التحقق: هل الأنميشن تم تشغيله من قبل؟
+            // المنطق الرئيسي
             // ============================================================
+            
+            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
+            if (navType === 2) {
+                showDirect();
+                console.log('📌 subjects.html - Navigation depuis Back/Forward → Affichage direct');
+                return;
+            }
+
+            // 2. إذا كان المفتاح موجوداً في sessionStorage → عرض مباشر
             if (sessionStorage.getItem(animationKey) === 'true') {
                 showDirect();
-            } else {
-                runAnimation();
+                console.log('📌 subjects.html - Animation déjà jouée dans cette session → Affichage direct');
+                return;
             }
+
+            // 3. في جميع الحالات الأخرى (أول تحميل أو تحديث) → تشغيل الأنميشن
+            runAnimation();
+            console.log('📌 subjects.html - Première visite ou Refresh → Animation jouée');
         });
     </script>
 </body>
