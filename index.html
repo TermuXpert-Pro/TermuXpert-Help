@@ -6,124 +6,163 @@
     <title>Xpert - 1 Bac Sciences Expérimentales</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ====== شعار الصفحة ====== */
+        /* ====== الشعار الجديد ====== */
         .hero-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .hero-logo .left-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 900;
-            color: #4ECDC4;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
-        }
-        .hero-logo .center-name {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            width: 100%;
+            min-height: 180px;
         }
-        .hero-logo .center-name .morocco {
+        
+        /* JAOUAD - فوق اليسار */
+        .hero-logo .name-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: 'Great Vibes', cursive;
+            font-size: 18px;
+            font-weight: 400;
+            color: #4ECDC4;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            text-shadow: 0 0 30px rgba(78, 205, 196, 0.15);
+            transform: rotate(-2deg);
+        }
+        
+        /* MOROCCO - كبير في المنتصف */
+        .hero-logo .name-center {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 72px;
             font-weight: 900;
-            background: linear-gradient(135deg, #4ECDC4, #66FCF1, #4ECDC4);
+            background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 40%, #F4D03F 70%, #FF6B6B 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 6px;
+            letter-spacing: 12px;
+            text-shadow: none;
             position: relative;
+            padding: 10px 30px;
+            line-height: 1.1;
         }
-        .hero-logo .center-name .morocco::before {
-            content: "✦";
-            color: #F4D03F;
-            font-size: 18px;
-            margin-right: 10px;
-            -webkit-text-fill-color: #F4D03F;
-        }
-        .hero-logo .center-name .morocco::after {
-            content: "✦";
-            color: #F4D03F;
-            font-size: 18px;
-            margin-left: 10px;
-            -webkit-text-fill-color: #F4D03F;
-        }
-        .hero-logo .center-name .deco {
+        
+        /* زخرفة حول MOROCCO */
+        .hero-logo .name-center::before {
+            content: "✦ ✧ ✦";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 14px;
             color: #F4D03F;
-            letter-spacing: 8px;
+            -webkit-text-fill-color: #F4D03F;
+            letter-spacing: 10px;
+            opacity: 0.6;
+        }
+        .hero-logo .name-center::after {
+            content: "✦ ✧ ✦";
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #F4D03F;
+            -webkit-text-fill-color: #F4D03F;
+            letter-spacing: 10px;
+            opacity: 0.6;
+        }
+        
+        /* ELKHAYATY - تحت اليمين */
+        .hero-logo .name-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-family: 'Great Vibes', cursive;
+            font-size: 18px;
             font-weight: 400;
-        }
-        .hero-logo .right-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 900;
             color: #FF6B6B;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.15);
+            transform: rotate(2deg);
+        }
+        
+        /* زخرفة مغربية */
+        .hero-logo .moroccan-pattern {
+            position: absolute;
+            font-size: 12px;
+            color: #F4D03F;
+            -webkit-text-fill-color: #F4D03F;
             letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(255, 107, 107, 0.2);
+            opacity: 0.3;
         }
-        .hero-logo .divider-line {
-            width: 2px;
-            height: 50px;
-            background: linear-gradient(to bottom, transparent, #4ECDC4, transparent);
+        .hero-logo .pattern-top {
+            top: -10px;
+            right: 20%;
         }
+        .hero-logo .pattern-bottom {
+            bottom: -10px;
+            left: 20%;
+        }
+        
+        /* ====== RESPONSIVE ====== */
         @media (max-width: 768px) {
             .hero-logo {
-                gap: 12px;
+                min-height: 150px;
+                padding: 15px 0;
             }
-            .hero-logo .left-name {
-                font-size: 18px;
-                letter-spacing: 2px;
+            .hero-logo .name-center {
+                font-size: 40px;
+                letter-spacing: 6px;
+                padding: 8px 15px;
             }
-            .hero-logo .right-name {
-                font-size: 18px;
-                letter-spacing: 2px;
+            .hero-logo .name-top-left {
+                font-size: 14px;
             }
-            .hero-logo .center-name .morocco {
-                font-size: 20px;
-                letter-spacing: 3px;
+            .hero-logo .name-bottom-right {
+                font-size: 14px;
             }
-            .hero-logo .center-name .morocco::before,
-            .hero-logo .center-name .morocco::after {
-                font-size: 12px;
-                margin: 0 4px;
-            }
-            .hero-logo .center-name .deco {
+            .hero-logo .name-center::before,
+            .hero-logo .name-center::after {
                 font-size: 10px;
-                letter-spacing: 4px;
-            }
-            .hero-logo .divider-line {
-                height: 30px;
+                letter-spacing: 6px;
             }
         }
         @media (max-width: 480px) {
             .hero-logo {
-                gap: 8px;
-                flex-direction: column;
+                min-height: 120px;
+                padding: 10px 0;
             }
-            .hero-logo .divider-line {
-                width: 60px;
-                height: 2px;
-                background: linear-gradient(to right, transparent, #4ECDC4, transparent);
+            .hero-logo .name-center {
+                font-size: 28px;
+                letter-spacing: 4px;
+                padding: 6px 10px;
             }
-            .hero-logo .left-name {
-                font-size: 16px;
+            .hero-logo .name-top-left {
+                font-size: 11px;
+                top: -5px;
             }
-            .hero-logo .right-name {
-                font-size: 16px;
+            .hero-logo .name-bottom-right {
+                font-size: 11px;
+                bottom: -5px;
             }
-            .hero-logo .center-name .morocco {
-                font-size: 18px;
+            .hero-logo .name-center::before,
+            .hero-logo .name-center::after {
+                font-size: 8px;
+                letter-spacing: 4px;
+                top: -12px;
+            }
+            .hero-logo .name-center::after {
+                bottom: -12px;
+                top: auto;
             }
         }
     </style>
@@ -157,14 +196,18 @@
     <section class="hero">
         <!-- ====== الشعار الجديد ====== -->
         <div class="hero-logo">
-            <span class="left-name">JAOUAD</span>
-            <div class="divider-line"></div>
-            <div class="center-name">
-                <span class="morocco">MOROCCO</span>
-                <span class="deco">✦ ✧ ✦ ✧ ✦</span>
-            </div>
-            <div class="divider-line"></div>
-            <span class="right-name">ELKHAYATY</span>
+            <!-- JAOUAD - فوق اليسار -->
+            <span class="name-top-left">JAOUAD</span>
+            
+            <!-- MOROCCO - كبير في المنتصف -->
+            <span class="name-center">MOROCCO</span>
+            
+            <!-- ELKHAYATY - تحت اليمين -->
+            <span class="name-bottom-right">ELKHAYATY</span>
+            
+            <!-- زخارف مغربية -->
+            <span class="moroccan-pattern pattern-top">✦ ✧ ✦</span>
+            <span class="moroccan-pattern pattern-bottom">✦ ✧ ✦</span>
         </div>
 
         <div class="hero-label"><span class="dot"></span> 1 Bac Sciences Expérimentales</div>
