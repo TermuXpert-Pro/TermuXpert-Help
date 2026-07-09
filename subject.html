@@ -397,10 +397,10 @@
     <div class="content-wrapper" id="contentWrapper">
         <!-- الأزرار -->
         <div class="tabs-wrapper" id="tabsWrapper">
-            <button class="tab-btn active" data-tab="lessons"><i class="fas fa-book"></i> Cours</button>
-            <button class="tab-btn" data-tab="exercices"><i class="fas fa-pencil"></i> Exercices</button>
-            <button class="tab-btn" data-tab="series"><i class="fas fa-list-check"></i> Séries</button>
-            <button class="tab-btn" data-tab="exams"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
+            <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
+            <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
+            <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
+            <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
 
         <!-- المحتوى -->
@@ -557,18 +557,20 @@
             }
             
             // GSAP - تحريك البطاقات الجديدة
-            gsap.fromTo('.command-card', 
-                { opacity: 0, y: 40, scale: 0.95 },
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    scale: 1, 
-                    duration: 0.6, 
-                    stagger: 0.08,
-                    ease: 'power3.out',
-                    clearProps: 'all'
-                }
-            );
+            setTimeout(() => {
+                gsap.fromTo('.command-card', 
+                    { opacity: 0, y: 40, scale: 0.95 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        scale: 1, 
+                        duration: 0.6, 
+                        stagger: 0.08,
+                        ease: 'power3.out',
+                        clearProps: 'all'
+                    }
+                );
+            }, 50);
             
             if (window.MathJax && MathJax.typesetPromise) {
                 MathJax.typesetPromise();
