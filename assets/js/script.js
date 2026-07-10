@@ -65,3 +65,61 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('✅ Xpert - Scripts chargés avec succès !');
+
+// ============================================================
+// خلفية الزليج - مدمجة مع script.js
+// ============================================================
+
+function runZellijAnimation() {
+    const overlay = document.getElementById('overlayProtection');
+    if (overlay) overlay.classList.add('active');
+    
+    gsap.set('.moroccan-bg', { opacity: 0 });
+    gsap.set('.moroccan-shadow', { opacity: 0 });
+    gsap.set('.moroccan-star', { opacity: 0 });
+    gsap.set('.geo-pattern', { opacity: 0 });
+    
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    
+    tl
+        .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
+        .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
+        .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
+        .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
+        .call(() => {
+            if (overlay) {
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+            }
+        });
+    
+    // حركات مستمرة
+    gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+    gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+}
+
+function showZellijDirect() {
+    gsap.set('.moroccan-bg', { opacity: 0.6 });
+    gsap.set('.moroccan-shadow', { opacity: 0.08 });
+    gsap.set('.moroccan-star', { opacity: 0.04 });
+    gsap.set('.geo-pattern', { opacity: 0.03 });
+    
+    gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+    gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+    
+    const overlay = document.getElementById('overlayProtection');
+    if (overlay) {
+        overlay.classList.remove('active');
+        overlay.classList.add('hidden');
+        overlay.style.display = 'none';
+        overlay.style.pointerEvents = 'none';
+    }
+}
+
+console.log('✅ Zellij background functions loaded');
