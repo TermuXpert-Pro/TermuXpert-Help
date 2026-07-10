@@ -4,19 +4,21 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Course",
-        "name": "Matière - Xpert",
-        "description": "Cours, exercices, séries et examens",
-        "provider": {
+        "@type": "CollectionPage",
+        "name": "Matières - Xpert",
+        "description": "Choisissez votre matière : Mathématiques, Physique ou Chimie",
+        "url": "https://termuxpert-pro.github.io/TermuXpert-WEB/subjects.html",
+        "about": {
             "@type": "EducationalOrganization",
             "name": "Xpert"
         }
     }
     </script>
+    
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xpert - Matière</title>
+    <title>Xpert - Matières</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,8 +141,9 @@
             pointer-events: none;
             opacity: 0;
         }
+
         .hero-wrapper h1 {
-            font-size: clamp(40px, 7vw, 64px);
+            font-size: clamp(36px, 6vw, 56px);
             font-weight: 900;
             line-height: 1.2;
             text-align: center;
@@ -160,6 +163,7 @@
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
+
         .hero-wrapper .subtitle {
             color: var(--text-muted);
             font-size: clamp(16px, 2vw, 22px);
@@ -171,201 +175,168 @@
             transform: translateY(30px);
         }
 
-        .content-wrapper {
+        .cards-wrapper {
             position: relative;
             z-index: 1;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 30px 20px 60px;
+            padding: 0 20px 50px;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-        }
-
-        .tabs-wrapper {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(30px);
-            position: sticky;
-            top: 70px;
-            z-index: 10;
-            background: rgba(11, 12, 16, 0.7);
-            backdrop-filter: blur(20px);
-            padding: 10px 15px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .tab-btn {
-            padding: 10px 22px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-family: var(--font-main);
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+            gap: clamp(20px, 2.5vw, 30px);
+            width: 100%;
+            padding: 30px 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: clamp(24px, 3vw, 36px) clamp(18px, 2vw, 28px);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            text-align: center;
             position: relative;
             overflow: hidden;
-            user-select: none;
+            opacity: 0;
+            transform: translateY(60px) scale(0.9);
         }
-        .tab-btn::before {
+
+        .card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            border-radius: 14px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(78, 205, 196, 0.05), transparent 60%),
+                        radial-gradient(circle at 70% 70%, rgba(255, 107, 107, 0.05), transparent 60%);
+            border-radius: 24px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .card:hover::before { opacity: 1; }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 24px;
             padding: 1px;
             background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), transparent 40%, transparent 60%, rgba(255, 107, 107, 0.2));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .tab-btn:hover::before { opacity: 1; }
-        .tab-btn:hover {
-            border-color: rgba(78, 205, 196, 0.15);
-            transform: translateY(-2px);
-            color: var(--text-primary);
-        }
-        .tab-btn:active { transform: scale(0.95); }
-        .tab-btn.active {
-            background: rgba(78, 205, 196, 0.08);
-            border-color: rgba(78, 205, 196, 0.15);
-            color: #4ECDC4;
-        }
-        .tab-btn i { font-size: 14px; }
-        .tab-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            width: 100%;
-            min-height: 200px;
-        }
-
-        .command-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 18px;
-            padding: 18px 22px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-        }
-        .command-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.03), rgba(255, 107, 107, 0.03));
-            border-radius: 18px;
-            opacity: 0;
             transition: opacity 0.5s ease;
         }
-        .command-card:hover::before { opacity: 1; }
-        .command-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            border-color: rgba(78, 205, 196, 0.1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        }
-        .command-card:active { transform: scale(0.97); }
+        .card:hover::after { opacity: 1; }
 
-        .command-card .command-title {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            position: relative;
-            z-index: 1;
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(78, 205, 196, 0.15);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        }
+        .card:active { transform: scale(0.97); }
+
+        .card .card-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-        .command-card .command-title .num {
-            color: #4ECDC4;
-            font-weight: 900;
-            font-size: 14px;
-            background: rgba(78, 205, 196, 0.08);
-            padding: 2px 10px;
-            border-radius: 8px;
-        }
-        .command-card p {
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.6;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 32px;
+            transition: all 0.4s ease;
             position: relative;
             z-index: 1;
-            opacity: 0.8;
         }
-        .command-card .badge {
+        .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); }
+
+        .card h3 {
+            font-size: clamp(20px, 2.2vw, 26px);
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        .card p {
+            color: var(--text-secondary);
+            font-size: clamp(13px, 1.2vw, 15px);
+            line-height: 1.7;
+            margin-bottom: 14px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        .card .card-badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .card .badge {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 3px 12px;
-            border-radius: 12px;
-            font-size: 11px;
+            gap: 6px;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: clamp(11px, 1.1vw, 13px);
             font-weight: 600;
-            background: rgba(78, 205, 196, 0.06);
-            border: 1px solid rgba(78, 205, 196, 0.06);
-            margin-top: 8px;
-            position: relative;
-            z-index: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
         }
+        .card:hover .badge { transform: translateY(-2px); }
 
-        .no-data {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-muted);
-            font-size: 16px;
+        /* ====== حماية إضافية ====== */
+        * {
+            -webkit-touch-callout: none !important;
+            touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        img {
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -ms-user-drag: none !important;
+            user-drag: none !important;
         }
 
         @media (max-width: 768px) {
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
             .geo-pattern { font-size: 14px; letter-spacing: 12px; }
-            .hero-wrapper h1 { font-size: 32px; }
-            .hero-wrapper .subtitle { font-size: 14px; }
-            .tabs-wrapper { gap: 6px; padding: 8px 10px; top: 60px; }
-            .tab-btn { padding: 8px 14px; font-size: 12px; }
-            .command-card { padding: 14px 16px; }
-            .command-card .command-title { font-size: 15px; }
+            .grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .card { padding: 20px 16px; }
+            .card .card-icon { width: 56px; height: 56px; font-size: 24px; }
         }
         @media (max-width: 480px) {
             .moroccan-shadow { width: 200px; height: 200px; }
             .moroccan-star { font-size: 40px; }
             .geo-pattern { font-size: 10px; letter-spacing: 8px; }
-            .hero-wrapper h1 { font-size: 24px; }
-            .hero-wrapper .subtitle { font-size: 13px; }
-            .tabs-wrapper { padding: 6px 8px; top: 50px; }
-            .tab-btn { padding: 6px 10px; font-size: 11px; }
-            .tab-btn i { font-size: 11px; }
-            .command-card { padding: 12px 12px; }
-            .command-card .command-title { font-size: 13px; }
-            .command-card p { font-size: 12px; }
+            .hero-wrapper h1 { font-size: 28px; }
+            .hero-wrapper .subtitle { font-size: 14px; }
+            .card { padding: 16px 12px; }
+            .card .card-icon { width: 48px; height: 48px; font-size: 20px; }
+            .card h3 { font-size: 18px; }
         }
     </style>
 </head>
@@ -416,24 +387,18 @@
         </a>
         <ul class="nav-links">
             <li><a href="index.html"><i class="fas fa-house"></i> Accueil</a></li>
-            <li><a href="subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
         </ul>
     </nav>
 
     <div class="hero-wrapper" id="heroWrapper">
-        <h1 id="mainTitle"><span class="gradient-text" id="subjectTitle">Matière</span></h1>
-        <p class="subtitle" id="subTitle">Tous les contenus de la matière</p>
+        <h1 id="mainTitle">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
+        <p class="subtitle" id="subTitle">Choisissez votre matière pour découvrir tout son contenu</p>
     </div>
 
-    <div class="content-wrapper" id="contentWrapper">
-        <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
-            <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
-            <button class="tab-btn" role="tab" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
-            <button class="tab-btn" role="tab" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
-            <button class="tab-btn" role="tab" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
+    <div class="cards-wrapper" id="cardsWrapper">
+        <div class="grid" id="subjectsGrid" role="list" aria-label="Liste des matières">
+            <div class="no-data">Chargement...</div>
         </div>
-
-        <div class="cards-grid" role="tabpanel" id="tabContent"></div>
     </div>
 
     <footer class="footer">
@@ -456,292 +421,103 @@
 
     <!-- ====== GSAP Animation ====== -->
     <script>
-        // ============================================================
-        // البيانات - متوافقة مع الهيكل الجديد
-        // ============================================================
-        const data = {
-            math: {
-                title: "Mathématiques",
-                desc: "Cours, exercices, séries, devoirs et examens régionaux",
-                lessons: [
-                    { title: "Logique mathématique", file: "content/math/lessons/logique/logique.html?returnTab=lessons", desc: "Propositions, opérateurs, quantificateurs, raisonnements" },
-                    { title: "Généralités sur les fonctions", file: "content/math/lessons/fonctions/index.html?returnTab=lessons", desc: "Fonctions numériques, parité, monotonie, études de fonctions" },
-                    { title: "Barycentre dans le plan", file: "content/math/lessons/barycentre/index.html?returnTab=lessons", desc: "Barycentre de deux, trois et quatre points pondérés" }
-                ],
-                exercices: [
-                    { title: "Logique mathématique", file: "content/math/exercises/logique/index.html?returnTab=exercices", desc: "8 exercices" },
-                    { title: "Généralités sur les fonctions", file: "content/math/exercises/fonctions/index.html?returnTab=exercices", desc: "5 exercices" },
-                    { title: "Barycentre dans le plan", file: "content/math/exercises/barycentre/index.html?returnTab=exercices", desc: "3 exercices" }
-                ],
-                series: [
-                    { title: "Logique mathématique", file: "content/math/series/logique/index.html?returnTab=series", desc: "5 séries" },
-                    { title: "Généralités sur les fonctions", file: "content/math/series/fonctions/index.html?returnTab=series", desc: "2 séries" },
-                    { title: "Barycentre dans le plan", file: "content/math/series/barycentre/index.html?returnTab=series", desc: "1 série" }
-                ],
-                exams: []
+        const subjects = [
+            { 
+                id: "math", 
+                title: "Mathématiques", 
+                description: "Fonctions, géométrie, algèbre, probabilités, suites",
+                icon: "fa-square-root-variable", 
+                color: "#4ECDC4",
+                bgColor: "rgba(78, 205, 196, 0.15)",
+                glow: "rgba(78, 205, 196, 0.1)",
+                delay: 0,
+                rotation: -2,
+                lessons: 4,
+                exercises: 3
             },
-            physique: {
-                title: "Physique",
-                desc: "Cours, exercices, séries, devoirs et examens régionaux",
-                lessons: [
-                    { title: "Mouvement rectiligne", file: "content/physique/lessons/mecanique/index.html?returnTab=lessons", desc: "Position, vitesse, accélération" },
-                    { title: "Lois de Newton", file: "content/physique/lessons/mecanique/newton.html?returnTab=lessons", desc: "Les trois lois de Newton" }
-                ],
-                exercices: [
-                    { title: "Mécanique", file: "content/physique/exercises/mecanique/index.html?returnTab=exercices", desc: "2 exercices" }
-                ],
-                series: [
-                    { title: "Mécanique", file: "content/physique/series/mecanique/index.html?returnTab=series", desc: "2 séries" }
-                ],
-                exams: []
+            { 
+                id: "physique", 
+                title: "Physique", 
+                description: "Mécanique, électricité, ondes, énergie, thermique",
+                icon: "fa-atom", 
+                color: "#FF6B6B",
+                bgColor: "rgba(255, 107, 107, 0.15)",
+                glow: "rgba(255, 107, 107, 0.1)",
+                delay: 0.15,
+                rotation: 1,
+                lessons: 2,
+                exercises: 1
             },
-            chimie: {
-                title: "Chimie",
-                desc: "Cours, exercices, séries, devoirs et examens régionaux",
-                lessons: [
-                    { title: "Structure de l'atome", file: "content/chimie/lessons/atome/index.html?returnTab=lessons", desc: "Noyau, électrons, configuration" },
-                    { title: "Réactions chimiques", file: "content/chimie/lessons/reactions/index.html?returnTab=lessons", desc: "Équations bilan, stoechiométrie" }
-                ],
-                exercices: [
-                    { title: "Atome", file: "content/chimie/exercises/atome/index.html?returnTab=exercices", desc: "2 exercices" }
-                ],
-                series: [
-                    { title: "Atome", file: "content/chimie/series/atome/index.html?returnTab=series", desc: "2 séries" }
-                ],
-                exams: []
+            { 
+                id: "chimie", 
+                title: "Chimie", 
+                description: "Atome, réactions, acides et bases, oxydoréduction",
+                icon: "fa-flask", 
+                color: "#F4D03F",
+                bgColor: "rgba(244, 208, 63, 0.15)",
+                glow: "rgba(244, 208, 63, 0.1)",
+                delay: 0.3,
+                rotation: -1,
+                lessons: 2,
+                exercises: 1
             }
-        };
+        ];
 
-        let currentSubject = null;
-        let currentTab = 'lessons';
-        let isAnimating = false;
-
-        // ============================================================
-        // تحميل المادة
-        // ============================================================
-        function loadSubject() {
-            // ====== استعادة التبويب من URL ======
-            var returnTab = new URLSearchParams(window.location.search).get("returnTab");
-            if (returnTab && ["lessons", "exercices", "series", "exams"].includes(returnTab)) {
-                sessionStorage.setItem("activeTab", returnTab);
-            }
-
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get('subject');
-            currentSubject = data[id];
-
-            if (!currentSubject) {
-                document.getElementById('subjectTitle').textContent = '⚠️ Matière non trouvée';
-                document.getElementById('tabContent').innerHTML = '<div class="no-data">Matière non trouvée</div>';
-                return;
-            }
-
-            document.getElementById('subjectTitle').textContent = currentSubject.title;
-            document.getElementById('subTitle').textContent = currentSubject.desc;
-
-            // ====== تفعيل التبويب المستعاد ======
-            var savedTab = sessionStorage.getItem('activeTab');
-            if (savedTab && ["lessons", "exercices", "series", "exams"].includes(savedTab)) {
-                currentTab = savedTab;
-                // تحديث المظهر النشط للأزرار
-                document.querySelectorAll('.tab-btn').forEach(function(btn) {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('data-tab') === savedTab) {
-                        btn.classList.add('active');
-                    }
-                });
-                renderContent(document.getElementById('tabContent'), savedTab);
-                sessionStorage.removeItem('activeTab');
-            } else {
-                renderContent(document.getElementById('tabContent'), 'lessons');
-            }
+        function renderSubjects() {
+            const grid = document.getElementById('subjectsGrid');
+            grid.innerHTML = subjects.map((s, index) => `
+                <div class="card" role="listitem" tabindex="0" data-index="${index}" onclick="sessionStorage.setItem('animation_allowed', 'true'); location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
+                    <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
+                        <i class="fas ${s.icon}"></i>
+                    </div>
+                    <h3 style="color:${s.color};">${s.title}</h3>
+                    <p>${s.description}</p>
+                    <div class="card-badges">
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
+                            <i class="fas fa-book"></i> ${s.lessons} cours
+                        </span>
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
+                            <i class="fas fa-list-check"></i> ${s.exercises} exercices
+                        </span>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // ============================================================
-        // تبديل التبويب - نسخة محسنة مع منع التداخل
-        // ============================================================
-        function switchTab(tab) {
-            // ====== حفظ التبويب الحالي ======
-            sessionStorage.setItem("activeTab", tab);
-
-            // منع التبديل إذا كان أنميشن قيد التشغيل
-            if (isAnimating) {
-                console.log('⏳ Animation en cours, veuillez patienter...');
-                return;
-            }
-
-            // منع التبديل إلى نفس التبويب
-            if (tab === currentTab) {
-                console.log('ℹ️ Déjà sur cet onglet');
-                return;
-            }
-
-            // تفعيل حالة الأنميشن
-            isAnimating = true;
-
-            // تعطيل جميع أزرار التبويب مؤقتاً
-            document.querySelectorAll('.tab-btn').forEach(b => b.disabled = true);
-
-            const previousTab = currentTab;
-            currentTab = tab;
-
-            // تحديث المظهر النشط للأزرار
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
-            if (activeBtn) activeBtn.classList.add('active');
-
-            const container = document.getElementById('tabContent');
-            const currentCards = container.querySelectorAll('.command-card');
-
-            // إذا كانت هناك بطاقات موجودة، قم بإخفائها أولاً
-            if (currentCards.length > 0) {
-                gsap.to(currentCards, {
-                    opacity: 0,
-                    y: -20,
-                    scale: 0.95,
-                    duration: 0.25,
-                    ease: 'power2.in',
-                    stagger: 0.04,
-                    onComplete: function() {
-                        renderContent(container, tab, function() {
-                            // إعادة تمكين الأزرار بعد الانتهاء
-                            document.querySelectorAll('.tab-btn').forEach(b => b.disabled = false);
-                            isAnimating = false;
-                        });
-                    }
-                });
-            } else {
-                renderContent(container, tab, function() {
-                    document.querySelectorAll('.tab-btn').forEach(b => b.disabled = false);
-                    isAnimating = false;
-                });
-            }
-        }
-
-        // ============================================================
-        // عرض المحتوى - نسخة محسنة مع callback
-        // ============================================================
-        function renderContent(container, tab, callback) {
-            let html = '';
-
-            if (tab === 'lessons') {
-                html = currentSubject.lessons.map((l, i) => `
-                    <div class="command-card" onclick="location.href='${l.file}'">
-                        <div class="command-title">
-                            <span class="num">${i+1}</span> ${l.title}
-                        </div>
-                        <p>${l.desc}</p>
-                        <span class="badge"><i class="fas fa-eye"></i> Voir le cours</span>
-                    </div>
-                `).join('');
-            } else if (tab === 'exercices') {
-                html = currentSubject.exercices.map((e, i) => `
-                    <div class="command-card" onclick="location.href='${e.file}'">
-                        <div class="command-title">
-                            <span class="num">${i+1}</span> ${e.title}
-                        </div>
-                        <p>${e.desc}</p>
-                        <span class="badge" style="background:#E8873A22; color:#E8873A; border-color:#E8873A22;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
-                    </div>
-                `).join('');
-            } else if (tab === 'series') {
-                html = currentSubject.series.map((s, i) => `
-                    <div class="command-card" onclick="location.href='${s.file}'">
-                        <div class="command-title">
-                            <span class="num">${i+1}</span> ${s.title}
-                        </div>
-                        <p>${s.desc}</p>
-                        <span class="badge" style="background:#F4D03F22; color:#F4D03F; border-color:#F4D03F22;"><i class="fas fa-folder-open"></i> Voir les séries</span>
-                    </div>
-                `).join('');
-            } else if (tab === 'exams') {
-                if (currentSubject.exams.length === 0) {
-                    html = `
-                        <div class="command-card" style="cursor:default; opacity:0.7;">
-                            <div class="command-title">
-                                <span class="num">📅</span> Prochainement
-                            </div>
-                            <p>Devoirs et examens seront disponibles bientôt</p>
-                            <span class="badge" style="background:#BB8FCE22; color:#BB8FCE; border-color:#BB8FCE22;"><i class="fas fa-clock"></i> En préparation</span>
-                        </div>
-                    `;
-                } else {
-                    html = currentSubject.exams.map((e, i) => `
-                        <div class="command-card">
-                            <div class="command-title">
-                                <span class="num">${i+1}</span> ${e.title}
-                            </div>
-                            <p><span class="badge" style="background:${e.type === 'Devoir' ? '#FF6B6B22' : '#BB8FCE22'}; color:${e.type === 'Devoir' ? '#FF6B6B' : '#BB8FCE'}; border-color:${e.type === 'Devoir' ? '#FF6B6B22' : '#BB8FCE22'};">${e.type}</span></p>
-                            <span class="badge" style="background:#4ECDC422; color:#4ECDC4; border-color:#4ECDC422;"><i class="fas fa-download"></i> Télécharger</span>
-                        </div>
-                    `).join('');
-                }
-            }
-
-            container.innerHTML = html;
-
-            const newCards = container.querySelectorAll('.command-card');
-            if (newCards.length > 0) {
-                gsap.fromTo(newCards, 
-                    { opacity: 0, y: 40, scale: 0.95 },
-                    { 
-                        opacity: 1, 
-                        y: 0, 
-                        scale: 1, 
-                        duration: 0.5, 
-                        stagger: 0.08,
-                        ease: 'power3.out',
-                        onComplete: function() {
-                            if (callback) callback();
-                        }
-                    }
-                );
-            } else {
-                if (callback) callback();
-            }
-
-            if (window.MathJax && MathJax.typesetPromise) {
-                MathJax.typesetPromise();
-            }
-        }
+        renderSubjects();
 
         // ============================================================
         // GSAP - إدارة الأنميشن
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
-
+            
             // ====== التحقق من تحميل GSAP ======
             if (typeof gsap === 'undefined') {
-                console.error('❌ GSAP غير محمل في subject.html!');
+                console.error('❌ GSAP غير محمل في subjects.html!');
                 // عرض المحتوى مباشرة
+                document.querySelectorAll('.card').forEach(function(el) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
                 document.querySelector('.moroccan-bg').style.opacity = '0.6';
                 document.querySelector('.moroccan-shadow').style.opacity = '0.08';
                 document.querySelector('.moroccan-star').style.opacity = '0.04';
                 document.querySelectorAll('.geo-pattern').forEach(function(el) {
                     el.style.opacity = '0.03';
                 });
-                document.getElementById('contentWrapper').style.opacity = '1';
-                document.getElementById('tabsWrapper').style.opacity = '1';
-                document.getElementById('tabsWrapper').style.transform = 'none';
-                document.querySelectorAll('.command-card').forEach(function(el) {
-                    el.style.opacity = '1';
-                    el.style.transform = 'none';
-                });
                 document.getElementById('overlayProtection').classList.add('hidden');
-                loadSubject();
+                document.getElementById('heroWrapper').style.display = 'none';
                 return;
             }
 
-            loadSubject();
-
             const overlay = document.getElementById('overlayProtection');
-
+            
             // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
-
+            
             // ====== التحقق من إذن تشغيل الأنميشن ======
             const animationAllowed = sessionStorage.getItem('animation_allowed');
-
+            
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
@@ -749,25 +525,53 @@
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
                 gsap.set('.geo-pattern', { opacity: 0.03 });
-                gsap.set('#contentWrapper', { opacity: 1 });
-                gsap.set('#tabsWrapper', { opacity: 1, y: 0 });
-
+                gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
-
-                console.log('✅ subject.html - Affichage direct (sans animation)');
-
+                console.log('✅ subjects.html - Affichage direct (sans animation)');
+                
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
+                });
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
+                    });
+                });
             }
 
             // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
                 overlay.classList.add('active');
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
-
+                
+                // إعداد العناصر
+                gsap.set('#mainTitle', { opacity: 0, scale: 0.8 });
+                gsap.set('#subTitle', { opacity: 0, y: 30 });
+                gsap.set('.card', { opacity: 0, y: 60, scale: 0.9 });
+                
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
                 tl
@@ -778,8 +582,8 @@
                     .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
                     .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
                     .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
-                    .to('#mainTitle', { opacity: 0, y: -80, scale: 0.7, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
-                    .to('#subTitle', { opacity: 0, y: -50, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
+                    .to('#mainTitle', { opacity: 0, y: -60, scale: 0.8, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
+                    .to('#subTitle', { opacity: 0, y: -40, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
                     .to('#heroWrapper', { 
                         opacity: 0, 
                         duration: 0.6, 
@@ -788,26 +592,51 @@
                             gsap.set('#heroWrapper', { display: 'none' });
                         }
                     }, '-=0.4')
-                    .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
-                    .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
+                    .to('#cardsWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+                    .to('.card', {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 1.2,
+                        stagger: { each: 0.2, from: 'start', ease: 'back.out(1.8)' },
+                        ease: 'power3.out'
+                    }, '-=0.3')
                     .call(() => {
                         sessionStorage.removeItem('animation_allowed');
                         overlay.classList.remove('active');
                         overlay.classList.add('hidden');
                         overlay.style.display = 'none';
                         overlay.style.pointerEvents = 'none';
-                        console.log('✅ subject.html - Animation jouée');
+                        console.log('✅ subjects.html - Animation jouée');
                     });
+
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
+                });
 
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
 
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.addEventListener('mouseenter', function() {
-                        gsap.to(this, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
                     });
-                    btn.addEventListener('mouseleave', function() {
-                        gsap.to(this, { scale: 1, duration: 0.2, ease: 'power2.inOut' });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
                     });
                 });
             }
@@ -815,21 +644,21 @@
             // ============================================================
             // المنطق الرئيسي
             // ============================================================
-
+            
             if (navType === 2) {
                 showDirect();
-                console.log('📌 subject.html - Navigation depuis Back/Forward → Affichage direct');
+                console.log('📌 subjects.html - Navigation depuis Back/Forward → Affichage direct');
                 return;
             }
 
             if (animationAllowed !== 'true') {
                 showDirect();
-                console.log('📌 subject.html - Animation non autorisée → Affichage direct');
+                console.log('📌 subjects.html - Animation non autorisée → Affichage direct');
                 return;
             }
 
             runAnimation();
-            console.log('📌 subject.html - Animation autorisée → Animation jouée');
+            console.log('📌 subjects.html - Animation autorisée → Animation jouée');
         });
     </script>
 </body>
