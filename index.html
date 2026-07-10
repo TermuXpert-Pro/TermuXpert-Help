@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="description" content="Xpert - Plateforme éducative pour 1 Bac Sciences Expérimentales. Cours, exercices, séries et examens en Mathématiques, Physique et Chimie.">
@@ -15,6 +9,16 @@
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xpert - 1 Bac Sciences Expérimentales</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -26,9 +30,14 @@
         "teaches": ["Mathématiques", "Physique", "Chimie"]
     }
     </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- ====== GSAP ====== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
     <style>
         /* ====== طبقة الحماية غير المرئية ====== */
         .overlay-protection {
@@ -350,19 +359,6 @@
             -ms-user-drag: none !important;
             user-drag: none !important;
         }
-        /* ====== أنماط احتياطية ====== */
-        .hero { opacity: 1 !important; }
-        .profile-outer { opacity: 1 !important; transform: none !important; }
-        .hero-card { opacity: 1 !important; transform: none !important; }
-        .hero-logo { opacity: 1 !important; transform: none !important; }
-        .hero-label { opacity: 1 !important; transform: none !important; }
-        #title { opacity: 1 !important; transform: none !important; }
-        #desc { opacity: 1 !important; transform: none !important; }
-        #buttons { opacity: 1 !important; transform: none !important; }
-        .moroccan-bg { opacity: 0.6 !important; }
-        .moroccan-shadow { opacity: 0.08 !important; }
-        .moroccan-star { opacity: 0.04 !important; }
-        .geo-pattern { opacity: 0.03 !important; }
     </style>
 </head>
 <body>
@@ -422,7 +418,7 @@
         <div class="profile-outer" id="profileWrapper">
             <div style="position:relative; display:inline-block;">
                 <div class="profile-ring" aria-hidden="true"></div>
-                <img loading="lazy" src="assets/images/profile.png" alt="Logo Xpert - Plateforme éducative" class="profile-image" id="profileImg" loading="lazy" draggable="false">
+                <img src="assets/images/profile.png" alt="Logo Xpert - Plateforme éducative" class="profile-image" id="profileImg" loading="lazy" draggable="false">
             </div>
         </div>
 
@@ -445,66 +441,27 @@
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
-    <!-- ====== سكربت واحد موحد ====== -->
-    <script src="assets/js/script.js"></script>
+    <!-- ====== Service Worker (PWA) ====== -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            const overlay = document.getElementById('overlayProtection');
-            
-            // ====== تفعيل طبقة الحماية ======
-            overlay.classList.add('active');
-            
-            const tl = gsap.timeline({
-                defaults: {
-                    ease: 'power3.out'
-                }
-            });
-
-            // 1. ظهور الخلفيات
-            tl
-                .to('.moroccan-bg', { opacity: 0.6, duration: 1.8, ease: 'power1.out' })
-                .to('.moroccan-shadow', { opacity: 0.08, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-                .to('.moroccan-star', { opacity: 0.04, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-                .to('.geo-pattern', { opacity: 0.03, duration: 1.8, stagger: 0.08, ease: 'power1.out' }, '-=1.4')
-                .to('#heroSection', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-                .to('#profileWrapper', { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)' }, '-=0.3')
-                .to('#profileImg', { scale: 1, duration: 0.8, ease: 'back.out(2)' }, '-=0.6')
-                .to('#heroCard', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-                .to('#logo', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
-                .to('.hero-label', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#title', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#desc', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .call(function() {
-                    overlay.classList.remove('active');
-                    overlay.classList.add('hidden');
-                    overlay.style.display = 'none';
-                    overlay.style.pointerEvents = 'none';
-                    console.log('✅ Overlay protection removed');
-                });
-
-            // ====== حركات مستمرة ======
-            gsap.to('.moroccan-bg', { opacity: 0.8, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-            gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-            gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-            gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
-            gsap.to('.geo-pattern-3', { x: 15, y: -15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.5 });
-            gsap.to('.geo-pattern-4', { x: -15, y: 15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5 });
-
-            console.log('✅ GSAP - Animation complète');
-        });
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-</body>
-</html>
+
+    <!-- ====== Scripts ====== -->
+    <script src="assets/js/protection.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <!-- ====== GSAP Animation ====== -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
             // ====== التحقق من تحميل GSAP ======
             if (typeof gsap === 'undefined') {
                 console.error('❌ GSAP غير محمل!');
-                // عرض المحتوى مباشرة إذا لم يتم تحميل GSAP
+                // عرض المحتوى مباشرة
                 document.querySelectorAll('.hero, .profile-outer, .hero-card, .hero-logo, .hero-label, #title, #desc, #buttons').forEach(function(el) {
                     el.style.opacity = '1';
                     el.style.transform = 'none';
@@ -531,7 +488,7 @@
             gsap.set('.geo-pattern', { opacity: 0 });
             gsap.set('#heroSection', { opacity: 0 });
             gsap.set('#profileWrapper', { opacity: 0, y: 20 });
-            gsap.set('#profileImg', { scale: 0.8 });
+            gsap.set('#profileImg', { scale: 0.8, opacity: 0 });
             gsap.set('#heroCard', { opacity: 0, y: 30 });
             gsap.set('#logo', { opacity: 0, y: 20 });
             gsap.set('.hero-label', { opacity: 0, y: 20 });
@@ -545,37 +502,152 @@
                 }
             });
 
-            // ====== تشغيل الأنيميشن ======
+            // ====== 1. ظهور الخلفيات ======
             tl
                 .to('.moroccan-bg', { opacity: 0.6, duration: 1.8, ease: 'power1.out' })
                 .to('.moroccan-shadow', { opacity: 0.08, duration: 1.8, ease: 'power1.out' }, '-=1.2')
                 .to('.moroccan-star', { opacity: 0.04, duration: 1.8, ease: 'power1.out' }, '-=1.2')
                 .to('.geo-pattern', { opacity: 0.03, duration: 1.8, stagger: 0.08, ease: 'power1.out' }, '-=1.4')
-                .to('#heroSection', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-                .to('#profileWrapper', { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)' }, '-=0.3')
-                .to('#profileImg', { scale: 1, duration: 0.8, ease: 'back.out(2)' }, '-=0.6')
-                .to('#heroCard', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-                .to('#logo', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
-                .to('.hero-label', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#title', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#desc', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .to('#buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-                .call(function() {
-                    overlay.classList.remove('active');
-                    overlay.classList.add('hidden');
-                    overlay.style.display = 'none';
-                    overlay.style.pointerEvents = 'none';
-                    console.log('✅ Overlay protection removed');
-                });
+
+            // ====== 2. ظهور الهيرو ======
+            .to('#heroSection', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+
+            // ====== 3. ظهور البروفايل ======
+            .to('#profileWrapper', { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)' }, '-=0.3')
+            .to('#profileImg', { 
+                scale: 1, 
+                opacity: 1, 
+                duration: 0.8, 
+                ease: 'back.out(2)',
+                rotation: 0
+            }, '-=0.6')
+
+            // ====== 4. ظهور البطاقة ======
+            .to('#heroCard', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+
+            // ====== 5. ظهور الشعار ======
+            .to('#logo', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
+            .fromTo('.name-center', 
+                { scale: 0.8, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' },
+                '-=0.4'
+            )
+
+            // ====== 6. ظهور باقي العناصر ======
+            .to('.hero-label', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+            .to('#title', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+            .to('#desc', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+            .to('#buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+            
+            // ====== نبض النقطة ======
+            .to('.dot', {
+                scale: 1.2,
+                duration: 0.5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            }, '-=0.2')
+            
+            // ====== إزالة طبقة الحماية ======
+            .call(function() {
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ Overlay protection removed');
+            });
 
             // ====== حركات مستمرة ======
-            gsap.to('.moroccan-bg', { opacity: 0.8, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-            gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-            gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-            gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
-            gsap.to('.geo-pattern-3', { x: 15, y: -15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.5 });
-            gsap.to('.geo-pattern-4', { x: -15, y: 15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5 });
+            gsap.to('.moroccan-bg', {
+                opacity: 0.8,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            gsap.to('.moroccan-star', {
+                rotation: 360,
+                duration: 30,
+                repeat: -1,
+                ease: 'none'
+            });
+
+            gsap.to('.geo-pattern-1', {
+                x: 20,
+                y: 10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            gsap.to('.geo-pattern-2', {
+                x: -20,
+                y: -10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1
+            });
+            gsap.to('.geo-pattern-3', {
+                x: 15,
+                y: -15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 0.5
+            });
+            gsap.to('.geo-pattern-4', {
+                x: -15,
+                y: 15,
+                duration: 5,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: 1.5
+            });
+
+            // ====== Hover Effects ======
+            const card = document.querySelector('.hero-card');
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.01,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    boxShadow: '0 40px 100px rgba(0,0,0,0.4)'
+                });
+            });
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 30px 80px rgba(0,0,0,0.3)'
+                });
+            });
+
+            const btn = document.querySelector('.btn-primary');
+            btn.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: 'power2.out',
+                    boxShadow: '0 8px 30px rgba(69, 162, 158, 0.4)'
+                });
+            });
+            btn.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
+                });
+            });
 
             console.log('✅ GSAP - Animation complète');
         });
     </script>
+</body>
+</html>
