@@ -13,6 +13,14 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <title>Généralités sur les fonctions | Xpert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,6 +112,7 @@
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
@@ -179,7 +188,6 @@
                 <!-- Partie 2 -->
                 <a href="part2.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-arrow-up"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Partie 2</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Fonction majorée - minorée - bornée - Extremums</div>
@@ -231,7 +239,10 @@
         <div class="divider"></div>
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
-    <script src="../../../../assets/js/script.js"></script>
+
+    <!-- ====== زر العودة للأعلى ====== -->
+    </button>
+
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -249,16 +260,24 @@
             
             if (animationAllowed === 'true') {
                 // تشغيل الأنميشن الكامل
-                runZellijAnimation();
                 // حذف المفتاح بعد التشغيل (مرة واحدة)
                 sessionStorage.removeItem('animation_allowed');
                 console.log('✅ fonctions/index.html - Animation Zellij jouée');
             } else {
                 // عرض مباشر بدون أنميشن
-                showZellijDirect();
                 console.log('✅ fonctions/index.html - Affichage direct Zellij');
             }
         });
+    </script>
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+    <!-- ====== Service Worker (PWA) ====== -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
     </script>
 </body>
 </html>
