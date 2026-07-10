@@ -122,14 +122,15 @@ function showZellijDirect() {
 console.log('✅ Zellij background functions loaded');
 
 // ============================================================
-// حماية المحتوى - بدون رسائل منبثقة
+// حماية خفيفة - بدون رسائل
 // ============================================================
 
 (function() {
     'use strict';
 
-    // ====== منع النقر الأيمن (بدون رسالة) ======
+    // فقط منع النقر الأيمن البسيط (بدون رسائل)
     document.addEventListener('contextmenu', function(e) {
+        // السماح في حقول الإدخال فقط
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
         }
@@ -137,61 +138,9 @@ console.log('✅ Zellij background functions loaded');
         return false;
     });
 
-    // ====== منع اختصارات النسخ (بدون رسالة) ======
-    document.addEventListener('keydown', function(e) {
-        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
-            return true;
-        }
-        
-        const key = e.key;
-        const ctrl = e.ctrlKey;
-        const shift = e.shiftKey;
-        
-        if (ctrl && ['c', 'C', 'x', 'X', 'v', 'V'].includes(key)) {
-            e.preventDefault();
-            return false;
-        }
-        
-        if (ctrl && (key === 's' || key === 'S')) {
-            e.preventDefault();
-            return false;
-        }
-        
-        if (ctrl && (key === 'u' || key === 'U')) {
-            e.preventDefault();
-            return false;
-        }
-        
-        if (ctrl && (key === 'p' || key === 'P')) {
-            e.preventDefault();
-            return false;
-        }
-        
-        if (ctrl && shift && ['I', 'i', 'J', 'j'].includes(key)) {
-            e.preventDefault();
-            return false;
-        }
-        
-        if (key === 'F12') {
-            e.preventDefault();
-            return false;
-        }
-    });
-
-    // ====== منع سحب الصور ======
-    document.querySelectorAll('img').forEach(function(img) {
-        img.setAttribute('draggable', 'false');
-        img.setAttribute('ondragstart', 'return false');
-        img.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-    });
-
-    console.log('✅ Content protection activated (silent mode)');
+    console.log('✅ Protection légère activée (sans messages)');
 })();
 
-// ====== رسالة ترحيبية في Console ======
+// ====== رسالة ترحيبية ======
 console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 14px; color: #4ECDC4;');
-console.log('%c🔒 Contenu protégé', 'font-size: 12px; color: #8A8D93;');
 

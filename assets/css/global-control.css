@@ -250,10 +250,6 @@ body {
 
 /* منع التحديد في جميع العناصر */
 * {
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
 }
 
 /* السماح بالتحديد في حقول الإدخال */
@@ -277,11 +273,6 @@ img[onclick], img[role="button"] {
 }
 
 /* منع الطباعة */
-@media print {
-    body * {
-        visibility: hidden !important;
-        display: none !important;
-    }
     body::after {
         content: "🚫 Impression non autorisée - Xpert" !important;
         visibility: visible !important;
