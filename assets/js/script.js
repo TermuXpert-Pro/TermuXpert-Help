@@ -123,3 +123,141 @@ function showZellijDirect() {
 }
 
 console.log('✅ Zellij background functions loaded');
+
+// ============================================================
+// حماية المحتوى - Content Protection
+// ============================================================
+
+(function() {
+    'use strict';
+
+    // ====== منع النقر الأيمن ======
+    document.addEventListener('contextmenu', function(e) {
+        // السماح بالنقر الأيمن فقط في حقول الإدخال
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        e.preventDefault();
+        showProtectionToast('🚫 النسخ غير مسموح - Xpert');
+        return false;
+    });
+
+    // ====== منع اختصارات النسخ والحفظ ======
+    document.addEventListener('keydown', function(e) {
+        // السماح في حقول الإدخال
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        
+        const key = e.key;
+        const ctrl = e.ctrlKey;
+        const shift = e.shiftKey;
+        
+        // منع Ctrl+C, Ctrl+X, Ctrl+V
+        if (ctrl && ['c', 'C', 'x', 'X', 'v', 'V'].includes(key)) {
+            e.preventDefault();
+            showProtectionToast('🚫 النسخ غير مسموح - Xpert');
+            return false;
+        }
+        
+        // منع Ctrl+S (حفظ الصفحة)
+        if (ctrl && (key === 's' || key === 'S')) {
+            e.preventDefault();
+            showProtectionToast('🚫 حفظ الصفحة غير مسموح - Xpert');
+            return false;
+        }
+        
+        // منع Ctrl+U (عرض المصدر)
+        if (ctrl && (key === 'u' || key === 'U')) {
+            e.preventDefault();
+            showProtectionToast('🚫 عرض المصدر غير مسموح - Xpert');
+            return false;
+        }
+        
+        // منع Ctrl+P (طباعة)
+        if (ctrl && (key === 'p' || key === 'P')) {
+            e.preventDefault();
+            showProtectionToast('🚫 الطباعة غير مسموحة - Xpert');
+            return false;
+        }
+        
+        // منع Ctrl+Shift+I, Ctrl+Shift+J
+        if (ctrl && shift && ['I', 'i', 'J', 'j'].includes(key)) {
+            e.preventDefault();
+            showProtectionToast('🚫 أدوات المطور مقيدة - Xpert');
+            return false;
+        }
+        
+        // منع F12
+        if (key === 'F12') {
+            e.preventDefault();
+            showProtectionToast('🚫 أدوات المطور مقيدة - Xpert');
+            return false;
+        }
+    });
+
+    // ====== منع سحب الصور ======
+    document.querySelectorAll('img').forEach(function(img) {
+        img.setAttribute('draggable', 'false');
+        img.setAttribute('ondragstart', 'return false');
+        img.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    });
+
+    // ====== رسالة منبثقة للحماية ======
+    function showProtectionToast(message) {
+        // إزالة أي رسالة سابقة
+        const oldToast = document.querySelector('.toast-protection');
+        if (oldToast) oldToast.remove();
+        
+        const toast = document.createElement('div');
+        toast.className = 'toast-protection';
+        toast.textContent = message;
+        Object.assign(toast.style, {
+            position: 'fixed',
+            bottom: '100px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: 'rgba(255, 107, 107, 0.9)',
+            color: '#FFFFFF',
+            padding: '12px 24px',
+            borderRadius: '12px',
+            fontSize: '14px',
+            fontWeight: '600',
+            zIndex: '10001',
+            boxShadow: '0 4px 20px rgba(255, 107, 107, 0.3)',
+            backdropFilter: 'blur(10px)',
+            fontFamily: "'Inter', 'Cairo', sans-serif",
+            opacity: '0',
+            transition: 'opacity 0.3s ease, transform 0.3s ease',
+            pointerEvents: 'none'
+        });
+        document.body.appendChild(toast);
+        
+        // ظهور الرسالة
+        setTimeout(function() {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+        }, 50);
+        
+        // اختفاء الرسالة
+        setTimeout(function() {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(20px)';
+            setTimeout(function() {
+                toast.remove();
+            }, 400);
+        }, 2500);
+    }
+
+    console.log('✅ Content protection activated');
+})();
+
+
+// ====== رسالة تحذيرية في Console ======
+console.log('%c🚫 Xpert - Contenu protégé', 'font-size: 20px; font-weight: bold; color: #FF6B6B;');
+console.log('%c⚠️ Toute copie ou reproduction non autorisée est interdite', 'font-size: 14px; color: #F4D03F;');
+console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 12px; color: #4ECDC4;');
+
