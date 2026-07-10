@@ -57,3 +57,50 @@
 
     console.log('🔒 Protection-full.js chargée');
 })();
+
+// ============================================================
+// 🔒 منع الضغط المطول (Long Press)
+// ============================================================
+
+(function() {
+    'use strict';
+
+    // منع ظهور القائمة عند الضغط المطول على النصوص
+    document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        // منع ظهور قائمة النسخ عند الضغط المطول
+        e.preventDefault();
+        return false;
+    }, { passive: false });
+
+    // منع ظهور قائمة السياق عند الضغط المطول
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    // منع تحديد النصوص باللمس
+    document.addEventListener('touchmove', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        // لا نمنع التمرير، فقط نمنع التحديد
+    }, { passive: true });
+
+    // منع اختصارات النسخ عند الضغط المطول
+    document.addEventListener('copy', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    console.log('🔒 Protection Long Press activée');
+})();
+

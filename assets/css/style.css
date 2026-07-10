@@ -353,3 +353,68 @@ img[onclick], img[role="button"], .clickable-img {
     pointer-events: auto !important;
 }
 
+
+/* ============================================================
+   🔒 منع الضغط المطول والتحديد - حماية كاملة
+   ============================================================ */
+
+/* منع تحديد جميع النصوص والضغط المطول */
+* {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-user-drag: none !important;
+}
+
+/* منع ظهور قائمة النسخ عند الضغط المطول */
+body, html, div, p, h1, h2, h3, h4, h5, h6, span, a, button,
+.lesson-container, .section, .highlight-box, .formula-block,
+.exercice-box, .solution-box, .table-wrap, .step, .card,
+.feature-card, .command-card, .nav-links, .navbar, .hero {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* منع تحديد الصيغ الرياضية */
+.MathJax, .MathJax_SVG, .MathJax_Display, .mjx-chtml,
+.math, .formula-block, .math-inline, .math-display {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* منع تحديد الجداول */
+table, th, td, tr, .table-wrap {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* استثناء حقول الإدخال فقط */
+input, textarea, [contenteditable="true"],
+.search-box input, .search-box textarea,
+.form-control, .search-input {
+    -webkit-touch-callout: default !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+/* منع ظهور التحديد باللون الأزرق عند الضغط */
+* {
+    -webkit-tap-highlight-color: transparent !important;
+    -moz-tap-highlight-color: transparent !important;
+}
+
