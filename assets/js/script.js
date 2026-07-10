@@ -144,3 +144,87 @@ console.log('✅ Zellij background functions loaded');
 // ====== رسالة ترحيبية ======
 console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 14px; color: #4ECDC4;');
 
+
+// ============================================================
+// 🔒 منع جميع النصوص - حماية كاملة
+// ============================================================
+
+(function() {
+    'use strict';
+
+    // ====== منع النقر الأيمن ======
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    // ====== منع اختصارات النسخ ======
+    document.addEventListener('keydown', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        
+        const ctrl = e.ctrlKey;
+        const key = e.key;
+        
+        // منع Ctrl+C, Ctrl+X, Ctrl+V
+        if (ctrl && ['c', 'C', 'x', 'X', 'v', 'V'].includes(key)) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // منع Ctrl+S (حفظ)
+        if (ctrl && (key === 's' || key === 'S')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // منع Ctrl+U (عرض المصدر)
+        if (ctrl && (key === 'u' || key === 'U')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // منع Ctrl+P (طباعة)
+        if (ctrl && (key === 'p' || key === 'P')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // منع F12
+        if (key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // ====== منع سحب النصوص ======
+    document.addEventListener('dragstart', function(e) {
+        if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // ====== منع تحديد النصوص بالماوس ======
+    document.addEventListener('selectstart', function(e) {
+        if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // ====== منع النسخ عبر القائمة ======
+    document.addEventListener('copy', function(e) {
+        if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    console.log('🔒 Protection complète des textes activée');
+})();
+

@@ -560,3 +560,46 @@ details div {
     .moroccan-star { font-size: 40px; }
     .geo-pattern { font-size: 10px; letter-spacing: 8px; }
 }
+
+/* ============================================================
+   🔒 منع جميع النصوص في الدروس
+   ============================================================ */
+
+/* منع تحديد النصوص في جميع عناصر الدروس */
+.lesson-container * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* منع تحديد النصوص في الصيغ الرياضية */
+.lesson-container .math,
+.lesson-container .MathJax,
+.lesson-container .MathJax_SVG,
+.lesson-container .mjx-chtml {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* منع تحديد النصوص في الجداول */
+.lesson-container table,
+.lesson-container th,
+.lesson-container td {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* السماح بالتحديد في حقول الإدخال فقط */
+.lesson-container input,
+.lesson-container textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+

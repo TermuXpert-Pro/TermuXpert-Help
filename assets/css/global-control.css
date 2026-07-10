@@ -115,3 +115,74 @@ body { font-size: var(--font-size-base) !important; }
         --logo-size: 28px;
     }
 }
+
+/* ============================================================
+   🔒 منع جميع النصوص - حماية كاملة
+   ============================================================ */
+
+/* منع تحديد النصوص في جميع العناصر */
+* {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+/* منع تحديد النصوص في الصيغ الرياضية */
+.math, .MathJax, .MathJax_SVG, .MathJax_Display,
+.mjx-chtml, .mjx-math, .MathJax_SVG_Display,
+.math-display, .math-inline {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* منع تحديد النصوص في الجداول */
+table, th, td, tr, .table-wrap {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* منع تحديد النصوص في جميع الصناديق */
+.exercice-box, .solution-box, .highlight-box,
+.section, .lesson-container, .formula-block,
+.step, .sub-question, .command-card, .card {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* منع تحديد النصوص في القوائم */
+ul, ol, li, .nav-links, .dropdown-menu {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* السماح بالتحديد في حقول الإدخال فقط */
+input, textarea, [contenteditable="true"], 
+.search-box input, .search-box textarea,
+.form-control, .search-input {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+
+/* منع ظهور قائمة النسخ على الهواتف */
+* {
+    -webkit-touch-callout: none !important;
+}
+
+/* منع سحب العناصر */
+* {
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+}
+
