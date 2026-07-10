@@ -350,6 +350,19 @@
             -ms-user-drag: none !important;
             user-drag: none !important;
         }
+        /* ====== أنماط احتياطية ====== */
+        .hero { opacity: 1 !important; }
+        .profile-outer { opacity: 1 !important; transform: none !important; }
+        .hero-card { opacity: 1 !important; transform: none !important; }
+        .hero-logo { opacity: 1 !important; transform: none !important; }
+        .hero-label { opacity: 1 !important; transform: none !important; }
+        #title { opacity: 1 !important; transform: none !important; }
+        #desc { opacity: 1 !important; transform: none !important; }
+        #buttons { opacity: 1 !important; transform: none !important; }
+        .moroccan-bg { opacity: 0.6 !important; }
+        .moroccan-shadow { opacity: 0.08 !important; }
+        .moroccan-star { opacity: 0.04 !important; }
+        .geo-pattern { opacity: 0.03 !important; }
     </style>
 </head>
 <body>
@@ -482,5 +495,87 @@
             console.log('✅ GSAP - Animation complète');
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </body>
 </html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ====== التحقق من تحميل GSAP ======
+            if (typeof gsap === 'undefined') {
+                console.error('❌ GSAP غير محمل!');
+                // عرض المحتوى مباشرة إذا لم يتم تحميل GSAP
+                document.querySelectorAll('.hero, .profile-outer, .hero-card, .hero-logo, .hero-label, #title, #desc, #buttons').forEach(function(el) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+                document.querySelector('.moroccan-bg').style.opacity = '0.6';
+                document.querySelector('.moroccan-shadow').style.opacity = '0.08';
+                document.querySelector('.moroccan-star').style.opacity = '0.04';
+                document.querySelectorAll('.geo-pattern').forEach(function(el) {
+                    el.style.opacity = '0.03';
+                });
+                document.getElementById('overlayProtection').classList.add('hidden');
+                return;
+            }
+
+            const overlay = document.getElementById('overlayProtection');
+            
+            // ====== تفعيل طبقة الحماية ======
+            overlay.classList.add('active');
+            
+            // ====== إعداد العناصر ======
+            gsap.set('.moroccan-bg', { opacity: 0 });
+            gsap.set('.moroccan-shadow', { opacity: 0 });
+            gsap.set('.moroccan-star', { opacity: 0 });
+            gsap.set('.geo-pattern', { opacity: 0 });
+            gsap.set('#heroSection', { opacity: 0 });
+            gsap.set('#profileWrapper', { opacity: 0, y: 20 });
+            gsap.set('#profileImg', { scale: 0.8 });
+            gsap.set('#heroCard', { opacity: 0, y: 30 });
+            gsap.set('#logo', { opacity: 0, y: 20 });
+            gsap.set('.hero-label', { opacity: 0, y: 20 });
+            gsap.set('#title', { opacity: 0, y: 20 });
+            gsap.set('#desc', { opacity: 0, y: 20 });
+            gsap.set('#buttons', { opacity: 0, y: 20 });
+
+            const tl = gsap.timeline({
+                defaults: {
+                    ease: 'power3.out'
+                }
+            });
+
+            // ====== تشغيل الأنيميشن ======
+            tl
+                .to('.moroccan-bg', { opacity: 0.6, duration: 1.8, ease: 'power1.out' })
+                .to('.moroccan-shadow', { opacity: 0.08, duration: 1.8, ease: 'power1.out' }, '-=1.2')
+                .to('.moroccan-star', { opacity: 0.04, duration: 1.8, ease: 'power1.out' }, '-=1.2')
+                .to('.geo-pattern', { opacity: 0.03, duration: 1.8, stagger: 0.08, ease: 'power1.out' }, '-=1.4')
+                .to('#heroSection', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                .to('#profileWrapper', { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)' }, '-=0.3')
+                .to('#profileImg', { scale: 1, duration: 0.8, ease: 'back.out(2)' }, '-=0.6')
+                .to('#heroCard', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+                .to('#logo', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
+                .to('.hero-label', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+                .to('#title', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+                .to('#desc', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+                .to('#buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+                .call(function() {
+                    overlay.classList.remove('active');
+                    overlay.classList.add('hidden');
+                    overlay.style.display = 'none';
+                    overlay.style.pointerEvents = 'none';
+                    console.log('✅ Overlay protection removed');
+                });
+
+            // ====== حركات مستمرة ======
+            gsap.to('.moroccan-bg', { opacity: 0.8, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+            gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
+            gsap.to('.geo-pattern-3', { x: 15, y: -15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.5 });
+            gsap.to('.geo-pattern-4', { x: -15, y: 15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5 });
+
+            console.log('✅ GSAP - Animation complète');
+        });
+    </script>
