@@ -587,5 +587,154 @@
             }
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </body>
 </html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ====== التحقق من تحميل GSAP ======
+            if (typeof gsap === 'undefined') {
+                console.error('❌ GSAP غير محمل في subjects.html!');
+                // عرض المحتوى مباشرة
+                document.querySelectorAll('.card').forEach(function(el) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+                document.querySelector('.moroccan-bg').style.opacity = '0.6';
+                document.querySelector('.moroccan-shadow').style.opacity = '0.08';
+                document.querySelector('.moroccan-star').style.opacity = '0.04';
+                document.querySelectorAll('.geo-pattern').forEach(function(el) {
+                    el.style.opacity = '0.03';
+                });
+                document.getElementById('overlayProtection').classList.add('hidden');
+                return;
+            }
+
+            const overlay = document.getElementById('overlayProtection');
+            const navType = performance.navigation.type;
+            const animationAllowed = sessionStorage.getItem('animation_allowed');
+            
+            function showDirect() {
+                gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
+                gsap.set('.moroccan-bg', { opacity: 0.6 });
+                gsap.set('.moroccan-shadow', { opacity: 0.08 });
+                gsap.set('.moroccan-star', { opacity: 0.04 });
+                gsap.set('.geo-pattern', { opacity: 0.03 });
+                gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ subjects.html - Affichage direct');
+                
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
+                });
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
+                    });
+                });
+            }
+
+            function runAnimation() {
+                overlay.classList.add('active');
+                gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
+                
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+                tl
+                    .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
+                    .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
+                    .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
+                    .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 0, y: -60, scale: 0.8, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
+                    .to('#subTitle', { opacity: 0, y: -40, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
+                    .to('#heroWrapper', { 
+                        opacity: 0, 
+                        duration: 0.6, 
+                        ease: 'power2.in',
+                        onComplete: function() {
+                            gsap.set('#heroWrapper', { display: 'none' });
+                        }
+                    }, '-=0.4')
+                    .to('#cardsWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+                    .to('.card', {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 1.2,
+                        stagger: { each: 0.2, from: 'start', ease: 'back.out(1.8)' },
+                        ease: 'power3.out'
+                    }, '-=0.3')
+                    .call(() => {
+                        sessionStorage.removeItem('animation_allowed');
+                        overlay.classList.remove('active');
+                        overlay.classList.add('hidden');
+                        overlay.style.display = 'none';
+                        overlay.style.pointerEvents = 'none';
+                        console.log('✅ subjects.html - Animation jouée');
+                    });
+
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
+                });
+
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
+                    });
+                });
+            }
+
+            if (navType === 2 || animationAllowed !== 'true') {
+                showDirect();
+            } else {
+                runAnimation();
+            }
+        });
+    </script>
