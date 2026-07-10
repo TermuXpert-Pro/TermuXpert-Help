@@ -5,7 +5,7 @@
     {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": "Matière | Xpert",
+        "name": "Matière - Xpert",
         "description": "Cours, exercices, séries et examens",
         "provider": {
             "@type": "EducationalOrganization",
@@ -17,12 +17,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xpert - Matière</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- ====== GSAP ====== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
     <style>
+        /* ====== طبقة الحماية غير المرئية ====== */
         .overlay-protection {
             position: fixed;
             top: 0;
@@ -358,6 +371,7 @@
 </head>
 <body>
 
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <div class="moroccan-bg">
@@ -427,8 +441,24 @@
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <!-- ====== Service Worker (PWA) ====== -->
     <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+
+    <!-- ====== Scripts ====== -->
+    <script src="assets/js/protection.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <!-- ====== GSAP Animation ====== -->
+    <script>
+        // ============================================================
+        // البيانات - متوافقة مع الهيكل الجديد
+        // ============================================================
         const data = {
             math: {
                 title: "Mathématiques",
@@ -486,6 +516,9 @@
         let currentTab = 'lessons';
         let isAnimating = false;
 
+        // ============================================================
+        // تحميل المادة
+        // ============================================================
         function loadSubject() {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('subject');
@@ -503,15 +536,32 @@
             renderContent(document.getElementById('tabContent'), 'lessons');
         }
 
+        // ============================================================
+        // تبديل التبويب - نسخة محسنة مع منع التداخل
+        // ============================================================
         function switchTab(tab) {
-            if (isAnimating || tab === currentTab) return;
+            // منع التبديل إذا كان أنميشن قيد التشغيل
+            if (isAnimating) {
+                console.log('⏳ Animation en cours, veuillez patienter...');
+                return;
+            }
             
+            // منع التبديل إلى نفس التبويب
+            if (tab === currentTab) {
+                console.log('ℹ️ Déjà sur cet onglet');
+                return;
+            }
+            
+            // تفعيل حالة الأنميشن
             isAnimating = true;
+            
+            // تعطيل جميع أزرار التبويب مؤقتاً
             document.querySelectorAll('.tab-btn').forEach(b => b.disabled = true);
             
             const previousTab = currentTab;
             currentTab = tab;
             
+            // تحديث المظهر النشط للأزرار
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
             if (activeBtn) activeBtn.classList.add('active');
@@ -519,6 +569,7 @@
             const container = document.getElementById('tabContent');
             const currentCards = container.querySelectorAll('.command-card');
             
+            // إذا كانت هناك بطاقات موجودة، قم بإخفائها أولاً
             if (currentCards.length > 0) {
                 gsap.to(currentCards, {
                     opacity: 0,
@@ -529,6 +580,7 @@
                     stagger: 0.04,
                     onComplete: function() {
                         renderContent(container, tab, function() {
+                            // إعادة تمكين الأزرار بعد الانتهاء
                             document.querySelectorAll('.tab-btn').forEach(b => b.disabled = false);
                             isAnimating = false;
                         });
@@ -542,6 +594,9 @@
             }
         }
 
+        // ============================================================
+        // عرض المحتوى - نسخة محسنة مع callback
+        // ============================================================
         function renderContent(container, tab, callback) {
             let html = '';
             
@@ -626,93 +681,9 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            loadSubject();
-
-            const overlay = document.getElementById('overlayProtection');
-            const navType = performance.navigation.type;
-            const animationAllowed = sessionStorage.getItem('animation_allowed');
-            
-            function showDirect() {
-                gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
-                gsap.set('.moroccan-bg', { opacity: 0.6 });
-                gsap.set('.moroccan-shadow', { opacity: 0.08 });
-                gsap.set('.moroccan-star', { opacity: 0.04 });
-                gsap.set('.geo-pattern', { opacity: 0.03 });
-                gsap.set('#contentWrapper', { opacity: 1 });
-                gsap.set('#tabsWrapper', { opacity: 1, y: 0 });
-                
-                overlay.classList.remove('active');
-                overlay.classList.add('hidden');
-                overlay.style.display = 'none';
-                overlay.style.pointerEvents = 'none';
-                
-                console.log('✅ subject.html - Affichage direct');
-                
-                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-            }
-
-            function runAnimation() {
-                overlay.classList.add('active');
-                gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
-                
-                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-                tl
-                    .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
-                    .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
-                    .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
-                    .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
-                    .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
-                    .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
-                    .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
-                    .to('#mainTitle', { opacity: 0, y: -80, scale: 0.7, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
-                    .to('#subTitle', { opacity: 0, y: -50, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
-                    .to('#heroWrapper', { 
-                        opacity: 0, 
-                        duration: 0.6, 
-                        ease: 'power2.in',
-                        onComplete: function() {
-                            gsap.set('#heroWrapper', { display: 'none' });
-                        }
-                    }, '-=0.4')
-                    .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
-                    .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
-                    .call(() => {
-                        sessionStorage.removeItem('animation_allowed');
-                        overlay.classList.remove('active');
-                        overlay.classList.add('hidden');
-                        overlay.style.display = 'none';
-                        overlay.style.pointerEvents = 'none';
-                        console.log('✅ subject.html - Animation jouée');
-                    });
-
-                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.addEventListener('mouseenter', function() {
-                        gsap.to(this, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
-                    });
-                    btn.addEventListener('mouseleave', function() {
-                        gsap.to(this, { scale: 1, duration: 0.2, ease: 'power2.inOut' });
-                    });
-                });
-            }
-
-            if (navType === 2 || animationAllowed !== 'true') {
-                showDirect();
-            } else {
-                runAnimation();
-            }
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-</body>
-</html>
-    <script>
+        // ============================================================
+        // GSAP - إدارة الأنميشن
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             // ====== التحقق من تحميل GSAP ======
@@ -733,13 +704,21 @@
                     el.style.transform = 'none';
                 });
                 document.getElementById('overlayProtection').classList.add('hidden');
+                loadSubject();
                 return;
             }
 
+            loadSubject();
+
             const overlay = document.getElementById('overlayProtection');
+            
+            // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
+            
+            // ====== التحقق من إذن تشغيل الأنميشن ======
             const animationAllowed = sessionStorage.getItem('animation_allowed');
             
+            // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
@@ -754,12 +733,13 @@
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
                 
-                console.log('✅ subject.html - Affichage direct');
+                console.log('✅ subject.html - Affichage direct (sans animation)');
                 
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
             }
 
+            // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
                 overlay.classList.add('active');
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
@@ -808,10 +788,25 @@
                 });
             }
 
-            if (navType === 2 || animationAllowed !== 'true') {
+            // ============================================================
+            // المنطق الرئيسي
+            // ============================================================
+            
+            if (navType === 2) {
                 showDirect();
-            } else {
-                runAnimation();
+                console.log('📌 subject.html - Navigation depuis Back/Forward → Affichage direct');
+                return;
             }
+
+            if (animationAllowed !== 'true') {
+                showDirect();
+                console.log('📌 subject.html - Animation non autorisée → Affichage direct');
+                return;
+            }
+
+            runAnimation();
+            console.log('📌 subject.html - Animation autorisée → Animation jouée');
         });
     </script>
+</body>
+</html>
