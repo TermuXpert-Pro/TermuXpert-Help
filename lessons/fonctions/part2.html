@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 2 - Fonction majorée, minorée, bornée - Extremums - Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/lesson-common.css">
+    <link rel="stylesheet" href="../../css/parts-common.css">
+    <link rel="stylesheet" href="../../css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        body { font-size: 14px; } 
+        .navbar { height: 44px; padding: 0 10px; } 
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; } 
+        .nav-logo-text { font-size: 14px; } 
+        .nav-links a { font-size: 13px; padding: 3px 8px; } 
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; } 
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; } 
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; } 
+        .section h2 { font-size: 14px; margin-bottom: 6px; } 
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; } 
+        .section h3 { font-size: 13px; margin: 6px 0 4px; } 
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; } 
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; } 
+        .section ul li { margin-bottom: 1px; } 
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; } 
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; } 
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; } 
+        .table-wrap { margin: 4px 0; } 
+        .table-wrap table { font-size: 13px; max-width: 240px; } 
+        .table-wrap th, .table-wrap td { padding: 3px 8px; font-size: 13px; } 
+        .step { font-size: 13px; padding: 3px 10px; margin: 3px 0; } 
+        .step .step-num { font-size: 13px; } 
+        .exercice-box { padding: 8px 10px; margin: 4px 0; } 
+        .exercice-box .ex-title { font-size: 14px; } 
+        .exercice-box .ex-question { font-size: 11.5px; } 
+        .solution-box .sol-content { font-size: 11.5px; } 
+        .toggle-sol { font-size: 13px; padding: 3px 10px; } 
+        .footer p { font-size: 13px; } 
+        .nav-buttons { margin-top: 14px; padding-top: 10px; } 
+        .back-btn, .next-btn { font-size: 13px; padding: 4px 12px; } 
+        .lesson-container { padding: 8px; } 
+        .glow-orb { display: none; } 
+        .bg-grid { opacity: 0.3; } 
+        details summary { font-size: 13px; } 
+        details div { font-size: 13px; } 
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); } 
+        .progress-bar { display: none; } 
+        .scroll-top-btn { display: none; } 
+        @media (max-width: 768px) { 
+            body { font-size: 13px; } 
+            .lesson-title { font-size: 17px; } 
+            .section { padding: 6px 8px; } 
+            .section h2 { font-size: 14px; } 
+            .section h3 { font-size: 11.5px; } 
+            .section p { font-size: 10.5px; } 
+            .table-wrap table { max-width: 100%; font-size: 13px; } 
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; } 
+            .formula-block { font-size: 13px; } 
+            .highlight-box { padding: 4px 8px; } 
+            .nav-links a { font-size: 13px; padding: 2px 6px; } 
+        } 
+        @media (max-width: 480px) { 
+            body { font-size: 13px; } 
+            .lesson-title { font-size: 15px; } 
+            .section h2 { font-size: 13px; } 
+            .section h3 { font-size: 10.5px; } 
+            .section p { font-size: 13px; } 
+            .formula-block { font-size: 13px; padding: 4px 6px; } 
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; } 
+            .step { font-size: 13px; padding: 2px 8px; } 
+            .back-btn { font-size: 13px; padding: 3px 10px; } 
+            .nav-logo-text { font-size: 14px; } 
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; } 
+        }
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+        }
+        .lesson-title {
+            color: #4ECDC4;
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .highlight-box {
+            background: rgba(69, 162, 158, 0.08);
+            border-right: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box .label {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+        }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box strong { color: var(--text-primary); }
+        .step {
+            background: var(--bg-primary);
+            border-left: 3px solid #4ECDC4;
+            padding: 8px 14px;
+            margin: 6px 0;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+        }
+        .table-wrap td {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 18px;
+        }
+        .formula-block .math {
+            color: var(--accent-light);
+            font-family: var(--font-mono);
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        .back-btn:hover { background: rgba(69, 162, 158, 0.1); }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            float: right;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .exercice-box {
+            background: #1A2A2A;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .exercice-box .ex-title {
+            color: #E8873A;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .exercice-box .ex-question {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 6px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .sub-section {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+        @media (max-width: 600px) {
+            .lesson-container { padding: 10px; }
+            .section { padding: 14px 16px; }
+            .lesson-title { font-size: 24px; }
+            .formula-block { font-size: 15px; padding: 12px 14px; }
+            .nav-buttons { flex-direction: column; align-items: stretch; }
+            .next-btn { float: none; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-arrow-up" style="color:#4ECDC4;"></i> Partie 2 : Fonction majorée - minorée - bornée - Extremums</h1>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: FONCTION MAJORÉE - MINORÉE - BORNÉE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Fonction majorée - minorée - bornée</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définitions</span>
+                    <p>$f$ est définie sur $I$ ($I \subset D_f$). $M$ et $m$ sont des réels.</p>
+                </div>
+
+                <div class="highlight-box" style="border-color:#4ECDC4;">
+                    <p><strong>Fonction majorée :</strong></p>
+                    <div class="formula-block">
+                        $$\forall x \in I : f(x) \le M$$
+                    </div>
+                    <p>La fonction est majorée par $M$ sur $I$.</p>
+                </div>
+
+                <div class="highlight-box" style="border-color:#FF6B6B;">
+                    <p><strong>Fonction minorée :</strong></p>
+                    <div class="formula-block">
+                        $$\forall x \in I : m \le f(x)$$
+                    </div>
+                    <p>La fonction est minorée par $m$ sur $I$.</p>
+                </div>
+
+                <div class="highlight-box" style="border-color:#F4D03F;">
+                    <p><strong>Fonction bornée :</strong></p>
+                    <div class="formula-block">
+                        $$f \text{ est bornée sur } I \iff f \text{ est majorée et minorée sur } I$$
+                    </div>
+                    <p>Équivalent à :</p>
+                    <div class="formula-block">
+                        $$\exists A \in \mathbb{R}^+ : \forall x \in I, |f(x)| \le A$$
+                    </div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li><strong>Majorée :</strong> il existe un nombre plus grand que toutes les valeurs.</li>
+                        <li><strong>Minorée :</strong> il existe un nombre plus petit que toutes les valeurs.</li>
+                        <li><strong>Bornée :</strong> les deux à la fois ($|f(x)| \le A$).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: EXTREMUMS -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Extremums d'une fonction</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>$f$ est définie sur $D_f$ et $x_0 \in D_f$.</p>
+                </div>
+
+                <div class="highlight-box" style="border-color:#4ECDC4;">
+                    <p><strong>Maximum absolu :</strong></p>
+                    <div class="formula-block">
+                        $$\forall x \in D_f : f(x) \le f(x_0)$$
+                    </div>
+                    <p>$f(x_0)$ est la plus grande valeur atteinte par $f$ sur $D_f$.</p>
+                </div>
+
+                <div class="highlight-box" style="border-color:#FF6B6B;">
+                    <p><strong>Minimum absolu :</strong></p>
+                    <div class="formula-block">
+                        $$\forall x \in D_f : f(x_0) \le f(x)$$
+                    </div>
+                    <p>$f(x_0)$ est la plus petite valeur atteinte par $f$ sur $D_f$.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Rappel</span>
+                    <ul>
+                        <li><strong>Maximum absolu :</strong> $f(x) \le f(x_0)$ pour tout $x$.</li>
+                        <li><strong>Minimum absolu :</strong> $f(x_0) \le f(x)$ pour tout $x$.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li><strong>Maximum absolu :</strong> plus grande valeur sur $D_f$.</li>
+                        <li><strong>Minimum absolu :</strong> plus petite valeur sur $D_f$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: FONCTION PÉRIODIQUE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Fonction périodique</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>$f$ est périodique de période $T > 0$ sur $D_f$ ssi :</p>
+                    <div class="formula-block">
+                        <p>$$x \in D_f \Rightarrow (x+T \in D_f \text{ et } x-T \in D_f)$$</p>
+                        <p>$$\forall x \in D_f : f(x+T) = f(x)$$</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Remarque</span>
+                    <ul>
+                        <li>$T$ est la <strong>plus petite</strong> période strictement positive.</li>
+                        <li>$f(x) = \sin x$ et $f(x) = \cos x$ ont pour période $T = 2\pi$.</li>
+                        <li>$f(x) = \tan x$ a pour période $T = \pi$.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Application :</strong> Montrer que $f(x) = \sin(ax)$ avec $a \neq 0$ est périodique de période $T = \frac{2\pi}{|a|}$.</p>
+                    <div class="step"><span class="step-num">Étape 1 :</span> $\sin(ax + 2\pi) = \sin(ax)$</div>
+                    <div class="step"><span class="step-num">Étape 2 :</span> $\sin(a(x + \frac{2\pi}{a})) = \sin(ax + 2\pi) = \sin(ax)$</div>
+                    <div class="step"><span class="step-num">Étape 3 :</span> Donc $T = \frac{2\pi}{a}$ pour $a > 0$, $T = \frac{2\pi}{|a|}$ pour $a \neq 0$.</div>
+                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $f(x) = \sin(ax)$ est périodique de période $T = \frac{2\pi}{|a|}$.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Une fonction périodique se répète à intervalles réguliers.</li>
+                        <li>$T$ est la période (plus petit $T > 0$).</li>
+                        <li>La courbe se répète par translation de vecteur $T\vec{i}$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part1.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 1</a>
+                <a href="part3.html" class="next-btn">Partie 3 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+    <!-- ====== زر العودة للأعلى ====== --> 
+    <button class="scroll-top-btn" aria-label="Retour en haut"> 
+        <i class="fas fa-arrow-up"></i> 
+    </button> 
+    <script src="../../script.js"></script>
+</body>
+</html>

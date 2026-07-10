@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série 3 - Logique - Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/lesson-common.css">
+    <link rel="stylesheet" href="../../css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .step { font-size: 13px; padding: 3px 10px; margin: 3px 0; }
+        .step .step-num { font-size: 13px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color: #4ECDC4;
+            font-weight: 700;
+        }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <nav class="navbar" id="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Série 3 - Logique mathématique</h1>
+            <div class="serie-title">Exercices <span>21 à 30</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 21 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">21</span> Exercice 21</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$n \in \mathbb{N}$ et $p \in \mathbb{N}$</p>
+                <div class="formula-block" style="font-size:13px;">
+                    Montrer que $n \times p$ est pair ou $n^2 - p^2$ est un multiple de 8
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol21')">Voir la solution</button>
+                <div id="sol21" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Cas 1 :</span> Si $n$ ou $p$ est pair, alors $np$ est pair</div>
+                        <div class="step"><span class="step-num">Cas 2 :</span> Si $n$ et $p$ sont impairs</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $n = 2k+1$ et $p = 2l+1$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $n^2 - p^2 = (n-p)(n+p)$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $n-p$ et $n+p$ sont pairs, donc $n^2 - p^2$ est multiple de 4</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $(n-p)(n+p) = 2 \times 2 \times k = 4k$, donc multiple de 8</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 22 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">22</span> Exercice 22</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$a > 0$ et $b > 0$</p>
+                <div class="formula-block" style="font-size:13px;">
+                    $\frac{a}{1+b} = \frac{b}{1+a} \Rightarrow a = b$
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol22')">Voir la solution</button>
+                <div id="sol22" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Étape 1 :</span> $\frac{a}{1+b} = \frac{b}{1+a}$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $a(1+a) = b(1+b)$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $a + a^2 = b + b^2$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $a^2 - b^2 + a - b = 0$</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> $(a-b)(a+b) + (a-b) = 0$</div>
+                        <div class="step"><span class="step-num">Étape 6 :</span> $(a-b)(a+b+1) = 0$</div>
+                        <div class="step"><span class="step-num">Étape 7 :</span> $a+b+1 > 0$, donc $a-b = 0$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = b$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 23 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">23</span> Exercice 23</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$f(x) = x^2 + 2x$</p>
+                <div class="formula-block" style="font-size:13px;">
+                    Montrer qu'il n'existe pas de nombre positif $M$ tel que $f(x) \leq M$ pour tout $x \in \mathbb{R}$
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol23')">Voir la solution</button>
+                <div id="sol23" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Étape 1 :</span> $f(x) = x^2 + 2x = (x+1)^2 - 1$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> Quand $x \to +\infty$, $f(x) \to +\infty$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> Donc $f$ n'est pas majorée sur $\mathbb{R}$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> Il n'existe pas de $M$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 24 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">24</span> Exercice 24</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    Montrer que $\sqrt{2} \notin \mathbb{Q}$
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol24')">Voir la solution</button>
+                <div id="sol24" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par l'absurde :</strong> Supposons $\sqrt{2} \in \mathbb{Q}$</p>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{2} = \frac{p}{q}$ avec $p,q \in \mathbb{Z}^*$ et $pgcd(p,q) = 1$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $2 = \frac{p^2}{q^2} \Rightarrow p^2 = 2q^2$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $p^2$ est pair, donc $p$ est pair ($p = 2k$)</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $4k^2 = 2q^2 \Rightarrow q^2 = 2k^2$</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> $q$ est pair aussi, contradiction avec $pgcd(p,q) = 1$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\sqrt{2} \notin \mathbb{Q}$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 25 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">25</span> Exercice 25</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$a,b \in \mathbb{Q}$</p>
+                
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $a + b\sqrt{2} = 0 \Rightarrow a = b = 0$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol25_1')">Voir la solution</button>
+                    <div id="sol25_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $a + b\sqrt{2} = 0 \Rightarrow a = -b\sqrt{2}$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> Si $b \neq 0$, alors $\sqrt{2} = -\frac{a}{b} \in \mathbb{Q}$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> Contradiction avec $\sqrt{2} \notin \mathbb{Q}$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> Donc $b = 0$ et $a = 0$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = b = 0$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $a + b\sqrt{2} = a' + b'\sqrt{2} \Rightarrow a = a'$ et $b = b'$
+                    </div>
+                    <button class="toggle-sol" onclick="toggleSolution('sol25_2')">Voir la solution</button>
+                    <div id="sol25_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $a - a' + (b - b')\sqrt{2} = 0$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> D'après 1), $a - a' = 0$ et $b - b' = 0$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = a'$ et $b = b'$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 26 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">26</span> Exercice 26</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$A = \{1, 2, 3, ..., n\}$ avec $n$ impair</p>
+                <div class="formula-block" style="font-size:13px;">
+                    $\exists i \in A / x_i - i$ est pair
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol26')">Voir la solution</button>
+                <div id="sol26" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par l'absurde :</strong> Supposons que $x_i - i$ est impair pour tout $i$</p>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $x_i$ et $i$ ont des parités différentes pour tout $i$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $x_i$ est une permutation de $1, 2, ..., n$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> Le nombre de pairs dans $A$ est $\frac{n-1}{2}$ (car $n$ impair)</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> Contradiction car les parités ne peuvent pas toutes être différentes</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\exists i$ tel que $x_i - i$ est pair</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 27 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">27</span> Exercice 27</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $P: (\forall x \in [0;1]) : x^2 \geq x$ est fausse
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol27')">Voir la solution</button>
+                <div id="sol27" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Contre-exemple :</span> $x = \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">Vérification :</span> $\left(\frac{1}{2}\right)^2 = \frac{1}{4} < \frac{1}{2}$</div>
+                        <p style="color:#FF6B6B;"><strong>Conclusion :</strong> La proposition est fausse</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 28 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">28</span> Exercice 28</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $P: (\forall x \in \mathbb{R})(\forall y \in \mathbb{R}) : x^2 + y^2 \geq x + y$ est fausse
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol28')">Voir la solution</button>
+                <div id="sol28" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Contre-exemple :</span> $x = y = \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">Vérification :</span> $\left(\frac{1}{2}\right)^2 + \left(\frac{1}{2}\right)^2 = \frac{1}{2} < 1 = \frac{1}{2} + \frac{1}{2}$</div>
+                        <p style="color:#FF6B6B;"><strong>Conclusion :</strong> La proposition est fausse</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 29 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">29</span> Exercice 29</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $P: (\forall (a,b) \in \mathbb{R}^2) : \sqrt{a^2 + b^2} = a + b$ est fausse
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol29')">Voir la solution</button>
+                <div id="sol29" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Contre-exemple :</span> $a = b = 1$</div>
+                        <div class="step"><span class="step-num">Vérification :</span> $\sqrt{1^2 + 1^2} = \sqrt{2} \neq 2 = 1 + 1$</div>
+                        <p style="color:#FF6B6B;"><strong>Conclusion :</strong> La proposition est fausse</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 30 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">30</span> Exercice 30</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    « Tout entier positif est somme de trois carrés » est fausse
+                </div>
+                <button class="toggle-sol" onclick="toggleSolution('sol30')">Voir la solution</button>
+                <div id="sol30" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Contre-exemple :</span> $7$</div>
+                        <div class="step"><span class="step-num">Vérification :</span> $7 = 4 + 1 + 1 + 1$ (4 carrés) ou $7 = 4 + 1 + 1 + 1$</div>
+                        <div class="step"><span class="step-num">Les carrés :</span> $0^2, 1^2, 2^2, 3^2$</div>
+                        <div class="step"><span class="step-num">Combinaisons :</span> $1+1+4=6$, $1+1+1=3$, $4+4+4=12$</div>
+                        <p style="color:#FF6B6B;"><strong>Conclusion :</strong> 7 n'est pas somme de trois carrés</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie2.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série 2</a>
+                <a href="serie4.html" class="next-btn">Série 4 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <button class="scroll-top-btn" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../../script.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+</body>
+</html>
