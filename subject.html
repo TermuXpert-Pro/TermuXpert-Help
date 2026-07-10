@@ -464,19 +464,19 @@
                 title: "Mathématiques",
                 desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Logique mathématique", file: "content/math/lessons/logique/logique.html", desc: "Propositions, opérateurs, quantificateurs, raisonnements" },
-                    { title: "Généralités sur les fonctions", file: "content/math/lessons/fonctions/index.html", desc: "Fonctions numériques, parité, monotonie, études de fonctions" },
-                    { title: "Barycentre dans le plan", file: "content/math/lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" }
+                    { title: "Logique mathématique", file: "content/math/lessons/logique/logique.html?returnTab=lessons", desc: "Propositions, opérateurs, quantificateurs, raisonnements" },
+                    { title: "Généralités sur les fonctions", file: "content/math/lessons/fonctions/index.html?returnTab=lessons", desc: "Fonctions numériques, parité, monotonie, études de fonctions" },
+                    { title: "Barycentre dans le plan", file: "content/math/lessons/barycentre/index.html?returnTab=lessons", desc: "Barycentre de deux, trois et quatre points pondérés" }
                 ],
                 exercices: [
-                    { title: "Logique mathématique", file: "content/math/exercises/logique/index.html", desc: "8 exercices" },
-                    { title: "Généralités sur les fonctions", file: "content/math/exercises/fonctions/index.html", desc: "5 exercices" },
-                    { title: "Barycentre dans le plan", file: "content/math/exercises/barycentre/index.html", desc: "3 exercices" }
+                    { title: "Logique mathématique", file: "content/math/exercises/logique/index.html?returnTab=exercices", desc: "8 exercices" },
+                    { title: "Généralités sur les fonctions", file: "content/math/exercises/fonctions/index.html?returnTab=exercices", desc: "5 exercices" },
+                    { title: "Barycentre dans le plan", file: "content/math/exercises/barycentre/index.html?returnTab=exercices", desc: "3 exercices" }
                 ],
                 series: [
-                    { title: "Logique mathématique", file: "content/math/series/logique/index.html", desc: "5 séries" },
-                    { title: "Généralités sur les fonctions", file: "content/math/series/fonctions/index.html", desc: "2 séries" },
-                    { title: "Barycentre dans le plan", file: "content/math/series/barycentre/index.html", desc: "1 série" }
+                    { title: "Logique mathématique", file: "content/math/series/logique/index.html?returnTab=series", desc: "5 séries" },
+                    { title: "Généralités sur les fonctions", file: "content/math/series/fonctions/index.html?returnTab=series", desc: "2 séries" },
+                    { title: "Barycentre dans le plan", file: "content/math/series/barycentre/index.html?returnTab=series", desc: "1 série" }
                 ],
                 exams: []
             },
@@ -484,14 +484,14 @@
                 title: "Physique",
                 desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Mouvement rectiligne", file: "content/physique/lessons/mecanique/index.html", desc: "Position, vitesse, accélération" },
-                    { title: "Lois de Newton", file: "content/physique/lessons/mecanique/newton.html", desc: "Les trois lois de Newton" }
+                    { title: "Mouvement rectiligne", file: "content/physique/lessons/mecanique/index.html?returnTab=lessons?returnTab=exams", desc: "Position, vitesse, accélération" },
+                    { title: "Lois de Newton", file: "content/physique/lessons/mecanique/newton.html?returnTab=lessons?returnTab=exams", desc: "Les trois lois de Newton" }
                 ],
                 exercices: [
-                    { title: "Mécanique", file: "content/physique/exercises/mecanique/index.html", desc: "2 exercices" }
+                    { title: "Mécanique", file: "content/physique/exercises/mecanique/index.html?returnTab=exercices", desc: "2 exercices" }
                 ],
                 series: [
-                    { title: "Mécanique", file: "content/physique/series/mecanique/index.html", desc: "2 séries" }
+                    { title: "Mécanique", file: "content/physique/series/mecanique/index.html?returnTab=series", desc: "2 séries" }
                 ],
                 exams: []
             },
@@ -499,14 +499,14 @@
                 title: "Chimie",
                 desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Structure de l'atome", file: "content/chimie/lessons/atome/index.html", desc: "Noyau, électrons, configuration" },
-                    { title: "Réactions chimiques", file: "content/chimie/lessons/reactions/index.html", desc: "Équations bilan, stoechiométrie" }
+                    { title: "Structure de l'atome", file: "content/chimie/lessons/atome/index.html?returnTab=lessons?returnTab=exams", desc: "Noyau, électrons, configuration" },
+                    { title: "Réactions chimiques", file: "content/chimie/lessons/reactions/index.html?returnTab=lessons?returnTab=exams", desc: "Équations bilan, stoechiométrie" }
                 ],
                 exercices: [
-                    { title: "Atome", file: "content/chimie/exercises/atome/index.html", desc: "2 exercices" }
+                    { title: "Atome", file: "content/chimie/exercises/atome/index.html?returnTab=exercices", desc: "2 exercices" }
                 ],
                 series: [
-                    { title: "Atome", file: "content/chimie/series/atome/index.html", desc: "2 séries" }
+                    { title: "Atome", file: "content/chimie/series/atome/index.html?returnTab=series", desc: "2 séries" }
                 ],
                 exams: []
             }
@@ -520,6 +520,11 @@
         // تحميل المادة
         // ============================================================
         function loadSubject() {
+    // ====== استعادة التبويب من URL ======
+    var returnTab = new URLSearchParams(window.location.search).get("returnTab");
+    if (returnTab && ["lessons", "exercices", "series", "exams"].includes(returnTab)) {
+        sessionStorage.setItem("activeTab", returnTab);
+    }
             const params = new URLSearchParams(window.location.search);
             const id = params.get('subject');
             currentSubject = data[id];
