@@ -8,10 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css"
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <meta http-equiv="X-Frame-Options" content="DENY">
     <style>
         /* ====== طبقة الحماية غير المرئية ====== */
         .overlay-protection {
@@ -298,7 +296,6 @@
             .card h3 { font-size: 18px; }
         }
     </style>
-    <script src="assets/js/seo.js" defer></script>
 </head>
 <body>
 
@@ -417,7 +414,7 @@
         function renderSubjects() {
             const grid = document.getElementById('subjectsGrid');
             grid.innerHTML = subjects.map((s, index) => `
-                <div class="card" data-index="${index}" onclick="sessionStorage.setItem('animation_allowed', 'true'); location.href='/subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
+                <div class="card" data-index="${index}" onclick="sessionStorage.setItem('animation_allowed', 'true'); location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
                     <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
                         <i class="fas ${s.icon}"></i>
                     </div>
@@ -445,20 +442,26 @@
             const overlay = document.getElementById('overlayProtection');
             
             // ====== التحقق من نوع التنقل ======
-            const navType = performance.navigation ? performance.navigation.type : 0;
+            const navType = performance.navigation.type;
             
             // ====== التحقق من إذن تشغيل الأنميشن ======
             const animationAllowed = sessionStorage.getItem('animation_allowed');
             
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
+                // إخفاء hero-wrapper نهائياً
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
+                
+                // إظهار الخلفيات
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
                 gsap.set('.geo-pattern', { opacity: 0.03 });
+                
+                // إظهار البطاقات مباشرة
                 gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
                 
+                // إزالة طبقة الحماية فوراً (لأنه لا يوجد أنميشن)
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
@@ -466,7 +469,7 @@
                 
                 console.log('✅ subjects.html - Affichage direct (sans animation)');
                 
-                // حركات مستمرة
+                // ====== حركات مستمرة ======
                 document.querySelectorAll('.card').forEach((card, i) => {
                     const icon = card.querySelector('.card-icon');
                     gsap.to(icon, {
@@ -483,6 +486,7 @@
                 gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
 
+                // Hover effects
                 document.querySelectorAll('.card').forEach(card => {
                     card.addEventListener('mouseenter', function() {
                         const icon = this.querySelector('.card-icon');
@@ -499,7 +503,10 @@
 
             // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
+                // ====== تفعيل طبقة الحماية ======
                 overlay.classList.add('active');
+                
+                // التأكد من أن hero-wrapper ظاهر قبل بدء الأنميشن
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
                 
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -519,6 +526,7 @@
                         duration: 0.6, 
                         ease: 'power2.in',
                         onComplete: function() {
+                            // إخفاء hero-wrapper نهائياً بعد اختفائه
                             gsap.set('#heroWrapper', { display: 'none' });
                         }
                     }, '-=0.4')
@@ -538,15 +546,19 @@
                         ease: 'power3.out'
                     }, '-=0.8')
                     .call(() => {
+                        // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
                         sessionStorage.removeItem('animation_allowed');
+                        
+                        // ====== إزالة طبقة الحماية ======
                         overlay.classList.remove('active');
                         overlay.classList.add('hidden');
                         overlay.style.display = 'none';
                         overlay.style.pointerEvents = 'none';
+                        
                         console.log('✅ subjects.html - Animation jouée une fois, overlay removed');
                     });
 
-                // حركات مستمرة
+                // ====== حركات مستمرة ======
                 document.querySelectorAll('.card').forEach((card, i) => {
                     const icon = card.querySelector('.card-icon');
                     gsap.to(icon, {
@@ -582,18 +594,21 @@
             // المنطق الرئيسي
             // ============================================================
             
+            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
             if (navType === 2) {
                 showDirect();
                 console.log('📌 subjects.html - Navigation depuis Back/Forward → Affichage direct');
                 return;
             }
 
+            // 2. إذا لم يكن هناك إذن لتشغيل الأنميشن → عرض مباشر
             if (animationAllowed !== 'true') {
                 showDirect();
                 console.log('📌 subjects.html - Animation non autorisée → Affichage direct');
                 return;
             }
 
+            // 3. في جميع الحالات الأخرى (مع الإذن) → تشغيل الأنميشن
             runAnimation();
             console.log('📌 subjects.html - Animation autorisée → Animation jouée');
         });

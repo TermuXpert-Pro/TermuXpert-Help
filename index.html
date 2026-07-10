@@ -7,21 +7,12 @@
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta property="og:title" content="Xpert - 1 Bac Sciences Expérimentales">
-    <meta property="og:description" content="Plateforme éducative pour 1 Bac Sciences Expérimentales. Cours, exercices, séries et examens en Mathématiques, Physique et Chimie.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://termuxpert-pro.github.io/TermuXpert-WEB/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Xpert - 1 Bac Sciences Expérimentales">
-    <meta name="twitter:description" content="Plateforme éducative pour 1 Bac Sciences Expérimentales.">
     <title>Xpert - 1 Bac Sciences Expérimentales</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css"
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
         /* ====== طبقة الحماية غير المرئية ====== */
@@ -306,7 +297,6 @@
             .hero-card { margin-top: 10px; }
         }
     </style>
-    <script src="assets/js/seo.js" defer></script>
 </head>
 <body>
 
@@ -365,7 +355,7 @@
         <div class="profile-outer" id="profileWrapper">
             <div style="position:relative; display:inline-block;">
                 <div class="profile-ring"></div>
-                <img src="assets/images/profile.png" alt="Profile Xpert" class="profile-image" id="profileImg" loading="lazy">
+                <img src="assets/images/profile.png" alt="Profile" class="profile-image" id="profileImg">
             </div>
         </div>
 
@@ -407,7 +397,7 @@
                 }
             });
 
-            // 1. ظهور الخلفيات
+            // 1. ظهور الخلفيات (مثل subjects)
             tl
                 .to('.moroccan-bg', {
                     opacity: 0.6,
@@ -509,6 +499,7 @@
             
             // ====== بعد انتهاء الأنميشن، إزالة طبقة الحماية ======
             .call(function() {
+                // إزالة طبقة الحماية بشكل نهائي
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
@@ -516,7 +507,7 @@
                 console.log('✅ Overlay protection removed - buttons are now clickable');
             });
 
-            // ====== حركات مستمرة ======
+            // ====== حركات مستمرة (مثل subjects) ======
             gsap.to('.moroccan-bg', {
                 opacity: 0.8,
                 duration: 3,
