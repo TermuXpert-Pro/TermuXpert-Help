@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partie 5 - Exercices - Xpert</title>
@@ -304,7 +314,7 @@
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <!-- ====== خلفية زليج ====== -->
-    <div class="moroccan-bg">
+    <div class="moroccan-bg" aria-hidden="true">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -327,8 +337,8 @@
             <rect width="800" height="800" fill="url(#zellij)"/>
         </svg>
     </div>
-    <div class="moroccan-shadow"></div>
-    <div class="moroccan-star">✦</div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
@@ -338,7 +348,7 @@
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
 
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
         <a href="../../../../index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -366,7 +376,7 @@
                     
                     <div class="exercice-box">
                         <div class="ex-title">a) $f(x) = -x^2 + 2x$ et $M = 1$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol1a')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1a')">Voir la solution</button>
                         <div id="sol1a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -379,7 +389,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">b) $f(x) = \frac{3x^2+2}{x^2+1}$ et $M = 3$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol1b')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1b')">Voir la solution</button>
                         <div id="sol1b" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -392,7 +402,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">c) $f(x) = \frac{4}{x^2+2}$ et $M = 2$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol1c')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1c')">Voir la solution</button>
                         <div id="sol1c" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -408,7 +418,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">a) $f(x) = x^2 + 4x$ et $m = -4$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol2a')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2a')">Voir la solution</button>
                         <div id="sol2a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -421,7 +431,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">b) $f(x) = \sqrt{x^2+1}$ et $m = 1$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol2b')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2b')">Voir la solution</button>
                         <div id="sol2b" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -437,7 +447,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">a) $f(x) = \frac{1}{x^2+1}$ et $M = 1$, $m = 0$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol3a')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3a')">Voir la solution</button>
                         <div id="sol3a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -449,7 +459,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">b) $f(x) = \sin x + \sqrt{3}$ et $M = 3$, $m = 0$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol3b')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3b')">Voir la solution</button>
                         <div id="sol3b" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -472,7 +482,7 @@
                     <p><strong>Soit $f$ définie par : $f(x) = x^2 + 2x + 3$</strong></p>
                     <div class="exercice-box">
                         <div class="ex-title">1. Montrer que $f(-1)$ est le minimum de $f$ sur $\mathbb{R}$.</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol4')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
                         <div id="sol4" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -489,7 +499,7 @@
                     <p><strong>Soit $g$ définie par : $g(x) = \frac{x^2+1}{x^2+x+1}$</strong></p>
                     <div class="exercice-box">
                         <div class="ex-title">2. Montrer que $g(-1)$ est le maximum de $g$ sur $\mathbb{R}$.</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol5')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
                         <div id="sol5" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -515,56 +525,56 @@
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
                         <div class="exercice-box">
                             <div class="ex-title">1) $f(x) = x^2 + \sqrt{2}$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6a')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6a')">Voir</button>
                             <div id="sol6a" class="solution-box">
                                 <div class="sol-content"><strong>Décroissante</strong> sur $]-\infty,0]$, <strong>croissante</strong> sur $[0,+\infty[$.</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">2) $f(x) = x^3 - 5$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6b')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6b')">Voir</button>
                             <div id="sol6b" class="solution-box">
                                 <div class="sol-content"><strong>Strictement croissante</strong> sur $\mathbb{R}$.</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">3) $f(x) = \frac{8}{x}$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6c')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6c')">Voir</button>
                             <div id="sol6c" class="solution-box">
                                 <div class="sol-content"><strong>Décroissante</strong> sur $]-\infty,0[$ et $]0,+\infty[$.</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">4) $f(x) = -3\sqrt{x-3} + 5$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6d')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6d')">Voir</button>
                             <div id="sol6d" class="solution-box">
                                 <div class="sol-content"><strong>Décroissante</strong> sur $[3,+\infty[$.</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">5) $f(x) = x^2 - 6$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6e')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6e')">Voir</button>
                             <div id="sol6e" class="solution-box">
                                 <div class="sol-content"><strong>Décroissante</strong> sur $]-\infty,0]$, <strong>croissante</strong> sur $[0,+\infty[$.</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">6) $f(x) = \frac{-\sqrt{3}+1}{x}$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6f')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6f')">Voir</button>
                             <div id="sol6f" class="solution-box">
                                 <div class="sol-content">$-\sqrt{3}+1 < 0$ donc <strong>décroissante</strong> sur chaque intervalle.</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">7) $f(x) = \sqrt{x-5} + 6$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6g')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6g')">Voir</button>
                             <div id="sol6g" class="solution-box">
                                 <div class="sol-content"><strong>Croissante</strong> sur $[5,+\infty[$.</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">8) $f(x) = -6x^3 + 9$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol6h')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6h')">Voir</button>
                             <div id="sol6h" class="solution-box">
                                 <div class="sol-content">$-6 < 0$ donc <strong>strictement décroissante</strong> sur $\mathbb{R}$.</div>
                             </div>
@@ -585,28 +595,28 @@
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
                         <div class="exercice-box">
                             <div class="ex-title">1) $f(x)=x^2$, $g(x)=x^3$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol7a')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7a')">Voir</button>
                             <div id="sol7a" class="solution-box">
                                 <div class="sol-content">$g \circ f(x)=x^6$, $f \circ g(x)=x^6$, $D=\mathbb{R}$</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">2) $f(x)=x^2-5$, $g(x)=\frac{1}{x}$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol7b')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7b')">Voir</button>
                             <div id="sol7b" class="solution-box">
                                 <div class="sol-content">$g \circ f(x)=\frac{1}{x^2-5}$, $D_{g\circ f}=\mathbb{R}\setminus\{\pm\sqrt{5}\}$</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">3) $f(x)=\sqrt{x}$, $g(x)=x^2$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol7c')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7c')">Voir</button>
                             <div id="sol7c" class="solution-box">
                                 <div class="sol-content">$g \circ f(x)=x$, $D_{g\circ f}=[0,+\infty[$</div>
                             </div>
                         </div>
                         <div class="exercice-box">
                             <div class="ex-title">4) $f(x)=\sqrt{x-8}$, $g(x)=x^3$</div>
-                            <button class="toggle-sol" onclick="toggleSolution('sol7d')">Voir</button>
+                            <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7d')">Voir</button>
                             <div id="sol7d" class="solution-box">
                                 <div class="sol-content">$g \circ f(x)=(\sqrt{x-8})^3=(x-8)^{3/2}$, $D=[8,+\infty[$</div>
                             </div>
@@ -626,7 +636,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">1) $f(x) = \sqrt{x^2+1}$ sur $I=\mathbb{R}^+$, $J=\mathbb{R}^-$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol8a')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8a')">Voir la solution</button>
                         <div id="sol8a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -639,7 +649,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">2) $f(x) = \frac{1}{x^2+3}$ sur $I=\mathbb{R}^+$, $J=\mathbb{R}^-$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol8b')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8b')">Voir la solution</button>
                         <div id="sol8b" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
@@ -652,7 +662,7 @@
 
                     <div class="exercice-box">
                         <div class="ex-title">3) $f(x) = \sin^2 x$ sur $I=[0,\frac{\pi}{2}]$, $J=[\frac{\pi}{2},\pi]$</div>
-                        <button class="toggle-sol" onclick="toggleSolution('sol8c')">Voir la solution</button>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8c')">Voir la solution</button>
                         <div id="sol8c" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">

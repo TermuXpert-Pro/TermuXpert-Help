@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercice 5 - Logique - Xpert</title>
@@ -167,7 +177,7 @@
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <!-- ====== خلفية زليج ====== -->
-    <div class="moroccan-bg">
+    <div class="moroccan-bg" aria-hidden="true">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -190,15 +200,15 @@
             <rect width="800" height="800" fill="url(#zellij)"/>
         </svg>
     </div>
-    <div class="moroccan-shadow"></div>
-    <div class="moroccan-star">✦</div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
     <div class="bg-grid"></div>
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
         <a href="../../../../index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -229,7 +239,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $p \Rightarrow (q \Rightarrow p)$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol5a')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5a')">Voir la solution</button>
                     <div id="sol5a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -258,7 +268,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $p \Rightarrow (p \Rightarrow q)$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol5b')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5b')">Voir la solution</button>
                     <div id="sol5b" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -284,7 +294,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $(\neg p \Rightarrow q) \Rightarrow p$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol5c')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5c')">Voir la solution</button>
                     <div id="sol5c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -311,7 +321,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N}, \frac{n(n^2+1)}{2} \in \mathbb{N}$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol5d')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5d')">Voir la solution</button>
                     <div id="sol5d" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -332,7 +342,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $(p \Rightarrow (q \Rightarrow r)) \Leftrightarrow ((p \land q) \Rightarrow r)$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol5e')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5e')">Voir la solution</button>
                     <div id="sol5e" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -353,7 +363,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $x + y + 2 = 2\sqrt{x} + 2\sqrt{y} \Rightarrow x = y = 1$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol5f')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5f')">Voir la solution</button>
                     <div id="sol5f" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">

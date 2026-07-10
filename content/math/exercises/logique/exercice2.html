@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercice 2 - Logique - Xpert</title>
@@ -165,7 +175,7 @@
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <!-- ====== خلفية زليج ====== -->
-    <div class="moroccan-bg">
+    <div class="moroccan-bg" aria-hidden="true">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -188,15 +198,15 @@
             <rect width="800" height="800" fill="url(#zellij)"/>
         </svg>
     </div>
-    <div class="moroccan-shadow"></div>
-    <div class="moroccan-star">✦</div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
     <div class="bg-grid"></div>
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
         <a href="../../../../index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -225,7 +235,7 @@
                 <div class="sub-question">
                     <div class="letter">a.</div>
                     <p style="font-size:11.5px; margin:4px 0;">Le carré d'un nombre réel est positif.</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol2a')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2a')">Voir la solution</button>
                     <div id="sol2a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -241,7 +251,7 @@
                 <div class="sub-question">
                     <div class="letter">b.</div>
                     <p style="font-size:11.5px; margin:4px 0;">Il n'existe pas un nombre rationnel qui est solution de l'équation $x^2 - 3 = 0$.</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol2b')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2b')">Voir la solution</button>
                     <div id="sol2b" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -257,7 +267,7 @@
                 <div class="sub-question">
                     <div class="letter">c.</div>
                     <p style="font-size:11.5px; margin:4px 0;">Pour tout nombre entier naturel $n$, il existe au moins un entier naturel $k$ tel que $k \leq n$.</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol2c')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2c')">Voir la solution</button>
                     <div id="sol2c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">

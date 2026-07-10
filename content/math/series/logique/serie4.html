@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Série 4 - Logique - Xpert</title>
@@ -175,7 +185,7 @@
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <!-- ====== خلفية زليج ====== -->
-    <div class="moroccan-bg">
+    <div class="moroccan-bg" aria-hidden="true">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -198,15 +208,15 @@
             <rect width="800" height="800" fill="url(#zellij)"/>
         </svg>
     </div>
-    <div class="moroccan-shadow"></div>
-    <div class="moroccan-star">✦</div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
     <div class="bg-grid"></div>
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
         <a href="../../../../index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -232,7 +242,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $P: (\forall x \in \mathbb{R}^*) : x + \frac{1}{x} \geq 2$ est fausse
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol31')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol31')">Voir la solution</button>
                 <div id="sol31" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -253,7 +263,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     Montrer que $f$ n'est ni paire ni impaire
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol32')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol32')">Voir la solution</button>
                 <div id="sol32" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -274,7 +284,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $P: \forall (a,b,c,d) \in \mathbb{R}^4 : \begin{cases} a \neq b \\ c \neq d \end{cases} \Rightarrow a + c \neq b + d$ est fausse
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol33')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol33')">Voir la solution</button>
                 <div id="sol33" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -294,7 +304,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $P: (\forall x \in \mathbb{R})(\exists y \in \mathbb{R}) : x^2 - xy + y^2 = 0$ est fausse
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol34')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol34')">Voir la solution</button>
                 <div id="sol34" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -314,7 +324,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\forall x \geq 0 : x + \frac{1}{x} \geq 2$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol35')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol35')">Voir la solution</button>
                 <div id="sol35" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -334,7 +344,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $|x-1| \leq \frac{1}{2} \Leftrightarrow \frac{2}{5} \leq \frac{1}{x+1} \leq \frac{2}{3}$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol36')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol36')">Voir la solution</button>
                 <div id="sol36" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -356,7 +366,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\sqrt{x^2 + 1} = 2x$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol37')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol37')">Voir la solution</button>
                 <div id="sol37" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -378,7 +388,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $|x-y| \leq 2\sqrt{x^2 + y^2 + xy}$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol38')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol38')">Voir la solution</button>
                 <div id="sol38" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -402,7 +412,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $(\forall (a,b) \in (\mathbb{R}^+)^2) : a + b = 0 \Leftrightarrow a = 0$ et $b = 0$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol39_1')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol39_1')">Voir la solution</button>
                     <div id="sol39_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -419,7 +429,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $\sqrt{x^2+1} + \sqrt{y^2+1} = 2 \Leftrightarrow x = y = 0$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol39_2')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol39_2')">Voir la solution</button>
                     <div id="sol39_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -441,7 +451,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\forall n \in \mathbb{N} : 3^n \geq 1 + 2n$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol40')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol40')">Voir la solution</button>
                 <div id="sol40" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">

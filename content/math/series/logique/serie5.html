@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Série 5 - Logique - Xpert</title>
@@ -171,7 +181,7 @@
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <!-- ====== خلفية زليج ====== -->
-    <div class="moroccan-bg">
+    <div class="moroccan-bg" aria-hidden="true">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -194,15 +204,15 @@
             <rect width="800" height="800" fill="url(#zellij)"/>
         </svg>
     </div>
-    <div class="moroccan-shadow"></div>
-    <div class="moroccan-star">✦</div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
     <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
     <div class="bg-grid"></div>
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
         <a href="../../../../index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -228,7 +238,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol41')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol41')">Voir la solution</button>
                 <div id="sol41" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -250,7 +260,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\forall n \geq 5 : 2^n \geq 6n$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol42')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol42')">Voir la solution</button>
                 <div id="sol42" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -272,7 +282,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\forall n \in \mathbb{N} : n^3 + 2n$ est divisible par 3
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol43')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol43')">Voir la solution</button>
                 <div id="sol43" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -295,7 +305,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol44')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol44')">Voir la solution</button>
                 <div id="sol44" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -318,7 +328,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\sum_{k=1}^{n} k^3 = \frac{n^2(n+1)^2}{4}$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol45')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol45')">Voir la solution</button>
                 <div id="sol45" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -341,7 +351,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\sum_{k=1}^{n} (2k+1) = (n+1)^2$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol46')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol46')">Voir la solution</button>
                 <div id="sol46" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -362,7 +372,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\forall n \in \mathbb{N} : 4^n + 6n - 1$ est divisible par 9
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol47')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol47')">Voir la solution</button>
                 <div id="sol47" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -386,7 +396,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $\forall n \in \mathbb{N} : 7^n - 1$ est divisible par 6
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol48')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol48')">Voir la solution</button>
                 <div id="sol48" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -411,7 +421,7 @@
                 <div class="sub-question">
                     <div class="letter">1)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Démontrer que si $P(n)$ est vraie alors $P(n+1)$ est vraie</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol49_1')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_1')">Voir la solution</button>
                     <div id="sol49_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -425,7 +435,7 @@
                 <div class="sub-question">
                     <div class="letter">2)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Démontrer que si $Q(n)$ est vraie alors $Q(n+1)$ est vraie</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol49_2')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_2')">Voir la solution</button>
                     <div id="sol49_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -439,7 +449,7 @@
                 <div class="sub-question">
                     <div class="letter">3)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Expliquer l'erreur de l'élève</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol49_3')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_3')">Voir la solution</button>
                     <div id="sol49_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -454,7 +464,7 @@
                 <div class="sub-question">
                     <div class="letter">4)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Démontrer que $P(n)$ est vraie</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol49_4')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_4')">Voir la solution</button>
                     <div id="sol49_4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -468,7 +478,7 @@
                 <div class="sub-question">
                     <div class="letter">5)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Démontrer que $Q(n)$ est fausse</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol49_5')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_5')">Voir la solution</button>
                     <div id="sol49_5" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -492,7 +502,7 @@
                 <div class="sub-question">
                     <div class="letter">1)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Démontrer que si $P(n)$ est vraie alors $P(n+1)$ est vraie</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol50')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol50')">Voir la solution</button>
                     <div id="sol50" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -513,7 +523,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $-1 < \frac{a+b}{1+ab} < 1$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol51')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol51')">Voir la solution</button>
                 <div id="sol51" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -535,7 +545,7 @@
                 <div class="sub-question">
                     <div class="letter">1)</div>
                     <div class="formula-block" style="font-size:13px;">$P: (\forall x \in \mathbb{R})(\exists y \in \mathbb{R}) : x > y$</div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol52_1')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_1')">Voir la solution</button>
                     <div id="sol52_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -549,7 +559,7 @@
                 <div class="sub-question">
                     <div class="letter">2)</div>
                     <div class="formula-block" style="font-size:13px;">$P: (\exists x \in \mathbb{R})(\forall y \in \mathbb{R}) : x > y$</div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol52_2')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_2')">Voir la solution</button>
                     <div id="sol52_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -563,7 +573,7 @@
                 <div class="sub-question">
                     <div class="letter">3)</div>
                     <div class="formula-block" style="font-size:13px;">$P: (\forall x \in \mathbb{R}) : x^2 \geq 4 \Rightarrow x \geq 2$</div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol52_3')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_3')">Voir la solution</button>
                     <div id="sol52_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -577,7 +587,7 @@
                 <div class="sub-question">
                     <div class="letter">4)</div>
                     <div class="formula-block" style="font-size:13px;">$P: (\exists x \in \mathbb{R}) : x^2 = 4$</div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol52_4')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_4')">Voir la solution</button>
                     <div id="sol52_4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -598,7 +608,7 @@
                 <div class="formula-block" style="font-size:13px;">
                     $P \Rightarrow (P \text{ ou } Q)$
                 </div>
-                <button class="toggle-sol" onclick="toggleSolution('sol53')">Voir la solution</button>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol53')">Voir la solution</button>
                 <div id="sol53" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
@@ -628,7 +638,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $a \leq b \Rightarrow a \leq \frac{a+b}{2} \leq b$ et $0 \leq \sqrt{ab} \leq b$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol54_1')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_1')">Voir la solution</button>
                     <div id="sol54_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -646,7 +656,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N}, n(n+1)$ est divisible par 2
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol54_2')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_2')">Voir la solution</button>
                     <div id="sol54_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -664,7 +674,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $n^2 + 1$ n'est pas un entier
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol54_3')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_3')">Voir la solution</button>
                     <div id="sol54_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -681,7 +691,7 @@
                 <div class="sub-question">
                     <div class="letter">5)</div>
                     <p style="font-size:11.5px; margin:4px 0;">$\forall x \in \mathbb{R} : x < 2 \Rightarrow x^2 < 4$ ?</p>
-                    <button class="toggle-sol" onclick="toggleSolution('sol54_4')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_4')">Voir la solution</button>
                     <div id="sol54_4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
@@ -698,7 +708,7 @@
                     <div class="formula-block" style="font-size:13px;">
                         $\forall n \in \mathbb{N} : (1+a)^n \geq 1 + n \times a$
                     </div>
-                    <button class="toggle-sol" onclick="toggleSolution('sol54_5')">Voir la solution</button>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_5')">Voir la solution</button>
                     <div id="sol54_5" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
