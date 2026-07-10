@@ -519,12 +519,42 @@
         // ============================================================
         // تحميل المادة
         // ============================================================
-        function loadSubject() {
+function loadSubject() {
     // ====== استعادة التبويب من URL ======
     var returnTab = new URLSearchParams(window.location.search).get("returnTab");
     if (returnTab && ["lessons", "exercices", "series", "exams"].includes(returnTab)) {
         sessionStorage.setItem("activeTab", returnTab);
     }
+    
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("subject");
+    currentSubject = data[id];
+    
+    if (!currentSubject) {
+        document.getElementById("subjectTitle").textContent = "⚠️ Matière non trouvée";
+        document.getElementById("tabContent").innerHTML = "<div class="no-data">Matière non trouvée</div>";
+        return;
+    }
+    
+    document.getElementById("subjectTitle").textContent = currentSubject.title;
+    document.getElementById("subTitle").textContent = currentSubject.desc;
+    
+    // ====== تفعيل التبويب المستعاد ======
+    var savedTab = sessionStorage.getItem("activeTab");
+    if (savedTab && ["lessons", "exercices", "series", "exams"].includes(savedTab)) {
+        currentTab = savedTab;
+        document.querySelectorAll(".tab-btn").forEach(function(btn) {
+            btn.classList.remove("active");
+            if (btn.getAttribute("data-tab") === savedTab) {
+                btn.classList.add("active");
+            }
+        });
+        renderContent(document.getElementById("tabContent"), savedTab);
+        sessionStorage.removeItem("activeTab");
+    } else {
+        renderContent(document.getElementById("tabContent"), "lessons");
+    }
+}
             const params = new URLSearchParams(window.location.search);
             const id = params.get('subject');
             currentSubject = data[id];
