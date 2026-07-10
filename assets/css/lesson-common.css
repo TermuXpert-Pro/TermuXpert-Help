@@ -623,3 +623,37 @@ details div {
     -webkit-tap-highlight-color: transparent !important;
 }
 
+
+/* ============================================================
+   🔧 إصلاح الأزرار في الدروس
+   ============================================================ */
+
+.lesson-container button,
+.lesson-container .btn,
+.lesson-container .toggle-sol,
+.lesson-container .back-btn,
+.lesson-container .next-btn,
+.lesson-container .prev-btn,
+.lesson-container a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+.lesson-container button:active,
+.lesson-container .btn:active,
+.lesson-container a:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+
+/* منع التحديد داخل الأزرار */
+.lesson-container button *,
+.lesson-container .btn *,
+.lesson-container a * {
+    pointer-events: none !important;
+}
+

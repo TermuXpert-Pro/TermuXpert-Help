@@ -418,3 +418,83 @@ input, textarea, [contenteditable="true"],
     -moz-tap-highlight-color: transparent !important;
 }
 
+
+/* ============================================================
+   🔧 إصلاح الأزرار - جعلها قابلة للضغط
+   ============================================================ */
+
+/* إعادة تمكين التفاعل مع الأزرار */
+button,
+.btn,
+.btn-primary,
+.btn-nav,
+.tab-btn,
+.toggle-sol,
+.back-btn,
+.next-btn,
+.prev-btn,
+.scroll-top-btn,
+.nav-links a,
+.card,
+.command-card,
+.part-link,
+.ex-link {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-touch-callout: none !important;
+    
+    /* مهم: إعادة تمكين pointer-events */
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    
+    /* إزالة أي تأثير selection */
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* التأكد من أن الأزرار تستجيب للنقر */
+button:active,
+.btn:active,
+.btn-primary:active,
+.btn-nav:active,
+.tab-btn:active,
+.toggle-sol:active,
+.back-btn:active,
+.next-btn:active,
+.prev-btn:active,
+.scroll-top-btn:active,
+.nav-links a:active,
+.card:active,
+.command-card:active,
+.part-link:active,
+.ex-link:active {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* التأكد من أن الروابط تعمل */
+a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* استثناء الأزرار من منع التحديد فقط (ليس منع الضغط) */
+button *,
+.btn *,
+.btn-primary *,
+.btn-nav *,
+.tab-btn *,
+.toggle-sol *,
+.back-btn *,
+.next-btn *,
+.prev-btn *,
+.scroll-top-btn *,
+.nav-links a *,
+.card *,
+.command-card *,
+.part-link *,
+.ex-link * {
+    pointer-events: none !important;
+}
+

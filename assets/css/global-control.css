@@ -200,3 +200,47 @@ input, textarea, [contenteditable="true"],
     -webkit-tap-highlight-color: transparent !important;
 }
 
+
+/* ============================================================
+   🔧 إصلاح الأزرار - إعادة تمكين الضغط
+   ============================================================ */
+
+button,
+.btn,
+.btn-primary,
+.btn-nav,
+.tab-btn,
+.toggle-sol,
+.back-btn,
+.next-btn,
+.prev-btn,
+.scroll-top-btn,
+.nav-links a,
+.card,
+.command-card,
+.part-link,
+.ex-link,
+a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* عند الضغط */
+button:active,
+.btn:active,
+a:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+
+/* منع التحديد داخل الأزرار */
+button *,
+.btn *,
+a * {
+    pointer-events: none !important;
+}
+
