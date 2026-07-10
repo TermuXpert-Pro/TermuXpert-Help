@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Matière - Xpert",
+        "description": "Cours, exercices, séries et examens",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Xpert"
+        }
+    }
+    </script>
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xpert - Matière</title>
@@ -8,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
         /* ====== طبقة الحماية غير المرئية ====== */
@@ -195,6 +208,7 @@
             gap: 8px;
             position: relative;
             overflow: hidden;
+            user-select: none;
         }
         .tab-btn::before {
             content: '';
@@ -222,6 +236,11 @@
             color: #4ECDC4;
         }
         .tab-btn i { font-size: 14px; }
+        .tab-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
 
         .cards-grid {
             display: grid;
@@ -379,7 +398,7 @@
     <div class="progress-bar" id="progressBar"></div>
     <div class="bg-grid"></div>
 
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Navigation principale">
         <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
@@ -396,14 +415,14 @@
     </div>
 
     <div class="content-wrapper" id="contentWrapper">
-        <div class="tabs-wrapper" id="tabsWrapper">
+        <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
             <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
-            <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
-            <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
-            <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
+            <button class="tab-btn" role="tab" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
+            <button class="tab-btn" role="tab" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
+            <button class="tab-btn" role="tab" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
 
-        <div class="cards-grid" id="tabContent"></div>
+        <div class="cards-grid" role="tabpanel" id="tabContent"></div>
     </div>
 
     <footer class="footer">
@@ -415,27 +434,29 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
     <script>
+        // ============================================================
+        // البيانات - متوافقة مع الهيكل الجديد
+        // ============================================================
         const data = {
             math: {
                 title: "Mathématiques",
                 desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Logique mathématique", file: "lessons/logique.html", desc: "Propositions, opérateurs, quantificateurs, raisonnements" },
-                    { title: "Généralités sur les fonctions", file: "lessons/fonctions/index.html", desc: "Fonctions numériques, parité, monotonie, études de fonctions" },
-                    { title: "Barycentre dans le plan", file: "lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" },
-                    { title: "Raisonnement par récurrence", file: "lessons/recurrence.html", desc: "Principe de récurrence, exemples" }
+                    { title: "Logique mathématique", file: "content/math/lessons/logique/logique.html", desc: "Propositions, opérateurs, quantificateurs, raisonnements" },
+                    { title: "Généralités sur les fonctions", file: "content/math/lessons/fonctions/index.html", desc: "Fonctions numériques, parité, monotonie, études de fonctions" },
+                    { title: "Barycentre dans le plan", file: "content/math/lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" }
                 ],
                 exercices: [
-                    { title: "Logique mathématique", file: "exercices/logique/index.html", desc: "8 exercices" },
-                    { title: "Généralités sur les fonctions", file: "exercices/fonctions/index.html", desc: "5 exercices" },
-                    { title: "Barycentre dans le plan", file: "exercices/barycentre/index.html", desc: "3 exercices" }
+                    { title: "Logique mathématique", file: "content/math/exercises/logique/index.html", desc: "8 exercices" },
+                    { title: "Généralités sur les fonctions", file: "content/math/exercises/fonctions/index.html", desc: "5 exercices" },
+                    { title: "Barycentre dans le plan", file: "content/math/exercises/barycentre/index.html", desc: "3 exercices" }
                 ],
                 series: [
-                    { title: "Logique mathématique", file: "series/logique/index.html", desc: "5 séries" },
-                    { title: "Généralités sur les fonctions", file: "series/fonctions/index.html", desc: "2 séries" },
-                    { title: "Barycentre dans le plan", file: "series/barycentre/index.html", desc: "1 série" }
+                    { title: "Logique mathématique", file: "content/math/series/logique/index.html", desc: "5 séries" },
+                    { title: "Généralités sur les fonctions", file: "content/math/series/fonctions/index.html", desc: "2 séries" },
+                    { title: "Barycentre dans le plan", file: "content/math/series/barycentre/index.html", desc: "1 série" }
                 ],
                 exams: []
             },
@@ -443,14 +464,14 @@
                 title: "Physique",
                 desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Mouvement rectiligne", file: "lessons/mouvement.html", desc: "Position, vitesse, accélération" },
-                    { title: "Lois de Newton", file: "lessons/newton.html", desc: "Les trois lois de Newton" }
+                    { title: "Mouvement rectiligne", file: "content/physique/lessons/mecanique/index.html", desc: "Position, vitesse, accélération" },
+                    { title: "Lois de Newton", file: "content/physique/lessons/mecanique/newton.html", desc: "Les trois lois de Newton" }
                 ],
                 exercices: [
-                    { title: "Mécanique", file: "exercices/mecanique/index.html", desc: "2 exercices" }
+                    { title: "Mécanique", file: "content/physique/exercises/mecanique/index.html", desc: "2 exercices" }
                 ],
                 series: [
-                    { title: "Mécanique", file: "series/mecanique/index.html", desc: "2 séries" }
+                    { title: "Mécanique", file: "content/physique/series/mecanique/index.html", desc: "2 séries" }
                 ],
                 exams: []
             },
@@ -458,14 +479,14 @@
                 title: "Chimie",
                 desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
-                    { title: "Structure de l'atome", file: "lessons/atome.html", desc: "Noyau, électrons, configuration" },
-                    { title: "Réactions chimiques", file: "lessons/reactions.html", desc: "Équations bilan, stoechiométrie" }
+                    { title: "Structure de l'atome", file: "content/chimie/lessons/atome/index.html", desc: "Noyau, électrons, configuration" },
+                    { title: "Réactions chimiques", file: "content/chimie/lessons/reactions/index.html", desc: "Équations bilan, stoechiométrie" }
                 ],
                 exercices: [
-                    { title: "Atome", file: "exercices/atome/index.html", desc: "2 exercices" }
+                    { title: "Atome", file: "content/chimie/exercises/atome/index.html", desc: "2 exercices" }
                 ],
                 series: [
-                    { title: "Atome", file: "series/atome/index.html", desc: "2 séries" }
+                    { title: "Atome", file: "content/chimie/series/atome/index.html", desc: "2 séries" }
                 ],
                 exams: []
             }
@@ -475,6 +496,9 @@
         let currentTab = 'lessons';
         let isAnimating = false;
 
+        // ============================================================
+        // تحميل المادة
+        // ============================================================
         function loadSubject() {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('subject');
@@ -492,19 +516,40 @@
             renderContent(document.getElementById('tabContent'), 'lessons');
         }
 
+        // ============================================================
+        // تبديل التبويب - نسخة محسنة مع منع التداخل
+        // ============================================================
         function switchTab(tab) {
-            if (isAnimating) return;
-            if (tab === currentTab) return;
+            // منع التبديل إذا كان أنميشن قيد التشغيل
+            if (isAnimating) {
+                console.log('⏳ Animation en cours, veuillez patienter...');
+                return;
+            }
             
+            // منع التبديل إلى نفس التبويب
+            if (tab === currentTab) {
+                console.log('ℹ️ Déjà sur cet onglet');
+                return;
+            }
+            
+            // تفعيل حالة الأنميشن
             isAnimating = true;
+            
+            // تعطيل جميع أزرار التبويب مؤقتاً
+            document.querySelectorAll('.tab-btn').forEach(b => b.disabled = true);
+            
+            const previousTab = currentTab;
             currentTab = tab;
             
+            // تحديث المظهر النشط للأزرار
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+            const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
             
             const container = document.getElementById('tabContent');
-            
             const currentCards = container.querySelectorAll('.command-card');
+            
+            // إذا كانت هناك بطاقات موجودة، قم بإخفائها أولاً
             if (currentCards.length > 0) {
                 gsap.to(currentCards, {
                     opacity: 0,
@@ -514,15 +559,25 @@
                     ease: 'power2.in',
                     stagger: 0.04,
                     onComplete: function() {
-                        renderContent(container, tab);
+                        renderContent(container, tab, function() {
+                            // إعادة تمكين الأزرار بعد الانتهاء
+                            document.querySelectorAll('.tab-btn').forEach(b => b.disabled = false);
+                            isAnimating = false;
+                        });
                     }
                 });
             } else {
-                renderContent(container, tab);
+                renderContent(container, tab, function() {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.disabled = false);
+                    isAnimating = false;
+                });
             }
         }
 
-        function renderContent(container, tab) {
+        // ============================================================
+        // عرض المحتوى - نسخة محسنة مع callback
+        // ============================================================
+        function renderContent(container, tab, callback) {
             let html = '';
             
             if (tab === 'lessons') {
@@ -593,12 +648,12 @@
                         stagger: 0.08,
                         ease: 'power3.out',
                         onComplete: function() {
-                            isAnimating = false;
+                            if (callback) callback();
                         }
                     }
                 );
             } else {
-                isAnimating = false;
+                if (callback) callback();
             }
             
             if (window.MathJax && MathJax.typesetPromise) {
@@ -623,20 +678,14 @@
             
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
-                // إخفاء hero-wrapper نهائياً
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
-                
-                // إظهار الخلفيات
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
                 gsap.set('.geo-pattern', { opacity: 0.03 });
-                
-                // إظهار المحتوى مباشرة
                 gsap.set('#contentWrapper', { opacity: 1 });
                 gsap.set('#tabsWrapper', { opacity: 1, y: 0 });
                 
-                // إزالة طبقة الحماية فوراً (لأنه لا يوجد أنميشن)
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
@@ -644,17 +693,13 @@
                 
                 console.log('✅ subject.html - Affichage direct (sans animation)');
                 
-                // حركات مستمرة
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
             }
 
             // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
-                // ====== تفعيل طبقة الحماية ======
                 overlay.classList.add('active');
-                
-                // التأكد من أن hero-wrapper ظاهر قبل بدء الأنميشن
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
                 
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -674,26 +719,20 @@
                         duration: 0.6, 
                         ease: 'power2.in',
                         onComplete: function() {
-                            // إخفاء hero-wrapper نهائياً بعد اختفائه
                             gsap.set('#heroWrapper', { display: 'none' });
                         }
                     }, '-=0.4')
                     .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
                     .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
                     .call(() => {
-                        // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
                         sessionStorage.removeItem('animation_allowed');
-                        
-                        // ====== إزالة طبقة الحماية ======
                         overlay.classList.remove('active');
                         overlay.classList.add('hidden');
                         overlay.style.display = 'none';
                         overlay.style.pointerEvents = 'none';
-                        
                         console.log('✅ subject.html - Animation jouée une fois, overlay removed');
                     });
 
-                // حركات مستمرة
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
 
@@ -711,21 +750,18 @@
             // المنطق الرئيسي
             // ============================================================
             
-            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
             if (navType === 2) {
                 showDirect();
                 console.log('📌 subject.html - Navigation depuis Back/Forward → Affichage direct');
                 return;
             }
 
-            // 2. إذا لم يكن هناك إذن لتشغيل الأنميشن → عرض مباشر
             if (animationAllowed !== 'true') {
                 showDirect();
                 console.log('📌 subject.html - Animation non autorisée → Affichage direct');
                 return;
             }
 
-            // 3. في جميع الحالات الأخرى (مع الإذن) → تشغيل الأنميشن
             runAnimation();
             console.log('📌 subject.html - Animation autorisée → Animation jouée');
         });

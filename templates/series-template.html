@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série {{NUM}} - {{TOPIC}} - Xpert</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../assets/css/global-control.css">
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        .badge-serie {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color: #4ECDC4;
+            font-weight: 700;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover, .prev-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <nav class="navbar" id="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Série {{NUM}} - {{TOPIC}}</h1>
+            <div class="serie-title">Exercices <span>{{START}} à {{END}}</span></div>
+            {{CONTENT}}
+            <div class="nav-buttons">
+                <a href="serie{{PREV}}.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série précédente</a>
+                <a href="serie{{NEXT}}.html" class="next-btn">Série suivante <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script src="../../assets/js/script.js"></script>
+    <script>
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+</body>
+</html>
