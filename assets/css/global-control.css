@@ -1,5 +1,14 @@
+/* ============================================================
+   GLOBAL-CONTROL.CSS
+   التحكم المركزي في جميع أحجام الموقع
+   ============================================================ */
+
+/* ====== المتغيرات العامة ====== */
 :root {
+    /* حجم الخط الأساسي */
     --font-size-base: 12px;
+    
+    /* أحجام النصوص */
     --text-xs: 10px;
     --text-sm: 11px;
     --text-base: 12px;
@@ -8,68 +17,183 @@
     --text-xl: 16px;
     --text-2xl: 20px;
     --text-3xl: 24px;
+    
+    /* أحجام العناوين */
     --title-size: 20px;
     --subtitle-size: 14px;
+    
+    /* التباعد */
     --space-xs: 2px;
     --space-sm: 4px;
     --space-md: 6px;
     --space-lg: 8px;
     --space-xl: 10px;
     --space-2xl: 12px;
+    
+    /* أحجام العناصر */
     --navbar-height: 44px;
     --logo-size: 24px;
     --icon-size: 18px;
     --button-padding: 4px 12px;
+    
+    /* أنصاف الأقطار */
     --radius-sm: 4px;
     --radius-md: 6px;
     --radius-lg: 8px;
     --radius-xl: 10px;
 }
 
-body { font-size: var(--font-size-base) !important; }
+/* ====== تطبيق المتغيرات ====== */
+body {
+    font-size: var(--font-size-base) !important;
+}
 
-.navbar { height: var(--navbar-height) !important; padding: 0 var(--space-xl) !important; }
-.nav-logo-icon { width: var(--logo-size) !important; height: var(--logo-size) !important; font-size: calc(var(--logo-size) / 2) !important; }
-.nav-logo-text { font-size: calc(var(--logo-size) * 0.65) !important; }
-.nav-links a { font-size: calc(var(--font-size-base) - 1px) !important; padding: calc(var(--space-sm) + 1px) var(--space-md) !important; }
+/* ====== شريط التنقل ====== */
+.navbar {
+    height: var(--navbar-height) !important;
+    padding: 0 var(--space-xl) !important;
+}
+.nav-logo-icon {
+    width: var(--logo-size) !important;
+    height: var(--logo-size) !important;
+    font-size: calc(var(--logo-size) / 2) !important;
+}
+.nav-logo-text {
+    font-size: calc(var(--logo-size) * 0.65) !important;
+}
+.nav-links a {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding: calc(var(--space-sm) + 1px) var(--space-md) !important;
+}
 
-.back-btn, .next-btn { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-lg) !important; }
+/* ====== الأزرار ====== */
+.back-btn,
+.next-btn {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding: var(--space-sm) var(--space-lg) !important;
+}
 
-.lesson-title { font-size: var(--title-size) !important; padding-bottom: var(--space-lg) !important; margin-bottom: var(--space-lg) !important; }
+/* ====== العناوين ====== */
+.lesson-title {
+    font-size: var(--title-size) !important;
+    padding-bottom: var(--space-lg) !important;
+    margin-bottom: var(--space-lg) !important;
+}
 
-.section { padding: var(--space-xl) var(--space-2xl) !important; margin-bottom: var(--space-xl) !important; border-radius: var(--radius-xl) !important; }
-.section h2 { font-size: var(--text-lg) !important; margin-bottom: var(--space-md) !important; }
-.section h2 .num { width: calc(var(--text-lg) * 1.4) !important; height: calc(var(--text-lg) * 1.4) !important; font-size: calc(var(--text-lg) * 0.8) !important; }
-.section h3 { font-size: var(--text-md) !important; margin: var(--space-md) 0 var(--space-sm) !important; }
-.section p { font-size: calc(var(--font-size-base) - 1px) !important; line-height: 1.5 !important; margin-bottom: var(--space-sm) !important; }
-.section ul { font-size: calc(var(--font-size-base) - 1px) !important; padding-right: var(--space-lg) !important; }
+/* ====== الأقسام ====== */
+.section {
+    padding: var(--space-xl) var(--space-2xl) !important;
+    margin-bottom: var(--space-xl) !important;
+    border-radius: var(--radius-xl) !important;
+}
+.section h2 {
+    font-size: var(--text-lg) !important;
+    margin-bottom: var(--space-md) !important;
+}
+.section h2 .num {
+    width: calc(var(--text-lg) * 1.4) !important;
+    height: calc(var(--text-lg) * 1.4) !important;
+    font-size: calc(var(--text-lg) * 0.8) !important;
+}
+.section h3 {
+    font-size: var(--text-md) !important;
+    margin: var(--space-md) 0 var(--space-sm) !important;
+}
+.section p {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    line-height: 1.5 !important;
+    margin-bottom: var(--space-sm) !important;
+}
+.section ul {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding-right: var(--space-lg) !important;
+}
 
-.highlight-box { padding: var(--space-md) var(--space-xl) !important; margin: var(--space-sm) 0 !important; }
-.highlight-box .label { font-size: calc(var(--font-size-base) - 2px) !important; padding: 1px var(--space-lg) !important; }
+/* ====== الصناديق المميزة ====== */
+.highlight-box {
+    padding: var(--space-md) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+}
+.highlight-box .label {
+    font-size: calc(var(--font-size-base) - 2px) !important;
+    padding: 1px var(--space-lg) !important;
+}
 
-.formula-block { padding: var(--space-md) var(--space-xl) !important; margin: var(--space-sm) 0 !important; font-size: var(--text-md) !important; border-radius: var(--radius-md) !important; }
+/* ====== الصيغ الرياضية ====== */
+.formula-block {
+    padding: var(--space-md) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+    font-size: var(--text-md) !important;
+    border-radius: var(--radius-md) !important;
+}
 
-.table-wrap table { font-size: calc(var(--font-size-base) - 1px) !important; max-width: 240px !important; }
-.table-wrap th, .table-wrap td { padding: var(--space-sm) var(--space-lg) !important; font-size: calc(var(--font-size-base) - 1px) !important; }
+/* ====== الجداول ====== */
+.table-wrap table {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    max-width: 240px !important;
+}
+.table-wrap th,
+.table-wrap td {
+    padding: var(--space-sm) var(--space-lg) !important;
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
 
-.step { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-xl) !important; margin: var(--space-sm) 0 !important; }
-.step .step-num { font-size: calc(var(--font-size-base) - 1px) !important; }
+/* ====== الخطوات ====== */
+.step {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding: var(--space-sm) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+}
+.step .step-num {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
 
-.exercice-box { padding: var(--space-lg) var(--space-xl) !important; margin: var(--space-sm) 0 !important; }
-.exercice-box .ex-title { font-size: calc(var(--font-size-base) + 1px) !important; }
-.exercice-box .ex-question { font-size: calc(var(--font-size-base) - 1px) !important; }
-.solution-box .sol-content { font-size: calc(var(--font-size-base) - 1px) !important; }
-.toggle-sol { font-size: calc(var(--font-size-base) - 2px) !important; padding: var(--space-sm) var(--space-xl) !important; }
+/* ====== التمارين ====== */
+.exercice-box {
+    padding: var(--space-lg) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+}
+.exercice-box .ex-title {
+    font-size: calc(var(--font-size-base) + 1px) !important;
+}
+.exercice-box .ex-question {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
+.solution-box .sol-content {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
+.toggle-sol {
+    font-size: calc(var(--font-size-base) - 2px) !important;
+    padding: var(--space-sm) var(--space-xl) !important;
+}
 
-.footer p { font-size: calc(var(--font-size-base) - 2px) !important; }
-.nav-buttons { margin-top: var(--space-lg) !important; padding-top: var(--space-xl) !important; }
-.lesson-container { padding: var(--space-lg) !important; }
+/* ====== التذييل ====== */
+.footer p {
+    font-size: calc(var(--font-size-base) - 2px) !important;
+}
 
+/* ====== أزرار التنقل ====== */
+.nav-buttons {
+    margin-top: var(--space-lg) !important;
+    padding-top: var(--space-xl) !important;
+}
+
+/* ====== الحاوية ====== */
+.lesson-container {
+    padding: var(--space-lg) !important;
+}
+
+/* ====== عناصر مخفية ====== */
 .glow-orb { display: none !important; }
 .bg-grid { opacity: 0.3 !important; }
 .progress-bar { display: none !important; }
 .scroll-top-btn { display: none !important; }
 
+/* ============================================================ */
+/* ====== RESPONSIVE ====== */
+/* ============================================================ */
+
+/* ---- شاشات متوسطة (تابلت) ---- */
 @media (max-width: 768px) {
     :root {
         --font-size-base: 11px;
@@ -82,12 +206,14 @@ body { font-size: var(--font-size-base) !important; }
     .section h3 { font-size: calc(var(--text-md) - 1px) !important; }
     .section p { font-size: calc(var(--font-size-base) - 1px) !important; }
     .table-wrap table { max-width: 100% !important; }
-    .table-wrap th, .table-wrap td { padding: var(--space-sm) var(--space-md) !important; font-size: calc(var(--font-size-base) - 1px) !important; }
+    .table-wrap th,
+    .table-wrap td { padding: var(--space-sm) var(--space-md) !important; font-size: calc(var(--font-size-base) - 1px) !important; }
     .formula-block { font-size: calc(var(--text-md) - 2px) !important; }
     .highlight-box { padding: var(--space-sm) var(--space-md) !important; }
     .nav-links a { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-md) !important; }
 }
 
+/* ---- شاشات صغيرة (هواتف) ---- */
 @media (max-width: 480px) {
     :root {
         --font-size-base: 10px;
@@ -99,7 +225,8 @@ body { font-size: var(--font-size-base) !important; }
     .section h3 { font-size: calc(var(--text-md) - 2px) !important; }
     .section p { font-size: calc(var(--font-size-base) - 1px) !important; }
     .formula-block { font-size: calc(var(--text-md) - 3px) !important; padding: var(--space-sm) var(--space-md) !important; }
-    .table-wrap th, .table-wrap td { padding: var(--space-sm) var(--space-md) !important; font-size: calc(var(--font-size-base) - 1px) !important; }
+    .table-wrap th,
+    .table-wrap td { padding: var(--space-sm) var(--space-md) !important; font-size: calc(var(--font-size-base) - 1px) !important; }
     .step { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-md) !important; }
     .back-btn { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-md) !important; }
     .nav-logo-text { font-size: calc(var(--logo-size) * 0.6) !important; }
@@ -107,6 +234,7 @@ body { font-size: var(--font-size-base) !important; }
     .nav-links a { font-size: calc(var(--font-size-base) - 2px) !important; padding: var(--space-xs) var(--space-sm) !important; }
 }
 
+/* ---- شاشات كبيرة (حواسيب) ---- */
 @media (min-width: 1200px) {
     :root {
         --font-size-base: 13px;
@@ -115,88 +243,3 @@ body { font-size: var(--font-size-base) !important; }
         --logo-size: 28px;
     }
 }
-
-/* ============================================================
-   🔒 منع جميع النصوص - حماية كاملة
-   ============================================================ */
-
-/* منع تحديد النصوص في جميع العناصر */
-* {
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    -webkit-touch-callout: none !important;
-}
-
-/* منع تحديد النصوص في الصيغ الرياضية */
-.math, .MathJax, .MathJax_SVG, .MathJax_Display,
-.mjx-chtml, .mjx-math, .MathJax_SVG_Display,
-.math-display, .math-inline {
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-}
-
-/* منع تحديد النصوص في الجداول */
-table, th, td, tr, .table-wrap {
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-}
-
-/* منع تحديد النصوص في جميع الصناديق */
-.exercice-box, .solution-box, .highlight-box,
-.section, .lesson-container, .formula-block,
-.step, .sub-question, .command-card, .card {
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-}
-
-/* منع تحديد النصوص في القوائم */
-ul, ol, li, .nav-links, .dropdown-menu {
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-}
-
-/* السماح بالتحديد في حقول الإدخال فقط */
-input, textarea, [contenteditable="true"], 
-.search-box input, .search-box textarea,
-.form-control, .search-input {
-    user-select: text !important;
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-}
-
-/* منع ظهور قائمة النسخ على الهواتف */
-* {
-    -webkit-touch-callout: none !important;
-}
-
-/* منع سحب العناصر */
-* {
-    -webkit-user-drag: none !important;
-    user-drag: none !important;
-}
-
-
-/* ============================================================
-   🔒 حماية الضغط المطول - التحكم العام
-   ============================================================ */
-
-* {
-    -webkit-touch-callout: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-}
-
