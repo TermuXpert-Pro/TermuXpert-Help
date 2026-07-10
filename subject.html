@@ -8,8 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css"
+    <link rel="stylesheet" href="assets/css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <style>
         /* ====== طبقة الحماية غير المرئية ====== */
         .overlay-protection {
@@ -195,6 +197,7 @@
             gap: 8px;
             position: relative;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         .tab-btn::before {
             content: '';
@@ -244,6 +247,7 @@
             overflow: hidden;
             opacity: 0;
             transform: translateY(40px) scale(0.95);
+            -webkit-tap-highlight-color: transparent;
         }
         .command-card::before {
             content: '';
@@ -338,6 +342,7 @@
             .command-card p { font-size: 12px; }
         }
     </style>
+    <script src="assets/js/seo.js" defer></script>
 </head>
 <body>
 
@@ -397,10 +402,10 @@
 
     <div class="content-wrapper" id="contentWrapper">
         <div class="tabs-wrapper" id="tabsWrapper">
-            <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
-            <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
-            <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
-            <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
+            <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')" aria-label="Cours"><i class="fas fa-book"></i> Cours</button>
+            <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')" aria-label="Exercices"><i class="fas fa-pencil"></i> Exercices</button>
+            <button class="tab-btn" data-tab="series" onclick="switchTab('series')" aria-label="Séries"><i class="fas fa-list-check"></i> Séries</button>
+            <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')" aria-label="Devoirs"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
 
         <div class="cards-grid" id="tabContent"></div>
@@ -476,13 +481,31 @@
         let currentSubject = null;
         let currentTab = 'lessons';
         let isAnimating = false;
+        let animationTimeout = null;
+
+        // ============================================================
+        // التحقق من صحة المعامل (Parameter Validation)
+        // ============================================================
+        function getValidSubject() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('subject');
+            const validSubjects = ['math', 'physique', 'chimie'];
+            
+            if (!id || !validSubjects.includes(id)) {
+                // إذا كانت المادة غير صالحة، التوجيه إلى صفحة المواد
+                window.location.href = '/subjects.html';
+                return null;
+            }
+            return id;
+        }
 
         // ============================================================
         // تحميل المادة
         // ============================================================
         function loadSubject() {
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get('subject');
+            const id = getValidSubject();
+            if (!id) return;
+            
             currentSubject = data[id];
             
             if (!currentSubject) {
@@ -498,17 +521,24 @@
         }
 
         // ============================================================
-        // تبديل التبويب
+        // تبديل التبويب مع منع التداخل
         // ============================================================
         function switchTab(tab) {
             if (isAnimating) return;
             if (tab === currentTab) return;
             
+            // إلغاء أي أنميشن سابق
+            if (animationTimeout) {
+                clearTimeout(animationTimeout);
+                animationTimeout = null;
+            }
+            
             isAnimating = true;
             currentTab = tab;
             
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+            const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
             
             const container = document.getElementById('tabContent');
             
@@ -518,9 +548,9 @@
                     opacity: 0,
                     y: -20,
                     scale: 0.95,
-                    duration: 0.25,
+                    duration: 0.2,
                     ease: 'power2.in',
-                    stagger: 0.04,
+                    stagger: 0.03,
                     onComplete: function() {
                         renderContent(container, tab);
                     }
@@ -538,7 +568,7 @@
             
             if (tab === 'lessons') {
                 html = currentSubject.lessons.map((l, i) => `
-                    <div class="command-card" onclick="location.href='${l.file}'">
+                    <div class="command-card" onclick="location.href='${l.file}'" role="button" tabindex="0">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${l.title}
                         </div>
@@ -548,7 +578,7 @@
                 `).join('');
             } else if (tab === 'exercices') {
                 html = currentSubject.exercices.map((e, i) => `
-                    <div class="command-card" onclick="location.href='${e.file}'">
+                    <div class="command-card" onclick="location.href='${e.file}'" role="button" tabindex="0">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${e.title}
                         </div>
@@ -558,7 +588,7 @@
                 `).join('');
             } else if (tab === 'series') {
                 html = currentSubject.series.map((s, i) => `
-                    <div class="command-card" onclick="location.href='${s.file}'">
+                    <div class="command-card" onclick="location.href='${s.file}'" role="button" tabindex="0">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${s.title}
                         </div>
@@ -600,8 +630,8 @@
                         opacity: 1, 
                         y: 0, 
                         scale: 1, 
-                        duration: 0.5, 
-                        stagger: 0.08,
+                        duration: 0.4, 
+                        stagger: 0.06,
                         ease: 'power3.out',
                         onComplete: function() {
                             isAnimating = false;
@@ -627,27 +657,21 @@
             const overlay = document.getElementById('overlayProtection');
             
             // ====== التحقق من نوع التنقل ======
-            const navType = performance.navigation.type;
+            const navType = performance.navigation ? performance.navigation.type : 0;
             
             // ====== التحقق من إذن تشغيل الأنميشن ======
             const animationAllowed = sessionStorage.getItem('animation_allowed');
             
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
-                // إخفاء hero-wrapper نهائياً
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
-                
-                // إظهار الخلفيات
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
                 gsap.set('.geo-pattern', { opacity: 0.03 });
-                
-                // إظهار المحتوى مباشرة
                 gsap.set('#contentWrapper', { opacity: 1 });
                 gsap.set('#tabsWrapper', { opacity: 1, y: 0 });
                 
-                // إزالة طبقة الحماية فوراً (لأنه لا يوجد أنميشن)
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
@@ -655,17 +679,13 @@
                 
                 console.log('✅ subject.html - Affichage direct (sans animation)');
                 
-                // حركات مستمرة
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
             }
 
             // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
-                // ====== تفعيل طبقة الحماية ======
                 overlay.classList.add('active');
-                
-                // التأكد من أن hero-wrapper ظاهر قبل بدء الأنميشن
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
                 
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -685,26 +705,20 @@
                         duration: 0.6, 
                         ease: 'power2.in',
                         onComplete: function() {
-                            // إخفاء hero-wrapper نهائياً بعد اختفائه
                             gsap.set('#heroWrapper', { display: 'none' });
                         }
                     }, '-=0.4')
                     .to('#contentWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
                     .to('#tabsWrapper', { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
                     .call(() => {
-                        // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
                         sessionStorage.removeItem('animation_allowed');
-                        
-                        // ====== إزالة طبقة الحماية ======
                         overlay.classList.remove('active');
                         overlay.classList.add('hidden');
                         overlay.style.display = 'none';
                         overlay.style.pointerEvents = 'none';
-                        
                         console.log('✅ subject.html - Animation jouée une fois, overlay removed');
                     });
 
-                // حركات مستمرة
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
 
@@ -722,21 +736,18 @@
             // المنطق الرئيسي
             // ============================================================
             
-            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
             if (navType === 2) {
                 showDirect();
                 console.log('📌 subject.html - Navigation depuis Back/Forward → Affichage direct');
                 return;
             }
 
-            // 2. إذا لم يكن هناك إذن لتشغيل الأنميشن → عرض مباشر
             if (animationAllowed !== 'true') {
                 showDirect();
                 console.log('📌 subject.html - Animation non autorisée → Affichage direct');
                 return;
             }
 
-            // 3. في جميع الحالات الأخرى (مع الإذن) → تشغيل الأنميشن
             runAnimation();
             console.log('📌 subject.html - Animation autorisée → Animation jouée');
         });
