@@ -13,6 +13,16 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
     <title>Partie 3 - Barycentre dans le plan | Xpert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +41,8 @@
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
     <style>
         .graph-container {
             background: var(--bg-primary);
@@ -77,6 +89,8 @@
             color: var(--text-secondary);
             font-size: 13px;
         }
+        /* إزالة زر العودة للأعلى */
+        .scroll-top-btn { display: none !important; }
         @media (max-width: 600px) {
             .function-grid { grid-template-columns: 1fr; }
         }
@@ -142,6 +156,11 @@
             <!-- ============================================================ -->
             <!-- SECTION 1: ACTIVITÉ -->
             <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Activité</h2>
+                <div class="highlight-box">
+                    <p><strong>Soit ABCD un parallélogramme.</strong></p>
+                    <div class="step"><span class="step-num">1.</span> Déterminer $G_1$ barycentre de $(A,1)$ et $(B,1)$.</div>
                     <div class="step"><span class="step-num">2.</span> Déterminer $G_2$ barycentre de $(C,1)$ et $(D,1)$.</div>
                     <div class="step"><span class="step-num">3.</span> Existe-t-il un point $G$ tel que $\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} + \overrightarrow{GD} = \overrightarrow{0}$ ?</div>
                     <div class="step"><span class="step-num">4.</span> Que peut-on déduire ?</div>
@@ -166,6 +185,16 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: DÉFINITION ET THÉORÈME -->
             <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Définition et théorème</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Soient $(A,a)$, $(B,b)$, $(C,c)$, $(D,d)$ quatre points pondérés du plan $(P)$.</p>
+                    <p>Si $a+b+c+d \neq 0$, il existe un point unique $G$ de $(P)$ tel que :</p>
+                    <div class="formula-block">
+                        $$a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} + d\overrightarrow{GD} = \overrightarrow{0}$$
+                    </div>
                     <p>Le point $G$ s'appelle le <strong>barycentre</strong> du système pondéré $S = \{(A,a), (B,b), (C,c), (D,d)\}$.</p>
                 </div>
 
@@ -217,6 +246,14 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: PROPRIÉTÉS -->
             <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Propriétés</h2>
+
+                <h3>3-1 Invariance</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Théorème</span>
+                    <p>Si $G$ est barycentre de $S$, alors pour tout $k \in \mathbb{R}^*$, $G$ est aussi barycentre de $\{(A,ka), (B,kb), (C,kc), (D,kd)\}$.</p>
+                </div>
 
                 <h3>3-2 Propriété caractéristique</h3>
                 <div class="highlight-box green">
@@ -286,6 +323,16 @@
             <!-- ============================================================ -->
             <!-- SECTION 4: COORDONNÉES -->
             <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Coordonnées du barycentre</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Propriété</span>
+                    <p>Soit $G$ barycentre de $\{(A,a), (B,b), (C,c), (D,d)\}$.</p>
+                    <p>Dans un repère $(O, \vec{i}, \vec{j})$, les coordonnées de $G$ sont :</p>
+                    <div class="formula-block">
+                        $$x_G = \frac{ax_A + bx_B + cx_C + dx_D}{a+b+c+d} \quad \text{et} \quad y_G = \frac{ay_A + by_B + cy_C + dy_D}{a+b+c+d}$$
+                    </div>
                 </div>
 
                 <!-- Graphique Coordonnées -->
@@ -328,25 +375,28 @@
             <!-- ============================================================ -->
             <!-- SECTION 5: RÉSUMÉ GÉNÉRAL -->
             <!-- ============================================================ -->
-                        <div class="function-card" style="border-color:#FF6B6B;">
-                            <h4>3 points</h4>
-                            <p>$a+b+c \neq 0$</p>
-                            <p>$a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} = \overrightarrow{0}$</p>
-                            <p>$\overrightarrow{AG} = \frac{b\overrightarrow{AB} + c\overrightarrow{AC}}{a+b+c}$</p>
-                        </div>
-                        <div class="function-card" style="border-color:#F4D03F;">
-                            <h4>4 points</h4>
-                            <p>$a+b+c+d \neq 0$</p>
-                            <p>$a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} + d\overrightarrow{GD} = \overrightarrow{0}$</p>
-                            <p>Généralisation</p>
-                        </div>
-                        <div class="function-card" style="border-color:#BB8FCE;">
-                            <h4>Propriétés communes</h4>
-                            <p>✅ Invariance</p>
-                            <p>✅ Caractéristique</p>
-                            <p>✅ Associativité</p>
-                            <p>✅ Coordonnées</p>
-                        </div>
+            <div class="section">
+                <h2><span class="num">5</span> Résumé général</h2>
+
+                <div class="function-grid">
+                    <div class="function-card" style="border-color:#FF6B6B;">
+                        <h4>3 points</h4>
+                        <p>$a+b+c \neq 0$</p>
+                        <p>$a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} = \overrightarrow{0}$</p>
+                        <p>$\overrightarrow{AG} = \frac{b\overrightarrow{AB} + c\overrightarrow{AC}}{a+b+c}$</p>
+                    </div>
+                    <div class="function-card" style="border-color:#F4D03F;">
+                        <h4>4 points</h4>
+                        <p>$a+b+c+d \neq 0$</p>
+                        <p>$a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} + d\overrightarrow{GD} = \overrightarrow{0}$</p>
+                        <p>Généralisation</p>
+                    </div>
+                    <div class="function-card" style="border-color:#BB8FCE;">
+                        <h4>Propriétés communes</h4>
+                        <p>✅ Invariance</p>
+                        <p>✅ Caractéristique</p>
+                        <p>✅ Associativité</p>
+                        <p>✅ Coordonnées</p>
                     </div>
                 </div>
             </div>
@@ -366,6 +416,17 @@
         <div class="divider"></div>
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
+
+    <!-- ====== Service Worker (PWA) ====== -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+
+    <script src="../../../../assets/js/protection.js"></script>
     <script src="../../../../assets/js/script.js"></script>
     <script>
         window.addEventListener('scroll', function() {
@@ -408,7 +469,6 @@
             var ox = (ax + cx) / 2;
             var oy = (ay + cy) / 2;
 
-            // Parallélogramme
             ctx.strokeStyle = '#2A2A3E';
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -419,7 +479,6 @@
             ctx.closePath();
             ctx.stroke();
 
-            // Diagonales
             ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 1.5;
             ctx.setLineDash([6, 6]);
@@ -433,7 +492,6 @@
             ctx.stroke();
             ctx.setLineDash([]);
 
-            // Points
             ctx.fillStyle = '#4ECDC4';
             ctx.beginPath();
             ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
@@ -496,7 +554,6 @@
             var gx = (ax + bx + cx + dx) / 4;
             var gy = (ay + by + cy + dy) / 4;
 
-            // Quadrilatère
             ctx.strokeStyle = '#2A2A3E';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
@@ -507,7 +564,6 @@
             ctx.closePath();
             ctx.stroke();
 
-            // Points
             ctx.fillStyle = '#4ECDC4';
             ctx.beginPath();
             ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
@@ -575,7 +631,6 @@
             var gx = (g1x + g2x) / 2;
             var gy = (g1y + g2y) / 2;
 
-            // Points A et B
             ctx.strokeStyle = '#2A2A3E';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
@@ -583,14 +638,12 @@
             ctx.lineTo(bx, by);
             ctx.stroke();
 
-            // Points C et D
             ctx.strokeStyle = '#2A2A3E';
             ctx.beginPath();
             ctx.moveTo(cx, cy);
             ctx.lineTo(dx, dy);
             ctx.stroke();
 
-            // G1 et G2
             ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 1.5;
             ctx.setLineDash([6, 6]);
@@ -600,7 +653,6 @@
             ctx.stroke();
             ctx.setLineDash([]);
 
-            // Points
             ctx.fillStyle = '#4ECDC4';
             ctx.beginPath();
             ctx.arc(ax, ay, 5, 0, 2 * Math.PI);
@@ -675,7 +727,6 @@
             var ox = 60, oy = 220;
             var scale = 35;
 
-            // Axes
             ctx.strokeStyle = '#2A2A3E';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
@@ -692,7 +743,6 @@
             ctx.fillText('x', w - 20, oy + 18);
             ctx.fillText('y', ox + 8, 16);
 
-            // Points avec poids différents
             var pts = [
                 {x: 0, y: 0, color: '#4ECDC4', label: 'A(1)'},
                 {x: 4, y: 0, color: '#FF6B6B', label: 'B(2)'},
@@ -746,9 +796,6 @@
                 drawCoord4();
             }, 500);
         };
-    </script>
-    <script>
-        });
     </script>
 </body>
 </html>
