@@ -1,0 +1,245 @@
+/* ============================================================
+   GLOBAL-CONTROL.CSS
+   التحكم المركزي في جميع أحجام الموقع
+   ============================================================ */
+
+/* ====== المتغيرات العامة ====== */
+:root {
+    /* حجم الخط الأساسي */
+    --font-size-base: 12px;
+    
+    /* أحجام النصوص */
+    --text-xs: 10px;
+    --text-sm: 11px;
+    --text-base: 12px;
+    --text-md: 13px;
+    --text-lg: 14px;
+    --text-xl: 16px;
+    --text-2xl: 20px;
+    --text-3xl: 24px;
+    
+    /* أحجام العناوين */
+    --title-size: 20px;
+    --subtitle-size: 14px;
+    
+    /* التباعد */
+    --space-xs: 2px;
+    --space-sm: 4px;
+    --space-md: 6px;
+    --space-lg: 8px;
+    --space-xl: 10px;
+    --space-2xl: 12px;
+    
+    /* أحجام العناصر */
+    --navbar-height: 44px;
+    --logo-size: 24px;
+    --icon-size: 18px;
+    --button-padding: 4px 12px;
+    
+    /* أنصاف الأقطار */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 10px;
+}
+
+/* ====== تطبيق المتغيرات ====== */
+body {
+    font-size: var(--font-size-base) !important;
+}
+
+/* ====== شريط التنقل ====== */
+.navbar {
+    height: var(--navbar-height) !important;
+    padding: 0 var(--space-xl) !important;
+}
+.nav-logo-icon {
+    width: var(--logo-size) !important;
+    height: var(--logo-size) !important;
+    font-size: calc(var(--logo-size) / 2) !important;
+}
+.nav-logo-text {
+    font-size: calc(var(--logo-size) * 0.65) !important;
+}
+.nav-links a {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding: calc(var(--space-sm) + 1px) var(--space-md) !important;
+}
+
+/* ====== الأزرار ====== */
+.back-btn,
+.next-btn {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding: var(--space-sm) var(--space-lg) !important;
+}
+
+/* ====== العناوين ====== */
+.lesson-title {
+    font-size: var(--title-size) !important;
+    padding-bottom: var(--space-lg) !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* ====== الأقسام ====== */
+.section {
+    padding: var(--space-xl) var(--space-2xl) !important;
+    margin-bottom: var(--space-xl) !important;
+    border-radius: var(--radius-xl) !important;
+}
+.section h2 {
+    font-size: var(--text-lg) !important;
+    margin-bottom: var(--space-md) !important;
+}
+.section h2 .num {
+    width: calc(var(--text-lg) * 1.4) !important;
+    height: calc(var(--text-lg) * 1.4) !important;
+    font-size: calc(var(--text-lg) * 0.8) !important;
+}
+.section h3 {
+    font-size: var(--text-md) !important;
+    margin: var(--space-md) 0 var(--space-sm) !important;
+}
+.section p {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    line-height: 1.5 !important;
+    margin-bottom: var(--space-sm) !important;
+}
+.section ul {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding-right: var(--space-lg) !important;
+}
+
+/* ====== الصناديق المميزة ====== */
+.highlight-box {
+    padding: var(--space-md) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+}
+.highlight-box .label {
+    font-size: calc(var(--font-size-base) - 2px) !important;
+    padding: 1px var(--space-lg) !important;
+}
+
+/* ====== الصيغ الرياضية ====== */
+.formula-block {
+    padding: var(--space-md) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+    font-size: var(--text-md) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+/* ====== الجداول ====== */
+.table-wrap table {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    max-width: 240px !important;
+}
+.table-wrap th,
+.table-wrap td {
+    padding: var(--space-sm) var(--space-lg) !important;
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
+
+/* ====== الخطوات ====== */
+.step {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+    padding: var(--space-sm) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+}
+.step .step-num {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
+
+/* ====== التمارين ====== */
+.exercice-box {
+    padding: var(--space-lg) var(--space-xl) !important;
+    margin: var(--space-sm) 0 !important;
+}
+.exercice-box .ex-title {
+    font-size: calc(var(--font-size-base) + 1px) !important;
+}
+.exercice-box .ex-question {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
+.solution-box .sol-content {
+    font-size: calc(var(--font-size-base) - 1px) !important;
+}
+.toggle-sol {
+    font-size: calc(var(--font-size-base) - 2px) !important;
+    padding: var(--space-sm) var(--space-xl) !important;
+}
+
+/* ====== التذييل ====== */
+.footer p {
+    font-size: calc(var(--font-size-base) - 2px) !important;
+}
+
+/* ====== أزرار التنقل ====== */
+.nav-buttons {
+    margin-top: var(--space-lg) !important;
+    padding-top: var(--space-xl) !important;
+}
+
+/* ====== الحاوية ====== */
+.lesson-container {
+    padding: var(--space-lg) !important;
+}
+
+/* ====== عناصر مخفية ====== */
+.glow-orb { display: none !important; }
+.bg-grid { opacity: 0.3 !important; }
+.progress-bar { display: none !important; }
+.scroll-top-btn { display: none !important; }
+
+/* ============================================================ */
+/* ====== RESPONSIVE ====== */
+/* ============================================================ */
+
+/* ---- شاشات متوسطة (تابلت) ---- */
+@media (max-width: 768px) {
+    :root {
+        --font-size-base: 11px;
+        --title-size: 17px;
+        --navbar-height: 40px;
+        --logo-size: 22px;
+    }
+    .section { padding: var(--space-md) var(--space-lg) !important; }
+    .section h2 { font-size: calc(var(--text-lg) - 2px) !important; }
+    .section h3 { font-size: calc(var(--text-md) - 1px) !important; }
+    .section p { font-size: calc(var(--font-size-base) - 1px) !important; }
+    .table-wrap table { max-width: 100% !important; }
+    .table-wrap th,
+    .table-wrap td { padding: var(--space-sm) var(--space-md) !important; font-size: calc(var(--font-size-base) - 1px) !important; }
+    .formula-block { font-size: calc(var(--text-md) - 2px) !important; }
+    .highlight-box { padding: var(--space-sm) var(--space-md) !important; }
+    .nav-links a { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-md) !important; }
+}
+
+/* ---- شاشات صغيرة (هواتف) ---- */
+@media (max-width: 480px) {
+    :root {
+        --font-size-base: 10px;
+        --title-size: 15px;
+        --navbar-height: 38px;
+        --logo-size: 20px;
+    }
+    .section h2 { font-size: calc(var(--text-lg) - 3px) !important; }
+    .section h3 { font-size: calc(var(--text-md) - 2px) !important; }
+    .section p { font-size: calc(var(--font-size-base) - 1px) !important; }
+    .formula-block { font-size: calc(var(--text-md) - 3px) !important; padding: var(--space-sm) var(--space-md) !important; }
+    .table-wrap th,
+    .table-wrap td { padding: var(--space-sm) var(--space-md) !important; font-size: calc(var(--font-size-base) - 1px) !important; }
+    .step { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-md) !important; }
+    .back-btn { font-size: calc(var(--font-size-base) - 1px) !important; padding: var(--space-sm) var(--space-md) !important; }
+    .nav-logo-text { font-size: calc(var(--logo-size) * 0.6) !important; }
+    .nav-logo-icon { width: calc(var(--logo-size) - 2px) !important; height: calc(var(--logo-size) - 2px) !important; font-size: calc(var(--logo-size) / 2.2) !important; }
+    .nav-links a { font-size: calc(var(--font-size-base) - 2px) !important; padding: var(--space-xs) var(--space-sm) !important; }
+}
+
+/* ---- شاشات كبيرة (حواسيب) ---- */
+@media (min-width: 1200px) {
+    :root {
+        --font-size-base: 13px;
+        --title-size: 22px;
+        --navbar-height: 48px;
+        --logo-size: 28px;
+    }
+}
