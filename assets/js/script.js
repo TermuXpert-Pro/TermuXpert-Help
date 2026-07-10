@@ -10,7 +10,6 @@
     scrollBtn.setAttribute('aria-label', 'Retour en haut');
     document.body.appendChild(scrollBtn);
 
-    // إظهار/إخفاء الزر حسب التمرير
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
             scrollBtn.classList.add('visible');
@@ -19,13 +18,12 @@
         }
     });
 
-    // العودة للأعلى عند النقر
     scrollBtn.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 })();
 
-// ====== شريط تقدم القراءة (محسّن) ======
+// ====== شريط تقدم القراءة ======
 (function() {
     var progressBar = document.createElement('div');
     progressBar.className = 'progress-bar';
@@ -95,7 +93,6 @@ function runZellijAnimation() {
             }
         });
     
-    // حركات مستمرة
     gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
     gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
@@ -125,26 +122,23 @@ function showZellijDirect() {
 console.log('✅ Zellij background functions loaded');
 
 // ============================================================
-// حماية المحتوى - Content Protection
+// حماية المحتوى - بدون رسائل منبثقة
 // ============================================================
 
 (function() {
     'use strict';
 
-    // ====== منع النقر الأيمن ======
+    // ====== منع النقر الأيمن (بدون رسالة) ======
     document.addEventListener('contextmenu', function(e) {
-        // السماح بالنقر الأيمن فقط في حقول الإدخال
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
         }
         e.preventDefault();
-        showProtectionToast('🚫 النسخ غير مسموح - Xpert');
         return false;
     });
 
-    // ====== منع اختصارات النسخ والحفظ ======
+    // ====== منع اختصارات النسخ (بدون رسالة) ======
     document.addEventListener('keydown', function(e) {
-        // السماح في حقول الإدخال
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
         }
@@ -153,45 +147,33 @@ console.log('✅ Zellij background functions loaded');
         const ctrl = e.ctrlKey;
         const shift = e.shiftKey;
         
-        // منع Ctrl+C, Ctrl+X, Ctrl+V
         if (ctrl && ['c', 'C', 'x', 'X', 'v', 'V'].includes(key)) {
             e.preventDefault();
-            showProtectionToast('🚫 النسخ غير مسموح - Xpert');
             return false;
         }
         
-        // منع Ctrl+S (حفظ الصفحة)
         if (ctrl && (key === 's' || key === 'S')) {
             e.preventDefault();
-            showProtectionToast('🚫 حفظ الصفحة غير مسموح - Xpert');
             return false;
         }
         
-        // منع Ctrl+U (عرض المصدر)
         if (ctrl && (key === 'u' || key === 'U')) {
             e.preventDefault();
-            showProtectionToast('🚫 عرض المصدر غير مسموح - Xpert');
             return false;
         }
         
-        // منع Ctrl+P (طباعة)
         if (ctrl && (key === 'p' || key === 'P')) {
             e.preventDefault();
-            showProtectionToast('🚫 الطباعة غير مسموحة - Xpert');
             return false;
         }
         
-        // منع Ctrl+Shift+I, Ctrl+Shift+J
         if (ctrl && shift && ['I', 'i', 'J', 'j'].includes(key)) {
             e.preventDefault();
-            showProtectionToast('🚫 أدوات المطور مقيدة - Xpert');
             return false;
         }
         
-        // منع F12
         if (key === 'F12') {
             e.preventDefault();
-            showProtectionToast('🚫 أدوات المطور مقيدة - Xpert');
             return false;
         }
     });
@@ -206,58 +188,10 @@ console.log('✅ Zellij background functions loaded');
         });
     });
 
-    // ====== رسالة منبثقة للحماية ======
-    function showProtectionToast(message) {
-        // إزالة أي رسالة سابقة
-        const oldToast = document.querySelector('.toast-protection');
-        if (oldToast) oldToast.remove();
-        
-        const toast = document.createElement('div');
-        toast.className = 'toast-protection';
-        toast.textContent = message;
-        Object.assign(toast.style, {
-            position: 'fixed',
-            bottom: '100px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'rgba(255, 107, 107, 0.9)',
-            color: '#FFFFFF',
-            padding: '12px 24px',
-            borderRadius: '12px',
-            fontSize: '14px',
-            fontWeight: '600',
-            zIndex: '10001',
-            boxShadow: '0 4px 20px rgba(255, 107, 107, 0.3)',
-            backdropFilter: 'blur(10px)',
-            fontFamily: "'Inter', 'Cairo', sans-serif",
-            opacity: '0',
-            transition: 'opacity 0.3s ease, transform 0.3s ease',
-            pointerEvents: 'none'
-        });
-        document.body.appendChild(toast);
-        
-        // ظهور الرسالة
-        setTimeout(function() {
-            toast.style.opacity = '1';
-            toast.style.transform = 'translateX(-50%) translateY(0)';
-        }, 50);
-        
-        // اختفاء الرسالة
-        setTimeout(function() {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translateX(-50%) translateY(20px)';
-            setTimeout(function() {
-                toast.remove();
-            }, 400);
-        }, 2500);
-    }
-
-    console.log('✅ Content protection activated');
+    console.log('✅ Content protection activated (silent mode)');
 })();
 
-
-// ====== رسالة تحذيرية في Console ======
-console.log('%c🚫 Xpert - Contenu protégé', 'font-size: 20px; font-weight: bold; color: #FF6B6B;');
-console.log('%c⚠️ Toute copie ou reproduction non autorisée est interdite', 'font-size: 14px; color: #F4D03F;');
-console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 12px; color: #4ECDC4;');
+// ====== رسالة ترحيبية في Console ======
+console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 14px; color: #4ECDC4;');
+console.log('%c🔒 Contenu protégé', 'font-size: 12px; color: #8A8D93;');
 
