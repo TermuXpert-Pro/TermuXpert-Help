@@ -30,7 +30,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
         .navbar { height: 44px; padding: 0 10px; }
@@ -312,14 +312,6 @@
         }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const animationAllowed = sessionStorage.getItem("animation_allowed");
-            if (animationAllowed === "true") {
-                runZellijAnimation();
-                sessionStorage.removeItem("animation_allowed");
-            } else {
-                showZellijDirect();
-            }
         });
     </script>
 </body>

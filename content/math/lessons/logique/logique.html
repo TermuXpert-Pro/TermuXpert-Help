@@ -96,7 +96,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
 </head>
 <body>
 
@@ -582,7 +582,6 @@
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
-    <!-- ====== زر العودة للأعلى ====== -->
 
     <script src="../../../../assets/js/script.js"></script>
     <script>
@@ -594,14 +593,6 @@
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const animationAllowed = sessionStorage.getItem("animation_allowed");
-            if (animationAllowed === "true") {
-                runZellijAnimation();
-                sessionStorage.removeItem("animation_allowed");
-            } else {
-                showZellijDirect();
-            }
         });
     </script>
 </body>
