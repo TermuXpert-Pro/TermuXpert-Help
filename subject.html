@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Xpert">
-    <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -419,10 +415,6 @@
     </div>
 
     <div class="content-wrapper" id="contentWrapper">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Rechercher un cours, exercice..." style="width:100%; padding:8px 44px 8px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; color:var(--text-primary); font-size:13px;">
-            <i class="fas fa-search search-icon" style="position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--text-muted);"></i>
-        </div>
         <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
             <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
             <button class="tab-btn" role="tab" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
@@ -776,26 +768,3 @@
     </script>
 </body>
 </html>
-    <!-- ====== Search ====== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            if (!searchInput) return;
-            
-            searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase().trim();
-                const cards = document.querySelectorAll('.command-card');
-                
-                cards.forEach(card => {
-                    const text = card.textContent.toLowerCase();
-                    if (query === '' || text.includes(query)) {
-                        card.style.display = 'block';
-                        card.style.opacity = '1';
-                    } else {
-                        card.style.display = 'none';
-                        card.style.opacity = '0';
-                    }
-                });
-            });
-        });
-    </script>

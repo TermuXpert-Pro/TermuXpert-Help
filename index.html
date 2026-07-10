@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Xpert">
-    <meta name="twitter:card" content="summary_large_image">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="description" content="Xpert - Plateforme éducative pour 1 Bac Sciences Expérimentales. Cours, exercices, séries et examens en Mathématiques, Physique et Chimie.">
@@ -393,7 +387,7 @@
         <div class="profile-outer" id="profileWrapper">
             <div style="position:relative; display:inline-block;">
                 <div class="profile-ring" aria-hidden="true"></div>
-                <img loading="lazy" src="assets/images/profile.png" alt="Logo Xpert - Plateforme éducative" class="profile-image" id="profileImg" loading="lazy">
+                <img src="assets/images/profile.png" alt="Logo Xpert - Plateforme éducative" class="profile-image" id="profileImg" loading="lazy">
             </div>
         </div>
 
@@ -638,18 +632,3 @@
     </script>
 </body>
 </html>
-
-    <!-- ====== PWA ====== -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#45A29E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <script>
-        // تسجيل Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/TermuXpert-WEB/service-worker.js')
-                .then(reg => console.log('✅ Service Worker enregistré:', reg))
-                .catch(err => console.log('❌ Erreur Service Worker:', err));
-        }
-    </script>
