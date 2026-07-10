@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Matières - Xpert",
+        "description": "Choisissez votre matière : Mathématiques, Physique ou Chimie",
+        "url": "https://termuxpert-pro.github.io/TermuXpert-WEB/subjects.html",
+        "about": {
+            "@type": "EducationalOrganization",
+            "name": "Xpert"
+        }
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpert - Matières</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        /* ====== طبقة الحماية غير المرئية ====== */
+        .overlay-protection {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: transparent;
+            pointer-events: all;
+            cursor: default;
+            opacity: 0;
+            display: none;
+        }
+        .overlay-protection.active {
+            display: block !important;
+            opacity: 1 !important;
+            pointer-events: all !important;
+        }
+        .overlay-protection.hidden {
+            display: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .moroccan-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .moroccan-bg svg { width: 100%; height: 100%; }
+
+        .moroccan-shadow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(circle at center, #4ECDC4 0%, #FF6B6B 40%, #F4D03F 70%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: shadowPulse 8s ease-in-out infinite;
+        }
+        @keyframes shadowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
+        }
+
+        .moroccan-star {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            font-size: 120px;
+            color: #4ECDC4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: starSpin 20s linear infinite;
+        }
+        @keyframes starSpin {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+        }
+
+        .geo-pattern {
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            color: #F4D03F;
+            font-size: 20px;
+            letter-spacing: 20px;
+        }
+        .geo-pattern-1 { top: 10%; left: 5%; transform: rotate(-15deg); }
+        .geo-pattern-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
+        .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
+        .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
+
+        .hero-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .hero-wrapper h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 900;
+            line-height: 1.2;
+            text-align: center;
+            padding: 0 20px;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        .hero-wrapper h1 .gradient-text {
+            background: linear-gradient(135deg, #4ECDC4, #66FCF1, #F4D03F, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-wrapper .subtitle {
+            color: var(--text-muted);
+            font-size: clamp(16px, 2vw, 22px);
+            max-width: 550px;
+            margin: 10px auto 0;
+            line-height: 1.8;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cards-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+            gap: clamp(20px, 2.5vw, 30px);
+            width: 100%;
+            padding: 30px 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: clamp(24px, 3vw, 36px) clamp(18px, 2vw, 28px);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(60px) scale(0.9);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(78, 205, 196, 0.05), transparent 60%),
+                        radial-gradient(circle at 70% 70%, rgba(255, 107, 107, 0.05), transparent 60%);
+            border-radius: 24px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .card:hover::before { opacity: 1; }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 24px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), transparent 40%, transparent 60%, rgba(255, 107, 107, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .card:hover::after { opacity: 1; }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(78, 205, 196, 0.15);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        }
+        .card:active { transform: scale(0.97); }
+
+        .card .card-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 32px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); }
+
+        .card h3 {
+            font-size: clamp(20px, 2.2vw, 26px);
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        .card p {
+            color: var(--text-secondary);
+            font-size: clamp(13px, 1.2vw, 15px);
+            line-height: 1.7;
+            margin-bottom: 14px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        .card .card-badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .card .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: clamp(11px, 1.1vw, 13px);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .card:hover .badge { transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .moroccan-shadow { width: 300px; height: 300px; }
+            .moroccan-star { font-size: 60px; }
+            .geo-pattern { font-size: 14px; letter-spacing: 12px; }
+            .grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .card { padding: 20px 16px; }
+            .card .card-icon { width: 56px; height: 56px; font-size: 24px; }
+        }
+        @media (max-width: 480px) {
+            .moroccan-shadow { width: 200px; height: 200px; }
+            .moroccan-star { font-size: 40px; }
+            .geo-pattern { font-size: 10px; letter-spacing: 8px; }
+            .hero-wrapper h1 { font-size: 28px; }
+            .hero-wrapper .subtitle { font-size: 14px; }
+            .card { padding: 16px 12px; }
+            .card .card-icon { width: 48px; height: 48px; font-size: 20px; }
+            .card h3 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection" style="display:none; opacity:0; pointer-events:none;"></div>
+
+    <div class="moroccan-bg">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+
+    <div class="moroccan-shadow"></div>
+    <div class="moroccan-star">✦</div>
+
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-wrapper" id="heroWrapper">
+        <h1 id="mainTitle">Mathématiques, <span class="gradient-text">Physique</span> et Chimie</h1>
+        <p class="subtitle" id="subTitle">Choisissez votre matière pour découvrir tout son contenu</p>
+    </div>
+
+    <div class="cards-wrapper" id="cardsWrapper">
+        <div class="grid" id="subjectsGrid" role="list" aria-label="Liste des matières">
+            <div class="no-data">Chargement...</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <button class="scroll-top-btn" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        const subjects = [
+            { 
+                id: "math", 
+                title: "Mathématiques", 
+                description: "Fonctions, géométrie, algèbre, probabilités, suites",
+                icon: "fa-square-root-variable", 
+                color: "#4ECDC4",
+                bgColor: "rgba(78, 205, 196, 0.15)",
+                glow: "rgba(78, 205, 196, 0.1)",
+                delay: 0,
+                rotation: -2,
+                lessons: 4,
+                exercises: 3
+            },
+            { 
+                id: "physique", 
+                title: "Physique", 
+                description: "Mécanique, électricité, ondes, énergie, thermique",
+                icon: "fa-atom", 
+                color: "#FF6B6B",
+                bgColor: "rgba(255, 107, 107, 0.15)",
+                glow: "rgba(255, 107, 107, 0.1)",
+                delay: 0.15,
+                rotation: 1,
+                lessons: 2,
+                exercises: 1
+            },
+            { 
+                id: "chimie", 
+                title: "Chimie", 
+                description: "Atome, réactions, acides et bases, oxydoréduction",
+                icon: "fa-flask", 
+                color: "#F4D03F",
+                bgColor: "rgba(244, 208, 63, 0.15)",
+                glow: "rgba(244, 208, 63, 0.1)",
+                delay: 0.3,
+                rotation: -1,
+                lessons: 2,
+                exercises: 1
+            }
+        ];
+
+        function renderSubjects() {
+            const grid = document.getElementById('subjectsGrid');
+            grid.innerHTML = subjects.map((s, index) => `
+                <div class="card" role="listitem" tabindex="0" data-index="${index}" onclick="sessionStorage.setItem('animation_allowed', 'true'); location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
+                    <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
+                        <i class="fas ${s.icon}"></i>
+                    </div>
+                    <h3 style="color:${s.color};">${s.title}</h3>
+                    <p>${s.description}</p>
+                    <div class="card-badges">
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
+                            <i class="fas fa-book"></i> ${s.lessons} cours
+                        </span>
+                        <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
+                            <i class="fas fa-list-check"></i> ${s.exercises} exercices
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        renderSubjects();
+
+        // ============================================================
+        // GSAP - إدارة الأنميشن
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const overlay = document.getElementById('overlayProtection');
+            
+            // ====== التحقق من نوع التنقل ======
+            const navType = performance.navigation.type;
+            
+            // ====== التحقق من إذن تشغيل الأنميشن ======
+            const animationAllowed = sessionStorage.getItem('animation_allowed');
+            
+            // ====== دالة للعرض المباشر (بدون أنميشن) ======
+            function showDirect() {
+                // إخفاء hero-wrapper نهائياً
+                gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
+                
+                // إظهار الخلفيات
+                gsap.set('.moroccan-bg', { opacity: 0.6 });
+                gsap.set('.moroccan-shadow', { opacity: 0.08 });
+                gsap.set('.moroccan-star', { opacity: 0.04 });
+                gsap.set('.geo-pattern', { opacity: 0.03 });
+                
+                // إظهار البطاقات مباشرة
+                gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
+                
+                // إزالة طبقة الحماية فوراً (لأنه لا يوجد أنميشن)
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                
+                console.log('✅ subjects.html - Affichage direct (sans animation)');
+                
+                // ====== حركات مستمرة ======
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
+                });
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+
+                // Hover effects
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
+                    });
+                });
+            }
+
+            // ====== دالة لتشغيل الأنميشن ======
+            function runAnimation() {
+                // ====== تفعيل طبقة الحماية ======
+                overlay.classList.add('active');
+                
+                // التأكد من أن hero-wrapper ظاهر قبل بدء الأنميشن
+                gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
+                
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+                tl
+                    .to('.moroccan-bg', { opacity: 0.6, duration: 2, ease: 'power1.out' })
+                    .to('.moroccan-shadow', { opacity: 0.08, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
+                    .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
+                    .to('#heroWrapper', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 1, scale: 1, duration: 1.4, ease: 'back.out(2)' }, '-=0.3')
+                    .to('#subTitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                    .to('#mainTitle', { opacity: 0, y: -60, scale: 0.8, duration: 1.6, ease: 'power3.inOut', delay: 1.8 })
+                    .to('#subTitle', { opacity: 0, y: -40, duration: 1.4, ease: 'power3.inOut', delay: 1.6 }, '-=0.8')
+                    .to('#heroWrapper', { 
+                        opacity: 0, 
+                        duration: 0.6, 
+                        ease: 'power2.in',
+                        onComplete: function() {
+                            // إخفاء hero-wrapper نهائياً بعد اختفائه
+                            gsap.set('#heroWrapper', { display: 'none' });
+                        }
+                    }, '-=0.4')
+                    .to('#cardsWrapper', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+                    .to('.card', {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 1.2,
+                        stagger: { each: 0.2, from: 'start', ease: 'back.out(1.8)' },
+                        ease: 'power3.out'
+                    }, '-=0.3')
+                    .to('.card', {
+                        rotation: 0,
+                        duration: 1.2,
+                        stagger: 0.2,
+                        ease: 'power3.out'
+                    }, '-=0.8')
+                    .call(() => {
+                        // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
+                        sessionStorage.removeItem('animation_allowed');
+                        
+                        // ====== إزالة طبقة الحماية ======
+                        overlay.classList.remove('active');
+                        overlay.classList.add('hidden');
+                        overlay.style.display = 'none';
+                        overlay.style.pointerEvents = 'none';
+                        
+                        console.log('✅ subjects.html - Animation jouée une fois, overlay removed');
+                    });
+
+                // ====== حركات مستمرة ======
+                document.querySelectorAll('.card').forEach((card, i) => {
+                    const icon = card.querySelector('.card-icon');
+                    gsap.to(icon, {
+                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: i * 0.3
+                    });
+                });
+
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+                gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
+
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1.15, rotation: -8, duration: 0.4, ease: 'back.out(2)' });
+                        gsap.to(this, { scale: 1.03, duration: 0.4, ease: 'power2.out' });
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        const icon = this.querySelector('.card-icon');
+                        gsap.to(icon, { scale: 1, rotation: 0, duration: 0.4, ease: 'power2.inOut' });
+                        gsap.to(this, { scale: 1, duration: 0.4, ease: 'power2.inOut' });
+                    });
+                });
+            }
+
+            // ============================================================
+            // المنطق الرئيسي
+            // ============================================================
+            
+            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
+            if (navType === 2) {
+                showDirect();
+                console.log('📌 subjects.html - Navigation depuis Back/Forward → Affichage direct');
+                return;
+            }
+
+            // 2. إذا لم يكن هناك إذن لتشغيل الأنميشن → عرض مباشر
+            if (animationAllowed !== 'true') {
+                showDirect();
+                console.log('📌 subjects.html - Animation non autorisée → Affichage direct');
+                return;
+            }
+
+            // 3. في جميع الحالات الأخرى (مع الإذن) → تشغيل الأنميشن
+            runAnimation();
+            console.log('📌 subjects.html - Animation autorisée → Animation jouée');
+        });
+    </script>
+<script src="assets/js/protection-full.js"></script>
+<script src="assets/js/protection-full.js"></script></body>
+</html>

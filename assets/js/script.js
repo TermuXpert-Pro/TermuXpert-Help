@@ -10,7 +10,6 @@
     scrollBtn.setAttribute('aria-label', 'Retour en haut');
     document.body.appendChild(scrollBtn);
 
-    // إظهار/إخفاء الزر حسب التمرير
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
             scrollBtn.classList.add('visible');
@@ -19,13 +18,12 @@
         }
     });
 
-    // العودة للأعلى عند النقر
     scrollBtn.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 })();
 
-// ====== شريط تقدم القراءة (محسّن) ======
+// ====== شريط تقدم القراءة ======
 (function() {
     var progressBar = document.createElement('div');
     progressBar.className = 'progress-bar';
@@ -72,7 +70,15 @@ console.log('✅ Xpert - Scripts chargés avec succès !');
 
 function runZellijAnimation() {
     const overlay = document.getElementById('overlayProtection');
-    if (overlay) overlay.classList.add('active');
+    
+    // تفعيل الطبقة قبل الأنميشن
+    if (overlay) {
+        overlay.style.display = 'block';
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'all';
+        overlay.classList.remove('hidden');
+        overlay.classList.add('active');
+    }
     
     gsap.set('.moroccan-bg', { opacity: 0 });
     gsap.set('.moroccan-shadow', { opacity: 0 });
@@ -87,11 +93,14 @@ function runZellijAnimation() {
         .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
         .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
         .call(() => {
+            // إخفاء الطبقة بعد انتهاء الأنميشن
             if (overlay) {
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
+                overlay.style.opacity = '0';
                 overlay.style.pointerEvents = 'none';
+                console.log('✅ Overlay protection removed');
             }
         });
     
@@ -103,6 +112,17 @@ function runZellijAnimation() {
 }
 
 function showZellijDirect() {
+    const overlay = document.getElementById('overlayProtection');
+    
+    // التأكد من إخفاء الطبقة
+    if (overlay) {
+        overlay.classList.remove('active');
+        overlay.classList.add('hidden');
+        overlay.style.display = 'none';
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+    }
+    
     gsap.set('.moroccan-bg', { opacity: 0.6 });
     gsap.set('.moroccan-shadow', { opacity: 0.08 });
     gsap.set('.moroccan-star', { opacity: 0.04 });
@@ -112,14 +132,100 @@ function showZellijDirect() {
     gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
     gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
-    
-    const overlay = document.getElementById('overlayProtection');
-    if (overlay) {
-        overlay.classList.remove('active');
-        overlay.classList.add('hidden');
-        overlay.style.display = 'none';
-        overlay.style.pointerEvents = 'none';
-    }
 }
 
 console.log('✅ Zellij background functions loaded');
+
+// ============================================================
+// حماية خفيفة - بدون رسائل
+// ============================================================
+
+(function() {
+    'use strict';
+
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    console.log('✅ Protection légère activée (sans messages)');
+})();
+
+console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 14px; color: #4ECDC4;');
+
+// ============================================================
+// 🔒 منع جميع النصوص - حماية كاملة
+// ============================================================
+
+(function() {
+    'use strict';
+
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        
+        const ctrl = e.ctrlKey;
+        const key = e.key;
+        
+        if (ctrl && ['c', 'C', 'x', 'X', 'v', 'V'].includes(key)) {
+            e.preventDefault();
+            return false;
+        }
+        
+        if (ctrl && (key === 's' || key === 'S')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        if (ctrl && (key === 'u' || key === 'U')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        if (ctrl && (key === 'p' || key === 'P')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        if (key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    document.addEventListener('dragstart', function(e) {
+        if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    document.addEventListener('selectstart', function(e) {
+        if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    document.addEventListener('copy', function(e) {
+        if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    console.log('🔒 Protection complète des textes activée');
+})();
+
