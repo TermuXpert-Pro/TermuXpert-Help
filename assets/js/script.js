@@ -1,6 +1,14 @@
 // ============================================================
-// script.js - الوظائف العامة للموقع (محسّن)
+// script.js - الوظائف العامة للموقع
 // ============================================================
+
+// ====== تحميل نظام الحماية ======
+(function loadProtection() {
+    const script = document.createElement('script');
+    script.src = 'assets/js/protection.js';
+    script.async = false;
+    document.head.appendChild(script);
+})();
 
 // ====== زر العودة للأعلى ======
 (function() {
@@ -10,7 +18,6 @@
     scrollBtn.setAttribute('aria-label', 'Retour en haut');
     document.body.appendChild(scrollBtn);
 
-    // إظهار/إخفاء الزر حسب التمرير
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
             scrollBtn.classList.add('visible');
@@ -19,13 +26,12 @@
         }
     });
 
-    // العودة للأعلى عند النقر
     scrollBtn.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 })();
 
-// ====== شريط تقدم القراءة (محسّن) ======
+// ====== شريط تقدم القراءة ======
 (function() {
     var progressBar = document.createElement('div');
     progressBar.className = 'progress-bar';
@@ -67,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 console.log('✅ Xpert - Scripts chargés avec succès !');
 
 // ============================================================
-// خلفية الزليج - مدمجة مع script.js
+// خلفية الزليج
 // ============================================================
 
 function runZellijAnimation() {
@@ -95,7 +101,6 @@ function runZellijAnimation() {
             }
         });
     
-    // حركات مستمرة
     gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
     gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });

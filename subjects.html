@@ -292,6 +292,23 @@
         }
         .card:hover .badge { transform: translateY(-2px); }
 
+        /* ====== حماية إضافية ====== */
+        * {
+            -webkit-touch-callout: none !important;
+            touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        img {
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -ms-user-drag: none !important;
+            user-drag: none !important;
+        }
+
         @media (max-width: 768px) {
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
@@ -382,6 +399,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <script src="assets/js/protection.js"></script>
+    <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         const subjects = [
@@ -464,27 +483,18 @@
             
             // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
-                // إخفاء hero-wrapper نهائياً
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
-                
-                // إظهار الخلفيات
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
                 gsap.set('.moroccan-shadow', { opacity: 0.08 });
                 gsap.set('.moroccan-star', { opacity: 0.04 });
                 gsap.set('.geo-pattern', { opacity: 0.03 });
-                
-                // إظهار البطاقات مباشرة
                 gsap.set('.card', { opacity: 1, y: 0, scale: 1 });
-                
-                // إزالة طبقة الحماية فوراً (لأنه لا يوجد أنميشن)
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
-                
                 console.log('✅ subjects.html - Affichage direct (sans animation)');
                 
-                // ====== حركات مستمرة ======
                 document.querySelectorAll('.card').forEach((card, i) => {
                     const icon = card.querySelector('.card-icon');
                     gsap.to(icon, {
@@ -501,7 +511,6 @@
                 gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
 
-                // Hover effects
                 document.querySelectorAll('.card').forEach(card => {
                     card.addEventListener('mouseenter', function() {
                         const icon = this.querySelector('.card-icon');
@@ -518,10 +527,7 @@
 
             // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
-                // ====== تفعيل طبقة الحماية ======
                 overlay.classList.add('active');
-                
-                // التأكد من أن hero-wrapper ظاهر قبل بدء الأنميشن
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
                 
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -541,7 +547,6 @@
                         duration: 0.6, 
                         ease: 'power2.in',
                         onComplete: function() {
-                            // إخفاء hero-wrapper نهائياً بعد اختفائه
                             gsap.set('#heroWrapper', { display: 'none' });
                         }
                     }, '-=0.4')
@@ -561,19 +566,14 @@
                         ease: 'power3.out'
                     }, '-=0.8')
                     .call(() => {
-                        // حذف المفتاح بعد تشغيل الأنميشن (مرة واحدة فقط)
                         sessionStorage.removeItem('animation_allowed');
-                        
-                        // ====== إزالة طبقة الحماية ======
                         overlay.classList.remove('active');
                         overlay.classList.add('hidden');
                         overlay.style.display = 'none';
                         overlay.style.pointerEvents = 'none';
-                        
                         console.log('✅ subjects.html - Animation jouée une fois, overlay removed');
                     });
 
-                // ====== حركات مستمرة ======
                 document.querySelectorAll('.card').forEach((card, i) => {
                     const icon = card.querySelector('.card-icon');
                     gsap.to(icon, {
@@ -609,21 +609,18 @@
             // المنطق الرئيسي
             // ============================================================
             
-            // 1. إذا كانت الصفحة تم تحميلها من الخلف (Back/Forward) → عرض مباشر
             if (navType === 2) {
                 showDirect();
                 console.log('📌 subjects.html - Navigation depuis Back/Forward → Affichage direct');
                 return;
             }
 
-            // 2. إذا لم يكن هناك إذن لتشغيل الأنميشن → عرض مباشر
             if (animationAllowed !== 'true') {
                 showDirect();
                 console.log('📌 subjects.html - Animation non autorisée → Affichage direct');
                 return;
             }
 
-            // 3. في جميع الحالات الأخرى (مع الإذن) → تشغيل الأنميشن
             runAnimation();
             console.log('📌 subjects.html - Animation autorisée → Animation jouée');
         });

@@ -171,11 +171,13 @@
             transition: all 0.4s ease;
             background: rgba(255,255,255,0.05);
             display: block;
-        }
-        .profile-outer .profile-image:hover {
-            transform: scale(1.05);
-            border-color: rgba(78, 205, 196, 0.5);
-            box-shadow: 0 0 70px rgba(78, 205, 196, 0.2);
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -ms-user-drag: none !important;
+            user-drag: none !important;
+            -webkit-touch-callout: none !important;
+            touch-callout: none !important;
         }
 
         .hero-card {
@@ -328,6 +330,23 @@
             outline: 2px solid #4ECDC4;
             outline-offset: 2px;
         }
+
+        /* ====== حماية إضافية ====== */
+        * {
+            -webkit-touch-callout: none !important;
+            touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        img {
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -ms-user-drag: none !important;
+            user-drag: none !important;
+        }
     </style>
 </head>
 <body>
@@ -387,7 +406,7 @@
         <div class="profile-outer" id="profileWrapper">
             <div style="position:relative; display:inline-block;">
                 <div class="profile-ring" aria-hidden="true"></div>
-                <img src="assets/images/profile.png" alt="Logo Xpert - Plateforme éducative" class="profile-image" id="profileImg" loading="lazy">
+                <img src="assets/images/profile.png" alt="Logo Xpert - Plateforme éducative" class="profile-image" id="profileImg" loading="lazy" draggable="false">
             </div>
         </div>
 
@@ -414,6 +433,9 @@
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
+    <!-- ====== تحميل الحماية أولاً ====== -->
+    <script src="assets/js/protection.js"></script>
+    <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
