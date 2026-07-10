@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
-        /* ====== طبقة الحماية غير المرئية ====== */
         .overlay-protection {
             position: fixed;
             top: 0;
@@ -360,7 +359,6 @@
 </head>
 <body>
 
-    <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <div class="moroccan-bg">
@@ -430,16 +428,8 @@
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
-    <button class="scroll-top-btn" aria-label="Retour en haut">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
-        // ============================================================
-        // البيانات - متوافقة مع الهيكل الجديد
-        // ============================================================
         const data = {
             math: {
                 title: "Mathématiques",
@@ -497,9 +487,6 @@
         let currentTab = 'lessons';
         let isAnimating = false;
 
-        // ============================================================
-        // تحميل المادة
-        // ============================================================
         function loadSubject() {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('subject');
@@ -517,32 +504,15 @@
             renderContent(document.getElementById('tabContent'), 'lessons');
         }
 
-        // ============================================================
-        // تبديل التبويب - نسخة محسنة مع منع التداخل
-        // ============================================================
         function switchTab(tab) {
-            // منع التبديل إذا كان أنميشن قيد التشغيل
-            if (isAnimating) {
-                console.log('⏳ Animation en cours, veuillez patienter...');
-                return;
-            }
+            if (isAnimating || tab === currentTab) return;
             
-            // منع التبديل إلى نفس التبويب
-            if (tab === currentTab) {
-                console.log('ℹ️ Déjà sur cet onglet');
-                return;
-            }
-            
-            // تفعيل حالة الأنميشن
             isAnimating = true;
-            
-            // تعطيل جميع أزرار التبويب مؤقتاً
             document.querySelectorAll('.tab-btn').forEach(b => b.disabled = true);
             
             const previousTab = currentTab;
             currentTab = tab;
             
-            // تحديث المظهر النشط للأزرار
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
             if (activeBtn) activeBtn.classList.add('active');
@@ -550,7 +520,6 @@
             const container = document.getElementById('tabContent');
             const currentCards = container.querySelectorAll('.command-card');
             
-            // إذا كانت هناك بطاقات موجودة، قم بإخفائها أولاً
             if (currentCards.length > 0) {
                 gsap.to(currentCards, {
                     opacity: 0,
@@ -561,7 +530,6 @@
                     stagger: 0.04,
                     onComplete: function() {
                         renderContent(container, tab, function() {
-                            // إعادة تمكين الأزرار بعد الانتهاء
                             document.querySelectorAll('.tab-btn').forEach(b => b.disabled = false);
                             isAnimating = false;
                         });
@@ -575,9 +543,6 @@
             }
         }
 
-        // ============================================================
-        // عرض المحتوى - نسخة محسنة مع callback
-        // ============================================================
         function renderContent(container, tab, callback) {
             let html = '';
             
@@ -662,22 +627,14 @@
             }
         }
 
-        // ============================================================
-        // GSAP - إدارة الأنميشن
-        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             loadSubject();
 
             const overlay = document.getElementById('overlayProtection');
-            
-            // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
-            
-            // ====== التحقق من إذن تشغيل الأنميشن ======
             const animationAllowed = sessionStorage.getItem('animation_allowed');
             
-            // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
@@ -692,13 +649,12 @@
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
                 
-                console.log('✅ subject.html - Affichage direct (sans animation)');
+                console.log('✅ subject.html - Affichage direct');
                 
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
             }
 
-            // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
                 overlay.classList.add('active');
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
@@ -731,7 +687,7 @@
                         overlay.classList.add('hidden');
                         overlay.style.display = 'none';
                         overlay.style.pointerEvents = 'none';
-                        console.log('✅ subject.html - Animation jouée une fois, overlay removed');
+                        console.log('✅ subject.html - Animation jouée');
                     });
 
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
@@ -747,24 +703,11 @@
                 });
             }
 
-            // ============================================================
-            // المنطق الرئيسي
-            // ============================================================
-            
-            if (navType === 2) {
+            if (navType === 2 || animationAllowed !== 'true') {
                 showDirect();
-                console.log('📌 subject.html - Navigation depuis Back/Forward → Affichage direct');
-                return;
+            } else {
+                runAnimation();
             }
-
-            if (animationAllowed !== 'true') {
-                showDirect();
-                console.log('📌 subject.html - Animation non autorisée → Affichage direct');
-                return;
-            }
-
-            runAnimation();
-            console.log('📌 subject.html - Animation autorisée → Animation jouée');
         });
     </script>
 </body>

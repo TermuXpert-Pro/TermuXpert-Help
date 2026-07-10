@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
-        /* ====== طبقة الحماية غير المرئية ====== */
         .overlay-protection {
             position: fixed;
             top: 0;
@@ -292,7 +291,6 @@
         }
         .card:hover .badge { transform: translateY(-2px); }
 
-        /* ====== حماية إضافية ====== */
         * {
             -webkit-touch-callout: none !important;
             touch-callout: none !important;
@@ -331,7 +329,6 @@
 </head>
 <body>
 
-    <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
 
     <div class="moroccan-bg">
@@ -395,12 +392,6 @@
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
-    <button class="scroll-top-btn" aria-label="Retour en haut">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="assets/js/protection.js"></script>
-    <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         const subjects = [
@@ -468,20 +459,12 @@
 
         renderSubjects();
 
-        // ============================================================
-        // GSAP - إدارة الأنميشن
-        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
             const overlay = document.getElementById('overlayProtection');
-            
-            // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
-            
-            // ====== التحقق من إذن تشغيل الأنميشن ======
             const animationAllowed = sessionStorage.getItem('animation_allowed');
             
-            // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
@@ -493,7 +476,7 @@
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
-                console.log('✅ subjects.html - Affichage direct (sans animation)');
+                console.log('✅ subjects.html - Affichage direct');
                 
                 document.querySelectorAll('.card').forEach((card, i) => {
                     const icon = card.querySelector('.card-icon');
@@ -525,7 +508,6 @@
                 });
             }
 
-            // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
                 overlay.classList.add('active');
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
@@ -559,19 +541,13 @@
                         stagger: { each: 0.2, from: 'start', ease: 'back.out(1.8)' },
                         ease: 'power3.out'
                     }, '-=0.3')
-                    .to('.card', {
-                        rotation: 0,
-                        duration: 1.2,
-                        stagger: 0.2,
-                        ease: 'power3.out'
-                    }, '-=0.8')
                     .call(() => {
                         sessionStorage.removeItem('animation_allowed');
                         overlay.classList.remove('active');
                         overlay.classList.add('hidden');
                         overlay.style.display = 'none';
                         overlay.style.pointerEvents = 'none';
-                        console.log('✅ subjects.html - Animation jouée une fois, overlay removed');
+                        console.log('✅ subjects.html - Animation jouée');
                     });
 
                 document.querySelectorAll('.card').forEach((card, i) => {
@@ -605,24 +581,11 @@
                 });
             }
 
-            // ============================================================
-            // المنطق الرئيسي
-            // ============================================================
-            
-            if (navType === 2) {
+            if (navType === 2 || animationAllowed !== 'true') {
                 showDirect();
-                console.log('📌 subjects.html - Navigation depuis Back/Forward → Affichage direct');
-                return;
+            } else {
+                runAnimation();
             }
-
-            if (animationAllowed !== 'true') {
-                showDirect();
-                console.log('📌 subjects.html - Animation non autorisée → Affichage direct');
-                return;
-            }
-
-            runAnimation();
-            console.log('📌 subjects.html - Animation autorisée → Animation jouée');
         });
     </script>
 </body>

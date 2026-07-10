@@ -1,30 +1,41 @@
 // ============================================================
-// script.js - الوظائف العامة للموقع
+// script.js - الوظائف العامة للموقع (نسخة محسنة)
 // ============================================================
 
-// ====== تحميل نظام الحماية ======
-(function loadProtection() {
-    const script = document.createElement('script');
-    script.src = 'assets/js/protection.js';
-    script.async = false;
-    document.head.appendChild(script);
-})();
-
-// ====== زر العودة للأعلى ======
+// ====== زر العودة للأعلى (نسخة واحدة فقط) ======
 (function() {
+    // التحقق من وجود الزر مسبقاً
+    if (document.querySelector('.scroll-top-btn')) {
+        console.log('ℹ️ Scroll button already exists');
+        return;
+    }
+    
     var scrollBtn = document.createElement('button');
     scrollBtn.className = 'scroll-top-btn';
     scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     scrollBtn.setAttribute('aria-label', 'Retour en haut');
+    scrollBtn.style.display = 'none';
     document.body.appendChild(scrollBtn);
 
+    var isVisible = false;
+
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
+        if (window.scrollY > 300 && !isVisible) {
+            scrollBtn.style.display = 'flex';
+            scrollBtn.style.opacity = '1';
+            scrollBtn.style.transform = 'translateY(0)';
+            isVisible = true;
+        } else if (window.scrollY <= 300 && isVisible) {
+            scrollBtn.style.opacity = '0';
+            scrollBtn.style.transform = 'translateY(20px)';
+            setTimeout(function() {
+                if (!isVisible) {
+                    scrollBtn.style.display = 'none';
+                }
+            }, 300);
+            isVisible = false;
         }
-    });
+    }, { passive: true });
 
     scrollBtn.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -33,10 +44,13 @@
 
 // ====== شريط تقدم القراءة ======
 (function() {
-    var progressBar = document.createElement('div');
-    progressBar.className = 'progress-bar';
-    progressBar.id = 'progressBar';
-    document.body.appendChild(progressBar);
+    var progressBar = document.getElementById('progressBar');
+    if (!progressBar) {
+        progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+        progressBar.id = 'progressBar';
+        document.body.appendChild(progressBar);
+    }
 
     function updateProgress() {
         var scrollTop = window.scrollY;
@@ -45,22 +59,27 @@
         progressBar.style.width = Math.min(progress, 100) + '%';
     }
 
-    window.addEventListener('scroll', updateProgress);
-    window.addEventListener('resize', updateProgress);
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
     updateProgress();
 })();
 
 // ====== تأثير القائمة عند التمرير ======
-window.addEventListener('scroll', function() {
+(function() {
     var navbar = document.getElementById('navbar');
-    if (navbar) {
+    if (!navbar) return;
+    
+    function updateNavbar() {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
     }
-});
+    
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+})();
 
 // ====== تأثيرات عند تحميل الصفحة ======
 document.addEventListener('DOMContentLoaded', function() {
@@ -73,10 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
 console.log('✅ Xpert - Scripts chargés avec succès !');
 
 // ============================================================
-// خلفية الزليج
+// خلفية الزليج - دوال مشتركة
 // ============================================================
-
-function runZellijAnimation() {
+window.runZellijAnimation = function() {
     const overlay = document.getElementById('overlayProtection');
     if (overlay) overlay.classList.add('active');
     
@@ -105,9 +123,9 @@ function runZellijAnimation() {
     gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
     gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     gsap.to('.geo-pattern-2', { x: -25, y: -12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
-}
+};
 
-function showZellijDirect() {
+window.showZellijDirect = function() {
     gsap.set('.moroccan-bg', { opacity: 0.6 });
     gsap.set('.moroccan-shadow', { opacity: 0.08 });
     gsap.set('.moroccan-star', { opacity: 0.04 });
@@ -125,6 +143,6 @@ function showZellijDirect() {
         overlay.style.display = 'none';
         overlay.style.pointerEvents = 'none';
     }
-}
+};
 
 console.log('✅ Zellij background functions loaded');
