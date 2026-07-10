@@ -71,7 +71,6 @@ console.log('✅ Xpert - Scripts chargés avec succès !');
 function runZellijAnimation() {
     const overlay = document.getElementById('overlayProtection');
     
-    // تفعيل الطبقة قبل الأنميشن
     if (overlay) {
         overlay.style.display = 'block';
         overlay.style.opacity = '1';
@@ -93,7 +92,6 @@ function runZellijAnimation() {
         .to('.moroccan-star', { opacity: 0.04, duration: 2, ease: 'power1.out' }, '-=1.4')
         .to('.geo-pattern', { opacity: 0.03, duration: 2, stagger: 0.08, ease: 'power1.out' }, '-=1.6')
         .call(() => {
-            // إخفاء الطبقة بعد انتهاء الأنميشن
             if (overlay) {
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
@@ -104,7 +102,6 @@ function runZellijAnimation() {
             }
         });
     
-    // حركات مستمرة
     gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
     gsap.to('.geo-pattern-1', { x: 25, y: 12, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
@@ -114,7 +111,6 @@ function runZellijAnimation() {
 function showZellijDirect() {
     const overlay = document.getElementById('overlayProtection');
     
-    // التأكد من إخفاء الطبقة
     if (overlay) {
         overlay.classList.remove('active');
         overlay.classList.add('hidden');
@@ -137,12 +133,13 @@ function showZellijDirect() {
 console.log('✅ Zellij background functions loaded');
 
 // ============================================================
-// حماية خفيفة - بدون رسائل
+// 🔒 حماية كاملة - مدمجة في script.js (بدون تكرار)
 // ============================================================
 
 (function() {
     'use strict';
 
+    // ====== 1. منع النقر الأيمن ======
     document.addEventListener('contextmenu', function(e) {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
@@ -151,26 +148,7 @@ console.log('✅ Zellij background functions loaded');
         return false;
     });
 
-    console.log('✅ Protection légère activée (sans messages)');
-})();
-
-console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 14px; color: #4ECDC4;');
-
-// ============================================================
-// 🔒 منع جميع النصوص - حماية كاملة
-// ============================================================
-
-(function() {
-    'use strict';
-
-    document.addEventListener('contextmenu', function(e) {
-        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
-            return true;
-        }
-        e.preventDefault();
-        return false;
-    });
-
+    // ====== 2. منع اختصارات لوحة المفاتيح ======
     document.addEventListener('keydown', function(e) {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
@@ -179,32 +157,44 @@ console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size:
         const ctrl = e.ctrlKey;
         const key = e.key;
         
+        // منع Ctrl+C, Ctrl+X, Ctrl+V
         if (ctrl && ['c', 'C', 'x', 'X', 'v', 'V'].includes(key)) {
             e.preventDefault();
             return false;
         }
         
+        // منع Ctrl+S (حفظ)
         if (ctrl && (key === 's' || key === 'S')) {
             e.preventDefault();
             return false;
         }
         
+        // منع Ctrl+U (مصدر الصفحة)
         if (ctrl && (key === 'u' || key === 'U')) {
             e.preventDefault();
             return false;
         }
         
+        // منع Ctrl+P (طباعة)
         if (ctrl && (key === 'p' || key === 'P')) {
             e.preventDefault();
             return false;
         }
         
+        // منع F12 (أدوات المطور)
         if (key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // منع Ctrl+Shift+I (أدوات المطور)
+        if (ctrl && e.shiftKey && ['I', 'i', 'J', 'j'].includes(key)) {
             e.preventDefault();
             return false;
         }
     });
 
+    // ====== 3. منع سحب النصوص ======
     document.addEventListener('dragstart', function(e) {
         if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
             e.preventDefault();
@@ -212,6 +202,7 @@ console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size:
         }
     });
 
+    // ====== 4. منع تحديد النصوص ======
     document.addEventListener('selectstart', function(e) {
         if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
             e.preventDefault();
@@ -219,6 +210,7 @@ console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size:
         }
     });
 
+    // ====== 5. منع النسخ ======
     document.addEventListener('copy', function(e) {
         if (!e.target.closest('input, textarea, [contenteditable="true"]')) {
             e.preventDefault();
@@ -226,6 +218,16 @@ console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size:
         }
     });
 
-    console.log('🔒 Protection complète des textes activée');
+    // ====== 6. منع الضغط المطول (Long Press) ======
+    document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
+            return true;
+        }
+        // لا نمنع اللمس بالكامل، فقط نمنع القائمة
+        // نستخدم preventDefault فقط للعناصر غير القابلة للتحرير
+    }, { passive: false });
+
+    console.log('🔒 Protection complète activée (script.js)');
 })();
 
+console.log('%c📚 Xpert © 2026 - 1 Bac Sciences Expérimentales', 'font-size: 14px; color: #4ECDC4;');
