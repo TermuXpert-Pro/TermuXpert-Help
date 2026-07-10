@@ -65,17 +65,16 @@
 (function() {
     'use strict';
 
-    // منع ظهور القائمة عند الضغط المطول على النصوص
+    // منع ظهور القائمة عند الضغط المطول
     document.addEventListener('touchstart', function(e) {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
         }
-        // منع ظهور قائمة النسخ عند الضغط المطول
         e.preventDefault();
         return false;
     }, { passive: false });
 
-    // منع ظهور قائمة السياق عند الضغط المطول
+    // منع ظهور قائمة السياق
     document.addEventListener('contextmenu', function(e) {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
@@ -84,15 +83,7 @@
         return false;
     });
 
-    // منع تحديد النصوص باللمس
-    document.addEventListener('touchmove', function(e) {
-        if (e.target.closest('input, textarea, [contenteditable="true"]')) {
-            return true;
-        }
-        // لا نمنع التمرير، فقط نمنع التحديد
-    }, { passive: true });
-
-    // منع اختصارات النسخ عند الضغط المطول
+    // منع النسخ
     document.addEventListener('copy', function(e) {
         if (e.target.closest('input, textarea, [contenteditable="true"]')) {
             return true;
@@ -102,5 +93,42 @@
     });
 
     console.log('🔒 Protection Long Press activée');
+})();
+
+// ============================================================
+// 🔧 إزالة طبقة الحماية تلقائياً
+// ============================================================
+
+(function() {
+    'use strict';
+
+    // التأكد من إخفاء طبقة الحماية عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        const overlay = document.getElementById('overlayProtection');
+        if (overlay) {
+            setTimeout(function() {
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ Overlay protection removed (auto-cleanup)');
+            }, 500);
+        }
+    });
+
+    // إزالة الطبقة أيضاً عند ضغط أي زر
+    document.addEventListener('click', function(e) {
+        const overlay = document.getElementById('overlayProtection');
+        if (overlay && overlay.style.display !== 'none') {
+            overlay.classList.remove('active');
+            overlay.classList.add('hidden');
+            overlay.style.display = 'none';
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+        }
+    });
+
+    console.log('🔧 Auto-cleanup for overlay protection activated');
 })();
 
