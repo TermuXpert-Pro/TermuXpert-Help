@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Xpert">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="description" content="Xpert - Plateforme éducative pour 1 Bac Sciences Expérimentales. Cours, exercices, séries et examens en Mathématiques, Physique et Chimie.">
     <meta name="keywords" content="Xpert, 1 Bac, Sciences Expérimentales, Maths, Physique, Chimie, cours, exercices, séries, examens">
@@ -15,17 +8,6 @@
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xpert - 1 Bac Sciences Expérimentales</title>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Xpert",
-        "description": "Plateforme éducative pour 1 Bac Sciences Expérimentales. Cours, exercices, séries et examens en Mathématiques, Physique et Chimie.",
-        "url": "https://termuxpert-pro.github.io/TermuXpert-WEB/",
-        "educationalLevel": "1 Bac Sciences Expérimentales",
-        "teaches": ["Mathématiques", "Physique", "Chimie"]
-    }
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -314,34 +296,14 @@
             .hero { padding: 70px 12px 30px; }
             .hero-card { margin-top: 10px; }
         }
-
-        /* ====== تحسينات ARIA ====== */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid #4ECDC4;
-            outline-offset: 2px;
-        }
-        .btn:focus-visible {
-            outline: 2px solid #4ECDC4;
-            outline-offset: 2px;
-        }
     </style>
 </head>
 <body>
 
     <!-- ====== طبقة الحماية غير المرئية ====== -->
-    <div class="overlay-protection" id="overlayProtection" aria-hidden="true"></div>
+    <div class="overlay-protection" id="overlayProtection"></div>
 
-    <div class="moroccan-bg" aria-hidden="true">
+    <div class="moroccan-bg">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
@@ -365,59 +327,59 @@
         </svg>
     </div>
 
-    <div class="moroccan-shadow" aria-hidden="true"></div>
-    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="moroccan-shadow"></div>
+    <div class="moroccan-star">✦</div>
 
-    <div class="geo-pattern geo-pattern-1" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-2" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-3" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-4" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
-    <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-    <div class="bg-grid" aria-hidden="true"></div>
-    <div class="glow-orb glow-orb-1" aria-hidden="true"></div>
-    <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
 
-    <nav class="navbar" id="navbar" role="navigation" aria-label="Navigation principale">
-        <a href="index.html" class="nav-logo" aria-label="Xpert - Accueil">
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
             <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
-        <ul class="nav-links" role="list">
-            <li><a href="subjects.html" aria-label="Voir les matières"><i class="fas fa-book-open" aria-hidden="true"></i> Matières</a></li>
-            <li><a href="subjects.html" class="btn-nav" onclick="sessionStorage.setItem('animation_allowed', 'true');" aria-label="Commencer l'apprentissage"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Commencer</a></li>
+        <ul class="nav-links">
+            <li><a href="subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+            <li><a href="subjects.html" class="btn-nav" onclick="sessionStorage.setItem('animation_allowed', 'true');"><i class="fas fa-graduation-cap"></i> Commencer</a></li>
         </ul>
     </nav>
 
-    <section class="hero" id="heroSection" aria-label="Page d'accueil Xpert">
+    <section class="hero" id="heroSection">
         <div class="profile-outer" id="profileWrapper">
             <div style="position:relative; display:inline-block;">
-                <div class="profile-ring" aria-hidden="true"></div>
-                <img loading="lazy" src="assets/images/profile.png" alt="Logo Xpert - Plateforme éducative" class="profile-image" id="profileImg" loading="lazy">
+                <div class="profile-ring"></div>
+                <img src="assets/images/profile.png" alt="Profile" class="profile-image" id="profileImg">
             </div>
         </div>
 
-        <div class="hero-card" id="heroCard" role="main">
+        <div class="hero-card" id="heroCard">
             <div class="hero-logo" id="logo">
-                <span class="name-center" aria-label="MOROCCO">MOROCCO</span>
+                <span class="name-center">MOROCCO</span>
             </div>
 
-            <div class="hero-label" id="label"><span class="dot" aria-hidden="true"></span> 1 Bac Sciences Expérimentales</div>
+            <div class="hero-label" id="label"><span class="dot"></span> 1 Bac Sciences Expérimentales</div>
             <h1 id="title">Plateforme <span class="gradient-text">Xpert</span></h1>
             <p class="description" id="desc">Cours, exercices, séries, devoirs et examens régionaux en Mathématiques, Physique et Chimie.</p>
             <div class="hero-buttons" id="buttons">
-                <a href="subjects.html" class="btn btn-primary" onclick="sessionStorage.setItem('animation_allowed', 'true');" aria-label="Commencer l'apprentissage"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Commencer</a>
+                <a href="subjects.html" class="btn btn-primary" onclick="sessionStorage.setItem('animation_allowed', 'true');"><i class="fas fa-graduation-cap"></i> Commencer</a>
             </div>
         </div>
     </section>
 
-    <footer class="footer" role="contentinfo">
-        <div class="divider" aria-hidden="true"></div>
+    <footer class="footer">
+        <div class="divider"></div>
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
     <button class="scroll-top-btn" aria-label="Retour en haut">
-        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     <script src="assets/js/script.js"></script>
@@ -537,6 +499,7 @@
             
             // ====== بعد انتهاء الأنميشن، إزالة طبقة الحماية ======
             .call(function() {
+                // إزالة طبقة الحماية بشكل نهائي
                 overlay.classList.remove('active');
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
@@ -638,18 +601,3 @@
     </script>
 </body>
 </html>
-
-    <!-- ====== PWA ====== -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#45A29E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <script>
-        // تسجيل Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/TermuXpert-WEB/service-worker.js')
-                .then(reg => console.log('✅ Service Worker enregistré:', reg))
-                .catch(err => console.log('❌ Erreur Service Worker:', err));
-        }
-    </script>
