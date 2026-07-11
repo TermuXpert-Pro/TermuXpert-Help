@@ -28,29 +28,35 @@ fix_part() {
     # ====== 2. إزالة الأيقونات الإضافية من العنوان ======
     sed -i 's/<i class="fas fa-[^"]*"><\/i> //g' "$file"
     
-    # ====== 3. تعديل هيكل العنوان ======
-    sed -i "s/Partie $num : .*/Partie $num : $title/" "$file"
-    
-    # ====== 4. إزالة السطر الذي يحتوي على البادجات ======
+    # ====== 3. إزالة السطر الذي يحتوي على البادجات ======
     sed -i '/<p style="text-align:center; color:var(--text-muted); font-size:13px; margin-bottom:16px;">/,/<\/p>/d' "$file"
     
-    # ====== 5. تعديل أزرار التنقل ======
-    # حذف الأزرار القديمة بالكامل
+    # ====== 4. إزالة زر العودة العلوي القديم إن وجد ======
+    sed -i '/<a href="index.html" class="back-btn">/,/<\/a>/d' "$file"
+    
+    # ====== 5. إضافة زر العودة العلوي الجديد (مثل fonctions) ======
+    # البحث عن <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+    # وإضافة زر العودة بعده مباشرة
+    sed -i '/<div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">/a\
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>' "$file"
+    
+    # ====== 6. حذف أزرار التنقل القديمة بالكامل ======
     sed -i '/<div class="nav-buttons">/,/<\/div>/d' "$file"
     
-    # ====== 6. إضافة أزرار جديدة مطابقة لـ fonctions ======
+    # ====== 7. إضافة أزرار تنقل جديدة في الأسفل (مثل fonctions) ======
     cat >> "$file" << 'NAVEOF'
+
             <!-- ============================================================ -->
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
 NAVEOF
     
-    # زر العودة إلى الفهرس
+    # زر العودة
     if [ "$num" = "1" ]; then
-        echo '                <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>' >> "$file"
+        echo '                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>' >> "$file"
     else
-        echo "                <a href=\"part$prev.html\" class=\"back-btn\"><i class=\"fas fa-arrow-right\"></i> Partie $prev</a>" >> "$file"
+        echo "                <a href=\"part$prev.html\" class=\"back-btn\" style=\"margin-bottom:0;\"><i class=\"fas fa-arrow-right\"></i> Partie $prev</a>" >> "$file"
     fi
     
     # زر التالي
@@ -61,6 +67,15 @@ NAVEOF
     fi
     
     echo '            </div>' >> "$file"
+    
+    # ====== 8. التأكد من وجود style="margin-bottom:0;" في أزرار العودة ======
+    sed -i 's/class="back-btn"/class="back-btn" style="margin-bottom:0;"/g' "$file"
+    
+    # ====== 9. إزالة أي class="back-btn" مكرر ======
+    sed -i 's/class="back-btn" style="margin-bottom:0;" style="margin-bottom:0;"/class="back-btn" style="margin-bottom:0;"/g' "$file"
+    
+    # ====== 10. التأكد من وجود أيقونة السهم في زر العودة العلوي ======
+    sed -i 's/<a href="index.html" class="back-btn">/<a href="index.html" class="back-btn"><i class="fas fa-arrow-right"><\/i> /g' "$file"
     
     echo "✅ تم تعديل $file"
 }
@@ -96,15 +111,16 @@ ls -la part*.html
 echo ""
 echo "📋 التعديلات المطبقة:"
 echo "   ✅ إزالة جميع البادجات (1 Bac, Chapitre)"
-echo "   ✅ توحيد أزرار العودة مع fonctions"
-echo "   ✅ إضافة أيقونات في الأزرار مثل fonctions"
+echo "   ✅ إضافة زر retour علوي مع سهم (مثل fonctions)"
+echo "   ✅ توحيد أزرار العودة في الأسفل (مثل fonctions)"
 echo "   ✅ التنقل الصحيح بين الأجزاء"
+echo "   ✅ style=\"margin-bottom:0;\" في أزرار العودة"
 echo "=================================================="
 echo ""
 echo "📤 لرفع التغييرات إلى GitHub:"
 echo "   cd /storage/emulated/0/Web"
 echo "   git add ."
-echo "   git commit -m '🎨 توحيد أجزاء المنطق مع fonctions'"
+echo "   git commit -m '🎨 توحيد أجزاء المنطق مع fonctions (نسخة نهائية)'"
 echo "   git pull --rebase origin main"
 echo "   git push"
 echo "=================================================="
