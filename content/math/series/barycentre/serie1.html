@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série 1 - Barycentre | Xpert</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span { color: #4ECDC4; font-weight: 700; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+        <a href="../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Série 1 - Barycentre</h1>
+            <div class="serie-title">Exercices <span>1 à 4</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 1 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Exercice 1</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Construire le point \(G = \text{Bar}\{(A, 4); (B, -5)\}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <p>On a \(G = \text{Bar}\{(A, 4); (B, -5)\}\). Donc :</p>
+                            <div class="formula-block" style="font-size:13px;">
+                                $$4\overrightarrow{GA} - 5\overrightarrow{GB} = 0$$
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> On utilise la relation de Chasles :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$4\overrightarrow{GA} - 5(\overrightarrow{GA} + \overrightarrow{AB}) = 0$$
+                                    $$4\overrightarrow{GA} - 5\overrightarrow{GA} - 5\overrightarrow{AB} = 0$$
+                                    $$-\overrightarrow{GA} - 5\overrightarrow{AB} = 0$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On transforme \(-\overrightarrow{GA} = \overrightarrow{AG}\) :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$\overrightarrow{AG} - 5\overrightarrow{AB} = 0 \iff \overrightarrow{AG} = 5\overrightarrow{AB}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Construction :
+                                <ul style="font-size:12px; padding-right:14px;">
+                                    <li>Placer le point \(G\) sur la droite \((AB)\)</li>
+                                    <li>Tel que \(\overrightarrow{AG} = 5\overrightarrow{AB}\)</li>
+                                    <li>\(G\) est à l'extérieur du segment \([AB]\), du côté de \(B\)</li>
+                                </ul>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(G\) est le point tel que \(\overrightarrow{AG} = 5\overrightarrow{AB}\).</p>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graph1" width="400" height="200"></canvas>
+                                <p>Construction de G = Bar{(A,4); (B,-5)}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 2 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Exercice 2</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Construire le point \(G = \text{Bar}\{(A, \sqrt{8}); (B, -\sqrt{2})\}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <p>On a \(\sqrt{8} = 2\sqrt{2}\). Donc :</p>
+
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> On simplifie les poids en divisant par \(\sqrt{2}\) :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$G = \text{Bar}\left\{\left(A, \frac{\sqrt{8}}{\sqrt{2}}\right); \left(B, -\frac{\sqrt{2}}{\sqrt{2}}\right)\right\} = \text{Bar}\{(A, 2); (B, -1)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> \(G = \text{Bar}\{(A, 2); (B, -1)\}\). Donc :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$2\overrightarrow{GA} - \overrightarrow{GB} = 0$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> On utilise la relation de Chasles :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$2\overrightarrow{GA} - (\overrightarrow{GA} + \overrightarrow{AB}) = 0$$
+                                    $$2\overrightarrow{GA} - \overrightarrow{GA} - \overrightarrow{AB} = 0$$
+                                    $$\overrightarrow{GA} - \overrightarrow{AB} = 0$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> On transforme :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$-\overrightarrow{AG} = \overrightarrow{AB} \iff \overrightarrow{AG} = -\overrightarrow{AB} = \overrightarrow{BA}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(G\) est le symétrique de \(B\) par rapport à \(A\) (car \(\overrightarrow{AG} = \overrightarrow{BA}\)).</p>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graph2" width="400" height="200"></canvas>
+                                <p>Construction de G = Bar{(A,√8); (B,-√2)}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 3 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Exercice 3</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Dans le plan \((P)\) rapporté à un repère \((O; \vec{i}; \vec{j})\), soient \(A(3;2)\) et \(B(4;1)\).
+                    Soit \(G = \text{Bar}\{(A, 1); (B, -5)\}\). Déterminer les coordonnées de \(G\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <p><strong>Rappel :</strong> Si \(G = \text{Bar}\{(A, \alpha); (B, \beta)\}\) alors :</p>
+                            <div class="formula-block" style="font-size:13px;">
+                                $$x_G = \frac{\alpha x_A + \beta x_B}{\alpha + \beta} \quad \text{et} \quad y_G = \frac{\alpha y_A + \beta y_B}{\alpha + \beta}$$
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> On identifie les poids : \(\alpha = 1\), \(\beta = -5\).
+                                <br>\(\alpha + \beta = 1 + (-5) = -4 \neq 0\) ✅
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On calcule l'abscisse :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$x_G = \frac{1 \times 3 + (-5) \times 4}{1 + (-5)} = \frac{3 - 20}{-4} = \frac{-17}{-4} = \frac{17}{4}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> On calcule l'ordonnée :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$y_G = \frac{1 \times 2 + (-5) \times 1}{1 + (-5)} = \frac{2 - 5}{-4} = \frac{-3}{-4} = \frac{3}{4}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$G\left(\frac{17}{4}; \frac{3}{4}\right)$$
+                                </div>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graph3" width="400" height="250"></canvas>
+                                <p>Position de G dans le repère</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 4 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Exercice 4</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Soit \(ABC\) un triangle et soit \(I = \text{Bar}\{(B, 4); (C, -3)\}\).
+                    Déterminer les coordonnées du point \(I\) dans le repère \(R(A; \overrightarrow{AB}; \overrightarrow{AC})\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <p>Dans le repère \(R(A; \overrightarrow{AB}; \overrightarrow{AC})\) :</p>
+                            <div class="formula-block" style="font-size:13px;">
+                                $$A(0;0), \quad B(1;0), \quad C(0;1)$$
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> \(I = \text{Bar}\{(B, 4); (C, -3)\}\).
+                                <br>\(\alpha = 4\), \(\beta = -3\), \(\alpha + \beta = 1 \neq 0\) ✅
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On calcule les coordonnées :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$x_I = \frac{4 \times 1 + (-3) \times 0}{4 + (-3)} = \frac{4}{1} = 4$$
+                                    $$y_I = \frac{4 \times 0 + (-3) \times 1}{4 + (-3)} = \frac{-3}{1} = -3$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Vérification avec la formule vectorielle :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$(4 + (-3))\overrightarrow{AI} = 4\overrightarrow{AB} - 3\overrightarrow{AC}$$
+                                    $$\overrightarrow{AI} = 4\overrightarrow{AB} - 3\overrightarrow{AC}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$I(4; -3) \text{ dans le repère } R(A; \overrightarrow{AB}; \overrightarrow{AC})$$
+                                </div>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graph4" width="400" height="250"></canvas>
+                                <p>Position de I dans le repère (A; AB; AC)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="serie2.html" class="next-btn">Série 2 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawGraph1() {
+            var canvas = document.getElementById('graph1');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h/2 + 10;
+            var scale = 40;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            // Points A et B
+            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
+            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
+            var G = {x: 5, y: 0, color: '#F4D03F', label: 'G'};
+
+            var pts = [A, B, G];
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '12px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            // Flèche
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ox + A.x * scale, oy);
+            ctx.lineTo(ox + G.x * scale, oy);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('AG = 5 AB', 10, 20);
+        }
+
+        function drawGraph2() {
+            var canvas = document.getElementById('graph2');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h/2 + 10;
+            var scale = 40;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            // Points A, B, G
+            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
+            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
+            var G = {x: -1, y: 0, color: '#F4D03F', label: 'G'};
+
+            var pts = [A, B, G];
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '12px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('G symétrique de B par rapport à A', 10, 20);
+        }
+
+        function drawGraph3() {
+            var canvas = document.getElementById('graph3');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h - 30;
+            var scale = 40;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('x', w - 20, oy + 18);
+            ctx.fillText('y', ox + 10, 16);
+
+            // Points
+            var pts = [
+                {x: 3, y: 2, color: '#4ECDC4', label: 'A'},
+                {x: 4, y: 1, color: '#FF6B6B', label: 'B'},
+                {x: 17/4, y: 3/4, color: '#F4D03F', label: 'G'}
+            ];
+
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '12px Arial';
+                ctx.fillText(pts[i].label + ' (' + pts[i].x.toFixed(1) + ';' + pts[i].y.toFixed(1) + ')', px + 8, py - 6);
+            }
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('A, G et B sont alignés', 200, 20);
+        }
+
+        function drawGraph4() {
+            var canvas = document.getElementById('graph4');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 80, oy = h - 30;
+            var scale = 45;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('AB', w - 30, oy + 18);
+            ctx.fillText('AC', ox + 10, 16);
+
+            // Points
+            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
+            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
+            var C = {x: 0, y: 1, color: '#BB8FCE', label: 'C'};
+            var I = {x: 4, y: -3, color: '#F4D03F', label: 'I'};
+
+            var pts = [A, B, C, I];
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '12px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            // Triangle ABC
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(ox + 1 * scale, oy);
+            ctx.lineTo(ox, oy - 1 * scale);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('I(4; -3) dans le repère (A; AB; AC)', 200, 20);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraph1();
+                drawGraph2();
+                drawGraph3();
+                drawGraph4();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+</body>
+</html>
