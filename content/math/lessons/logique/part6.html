@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé complet - Logique mathématique | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.summary { background: #F4D03F44; color: #F4D03F; font-size: 14px; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
+        .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 500px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
+        .summary-card .s-title { color: #4ECDC4; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+        .greek-table { max-width: 500px; margin: 0 auto; }
+        .greek-table td { padding: 3px 8px; font-size: 12px; }
+        .greek-table .greek { font-family: 'Times New Roman', serif; font-size: 16px; color: #4ECDC4; }
+        .formula-card { background: rgba(78, 205, 196, 0.05); border: 1px solid #4ECDC422; border-radius: 6px; padding: 6px 10px; margin: 3px 0; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .greek-table td { font-size: 11px; }
+            .greek-table .greek { font-size: 14px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
+            .greek-table td { font-size: 10px; }
+            .greek-table .greek { font-size: 13px; }
+        }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+        <a href="../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-book-open" style="color:#F4D03F;"></i> Résumé complet : Logique mathématique</h1>
+
+            <!-- ====== Table des matières ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Propositions et Quantificateurs</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Opérations logiques (Tables de vérité)</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Lois logiques</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Types de raisonnements</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Tableau récapitulatif</a></li>
+                    <li><a href="#sec6"><span class="num">6.</span> Lettres grecques</a></li>
+                </ul>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: PROPOSITIONS ET QUANTIFICATEURS -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Propositions et Quantificateurs</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Proposition</div>
+                    <div class="s-content">
+                        Énoncé mathématique qui a un sens, pouvant être <span style="color:#4ECDC4;">vrai (V ou 1)</span> ou <span style="color:#FF6B6B;">faux (F ou 0)</span>.
+                        <br><span style="color:var(--text-muted); font-size:11px;">Exemple : P = « 2 est un nombre pair » (Vraie)</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Fonction propositionnelle</div>
+                    <div class="s-content">
+                        Énoncé contenant une ou plusieurs variables. Elle devient une proposition lorsqu'on remplace les variables par des valeurs.
+                        <br><span style="color:var(--text-muted); font-size:11px;">Exemple : A(x) = « x² = 4 » → A(2) = Vraie, A(3) = Fausse</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Quantificateurs</div>
+                    <div class="s-content">
+                        <ul style="font-size:12px; padding-right:14px;">
+                            <li><strong>∀</strong> = Quantificateur universel : « pour tout » ou « quel que soit »</li>
+                            <li><strong>∃</strong> = Quantificateur existentiel : « il existe »</li>
+                            <li><strong>∃!</strong> = Quantificateur existentiel unique : « il existe un unique »</li>
+                        </ul>
+                        <div class="formula-block" style="font-size:12px; margin-top:4px;">
+                            $\neg(\forall x \in E,\ P(x)) \iff \exists x \in E,\ \neg P(x)$
+                            <br>
+                            $\neg(\exists x \in E,\ P(x)) \iff \forall x \in E,\ \neg P(x)$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Important</span>
+                    <ul style="font-size:12px;">
+                        <li>L'ordre des quantificateurs <strong>identiques</strong> (∀∀ ou ∃∃) ne change pas le sens.</li>
+                        <li>L'ordre des quantificateurs <strong>différents</strong> (∀∃ ou ∃∀) change le sens.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: OPÉRATIONS LOGIQUES -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Opérations logiques (Tables de vérité)</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">Négation ($\overline{P}$ ou ¬P)</div>
+                    <div class="s-content">Inverse la valeur de vérité de P.</div>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>$P$</th><th>$\overline{P}$</th></tr>
+                            <tr><td class="true">V (1)</td><td class="false">F (0)</td></tr>
+                            <tr><td class="false">F (0)</td><td class="true">V (1)</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">Conjonction ($P \land Q$) : « P et Q »</div>
+                    <div class="s-content"><span style="color:#4ECDC4;">Vraie</span> seulement si <strong>P et Q sont vraies</strong>.</div>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>$P$</th><th>$Q$</th><th>$P \land Q$</th></tr>
+                            <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                            <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
+                            <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                        </table>
+                    </div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">$P \land Q = Q \land P$ (commutative)</div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">Disjonction ($P \lor Q$) : « P ou Q »</div>
+                    <div class="s-content"><span style="color:#FF6B6B;">Fausse</span> seulement si <strong>P et Q sont fausses</strong>.</div>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>$P$</th><th>$Q$</th><th>$P \lor Q$</th></tr>
+                            <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="true">V</td><td class="false">F</td><td class="true">V</td></tr>
+                            <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                        </table>
+                    </div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">$P \lor Q = Q \lor P$ (commutative)</div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">Implication ($P \Rightarrow Q$) : « P implique Q »</div>
+                    <div class="s-content">
+                        Équivaut à <strong>$\overline{P} \lor Q$</strong>. <span style="color:#FF6B6B;">Fausse</span> seulement si <strong>P est vraie et Q est fausse</strong>.
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>$P$</th><th>$Q$</th><th>$P \Rightarrow Q$</th></tr>
+                            <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                            <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
+                        </table>
+                    </div>
+                    <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">
+                        Contraposée : $P \Rightarrow Q \iff \overline{Q} \Rightarrow \overline{P}$
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">Équivalence ($P \Leftrightarrow Q$) : « P équivaut à Q »</div>
+                    <div class="s-content">
+                        Équivaut à <strong>$(P \Rightarrow Q) \land (Q \Rightarrow P)$</strong>. <span style="color:#4ECDC4;">Vraie</span> si <strong>P et Q ont la même valeur de vérité</strong>.
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>$P$</th><th>$Q$</th><th>$P \Leftrightarrow Q$</th></tr>
+                            <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                            <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
+                            <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: LOIS LOGIQUES -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Lois logiques</h2>
+
+                <div class="highlight-box red">
+                    <span class="label prop">Lois de Morgan</span>
+                    <div class="formula-block">
+                        $\overline{P \land Q} = \overline{P} \lor \overline{Q}$ &nbsp;&nbsp; et &nbsp;&nbsp; $\overline{P \lor Q} = \overline{P} \land \overline{Q}$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Distributivité</span>
+                    <div class="formula-block">
+                        $P \land (Q \lor R) = (P \land Q) \lor (P \land R)$
+                    </div>
+                    <div class="formula-block">
+                        $P \lor (Q \land R) = (P \lor Q) \land (P \lor R)$
+                    </div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Propriétés fondamentales</span>
+                    <ul style="font-size:12px;">
+                        <li><strong>Double négation :</strong> $\overline{\overline{P}} = P$</li>
+                        <li><strong>Contraposée :</strong> $P \Rightarrow Q \iff \overline{Q} \Rightarrow \overline{P}$</li>
+                        <li><strong>Transitivité :</strong> $[(P \Rightarrow Q) \land (Q \Rightarrow R)] \Rightarrow (P \Rightarrow R)$</li>
+                        <li><strong>Commutativité :</strong> $P \land Q = Q \land P$ et $P \lor Q = Q \lor P$</li>
+                        <li><strong>Associativité :</strong> $(P \land Q) \land R = P \land (Q \land R)$ et $(P \lor Q) \lor R = P \lor (Q \lor R)$</li>
+                        <li><strong>Idempotence :</strong> $P \land P = P$ et $P \lor P = P$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: TYPES DE RAISONNEMENTS -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Types de raisonnements</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">1. Contre-exemple</div>
+                    <div class="s-content">
+                        Pour montrer que <strong>$\forall x \in E,\ P(x)$</strong> est fausse, on trouve un élément <strong>$x \in E$</strong> qui ne vérifie pas P(x).
+                        <br><span style="color:var(--text-muted); font-size:11px;">Exemple : $\sqrt{2}$ et $-\sqrt{2}$ sont irrationnels mais leur somme = 0 est rationnel.</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">2. Équivalences successives</div>
+                    <div class="s-content">
+                        Pour montrer que <strong>$P \Leftrightarrow Q$</strong> est vraie, on enchaîne :
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $P \Leftrightarrow P_1 \Leftrightarrow P_2 \Leftrightarrow \cdots \Leftrightarrow Q$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">Exemple : $a^2 + b^2 = 2ab \iff a = b$</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">3. Déductif</div>
+                    <div class="s-content">
+                        Si <strong>$P \Rightarrow Q$</strong> est vraie et <strong>P</strong> est vraie, alors <strong>Q</strong> est vraie.
+                        <br><span style="color:var(--text-muted); font-size:11px;">Exemple : $\sqrt{ab} \le \dfrac{a+b}{2}$ avec $a=1, b=x$ donne $2\sqrt{x} \le 1+x$</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">4. Contraposée</div>
+                    <div class="s-content">
+                        Pour montrer <strong>$P \Rightarrow Q$</strong>, on montre <strong>$\overline{Q} \Rightarrow \overline{P}$</strong>.
+                        <br><span style="color:var(--text-muted); font-size:11px;">Exemple : $x^2 - 4x = y^2 - 4y \Rightarrow x = y$</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">5. Disjonction des cas</div>
+                    <div class="s-content">
+                        On divise le problème en plusieurs cas et on résout chacun séparément.
+                        <br><span style="color:var(--text-muted); font-size:11px;">Exemple : $|x+1| + 2x = 0$ avec $x \le -1$ et $x \ge -1$</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">6. Raisonnement par l'absurde</div>
+                    <div class="s-content">
+                        On suppose le contraire de ce qu'on veut démontrer, on cherche une contradiction.
+                        <br><span style="color:var(--text-muted); font-size:11px;">Exemples : $\sqrt{2} \notin \mathbb{Q}$ ; $r + i$ est irrationnel</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">7. Raisonnement par récurrence</div>
+                    <div class="s-content">
+                        Pour montrer que <strong>$P(n)$</strong> est vraie pour tout $n \ge n_0$ :
+                        <ul style="font-size:11px; padding-right:14px; margin-top:2px;">
+                            <li><strong>Initialisation :</strong> Vérifier $P(n_0)$</li>
+                            <li><strong>Hérédité :</strong> $P(n) \Rightarrow P(n+1)$</li>
+                        </ul>
+                        <span style="color:var(--text-muted); font-size:11px;">Exemples : Somme des entiers, $n^3 + 2n$ divisible par 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 5: TABLEAU RÉCAPITULATIF -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec5">
+                <h2><span class="num">5</span> Tableau récapitulatif</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Opération</th><th>Notation</th><th>Vraie si</th><th>Fausse si</th></tr>
+                        <tr><td>Négation</td><td>$\overline{P}$</td><td>P est fausse</td><td>P est vraie</td></tr>
+                        <tr><td>Conjonction</td><td>$P \land Q$</td><td>P et Q vraies</td><td>P ou Q fausse</td></tr>
+                        <tr><td>Disjonction</td><td>$P \lor Q$</td><td>P ou Q vraie</td><td>P et Q fausses</td></tr>
+                        <tr><td>Implication</td><td>$P \Rightarrow Q$</td><td>P fausse ou Q vraie</td><td>P vraie et Q fausse</td></tr>
+                        <tr><td>Équivalence</td><td>$P \Leftrightarrow Q$</td><td>P et Q même valeur</td><td>P et Q valeurs différentes</td></tr>
+                    </table>
+                </div>
+
+                <div class="highlight-box green" style="margin-top:8px;">
+                    <span class="label resume">À retenir</span>
+                    <ul style="font-size:12px;">
+                        <li><strong>$P \land Q$</strong> : Vraie seulement si les deux sont vraies.</li>
+                        <li><strong>$P \lor Q$</strong> : Fausse seulement si les deux sont fausses.</li>
+                        <li><strong>$P \Rightarrow Q$</strong> : Fausse seulement si P vraie et Q fausse.</li>
+                        <li><strong>$P \Leftrightarrow Q$</strong> : Vraie si P et Q ont même valeur.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 6: LETTRES GRECQUES -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec6">
+                <h2><span class="num">6</span> Lettres grecques</h2>
+
+                <div class="table-wrap greek-table">
+                    <table>
+                        <tr><th>Lettre</th><th>Nom</th><th>Lettre</th><th>Nom</th></tr>
+                        <tr><td class="greek">α</td><td>alpha</td><td class="greek">ν</td><td>nu</td></tr>
+                        <tr><td class="greek">β</td><td>bêta</td><td class="greek">ξ</td><td>xi</td></tr>
+                        <tr><td class="greek">γ</td><td>gamma</td><td class="greek">ο</td><td>omicron</td></tr>
+                        <tr><td class="greek">δ</td><td>delta</td><td class="greek">π</td><td>pi</td></tr>
+                        <tr><td class="greek">ε</td><td>epsilon</td><td class="greek">ρ</td><td>rhô</td></tr>
+                        <tr><td class="greek">ζ</td><td>zêta</td><td class="greek">σ</td><td>sigma</td></tr>
+                        <tr><td class="greek">η</td><td>êta</td><td class="greek">τ</td><td>tau</td></tr>
+                        <tr><td class="greek">θ</td><td>thêta</td><td class="greek">υ</td><td>upsilon</td></tr>
+                        <tr><td class="greek">ι</td><td>iota</td><td class="greek">φ</td><td>phi</td></tr>
+                        <tr><td class="greek">κ</td><td>kappa</td><td class="greek">χ</td><td>chi</td></tr>
+                        <tr><td class="greek">λ</td><td>lambda</td><td class="greek">ψ</td><td>psi</td></tr>
+                        <tr><td class="greek">μ</td><td>mu</td><td class="greek">ω</td><td>oméga</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part5.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 5</a>
+                <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+    
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+</body>
+</html>
