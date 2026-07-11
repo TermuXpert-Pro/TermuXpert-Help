@@ -64,10 +64,12 @@
         .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.simple { background: rgba(78, 205, 196, 0.12); color: #66FCF1; }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
         .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 450px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
@@ -117,6 +119,12 @@
             font-size: 12px;
             margin-bottom: 4px;
         }
+        .exemple-box .ex-subtitle {
+            color: #A8FF78;
+            font-weight: 600;
+            font-size: 11px;
+            margin-top: 4px;
+        }
         .exercice-box {
             background: #1A2A2A;
             border: 1px solid var(--border);
@@ -130,6 +138,17 @@
             font-size: 12px;
             margin-bottom: 4px;
         }
+        .exercice-box .ex-difficulty {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 1px 10px;
+            border-radius: 12px;
+            margin-left: 6px;
+        }
+        .ex-difficulty.facile { background: #4ECDC422; color: #4ECDC4; }
+        .ex-difficulty.moyen { background: #F4D03F22; color: #F4D03F; }
+        .ex-difficulty.difficile { background: #FF6B6B22; color: #FF6B6B; }
         .solution-box {
             background: #1A2A1A;
             border: 1px solid #A8FF7844;
@@ -173,6 +192,32 @@
             border-top: 1px solid var(--border);
             padding-top: 8px;
             margin-top: 8px;
+        }
+        .result-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+        }
+        .result-box .res-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+        .life-example {
+            background: #1A1A2E;
+            border: 1px solid #4ECDC444;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .life-example .life-title {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
         }
         @media (max-width: 768px) {
             body { font-size: 13px; }
@@ -265,11 +310,25 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Partie 5 : Exercices d'application</h1>
 
+            <!-- ====== Introduction ====== -->
+            <div class="highlight-box blue" style="border-color:#4D9DE0; background:rgba(77,157,224,0.08);">
+                <span class="label simple">💡 Conseils avant de commencer</span>
+                <p style="font-size:12px; color:var(--text-secondary);">
+                    Pour résoudre un exercice avec le théorème de l'énergie cinétique :
+                </p>
+                <ol style="font-size:11.5px; padding-right:18px; color:var(--text-secondary);">
+                    <li>📌 Faire le <strong>bilan des forces extérieures</strong> appliquées au solide.</li>
+                    <li>📐 Calculer le <strong>travail</strong> de chaque force.</li>
+                    <li>📝 Appliquer le théorème : \(\Delta E_C = \sum W(\vec{F}_{ext})\).</li>
+                    <li>✅ Résoudre l'équation pour trouver l'inconnue.</li>
+                </ol>
+            </div>
+
             <!-- ============================================================ -->
             <!-- EXERCICE 1 -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">1</span> Exercice 1</h2>
+                <h2><span class="num">1</span> Exercice 1 <span class="ex-difficulty facile">Facile</span></h2>
 
                 <div class="exercice-box">
                     <div class="ex-title">📝 Énoncé</div>
@@ -348,7 +407,7 @@
                                 </div>
 
                                 <div class="result-box" style="margin-top:6px;">
-                                    <div class="res-title" style="color:#A8FF78; font-weight:700;">✅ Résultat</div>
+                                    <div class="res-title">✅ Résultat</div>
                                     <div class="formula-block" style="font-size:16px;">
                                         $$f \approx 108,5\text{ N}$$
                                     </div>
@@ -397,7 +456,7 @@
                                 </div>
 
                                 <div class="result-box" style="margin-top:6px;">
-                                    <div class="res-title" style="color:#A8FF78; font-weight:700;">✅ Résultat</div>
+                                    <div class="res-title">✅ Résultat</div>
                                     <div class="formula-block" style="font-size:16px;">
                                         $$L \approx 43,2\text{ m}$$
                                     </div>
@@ -412,7 +471,171 @@
             <!-- EXERCICE 2 -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">2</span> Exercice 2</h2>
+                <h2><span class="num">2</span> Exercice 2 <span class="ex-difficulty facile">Facile</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un solide de masse \(m = 2\text{ kg}\) est lancé verticalement vers le haut avec une vitesse initiale \(V_0 = 10\text{ m/s}\).
+                        <br>On néglige les frottements de l'air. \(g = 10\text{ m/s}^2\).
+                    </p>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer l'énergie cinétique initiale du solide.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_1')">Voir la solution</button>
+                        <div id="sol2_1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(E_{C0} = \frac{1}{2} m \cdot V_0^2\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(E_{C0} = \frac{1}{2} \times 2 \times 10^2 = 1 \times 100 = 100\text{ J}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$E_{C0} = 100\text{ J}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            En utilisant le théorème de l'énergie cinétique, calculer la hauteur maximale atteinte par le solide.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_2')">Voir la solution</button>
+                        <div id="sol2_2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> Au point le plus haut, la vitesse est nulle : \(V = 0\), donc \(E_C = 0\).
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Bilan des forces : seule le poids \(\vec{P}\) travaille.
+                                    <br>\(W(\vec{P}) = -m \cdot g \cdot h\) (travail résistant car le solide monte)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> Théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta E_C = E_C - E_{C0} = W(\vec{P})$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$0 - 100 = -m \cdot g \cdot h$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$h = \frac{100}{m \cdot g} = \frac{100}{2 \times 10} = 5\text{ m}$$
+                                    </div>
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$h_{max} = 5\text{ m}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 3 (NOUVEAU) -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Exercice 3 <span class="ex-difficulty moyen">Moyen</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un solide de masse \(m = 500\text{ g}\) glisse sur un plan incliné d'angle \(\alpha = 30^\circ\).
+                        <br>Il part du repos du point A situé à une hauteur \(h = 2\text{ m}\).
+                        <br>Les frottements sont négligeables. \(g = 10\text{ m/s}^2\).
+                    </p>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer le travail du poids entre A et B.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_1')">Voir la solution</button>
+                        <div id="sol3_1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(m = 500\text{ g} = 0,5\text{ kg}\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(W(\vec{P}) = m \cdot g \cdot h = 0,5 \times 10 \times 2 = 10\text{ J}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$W(\vec{P}) = 10\text{ J}$$
+                                    </div>
+                                    <p style="font-size:11px; color:var(--text-muted);">Le travail est moteur (le solide descend).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer la vitesse du solide en B en utilisant le théorème de l'énergie cinétique.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_2')">Voir la solution</button>
+                        <div id="sol3_2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> Le solide part du repos : \(V_A = 0\), donc \(E_{CA} = 0\).
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta E_C = E_{CB} - E_{CA} = W(\vec{P})$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\frac{1}{2} m \cdot V_B^2 - 0 = 10$$
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> 
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V_B^2 = \frac{2 \times 10}{0,5} = 40$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V_B = \sqrt{40} \approx 6,32\text{ m/s}$$
+                                    </div>
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$V_B \approx 6,32\text{ m/s}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 4 (NOUVEAU) -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Exercice 4 <span class="ex-difficulty moyen">Moyen</span></h2>
 
                 <div class="exercice-box">
                     <div class="ex-title">📝 Énoncé</div>
@@ -431,68 +654,36 @@
                         <p style="font-size:11.5px; color:var(--text-secondary);">
                             Calculer la durée du temps \(\Delta t\) nécessaire pour que la fréquence du cylindre devienne \(N = 10\text{ tr/s}\), on considère que les frottements sont négligeables.
                         </p>
-                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_1')">Voir la solution</button>
-                        <div id="sol2_1" class="solution-box">
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
+                        <div id="sol4_1" class="solution-box">
                             <div class="sol-title">✅ Solution détaillée</div>
                             <div class="sol-content">
                                 <p><strong>Système étudié :</strong> le cylindre</p>
-                                <p><strong>Bilan des forces :</strong></p>
-                                <ul style="font-size:11.5px; padding-right:14px;">
-                                    <li>\(\vec{P}\) : Poids du cylindre</li>
-                                    <li>\(\vec{R}\) : Action de l'axe de rotation</li>
-                                    <li>Action du moment du couple moteur \(M_c\)</li>
-                                </ul>
+                                <p><strong>Bilan des forces :</strong> \(\vec{P}\), \(\vec{R}\), Action du couple moteur \(M_c\)</p>
 
                                 <div class="step">
-                                    <span class="step-num">Étape 1 :</span> On applique le théorème de l'énergie cinétique sur le cylindre :
+                                    <span class="step-num">Étape 1 :</span> On applique le théorème de l'énergie cinétique :
                                     <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$\Delta E_C = E_{Cf} - E_{Ci} = W(\vec{P}) + W(\vec{R}) + W(C)$$
-                                    </div>
-                                    <div style="font-size:12px; color:var(--text-secondary);">
-                                        \(W(\vec{P}) = W(\vec{R}) = 0\) (les forces ne travaillent pas)
+                                        $$\Delta E_C = \frac{1}{2} J_{\Delta} \cdot \omega_f^2 = \mathcal{P} \cdot \Delta t$$
                                     </div>
                                 </div>
 
                                 <div class="step">
-                                    <span class="step-num">Étape 2 :</span> Le cylindre part du repos : \(E_{Ci} = 0\) et \(\omega_i = 0\).
-                                    <br>Le travail du couple moteur est : \(W(C) = \mathcal{P} \cdot \Delta t\)
+                                    <span class="step-num">Étape 2 :</span> \(J_{\Delta} = \frac{1}{2} m \cdot r^2\) et \(\omega_f = 2\pi N\)
                                 </div>
 
                                 <div class="step">
-                                    <span class="step-num">Étape 3 :</span> On remplace :
-                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$\frac{1}{2} J_{\Delta} \cdot \omega_f^2 = \mathcal{P} \cdot \Delta t$$
-                                    </div>
-                                    <div style="font-size:12px; color:var(--text-secondary);">
-                                        \(J_{\Delta} = \frac{1}{2} m \cdot r^2\) et \(\omega_f = 2\pi N\)
-                                    </div>
-                                </div>
-
-                                <div class="step">
-                                    <span class="step-num">Étape 4 :</span> Calcul :
-                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$\frac{1}{2} \times \frac{1}{2} m \cdot r^2 \times (2\pi N)^2 = \mathcal{P} \cdot \Delta t$$
-                                    </div>
-                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$\pi^2 \cdot m \cdot r^2 \cdot N^2 = \mathcal{P} \cdot \Delta t$$
-                                    </div>
+                                    <span class="step-num">Étape 3 :</span> Calcul :
                                     <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                         $$\Delta t = \frac{\pi^2 \cdot m \cdot r^2 \cdot N^2}{\mathcal{P}}$$
                                     </div>
-                                </div>
-
-                                <div class="step">
-                                    <span class="step-num">Étape 5 :</span> Application numérique :
                                     <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$\Delta t = \frac{\pi^2 \times 2 \times (0,2)^2 \times 10^2}{10} = \frac{9,87 \times 2 \times 0,04 \times 100}{10}$$
-                                    </div>
-                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$\Delta t = \frac{78,96}{10} = 7,90\text{ s}$$
+                                        $$\Delta t = \frac{\pi^2 \times 2 \times (0,2)^2 \times 10^2}{10} = 7,90\text{ s}$$
                                     </div>
                                 </div>
 
                                 <div class="result-box" style="margin-top:6px;">
-                                    <div class="res-title" style="color:#A8FF78; font-weight:700;">✅ Résultat</div>
+                                    <div class="res-title">✅ Résultat</div>
                                     <div class="formula-block" style="font-size:16px;">
                                         $$\Delta t \approx 7,90\text{ s}$$
                                     </div>
@@ -506,61 +697,150 @@
                         <p style="font-size:11.5px; color:var(--text-secondary);">
                             À la fréquence \(N = 10\text{ tr/s}\), on applique tangentiellement à la circonférence du cylindre une force \(\vec{F}\) constante, pour que le mouvement devient uniforme. Calculer la valeur de la force \(F\).
                         </p>
-                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_2')">Voir la solution</button>
-                        <div id="sol2_2" class="solution-box">
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
+                        <div id="sol4_2" class="solution-box">
                             <div class="sol-title">✅ Solution détaillée</div>
                             <div class="sol-content">
-                                <p><strong>Système étudié :</strong> le cylindre</p>
-                                <p><strong>Bilan des forces :</strong></p>
-                                <ul style="font-size:11.5px; padding-right:14px;">
-                                    <li>\(\vec{P}\) : Poids du cylindre</li>
-                                    <li>\(\vec{R}\) : Action de l'axe de rotation</li>
-                                    <li>Action du moment du moteur \(M_c\)</li>
-                                    <li>Action de la force \(\vec{F}\)</li>
-                                </ul>
-
                                 <div class="step">
                                     <span class="step-num">Étape 1 :</span> Mouvement uniforme \(\Rightarrow \omega = \text{constante} \Rightarrow \Delta E_C = 0\)
                                 </div>
-
                                 <div class="step">
-                                    <span class="step-num">Étape 2 :</span> On applique le théorème de l'énergie cinétique :
+                                    <span class="step-num">Étape 2 :</span> Théorème de l'énergie cinétique :
                                     <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                         $$0 = W(C) + W(\vec{F})$$
                                     </div>
                                     <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$M_c \cdot \Delta \theta - F \cdot r \cdot \Delta \theta = 0$$
-                                    </div>
-                                </div>
-
-                                <div class="step">
-                                    <span class="step-num">Étape 3 :</span> On simplifie :
-                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                         $$M_c = F \cdot r$$
                                     </div>
-                                    <div style="font-size:12px; color:var(--text-secondary);">
-                                        Or \(M_c \cdot \omega = \mathcal{P} \Rightarrow M_c = \frac{\mathcal{P}}{\omega}\)
-                                    </div>
                                 </div>
-
                                 <div class="step">
-                                    <span class="step-num">Étape 4 :</span> On en déduit :
-                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$F = \frac{M_c}{r} = \frac{\mathcal{P}}{r \cdot \omega} = \frac{\mathcal{P}}{2\pi \cdot N \cdot r}$$
-                                    </div>
+                                    <span class="step-num">Étape 3 :</span> \(M_c \cdot \omega = \mathcal{P} \Rightarrow M_c = \frac{\mathcal{P}}{\omega}\)
                                 </div>
-
                                 <div class="step">
-                                    <span class="step-num">Étape 5 :</span> Application numérique :
+                                    <span class="step-num">Étape 4 :</span> 
                                     <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                        $$F = \frac{10}{2\pi \times 10 \times 0,2} = \frac{10}{4\pi} = \frac{10}{12,57} = 0,795\text{ N}$$
+                                        $$F = \frac{\mathcal{P}}{2\pi \cdot N \cdot r} = \frac{10}{2\pi \times 10 \times 0,2} = 0,795\text{ N}$$
                                     </div>
                                 </div>
-
                                 <div class="result-box" style="margin-top:6px;">
-                                    <div class="res-title" style="color:#A8FF78; font-weight:700;">✅ Résultat</div>
+                                    <div class="res-title">✅ Résultat</div>
                                     <div class="formula-block" style="font-size:16px;">
                                         $$F \approx 0,80\text{ N}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 5 (NOUVEAU) -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">5</span> Exercice 5 <span class="ex-difficulty difficile">Difficile</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un pendule simple est constitué d'une bille de masse \(m = 200\text{ g}\) suspendue à un fil inextensible de longueur \(L = 1\text{ m}\).
+                        <br>On écarte le pendule d'un angle \(\theta_0 = 60^\circ\) par rapport à la verticale et on le lâche sans vitesse initiale.
+                        <br>On néglige les frottements. \(g = 10\text{ m/s}^2\).
+                    </p>
+                    <div class="graph-container">
+                        <canvas id="graphPendule" width="300" height="180"></canvas>
+                        <p>Pendule simple</p>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer la hauteur \(h\) dont descend la bille entre sa position initiale et la position verticale.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_1')">Voir la solution</button>
+                        <div id="sol5_1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> La hauteur est donnée par :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$h = L - L \cdot \cos \theta_0 = L(1 - \cos \theta_0)$$
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(\cos(60^\circ) = 0,5\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> \(h = 1 \times (1 - 0,5) = 0,5\text{ m}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$h = 0,5\text{ m}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            En utilisant le théorème de l'énergie cinétique, calculer la vitesse de la bille lorsqu'elle passe par la position verticale.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_2')">Voir la solution</button>
+                        <div id="sol5_2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(m = 200\text{ g} = 0,2\text{ kg}\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\frac{1}{2} m \cdot V^2 - 0 = m \cdot g \cdot h$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\frac{1}{2} V^2 = g \cdot h$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V^2 = 2 \cdot g \cdot h = 2 \times 10 \times 0,5 = 10$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V = \sqrt{10} \approx 3,16\text{ m/s}$$
+                                    </div>
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$V \approx 3,16\text{ m/s}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 3</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer l'énergie cinétique de la bille à la position verticale.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_3')">Voir la solution</button>
+                        <div id="sol5_3" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(E_C = \frac{1}{2} m \cdot V^2\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(E_C = \frac{1}{2} \times 0,2 \times 10 = 1\text{ J}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$E_C = 1\text{ J}$$
                                     </div>
                                 </div>
                             </div>
@@ -606,7 +886,7 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 1
+        // GRAPHIQUES
         // ============================================================
 
         function drawGraphExercice1() {
@@ -689,9 +969,75 @@
             ctx.fillText('AB = 100 m', 160, 35);
         }
 
+        function drawGraphPendule() {
+            var canvas = document.getElementById('graphPendule');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = 40;
+            var L = 120;
+            var angle = 60 * Math.PI / 180;
+
+            // Fil
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            var x1 = cx + L * Math.sin(angle);
+            var y1 = cy + L * Math.cos(angle);
+            ctx.lineTo(x1, y1);
+            ctx.stroke();
+
+            // Fil vertical (position d'équilibre)
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(cx, cy + L);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Bille
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(x1, y1, 12, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Centre
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('O', cx + 8, cy + 4);
+
+            // Angle
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(cx, cy + 10, 25, 0, angle);
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '11px Arial';
+            ctx.fillText('θ₀', cx + 15, cy + 18);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Pendule simple θ₀ = 60°', 160, 20);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 drawGraphExercice1();
+                drawGraphPendule();
             }, 500);
         });
     </script>
