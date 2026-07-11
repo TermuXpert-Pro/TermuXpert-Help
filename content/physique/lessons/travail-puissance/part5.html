@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 1 - Travail et puissance d'une force | Xpert</title>
+    <title>Partie 5 - Travail et puissance d'une force | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,12 +64,14 @@
         .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.summary { background: #F4D03F44; color: #F4D03F; font-size: 14px; }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 500px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
         .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
@@ -117,6 +119,16 @@
             font-size: 12px;
             margin-bottom: 4px;
         }
+        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
+        .summary-card .s-title { color: #FF6B6B; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #FF6B6B; }
+        .toc ul li a .num { color: #FF6B6B; font-weight: 700; font-size: 11px; min-width: 20px; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -206,131 +218,164 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-arrow-right" style="color:#FF6B6B;"></i> Partie 1 : Notion de force - Travail d'une force constante</h1>
+            <h1 class="lesson-title"><i class="fas fa-book-open" style="color:#F4D03F;"></i> Partie 5 : Couple de forces - Moment - Résumé complet</h1>
+
+            <!-- ====== Table des matières ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Couple de forces - Définition</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Moment d'un couple</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Travail d'un couple de forces</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Tableau récapitulatif général</a></li>
+                </ul>
+            </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 1: NOTION DE FORCE -->
+            <!-- SECTION 1: COUPLE DE FORCES -->
             <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">1</span> Notion de force</h2>
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Couple de forces</h2>
 
                 <div class="highlight-box red">
                     <span class="label def">Définition</span>
-                    <p>Une <strong>force</strong> est une action mécanique capable de :</p>
+                    <p>Un <strong>couple de forces</strong> est l'ensemble de deux forces \(\vec{F}_1\) et \(\vec{F}_2\) telles que :</p>
                     <ul>
-                        <li>mettre en mouvement un corps</li>
-                        <li>modifier son mouvement</li>
-                        <li>le maintenir en équilibre</li>
-                        <li>le déformer</li>
+                        <li>Leurs droites d'action sont <strong>parallèles</strong>.</li>
+                        <li>Leurs <strong>sens sont opposés</strong>.</li>
+                        <li>Leurs <strong>intensités sont égales</strong> : \(F_1 = F_2 = F\).</li>
                     </ul>
                 </div>
 
+                <div class="graph-container">
+                    <canvas id="graphCouple" width="400" height="220"></canvas>
+                    <p>Couple de forces : deux forces opposées et parallèles</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Caractéristiques</span>
+                    <ul>
+                        <li>La résultante d'un couple est <strong>nulle</strong> (\(\vec{F}_1 + \vec{F}_2 = 0\)).</li>
+                        <li>Un couple produit une <strong>rotation</strong> sans translation.</li>
+                        <li>Un couple est caractérisé par son <strong>moment</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: MOMENT D'UN COUPLE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Moment d'un couple</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Le <strong>moment</strong> d'un couple de deux forces est égal au produit de la valeur de l'intensité commune \(F\) par la <strong>distance \(d\)</strong> entre les droites d'action des deux forces :</p>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$M_c = \pm F \cdot d$$
+                    </div>
+                </div>
+
                 <div class="highlight-box green">
-                    <span class="label prop">Force constante</span>
-                    <p>Une force est dite <strong>constante</strong> si sa <strong>valeur</strong>, sa <strong>direction</strong> et son <strong>sens</strong> ne varient pas au cours du temps.</p>
+                    <span class="label prop">Unités</span>
+                    <ul>
+                        <li>\(M_c\) : moment en <strong>Newton-mètre (N·m)</strong></li>
+                        <li>\(F\) : force en <strong>Newton (N)</strong></li>
+                        <li>\(d\) : distance en <strong>mètre (m)</strong></li>
+                    </ul>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphMoment" width="400" height="200"></canvas>
+                    <p>Moment d'un couple : M<sub>c</sub> = F · d</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Signe du moment</span>
+                    <ul>
+                        <li>\(M_c > 0\) : couple <strong>moteur</strong> (rotation dans le sens direct)</li>
+                        <li>\(M_c < 0\) : couple <strong>résistant</strong> (rotation dans le sens indirect)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: TRAVAIL D'UN COUPLE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Travail d'un couple de forces de moment constant</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Le travail d'un couple de forces de moment constant \(M_c\) pour une rotation d'angle \(\Delta \theta\) est :</p>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$W = M_c \cdot \Delta \theta$$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Remarques</span>
+                    <ul>
+                        <li>\(W\) : travail en <strong>Joules (J)</strong></li>
+                        <li>\(M_c\) : moment du couple en <strong>N·m</strong></li>
+                        <li>\(\Delta \theta\) : angle de rotation en <strong>radians (rad)</strong></li>
+                        <li>Cette relation est analogue à \(W = F \cdot AB\) pour une force en translation.</li>
+                    </ul>
                 </div>
 
                 <div class="exemple-box">
                     <div class="ex-title">📝 Exemple</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Le <strong>poids</strong> d'un corps solide est une force constante.
-                    </p>
-                    <div class="graph-container">
-                        <canvas id="graphForce" width="300" height="180"></canvas>
-                        <p>Force constante : le poids</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 2: NOTION DE TRAVAIL -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">2</span> Notion de travail d'une force</h2>
-
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>En physique, le <strong>travail</strong> est une notion liée aux <strong>forces</strong> et aux <strong>déplacements</strong> de leurs points d'application.</p>
-                    <p style="margin-top:4px;">On dit qu'une force <strong>travaille</strong> lorsque son point d'application se déplace.</p>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rem">Remarque</span>
-                    <ul>
-                        <li>Si le point d'application de la force ne se déplace pas, le travail est <strong>nul</strong>.</li>
-                        <li>Le travail est une grandeur <strong>algébrique</strong> (positive ou négative).</li>
-                        <li>L'unité du travail dans le système international (SI) est le <strong>Joule (J)</strong>.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 3: TRAVAIL D'UNE FORCE CONSTANTE EN TRANSLATION RECTILIGNE -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">3</span> Travail d'une force constante en translation rectiligne</h2>
-
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>Le travail d'une force constante \(\vec{F}\) pour un déplacement rectiligne \(AB\) de son point d'application est le <strong>produit scalaire</strong> du vecteur force \(\vec{F}\) et du vecteur déplacement \(\overrightarrow{AB}\) :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$W_{A \to B}(\vec{F}) = \vec{F} \cdot \overrightarrow{AB} = F \cdot AB \cdot \cos \alpha$$
-                    </div>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rem">Notations</span>
-                    <ul>
-                        <li>\(W_{A \to B}(\vec{F})\) : travail de la force \(\vec{F}\) en <strong>Joules (J)</strong></li>
-                        <li>\(F\) : valeur de la force en <strong>Newtons (N)</strong></li>
-                        <li>\(AB\) : longueur du déplacement en <strong>mètres (m)</strong></li>
-                        <li>\(\alpha\) : angle entre les vecteurs \(\vec{F}\) et \(\overrightarrow{AB}\)</li>
-                    </ul>
-                </div>
-
-                <div class="graph-container">
-                    <canvas id="graphTravail" width="400" height="200"></canvas>
-                    <p>Travail d'une force constante : W = F · AB · cos α</p>
-                </div>
-
-                <div class="exemple-box">
-                    <div class="ex-title">📝 Application</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Calculer le travail de la force \(\vec{F}\) sachant que : \(F = 10\text{ N}\), \(AB = 10\text{ cm}\) et \(\alpha = 60^\circ\).
+                        Un couple de moment \(M_c = 10\text{ N·m}\) fait tourner un volant d'un angle \(\Delta \theta = \frac{\pi}{2}\text{ rad}\).
                     </p>
                     <div style="margin-top:6px;">
-                        <div class="step">
-                            <span class="step-num">Étape 1 :</span> \(W = F \cdot AB \cdot \cos \alpha\)
+                        <div class="formula-block" style="font-size:14px; margin:2px 0;">
+                            $$W = M_c \cdot \Delta \theta = 10 \times \frac{\pi}{2} = 5\pi \approx 15.7\text{ J}$$
                         </div>
-                        <div class="step">
-                            <span class="step-num">Étape 2 :</span> \(W = 10 \times 10 \times 10^{-2} \times \cos(60^\circ)\)
-                        </div>
-                        <div class="step">
-                            <span class="step-num">Étape 3 :</span> \(W = 10 \times 0.1 \times 0.5 = 0.5\text{ J}\)
-                        </div>
-                    </div>
-                    <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
-                        ✅ \(W = 0.5\text{ J}\)
-                    </div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label prop">Expression en coordonnées</span>
-                    <p>Le travail peut s'écrire en fonction des coordonnées du vecteur force et du vecteur déplacement :</p>
-                    <div class="formula-block" style="font-size:14px;">
-                        $$\vec{F} = \begin{pmatrix} F_x \\ F_y \end{pmatrix} \quad \text{et} \quad \overrightarrow{AB} = \begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}$$
-                    </div>
-                    <div class="formula-block" style="font-size:15px;">
-                        $$W_{A \to B}(\vec{F}) = F_x \cdot (x_B - x_A) + F_y \cdot (y_B - y_A)$$
                     </div>
                 </div>
 
                 <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>Le travail d'une force constante est le <strong>produit scalaire</strong> \(\vec{F} \cdot \overrightarrow{AB}\).</li>
-                        <li>Unité : le <strong>Joule (J)</strong>.</li>
-                        <li>Le travail est une grandeur <strong>algébrique</strong>.</li>
+                    <span class="label resume">Comparaison</span>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>Translation</th><th>Rotation</th></tr>
+                            <tr><td>\(W = F \cdot AB\)</td><td>\(W = M_c \cdot \Delta \theta\)</td></tr>
+                            <tr><td>\(P = F \cdot v\)</td><td>\(P = M_c \cdot \omega\)</td></tr>
+                            <tr><td>Force \(F\) (N)</td><td>Moment \(M_c\) (N·m)</td></tr>
+                            <tr><td>Déplacement \(AB\) (m)</td><td>Angle \(\Delta \theta\) (rad)</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: TABLEAU RÉCAPITULATIF -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Tableau récapitulatif général</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Grandeur</th><th>Formule</th><th>Unité</th></tr>
+                        <tr><td>Travail d'une force</td><td>\(W = \vec{F} \cdot \overrightarrow{AB}\)</td><td>J</td></tr>
+                        <tr><td>Travail du poids</td><td>\(W = m \cdot g \cdot (z_A - z_B)\)</td><td>J</td></tr>
+                        <tr><td>Travail d'un couple</td><td>\(W = M_c \cdot \Delta \theta\)</td><td>J</td></tr>
+                        <tr><td>Puissance moyenne</td><td>\(P_m = \dfrac{W}{\Delta t}\)</td><td>W</td></tr>
+                        <tr><td>Puissance instantanée</td><td>\(P = \vec{F} \cdot \vec{v}\)</td><td>W</td></tr>
+                        <tr><td>Puissance en rotation</td><td>\(P = M_c \cdot \omega\)</td><td>W</td></tr>
+                        <tr><td>Moment d'un couple</td><td>\(M_c = F \cdot d\)</td><td>N·m</td></tr>
+                    </table>
+                </div>
+
+                <div class="highlight-box gold" style="margin-top:8px;">
+                    <span class="label summary">À retenir</span>
+                    <ul style="font-size:12px;">
+                        <li>Le travail est l'énergie <strong>transférée</strong> par une force lors d'un déplacement.</li>
+                        <li>La puissance est le <strong>débit</strong> d'énergie (\(\text{W} = \text{J/s}\)).</li>
+                        <li>Le poids est une force <strong>conservative</strong> (travail indépendant du chemin).</li>
+                        <li>Un couple produit une <strong>rotation</strong> sans translation.</li>
+                        <li>Les relations translation/rotation sont <strong>analogues</strong>.</li>
                     </ul>
                 </div>
             </div>
@@ -339,8 +384,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
-                <a href="part2.html" class="next-btn">Partie 2 <i class="fas fa-arrow-left"></i></a>
+                <a href="part4.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 4</a>
+                <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
             </div>
 
         </div>
@@ -363,8 +408,8 @@
         // GRAPHIQUES
         // ============================================================
 
-        function drawGraphForce() {
-            var canvas = document.getElementById('graphForce');
+        function drawGraphCouple() {
+            var canvas = document.getElementById('graphCouple');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -373,46 +418,91 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            var cx = w/2, cy = 50;
-            var r = 30;
+            var cx = w/2, cy = h/2;
 
-            // Cercle (corps)
-            ctx.fillStyle = '#4ECDC4';
+            // Cercle (volant)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.arc(cx, cy, r, 0, 2 * Math.PI);
-            ctx.fill();
-
-            // Flèche vers le bas (poids)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy + r);
-            ctx.lineTo(cx, cy + r + 80);
+            ctx.arc(cx, cy, 80, 0, 2 * Math.PI);
             ctx.stroke();
 
-            // Tête de flèche
-            ctx.fillStyle = '#FF6B6B';
+            // Centre
+            ctx.fillStyle = '#BB8FCE';
             ctx.beginPath();
-            ctx.moveTo(cx - 8, cy + r + 70);
-            ctx.lineTo(cx, cy + r + 85);
-            ctx.lineTo(cx + 8, cy + r + 70);
+            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
             ctx.fill();
 
+            // Deux forces opposées
+            var r = 80;
+            var angle1 = -Math.PI/3;
+            var angle2 = Math.PI - Math.PI/3;
+
+            // Force 1
+            var x1 = cx + r * Math.cos(angle1);
+            var y1 = cy + r * Math.sin(angle1);
+            var fx1 = x1 + 50 * Math.cos(angle1 + Math.PI/2);
+            var fy1 = y1 + 50 * Math.sin(angle1 + Math.PI/2);
+
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(fx1, fy1);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.moveTo(fx1 - 6, fy1 + 6);
+            ctx.lineTo(fx1, fy1);
+            ctx.lineTo(fx1 + 6, fy1 + 6);
+            ctx.fill();
             ctx.fillStyle = '#FF6B6B';
             ctx.font = '14px Arial';
-            ctx.fillText('P', cx + 10, cy + r + 45);
+            ctx.fillText('F₁', fx1 + 10, fy1);
 
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('Corps', cx - 20, cy - 10);
+            // Force 2
+            var x2 = cx + r * Math.cos(angle2);
+            var y2 = cy + r * Math.sin(angle2);
+            var fx2 = x2 + 50 * Math.cos(angle2 - Math.PI/2);
+            var fy2 = y2 + 50 * Math.sin(angle2 - Math.PI/2);
+
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(fx2, fy2);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.moveTo(fx2 - 6, fy2 - 6);
+            ctx.lineTo(fx2, fy2);
+            ctx.lineTo(fx2 + 6, fy2 - 6);
+            ctx.fill();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.fillText('F₂', fx2 - 30, fy2);
+
+            // Distance d
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '12px Arial';
+            ctx.fillText('d', (x1+x2)/2 - 10, (y1+y2)/2 - 8);
 
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
-            ctx.fillText('Force constante : le poids', 100, 165);
+            ctx.fillText('Couple de forces : F₁ = F₂ = F', 200, 20);
         }
 
-        function drawGraphTravail() {
-            var canvas = document.getElementById('graphTravail');
+        function drawGraphMoment() {
+            var canvas = document.getElementById('graphMoment');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -421,88 +511,64 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            var ox = 60, oy = h - 30;
+            var cx = w/2, cy = h/2;
 
-            // Point A
-            ctx.fillStyle = '#4ECDC4';
+            // Cercle
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.arc(ox, oy - 50, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('A', ox - 15, oy - 50 - 8);
-
-            // Point B
-            var bx = ox + 180;
-            var by = oy - 50;
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('B', bx + 8, by - 8);
-
-            // Flèche AB
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(ox, by);
-            ctx.lineTo(bx, by);
+            ctx.arc(cx, cy, 70, 0, 2 * Math.PI);
             ctx.stroke();
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.moveTo(bx - 10, by - 6);
-            ctx.lineTo(bx, by);
-            ctx.lineTo(bx - 10, by + 6);
-            ctx.fill();
 
-            // Force F
-            var angle = 60 * Math.PI / 180;
-            var fx = bx - 60 * Math.cos(angle);
-            var fy = by - 60 * Math.sin(angle);
+            // Rayon
+            var angle = Math.PI/4;
+            var r = 70;
+            var x = cx + r * Math.cos(angle);
+            var y = cy + r * Math.sin(angle);
+
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Force tangentielle
+            var fx = x + 50 * Math.cos(angle + Math.PI/2);
+            var fy = y + 50 * Math.sin(angle + Math.PI/2);
+
             ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.moveTo(bx, by);
+            ctx.moveTo(x, y);
             ctx.lineTo(fx, fy);
             ctx.stroke();
             ctx.fillStyle = '#F4D03F';
             ctx.beginPath();
-            ctx.moveTo(fx + 8 * Math.cos(angle - 0.3), fy + 8 * Math.sin(angle - 0.3));
+            ctx.moveTo(fx - 6, fy + 6);
             ctx.lineTo(fx, fy);
-            ctx.lineTo(fx + 8 * Math.cos(angle + 0.3), fy + 8 * Math.sin(angle + 0.3));
+            ctx.lineTo(fx + 6, fy + 6);
             ctx.fill();
-
             ctx.fillStyle = '#F4D03F';
             ctx.font = '14px Arial';
-            ctx.fillText('F', fx - 20, fy - 10);
+            ctx.fillText('F', fx + 10, fy);
 
-            // Angle α
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(bx, by, 30, -angle, 0);
-            ctx.stroke();
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.font = '13px Arial';
-            ctx.fillText('α', bx + 20, by - 25);
-
-            // AB
+            // Moment
             ctx.fillStyle = '#A8FF78';
             ctx.font = '12px Arial';
-            ctx.fillText('AB', (ox + bx)/2 - 10, by + 20);
+            ctx.fillText('M = F · d', 200, 20);
 
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
-            ctx.fillText('W = F · AB · cos α', 200, 20);
+            ctx.fillText('d = distance à l\'axe', 200, 35);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraphForce();
-                drawGraphTravail();
+                drawGraphCouple();
+                drawGraphMoment();
             }, 500);
         });
     </script>
