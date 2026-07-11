@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série 3 - Barycentre | Xpert</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span { color: #4ECDC4; font-weight: 700; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+        <a href="../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Série 3 - Barycentre</h1>
+            <div class="serie-title">Exercices <span>9 à 12</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 9 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">9</span> Exercice 9</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    En utilisant la propriété d'associativité, construire le barycentre \(G\) du système pondéré \(\{(A, 2); (B, -3); (C, 5)\}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9')">Voir la solution</button>
+                    <div id="sol9" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Soit \(E = \text{Bar}\{(A, 2); (B, -3)\}\).
+                                <br>La somme des poids est : \(2 + (-3) = -1 \neq 0\) ✅
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On construit \(E\) :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$2\overrightarrow{EA} - 3\overrightarrow{EB} = 0 \iff 2\overrightarrow{EA} = 3\overrightarrow{EB}$$
+                                    $$\overrightarrow{AE} = 3\overrightarrow{AB}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> D'après l'associativité :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$G = \text{Bar}\{(E, -1); (C, 5)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> On construit \(G\) :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$(-1)\overrightarrow{GE} + 5\overrightarrow{GC} = 0 \iff 5\overrightarrow{GC} = \overrightarrow{GE}$$
+                                    $$\overrightarrow{CG} = -\frac{1}{4}\overrightarrow{CE}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <ul style="font-size:12px; padding-right:14px;">
+                                    <li>\(E\) est sur \((AB)\) avec \(\overrightarrow{AE} = 3\overrightarrow{AB}\)</li>
+                                    <li>\(G\) est sur \((CE)\) avec \(\overrightarrow{CG} = -\frac{1}{4}\overrightarrow{CE}\)</li>
+                                </ul>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graph9" width="450" height="280"></canvas>
+                                <p>Construction de G par associativité</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 10 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">10</span> Exercice 10</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    \(ABC\) un triangle, \(G\) le centre de gravité du triangle \(ABC\), et \(I\) le milieu du segment \([BC]\).
+                    <br>Montrer que \(G\) est le barycentre de \(\{(A, 1); (I, 2)\}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10')">Voir la solution</button>
+                    <div id="sol10" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Le centre de gravité \(G\) du triangle \(ABC\) est le barycentre de :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$G = \text{Bar}\{(A, 1); (B, 1); (C, 1)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> \(I\) est le milieu de \([BC]\), donc :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$I = \text{Bar}\{(B, 1); (C, 1)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> D'après l'associativité, on remplace \((B, 1)\) et \((C, 1)\) par \((I, 2)\) :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$G = \text{Bar}\{(A, 1); (I, 2)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> Vérification :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$\overrightarrow{GA} + 2\overrightarrow{GI} = \overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = 0$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(G = \text{Bar}\{(A, 1); (I, 2)\}\) c'est-à-dire \(AG = \frac{2}{3}AI\).</p>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graph10" width="450" height="280"></canvas>
+                                <p>Centre de gravité G = Bar{(A,1); (I,2)}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 11 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">11</span> Exercice 11</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    \(ABC\) un triangle. Pour tout point \(M\), on pose : \(V = 2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Réduire l'écriture de \(V\) et montrer que \(V\) ne dépend pas de \(M\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_1')">Voir la solution</button>
+                    <div id="sol11_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> \(\overrightarrow{MB} = \overrightarrow{MA} + \overrightarrow{AB}\), \(\overrightarrow{MC} = \overrightarrow{MA} + \overrightarrow{AC}\)</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> \(V = 2\overrightarrow{MA} + (\overrightarrow{MA} + \overrightarrow{AB}) - 3(\overrightarrow{MA} + \overrightarrow{AC})\)</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> \(V = (2+1-3)\overrightarrow{MA} + \overrightarrow{AB} - 3\overrightarrow{AC}\)</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> \(V = \overrightarrow{AB} - 3\overrightarrow{AC}\)</div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(V\) est un vecteur <strong>constant</strong>, indépendant de \(M\).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit \(K = \text{Bar}\{(C, -3); (B, 1)\}\). Montrer que \(V = 2\overrightarrow{KA}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_2')">Voir la solution</button>
+                    <div id="sol11_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> \(K = \text{Bar}\{(C, -3); (B, 1)\} \Rightarrow \overrightarrow{KB} - 3\overrightarrow{KC} = 0\)</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> \(V = \overrightarrow{AB} - 3\overrightarrow{AC} = (\overrightarrow{AK} + \overrightarrow{KB}) - 3(\overrightarrow{AK} + \overrightarrow{KC})\)</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> \(V = -2\overrightarrow{AK} + (\overrightarrow{KB} - 3\overrightarrow{KC}) = -2\overrightarrow{AK} = 2\overrightarrow{KA}\)</div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:15px;">\(V = 2\overrightarrow{KA}\)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit \(G = \text{Bar}\{(A, 2); (B, -1); (C, -3)\}\). Montrer que : \(2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_3')">Voir la solution</button>
+                    <div id="sol11_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> \(s = 2 - 1 - 3 = -2 \neq 0\) ✅</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> Propriété caractéristique : \(2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = -2\overrightarrow{MG}\)</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> \(-2\overrightarrow{MG} = 2\overrightarrow{GM}\)</div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:15px;">\(2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}\)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        En déduire l'ensemble des points \(M\) tels que :
+                        \(\|2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC}\| = \|2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}\|\).
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_4')">Voir la solution</button>
+                    <div id="sol11_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> \(\|2\overrightarrow{GM}\| = \|2\overrightarrow{KA}\|\)</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> \(2GM = 2KA \iff GM = KA\)</div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>L'ensemble est le <strong>cercle</strong> de centre \(G\) et de rayon \(KA\).</p>
+                                <div class="formula-block" style="font-size:15px;">\(\mathcal{C}(G, KA)\)</div>
+                            </div>
+                            <div class="graph-container">
+                                <canvas id="graph11" width="450" height="280"></canvas>
+                                <p>Cercle de centre G et de rayon KA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 12 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">12</span> Exercice 12</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    \(ABC\) un triangle tel que : \(AC = 6\text{ cm}\), \(AB = 5\text{ cm}\), \(BC = 4\text{ cm}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Construire \(G = \text{Bar}\{(A, 1); (B, 2); (C, 1)\}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_a')">Voir la solution</button>
+                    <div id="sol12_a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> \(s = 1+2+1 = 4 \neq 0\)</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> Soit \(I\) milieu de \([BC]\), alors \(G = \text{Bar}\{(A, 1); (I, 2)\}\).</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> \(\overrightarrow{AG} = \frac{2}{3}\overrightarrow{AI}\)</div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(G\) est situé aux \(\frac{2}{3}\) de la médiane \(AI\).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Déterminer et construire l'ensemble \((E) = \{M \mid \|\overrightarrow{MA} + 2\overrightarrow{MB} + \overrightarrow{MC}\| = AC\}\).
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_b')">Voir la solution</button>
+                    <div id="sol12_b" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> \(\overrightarrow{MA} + 2\overrightarrow{MB} + \overrightarrow{MC} = 4\overrightarrow{MG}\)</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> \(\|4\overrightarrow{MG}\| = 6 \iff 4MG = 6 \iff MG = 1.5\)</div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\((E)\) est le cercle de centre \(G\) et de rayon \(1.5\) cm.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">c)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Déterminer et construire l'ensemble \((F) = \{M \mid \|\overrightarrow{MA} + 2\overrightarrow{MB} + \overrightarrow{MC}\| = \|3\overrightarrow{MA} + 2\overrightarrow{MC}\|\}\).
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_c')">Voir la solution</button>
+                    <div id="sol12_c" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> Soit \(G' = \text{Bar}\{(A, 3); (C, 1)\}\), alors \(3\overrightarrow{MA} + \overrightarrow{MC} = 4\overrightarrow{MG'}\).</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> \(\|4\overrightarrow{MG}\| = \|4\overrightarrow{MG'}\| \iff MG = MG'\)</div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\((F)\) est la <strong>médiatrice</strong> du segment \([GG']\).</p>
+                            </div>
+                            <div class="graph-container">
+                                <canvas id="graph12" width="450" height="280"></canvas>
+                                <p>Médiatrice de [GG']</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie2.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série 2</a>
+                <a href="serie4.html" class="next-btn">Série 4 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawGraph9() {
+            var canvas = document.getElementById('graph9');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 70, oy = h - 30;
+            var scale = 40;
+
+            var A = {x: 1, y: 1, color: '#4ECDC4', label: 'A'};
+            var B = {x: 4, y: 0.5, color: '#FF6B6B', label: 'B'};
+            var C = {x: 2.5, y: 4.5, color: '#BB8FCE', label: 'C'};
+            var E = {x: A.x + 3*(B.x-A.x), y: A.y + 3*(B.y-A.y), color: '#A8FF78', label: 'E'};
+            var G = {x: C.x - 0.25*(E.x-C.x), y: C.y - 0.25*(E.y-C.y), color: '#F4D03F', label: 'G'};
+
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            // Droites
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ox + C.x * scale, oy - C.y * scale);
+            ctx.lineTo(ox + E.x * scale, oy - E.y * scale);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            var pts = [A, B, C, E, G];
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '11px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('G = Bar{(E,-1);(C,5)}', 200, 20);
+        }
+
+        function drawGraph10() {
+            var canvas = document.getElementById('graph10');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 70, oy = h - 30;
+            var scale = 45;
+
+            var A = {x: 2, y: 1, color: '#4ECDC4', label: 'A'};
+            var B = {x: 5, y: 0.5, color: '#FF6B6B', label: 'B'};
+            var C = {x: 3, y: 4.5, color: '#BB8FCE', label: 'C'};
+            var I = {x: (B.x + C.x)/2, y: (B.y + C.y)/2, color: '#A8FF78', label: 'I'};
+            var G = {x: (1*A.x + 2*I.x)/3, y: (1*A.y + 2*I.y)/3, color: '#F4D03F', label: 'G'};
+
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+            ctx.lineTo(ox + I.x * scale, oy - I.y * scale);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            var pts = [A, B, C, I, G];
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '11px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('G = Bar{(A,1);(I,2)}', 200, 20);
+        }
+
+        function drawGraph11() {
+            var canvas = document.getElementById('graph11');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 70, oy = h - 30;
+            var scale = 40;
+
+            var A = {x: 1, y: 1, color: '#4ECDC4', label: 'A'};
+            var B = {x: 5, y: 0.5, color: '#FF6B6B', label: 'B'};
+            var C = {x: 3, y: 4.5, color: '#BB8FCE', label: 'C'};
+            var Kx = (-3*C.x + 1*B.x)/(-2);
+            var Ky = (-3*C.y + 1*B.y)/(-2);
+            var K = {x: Kx, y: Ky, color: '#A8FF78', label: 'K'};
+            var Gx = (2*A.x - 1*B.x - 3*C.x)/(-2);
+            var Gy = (2*A.y - 1*B.y - 3*C.y)/(-2);
+            var G = {x: Gx, y: Gy, color: '#F4D03F', label: 'G'};
+
+            var r = Math.sqrt(Math.pow(K.x - A.x, 2) + Math.pow(K.y - A.y, 2));
+
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.arc(ox + G.x * scale, oy - G.y * scale, r * scale, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            var pts = [A, B, C, K, G];
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '11px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Cercle de centre G et rayon KA', 200, 20);
+        }
+
+        function drawGraph12() {
+            var canvas = document.getElementById('graph12');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 70, oy = h - 30;
+            var scale = 40;
+
+            var A = {x: 2, y: 1, color: '#4ECDC4', label: 'A'};
+            var B = {x: 5, y: 0.5, color: '#FF6B6B', label: 'B'};
+            var C = {x: 3, y: 4.5, color: '#BB8FCE', label: 'C'};
+            var I = {x: (B.x + C.x)/2, y: (B.y + C.y)/2, color: '#A8FF78', label: 'I'};
+            var G = {x: (1*A.x + 2*I.x)/3, y: (1*A.y + 2*I.y)/3, color: '#F4D03F', label: 'G'};
+            var Gp = {x: (3*A.x + 1*C.x)/4, y: (3*A.y + 1*C.y)/4, color: '#F4D03F', label: "G'"};
+
+            var mx = (G.x + Gp.x)/2;
+            var my = (G.y + Gp.y)/2;
+            var dx = -(Gp.y - G.y);
+            var dy = (Gp.x - G.x);
+            var len = Math.sqrt(dx*dx + dy*dy);
+            var nx = dx/len;
+            var ny = dy/len;
+            var ext = 4;
+
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(ox + G.x * scale, oy - G.y * scale);
+            ctx.lineTo(ox + Gp.x * scale, oy - Gp.y * scale);
+            ctx.stroke();
+
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ox + (mx - nx*ext)*scale, oy - (my - ny*ext)*scale);
+            ctx.lineTo(ox + (mx + nx*ext)*scale, oy - (my + ny*ext)*scale);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            var pts = [A, B, C, G, Gp];
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '11px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Médiatrice de [GG\']', 200, 20);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraph9();
+                drawGraph10();
+                drawGraph11();
+                drawGraph12();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+</body>
+</html>
