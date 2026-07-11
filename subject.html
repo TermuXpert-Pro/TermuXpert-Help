@@ -501,6 +501,8 @@
                 title: "Physique",
                 desc: "Cours, exercices, séries, devoirs et examens régionaux",
                 lessons: [
+                    { title: "Rotation d'un solide autour d'un axe fixe", file: "content/physique/lessons/mecanique/index.html", desc: "Mouvement de rotation, vitesse angulaire, période, fréquence" },
+                    { title: "Travail et puissance d'une force", file: "content/physique/lessons/travail-puissance/index.html", desc: "Travail d'une force, puissance, couple de forces" },
                     { title: "Mouvement rectiligne", file: "content/physique/lessons/mecanique/index.html", desc: "Position, vitesse, accélération" },
                     { title: "Lois de Newton", file: "content/physique/lessons/mecanique/newton.html", desc: "Les trois lois de Newton" }
                 ],
@@ -558,9 +560,7 @@
                 var target = e.target.closest('a');
                 if (target) {
                     var href = target.getAttribute('href');
-                    // نتحقق إذا كان الرابط يشير إلى محتوى داخل الموقع (وليس رابط خارجي)
                     if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
-                        // نحفظ التبويب الحالي
                         saveCurrentTab(currentTab);
                     }
                 }
@@ -584,11 +584,9 @@
             document.getElementById('subjectTitle').textContent = currentSubject.title;
             document.getElementById('subTitle').textContent = currentSubject.desc;
             
-            // ====== استعادة التبويب المحفوظ ======
             const savedTab = getSavedTab();
             currentTab = savedTab;
             
-            // تفعيل التبويب المحفوظ
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
             if (activeBtn) activeBtn.classList.add('active');
@@ -597,11 +595,11 @@
         }
 
         // ============================================================
-        // تبديل التبويب - نسخة محسنة مع منع التداخل
+        // تبديل التبويب
         // ============================================================
         function switchTab(tab) {
             if (isAnimating) {
-                console.log('⏳ Animation en cours, veuillez patienter...');
+                console.log('⏳ Animation en cours...');
                 return;
             }
             
@@ -614,10 +612,7 @@
             
             document.querySelectorAll('.tab-btn').forEach(b => b.disabled = true);
             
-            const previousTab = currentTab;
             currentTab = tab;
-            
-            // حفظ التبويب الحالي
             saveCurrentTab(tab);
             
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -651,7 +646,7 @@
         }
 
         // ============================================================
-        // عرض المحتوى - نسخة محسنة مع callback
+        // عرض المحتوى
         // ============================================================
         function renderContent(container, tab, callback) {
             let html = '';
@@ -742,12 +737,10 @@
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
-            // ====== إعداد حفظ التبويب عند النقر على الروابط ======
             setupLinkSaving();
 
-            // ====== التحقق من تحميل GSAP ======
             if (typeof gsap === 'undefined') {
-                console.error('❌ GSAP غير محمل في subject.html!');
+                console.error('❌ GSAP non chargé !');
                 document.querySelector('.moroccan-bg').style.opacity = '0.6';
                 document.querySelector('.moroccan-shadow').style.opacity = '0.08';
                 document.querySelector('.moroccan-star').style.opacity = '0.04';
@@ -787,7 +780,7 @@
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
                 
-                console.log('✅ subject.html - Affichage direct (sans animation)');
+                console.log('✅ subject.html - Affichage direct');
                 
                 gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
@@ -841,9 +834,24 @@
                 });
             }
 
-            // ============================================================
-            // المنطق الرئيسي
-            // ============================================================
+            if (navType === 2) {
+                showDirect();
+                console.log('📌 Navigation Back/Forward → Affichage direct');
+                return;
+            }
+
+            if (animationAllowed !== 'true') {
+                showDirect();
+                console.log('📌 Animation non autorisée → Affichage direct');
+                return;
+            }
+
+            runAnimation();
+            console.log('📌 Animation autorisée → Animation jouée');
+        });
+    </script>
+</body>
+</html>==========================
             
             if (navType === 2) {
                 showDirect();
