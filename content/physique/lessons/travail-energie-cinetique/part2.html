@@ -64,10 +64,12 @@
         .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.simple { background: rgba(78, 205, 196, 0.12); color: #66FCF1; }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
         .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 450px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
@@ -113,6 +115,25 @@
         }
         .exemple-box .ex-title {
             color: #F4D03F;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .exemple-box .ex-subtitle {
+            color: #A8FF78;
+            font-weight: 600;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .life-example {
+            background: #1A1A2E;
+            border: 1px solid #4ECDC444;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .life-example .life-title {
+            color: #4ECDC4;
             font-weight: 700;
             font-size: 12px;
             margin-bottom: 4px;
@@ -216,13 +237,67 @@
             <h1 class="lesson-title"><i class="fas fa-sync-alt" style="color:#FF6B6B;"></i> Partie 2 : Énergie cinétique d'un solide en rotation</h1>
 
             <!-- ============================================================ -->
+            <!-- SECTION 1: INTRODUCTION - MOMENT D'INERTIE DANS LA VIE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">0</span> Introduction : Le moment d'inertie dans la vie quotidienne</h2>
+
+                <!-- Explication simple -->
+                <div class="highlight-box blue" style="border-color:#4D9DE0; background:rgba(77,157,224,0.08);">
+                    <span class="label simple">💡 Pour comprendre simplement</span>
+                    <p style="font-size:12px; color:var(--text-secondary);">
+                        <strong>Le moment d'inertie, c'est la "résistance" d'un objet à changer sa rotation.</strong>
+                    </p>
+                </div>
+
+                <div class="life-example">
+                    <div class="life-title">🔄 Exemples dans la vie quotidienne</div>
+                    <ul style="font-size:11.5px; color:var(--text-secondary);">
+                        <li>
+                            <strong>Un patineur artistique :</strong>
+                            <br>Quand il rentre ses bras, il tourne plus vite (moment d'inertie plus petit).
+                            <br>Quand il écarte les bras, il tourne moins vite (moment d'inertie plus grand).
+                        </li>
+                        <li style="margin-top:6px;">
+                            <strong>Une porte :</strong>
+                            <br>Il est plus facile de pousser une porte près de la poignée (loin de l'axe) qu'à côté des charnières (près de l'axe).
+                            <br>La masse est plus éloignée de l'axe → moment d'inertie plus grand.
+                        </li>
+                        <li style="margin-top:6px;">
+                            <strong>Un volant de voiture :</strong>
+                            <br>Un volant plus lourd et plus large (rayon plus grand) a un plus grand moment d'inertie.
+                            <br>Il est plus difficile de le faire tourner et de l'arrêter.
+                        </li>
+                        <li style="margin-top:6px;">
+                            <strong>Une roue de vélo :</strong>
+                            <br>Les rayons et le pneu sont placés loin de l'axe → grand moment d'inertie.
+                            <br>Une roue plus lourde est plus difficile à faire tourner.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box yellow" style="margin-top:6px;">
+                    <span class="label rappel">📌 À retenir</span>
+                    <p style="font-size:12px;">
+                        Plus la masse est <strong>éloignée</strong> de l'axe de rotation, plus le <strong>moment d'inertie</strong> est grand.
+                        <br>Et plus le moment d'inertie est grand, plus il est <strong>difficile</strong> de faire tourner ou d'arrêter l'objet.
+                    </p>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphInertieLife" width="400" height="180"></canvas>
+                    <p>Moment d'inertie : plus la masse est éloignée de l'axe, plus J est grand</p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
             <!-- SECTION 1: DÉMONSTRATION -->
             <!-- ============================================================ -->
             <div class="section">
                 <h2><span class="num">1</span> Démonstration de l'énergie cinétique en rotation</h2>
 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Soit un solide indéformable de masse $M$ en mouvement de rotation autour d'un axe fixe $(\Delta)$ de vitesse angulaire $\omega$.
+                    Soit un solide indéformable de masse \(M\) en mouvement de rotation autour d'un axe fixe \((\Delta)\) de vitesse angulaire \(\omega\).
                 </p>
 
                 <div class="graph-container">
@@ -232,11 +307,11 @@
 
                 <div class="highlight-box red">
                     <span class="label def">Raisonnement</span>
-                    <p>Chaque point $A_i$ du solide a une masse $m_i$ et une vitesse linéaire $v_i$, donc :</p>
+                    <p>Chaque point \(A_i\) du solide a une masse \(m_i\) et une vitesse linéaire \(v_i\), donc :</p>
                     <div class="formula-block" style="font-size:14px;">
                         $$E_{C_i} = \frac{1}{2} m_i \cdot v_i^2$$
                     </div>
-                    <p>On sait que $v_i = r_i \cdot \omega$ avec $r_i$ le rayon de la trajectoire circulaire du point $A_i$.</p>
+                    <p>On sait que \(v_i = r_i \cdot \omega\) avec \(r_i\) le rayon de la trajectoire circulaire du point \(A_i\).</p>
                     <div class="formula-block" style="font-size:14px;">
                         $$E_{C_i} = \frac{1}{2} m_i \cdot r_i^2 \cdot \omega^2$$
                     </div>
@@ -253,11 +328,11 @@
                 <div class="highlight-box yellow">
                     <span class="label rem">Définition du moment d'inertie</span>
                     <p>On pose :</p>
-                    <div class="formula-block" style="font-size:16px;">
+                    <div class="formula-block" style="font-size:18px;">
                         $$J_{\Delta} = \sum_{i=1}^{n} m_i \cdot r_i^2$$
                     </div>
                     <p style="font-size:12px; color:var(--text-muted);">
-                        $J_{\Delta}$ s'appelle le <strong>moment d'inertie</strong> du solide par rapport à l'axe de rotation $(\Delta)$.
+                        \(J_{\Delta}\) s'appelle le <strong>moment d'inertie</strong> du solide par rapport à l'axe de rotation \((\Delta)\).
                     </p>
                     <p style="font-size:11px; color:var(--text-muted);">
                         Il dépend de la <strong>répartition de la masse</strong> autour de l'axe de rotation.
@@ -265,6 +340,14 @@
                     <p style="font-size:11px; color:var(--text-muted);">
                         Unité : <strong>kg·m²</strong>
                     </p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé de la démonstration</span>
+                    <div class="formula-block" style="font-size:14px;">
+                        $$E_C = \sum \frac{1}{2} m_i r_i^2 \omega^2 = \frac{1}{2} \omega^2 \sum m_i r_i^2 = \frac{1}{2} J_{\Delta} \cdot \omega^2$$
+                    </div>
+                    <p style="font-size:11px; color:var(--text-muted);">Le moment d'inertie \(J_{\Delta}\) est l'équivalent de la masse \(m\) en rotation.</p>
                 </div>
             </div>
 
@@ -276,8 +359,8 @@
 
                 <div class="highlight-box red">
                     <span class="label def">Formule</span>
-                    <p>L'énergie cinétique d'un solide en rotation autour d'un axe fixe de moment d'inertie $J_{\Delta}$ et de vitesse angulaire $\omega$ est :</p>
-                    <div class="formula-block" style="font-size:20px;">
+                    <p>L'énergie cinétique d'un solide en rotation autour d'un axe fixe de moment d'inertie \(J_{\Delta}\) et de vitesse angulaire \(\omega\) est :</p>
+                    <div class="formula-block" style="font-size:22px;">
                         $$E_C = \frac{1}{2} J_{\Delta} \cdot \omega^2$$
                     </div>
                     <p style="font-size:12px; color:var(--text-muted);">
@@ -298,8 +381,31 @@
                         </table>
                     </div>
                     <p style="font-size:11px; color:var(--text-muted); margin-top:6px;">
-                        La masse $m$ en translation joue le même rôle que le moment d'inertie $J_{\Delta}$ en rotation.
+                        <strong>Analogies :</strong>
+                        <br>• La masse \(m\) en translation est l'équivalent du moment d'inertie \(J_{\Delta}\) en rotation.
+                        <br>• La vitesse \(V\) est l'équivalent de la vitesse angulaire \(\omega\).
                     </p>
+                </div>
+
+                <!-- Exemple simple -->
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Application - Calcul simple</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un disque de moment d'inertie \(J = 0,036\text{ kg·m²}\) tourne à \(\omega = 10,47\text{ rad/s}\).
+                        <br>Calculer son énergie cinétique.
+                    </p>
+                    <div style="margin-top:6px;">
+                        <div class="step">
+                            <span class="step-num">Étape 1 :</span> \(E_C = \frac{1}{2} J \cdot \omega^2\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Étape 2 :</span> \(E_C = \frac{1}{2} \times 0,036 \times (10,47)^2 = 0,018 \times 109,6 = 1,97\text{ J}\)
+                        </div>
+                    </div>
+                    <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
+                        ✅ \(E_C \approx 1,97\text{ J}\)
+                    </div>
+                    <div class="ex-subtitle">💡 Un disque en rotation possède une énergie cinétique due à sa rotation.</div>
                 </div>
 
                 <div class="highlight-box purple">
@@ -326,37 +432,83 @@
 
                 <div class="table-wrap">
                     <table>
-                        <tr><th>Solide</th><th>Axe de rotation</th><th>Moment d'inertie $J_{\Delta}$</th></tr>
-                        <tr><td>Anneau (cylindre creux)</td><td>Axe central</td><td>$J_{\Delta} = m \cdot R^2$</td></tr>
-                        <tr><td>Cylindre plein (disque)</td><td>Axe central</td><td>$J_{\Delta} = \frac{1}{2} m \cdot R^2$</td></tr>
-                        <tr><td>Sphère pleine</td><td>Diamètre</td><td>$J_{\Delta} = \frac{2}{5} m \cdot R^2$</td></tr>
-                        <tr><td>Sphère creuse</td><td>Diamètre</td><td>$J_{\Delta} = \frac{2}{3} m \cdot R^2$</td></tr>
-                        <tr><td>Tige (barre)</td><td>Centre</td><td>$J_{\Delta} = \frac{1}{12} m \cdot L^2$</td></tr>
-                        <tr><td>Tige (barre)</td><td>Extrémité</td><td>$J_{\Delta} = \frac{1}{3} m \cdot L^2$</td></tr>
+                        <tr><th>Solide</th><th>Axe de rotation</th><th>Moment d'inertie $J_{\Delta}$</th><th>Exemple</th></tr>
+                        <tr>
+                            <td>Anneau (cylindre creux)</td>
+                            <td>Axe central</td>
+                            <td>$J = m \cdot R^2$</td>
+                            <td style="font-size:10px;">Un cerceau</td>
+                        </tr>
+                        <tr style="background:rgba(78,205,196,0.05);">
+                            <td>Cylindre plein (disque)</td>
+                            <td>Axe central</td>
+                            <td>$J = \frac{1}{2} m \cdot R^2$</td>
+                            <td style="font-size:10px;">Une roue pleine</td>
+                        </tr>
+                        <tr>
+                            <td>Sphère pleine</td>
+                            <td>Diamètre</td>
+                            <td>$J = \frac{2}{5} m \cdot R^2$</td>
+                            <td style="font-size:10px;">Une balle</td>
+                        </tr>
+                        <tr>
+                            <td>Sphère creuse</td>
+                            <td>Diamètre</td>
+                            <td>$J = \frac{2}{3} m \cdot R^2$</td>
+                            <td style="font-size:10px;">Une coquille</td>
+                        </tr>
+                        <tr>
+                            <td>Tige (barre)</td>
+                            <td>Centre</td>
+                            <td>$J = \frac{1}{12} m \cdot L^2$</td>
+                            <td style="font-size:10px;">Une barre</td>
+                        </tr>
+                        <tr>
+                            <td>Tige (barre)</td>
+                            <td>Extrémité</td>
+                            <td>$J = \frac{1}{3} m \cdot L^2$</td>
+                            <td style="font-size:10px;">Un pendule</td>
+                        </tr>
                     </table>
                 </div>
 
                 <div class="formula-card">
                     <p style="font-size:12px; color:var(--text-secondary);">
-                        <strong>À retenir :</strong> Pour un <strong>disque</strong> (cylindre plein) de masse $m$ et de rayon $R$ :
+                        <strong>À retenir :</strong> Pour un <strong>disque</strong> (cylindre plein) de masse \(m\) et de rayon \(R\) :
                     </p>
-                    <div class="formula-block" style="font-size:16px;">
+                    <div class="formula-block" style="font-size:18px;">
                         $$J_{\Delta} = \frac{1}{2} m \cdot R^2$$
                     </div>
+                    <p style="font-size:11px; color:var(--text-muted);">
+                        C'est le cas d'une roue pleine, d'un volant de machine, etc.
+                    </p>
+                </div>
+
+                <div class="life-example" style="margin-top:6px;">
+                    <div class="life-title">💡 Pourquoi ces formules sont importantes</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Ces formules permettent de calculer l'énergie cinétique d'objets en rotation :
+                    </p>
+                    <ul style="font-size:11px; color:var(--text-secondary);">
+                        <li>Une <strong>roue de voiture</strong> en mouvement</li>
+                        <li>Un <strong>volant de machine</strong> qui tourne</li>
+                        <li>Une <strong>poulie</strong> dans un système mécanique</li>
+                        <li>Un <strong>patineur</strong> qui effectue une pirouette</li>
+                    </ul>
                 </div>
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 4: APPLICATION -->
+            <!-- SECTION 4: APPLICATION DÉTAILLÉE -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">4</span> Application</h2>
+                <h2><span class="num">4</span> Application détaillée</h2>
 
                 <div class="exemple-box">
                     <div class="ex-title">📝 Application</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        On considère un disque homogène de masse $m = 800\text{ g}$ et de rayon $r = 30\text{ cm}$ tourne à la fréquence $N = 100\text{ tr/min}$.
-                        <br>Son moment d'inertie par rapport à l'axe de rotation $(\Delta)$ est $J_{\Delta} = \frac{1}{2} m \cdot r^2$.
+                        On considère un disque homogène de masse \(m = 800\text{ g}\) et de rayon \(r = 30\text{ cm}\) tourne à la fréquence \(N = 100\text{ tr/min}\).
+                        <br>Son moment d'inertie par rapport à l'axe de rotation \((\Delta)\) est \(J_{\Delta} = \frac{1}{2} m \cdot r^2\).
                     </p>
                     <p style="font-size:11.5px; color:var(--text-secondary); margin-top:6px;">
                         <strong>Déterminer l'énergie cinétique du disque.</strong>
@@ -364,38 +516,68 @@
                     <div style="margin-top:6px;">
                         <div class="step">
                             <span class="step-num">Étape 1 :</span> Conversion des unités
-                            <br>$m = 800\text{ g} = 0.8\text{ kg}$
-                            <br>$r = 30\text{ cm} = 0.3\text{ m}$
+                            <br>$m = 800\text{ g} = 0,8\text{ kg}$
+                            <br>$r = 30\text{ cm} = 0,3\text{ m}$
                             <br>$N = 100\text{ tr/min} = \frac{100}{60} \text{ tr/s} = \frac{5}{3} \text{ tr/s}$
                         </div>
                         <div class="step">
-                            <span class="step-num">Étape 2 :</span> Calcul de $\omega$
-                            <br>$\omega = 2\pi N = 2\pi \times \frac{5}{3} = \frac{10\pi}{3} \text{ rad/s}$
+                            <span class="step-num">Étape 2 :</span> Calcul de \(\omega\)
+                            <br>$\omega = 2\pi N = 2\pi \times \frac{5}{3} = \frac{10\pi}{3} \approx 10,47\text{ rad/s}$
                         </div>
                         <div class="step">
-                            <span class="step-num">Étape 3 :</span> Calcul de $J_{\Delta}$
-                            <br>$J_{\Delta} = \frac{1}{2} m \cdot r^2 = \frac{1}{2} \times 0.8 \times (0.3)^2 = 0.036 \text{ kg·m²}$
+                            <span class="step-num">Étape 3 :</span> Calcul de \(J_{\Delta}\)
+                            <br>$J_{\Delta} = \frac{1}{2} m \cdot r^2 = \frac{1}{2} \times 0,8 \times (0,3)^2 = 0,036\text{ kg·m²}$
                         </div>
                         <div class="step">
-                            <span class="step-num">Étape 4 :</span> Calcul de $E_C$
-                            <br>$E_C = \frac{1}{2} J_{\Delta} \cdot \omega^2 = \frac{1}{2} \times 0.036 \times \left(\frac{10\pi}{3}\right)^2$
+                            <span class="step-num">Étape 4 :</span> Calcul de \(E_C\)
+                            <br>$E_C = \frac{1}{2} J_{\Delta} \cdot \omega^2 = \frac{1}{2} \times 0,036 \times (10,47)^2$
                         </div>
                         <div class="step">
-                            <span class="step-num">Étape 5 :</span> $E_C = 0.018 \times \frac{100\pi^2}{9} = 0.018 \times 109.66 \approx 1.97\text{ J}$
+                            <span class="step-num">Étape 5 :</span> $E_C = 0,018 \times 109,6 \approx 1,97\text{ J}$
                         </div>
                     </div>
                     <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
-                        ✅ $E_C \approx 1.97\text{ J}$
+                        ✅ $E_C \approx 1,97\text{ J}$
                     </div>
+                    <div class="ex-subtitle">💡 L'énergie cinétique du disque en rotation est d'environ 2 Joules.</div>
                 </div>
 
                 <div class="highlight-box yellow" style="margin-top:8px;">
                     <span class="label rappel">Remarque importante</span>
                     <p>La variation de l'énergie cinétique en rotation est :</p>
-                    <div class="formula-block" style="font-size:15px;">
+                    <div class="formula-block" style="font-size:16px;">
                         $$\Delta E_C = \frac{1}{2} J_{\Delta} \cdot \omega_2^2 - \frac{1}{2} J_{\Delta} \cdot \omega_1^2$$
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">Cette formule sera utilisée dans le <strong>théorème de l'énergie cinétique</strong> pour les solides en rotation.</p>
+                    <p style="font-size:11px; color:var(--text-muted);">Cette formule sera utilisée dans le <strong>théorème de l'énergie cinétique</strong> pour les solides en rotation (Partie 3).</p>
+                </div>
+
+                <div class="table-wrap" style="margin-top:8px;">
+                    <table>
+                        <tr>
+                            <th>Grandeur</th>
+                            <th>Symbole</th>
+                            <th>Unité</th>
+                            <th>Formule</th>
+                        </tr>
+                        <tr>
+                            <td>Moment d'inertie</td>
+                            <td>$J_{\Delta}$</td>
+                            <td>kg·m²</td>
+                            <td>$J_{\Delta} = \sum m_i r_i^2$</td>
+                        </tr>
+                        <tr>
+                            <td>Énergie cinétique (rotation)</td>
+                            <td>$E_C$</td>
+                            <td>Joule (J)</td>
+                            <td>$E_C = \frac{1}{2} J_{\Delta} \omega^2$</td>
+                        </tr>
+                        <tr>
+                            <td>Vitesse angulaire</td>
+                            <td>$\omega$</td>
+                            <td>rad/s</td>
+                            <td>$\omega = 2\pi N$</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
@@ -426,6 +608,83 @@
         // ============================================================
         // GRAPHIQUES
         // ============================================================
+
+        function drawGraphInertieLife() {
+            var canvas = document.getElementById('graphInertieLife');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = h/2 + 10;
+
+            // Axe de rotation
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx, 15);
+            ctx.lineTo(cx, h - 15);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '11px Arial';
+            ctx.fillText('(Δ)', cx + 12, 30);
+
+            // Cercle intérieur (masse proche)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 30, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '9px Arial';
+            ctx.fillText('m', cx + 12, cy + 4);
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '8px Arial';
+            ctx.fillText('r petit → J petit', cx - 30, cy + 45);
+
+            // Cercle extérieur (masse éloignée)
+            ctx.strokeStyle = '#FFD93D';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 70, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fillStyle = '#FFD93D';
+            ctx.beginPath();
+            ctx.arc(cx + 70, cy, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '9px Arial';
+            ctx.fillText('m', cx + 80, cy + 4);
+            ctx.fillStyle = '#FFD93D';
+            ctx.font = '8px Arial';
+            ctx.fillText('r grand → J grand', cx + 30, cy + 45);
+
+            // Flèche
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(cx + 70, cy);
+            ctx.stroke();
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '10px Arial';
+            ctx.fillText('r', (cx + cx + 70)/2 - 5, cy - 8);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Plus la masse est éloignée de l\'axe, plus J est grand', 100, 20);
+        }
 
         function drawGraphRotation() {
             var canvas = document.getElementById('graphRotation');
@@ -580,6 +839,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
+                drawGraphInertieLife();
                 drawGraphRotation();
                 drawGraphInertie();
             }, 500);
