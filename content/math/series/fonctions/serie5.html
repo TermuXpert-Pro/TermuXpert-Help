@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série 5 - Généralités sur les fonctions | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color: #4ECDC4;
+            font-weight: 700;
+        }
+        .badge-exo {
+            display: inline-block;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+        <a href="../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Série 5 - Généralités sur les fonctions</h1>
+            <div class="serie-title">Exercices <span>31 à 40</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 31 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">31</span> Variations et représentation graphique</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = \dfrac{2x+1}{x-1}$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Étudier les variations de f et tracer sa courbe $(C_f)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol31')">Voir la solution</button>
+                    <div id="sol31" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $D_f = \mathbb{R} \setminus \{1\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $f'(x) = \dfrac{2(x-1) - (2x+1)}{(x-1)^2} = \dfrac{2x-2-2x-1}{(x-1)^2} = \dfrac{-3}{(x-1)^2} < 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Tableau de variation :
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$1$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$f'(x)$</td><td class="false">−</td><td>||</td><td class="false">−</td></tr>
+                                    <tr><td>$f(x)$</td><td>$\searrow$</td><td>||</td><td>$\searrow$</td></tr>
+                                </table>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement décroissante</strong> sur $]-\infty,1[$ et sur $]1,+\infty[$.</p>
+                            <div class="graph-container">
+                                <canvas id="graph31" width="350" height="150"></canvas>
+                                <p>$f(x) = \dfrac{2x+1}{x-1}$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 32 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">32</span> Variations et représentation graphique</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $g(x) = \dfrac{-x}{x-2}$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Dresser le tableau de variation et tracer $(C_g)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol32')">Voir la solution</button>
+                    <div id="sol32" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $D_g = \mathbb{R} \setminus \{2\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $g'(x) = \dfrac{-1(x-2) - (-x)}{(x-2)^2} = \dfrac{-x+2+x}{(x-2)^2} = \dfrac{2}{(x-2)^2} > 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Tableau de variation :
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$2$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$g'(x)$</td><td class="true">+</td><td>||</td><td class="true">+</td></tr>
+                                    <tr><td>$g(x)$</td><td>$\nearrow$</td><td>||</td><td>$\nearrow$</td></tr>
+                                </table>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>strictement croissante</strong> sur $]-\infty,2[$ et sur $]2,+\infty[$.</p>
+                            <div class="graph-container">
+                                <canvas id="graph32" width="350" height="150"></canvas>
+                                <p>$g(x) = \dfrac{-x}{x-2}$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 33 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">33</span> Variations de $f(x) = \dfrac{1}{4}x^3$</h2>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $D_f$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol33_1')">Voir la solution</button>
+                    <div id="sol33_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p>$f(x) = \dfrac{1}{4}x^3$ est définie pour tout $x \in \mathbb{R}$.</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_f = \mathbb{R}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Étudier les variations et dresser le tableau de variation</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol33_2')">Voir la solution</button>
+                    <div id="sol33_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f'(x) = \dfrac{3}{4}x^2 \ge 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Tableau de variation :
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$0$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$f'(x)$</td><td class="true">+</td><td>$0$</td><td class="true">+</td></tr>
+                                    <tr><td>$f(x)$</td><td>$\nearrow$</td><td>$0$</td><td>$\nearrow$</td></tr>
+                                </table>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement croissante</strong> sur $\mathbb{R}$.</p>
+                            <div class="graph-container">
+                                <canvas id="graph33" width="350" height="150"></canvas>
+                                <p>$f(x) = \dfrac{1}{4}x^3$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 34 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">34</span> Variations de $f(x) = \sqrt{x+2}$</h2>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $D_f$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol34_1')">Voir la solution</button>
+                    <div id="sol34_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $x+2 \ge 0 \iff x \ge -2$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_f = [-2, +\infty[$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Étudier les variations et dresser le tableau de variation</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol34_2')">Voir la solution</button>
+                    <div id="sol34_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f'(x) = \dfrac{1}{2\sqrt{x+2}} > 0$ pour $x > -2$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Tableau de variation :
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-2$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$f'(x)$</td><td>$+$</td><td></td></tr>
+                                    <tr><td>$f(x)$</td><td>$0$</td><td>$\nearrow$</td></tr>
+                                </table>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement croissante</strong> sur $[-2, +\infty[$.</p>
+                            <div class="graph-container">
+                                <canvas id="graph34" width="350" height="150"></canvas>
+                                <p>$f(x) = \sqrt{x+2}$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 35 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">35</span> Composée de fonctions</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = x^2 - 2x + 3$ et $g(x) = 2x + 1$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $g \circ f$ et $f \circ g$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol35')">Voir la solution</button>
+                    <div id="sol35" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $(g \circ f)(x) = g(f(x)) = 2(x^2 - 2x + 3) + 1 = 2x^2 - 4x + 6 + 1 = 2x^2 - 4x + 7$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $(f \circ g)(x) = f(g(x)) = (2x+1)^2 - 2(2x+1) + 3 = 4x^2 + 4x + 1 - 4x - 2 + 3 = 4x^2 + 2$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>$(g \circ f)(x) = 2x^2 - 4x + 7$</li>
+                                <li>$(f \circ g)(x) = 4x^2 + 2$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 36 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">36</span> Composée de fonctions</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = \dfrac{3x+4}{x+1}$ et $g(x) = \dfrac{1}{x+1}$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $D_{g \circ f}$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol36_1')">Voir la solution</button>
+                    <div id="sol36_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $D_f = \mathbb{R} \setminus \{-1\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $D_g = \mathbb{R} \setminus \{-1\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $f(x) \neq -1 \iff \dfrac{3x+4}{x+1} \neq -1 \iff 3x+4 \neq -x-1 \iff 4x \neq -5 \iff x \neq -\dfrac{5}{4}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_{g \circ f} = \mathbb{R} \setminus \left\{-1, -\dfrac{5}{4}\right\}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $(g \circ f)(x)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol36_2')">Voir la solution</button>
+                    <div id="sol36_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $(g \circ f)(x) = g(f(x)) = \dfrac{1}{f(x)+1} = \dfrac{1}{\dfrac{3x+4}{x+1} + 1} = \dfrac{1}{\dfrac{3x+4+x+1}{x+1}} = \dfrac{x+1}{4x+5}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $(g \circ f)(x) = \dfrac{x+1}{4x+5}$ pour $x \neq -1, -\dfrac{5}{4}$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 37 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">37</span> Composée et égalité de fonctions</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = \dfrac{x+3}{x+1}$ et $g(x) = \dfrac{x}{x+2}$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $D_h$ où $h = g \circ f$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol37_1')">Voir la solution</button>
+                    <div id="sol37_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $D_f = \mathbb{R} \setminus \{-1\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $D_g = \mathbb{R} \setminus \{-2\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $f(x) \neq -2 \iff \dfrac{x+3}{x+1} \neq -2 \iff x+3 \neq -2x-2 \iff 3x \neq -5 \iff x \neq -\dfrac{5}{3}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_h = \mathbb{R} \setminus \left\{-1, -\dfrac{5}{3}\right\}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $h(x)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol37_2')">Voir la solution</button>
+                    <div id="sol37_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $h(x) = g(f(x)) = \dfrac{f(x)}{f(x)+2} = \dfrac{\dfrac{x+3}{x+1}}{\dfrac{x+3}{x+1} + 2} = \dfrac{\dfrac{x+3}{x+1}}{\dfrac{x+3+2x+2}{x+1}} = \dfrac{x+3}{3x+5}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h(x) = \dfrac{x+3}{3x+5}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Les fonctions h et $k(x) = \dfrac{x+3}{3x+5}$ sont-elles égales ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol37_3')">Voir la solution</button>
+                    <div id="sol37_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $h(x) = \dfrac{x+3}{3x+5}$ et $k(x) = \dfrac{x+3}{3x+5}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $D_h = \mathbb{R} \setminus \left\{-1, -\dfrac{5}{3}\right\}$ et $D_k = \mathbb{R} \setminus \left\{-\dfrac{5}{3}\right\}$
+                            </div>
+                            <p style="color:#FF6B6B; margin-top:4px;"><strong>Conclusion :</strong> Les domaines de définition sont différents, donc <strong>$h \neq k$</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 38 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">38</span> Décomposition en fonctions élémentaires</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Exprimer les fonctions suivantes à l'aide de fonctions élémentaires :</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$h_1(x) = \dfrac{1}{3x-1}$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol38_1')">Voir la solution</button>
+                    <div id="sol38_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p>$h_1 = u \circ v$ avec $\begin{cases} u(x) = \dfrac{1}{x} \\ v(x) = 3x-1 \end{cases}$</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h_1 = u \circ v$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$h_2(x) = \sqrt{x+3}$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol38_2')">Voir la solution</button>
+                    <div id="sol38_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p>$h_2 = u \circ v$ avec $\begin{cases} u(x) = \sqrt{x} \\ v(x) = x+3 \end{cases}$</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h_2 = u \circ v$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$h_3(x) = 3\sqrt{x} + 4$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol38_3')">Voir la solution</button>
+                    <div id="sol38_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p>$h_3 = u \circ v$ avec $\begin{cases} u(x) = 3x + 4 \\ v(x) = \sqrt{x} \end{cases}$</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h_3 = u \circ v$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 39 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">39</span> Décomposition et variations</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = -5x^2 + 7$ définie sur $[0; +\infty[$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Décomposer f en fonctions élémentaires et étudier ses variations</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol39')">Voir la solution</button>
+                    <div id="sol39" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f = u \circ v$ avec $\begin{cases} u(x) = -5x + 7 \\ v(x) = x^2 \end{cases}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $v(x) = x^2$ est <strong>croissante</strong> sur $[0; +\infty[$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $u(x) = -5x + 7$ est <strong>décroissante</strong> sur $\mathbb{R}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> $f = u \circ v$ (monotonies opposées) est <strong>décroissante</strong> sur $[0; +\infty[$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est strictement décroissante sur $[0; +\infty[$.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 40 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">40</span> Décomposition et variations</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $h(x) = \sqrt{1-x}$ définie sur $]-\infty; 1]$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Décomposer h en deux fonctions élémentaires</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol40_1')">Voir la solution</button>
+                    <div id="sol40_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p>$h = u \circ v$ avec $\begin{cases} u(x) = \sqrt{x} \\ v(x) = 1-x \end{cases}$</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h = u \circ v$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer les variations de h</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol40_2')">Voir la solution</button>
+                    <div id="sol40_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $v(x) = 1-x$ est <strong>décroissante</strong> sur $]-\infty; 1]$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $u(x) = \sqrt{x}$ est <strong>croissante</strong> sur $[0; +\infty[$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $h = u \circ v$ (monotonies opposées) est <strong>décroissante</strong>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h$ est <strong>strictement décroissante</strong> sur $]-\infty; 1]$.</p>
+                            <div class="graph-container">
+                                <canvas id="graph40" width="350" height="150"></canvas>
+                                <p>$h(x) = \sqrt{1-x}$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie4.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Série 4</a>
+                <a href="serie6.html" class="next-btn">Série 6 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script src="../../../../assets/js/script.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawGraph31() {
+            var canvas = document.getElementById('graph31');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+            
+            var ox = w/2, oy = h/2;
+            var scale = 25;
+            
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, oy);
+            ctx.lineTo(w, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 0);
+            ctx.lineTo(ox, h);
+            ctx.stroke();
+            
+            // Asymptote x = 1
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ox + 1 * scale, 0);
+            ctx.lineTo(ox + 1 * scale, h);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Courbe f(x) = (2x+1)/(x-1)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            for (var px = -120; px < 1 * scale; px += 0.5) {
+                var x = px / scale;
+                var y = (2*x + 1)/(x - 1);
+                var screenX = ox + px;
+                var screenY = oy - y * 20;
+                if (screenY < 0 || screenY > h) continue;
+                if (px === -120) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            for (var px = 1 * scale + 0.5; px <= 120; px += 0.5) {
+                var x = px / scale;
+                var y = (2*x + 1)/(x - 1);
+                var screenX = ox + px;
+                var screenY = oy - y * 20;
+                if (screenY < 0 || screenY > h) continue;
+                if (px === 1 * scale + 0.5) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('f(x) = (2x+1)/(x-1)', 10, 20);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.fillText('x = 1', ox + 1 * scale - 20, 15);
+        }
+
+        function drawGraph32() {
+            var canvas = document.getElementById('graph32');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+            
+            var ox = w/2, oy = h/2;
+            var scale = 25;
+            
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, oy);
+            ctx.lineTo(w, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 0);
+            ctx.lineTo(ox, h);
+            ctx.stroke();
+            
+            // Asymptote x = 2
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ox + 2 * scale, 0);
+            ctx.lineTo(ox + 2 * scale, h);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Courbe g(x) = -x/(x-2)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            for (var px = -120; px < 2 * scale; px += 0.5) {
+                var x = px / scale;
+                var y = -x/(x-2);
+                var screenX = ox + px;
+                var screenY = oy - y * 30;
+                if (screenY < 0 || screenY > h) continue;
+                if (px === -120) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            for (var px = 2 * scale + 0.5; px <= 120; px += 0.5) {
+                var x = px / scale;
+                var y = -x/(x-2);
+                var screenX = ox + px;
+                var screenY = oy - y * 30;
+                if (screenY < 0 || screenY > h) continue;
+                if (px === 2 * scale + 0.5) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('g(x) = -x/(x-2)', 10, 20);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.fillText('x = 2', ox + 2 * scale - 20, 15);
+        }
+
+        function drawGraph33() {
+            var canvas = document.getElementById('graph33');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+            
+            var ox = w/2, oy = h/2;
+            var scale = 20;
+            
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, oy);
+            ctx.lineTo(w, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 0);
+            ctx.lineTo(ox, h);
+            ctx.stroke();
+            
+            // Courbe f(x) = (1/4)x³
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (var px = -100; px <= 100; px += 0.5) {
+                var x = px / scale;
+                var y = 0.25 * x*x*x;
+                var screenX = ox + px;
+                var screenY = oy - y * 15;
+                if (screenY < 0 || screenY > h) continue;
+                if (px === -100) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('f(x) = (1/4)x³', 10, 20);
+        }
+
+        function drawGraph34() {
+            var canvas = document.getElementById('graph34');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+            
+            var ox = 40, oy = h - 20;
+            var scale = 30;
+            
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 10, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 10);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+            
+            // Courbe f(x) = √(x+2)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (var px = 0; px <= 220; px += 0.5) {
+                var x = px / scale - 2;
+                if (x < -2) continue;
+                var y = Math.sqrt(x + 2);
+                var screenX = ox + (x + 2) * scale;
+                var screenY = oy - y * 30;
+                if (screenY < 0 || screenY > h) continue;
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('f(x) = √(x+2)', 10, 20);
+        }
+
+        function drawGraph40() {
+            var canvas = document.getElementById('graph40');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+            
+            var ox = w - 40, oy = h - 20;
+            var scale = 30;
+            
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(10, oy);
+            ctx.lineTo(w, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 10);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+            
+            // Courbe h(x) = √(1-x)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (var px = 0; px <= 220; px += 0.5) {
+                var x = 1 - px / scale;
+                if (x > 1) continue;
+                var y = Math.sqrt(1 - x);
+                var screenX = ox - (1 - x) * scale;
+                var screenY = oy - y * 30;
+                if (screenY < 0 || screenY > h) continue;
+                if (px === 0) ctx.moveTo(screenX, screenY);
+                else ctx.lineTo(screenX, screenY);
+            }
+            ctx.stroke();
+            
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('h(x) = √(1-x)', 10, 20);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraph31();
+                drawGraph32();
+                drawGraph33();
+                drawGraph34();
+                drawGraph40();
+            }, 300);
+        });
+    </script>
+</body>
+</html>
