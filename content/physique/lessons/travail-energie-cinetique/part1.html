@@ -64,10 +64,12 @@
         .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.simple { background: rgba(78, 205, 196, 0.12); color: #66FCF1; }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
         .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
@@ -113,6 +115,25 @@
         }
         .exemple-box .ex-title {
             color: #F4D03F;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .exemple-box .ex-subtitle {
+            color: #A8FF78;
+            font-weight: 600;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .life-example {
+            background: #1A1A2E;
+            border: 1px solid #4ECDC444;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .life-example .life-title {
+            color: #4ECDC4;
             font-weight: 700;
             font-size: 12px;
             margin-bottom: 4px;
@@ -214,21 +235,52 @@
             <div class="section">
                 <h2><span class="num">1</span> Notion de l'énergie cinétique</h2>
 
+                <!-- Explication simple -->
+                <div class="highlight-box blue" style="border-color:#4D9DE0; background:rgba(77,157,224,0.08);">
+                    <span class="label simple">💡 Pour comprendre simplement</span>
+                    <p style="font-size:12px; color:var(--text-secondary);">
+                        <strong>Imaginez-vous en train de courir.</strong> Plus vous êtes rapide, plus il est difficile de vous arrêter brusquement.
+                        Cette "énergie de mouvement" que vous possédez quand vous courez, c'est l'<strong>énergie cinétique</strong>.
+                    </p>
+                    <p style="font-size:12px; color:var(--text-secondary); margin-top:4px;">
+                        <strong>Autre exemple :</strong> Une voiture qui roule à 100 km/h possède beaucoup d'énergie cinétique. 
+                        C'est pour cela qu'il lui faut une longue distance de freinage pour s'arrêter.
+                    </p>
+                </div>
+
+                <div class="life-example">
+                    <div class="life-title">🏃 Exemples dans la vie quotidienne</div>
+                    <ul style="font-size:11.5px; color:var(--text-secondary);">
+                        <li><strong>Un coureur :</strong> Plus il court vite, plus il a de l'énergie cinétique.</li>
+                        <li><strong>Une balle de tennis :</strong> Une balle rapide est plus difficile à renvoyer qu'une balle lente.</li>
+                        <li><strong>Un marteau :</strong> Un marteau lancé rapidement enfonce un clou plus facilement.</li>
+                        <li><strong>Un camion :</strong> À la même vitesse, un camion a plus d'énergie cinétique qu'une voiture (car il est plus lourd).</li>
+                    </ul>
+                </div>
+
                 <div class="highlight-box red">
                     <span class="label def">Définition</span>
                     <p>L'<strong>énergie cinétique</strong> d'un solide est l'énergie qu'il possède du fait de son <strong>mouvement</strong>.</p>
-                    <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">L'énergie cinétique se note $E_C$ ; c'est un nombre toujours <strong>positif</strong> qui s'exprime en <strong>Joule (J)</strong> dans le S.I.</p>
+                    <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+                        L'énergie cinétique se note $E_C$ ; c'est un nombre toujours <strong>positif</strong> qui s'exprime en <strong>Joule (J)</strong> dans le S.I.
+                    </p>
+                    <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
+                        <strong>À retenir :</strong> Plus un objet est lourd et rapide, plus son énergie cinétique est grande.
+                    </p>
                 </div>
 
                 <div class="highlight-box yellow">
                     <span class="label rem">Remarque importante</span>
                     <p>Comme la valeur de la vitesse, l'énergie cinétique <strong>dépend du référentiel</strong> choisi.</p>
-                    <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">Exemple : Un passager assis dans un train a une énergie cinétique nulle dans le référentiel du train, mais non nulle dans le référentiel terrestre.</p>
+                    <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">
+                        <strong>Exemple :</strong> Un passager assis dans un train a une énergie cinétique nulle dans le référentiel du train (il est immobile par rapport au train), mais une énergie cinétique non nulle dans le référentiel terrestre (il se déplace avec le train).
+                    </p>
                 </div>
 
                 <div class="graph-container">
                     <canvas id="graphEnergie" width="400" height="200"></canvas>
-                    <p>Énergie cinétique en fonction de la vitesse pour m = 1 kg</p>
+                    <p>Énergie cinétique en fonction de la vitesse pour \(m = 1\text{ kg}\)</p>
+                    <p style="font-size:10px; color:var(--text-muted);">La courbe est une parabole : \(E_C\) augmente avec le carré de la vitesse.</p>
                 </div>
             </div>
 
@@ -240,8 +292,8 @@
 
                 <div class="highlight-box red">
                     <span class="label def">Formule</span>
-                    <p>L'énergie cinétique $E_C$ d'un solide en translation est donnée par :</p>
-                    <div class="formula-block" style="font-size:20px;">
+                    <p>L'énergie cinétique \(E_C\) d'un solide en translation est donnée par :</p>
+                    <div class="formula-block" style="font-size:22px;">
                         $$E_C = \frac{1}{2} m \cdot V^2$$
                     </div>
                     <p style="font-size:12px; color:var(--text-muted);">
@@ -252,67 +304,165 @@
                 </div>
 
                 <div class="highlight-box green">
-                    <span class="label prop">Propriétés</span>
+                    <span class="label prop">Propriétés à retenir</span>
                     <ul>
-                        <li>L'énergie cinétique est <strong>proportionnelle</strong> à la masse $m$.</li>
-                        <li>L'énergie cinétique est <strong>proportionnelle au carré</strong> de la vitesse $V$.</li>
-                        <li>Si la vitesse double, l'énergie cinétique est <strong>multipliée par 4</strong>.</li>
-                        <li>Si la vitesse est nulle, l'énergie cinétique est <strong>nulle</strong>.</li>
+                        <li>L'énergie cinétique est <strong>proportionnelle</strong> à la masse \(m\).</li>
+                        <li>L'énergie cinétique est <strong>proportionnelle au carré</strong> de la vitesse \(V\).</li>
+                        <li>Si la vitesse <strong>double</strong>, l'énergie cinétique est <strong>multipliée par 4</strong>.</li>
+                        <li>Si la vitesse est <strong>nulle</strong>, l'énergie cinétique est <strong>nulle</strong>.</li>
+                        <li>L'énergie cinétique est toujours <strong>positive</strong> (ou nulle).</li>
                     </ul>
                 </div>
 
+                <!-- Exemple 1 -->
                 <div class="exemple-box">
-                    <div class="ex-title">📝 Application 1</div>
+                    <div class="ex-title">📝 Application 1 - Calcul simple</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Un solide de masse $m = 2\text{ kg}$ se déplace à la vitesse $V = 3\text{ m/s}$.
+                        Un solide de masse \(m = 2\text{ kg}\) se déplace à la vitesse \(V = 3\text{ m/s}\).
+                        <br>Calculer son énergie cinétique.
                     </p>
                     <div style="margin-top:6px;">
                         <div class="step">
-                            <span class="step-num">Étape 1 :</span> $E_C = \frac{1}{2} \times 2 \times 3^2$
+                            <span class="step-num">Étape 1 :</span> On applique la formule \(E_C = \frac{1}{2} m \cdot V^2\)
                         </div>
                         <div class="step">
-                            <span class="step-num">Étape 2 :</span> $E_C = 1 \times 9 = 9\text{ J}$
+                            <span class="step-num">Étape 2 :</span> \(E_C = \frac{1}{2} \times 2 \times 3^2 = 1 \times 9 = 9\text{ J}\)
                         </div>
                     </div>
                     <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
-                        ✅ $E_C = 9\text{ J}$
+                        ✅ \(E_C = 9\text{ J}\)
                     </div>
+                    <div class="ex-subtitle">💡 Interprétation : Le solide possède 9 Joules d'énergie à cause de son mouvement.</div>
                 </div>
 
+                <!-- Exemple 2 -->
                 <div class="exemple-box">
-                    <div class="ex-title">📝 Application 2</div>
+                    <div class="ex-title">📝 Application 2 - Voiture</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Une voiture de masse $m = 1200\text{ kg}$ roule à $V = 90\text{ km/h} = 25\text{ m/s}$.
+                        Une voiture de masse \(m = 1200\text{ kg}\) roule à \(V = 90\text{ km/h}\).
+                        <br>Calculer son énergie cinétique en Joules.
                     </p>
                     <div style="margin-top:6px;">
                         <div class="step">
-                            <span class="step-num">Étape 1 :</span> $E_C = \frac{1}{2} \times 1200 \times 25^2$
+                            <span class="step-num">Étape 1 :</span> Conversion de la vitesse en m/s
+                            <br>\(V = 90\text{ km/h} = \frac{90}{3,6} = 25\text{ m/s}\)
                         </div>
                         <div class="step">
-                            <span class="step-num">Étape 2 :</span> $E_C = 600 \times 625 = 375000\text{ J} = 3.75 \times 10^5\text{ J}$
+                            <span class="step-num">Étape 2 :</span> \(E_C = \frac{1}{2} \times 1200 \times 25^2\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Étape 3 :</span> \(E_C = 600 \times 625 = 375000\text{ J} = 3,75 \times 10^5\text{ J}\)
                         </div>
                     </div>
                     <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
-                        ✅ $E_C = 3.75 \times 10^5\text{ J}$
+                        ✅ \(E_C = 3,75 \times 10^5\text{ J}\)
                     </div>
+                    <div class="ex-subtitle">💡 Cette énergie est énorme ! C'est pourquoi les voitures ont besoin de bons freins.</div>
                 </div>
 
-                <div class="highlight-box purple">
+                <!-- Exemple 3 -->
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Application 3 - Comparaison</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Une balle de masse \(m = 0,5\text{ kg}\) est lancée à \(V = 20\text{ m/s}\).
+                        <br>a) Calculer son énergie cinétique.
+                        <br>b) Que devient son énergie si la vitesse double (\(V = 40\text{ m/s}\)) ?
+                    </p>
+                    <div style="margin-top:6px;">
+                        <div class="step">
+                            <span class="step-num">a) Étape 1 :</span> \(E_C = \frac{1}{2} \times 0,5 \times 20^2 = 0,25 \times 400 = 100\text{ J}\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">b) Étape 2 :</span> \(E_C' = \frac{1}{2} \times 0,5 \times 40^2 = 0,25 \times 1600 = 400\text{ J}\)
+                        </div>
+                    </div>
+                    <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
+                        ✅ a) \(E_C = 100\text{ J}\) &nbsp;|&nbsp; b) \(E_C' = 400\text{ J}\) (multipliée par 4)
+                    </div>
+                    <div class="ex-subtitle">💡 Quand la vitesse double, l'énergie cinétique est multipliée par 4 !</div>
+                </div>
+
+                <!-- Exemple 4 -->
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Application 4 - Dans la vie quotidienne</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un camion de masse \(m = 5000\text{ kg}\) roule à \(V = 72\text{ km/h}\).
+                        <br>Calculer son énergie cinétique.
+                    </p>
+                    <div style="margin-top:6px;">
+                        <div class="step">
+                            <span class="step-num">Étape 1 :</span> \(V = 72\text{ km/h} = \frac{72}{3,6} = 20\text{ m/s}\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Étape 2 :</span> \(E_C = \frac{1}{2} \times 5000 \times 20^2 = 2500 \times 400 = 1,0 \times 10^6\text{ J}\)
+                        </div>
+                    </div>
+                    <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
+                        ✅ \(E_C = 1,0 \times 10^6\text{ J}\) (1 million de Joules !)
+                    </div>
+                    <div class="ex-subtitle">💡 Un camion lourd a une très grande énergie cinétique, d'où l'importance des distances de sécurité.</div>
+                </div>
+
+                <!-- Variation de l'énergie cinétique -->
+                <div class="highlight-box purple" style="margin-top:8px;">
                     <span class="label resume">Résumé</span>
                     <ul>
-                        <li>L'énergie cinétique est <strong>positive</strong> ($E_C \ge 0$).</li>
+                        <li>L'énergie cinétique est <strong>positive</strong> (\(E_C \ge 0\)).</li>
                         <li>Elle est <strong>proportionnelle</strong> à la masse et au carré de la vitesse.</li>
                         <li>Unité : <strong>Joule (J)</strong>.</li>
-                        <li>La variation de l'énergie cinétique est : $\Delta E_C = \frac{1}{2} m V_2^2 - \frac{1}{2} m V_1^2$</li>
+                        <li>La variation de l'énergie cinétique est :</li>
                     </ul>
+                    <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                        $$\Delta E_C = \frac{1}{2} m \cdot V_2^2 - \frac{1}{2} m \cdot V_1^2$$
+                    </div>
+                    <p style="font-size:11px; color:var(--text-muted);">Cette formule sera utilisée dans le <strong>théorème de l'énergie cinétique</strong> (Partie 3).</p>
+                </div>
+
+                <!-- Tableau récapitulatif -->
+                <div class="table-wrap" style="margin-top:8px;">
+                    <table>
+                        <tr>
+                            <th>Grandeur</th>
+                            <th>Symbole</th>
+                            <th>Unité</th>
+                            <th>Formule</th>
+                        </tr>
+                        <tr>
+                            <td>Énergie cinétique</td>
+                            <td>$E_C$</td>
+                            <td>Joule (J)</td>
+                            <td>$E_C = \frac{1}{2} m V^2$</td>
+                        </tr>
+                        <tr>
+                            <td>Masse</td>
+                            <td>$m$</td>
+                            <td>kg</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Vitesse</td>
+                            <td>$V$</td>
+                            <td>m/s</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Variation d'énergie cinétique</td>
+                            <td>$\Delta E_C$</td>
+                            <td>Joule (J)</td>
+                            <td>$\Delta E_C = \frac{1}{2} m (V_2^2 - V_1^2)$</td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="highlight-box yellow" style="margin-top:8px;">
-                    <span class="label rappel">À retenir</span>
-                    <div class="formula-block" style="font-size:15px;">
-                        $$\Delta E_C = \frac{1}{2} m \cdot V_2^2 - \frac{1}{2} m \cdot V_1^2$$
+                    <span class="label rappel">📌 À retenir absolument</span>
+                    <div class="formula-block" style="font-size:16px;">
+                        $$E_C = \frac{1}{2} m \cdot V^2$$
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">Cette formule sera utilisée dans le <strong>théorème de l'énergie cinétique</strong>.</p>
+                    <p style="font-size:11px; color:var(--text-muted);">
+                        C'est la formule fondamentale de l'énergie cinétique en translation.
+                        <br>La variation $\Delta E_C$ sera utilisée dans le théorème de l'énergie cinétique.
+                    </p>
                 </div>
             </div>
 
@@ -433,6 +583,7 @@
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.fillText('La courbe est une parabole', 180, 40);
+            ctx.fillText('(l\'énergie augmente avec le carré de la vitesse)', 180, 55);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
