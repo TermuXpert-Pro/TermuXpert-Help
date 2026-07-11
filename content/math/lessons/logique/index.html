@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logique mathématique - Xpert</title>
+    
+    <!-- Preconnect CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
+    <style>
+        .part-link {
+            display: block;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .part-link:hover {
+            border-color: #4ECDC4;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.08);
+        }
+        .part-link:active {
+            transform: scale(0.98);
+        }
+        .part-link .part-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+            color: #4ECDC4;
+        }
+        .part-link .part-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .part-link .part-title {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .part-link .part-desc {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        .part-link .part-arrow {
+            color: var(--text-muted);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .summary-badge {
+            display: inline-block;
+            background: rgba(244, 208, 63, 0.15);
+            color: #F4D03F;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        @media (max-width: 480px) {
+            .part-link { padding: 10px 12px; }
+            .part-link .part-icon { font-size: 18px; }
+            .part-link .part-num { font-size: 13px; }
+            .part-link .part-title { font-size: 12px; }
+            .part-link .part-desc { font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+        <a href="../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../../../../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title">
+                <i class="fas fa-square-root-variable" style="color:#4ECDC4;"></i> 
+                Logique mathématique
+            </h1>
+            <p style="text-align:center; color:var(--text-muted); font-size:13px; margin-bottom:16px;">
+                <span class="summary-badge"><i class="fas fa-graduation-cap"></i> 1 Bac Sciences Expérimentales</span>
+                <span class="summary-badge" style="background:rgba(78,205,196,0.15); color:#4ECDC4; margin-left:6px;">
+                    <i class="fas fa-book"></i> 4 parties
+                </span>
+            </p>
+            <p style="text-align:center; color:var(--text-secondary); font-size:14px; margin-bottom:20px;">
+                Choisissez une partie pour commencer l'étude
+            </p>
+
+            <div style="max-width:700px; margin:0 auto;">
+
+                <!-- Partie 1 -->
+                <a href="part1.html" class="part-link">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span class="part-icon"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div>
+                                <span class="part-num">Partie 1</span>
+                                <span class="part-title" style="margin-left:6px;">Propositions - Fonctions propositionnelles - Quantificateurs</span>
+                            </div>
+                            <div class="part-desc">Définition d'une proposition, valeur de vérité, fonctions propositionnelles, quantificateurs ∀, ∃, ∃!</div>
+                        </div>
+                        <span class="part-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Partie 2 -->
+                <a href="part2.html" class="part-link">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span class="part-icon"><i class="fas fa-table"></i></span>
+                        <div style="flex:1;">
+                            <div>
+                                <span class="part-num">Partie 2</span>
+                                <span class="part-title" style="margin-left:6px;">Opérations sur les propositions</span>
+                            </div>
+                            <div class="part-desc">Négation, conjonction (∧), disjonction (∨), implication (⇒), équivalence (⇔) - Tables de vérité</div>
+                        </div>
+                        <span class="part-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Partie 3 -->
+                <a href="part3.html" class="part-link">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span class="part-icon"><i class="fas fa-scale-balanced"></i></span>
+                        <div style="flex:1;">
+                            <div>
+                                <span class="part-num">Partie 3</span>
+                                <span class="part-title" style="margin-left:6px;">Lois logiques - Raisonnements (1-4)</span>
+                            </div>
+                            <div class="part-desc">Lois de Morgan, distributivité, transitivité, raisonnements: contre-exemple, équivalences successives, déductif, contraposée</div>
+                        </div>
+                        <span class="part-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Partie 4 -->
+                <a href="part4.html" class="part-link" style="border-color:#F4D03F44;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span class="part-icon" style="color:#F4D03F;"><i class="fas fa-list-check"></i></span>
+                        <div style="flex:1;">
+                            <div>
+                                <span class="part-num" style="color:#F4D03F;">Partie 4</span>
+                                <span class="part-title" style="margin-left:6px;">Raisonnements (5-7) + Résumé général</span>
+                                <span style="background:rgba(244,208,63,0.15); color:#F4D03F; padding:1px 8px; border-radius:8px; font-size:10px; margin-left:6px;">📝 Résumé</span>
+                            </div>
+                            <div class="part-desc">Disjonction des cas, absurde, récurrence + résumé complet du cours avec toutes les définitions et propriétés</div>
+                        </div>
+                        <span class="part-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- ====== Résumé rapide ====== -->
+            <div style="margin-top:30px; padding:16px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; text-align:center;">
+                <p style="color:var(--text-muted); font-size:12px;">
+                    <i class="fas fa-book" style="color:#4ECDC4;"></i>
+                    Ce cours est divisé en <strong style="color:#4ECDC4;">4 parties</strong>.
+                    La <strong style="color:#F4D03F;">Partie 4</strong> contient un résumé général de tout le cours.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+    
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+</body>
+</html>

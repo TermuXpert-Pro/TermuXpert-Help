@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 2 - Opérations sur les propositions | Xpert</title>
+    
+    <!-- Preconnect CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
+    <style>
+        .badge-part {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .highlight-box .label {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 2px 12px;
+            border-radius: 12px;
+            margin-bottom: 4px;
+        }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 6px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 8px; overflow: hidden; max-width: 300px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 6px 12px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 13px; }
+        .table-wrap td { padding: 6px 12px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 13px; }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 6px 0; text-align: center; overflow-x: auto; font-size: 15px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 14px; }
+        .section h2 { color: #66FCF1; font-size: 16px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .section h2 .num { background: var(--gradient); color: var(--bg-primary); border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; flex-shrink: 0; }
+        .section h3 { color: #FF6B6B; font-size: 14px; font-weight: 700; margin: 8px 0 4px; }
+        .section p { color: var(--text-secondary); font-size: 13px; line-height: 1.7; margin-bottom: 4px; }
+        .section ul { color: var(--text-secondary); font-size: 13px; line-height: 1.7; padding-right: 18px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 2px; }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 4px 12px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 13px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 13px; }
+        .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 8px; }
+        .nav-buttons .next-btn, .nav-buttons .prev-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 6px 16px; border-radius: 8px; transition: all 0.3s ease; font-size: 13px; border: none; }
+        .nav-buttons .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .nav-buttons .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-light); text-decoration: none; font-weight: 600; padding: 5px 14px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 14px; font-size: 13px; }
+        .back-btn:hover { background: rgba(69, 162, 158, 0.1); }
+        .lesson-title { color: #4ECDC4; font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 14px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .sub-section { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; }
+        @media (max-width: 768px) {
+            .section { padding: 10px 12px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 13px; }
+            .section p { font-size: 12px; }
+            .section ul { font-size: 12px; }
+            .formula-block { font-size: 13px; padding: 8px 10px; }
+            .table-wrap table { max-width: 100%; font-size: 12px; }
+            .table-wrap th, .table-wrap td { padding: 4px 8px; font-size: 12px; }
+            .lesson-title { font-size: 18px; }
+        }
+        @media (max-width: 480px) {
+            .section { padding: 8px 10px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 12px; }
+            .section p { font-size: 11px; }
+            .section ul { font-size: 11px; }
+            .formula-block { font-size: 12px; padding: 6px 8px; }
+            .table-wrap th, .table-wrap td { padding: 3px 6px; font-size: 11px; }
+            .lesson-title { font-size: 16px; }
+            .step { font-size: 12px; padding: 3px 8px; }
+            .step .step-num { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+        <a href="../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title">
+                <i class="fas fa-table" style="color:#4ECDC4;"></i> 
+                Partie 2 : Opérations sur les propositions
+            </h1>
+            
+            <p style="text-align:center; color:var(--text-muted); font-size:13px; margin-bottom:16px;">
+                <span class="badge-part"><i class="fas fa-book"></i> Chapitre II</span>
+                <span class="badge-part" style="background:rgba(244,208,63,0.15); color:#F4D03F; margin-left:6px;">
+                    <i class="fas fa-graduation-cap"></i> 1 Bac Sc. expérimentale
+                </span>
+            </p>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: LA NÉGATION -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> La négation d'une proposition</h2>
+
+                <h3>A. Définition</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>La <strong>négation</strong> d'une proposition P est la proposition qu'on note <strong>$\overline{P}$</strong> ou <strong>¬P</strong> telle que les valeurs de vérité de P et $\overline{P}$ sont opposées.</p>
+                </div>
+
+                <h3 style="margin-top:10px;">B. Exemple</h3>
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <p>P : « 2 est un nombre pair »</p>
+                    <p>Sa négation $\overline{P}$ est : « 2 est un nombre <strong>impair</strong> »</p>
+                </div>
+
+                <h3 style="margin-top:10px;">C. Tableau de vérité</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>$P$</th><th>$\overline{P}$</th></tr>
+                        <tr><td class="true">V (1)</td><td class="false">F (0)</td></tr>
+                        <tr><td class="false">F (0)</td><td class="true">V (1)</td></tr>
+                    </table>
+                    <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:4px;">Tableau de vérité de la négation</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Propriété</span>
+                    <div class="formula-block">
+                        $\overline{\overline{P}} = P$ &nbsp;&nbsp; ou encore &nbsp;&nbsp; $\neg(\neg P) = P$
+                    </div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>La négation inverse la valeur de vérité.</li>
+                        <li>Si P est vraie, $\overline{P}$ est fausse.</li>
+                        <li>Si P est fausse, $\overline{P}$ est vraie.</li>
+                        <li>La double négation redonne la proposition initiale.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: CONJONCTION ET DISJONCTION -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Conjonction et Disjonction</h2>
+
+                <!-- 2-A: Conjonction -->
+                <h3>A. La conjonction de deux propositions</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>La <strong>conjonction</strong> de deux propositions P et Q est la proposition notée <strong>$P \land Q$</strong> ou bien <strong>P et Q</strong> ; et elle est <span style="color:#4ECDC4;">vraie</span> seulement dans le cas où P et Q sont toutes les deux vraies.</p>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>$P$</th><th>$Q$</th><th>$P \land Q$</th></tr>
+                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                    </table>
+                    <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:4px;">Tableau de vérité de $P \land Q$</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <ul>
+                        <li>« (2 est un nombre pair) <strong>∧</strong> (2 + 3 = 6) » est une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
+                        <li>« (2 est un nombre pair) <strong>et</strong> (2 + 3 = 6) »</li>
+                    </ul>
+                </div>
+
+                <!-- 2-B: Disjonction -->
+                <div class="sub-section">
+                    <h3>B. La disjonction de deux propositions</h3>
+                    <div class="highlight-box green">
+                        <span class="label def">Définition</span>
+                        <p>La <strong>disjonction</strong> de deux propositions P et Q est la proposition notée <strong>$P \lor Q$</strong> ou bien <strong>P ou Q</strong> ; et elle est <span style="color:#FF6B6B;">fausse</span> seulement dans le cas où P et Q sont toutes les deux fausses.</p>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>$P$</th><th>$Q$</th><th>$P \lor Q$</th></tr>
+                            <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="true">V</td><td class="false">F</td><td class="true">V</td></tr>
+                            <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                            <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td></tr>
+                        </table>
+                        <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:4px;">Tableau de vérité de $P \lor Q$</p>
+                    </div>
+
+                    <div class="highlight-box yellow">
+                        <span class="label ex">Exemple</span>
+                        <ul>
+                            <li>« (2 est un nombre pair) <strong>∨</strong> (2 + 3 = 6) » est une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
+                            <li>« (2 est un nombre pair) <strong>ou</strong> (2 + 3 = 6) »</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2-C: Propriétés -->
+                <div class="sub-section">
+                    <h3>C. Propriétés</h3>
+                    <div class="highlight-box purple">
+                        <span class="label prop">Propriétés</span>
+                        <ul>
+                            <li><strong>Commutativité :</strong> $P \land Q = Q \land P$ &nbsp; et &nbsp; $P \lor Q = Q \lor P$</li>
+                            <li><strong>Associativité :</strong> $(P \land Q) \land R = P \land (Q \land R)$ &nbsp; et &nbsp; $(P \lor Q) \lor R = P \lor (Q \lor R)$</li>
+                            <li><strong>Idempotence :</strong> $P \land P = P$ &nbsp; et &nbsp; $P \lor P = P$</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box red">
+                        <span class="label rem">Lois de Morgan</span>
+                        <div class="formula-block">
+                            $\overline{P \land Q} = \overline{P} \lor \overline{Q}$ &nbsp;&nbsp; et &nbsp;&nbsp; $\overline{P \lor Q} = \overline{P} \land \overline{Q}$
+                        </div>
+                    </div>
+
+                    <div class="highlight-box yellow">
+                        <span class="label ex">Distributivité</span>
+                        <div class="formula-block">
+                            $P \land (Q \lor R) = (P \land Q) \lor (P \land R)$
+                        </div>
+                        <div class="formula-block">
+                            $P \lor (Q \land R) = (P \lor Q) \land (P \lor R)$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li><strong>$P \land Q$</strong> (et) : vraie seulement si P et Q sont vraies.</li>
+                        <li><strong>$P \lor Q$</strong> (ou) : fausse seulement si P et Q sont fausses.</li>
+                        <li>La conjonction et la disjonction sont commutatives et associatives.</li>
+                        <li>Lois de Morgan : $\overline{P \land Q} = \overline{P} \lor \overline{Q}$ et $\overline{P \lor Q} = \overline{P} \land \overline{Q}$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: L'IMPLICATION -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> L'implication de deux propositions</h2>
+
+                <h3>A. Définition</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>L'implication de deux propositions P puis Q est la proposition <strong>$\overline{P} \lor Q$</strong> ; qu'on note par <strong>$P \Rightarrow Q$</strong> on lit <em>« P implique Q »</em>.</p>
+                    <p style="margin-top:4px;">Elle est équivalente à <strong>$\overline{P} \lor Q$</strong>.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Vocabulaire</span>
+                    <ul>
+                        <li>La proposition <strong>P</strong> s'appelle les <strong>données</strong> (ou <strong>hypothèses</strong>) de l'implication.</li>
+                        <li>La proposition <strong>Q</strong> s'appelle la <strong>conclusion</strong> de l'implication.</li>
+                    </ul>
+                </div>
+
+                <h3 style="margin-top:10px;">B. Tableau de vérité</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>$P$</th><th>$Q$</th><th>$P \Rightarrow Q$</th></tr>
+                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
+                    </table>
+                    <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:4px;">Tableau de vérité de $P \Rightarrow Q$</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label rappel">Remarque importante</span>
+                    <ul>
+                        <li>L'implication $P \Rightarrow Q$ est <span style="color:#FF6B6B;">fausse</span> seulement dans le cas <strong>P est vraie et Q est fausse</strong>.</li>
+                        <li>Si P est fausse, l'implication est toujours vraie (quel que soit Q).</li>
+                    </ul>
+                </div>
+
+                <h3 style="margin-top:10px;">C. Exemples</h3>
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemples</span>
+                    <ul>
+                        <li>« (2 est un nombre pair) $\Rightarrow$ (2 + 3 = 6) » est une proposition <span style="color:#FF6B6B;">fausse</span>.<br>
+                            (vraie $\Rightarrow$ fausse = fausse)</li>
+                        <li>« (2 + 3 = 6) $\Rightarrow$ (2 est un nombre pair) » est une proposition <span style="color:#4ECDC4;">vraie</span>.<br>
+                            (fausse $\Rightarrow$ vraie = vraie)</li>
+                    </ul>
+                </div>
+
+                <h3 style="margin-top:10px;">D. Propriétés</h3>
+                <div class="highlight-box purple">
+                    <span class="label prop">Propriétés</span>
+                    <ul>
+                        <li><strong>Transitivité :</strong> $[(P \Rightarrow Q) \land (Q \Rightarrow R)] \Rightarrow (P \Rightarrow R)$</li>
+                        <li><strong>Négation :</strong> $\overline{P \Rightarrow Q} = P \land \overline{Q}$</li>
+                        <li><strong>Contraposée :</strong> $P \Rightarrow Q = \overline{Q} \Rightarrow \overline{P}$</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Vocabulaire supplémentaire</span>
+                    <ul>
+                        <li>L'implication <strong>$Q \Rightarrow P$</strong> s'appelle l'<strong>implication réciproque</strong> de $P \Rightarrow Q$.</li>
+                        <li>L'implication <strong>$\overline{Q} \Rightarrow \overline{P}$</strong> s'appelle la <strong>contraposée</strong> de $P \Rightarrow Q$.</li>
+                        <li>Si $P \Rightarrow Q$ on n'a pas forcément $Q \Rightarrow P$.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$P \Rightarrow Q$ (P implique Q) équivaut à $\overline{P} \lor Q$.</li>
+                        <li>Fausse seulement si <strong>P vraie et Q fausse</strong>.</li>
+                        <li>Contraposée : $P \Rightarrow Q \iff \overline{Q} \Rightarrow \overline{P}$.</li>
+                        <li>La négation de $P \Rightarrow Q$ est $P \land \overline{Q}$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: L'ÉQUIVALENCE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> L'équivalence de deux propositions</h2>
+
+                <h3>A. Définition</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>L'<strong>équivalence</strong> de deux propositions P et Q est la proposition <strong>$(P \Rightarrow Q) \land (Q \Rightarrow P)$</strong> notée <strong>$P \Leftrightarrow Q$</strong> ; on lit <em>« P est équivalente à Q »</em> ou <em>« P si et seulement si Q »</em>.</p>
+                </div>
+
+                <h3 style="margin-top:10px;">B. Tableau de vérité</h3>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>$P$</th><th>$Q$</th><th>$P \Leftrightarrow Q$</th></tr>
+                        <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                        <tr><td class="true">V</td><td class="false">F</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="true">V</td><td class="false">F</td></tr>
+                        <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
+                    </table>
+                    <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-top:4px;">Tableau de vérité de $P \Leftrightarrow Q$</p>
+                </div>
+
+                <h3 style="margin-top:10px;">C. Exemple</h3>
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <div class="formula-block">
+                        $\forall x \in \mathbb{R},\ \forall y \in \mathbb{R} : x^2 = y^2 \iff (x = y \text{ ou } x = -y)$
+                    </div>
+                </div>
+
+                <h3 style="margin-top:10px;">D. Propriétés</h3>
+                <div class="highlight-box purple">
+                    <span class="label prop">Propriétés</span>
+                    <ul>
+                        <li>$P \Leftrightarrow Q = Q \Leftrightarrow P$ (commutativité)</li>
+                        <li>$P \Leftrightarrow Q = \overline{P} \Leftrightarrow \overline{Q}$</li>
+                        <li><strong>Transitivité :</strong> $[(P \Leftrightarrow Q) \land (Q \Leftrightarrow R)] \Rightarrow (P \Leftrightarrow R)$</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$P \Leftrightarrow Q$ (P équivaut à Q) signifie que P et Q ont la même valeur de vérité.</li>
+                        <li>L'équivalence est la <strong>double implication</strong> : $P \Rightarrow Q$ et $Q \Rightarrow P$.</li>
+                        <li>L'équivalence est transitive, commutative et se conserve par négation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Partie 1</a>
+                <a href="part3.html" class="next-btn">Partie 3 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+    
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+</body>
+</html>
