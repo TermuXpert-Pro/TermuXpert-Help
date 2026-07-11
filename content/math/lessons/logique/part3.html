@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partie 3 - Lois logiques - Raisonnements (1-4) | Xpert</title>
-    <!-- Preconnect CDN -->
+    
+    <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
     <script>
         MathJax = {
             tex: {
@@ -24,24 +40,24 @@
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
     <style>
-        .badge-part {
-            display: inline-block;
-            background: rgba(78, 205, 196, 0.15);
-            color: #4ECDC4;
-            padding: 2px 14px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .highlight-box .label {
-            display: inline-block;
-            font-weight: 700;
-            font-size: 12px;
-            padding: 2px 12px;
-            border-radius: 12px;
-            margin-bottom: 4px;
-        }
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
         .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
         .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
@@ -53,60 +69,65 @@
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
-        .table-wrap { overflow-x: auto; margin: 6px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 8px; overflow: hidden; max-width: 350px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 6px 12px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 13px; }
-        .table-wrap td { padding: 6px 12px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 13px; }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 240px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
         .table-wrap .true { color: #4ECDC4; font-weight: 700; }
         .table-wrap .false { color: #FF6B6B; font-weight: 700; }
-        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 6px 0; text-align: center; overflow-x: auto; font-size: 15px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
         .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
-        .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 14px; }
-        .section h2 { color: #66FCF1; font-size: 16px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .section h2 .num { background: var(--gradient); color: var(--bg-primary); border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; flex-shrink: 0; }
-        .section h3 { color: #FF6B6B; font-size: 14px; font-weight: 700; margin: 8px 0 4px; }
-        .section h4 { color: #F4D03F; font-size: 13px; font-weight: 700; margin: 6px 0 3px; }
-        .section p { color: var(--text-secondary); font-size: 13px; line-height: 1.7; margin-bottom: 4px; }
-        .section ul { color: var(--text-secondary); font-size: 13px; line-height: 1.7; padding-right: 18px; margin-bottom: 4px; }
-        .section ul li { margin-bottom: 2px; }
-        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 4px 12px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 13px; }
-        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 13px; }
-        .step .step-end { color: #4ECDC4; font-weight: 700; }
-        .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 8px; }
-        .nav-buttons .next-btn, .nav-buttons .prev-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 6px 16px; border-radius: 8px; transition: all 0.3s ease; font-size: 13px; border: none; }
-        .nav-buttons .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .nav-buttons .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-light); text-decoration: none; font-weight: 600; padding: 5px 14px; border-radius: 8px; transition: all 0.2s ease; margin-bottom: 14px; font-size: 13px; }
-        .back-btn:hover { background: rgba(69, 162, 158, 0.1); }
-        .lesson-title { color: #4ECDC4; font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 14px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
-        .sub-section { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
         @media (max-width: 768px) {
-            .section { padding: 10px 12px; }
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
             .section h2 { font-size: 14px; }
-            .section h3 { font-size: 13px; }
-            .section p { font-size: 12px; }
-            .section ul { font-size: 12px; }
-            .formula-block { font-size: 13px; padding: 8px 10px; }
-            .table-wrap table { max-width: 100%; font-size: 12px; }
-            .table-wrap th, .table-wrap td { padding: 4px 8px; font-size: 12px; }
-            .lesson-title { font-size: 18px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
         }
         @media (max-width: 480px) {
-            .section { padding: 8px 10px; }
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
             .section h2 { font-size: 13px; }
-            .section h3 { font-size: 12px; }
-            .section p { font-size: 11px; }
-            .section ul { font-size: 11px; }
-            .formula-block { font-size: 12px; padding: 6px 8px; }
-            .table-wrap th, .table-wrap td { padding: 3px 6px; font-size: 11px; }
-            .lesson-title { font-size: 16px; }
-            .step { font-size: 12px; padding: 3px 8px; }
-            .step .step-num { font-size: 12px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
         }
     </style>
 </head>
 <body>
+
     <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
     <!-- ====== خلفية زليج ====== -->
     <div class="moroccan-bg" aria-hidden="true">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
@@ -130,15 +151,307 @@
             </defs>
             <rect width="800" height="800" fill="url(#zellij)"/>
         </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
         <a href="../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
         </a>
         <ul class="nav-links">
-            <li><a href="../../../../index.html">Accueil</a></li>
-            <li><a href="../../../../subjects.html">Matières</a></li>
+            <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
         </ul>
     </nav>
+
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-scale-balanced" style="color:#4ECDC4;"></i> Partie 3 : Lois logiques - Raisonnements (1-4)</h1>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: LOIS LOGIQUES -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Lois logiques</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Une <strong>loi logique</strong> (ou <strong>tautologie</strong>) est une proposition qui est <span style="color:#4ECDC4;">toujours vraie</span> quelles que soient les valeurs de vérité des propositions qui la constituent.</p>
+                </div>
+
+                <div class="highlight-box red">
+                    <span class="label prop">Lois de Morgan</span>
+                    <div class="formula-block">
+                        $\overline{P \land Q} = \overline{P} \lor \overline{Q}$
+                    </div>
+                    <div class="formula-block">
+                        $\overline{P \lor Q} = \overline{P} \land \overline{Q}$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Distributivité</span>
+                    <div class="formula-block">
+                        $P \land (Q \lor R) = (P \land Q) \lor (P \land R)$
+                    </div>
+                    <div class="formula-block">
+                        $P \lor (Q \land R) = (P \lor Q) \land (P \lor R)$
+                    </div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label prop">Double négation</span>
+                    <div class="formula-block">
+                        $\overline{\overline{P}} = P$
+                    </div>
+                </div>
+
+                <div class="highlight-box blue">
+                    <span class="label prop">Contraposée</span>
+                    <div class="formula-block">
+                        $P \Rightarrow Q \iff \overline{Q} \Rightarrow \overline{P}$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Preuve d'une loi logique</span>
+                    <p><strong>Exemple :</strong> Montrons que $(P \land Q) \Rightarrow P$ est une loi logique.</p>
+                    <div class="step">
+                        <span class="step-num">Étape 1 :</span> $(P \land Q) \Rightarrow P \equiv \overline{P \land Q} \lor P$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 2 :</span> $\equiv (\overline{P} \lor \overline{Q}) \lor P$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 3 :</span> $\equiv (\overline{P} \lor P) \lor \overline{Q}$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 4 :</span> $\equiv V \lor \overline{Q} \equiv V$
+                    </div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La proposition est toujours vraie, c'est une <strong>loi logique</strong>.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Une loi logique est une proposition toujours vraie.</li>
+                        <li>Lois de Morgan : $\overline{P \land Q} = \overline{P} \lor \overline{Q}$ et $\overline{P \lor Q} = \overline{P} \land \overline{Q}$.</li>
+                        <li>La double négation : $\overline{\overline{P}} = P$.</li>
+                        <li>La contraposée : $P \Rightarrow Q \iff \overline{Q} \Rightarrow \overline{P}$.</li>
+                        <li>La distributivité de $\land$ sur $\lor$ et de $\lor$ sur $\land$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: RAISONNEMENT PAR CONTRE-EXEMPLE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Raisonnement par contre-exemple</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Pour prouver que la propriété <strong>$\forall x \in E,\ P(x)$</strong> est <span style="color:#FF6B6B;">fausse</span>, il suffit de prouver que <strong>$\exists x \in E,\ \overline{P(x)}$</strong> est vraie (c.à.d. de trouver un élément x de E qui ne vérifie pas P(x), ce qu'on appelle un <strong>contre-exemple</strong>).</p>
+                    <p style="margin-top:4px;">Ce mode de raisonnement s'appelle <strong>raisonnement par contre-exemple</strong>.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <p><strong>Question :</strong> Est-ce que la somme de deux nombres irrationnels est un nombre irrationnel ?</p>
+                    <div class="step">
+                        <span class="step-num">Contre-exemple :</span> $\sqrt{2}$ et $-\sqrt{2}$ sont deux nombres irrationnels.
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Vérification :</span> Leur somme est $\sqrt{2} + (-\sqrt{2}) = 0$ qui n'est pas un nombre irrationnel.
+                    </div>
+                    <p style="color:#FF6B6B; margin-top:4px;"><strong>Conclusion :</strong> La propriété « la somme de deux irrationnels est irrationnelle » est <strong>fausse</strong>.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>On utilise le contre-exemple pour <strong>réfuter</strong> une propriété universelle ($\forall$).</li>
+                        <li>Un seul contre-exemple suffit pour prouver qu'une propriété est fausse.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: RAISONNEMENT PAR ÉQUIVALENCES SUCCESSIVES -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Raisonnement par équivalences successives</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Pour démontrer que l'équivalence <strong>$P \Leftrightarrow Q$</strong> est vraie, on démontre que :</p>
+                    <div class="formula-block">
+                        $P \Leftrightarrow Q_1 \Leftrightarrow Q_2 \Leftrightarrow Q_3 \Leftrightarrow \cdots \Leftrightarrow Q_n \Leftrightarrow Q$
+                    </div>
+                    <p>Ce mode de raisonnement s'appelle <strong>raisonnement par équivalences successives</strong>.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <p>Montrer que : <strong>$\forall a,b \in \mathbb{R} : a^2 + b^2 = 2ab \iff a = b$</strong></p>
+                    <div class="step">
+                        <span class="step-num">Étape 1 :</span> $a^2 + b^2 = 2ab$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 2 :</span> $\iff a^2 + b^2 - 2ab = 0$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 3 :</span> $\iff (a - b)^2 = 0$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 4 :</span> $\iff a - b = 0$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 5 :</span> $\iff a = b$
+                    </div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall a,b \in \mathbb{R} : a^2 + b^2 = 2ab \iff a = b$</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>On enchaîne des équivalences logiques.</li>
+                        <li>Si $P \Leftrightarrow Q_1 \Leftrightarrow Q_2 \Leftrightarrow \cdots \Leftrightarrow Q$, alors $P \Leftrightarrow Q$.</li>
+                        <li>Utile pour les démonstrations d'égalités ou d'équations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: RAISONNEMENT DÉDUCTIF -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Raisonnement déductif</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Si on a l'implication <strong>$P \Rightarrow Q$</strong> est vraie et on a comme donnée la proposition <strong>P</strong>, alors on déduit que la proposition <strong>Q</strong> est vraie.</p>
+                    <p style="margin-top:4px;">Ce mode de raisonnement s'appelle <strong>raisonnement par déduction</strong>.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <div class="step">
+                        <span class="step-num">1.</span> On suppose qu'on a démontré : $\forall a,b > 0,\ \sqrt{ab} \le \dfrac{a+b}{2}$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">2.</span> On déduit que : $\forall x > 0,\ 2\sqrt{x} \le 1 + x$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Preuve :</span> D'après la 1ère question, on pose $a = 1$ et $b = x$.
+                    </div>
+                    <div class="step">
+                        <span class="step-num">D'où :</span> $\sqrt{1 \times x} \le \dfrac{1 + x}{2} \Rightarrow 2\sqrt{x} \le 1 + x$
+                    </div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x > 0,\ 2\sqrt{x} \le 1 + x$</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Si $P \Rightarrow Q$ est vraie et $P$ est vraie, alors $Q$ est vraie.</li>
+                        <li>Le raisonnement déductif utilise la règle du <strong>modus ponens</strong>.</li>
+                        <li>Forme générale : $P$ (donnée) et $P \Rightarrow Q$ (théorème) $\Rightarrow Q$ (conclusion).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 5: RAISONNEMENT PAR CONTRAPOSÉE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">5</span> Raisonnement par contraposée</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Pour démontrer l'implication <strong>$P \Rightarrow Q$</strong>, il suffit de démontrer l'implication <strong>$\overline{Q} \Rightarrow \overline{P}$</strong>.</p>
+                    <p style="margin-top:4px;">Ce mode de raisonnement s'appelle <strong>raisonnement par contraposée</strong>.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <p>Montrer que : <strong>$\forall x,y \in ]2, +\infty[,\ x \neq y \Rightarrow x^2 - 4x \neq y^2 - 4y$</strong></p>
+                    <p style="font-weight:600; color:#F4D03F;">On utilise un raisonnement par contraposée.</p>
+                    <p>On démontre : $\forall x,y \in ]2, +\infty[,\ x^2 - 4x = y^2 - 4y \Rightarrow x = y$</p>
+                    <div class="step">
+                        <span class="step-num">Étape 1 :</span> $x^2 - 4x = y^2 - 4y$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 2 :</span> $\Rightarrow x^2 - 4x + 4 = y^2 - 4y + 4$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 3 :</span> $\Rightarrow (x-2)^2 = (y-2)^2$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 4 :</span> $\Rightarrow x-2 = y-2$ <span style="color:var(--text-muted);">(car $x,y > 2$ donc $x-2$ et $y-2$ sont positifs)</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 5 :</span> $\Rightarrow x = y$
+                    </div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> L'implication contraposée est vraie, donc l'implication initiale est vraie.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$P \Rightarrow Q \iff \overline{Q} \Rightarrow \overline{P}$</li>
+                        <li>Utile quand il est plus facile de démontrer la contraposée.</li>
+                        <li>Souvent utilisé pour les implications avec des inégalités.</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- ============================================================ -->
             <!-- Navigation -->
             <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part2.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 2</a>
+                <a href="part4.html" class="next-btn">Partie 4 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
+
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+    
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("../../../../sw.js")
+                .then(function(reg) { console.log("✅ Service Worker enregistré"); })
+                .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
+        }
+    </script>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+</body>
+</html>
