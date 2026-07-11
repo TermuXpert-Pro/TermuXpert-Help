@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 3 - Travail et puissance d'une force | Xpert</title>
+    <title>Partie 1 - Travail et puissance d'une force | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -206,135 +206,131 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-arrow-right" style="color:#FF6B6B;"></i> Partie 3 : Travail du poids - Travail d'un ensemble de forces</h1>
+            <h1 class="lesson-title"><i class="fas fa-arrow-right" style="color:#FF6B6B;"></i> Partie 1 : Notion de force - Travail d'une force constante</h1>
 
             <!-- ============================================================ -->
-            <!-- SECTION 1: TRAVAIL DU POIDS -->
+            <!-- SECTION 1: NOTION DE FORCE -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">1</span> Travail du poids d'un corps solide</h2>
-
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Soit un corps de masse \(m\). Son centre d'inertie \(G\) se déplace d'un point \(A\) d'altitude \(z_A\) à un point \(B\) d'altitude \(z_B\).
-                </p>
-
-                <div class="graph-container">
-                    <canvas id="graphPoids" width="400" height="220"></canvas>
-                    <p>Travail du poids : W = m·g·(z<sub>A</sub> - z<sub>B</sub>)</p>
-                </div>
+                <h2><span class="num">1</span> Notion de force</h2>
 
                 <div class="highlight-box red">
-                    <span class="label def">Expression du travail du poids</span>
-                    <p>Dans un repère \((O, \vec{i}, \vec{j}, \vec{k})\), les coordonnées du poids sont :</p>
-                    <div class="formula-block" style="font-size:14px;">
-                        $$\vec{P} = \begin{pmatrix} 0 \\ 0 \\ -mg \end{pmatrix} = -mg\,\vec{k}$$
-                    </div>
-                    <p>Le travail du poids pour un déplacement de A à B est :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$W_{A \to B}(\vec{P}) = m \cdot g \cdot (z_A - z_B)$$
-                    </div>
+                    <span class="label def">Définition</span>
+                    <p>Une <strong>force</strong> est une action mécanique capable de :</p>
+                    <ul>
+                        <li>mettre en mouvement un corps</li>
+                        <li>modifier son mouvement</li>
+                        <li>le maintenir en équilibre</li>
+                        <li>le déformer</li>
+                    </ul>
                 </div>
 
                 <div class="highlight-box green">
-                    <span class="label prop">Propriétés</span>
-                    <ul>
-                        <li>Le travail du poids <strong>ne dépend pas du chemin suivi</strong>.</li>
-                        <li>Il ne dépend que de l'<strong>altitude initiale</strong> \(z_A\) et de l'<strong>altitude finale</strong> \(z_B\).</li>
-                        <li>Le poids est une <strong>force conservative</strong>.</li>
-                    </ul>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rem">Cas particuliers</span>
-                    <ul>
-                        <li>Si le corps <strong>descend</strong> (\(z_A > z_B\)) : \(W > 0\) → travail <strong>moteur</strong></li>
-                        <li>Si le corps <strong>monte</strong> (\(z_A < z_B\)) : \(W < 0\) → travail <strong>résistant</strong></li>
-                        <li>Si le corps reste à la même altitude (\(z_A = z_B\)) : \(W = 0\) → travail <strong>nul</strong></li>
-                    </ul>
+                    <span class="label prop">Force constante</span>
+                    <p>Une force est dite <strong>constante</strong> si sa <strong>valeur</strong>, sa <strong>direction</strong> et son <strong>sens</strong> ne varient pas au cours du temps.</p>
                 </div>
 
                 <div class="exemple-box">
                     <div class="ex-title">📝 Exemple</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Une balle de masse \(m = 0.1\text{ kg}\) tombe d'une hauteur \(h = 2\text{ m}\).
+                        Le <strong>poids</strong> d'un corps solide est une force constante.
                     </p>
-                    <div style="margin-top:6px;">
-                        <div class="step">
-                            <span class="step-num">Étape 1 :</span> \(z_A = 2\text{ m}\), \(z_B = 0\text{ m}\)
-                        </div>
-                        <div class="step">
-                            <span class="step-num">Étape 2 :</span> \(W = m \cdot g \cdot (z_A - z_B) = 0.1 \times 10 \times (2 - 0)\)
-                        </div>
-                        <div class="step">
-                            <span class="step-num">Étape 3 :</span> \(W = 2\text{ J}\) (travail moteur)
-                        </div>
+                    <div class="graph-container">
+                        <canvas id="graphForce" width="300" height="180"></canvas>
+                        <p>Force constante : le poids</p>
                     </div>
-                </div>
-
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li>\(W_{\vec{P}} = m \cdot g \cdot (z_A - z_B)\)</li>
-                        <li>Le travail du poids est <strong>conservatif</strong> (indépendant du chemin).</li>
-                        <li>Moteur lors d'une descente, résistant lors d'une montée.</li>
-                    </ul>
                 </div>
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 2: TRAVAIL D'UN ENSEMBLE DE FORCES -->
+            <!-- SECTION 2: NOTION DE TRAVAIL -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">2</span> Travail d'un ensemble de forces constantes</h2>
-
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Soit un solide \(S\) glissant sans frottement sur un plan horizontal. Ce solide est soumis à plusieurs forces.
-                </p>
-
-                <div class="graph-container">
-                    <canvas id="graphForces" width="400" height="200"></canvas>
-                    <p>Forces appliquées sur un solide en translation</p>
-                </div>
+                <h2><span class="num">2</span> Notion de travail d'une force</h2>
 
                 <div class="highlight-box red">
-                    <span class="label def">Principe</span>
-                    <p>Pour un solide en translation, soumis à plusieurs forces, la <strong>somme des travaux</strong> des forces appliquées est égale au <strong>travail de leur résultante</strong> :</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$\sum W_{A \to B}(\vec{F}_i) = W_{A \to B}\left(\sum \vec{F}_i\right) = \vec{F}_{\text{résultante}} \cdot \overrightarrow{AB}$$
-                    </div>
-                </div>
-
-                <div class="exemple-box">
-                    <div class="ex-title">📝 Exemple</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Un solide est soumis à son poids \(\vec{P}\), une force de frottement \(\vec{f}\) et une réaction normale \(\vec{R}_N\).
-                    </p>
-                    <div style="margin-top:6px;">
-                        <div class="formula-block" style="font-size:14px; margin:2px 0;">
-                            $$\sum W = W(\vec{P}) + W(\vec{f}) + W(\vec{R}_N) = (\vec{P} + \vec{f} + \vec{R}_N) \cdot \overrightarrow{AB}$$
-                        </div>
-                    </div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label prop">Propriété</span>
-                    <p>Si le solide est en translation rectiligne, la somme des travaux des forces est égale au travail de la <strong>résultante</strong> des forces.</p>
+                    <span class="label def">Définition</span>
+                    <p>En physique, le <strong>travail</strong> est une notion liée aux <strong>forces</strong> et aux <strong>déplacements</strong> de leurs points d'application.</p>
+                    <p style="margin-top:4px;">On dit qu'une force <strong>travaille</strong> lorsque son point d'application se déplace.</p>
                 </div>
 
                 <div class="highlight-box yellow">
                     <span class="label rem">Remarque</span>
                     <ul>
-                        <li>Les forces dont le travail est <strong>nul</strong> (\(\vec{R}_N\) perpendiculaire au déplacement) ne contribuent pas.</li>
-                        <li>Le travail total peut être <strong>moteur</strong> ou <strong>résistant</strong> selon le signe de la résultante.</li>
+                        <li>Si le point d'application de la force ne se déplace pas, le travail est <strong>nul</strong>.</li>
+                        <li>Le travail est une grandeur <strong>algébrique</strong> (positive ou négative).</li>
+                        <li>L'unité du travail dans le système international (SI) est le <strong>Joule (J)</strong>.</li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: TRAVAIL D'UNE FORCE CONSTANTE EN TRANSLATION RECTILIGNE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Travail d'une force constante en translation rectiligne</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Le travail d'une force constante \(\vec{F}\) pour un déplacement rectiligne \(AB\) de son point d'application est le <strong>produit scalaire</strong> du vecteur force \(\vec{F}\) et du vecteur déplacement \(\overrightarrow{AB}\) :</p>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$W_{A \to B}(\vec{F}) = \vec{F} \cdot \overrightarrow{AB} = F \cdot AB \cdot \cos \alpha$$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Notations</span>
+                    <ul>
+                        <li>\(W_{A \to B}(\vec{F})\) : travail de la force \(\vec{F}\) en <strong>Joules (J)</strong></li>
+                        <li>\(F\) : valeur de la force en <strong>Newtons (N)</strong></li>
+                        <li>\(AB\) : longueur du déplacement en <strong>mètres (m)</strong></li>
+                        <li>\(\alpha\) : angle entre les vecteurs \(\vec{F}\) et \(\overrightarrow{AB}\)</li>
+                    </ul>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphTravail" width="400" height="200"></canvas>
+                    <p>Travail d'une force constante : W = F · AB · cos α</p>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Application</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Calculer le travail de la force \(\vec{F}\) sachant que : \(F = 10\text{ N}\), \(AB = 10\text{ cm}\) et \(\alpha = 60^\circ\).
+                    </p>
+                    <div style="margin-top:6px;">
+                        <div class="step">
+                            <span class="step-num">Étape 1 :</span> \(W = F \cdot AB \cdot \cos \alpha\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Étape 2 :</span> \(W = 10 \times 10 \times 10^{-2} \times \cos(60^\circ)\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Étape 3 :</span> \(W = 10 \times 0.1 \times 0.5 = 0.5\text{ J}\)
+                        </div>
+                    </div>
+                    <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
+                        ✅ \(W = 0.5\text{ J}\)
+                    </div>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Expression en coordonnées</span>
+                    <p>Le travail peut s'écrire en fonction des coordonnées du vecteur force et du vecteur déplacement :</p>
+                    <div class="formula-block" style="font-size:14px;">
+                        $$\vec{F} = \begin{pmatrix} F_x \\ F_y \end{pmatrix} \quad \text{et} \quad \overrightarrow{AB} = \begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}$$
+                    </div>
+                    <div class="formula-block" style="font-size:15px;">
+                        $$W_{A \to B}(\vec{F}) = F_x \cdot (x_B - x_A) + F_y \cdot (y_B - y_A)$$
+                    </div>
                 </div>
 
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
-                        <li>\(\sum W(\vec{F}_i) = W(\sum \vec{F}_i)\)</li>
-                        <li>Seule la <strong>résultante</strong> détermine le travail total.</li>
-                        <li>Les forces perpendiculaires au déplacement ont un travail <strong>nul</strong>.</li>
+                        <li>Le travail d'une force constante est le <strong>produit scalaire</strong> \(\vec{F} \cdot \overrightarrow{AB}\).</li>
+                        <li>Unité : le <strong>Joule (J)</strong>.</li>
+                        <li>Le travail est une grandeur <strong>algébrique</strong>.</li>
                     </ul>
                 </div>
             </div>
@@ -343,8 +339,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part2.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 2</a>
-                <a href="part4.html" class="next-btn">Partie 4 <i class="fas fa-arrow-left"></i></a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="part2.html" class="next-btn">Partie 2 <i class="fas fa-arrow-left"></i></a>
             </div>
 
         </div>
@@ -367,8 +363,8 @@
         // GRAPHIQUES
         // ============================================================
 
-        function drawGraphPoids() {
-            var canvas = document.getElementById('graphPoids');
+        function drawGraphForce() {
+            var canvas = document.getElementById('graphForce');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -377,106 +373,46 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            var ox = 80, oy = 200;
-            var scale = 40;
+            var cx = w/2, cy = 50;
+            var r = 30;
 
-            // Axe vertical (z)
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
+            // Cercle (corps)
+            ctx.fillStyle = '#4ECDC4';
             ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
+            ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Flèche vers le bas (poids)
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy + r);
+            ctx.lineTo(cx, cy + r + 80);
             ctx.stroke();
 
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('z', ox + 10, 22);
-
-            // Lignes d'altitude
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.5;
-            ctx.setLineDash([3, 3]);
-            var zA = 4, zB = 1;
-            for (var i = 0; i <= 5; i++) {
-                var y = oy - i * scale;
-                ctx.beginPath();
-                ctx.moveTo(ox - 15, y);
-                ctx.lineTo(ox + 15, y);
-                ctx.stroke();
-                ctx.fillStyle = '#888888';
-                ctx.font = '8px Arial';
-                ctx.fillText(i, ox - 25, y + 3);
-            }
-            ctx.setLineDash([]);
-
-            // Points A et B
-            var xA = ox + 50;
-            var yA = oy - zA * scale;
-            var xB = ox + 80;
-            var yB = oy - zB * scale;
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(xA, yA, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('A', xA - 15, yA - 10);
-
+            // Tête de flèche
             ctx.fillStyle = '#FF6B6B';
             ctx.beginPath();
-            ctx.arc(xB, yB, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('B', xB + 8, yB - 10);
-
-            // Flèche de descente
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(xA, yA);
-            ctx.lineTo(xA, yB);
-            ctx.stroke();
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.moveTo(xA - 6, yB + 8);
-            ctx.lineTo(xA, yB);
-            ctx.lineTo(xA + 6, yB + 8);
+            ctx.moveTo(cx - 8, cy + r + 70);
+            ctx.lineTo(cx, cy + r + 85);
+            ctx.lineTo(cx + 8, cy + r + 70);
             ctx.fill();
 
-            // Flèche poids
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo((xA+xB)/2, yA - 10);
-            ctx.lineTo((xA+xB)/2, yB + 30);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo((xA+xB)/2 - 6, yB + 22);
-            ctx.lineTo((xA+xB)/2, yB + 35);
-            ctx.lineTo((xA+xB)/2 + 6, yB + 22);
-            ctx.fill();
-
-            ctx.fillStyle = '#F4D03F';
+            ctx.fillStyle = '#FF6B6B';
             ctx.font = '14px Arial';
-            ctx.fillText('P', (xA+xB)/2 + 10, (yA + yB)/2);
+            ctx.fillText('P', cx + 10, cy + r + 45);
 
-            // zA et zB
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '10px Arial';
-            ctx.fillText('zA', xA + 20, yA + 4);
-            ctx.fillText('zB', xB + 20, yB + 4);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('Corps', cx - 20, cy - 10);
 
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
-            ctx.fillText('W(P) = mg(zA - zB)', 200, 20);
-            ctx.fillText('(indépendant du chemin)', 200, 35);
+            ctx.fillText('Force constante : le poids', 100, 165);
         }
 
-        function drawGraphForces() {
-            var canvas = document.getElementById('graphForces');
+        function drawGraphTravail() {
+            var canvas = document.getElementById('graphTravail');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -486,102 +422,87 @@
             ctx.fillRect(0, 0, w, h);
 
             var ox = 60, oy = h - 30;
-            var scale = 30;
 
-            // Sol horizontal
-            ctx.strokeStyle = '#2A2A3E';
+            // Point A
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(ox, oy - 50, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('A', ox - 15, oy - 50 - 8);
+
+            // Point B
+            var bx = ox + 180;
+            var by = oy - 50;
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('B', bx + 8, by - 8);
+
+            // Flèche AB
+            ctx.strokeStyle = '#A8FF78';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
+            ctx.moveTo(ox, by);
+            ctx.lineTo(bx, by);
             ctx.stroke();
+            ctx.fillStyle = '#A8FF78';
+            ctx.beginPath();
+            ctx.moveTo(bx - 10, by - 6);
+            ctx.lineTo(bx, by);
+            ctx.lineTo(bx - 10, by + 6);
+            ctx.fill();
 
-            // Bloc
-            var bx = 150, by = oy - 50;
-            ctx.fillStyle = '#4ECDC4';
-            ctx.fillRect(bx, by, 60, 50);
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(bx, by, 60, 50);
-
-            // Poids (vers le bas)
+            // Force F
+            var angle = 60 * Math.PI / 180;
+            var fx = bx - 60 * Math.cos(angle);
+            var fy = by - 60 * Math.sin(angle);
             ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.moveTo(bx + 30, by + 50);
-            ctx.lineTo(bx + 30, by + 90);
+            ctx.moveTo(bx, by);
+            ctx.lineTo(fx, fy);
             ctx.stroke();
             ctx.fillStyle = '#F4D03F';
             ctx.beginPath();
-            ctx.moveTo(bx + 24, by + 82);
-            ctx.lineTo(bx + 30, by + 95);
-            ctx.lineTo(bx + 36, by + 82);
+            ctx.moveTo(fx + 8 * Math.cos(angle - 0.3), fy + 8 * Math.sin(angle - 0.3));
+            ctx.lineTo(fx, fy);
+            ctx.lineTo(fx + 8 * Math.cos(angle + 0.3), fy + 8 * Math.sin(angle + 0.3));
             ctx.fill();
+
             ctx.fillStyle = '#F4D03F';
-            ctx.font = '12px Arial';
-            ctx.fillText('P', bx + 35, by + 75);
+            ctx.font = '14px Arial';
+            ctx.fillText('F', fx - 20, fy - 10);
 
-            // Réaction normale (vers le haut)
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
+            // Angle α
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.moveTo(bx + 30, by);
-            ctx.lineTo(bx + 30, by - 40);
+            ctx.arc(bx, by, 30, -angle, 0);
             ctx.stroke();
+
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '13px Arial';
+            ctx.fillText('α', bx + 20, by - 25);
+
+            // AB
             ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.moveTo(bx + 24, by - 32);
-            ctx.lineTo(bx + 30, by - 45);
-            ctx.lineTo(bx + 36, by - 32);
-            ctx.fill();
-            ctx.fillStyle = '#A8FF78';
             ctx.font = '12px Arial';
-            ctx.fillText('RN', bx + 35, by - 25);
+            ctx.fillText('AB', (ox + bx)/2 - 10, by + 20);
 
-            // Frottement (vers la gauche)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(bx, by + 25);
-            ctx.lineTo(bx - 50, by + 25);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(bx - 42, by + 19);
-            ctx.lineTo(bx - 55, by + 25);
-            ctx.lineTo(bx - 42, by + 31);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '12px Arial';
-            ctx.fillText('f', bx - 35, by + 40);
-
-            // Force motrice (vers la droite)
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(bx + 60, by + 25);
-            ctx.lineTo(bx + 110, by + 25);
-            ctx.stroke();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.beginPath();
-            ctx.moveTo(bx + 102, by + 19);
-            ctx.lineTo(bx + 115, by + 25);
-            ctx.lineTo(bx + 102, by + 31);
-            ctx.fill();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.font = '12px Arial';
-            ctx.fillText('F', bx + 115, by + 40);
-
-            // Légende
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
-            ctx.fillText('∑W = W(P) + W(f) + W(RN) = (P + f + RN)·AB', 130, 20);
+            ctx.fillText('W = F · AB · cos α', 200, 20);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraphPoids();
-                drawGraphForces();
+                drawGraphForce();
+                drawGraphTravail();
             }, 500);
         });
     </script>
