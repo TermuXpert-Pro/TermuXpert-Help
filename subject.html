@@ -343,6 +343,23 @@
             font-size: 16px;
         }
 
+        /* ====== حماية إضافية ====== */
+        * {
+            -webkit-touch-callout: none !important;
+            touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        img {
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -ms-user-drag: none !important;
+            user-drag: none !important;
+        }
+
         @media (max-width: 768px) {
             .moroccan-shadow { width: 300px; height: 300px; }
             .moroccan-star { font-size: 60px; }
@@ -427,10 +444,10 @@
 
     <div class="content-wrapper" id="contentWrapper">
         <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
-            <button class="tab-btn active" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
-            <button class="tab-btn" role="tab" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
-            <button class="tab-btn" role="tab" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
-            <button class="tab-btn" role="tab" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
+            <button class="tab-btn" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
+            <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
+            <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
+            <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
 
         <div class="cards-grid" role="tabpanel" id="tabContent"></div>
@@ -517,6 +534,40 @@
         let isAnimating = false;
 
         // ============================================================
+        // حفظ واستعادة التبويب الحالي
+        // ============================================================
+        function saveCurrentTab(tab) {
+            try {
+                sessionStorage.setItem('subject_tab', tab);
+            } catch(e) {}
+        }
+
+        function getSavedTab() {
+            try {
+                return sessionStorage.getItem('subject_tab') || 'lessons';
+            } catch(e) {
+                return 'lessons';
+            }
+        }
+
+        // ============================================================
+        // عند النقر على رابط، نحفظ التبويب الحالي
+        // ============================================================
+        function setupLinkSaving() {
+            document.addEventListener('click', function(e) {
+                var target = e.target.closest('a');
+                if (target) {
+                    var href = target.getAttribute('href');
+                    // نتحقق إذا كان الرابط يشير إلى محتوى داخل الموقع (وليس رابط خارجي)
+                    if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+                        // نحفظ التبويب الحالي
+                        saveCurrentTab(currentTab);
+                    }
+                }
+            });
+        }
+
+        // ============================================================
         // تحميل المادة
         // ============================================================
         function loadSubject() {
@@ -533,35 +584,42 @@
             document.getElementById('subjectTitle').textContent = currentSubject.title;
             document.getElementById('subTitle').textContent = currentSubject.desc;
             
-            renderContent(document.getElementById('tabContent'), 'lessons');
+            // ====== استعادة التبويب المحفوظ ======
+            const savedTab = getSavedTab();
+            currentTab = savedTab;
+            
+            // تفعيل التبويب المحفوظ
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            renderContent(document.getElementById('tabContent'), savedTab);
         }
 
         // ============================================================
         // تبديل التبويب - نسخة محسنة مع منع التداخل
         // ============================================================
         function switchTab(tab) {
-            // منع التبديل إذا كان أنميشن قيد التشغيل
             if (isAnimating) {
                 console.log('⏳ Animation en cours, veuillez patienter...');
                 return;
             }
             
-            // منع التبديل إلى نفس التبويب
             if (tab === currentTab) {
                 console.log('ℹ️ Déjà sur cet onglet');
                 return;
             }
             
-            // تفعيل حالة الأنميشن
             isAnimating = true;
             
-            // تعطيل جميع أزرار التبويب مؤقتاً
             document.querySelectorAll('.tab-btn').forEach(b => b.disabled = true);
             
             const previousTab = currentTab;
             currentTab = tab;
             
-            // تحديث المظهر النشط للأزرار
+            // حفظ التبويب الحالي
+            saveCurrentTab(tab);
+            
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
             if (activeBtn) activeBtn.classList.add('active');
@@ -569,7 +627,6 @@
             const container = document.getElementById('tabContent');
             const currentCards = container.querySelectorAll('.command-card');
             
-            // إذا كانت هناك بطاقات موجودة، قم بإخفائها أولاً
             if (currentCards.length > 0) {
                 gsap.to(currentCards, {
                     opacity: 0,
@@ -580,7 +637,6 @@
                     stagger: 0.04,
                     onComplete: function() {
                         renderContent(container, tab, function() {
-                            // إعادة تمكين الأزرار بعد الانتهاء
                             document.querySelectorAll('.tab-btn').forEach(b => b.disabled = false);
                             isAnimating = false;
                         });
@@ -602,7 +658,7 @@
             
             if (tab === 'lessons') {
                 html = currentSubject.lessons.map((l, i) => `
-                    <div class="command-card" onclick="location.href='${l.file}'">
+                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${l.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${l.title}
                         </div>
@@ -612,7 +668,7 @@
                 `).join('');
             } else if (tab === 'exercices') {
                 html = currentSubject.exercices.map((e, i) => `
-                    <div class="command-card" onclick="location.href='${e.file}'">
+                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${e.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${e.title}
                         </div>
@@ -622,7 +678,7 @@
                 `).join('');
             } else if (tab === 'series') {
                 html = currentSubject.series.map((s, i) => `
-                    <div class="command-card" onclick="location.href='${s.file}'">
+                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${s.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${s.title}
                         </div>
@@ -686,10 +742,12 @@
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             
+            // ====== إعداد حفظ التبويب عند النقر على الروابط ======
+            setupLinkSaving();
+
             // ====== التحقق من تحميل GSAP ======
             if (typeof gsap === 'undefined') {
                 console.error('❌ GSAP غير محمل في subject.html!');
-                // عرض المحتوى مباشرة
                 document.querySelector('.moroccan-bg').style.opacity = '0.6';
                 document.querySelector('.moroccan-shadow').style.opacity = '0.08';
                 document.querySelector('.moroccan-star').style.opacity = '0.04';
@@ -712,13 +770,9 @@
 
             const overlay = document.getElementById('overlayProtection');
             
-            // ====== التحقق من نوع التنقل ======
             const navType = performance.navigation.type;
-            
-            // ====== التحقق من إذن تشغيل الأنميشن ======
             const animationAllowed = sessionStorage.getItem('animation_allowed');
             
-            // ====== دالة للعرض المباشر (بدون أنميشن) ======
             function showDirect() {
                 gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
                 gsap.set('.moroccan-bg', { opacity: 0.6 });
@@ -739,7 +793,6 @@
                 gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
             }
 
-            // ====== دالة لتشغيل الأنميشن ======
             function runAnimation() {
                 overlay.classList.add('active');
                 gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
