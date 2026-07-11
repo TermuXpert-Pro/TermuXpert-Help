@@ -9,10 +9,12 @@
         "description": "Cours de 1 Bac Sciences Expérimentales"
     }
     </script>
+    
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 4 - Raisonnements (5-7) | Xpert</title>
+    <title>Partie 1 - Logique | Xpert</title>
+    
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +23,13 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    
     <script>
         MathJax = {
             tex: {
@@ -36,6 +40,7 @@
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer loading="lazy"></script>
+    
     <style>
         body { font-size: 14px; }
         .navbar { height: 44px; padding: 0 10px; }
@@ -63,7 +68,6 @@
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
-        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
         .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 240px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
@@ -84,11 +88,6 @@
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
-        .to-resume { background: rgba(244, 208, 63, 0.05); border: 2px solid #F4D03F44; border-radius: 12px; padding: 16px 20px; margin: 16px 0; text-align: center; }
-        .to-resume .icon { font-size: 28px; color: #F4D03F; display: block; margin-bottom: 6px; }
-        .to-resume p { color: var(--text-secondary); font-size: 14px; }
-        .to-resume .btn-resume { display: inline-block; margin-top: 10px; padding: 8px 24px; background: var(--gradient); color: var(--bg-primary); border-radius: 8px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; font-size: 14px; }
-        .to-resume .btn-resume:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -120,16 +119,14 @@
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
-            .to-resume { padding: 12px 14px; }
-            .to-resume .icon { font-size: 22px; }
-            .to-resume p { font-size: 13px; }
-            .to-resume .btn-resume { font-size: 13px; padding: 6px 18px; }
         }
     </style>
 </head>
 <body>
+
     <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
+
     <!-- ====== خلفية زليج ====== -->
     <div class="moroccan-bg" aria-hidden="true">
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
@@ -160,9 +157,11 @@
     <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
     <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
     <div class="bg-grid"></div>
     <div class="glow-orb glow-orb-1"></div>
     <div class="glow-orb glow-orb-2"></div>
+
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
         <a href="../../../../index.html" class="nav-logo">
             <div class="nav-logo-icon">X</div>
@@ -173,207 +172,204 @@
             <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
         </ul>
     </nav>
+
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Partie 4 : Raisonnements (5-7)</h1>
+            <h1 class="lesson-title"><i class="fas fa-circle-check" style="color:#4ECDC4;"></i> Partie 1 : Rappels</h1>
+
             <!-- ============================================================ -->
-            <!-- SECTION 1: RAISONNEMENT PAR DISJONCTION DES CAS -->
+            <!-- SECTION 1: PROPOSITION -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">1</span> Raisonnement par disjonction des cas</h2>
+                <h2><span class="num">1</span> Proposition</h2>
+
                 <div class="highlight-box green">
                     <span class="label def">Définition</span>
-                    <p>Lorsqu'on utilise <strong>plusieurs cas</strong> dans une démonstration, le raisonnement utilisé s'appelle <strong>raisonnement par disjonction des cas</strong>.</p>
+                    <p>On appelle une <strong>proposition</strong> un énoncé mathématique (texte mathématique) qui a un sens pouvant être <strong>vrai</strong> ou <strong>faux</strong> (mais pas les deux en même temps).</p>
+                    <p style="margin-top:4px;">On note souvent une proposition par les lettres <strong>P</strong>, <strong>Q</strong> ou <strong>R</strong>, etc.</p>
                 </div>
+
+                <div class="highlight-box">
+                    <p><strong>Valeur de vérité d'une proposition :</strong></p>
+                    <ul>
+                        <li>Si la proposition est vraie on note <strong>V</strong> ou <strong>1</strong>.</li>
+                        <li>Si la proposition est fausse on note <strong>F</strong> ou <strong>0</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Proposition</th><th>Valeur de vérité</th></tr>
+                        <tr><td>P</td><td>V (1) ou F (0)</td></tr>
+                    </table>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemples</span>
+                    <ul>
+                        <li><strong>P :</strong> « 2 est un nombre pair » → proposition est <span style="color:#4ECDC4;">vraie</span>.</li>
+                        <li><strong>Q :</strong> « 2 + 3 = 6 » → proposition est <span style="color:#FF6B6B;">fausse</span>.</li>
+                        <li><strong>R :</strong> « ABCD est un parallélogramme alors les diagonales se coupent en leur milieu » → proposition est <span style="color:#4ECDC4;">vraie</span>.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Une proposition est un énoncé mathématique qui a une valeur de vérité (Vrai ou Faux).</li>
+                        <li>On note les propositions par P, Q, R, ...</li>
+                        <li>La valeur de vérité peut être V (1) ou F (0).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: FONCTION PROPOSITIONNELLE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Fonction propositionnelle</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>On appelle une <strong>fonction propositionnelle</strong>, tout énoncé contenant une variable <strong>x</strong> ou plusieurs variables (x, y, z, ...) et qui appartiennent à des ensembles déterminés.</p>
+                    <p style="margin-top:4px;">On note P(x) ou P(x, y, z, ...).</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Remarque</span>
+                    <p>Si on remplace les variables par un élément de ces ensembles, la fonction propositionnelle devient une <strong>proposition</strong>.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemples</span>
+                    <ul>
+                        <li>
+                            <strong>A(x) :</strong> « pour tout x de ℝ on a $\sqrt{x^2} = x$ » est une fonction propositionnelle.
+                            <ul style="margin-top:2px;">
+                                <li>• si x = 2 on obtient une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
+                                <li>• si x = −3 on obtient une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
+                            </ul>
+                        </li>
+                        <li style="margin-top:6px;">
+                            <strong>A(x, y) :</strong> « pour tout x et y de ℝ on a $|x + y| = |x| + |y|$ » est une fonction propositionnelle.
+                            <ul style="margin-top:2px;">
+                                <li>• si x = 2 et y = 5 on obtient une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
+                                <li>• si x = −2 et y = 5 on obtient une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Une fonction propositionnelle contient une ou plusieurs variables.</li>
+                        <li>Elle devient une proposition lorsqu'on remplace les variables par des valeurs.</li>
+                        <li>On note P(x) ou P(x, y, z, ...).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: LES QUANTIFICATEURS -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Les quantificateurs</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Quantificateur universel</span>
+                    <p>L'expression suivante : « <strong>pour tout</strong> x de E la proposition Q(x) est vraie ».</p>
+                    <p style="margin-top:4px;">On la note : <strong>$\forall x \in E,\ Q(x)$</strong></p>
+                    <p style="margin-top:4px;">Le symbole <strong>∀</strong> s'appelle quantificateur universel et il se lit : <em>« pour tout ... »</em> ou <em>« quel que soit ... »</em></p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemples</span>
+                    <ul>
+                        <li>$\forall x \in \mathbb{R} : \sqrt{x^2} = |x|$</li>
+                        <li>$\forall x \in \mathbb{R},\ \forall y \in \mathbb{R} : |x + y| \le |x| + |y|$</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label def">Quantificateur existentiel</span>
+                    <p>L'expression suivante : « <strong>il existe</strong> un x de E tel que la proposition Q(x) est vraie ».</p>
+                    <p style="margin-top:4px;">On la note : <strong>$\exists x \in E,\ Q(x)$</strong></p>
+                    <p style="margin-top:4px;">Le symbole <strong>∃</strong> s'appelle quantificateur existentiel et il se lit : <em>« il existe ... »</em></p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemples</span>
+                    <ul>
+                        <li>$\exists x \in \mathbb{R} : x + 4 \le 3$</li>
+                        <li>$\exists a \in \mathbb{R},\ \exists b \in \mathbb{R},\ \exists c \in \mathbb{R} : a^3 + b^3 = c^2$</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label def">Le symbole ∃!</span>
+                    <p>L'expression suivante : « <strong>il existe un unique</strong> x de E tel que la proposition Q(x) est vraie ».</p>
+                    <p style="margin-top:4px;">On la note : <strong>$\exists! x \in E,\ Q(x)$</strong></p>
+                </div>
+
                 <div class="highlight-box yellow">
                     <span class="label ex">Exemple</span>
-                    <p>Résoudre l'équation suivante : <strong>$|x+1| + 2x = 0$</strong>, $x \in \mathbb{R}$</p>
-                    <p style="font-weight:600; color:#F4D03F; margin-top:6px;">1er cas : $x \in ]-\infty, -1]$</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $|x+1| + 2x = 0 \iff -(x+1) + 2x = 0$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $\iff -x - 1 + 2x = 0 \iff x - 1 = 0$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $\iff x = 1 \notin ]-\infty, -1]$
-                    </div>
-                    <p style="color:#FF6B6B;">Donc : $S_1 = \varnothing$</p>
-                    <p style="font-weight:600; color:#F4D03F; margin-top:10px;">2ème cas : $x \in [-1, +\infty[$</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $|x+1| + 2x = 0 \iff (x+1) + 2x = 0$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $\iff 3x + 1 = 0$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $\iff x = -\frac{1}{3} \in [-1, +\infty[$
-                    </div>
-                    <p style="color:#4ECDC4;">Donc : $S_2 = \left\{-\frac{1}{3}\right\}$</p>
-                    <p style="font-weight:700; color:#4ECDC4; margin-top:10px;">Conclusion : $S = S_1 \cup S_2 = \left\{-\frac{1}{3}\right\}$</p>
+                    <ul>
+                        <li>$\exists! x \in \mathbb{R} : x + 4 = 3$ (l'unique solution est x = −1)</li>
+                    </ul>
                 </div>
+
                 <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
+                    <span class="label rappel">Remarques importantes</span>
                     <ul>
-                        <li>On divise le problème en plusieurs cas possibles.</li>
-                        <li>On résout chaque cas séparément.</li>
-                        <li>La solution finale est l'union des solutions de chaque cas.</li>
-                        <li>Utile pour les équations avec valeurs absolues ou les inégalités.</li>
+                        <li>L'ordre des <strong>quantificateurs identiques</strong> (universel ou bien existentiel) <strong>ne change pas</strong> le sens de la fonction propositionnelle.</li>
+                        <li>L'ordre des <strong>quantificateurs non identiques</strong> (universel et existentiel) <strong>change</strong> le sens de la fonction propositionnelle.</li>
+                        <li>La négation du quantificateur <strong>∀</strong> est le quantificateur <strong>∃</strong>.</li>
+                        <li>La négation du quantificateur <strong>∃</strong> est le quantificateur <strong>∀</strong>.</li>
                     </ul>
                 </div>
-            </div>
-            <!-- ============================================================ -->
-            <!-- SECTION 2: RAISONNEMENT PAR ABSURDE -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">2</span> Raisonnement par l'absurde</h2>
-                <div class="highlight-box green">
-                    <span class="label def">Définition</span>
-                    <p>Pour démontrer qu'une proposition Q est vraie :</p>
-                    <ul>
-                        <li>On suppose que <strong>$\overline{Q}$</strong> (la négation de Q) est vraie.</li>
-                        <li>Au cours de la démonstration, on obtient une contradiction (P et $\overline{P}$ sont vraies en même temps).</li>
-                        <li>Donc notre supposition $\overline{Q}$ est vraie est absurde ; d'où <strong>Q est vraie</strong>.</li>
-                    </ul>
-                    <p style="margin-top:4px;">Ce mode de raisonnement s'appelle <strong>raisonnement par l'absurde</strong>.</p>
-                </div>
+
                 <div class="highlight-box yellow">
-                    <span class="label ex">Exemple 1</span>
-                    <p>Soient <strong>r</strong> un nombre rationnel et <strong>i</strong> un nombre irrationnel et <strong>s = r + i</strong>.</p>
-                    <p>Montrer que <strong>s</strong> est un nombre irrationnel.</p>
-                    <p style="font-weight:600; color:#F4D03F; margin-top:6px;">On utilise un raisonnement par l'absurde :</p>
-                    <div class="step">
-                        <span class="step-num">Supposition :</span> On suppose que $s$ est un nombre rationnel.
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $s = r + i \iff i = s - r$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $s - r$ est un nombre rationnel (car la somme de deux rationnels est rationnelle).
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> Mais $i = s - r$ et $i$ est un nombre irrationnel.
-                    </div>
-                    <p style="color:#FF6B6B; margin-top:4px;"><strong>Contradiction !</strong></p>
-                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La supposition « s est rationnel » est fausse. Donc <strong>s est irrationnel</strong>.</p>
+                    <span class="label ex">Écritures équivalentes</span>
+                    <ul>
+                        <li>$\forall x \in E,\ \forall y \in E \iff \forall x, y \in E \iff \forall (x, y) \in E \times E$</li>
+                        <li>$\exists x \in E,\ \exists y \in E \iff \exists x, y \in E \iff \exists (x, y) \in E \times E$</li>
+                    </ul>
                 </div>
-                <div class="highlight-box yellow" style="margin-top:12px;">
-                    <span class="label ex">Exemple 2 : √2 est irrationnel</span>
-                    <p>Montrer que <strong>$\sqrt{2} \notin \mathbb{Q}$</strong> (√2 n'est pas un nombre rationnel).</p>
-                    <div class="step">
-                        <span class="step-num">Supposition :</span> On suppose que $\sqrt{2}$ est un nombre rationnel.
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $\sqrt{2} = \dfrac{p}{q}$ avec $p,q \in \mathbb{Z}^*$ et $pgcd(p,q) = 1$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $2 = \dfrac{p^2}{q^2} \Rightarrow p^2 = 2q^2$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $p^2$ est pair $\Rightarrow p$ est pair ($p = 2k$)
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 4 :</span> $4k^2 = 2q^2 \Rightarrow q^2 = 2k^2 \Rightarrow q$ est pair
-                    </div>
-                    <p style="color:#FF6B6B; margin-top:4px;"><strong>Contradiction !</strong> ($p$ et $q$ sont pairs donc $pgcd(p,q) \neq 1$)</p>
-                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\sqrt{2} \notin \mathbb{Q}$</p>
-                </div>
+
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
-                        <li>On suppose le contraire de ce qu'on veut démontrer.</li>
-                        <li>On cherche une contradiction (P et $\overline{P}$ vraies en même temps).</li>
-                        <li>La contradiction montre que la supposition était fausse.</li>
-                        <li>La proposition initiale est donc vraie.</li>
-                        <li>Utile pour démontrer des irrationnalités ou des impossibilités.</li>
+                        <li><strong>∀</strong> = quantificateur universel : « pour tout »</li>
+                        <li><strong>∃</strong> = quantificateur existentiel : « il existe »</li>
+                        <li><strong>∃!</strong> = quantificateur existentiel unique : « il existe un unique »</li>
+                        <li>La négation de ∀ est ∃, et la négation de ∃ est ∀.</li>
+                        <li>L'ordre des quantificateurs différents change le sens.</li>
                     </ul>
                 </div>
             </div>
-            <!-- ============================================================ -->
-            <!-- SECTION 3: RAISONNEMENT PAR RÉCURRENCE -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">3</span> Raisonnement par récurrence</h2>
-                <div class="highlight-box green">
-                    <span class="label def">Définition</span>
-                    <p>Soient $n_0 \in \mathbb{N}$ et $P(n)$ une relation portant sur les entiers naturels $n$ tel que $n \ge n_0$.</p>
-                    <p>Pour démontrer que la relation $P(n)$ est vraie pour tout $n \ge n_0$, on utilise les étapes suivantes :</p>
-                    <ul>
-                        <li><strong>Initialisation :</strong> On vérifie que $P(n_0)$ est vraie.</li>
-                        <li><strong>Hérédité :</strong> On suppose que $P(n)$ est vraie pour un $n \ge n_0$ (hypothèse de récurrence).</li>
-                        <li><strong>Conclusion :</strong> On démontre que $P(n+1)$ est vraie.</li>
-                    </ul>
-                    <p style="margin-top:4px;">Ce mode de raisonnement s'appelle <strong>raisonnement par récurrence</strong>.</p>
-                </div>
-                <div class="highlight-box yellow">
-                    <span class="label ex">Exemple 1 : Somme des entiers</span>
-                    <p>Montrer que : <strong>$\forall n \in \mathbb{N}^* : 1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$</strong></p>
-                    <p style="font-weight:600; color:#F4D03F; margin-top:6px;">Initialisation :</p>
-                    <div class="step">
-                        <span class="step-num">n = 1 :</span> $1 = \dfrac{1 \times 2}{2} = 1$ ✅
-                    </div>
-                    <p style="font-weight:600; color:#F4D03F; margin-top:8px;">Hérédité :</p>
-                    <p>Supposons que $1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $1 + 2 + 3 + \cdots + n + (n+1) = \dfrac{n(n+1)}{2} + (n+1)$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $= \dfrac{n(n+1) + 2(n+1)}{2} = \dfrac{(n+1)(n+2)}{2}$
-                    </div>
-                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}^*$.</p>
-                </div>
-                <div class="highlight-box yellow" style="margin-top:12px;">
-                    <span class="label ex">Exemple 2 : Divisibilité</span>
-                    <p>Montrer que : <strong>$\forall n \in \mathbb{N},\ n^3 + 2n$ est divisible par 3</strong></p>
-                    <p style="font-weight:600; color:#F4D03F; margin-top:6px;">Initialisation :</p>
-                    <div class="step">
-                        <span class="step-num">n = 0 :</span> $0^3 + 2 \times 0 = 0$ divisible par 3 ✅
-                    </div>
-                    <p style="font-weight:600; color:#F4D03F; margin-top:8px;">Hérédité :</p>
-                    <p>Supposons que $3 \mid (n^3 + 2n)$ (c.à.d. $n^3 + 2n = 3k$)</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $(n+1)^3 + 2(n+1) = n^3 + 3n^2 + 3n + 1 + 2n + 2$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $= (n^3 + 2n) + 3n^2 + 3n + 3$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $= 3k + 3(n^2 + n + 1)$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 4 :</span> $= 3(k + n^2 + n + 1)$
-                    </div>
-                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
-                </div>
-                <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
-                    <ul>
-                        <li><strong>Initialisation :</strong> Vérifier $P(n_0)$.</li>
-                        <li><strong>Hérédité :</strong> $P(n) \Rightarrow P(n+1)$.</li>
-                        <li><strong>Conclusion :</strong> $P(n)$ est vraie pour tout $n \ge n_0$.</li>
-                        <li>Utile pour les formules de sommes, les propriétés de divisibilité, les inégalités sur les entiers.</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- ============================================================ -->
-            <!-- Navigation vers le résumé -->
-            <!-- ============================================================ -->
+
             <!-- ============================================================ -->
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
-                <a href="part5.html" class="next-btn">Résumé général <i class="fas fa-arrow-left"></i></a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="part2.html" class="next-btn">Partie 2 <i class="fas fa-arrow-left"></i></a>
             </div>
+
         </div>
     </div>
+
     <footer class="footer">
         <div class="divider"></div>
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
+
     <script src="../../../../assets/js/protection.js"></script>
     <script src="../../../../assets/js/script.js"></script>
+    
     <script>
         if ("serviceWorker" in navigator) {
             navigator.serviceWorker.register("../../../../sw.js")
@@ -381,6 +377,7 @@
                 .catch(function(err) { console.log("❌ Service Worker échoué:", err); });
         }
     </script>
+    
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
