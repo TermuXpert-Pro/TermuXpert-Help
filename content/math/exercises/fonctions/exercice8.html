@@ -146,6 +146,7 @@
         .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .solution-box .sol-content .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .solution-box .sol-content .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
         .toggle-sol {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -448,7 +449,7 @@
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La fonction $g \circ f$ est <strong>bornée</strong> sur ℝ car $1 \le (g \circ f)(x) \le 2$.</p>
                             <div class="graph-container">
                                 <canvas id="graphBorne" width="350" height="150"></canvas>
-                                <p>La fonction $g \circ f$ est bornée entre 1 et 2</p>
+                                <p>$1 \le (g \circ f)(x) \le 2$</p>
                             </div>
                         </div>
                     </div>
@@ -456,28 +457,26 @@
 
                 <div class="sub-question">
                     <div class="letter">5)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Montrer que : $\forall x \in \mathbb{R},\ -2 \le (g \circ f)(x) \le 1$</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que : $\forall x \in \mathbb{R},\ 1 \le (g \circ f)(x) \le 2$</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
                     <div id="sol5" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> D'après la question 4, $1 \le (g \circ f)(x) \le 2$
+                                <span class="step-num">Étape 1 :</span> D'après la question 4, on a déjà démontré que $1 \le (g \circ f)(x) \le 2$.
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Mais l'énoncé demande de montrer que $-2 \le (g \circ f)(x) \le 1$
+                                <span class="step-num">Étape 2 :</span> Ce résultat est une conséquence directe de l'encadrement de $g$.
                             </div>
-                            <div style="color:#FF6B6B; margin-top:4px;">
-                                <p><strong>⚠️ Attention :</strong> Il y a une erreur dans l'énoncé.</p>
-                                <p>D'après la question 4, on a $1 \le (g \circ f)(x) \le 2$, donc $-2 \le (g \circ f)(x) \le 1$ est <strong>faux</strong>.</p>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> En effet, $g(t)$ est toujours compris entre $1$ et $2$, donc $g(f(x))$ aussi.
                             </div>
-                            <div class="step" style="margin-top:4px;">
-                                <span class="step-num">Correction :</span> $-2 \le (g \circ f)(x) \le 1$ devrait être $1 \le (g \circ f)(x) \le 2$.
-                            </div>
-                            <div class="highlight-box yellow" style="margin-top:6px;">
-                                <span class="label resume">Réponse correcte</span>
-                                <p>$\forall x \in \mathbb{R},\ 1 \le (g \circ f)(x) \le 2$</p>
-                                <p style="font-size:11px; color:var(--text-muted);">(L'énoncé contient une erreur de borne)</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ 1 \le (g \circ f)(x) \le 2$ ✅</p>
+                            
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résumé</span>
+                                <p>$(g \circ f)(x)$ est bornée entre <strong>1</strong> et <strong>2</strong>.</p>
+                                <p style="font-size:11px; color:var(--text-muted);">La valeur $1$ est atteinte quand $f(x) = 0$ soit $x = \dfrac{5}{3}$.</p>
                             </div>
                         </div>
                     </div>
@@ -583,7 +582,7 @@
             
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
-            ctx.fillText('g(t) est bornée entre 1 et 2', 190, 20);
+            ctx.fillText('g(t) est bornée entre 1 et 2', 180, 20);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
