@@ -1,10 +1,11 @@
+
 // ============================================================
 // Service Worker - Xpert PWA
 // ============================================================
 
 // ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
 // الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
-const CACHE_NAME = 'xpert-25e2c504';
+const CACHE_NAME = 'xpert-0a94738a';
 
 const urlsToCache = [
     './',
@@ -35,7 +36,11 @@ const urlsToCache = [
     './content/physique/exercises/rotation-solide/exercice3.html',
     './content/physique/exercises/rotation-solide/exercice4.html',
     './content/physique/exercises/rotation-solide/exercice5.html',
-    './content/physique/exercises/rotation-solide/exercice6.html'
+    './content/physique/exercises/rotation-solide/exercice6.html',
+    // ====== دروس الكيمياء ======
+    './content/chimie/lessons/mesure-chimie/index.html',
+    './content/chimie/lessons/mesure-chimie/part1.html',
+    './content/chimie/lessons/mesure-chimie/part2.html'
 ];
 
 // صفحة بسيطة كتبان إلا كانت الصفحة المطلوبة ماشي مخزنة وما كاينش نت
@@ -123,3 +128,5 @@ self.addEventListener('activate', function(event) {
         }).then(() => self.clients.claim())
     );
 });
+
+
