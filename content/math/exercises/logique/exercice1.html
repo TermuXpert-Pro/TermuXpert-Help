@@ -236,13 +236,13 @@
                     <div id="sol1a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
+                            <p><strong>Valeur de vérité :</strong> Vrai</p>
                             <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; x^2 \leq x \land |x| \neq x$</p>
-                            <p><strong>Contre-exemple :</strong> $x = \frac{1}{2}$</p>
-                            <p>$\left(\frac{1}{2}\right)^2 = \frac{1}{4} \leq \frac{1}{2}$ mais $\left|\frac{1}{2}\right| = \frac{1}{2}$</p>
-                            <p>En fait, pour $x \in [0,1]$, $x^2 \leq x$ et $|x| = x$ donc la proposition est vraie pour $x \geq 0$.</p>
-                            <p>Mais pour $x \in [-1,0]$, $x^2 \leq x$ (ex: $x=-0.5$ donne $0.25 \leq -0.5$ faux)</p>
-                            <p>La proposition est <strong>vraie</strong> finalement car $x^2 \leq x \Rightarrow x \in [0,1] \Rightarrow |x| = x$.</p>
+                            <p><strong>Explication :</strong></p>
+                            <p>$x^2 \leq x \Leftrightarrow x^2 - x \leq 0 \Leftrightarrow x(x-1) \leq 0 \Leftrightarrow x \in [0,1]$</p>
+                            <p>Donc l'hypothèse $x^2 \leq x$ n'est vraie que pour $x \in [0,1]$, un intervalle où $x \geq 0$, et donc $|x| = x$.</p>
+                            <p>• Pour $x \in [0,1]$ : l'hypothèse est vraie et $|x|=x$ aussi &rarr; implication vraie.</p>
+                            <p>• Pour $x \notin [0,1]$ : l'hypothèse $x^2 \leq x$ est fausse &rarr; implication vraie par vacuité.</p>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Vrai</strong></p>
                         </div>
                     </div>
@@ -410,8 +410,9 @@
             }
         }
     </script>
-    <script>
-        });
-    </script>
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
 </body>
 </html>
+
+

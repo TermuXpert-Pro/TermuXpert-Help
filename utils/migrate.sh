@@ -45,3 +45,5 @@ find . -name "*.html" -type f -exec sed -i 's|photos/|assets/images/|g' {} \;
 rmdir lessons exercices series 2>/dev/null
 
 echo "✅ الترحيل اكتمل بنجاح!"
+
+

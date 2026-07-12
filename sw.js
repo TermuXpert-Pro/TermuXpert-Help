@@ -103,3 +103,5 @@ self.addEventListener('activate', function(event) {
         }).then(() => self.clients.claim())
     );
 });
+
+

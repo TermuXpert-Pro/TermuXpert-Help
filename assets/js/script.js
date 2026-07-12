@@ -47,3 +47,37 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('✅ Xpert - Scripts chargés avec succès !');
+
+// ============================================================
+// Service Worker registration (centralisé - anciennement dupliqué
+// dans chaque page individuellement, 52 fois)
+// ============================================================
+(function() {
+    if (!('serviceWorker' in navigator)) return;
+
+    // On déduit l'URL de sw.js et le scope à partir de l'emplacement
+    // réel de script.js, pour que ça marche peu importe la profondeur
+    // de la page (racine ou content/xxx/xxx/xxx/xxx.html).
+    var scriptEl = document.currentScript || (function() {
+        var scripts = document.getElementsByTagName('script');
+        return scripts[scripts.length - 1];
+    })();
+
+    var src = scriptEl.src || '';
+    var base = src.replace(/assets\/js\/script\.js.*$/, '');
+
+    if (!base) {
+        console.log('❌ Service Worker: impossible de déterminer le chemin de base');
+        return;
+    }
+
+    var swUrl = base + 'sw.js';
+
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register(swUrl, { scope: base })
+            .then(function(reg) { console.log('✅ Service Worker enregistré'); })
+            .catch(function(err) { console.log('❌ Service Worker échoué:', err); });
+    });
+})();
+
+

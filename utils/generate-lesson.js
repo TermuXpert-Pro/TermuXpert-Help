@@ -157,3 +157,8 @@ console.log(`✅ ${title} créé avec succès dans content/${subject}/lessons/${
 console.log(`   - ${parts} parties créées`);
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6a53e4c (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)

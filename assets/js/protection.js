@@ -38,6 +38,7 @@
     // 2. منع سحب/حفظ الصور فقط
     // ============================================================
 
+<<<<<<< HEAD
     document.querySelectorAll('img, svg, canvas, video, iframe').forEach(function(el) {
         el.addEventListener('dragstart', function(e) {
             e.preventDefault();
@@ -112,140 +113,42 @@ n(el) {
     // 5. منع سحب الصور
     // ============================================================
     
+=======
+>>>>>>> 6a53e4c (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
     document.querySelectorAll('img, svg, canvas, video, iframe').forEach(function(el) {
         el.addEventListener('dragstart', function(e) {
             e.preventDefault();
             e.stopPropagation();
             return false;
         }, { passive: false });
-        el.addEventListener('drag', function(e) {
-            e.preventDefault();
-            return false;
-        }, { passive: false });
-        el.addEventListener('dragend', function(e) {
-            e.preventDefault();
-            return false;
-        }, { passive: false });
     });
 
     // ============================================================
-    // 6. منع الضغط المطول (Long Press)
+    // 3. منع القائمة المختصرة على الصور فقط (باقي الصفحة عادي)
     // ============================================================
-    
-    document.querySelectorAll('a, img, button, .card, .command-card').forEach(function(el) {
-        el.addEventListener('touchstart', function(e) {
-            this._touchTimer = setTimeout(function() {
-                e.preventDefault();
-                return false;
-            }, 300);
-        }, { passive: true });
-        el.addEventListener('touchend', function(e) {
-            if (this._touchTimer) {
-                clearTimeout(this._touchTimer);
-                this._touchTimer = null;
-            }
-        }, { passive: true });
-        el.addEventListener('touchmove', function(e) {
-            if (this._touchTimer) {
-                clearTimeout(this._touchTimer);
-                this._touchTimer = null;
-            }
-        }, { passive: true });
-        el.addEventListener('touchcancel', function(e) {
-            if (this._touchTimer) {
-                clearTimeout(this._touchTimer);
-                this._touchTimer = null;
-            }
-        }, { passive: true });
-    });
 
     document.querySelectorAll('img').forEach(function(img) {
-        img.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            return false;
-        }, { passive: false });
         img.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
         }, { passive: false });
-    });
 
-    // ============================================================
-    // 7. منع اختصارات لوحة المفاتيح
-    // ============================================================
-    
-    document.addEventListener('keydown', function(e) {
-        const ctrl = e.ctrlKey || e.metaKey;
-        const key = e.key.toLowerCase();
-        const forbidden = ['c', 'u', 's', 'p', 'v', 'x', 'a'];
-        if (ctrl && forbidden.includes(key)) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-        }
-        if (e.key === 'F12') {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-        }
-        if (ctrl && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) {
-            e.preventDefault();
-            return false;
-        }
-        if (key === 'printscreen') {
-            e.preventDefault();
-            return false;
-        }
-    }, { passive: false });
-
-    // ============================================================
-    // 8. منع النسخ من القوائم
-    // ============================================================
-    
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-        return false;
-    }, { capture: true, passive: false });
-
-    // ============================================================
-    // 9. منع حفظ الصور عبر السحب
-    // ============================================================
-    
-    document.addEventListener('dragleave', function(e) {
-        e.preventDefault();
-        return false;
-    }, { passive: false });
-
-    document.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        return false;
-    }, { passive: false });
-
-    // ============================================================
-    // 10. منع فتح الصورة في تبويب جديد
-    // ============================================================
-    
-    document.querySelectorAll('img').forEach(function(img) {
-        img.addEventListener('click', function(e) {
-            e.preventDefault();
-            return false;
-        }, { passive: false });
-        img.addEventListener('mousedown', function(e) {
-            if (e.button === 1 || e.button === 2) {
+        // منع الضغط المطول لحفظ الصورة على الهاتف
+        let touchTimer;
+        img.addEventListener('touchstart', function(e) {
+            touchTimer = setTimeout(function() {
                 e.preventDefault();
-                return false;
-            }
-        }, { passive: false });
+            }, 300);
+        }, { passive: true });
+        img.addEventListener('touchend', function() {
+            clearTimeout(touchTimer);
+        }, { passive: true });
+        img.addEventListener('touchmove', function() {
+            clearTimeout(touchTimer);
+        }, { passive: true });
     });
 
-    // ============================================================
-    // 11. منع view-source:
-    // ============================================================
-    
-    if (window.location.protocol === 'view-source:') {
-        window.location.href = window.location.href.replace('view-source:', '');
-    }
-
-    console.log('✅ Protection.js - Système de protection avancé activé');
+    console.log('✅ Protection.js - حماية الصور فقط (النصوص قابلة للنسخ)');
 
 })();
+
