@@ -8,7 +8,6 @@ window.subjectsData.chimie = {
     title: "Chimie",
     desc: "Cours, exercices, séries, devoirs et examens régionaux",
     lessons: [
-        { title: "Structure de l'atome", file: "content/chimie/lessons/atome/index.html", desc: "Noyau, électrons, configuration électronique" },
         { title: "Expansion de la chimie organique", file: "content/chimie/lessons/chimie-organique/index.html", desc: "قيد الإعداد 🔧" },
         { title: "La concentration et les solutions électrolytiques", file: "content/chimie/lessons/concentration-solutions/index.html", desc: "قيد الإعداد 🔧" },
         { title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/lessons/conductimetrie/index.html", desc: "قيد الإعداد 🔧" },
@@ -22,11 +21,7 @@ window.subjectsData.chimie = {
         { title: "Les réactions d'oxydo-réduction", file: "content/chimie/lessons/reactions-oxydoreduction/index.html", desc: "قيد الإعداد 🔧" },
         { title: "Suivi d'une transformation chimique", file: "content/chimie/lessons/suivi-transformation/index.html", desc: "قيد الإعداد 🔧" }
     ],
-    exercices: [
-        { title: "Structure de l'atome", file: "content/chimie/exercises/atome/index.html", desc: "Exercices d'application" }
-    ],
-    series: [
-        { title: "Structure de l'atome", file: "content/chimie/series/atome/index.html", desc: "Séries d'exercices" }
-    ],
+    exercices: [],
+    series: [],
     exams: []
 };
