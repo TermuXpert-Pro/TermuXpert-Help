@@ -30,5 +30,3 @@ window.subjectsData.chimie = {
     ],
     exams: []
 };
-
-

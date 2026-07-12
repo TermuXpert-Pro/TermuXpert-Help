@@ -53,5 +53,3 @@ window.subjectsData.physique = {
     ],
     exams: []
 };
-
-

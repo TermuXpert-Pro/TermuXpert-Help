@@ -32,5 +32,3 @@ window.subjectsData.math = {
     ],
     exams: []
 };
-
-
