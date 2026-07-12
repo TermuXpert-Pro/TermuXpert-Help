@@ -26,11 +26,6 @@ window.subjectsData.physique = {
     ],
     exercices: [
         { 
-            title: "Travail et énergie cinétique", 
-            file: "content/physique/exercises/travail-energie-cinetique/index.html", 
-            desc: "Exercices d'application" 
-        },
-        { 
             title: "Rotation d'un solide", 
             file: "content/physique/exercices/rotation-solide/index.html", 
             desc: "6 exercices avec solutions" 
@@ -38,7 +33,13 @@ window.subjectsData.physique = {
     ],
     series: [
         { 
-            title: "Travail et énergie cinétique", 
+            title: "Rotation d'un solide", 
+            file: "content/physique/series/rotation-solide/index.html", 
+            desc: "6 exercices avec solutions détaillées" 
+        }
+    ],
+    exams: []
+};        title: "Travail et énergie cinétique", 
             file: "content/physique/series/travail-energie-cinetique/index.html", 
             desc: "Séries d'exercices" 
         },
