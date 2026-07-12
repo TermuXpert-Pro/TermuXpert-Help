@@ -1,9 +1,10 @@
 // ============================================================
-// Service Worker - Xpert PWA (v3)
+// Service Worker - Xpert PWA
 // ============================================================
 
-// ⚠️ زيد رقم النسخة (v3, v4...) كل مرة كتبدل فيها ملفات الموقع
-const CACHE_NAME = 'xpert-v3';
+// ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
+// الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
+const CACHE_NAME = 'xpert-920776dc';
 
 const urlsToCache = [
     './',
@@ -103,6 +104,8 @@ self.addEventListener('activate', function(event) {
         }).then(() => self.clients.claim())
     );
 });
+
+
 
 
 

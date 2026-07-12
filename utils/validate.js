@@ -154,7 +154,7 @@ function checkInlineScripts() {
 // ============================================================
 function checkBrokenLinks() {
     console.log('\n--- 4) فحص الروابط الداخلية المكسورة ---');
-    const htmlFiles = walk(path.join(ROOT), '.html', [], ['node_modules', '.git', 'templates']);
+    const htmlFiles = walk(path.join(ROOT), '.html', [], ['node_modules', '.git', 'templates', 'partials']);
     const linkPattern = /(?:href|src)="([^"]+)"/g;
     let clean = true;
     let checkedCount = 0;
@@ -203,6 +203,51 @@ function checkJsonFiles() {
 }
 
 // ============================================================
+// 6. فحص "drift": صفحات ماشي محدّثة بآخر نسخة ديال partials/
+//    (خاصك تشغل node utils/build.js قبل النشر إلا طلع تحذير هنا)
+// ============================================================
+function checkPartialsDrift() {
+    console.log('\n--- 6) فحص التوافق مع partials/ (build.js) ---');
+    const partialsDir = path.join(ROOT, 'partials');
+    if (!fs.existsSync(partialsDir)) {
+        warn('مجلد partials/ ماكاينش - تخطيت هاد الفحص');
+        return;
+    }
+    const navbarTpl = fs.readFileSync(path.join(partialsDir, 'navbar.html'), 'utf-8').trim();
+    const footerTpl = fs.readFileSync(path.join(partialsDir, 'footer.html'), 'utf-8').trim();
+    const NAVBAR_RE = /<nav class="navbar"[\s\S]*?<\/nav>/;
+    const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
+
+    function getBase(fp) {
+        const rel = path.relative(ROOT, path.dirname(fp));
+        if (!rel) return '';
+        return '../'.repeat(rel.split(path.sep).length);
+    }
+    function render(tpl, base) {
+        return tpl.split('{{BASE}}').join(base);
+    }
+
+    const htmlFiles = walk(ROOT, '.html', [], ['node_modules', '.git', 'partials', 'templates']);
+    let driftCount = 0;
+    for (const fp of htmlFiles) {
+        const rel = path.relative(ROOT, fp);
+        const content = fs.readFileSync(fp, 'utf-8');
+        const base = getBase(fp);
+        const navMatch = content.match(NAVBAR_RE);
+        if (navMatch && navMatch[0] !== render(navbarTpl, base)) {
+            warn(`${rel}: navbar ماشي متوافق مع partials/navbar.html - شغّل node utils/build.js`);
+            driftCount++;
+        }
+        const footMatch = content.match(FOOTER_RE);
+        if (footMatch && footMatch[0] !== render(footerTpl, '')) {
+            warn(`${rel}: footer ماشي متوافق مع partials/footer.html - شغّل node utils/build.js`);
+            driftCount++;
+        }
+    }
+    if (driftCount === 0) ok(`${htmlFiles.length} صفحة - كلهم متوافقين مع partials/`);
+}
+
+// ============================================================
 // تشغيل الفحوصات كاملة
 // ============================================================
 console.log('🔍 بدء الفحص الشامل للموقع قبل النشر...');
@@ -212,6 +257,7 @@ checkCssBalance();
 checkInlineScripts();
 checkBrokenLinks();
 checkJsonFiles();
+checkPartialsDrift();
 
 console.log('\n' + '='.repeat(60));
 if (errorCount === 0) {
@@ -221,3 +267,5 @@ if (errorCount === 0) {
     console.log(`❌ الفحص كامل: ${errorCount} خطأ/أخطاء، ${warnCount} تحذير(ات). خاصك تصلحهم قبل النشر.`);
     process.exit(1);
 }
+
+
