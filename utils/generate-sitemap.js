@@ -27,6 +27,14 @@ function walk(dir, fileList = []) {
     return fileList;
 }
 
+// كنستثنيو الصفحات المؤقتة (noindex) - مثلاً الدروس "قيد الإعداد"
+// اللي كايخلقهم utils/scaffold-lessons.sh - ماشي منطقي نقترحوهم لـ Google
+// للفهرسة وفنفس الوقت نقولو ليه "noindex" فالصفحة نفسها.
+function isNoIndex(filePath) {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    return /<meta\s+name="robots"\s+content="noindex"/.test(content);
+}
+
 function getPriority(relPath) {
     if (relPath.endsWith('/index.html')) return '0.7';
     if (/part\d+\.html$|exercice\d+\.html$|serie\d+\.html$/.test(relPath)) return '0.5';
@@ -38,8 +46,9 @@ function toUrl(relPath) {
     return relPath.split('/').map(encodeURIComponent).join('/');
 }
 
-// ====== جمع الصفحات ======
-const htmlFiles = walk(CONTENT_DIR);
+// ====== جمع الصفحات (بلا الصفحات noindex) ======
+const htmlFiles = walk(CONTENT_DIR).filter(f => !isNoIndex(f));
+const excludedCount = walk(CONTENT_DIR).length - htmlFiles.length;
 const relFiles = htmlFiles
     .map(f => path.relative(ROOT, f).split(path.sep).join('/'))
     .sort();
@@ -77,4 +86,7 @@ for (const key of Object.keys(grouped).sort()) {
 xml += `</urlset>\n`;
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
-console.log(`✅ sitemap.xml محدّث بنجاح: ${relFiles.length + 2 + subjects.length} رابط`);
+console.log(`✅ sitemap.xml محدّث بنجاح: ${relFiles.length + 2 + subjects.length} رابط` +
+    (excludedCount > 0 ? ` (${excludedCount} صفحة مؤقتة "noindex" تستثنات)` : ''));
+
+
