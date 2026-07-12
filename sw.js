@@ -1,23 +1,28 @@
 // ============================================================
-// Service Worker - Xpert PWA
+// Service Worker - Xpert PWA (نسخة محسّنة)
 // ============================================================
 
-const CACHE_NAME = 'xpert-v1';
+// ⚠️ مهم: زيد رقم النسخة (v2, v3...) كل مرة كتبدل فيها ملفات الموقع
+// باش يجبر المتصفح يحيّد الكاش القديم
+const CACHE_NAME = 'xpert-v2';
+
+// استعملنا مسارات نسبية (بدون /TermuXpert-WEB/) باش تخدم فأي مكان تستضاف فيه
 const urlsToCache = [
-    '/TermuXpert-WEB/',
-    '/TermuXpert-WEB/index.html',
-    '/TermuXpert-WEB/subjects.html',
-    '/TermuXpert-WEB/subject.html',
-    '/TermuXpert-WEB/assets/css/style.css',
-    '/TermuXpert-WEB/assets/css/lesson-common.css',
-    '/TermuXpert-WEB/assets/css/global-control.css',
-    '/TermuXpert-WEB/assets/js/script.js',
-    '/TermuXpert-WEB/assets/js/protection.js',
-    '/TermuXpert-WEB/assets/images/profile.png'
+    './',
+    './index.html',
+    './subjects.html',
+    './subject.html',
+    './assets/css/style.css',
+    './assets/css/lesson-common.css',
+    './assets/css/global-control.css',
+    './assets/js/script.js',
+    './assets/js/protection.js',
+    './assets/images/profile.png'
 ];
 
 // تثبيت Service Worker
 self.addEventListener('install', function(event) {
+    self.skipWaiting(); // يفعّل النسخة الجديدة مباشرة بلا ما ينتظر
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function(cache) {
@@ -27,20 +32,37 @@ self.addEventListener('install', function(event) {
     );
 });
 
-// اعتراض الطلبات
+// اعتراض الطلبات: Network-First للصفحات HTML، Cache-First للباقي
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {
-                if (response) {
+    const isHTML = event.request.mode === 'navigate' ||
+                   (event.request.headers.get('accept') || '').includes('text/html');
+
+    if (isHTML) {
+        // دائماً جرب تجيب النسخة الجديدة من النت أولاً
+        event.respondWith(
+            fetch(event.request)
+                .then(function(response) {
+                    const clone = response.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
                     return response;
-                }
-                return fetch(event.request);
-            })
-    );
+                })
+                .catch(function() {
+                    // إذا ما كانش نت، رجع للنسخة المخزنة كحل بديل
+                    return caches.match(event.request);
+                })
+        );
+    } else {
+        // ملفات CSS/JS/صور: كاش أولاً (أسرع)
+        event.respondWith(
+            caches.match(event.request)
+                .then(function(response) {
+                    return response || fetch(event.request);
+                })
+        );
+    }
 });
 
-// تحديث Service Worker
+// تحديث Service Worker: حذف الكاش القديم + الاستيلاء على الصفحات المفتوحة فوراً
 self.addEventListener('activate', function(event) {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
@@ -52,6 +74,6 @@ self.addEventListener('activate', function(event) {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
     );
 });
