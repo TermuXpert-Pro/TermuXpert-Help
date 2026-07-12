@@ -16,7 +16,26 @@ const urlsToCache = [
     './assets/css/global-control.css',
     './assets/js/script.js',
     './assets/js/protection.js',
-    './assets/images/profile.png'
+    './assets/images/profile.png',
+    // ====== دروس الفيزياء ======
+    './content/physique/lessons/rotation-solide/index.html',
+    './content/physique/lessons/rotation-solide/part1.html',
+    './content/physique/lessons/rotation-solide/part2.html',
+    './content/physique/lessons/rotation-solide/part3.html',
+    './content/physique/lessons/rotation-solide/part4.html',
+    './content/physique/lessons/rotation-solide/part5.html',
+    './content/physique/lessons/rotation-solide/part6.html',
+    // ====== سلاسل الفيزياء ======
+    './content/physique/series/rotation-solide/index.html',
+    './content/physique/series/rotation-solide/serie1.html',
+    // ====== تمارين الفيزياء ======
+    './content/physique/exercices/rotation-solide/index.html',
+    './content/physique/exercices/rotation-solide/exercice1.html',
+    './content/physique/exercices/rotation-solide/exercice2.html',
+    './content/physique/exercices/rotation-solide/exercice3.html',
+    './content/physique/exercices/rotation-solide/exercice4.html',
+    './content/physique/exercices/rotation-solide/exercice5.html',
+    './content/physique/exercices/rotation-solide/exercice6.html'
 ];
 
 // صفحة بسيطة كتبان إلا كانت الصفحة المطلوبة ماشي مخزنة وما كاينش نت
