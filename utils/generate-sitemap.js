@@ -78,8 +78,7 @@ xml += `</urlset>\n`;
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
 console.log(`✅ sitemap.xml محدّث بنجاح: ${relFiles.length + 2 + subjects.length} رابط`);
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 6a53e4c (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
+
+

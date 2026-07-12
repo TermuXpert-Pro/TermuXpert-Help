@@ -690,7 +690,9 @@
             }
             
             if (window.MathJax && MathJax.typesetPromise) {
-                MathJax.typesetPromise();
+                MathJax.typesetPromise().catch(function(err) {
+                    console.log('⚠️ MathJax typeset error:', err);
+                });
             }
         }
 
@@ -814,14 +816,5 @@
     </script>
 </body>
 </html>
-        showDirect();
-                console.log('📌 Animation non autorisée → Affichage direct');
-                return;
-            }
 
-            runAnimation();
-            console.log('📌 Animation autorisée → Animation jouée');
-        });
-    </script>
-</body>
-</html>
+

@@ -47,3 +47,5 @@ rmdir lessons exercices series 2>/dev/null
 echo "✅ الترحيل اكتمل بنجاح!"
 
 
+
+

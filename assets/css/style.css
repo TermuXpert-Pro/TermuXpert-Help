@@ -359,8 +359,16 @@ img, svg, canvas, video {
  -moz-user-drag: none !important;
  -ms-user-drag: none !important;
  user-drag: none !important;
+ pointer-events: none !important;
  -webkit-touch-callout: none !important;
  touch-callout: none !important;
+ -webkit-tap-highlight-color: transparent !important;
+}
+img, svg, canvas, video {
+ -webkit-user-select: none !important;
+ -moz-user-select: none !important;
+ -ms-user-select: none !important;
+ user-select: none !important;
 }
 img::selection, svg::selection, canvas::selection {
  background: transparent !important;
@@ -369,21 +377,6 @@ img::selection, svg::selection, canvas::selection {
 ::selection {
  background: rgba(78, 205, 196, 0.3);
 }
-nt;
-}
-img, svg, canvas, video {
- -webkit-user-drag: none !important;
- -moz-user-drag: none !important;
- -ms-user-drag: none !important;
- user-drag: none !important;
- pointer-events: none !important;
- -webkit-touch-callout: none !important;
- touch-callout: none !important;
-}
-img::selection, svg::selection, canvas::selection {
- background: transparent !important;
- color: transparent !important;
-}
 a, button, .card, .command-card {
  -webkit-touch-callout: none !important;
  touch-callout: none !important;
@@ -391,18 +384,6 @@ a, button, .card, .command-card {
 body {
  -webkit-touch-callout: none !important;
  touch-callout: none !important;
-}
-/* ============================================================
- حماية إضافية - منع سحب/حفظ الصور فقط (النصوص والصيغ تبقى قابلة للتحديد)
- ============================================================ */
-img, svg, canvas, video {
- -webkit-user-select: none !important;
- -moz-user-select: none !important;
- -ms-user-select: none !important;
- user-select: none !important;
- -webkit-touch-callout: none !important;
- touch-callout: none !important;
- -webkit-tap-highlight-color: transparent !important;
 }
 input, textarea, [contenteditable="true"] {
  -webkit-user-select: text !important;
@@ -410,26 +391,8 @@ input, textarea, [contenteditable="true"] {
  -ms-user-select: text !important;
  user-select: text !important;
 }
-img, svg, canvas, video {
- -webkit-user-drag: none !important;
- -moz-user-drag: none !important;
- -ms-user-drag: none !important;
- user-drag: none !important;
- pointer-events: none !important;
- -webkit-touch-callout: none !important;
- touch-callout: none !important;
-}
-img::selection, svg::selection, canvas::selection {
- background: transparent !important;
- color: transparent !important;
-}
-a, button, .card, .command-card {
- -webkit-touch-callout: none !important;
- touch-callout: none !important;
-}
-body {
- -webkit-touch-callout: none !important;
- touch-callout: none !important;
-}
+
+
+
 
 
