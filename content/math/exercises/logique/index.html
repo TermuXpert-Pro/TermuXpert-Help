@@ -14,8 +14,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercices - Logique | Xpert</title>
+    <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../../../assets/css/style.css">
@@ -56,12 +63,21 @@
             display: inline-block;
             padding: 1px 10px;
             border-radius: 12px;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
         }
         .badge-facile { background: #4ECDC422; color: #4ECDC4; }
         .badge-moyen { background: #F4D03F22; color: #F4D03F; }
         .badge-difficile { background: #FF6B6B22; color: #FF6B6B; }
+        .badge-theme {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
+        }
         .exercice-count {
             text-align: center;
             color: var(--text-muted);
@@ -148,101 +164,126 @@
             <div class="exercice-count"><span>8</span> exercices disponibles</div>
 
             <div class="section-list" style="max-width:700px; margin:0 auto;">
+                <!-- Exercice 1 -->
                 <a href="exercice1.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 1</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Valeur de vérité et négation</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-facile">Facile</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-facile" style="flex-shrink:0;">Facile</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
+                <!-- Exercice 2 -->
                 <a href="exercice2.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 2</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Quantificateurs</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-facile">Facile</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-facile" style="flex-shrink:0;">Facile</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
+                <!-- Exercice 3 -->
                 <a href="exercice3.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 3</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Valeur de vérité</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-facile">Facile</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-facile" style="flex-shrink:0;">Facile</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
+                <!-- Exercice 4 -->
                 <a href="exercice4.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 4</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Raisonnement</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-moyen" style="flex-shrink:0;">Moyen</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
+                <!-- Exercice 5 -->
                 <a href="exercice5.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 5</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Lois logiques</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-moyen" style="flex-shrink:0;">Moyen</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
+                <!-- Exercice 6 -->
                 <a href="exercice6.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 6</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Implication</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-moyen" style="flex-shrink:0;">Moyen</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
+                <!-- Exercice 7 -->
                 <a href="exercice7.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 7</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Récurrence - Divisibilité</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-difficile">Difficile</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-difficile" style="flex-shrink:0;">Difficile</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
 
+                <!-- Exercice 8 -->
                 <a href="exercice8.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
                         <div style="flex:1;">
                             <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 8</div>
                             <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Récurrence - Sommes</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-difficile">Difficile</span>
+                            </div>
                         </div>
-                        <span class="badge-difficulty badge-difficile" style="flex-shrink:0;">Difficile</span>
                         <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
+
             </div>
 
         </div>
@@ -280,9 +321,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-

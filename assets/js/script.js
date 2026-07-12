@@ -79,9 +79,3 @@ console.log('✅ Xpert - Scripts chargés avec succès !');
             .catch(function(err) { console.log('❌ Service Worker échoué:', err); });
     });
 })();
-
-
-
-
-
-

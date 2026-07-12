@@ -18,9 +18,3 @@ window.subjectsData.chimie = {
     ],
     exams: []
 };
-
-
-
-
-
-

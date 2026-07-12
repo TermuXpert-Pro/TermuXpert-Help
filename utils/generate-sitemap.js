@@ -78,9 +78,3 @@ xml += `</urlset>\n`;
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
 console.log(`✅ sitemap.xml محدّث بنجاح: ${relFiles.length + 2 + subjects.length} رابط`);
-
-
-
-
-
-

@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 4 - Travail et puissance d'une force | Xpert</title>
+    <title>Partie 3 - Rotation d'un solide | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +69,7 @@
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
         .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
@@ -206,172 +206,186 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:#FF6B6B;"></i> Partie 4 : Puissance moyenne - Puissance instantanée - Puissance en rotation</h1>
+            <h1 class="lesson-title"><i class="fas fa-gauge-high" style="color:#FF6B6B;"></i> Partie 3 : Vitesse angulaire moyenne - Vitesse angulaire instantanée</h1>
 
             <!-- ============================================================ -->
-            <!-- SECTION 1: PUISSANCE MOYENNE -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">1</span> Puissance moyenne</h2>
-
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>La <strong>puissance moyenne</strong> d'une force est le quotient du travail de cette force par la durée \(\Delta t\) pour réaliser ce travail :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$P_m = \frac{W}{\Delta t}$$
-                    </div>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rem">Unités</span>
-                    <ul>
-                        <li>\(P_m\) : puissance en <strong>Watts (W)</strong></li>
-                        <li>\(W\) : travail en <strong>Joules (J)</strong></li>
-                        <li>\(\Delta t\) : durée en <strong>secondes (s)</strong></li>
-                    </ul>
-                    <p style="font-size:12px; color:var(--text-muted);">\(1\text{ W} = 1\text{ J/s}\)</p>
-                </div>
-
-                <div class="exemple-box">
-                    <div class="ex-title">📝 Exemple</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Une force effectue un travail \(W = 200\text{ J}\) pendant une durée \(\Delta t = 10\text{ s}\).
-                    </p>
-                    <div style="margin-top:6px;">
-                        <div class="formula-block" style="font-size:14px; margin:2px 0;">
-                            $$P_m = \frac{200}{10} = 20\text{ W}$$
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 2: PUISSANCE INSTANTANÉE -->
+            <!-- SECTION 1: VITESSE ANGULAIRE MOYENNE -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">2</span> Puissance instantanée</h2>
+                <h2><span class="num">1</span> Vitesse angulaire moyenne</h2>
 
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>Si la force \(\vec{F}\) réalise un travail \(\delta W\) pendant une durée très petite \(\delta t\), la <strong>puissance instantanée</strong> de cette force est :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$P = \frac{\delta W}{\delta t}$$
-                    </div>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label prop">Expression en fonction de la force et de la vitesse</span>
-                    <p>Puisque \(\delta W = \vec{F} \cdot \overrightarrow{\delta l}\) et \(\overrightarrow{\delta l} = \vec{v} \cdot \delta t\) :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$P = \vec{F} \cdot \vec{v} = F \cdot v \cdot \cos \alpha$$
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted);">
-                        où \(\vec{v}\) est le vecteur vitesse du point d'application de la force.
-                    </p>
-                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Lorsqu'un corps est en mouvement autour d'un axe fixe $(\Delta)$, le point M occupe la position M₁ à l'instant t₁ et la position M₂ à l'instant t₂.
+                </p>
 
                 <div class="graph-container">
-                    <canvas id="graphPuissance" width="400" height="200"></canvas>
-                    <p>Puissance instantanée : P = F · v · cos α</p>
+                    <canvas id="graphVitesse" width="400" height="220"></canvas>
+                    <p>Position de M à t₁ et t₂</p>
+                </div>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>La <strong>vitesse angulaire moyenne</strong> $\omega_m$ du point M entre t₁ et t₂ est donnée par :</p>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$\omega_m = \frac{\Delta \theta}{\Delta t} = \frac{\theta_2 - \theta_1}{t_2 - t_1}$$
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted);">
+                        $\Delta \theta$ est l'angle de rotation du solide pendant la durée $\Delta t$.
+                    </p>
+                    <p style="font-size:12px; color:var(--text-muted);">
+                        L'unité de la vitesse angulaire dans le (SI) est le <strong>radian par seconde (rad/s)</strong>.
+                    </p>
                 </div>
 
                 <div class="highlight-box yellow">
                     <span class="label rem">Remarques</span>
                     <ul>
-                        <li>La puissance instantanée est une grandeur <strong>algébrique</strong>.</li>
-                        <li>\(P > 0\) : la force <strong>fournit</strong> de la puissance.</li>
-                        <li>\(P < 0\) : la force <strong>reçoit</strong> de la puissance (puissance résistante).</li>
-                        <li>\(P = 0\) : la force ne fournit pas de puissance (perpendiculaire au mouvement).</li>
+                        <li>La vitesse angulaire moyenne est une grandeur <strong>algébrique</strong>.</li>
+                        <li>Son signe indique le <strong>sens de rotation</strong> :
+                            <ul>
+                                <li>$\omega_m > 0$ : rotation dans le sens <strong>direct</strong> (trigonométrique)</li>
+                                <li>$\omega_m < 0$ : rotation dans le sens <strong>indirect</strong> (horaire)</li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="exemple-box">
                     <div class="ex-title">📝 Exemple</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Une force \(\vec{F} = 10\text{ N}\) s'applique sur un objet se déplaçant à la vitesse \(v = 2\text{ m/s}\). L'angle entre \(\vec{F}\) et \(\vec{v}\) est \(\alpha = 30^\circ\).
+                        Un point M tourne autour d'un axe fixe. À l'instant $t_1 = 0.2\text{ s}$, son abscisse angulaire est $\theta_1 = \frac{\pi}{6}\text{ rad}$.
+                        À l'instant $t_2 = 0.8\text{ s}$, son abscisse angulaire est $\theta_2 = \frac{\pi}{2}\text{ rad}$.
                     </p>
                     <div style="margin-top:6px;">
                         <div class="formula-block" style="font-size:14px; margin:2px 0;">
-                            $$P = F \cdot v \cdot \cos \alpha = 10 \times 2 \times \cos(30^\circ) = 20 \times 0.866 = 17.32\text{ W}$$
+                            $$\omega_m = \frac{\theta_2 - \theta_1}{t_2 - t_1} = \frac{\frac{\pi}{2} - \frac{\pi}{6}}{0.8 - 0.2} = \frac{\frac{\pi}{3}}{0.6} = \frac{\pi}{1.8} \approx 1.75\text{ rad/s}$$
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: VITESSE ANGULAIRE INSTANTANÉE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Vitesse angulaire instantanée</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>En considérant $t_{i-1}$ et $t_{i+1}$ deux instants très proches encadrant l'instant $t_i$.</p>
+                    <p>La <strong>vitesse angulaire instantanée</strong> à l'instant $t_i$ est la vitesse angulaire moyenne entre $t_{i+1}$ et $t_{i-1}$ :</p>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$\omega_i = \frac{\theta_{i+1} - \theta_{i-1}}{t_{i+1} - t_{i-1}}$$
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphInstant" width="400" height="200"></canvas>
+                    <p>Vitesse angulaire instantanée à l'instant tᵢ</p>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Propriété</span>
+                    <p>La vitesse angulaire instantanée est la <strong>dérivée</strong> de l'abscisse angulaire par rapport au temps :</p>
+                    <div class="formula-block" style="font-size:16px;">
+                        $$\omega = \frac{d\theta}{dt} = \dot{\theta}$$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Remarque</span>
+                    <ul>
+                        <li>Si le mouvement est <strong>uniforme</strong>, la vitesse angulaire est <strong>constante</strong> : $\omega = \text{constante}$.</li>
+                        <li>Si le mouvement est <strong>varié</strong>, la vitesse angulaire <strong>varie</strong> avec le temps.</li>
+                    </ul>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exemple</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        On donne les positions angulaires d'un point M en rotation :
+                    </p>
+                    <div class="table-wrap" style="margin:6px 0;">
+                        <table>
+                            <tr><th>t (s)</th><td>0</td><td>0.1</td><td>0.2</td><td>0.3</td><td>0.4</td></tr>
+                            <tr><th>θ (rad)</th><td>0</td><td>0.31</td><td>0.63</td><td>0.94</td><td>1.26</td></tr>
+                        </table>
+                    </div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Calculons la vitesse angulaire instantanée à $t = 0.2\text{ s}$ :
+                    </p>
+                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                        $$\omega_{0.2} = \frac{\theta_{0.3} - \theta_{0.1}}{0.3 - 0.1} = \frac{0.94 - 0.31}{0.2} = \frac{0.63}{0.2} = 3.15\text{ rad/s}$$
                     </div>
                 </div>
 
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
-                        <li>\(P_m = \dfrac{W}{\Delta t}\) : puissance <strong>moyenne</strong></li>
-                        <li>\(P = \vec{F} \cdot \vec{v}\) : puissance <strong>instantanée</strong></li>
-                        <li>Unité : le <strong>Watt (W)</strong></li>
+                        <li><strong>Vitesse angulaire moyenne :</strong> $\omega_m = \dfrac{\Delta \theta}{\Delta t}$</li>
+                        <li><strong>Vitesse angulaire instantanée :</strong> $\omega = \dfrac{d\theta}{dt}$</li>
+                        <li><strong>Unité :</strong> radian par seconde (rad/s)</li>
+                        <li>Relation avec la vitesse linéaire : $v = r \cdot \omega$</li>
                     </ul>
                 </div>
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 3: PUISSANCE D'UNE FORCE EN ROTATION -->
+            <!-- SECTION 3: RELATION ENTRE VITESSE ANGULAIRE ET VITESSE LINÉAIRE -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">3</span> Puissance instantanée d'une force appliquée à un solide en rotation</h2>
-
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On considère un solide en rotation autour d'un axe fixe avec une vitesse angulaire \(\omega\), sous l'action d'une force \(\vec{F}\) orthogonale à l'axe de rotation.
-                </p>
-
-                <div class="graph-container">
-                    <canvas id="graphRotationPuissance" width="400" height="220"></canvas>
-                    <p>Puissance d'une force en rotation : P = M<sub>Δ</sub>(F) · ω</p>
-                </div>
-
-                <div class="highlight-box red">
-                    <span class="label def">Expression</span>
-                    <p>La puissance instantanée de la force \(\vec{F}\) est :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$P = \vec{F} \cdot \vec{v} = F \cdot v \cdot \cos \theta$$
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted);">Avec \(v = R \cdot \omega\), on obtient :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$P = M_{\Delta}(\vec{F}) \cdot \omega$$
-                    </div>
-                </div>
+                <h2><span class="num">3</span> Relation entre vitesse angulaire et vitesse linéaire</h2>
 
                 <div class="highlight-box green">
-                    <span class="label prop">Notations</span>
-                    <ul>
-                        <li>\(M_{\Delta}(\vec{F})\) : <strong>moment</strong> de la force \(\vec{F}\) par rapport à l'axe \(\Delta\)</li>
-                        <li>\(\omega\) : <strong>vitesse angulaire</strong> du solide (rad/s)</li>
-                        <li>\(P\) : puissance en <strong>Watts (W)</strong></li>
-                    </ul>
+                    <span class="label prop">Propriété</span>
+                    <p>La <strong>vitesse linéaire</strong> $v$ d'un point M situé à une distance $r$ de l'axe de rotation est liée à la <strong>vitesse angulaire</strong> $\omega$ par la relation :</p>
+                    <div class="formula-block" style="font-size:18px;">
+                        $$v = r \cdot \omega$$
+                    </div>
                 </div>
 
                 <div class="highlight-box yellow">
                     <span class="label rem">Démonstration</span>
-                    <ul>
-                        <li>\(v = R \cdot \omega\)</li>
-                        <li>\(M_{\Delta}(\vec{F}) = F \cdot R \cdot \cos \theta\)</li>
-                        <li>Donc \(P = F \cdot R \cdot \omega \cdot \cos \theta = M_{\Delta}(\vec{F}) \cdot \omega\)</li>
-                    </ul>
+                    <div class="step">
+                        <span class="step-num">Étape 1 :</span> On a $s = r \cdot \theta$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 2 :</span> On dérive par rapport au temps :
+                        $$\frac{ds}{dt} = r \cdot \frac{d\theta}{dt}$$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 3 :</span> Or $\frac{ds}{dt} = v$ et $\frac{d\theta}{dt} = \omega$
+                    </div>
+                    <div class="step">
+                        <span class="step-num">Étape 4 :</span> Donc $v = r \cdot \omega$
+                    </div>
                 </div>
 
                 <div class="exemple-box">
                     <div class="ex-title">📝 Exemple</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Une force de moment \(M = 5\text{ N·m}\) s'applique sur un disque tournant à \(\omega = 10\text{ rad/s}\).
+                        Un point M tourne sur un cercle de rayon $r = 0.5\text{ m}$ avec une vitesse angulaire $\omega = 4\text{ rad/s}$.
                     </p>
                     <div style="margin-top:6px;">
-                        <div class="formula-block" style="font-size:14px; margin:2px 0;">
-                            $$P = M \cdot \omega = 5 \times 10 = 50\text{ W}$$
+                        <div class="formula-block" style="font-size:15px; margin:2px 0;">
+                            $$v = r \cdot \omega = 0.5 \times 4 = 2\text{ m/s}$$
                         </div>
                     </div>
                 </div>
 
                 <div class="highlight-box purple">
-                    <span class="label resume">Résumé</span>
+                    <span class="label resume">À retenir</span>
                     <ul>
-                        <li>\(P = M_{\Delta}(\vec{F}) \cdot \omega\)</li>
-                        <li>\(M_{\Delta}(\vec{F})\) est le <strong>moment</strong> de la force (N·m)</li>
-                        <li>\(\omega\) est la <strong>vitesse angulaire</strong> (rad/s)</li>
-                        <li>Cette relation est valable pour une force orthogonale à l'axe de rotation.</li>
+                        <li>La vitesse linéaire $v$ est <strong>proportionnelle</strong> à la vitesse angulaire $\omega$.</li>
+                        <li>Le coefficient de proportionnalité est le <strong>rayon $r$</strong>.</li>
+                        <li>Tous les points du solide ont la <strong>même vitesse angulaire</strong> $\omega$.</li>
+                        <li>La vitesse linéaire $v$ dépend du <strong>rayon</strong> (distance à l'axe).</li>
                     </ul>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphRelation" width="400" height="200"></canvas>
+                    <p>Relation v = r · ω</p>
                 </div>
             </div>
 
@@ -379,8 +393,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
-                <a href="part5.html" class="next-btn">Résumé <i class="fas fa-arrow-left"></i></a>
+                <a href="part2.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 2</a>
+                <a href="part4.html" class="next-btn">Partie 4 <i class="fas fa-arrow-left"></i></a>
             </div>
 
         </div>
@@ -403,8 +417,8 @@
         // GRAPHIQUES
         // ============================================================
 
-        function drawGraphPuissance() {
-            var canvas = document.getElementById('graphPuissance');
+        function drawGraphVitesse() {
+            var canvas = document.getElementById('graphVitesse');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -413,77 +427,8 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            var ox = 80, oy = h - 30;
-            var scale = 30;
-
-            // Vecteur vitesse (horizontal)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy - 50);
-            ctx.lineTo(ox + 150, oy - 50);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.moveTo(ox + 142, oy - 56);
-            ctx.lineTo(ox + 155, oy - 50);
-            ctx.lineTo(ox + 142, oy - 44);
-            ctx.fill();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('v', ox + 140, oy - 58);
-
-            // Vecteur force (angle 60°)
-            var angle = 60 * Math.PI / 180;
-            var fx = ox + 100 + 80 * Math.cos(angle);
-            var fy = oy - 50 - 80 * Math.sin(angle);
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox + 100, oy - 50);
-            ctx.lineTo(fx, fy);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo(fx - 8 * Math.cos(angle - 0.3), fy + 8 * Math.sin(angle - 0.3));
-            ctx.lineTo(fx, fy);
-            ctx.lineTo(fx - 8 * Math.cos(angle + 0.3), fy + 8 * Math.sin(angle + 0.3));
-            ctx.fill();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '14px Arial';
-            ctx.fillText('F', fx - 30, fy - 10);
-
-            // Angle α
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(ox + 100, oy - 50, 30, -angle, 0);
-            ctx.stroke();
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.font = '13px Arial';
-            ctx.fillText('α', ox + 90, oy - 65);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('P = F · v · cos α', 200, 20);
-        }
-
-        function drawGraphRotationPuissance() {
-            var canvas = document.getElementById('graphRotationPuissance');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 10;
-            var rayon = 80;
+            var cx = w/2, cy = h/2 + 5;
+            var rayon = 85;
 
             // Axe de rotation
             ctx.strokeStyle = '#FF6B6B';
@@ -496,8 +441,8 @@
             ctx.setLineDash([]);
 
             ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('(Δ)', cx + 10, 25);
+            ctx.font = '10px Arial';
+            ctx.fillText('(Δ)', cx + 10, 22);
 
             // Cercle
             ctx.strokeStyle = '#4ECDC4';
@@ -506,72 +451,52 @@
             ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
             ctx.stroke();
 
-            // Point M
-            var angle = Math.PI/3;
-            var Mx = cx + rayon * Math.cos(angle);
-            var My = cy + rayon * Math.sin(angle);
+            // Points M1 et M2
+            var angle1 = -Math.PI/6;
+            var angle2 = Math.PI/3;
+            var M1x = cx + rayon * Math.cos(angle1);
+            var M1y = cy + rayon * Math.sin(angle1);
+            var M2x = cx + rayon * Math.cos(angle2);
+            var M2y = cy + rayon * Math.sin(angle2);
 
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(Mx, My, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M', Mx + 8, My - 6);
-
-            // Rayon OM
-            ctx.strokeStyle = '#2A2A3E';
+            // Rayons
+            ctx.strokeStyle = '#A8FF78';
             ctx.lineWidth = 1;
             ctx.setLineDash([3, 3]);
             ctx.beginPath();
             ctx.moveTo(cx, cy);
-            ctx.lineTo(Mx, My);
+            ctx.lineTo(M1x, M1y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(M2x, M2y);
             ctx.stroke();
             ctx.setLineDash([]);
 
-            // Force tangentielle
-            var fx = Mx + 50 * Math.cos(angle + Math.PI/2);
-            var fy = My + 50 * Math.sin(angle + Math.PI/2);
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
+            // Arc (rotation)
+            ctx.strokeStyle = '#FFD93D';
+            ctx.lineWidth = 3;
             ctx.beginPath();
-            ctx.moveTo(Mx, My);
-            ctx.lineTo(fx, fy);
+            ctx.arc(cx, cy, rayon * 0.7, angle1, angle2);
             ctx.stroke();
+
+            // Points
             ctx.fillStyle = '#F4D03F';
             ctx.beginPath();
-            ctx.moveTo(fx - 6, fy + 6);
-            ctx.lineTo(fx, fy);
-            ctx.lineTo(fx + 6, fy + 6);
+            ctx.arc(M1x, M1y, 6, 0, 2 * Math.PI);
             ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('M₁', M1x - 20, M1y - 10);
 
             ctx.fillStyle = '#F4D03F';
-            ctx.font = '14px Arial';
-            ctx.fillText('F', fx + 10, fy);
-
-            // Vitesse
-            var vx = Mx + 40 * Math.cos(angle + Math.PI/2);
-            var vy = My + 40 * Math.sin(angle + Math.PI/2);
-
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(Mx, My);
-            ctx.lineTo(vx, vy);
-            ctx.stroke();
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.moveTo(vx - 6, vy + 6);
-            ctx.lineTo(vx, vy);
-            ctx.lineTo(vx + 6, vy + 6);
+            ctx.arc(M2x, M2y, 6, 0, 2 * Math.PI);
             ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('M₂', M2x + 8, M2y - 10);
 
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '12px Arial';
-            ctx.fillText('v', vx + 10, vy);
-
-            // Centre O
             ctx.fillStyle = '#BB8FCE';
             ctx.beginPath();
             ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
@@ -580,16 +505,167 @@
             ctx.font = '10px Arial';
             ctx.fillText('O', cx + 8, cy + 4);
 
+            ctx.fillStyle = '#FFD93D';
+            ctx.font = '12px Arial';
+            ctx.fillText('Δθ', cx + 25, cy - 30);
+
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
-            ctx.fillText('P = MΔ(F) · ω', 250, 20);
-            ctx.fillText('MΔ(F) = F · d', 250, 35);
+            ctx.fillText('Δθ = θ₂ - θ₁', 200, 20);
+        }
+
+        function drawGraphInstant() {
+            var canvas = document.getElementById('graphInstant');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h - 30;
+            var scaleX = 80, scaleY = 40;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('t (s)', w - 30, oy + 18);
+            ctx.fillText('θ (rad)', ox + 8, 18);
+
+            // Points simulés
+            var points = [
+                {t: 0, theta: 0},
+                {t: 0.1, theta: 0.31},
+                {t: 0.2, theta: 0.63},
+                {t: 0.3, theta: 0.94},
+                {t: 0.4, theta: 1.26}
+            ];
+
+            // Courbe
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (var i = 0; i < points.length; i++) {
+                var x = ox + points[i].t * scaleX;
+                var y = oy - points[i].theta * scaleY;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Points
+            var colors = ['#4ECDC4', '#A8FF78', '#F4D03F', '#A8FF78', '#4ECDC4'];
+            for (var i = 0; i < points.length; i++) {
+                var x = ox + points[i].t * scaleX;
+                var y = oy - points[i].theta * scaleY;
+                ctx.fillStyle = colors[i];
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '9px Arial';
+                ctx.fillText('t' + i, x - 8, y + 16);
+            }
+
+            // Point tᵢ en évidence
+            var idx = 2;
+            var xi = ox + points[idx].t * scaleX;
+            var yi = oy - points[idx].theta * scaleY;
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(xi, oy);
+            ctx.lineTo(xi, yi);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '11px Arial';
+            ctx.fillText('tᵢ', xi - 8, oy + 14);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('ωᵢ = pente de la tangente', 200, 20);
+        }
+
+        function drawGraphRelation() {
+            var canvas = document.getElementById('graphRelation');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h - 30;
+            var scaleX = 50, scaleY = 30;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('ω (rad/s)', w - 30, oy + 18);
+            ctx.fillText('v (m/s)', ox + 8, 18);
+
+            // Droite v = r·ω avec r = 0.5
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(ox + 6 * scaleX, oy - 3 * scaleY);
+            ctx.stroke();
+
+            // Marqueurs
+            for (var i = 1; i <= 6; i++) {
+                var x = ox + i * scaleX;
+                var y = oy - i * 0.5 * scaleY;
+                ctx.fillStyle = '#4ECDC4';
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '8px Arial';
+                ctx.fillText('(' + i + ',' + (i*0.5).toFixed(1) + ')', x - 12, y - 8);
+            }
+
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '11px Arial';
+            ctx.fillText('v = r·ω (r = 0.5 m)', 200, 20);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '9px Arial';
+            ctx.fillText('pente = r = 0.5', 200, 35);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraphPuissance();
-                drawGraphRotationPuissance();
+                drawGraphVitesse();
+                drawGraphInstant();
+                drawGraphRelation();
             }, 500);
         });
     </script>

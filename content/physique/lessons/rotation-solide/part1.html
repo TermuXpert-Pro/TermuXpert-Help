@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 4 - Rotation d'un solide | Xpert</title>
+    <title>Partie 1 - Rotation d'un solide | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +69,7 @@
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
         .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
@@ -103,26 +103,6 @@
             color: var(--text-muted);
             font-size: 11px;
             margin-top: 4px;
-        }
-        .exemple-box {
-            background: #1A2A2A;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px 10px;
-            margin: 4px 0;
-        }
-        .exemple-box .ex-title {
-            color: #F4D03F;
-            font-weight: 700;
-            font-size: 12px;
-            margin-bottom: 4px;
-        }
-        .conversion-box {
-            background: #1A1A2E;
-            border: 1px solid #4ECDC422;
-            border-radius: 6px;
-            padding: 6px 10px;
-            margin: 4px 0;
         }
         @media (max-width: 768px) {
             body { font-size: 13px; }
@@ -213,177 +193,109 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-clock" style="color:#FF6B6B;"></i> Partie 4 : Période - Fréquence - Mouvement de rotation uniforme</h1>
+            <h1 class="lesson-title"><i class="fas fa-circle-play" style="color:#FF6B6B;"></i> Partie 1 : Introduction - Exemple - Définition - Repérage</h1>
 
             <!-- ============================================================ -->
-            <!-- SECTION 1: PÉRIODE -->
+            <!-- SECTION 1: EXEMPLE -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">1</span> La période</h2>
+                <h2><span class="num">1</span> Exemple</h2>
 
                 <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>La <strong>période</strong> $T$ d'un mouvement de rotation uniforme est la <strong>durée d'un tour</strong>.</p>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label prop">Relation</span>
-                    <p>Pour un tour complet, l'angle de rotation est $\Delta \theta = 2\pi$ et la durée est $T$ :</p>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$2\pi = \omega \cdot T \quad \Rightarrow \quad T = \frac{2\pi}{\omega}$$
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted);">
-                        avec $T$ en <strong>secondes (s)</strong> et $\omega$ en <strong>rad/s</strong>.
-                    </p>
-                </div>
-
-                <div class="exemple-box">
-                    <div class="ex-title">📝 Exemple</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Un disque tourne avec une vitesse angulaire $\omega = 10\text{ rad/s}$.
-                        Sa période est :
-                    </p>
-                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                        $$T = \frac{2\pi}{10} = 0.628\text{ s}$$
-                    </div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Le disque fait un tour complet en $0.628$ secondes.
-                    </p>
+                    <span class="label ex">Exemple</span>
+                    <p>On considère un solide (S) en mouvement de rotation autour d'un axe fixe $(\Delta)$.</p>
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphPeriode" width="400" height="200"></canvas>
-                    <p>Période T : durée d'un tour complet</p>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 2: FRÉQUENCE -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">2</span> La fréquence</h2>
-
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>La <strong>fréquence</strong> $f$ d'un mouvement de rotation uniforme est le <strong>nombre de tours par seconde</strong>.</p>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label prop">Relation</span>
-                    <div class="formula-block" style="font-size:17px;">
-                        $$f = \frac{1}{T} = \frac{\omega}{2\pi}$$
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted);">
-                        avec $f$ en <strong>hertz (Hz)</strong>, $T$ en <strong>secondes (s)</strong> et $\omega$ en <strong>rad/s</strong>.
-                    </p>
-                </div>
-
-                <div class="exemple-box">
-                    <div class="ex-title">📝 Exemple</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Un moteur tourne avec une période $T = 0.02\text{ s}$.
-                        Sa fréquence est :
-                    </p>
-                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                        $$f = \frac{1}{0.02} = 50\text{ Hz}$$
-                    </div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Le moteur fait 50 tours par seconde.
-                    </p>
-                </div>
-
-                <div class="conversion-box">
-                    <div class="ex-title" style="color:#4ECDC4;">📐 Conversion des unités de vitesse angulaire</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        La vitesse angulaire $\omega$ peut être exprimée en tours par seconde (tr/s) ou tours par minute (tr/min) :
-                    </p>
-                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                        $$1\text{ tr/s} = 2\pi\text{ rad/s}$$
-                    </div>
-                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                        $$1\text{ tr/min} = \frac{2\pi}{60}\text{ rad/s}$$
-                    </div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Exemple : $300\text{ tr/min} = 300 \times \frac{2\pi}{60} = 31.4\text{ rad/s}$
-                    </p>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 3: MOUVEMENT DE ROTATION UNIFORME -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">3</span> Mouvement de rotation uniforme</h2>
-
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>Un mouvement de rotation est dit <strong>uniforme</strong> si la <strong>vitesse angulaire</strong> $\omega$ est <strong>constante</strong>.</p>
+                    <canvas id="graphRotation" width="400" height="250"></canvas>
+                    <p>Rotation d'un solide autour d'un axe fixe $(\Delta)$</p>
                 </div>
 
                 <div class="highlight-box yellow">
-                    <span class="label rem">Caractéristiques</span>
+                    <span class="label rem">Observations</span>
                     <ul>
-                        <li>$\omega = \text{constante}$</li>
-                        <li>La période $T$ est <strong>constante</strong></li>
-                        <li>La fréquence $f$ est <strong>constante</strong></li>
-                        <li>L'abscisse angulaire $\theta$ varie <strong>linéairement</strong> avec le temps</li>
+                        <li>Les points <strong>A</strong> et <strong>B</strong> décrivent des <strong>trajectoires circulaires</strong> centrées sur l'axe $(\Delta)$.</li>
+                        <li>Les points <strong>M</strong> et <strong>N</strong> situés sur l'axe $(\Delta)$ sont <strong>immobiles</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: DÉFINITION -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Définition</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Un solide possède un <strong>mouvement de rotation autour d'un axe fixe</strong> $(\Delta)$ si :</p>
+                    <ul>
+                        <li>Tous les points du solide décrivent des <strong>trajectoires circulaires</strong> centrées sur l'axe de rotation.</li>
+                        <li>Sauf les points qui appartiennent à cet axe (ils sont immobiles).</li>
                     </ul>
                 </div>
 
-                <div class="highlight-box green">
-                    <span class="label prop">Équation horaire en abscisse angulaire</span>
-                    <p>Pour un mouvement de rotation uniforme :</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$\theta = \omega \cdot (t - t_0) + \theta_0$$
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted);">
-                        Si l'origine des temps est $t_0 = 0$ : $\theta = \omega \cdot t + \theta_0$
-                    </p>
+                <div class="highlight-box purple">
+                    <span class="label resume">À retenir</span>
+                    <ul>
+                        <li>L'axe de rotation est <strong>fixe</strong> dans le référentiel d'étude.</li>
+                        <li>Chaque point du solide a un mouvement <strong>circulaire</strong>.</li>
+                        <li>Le rayon de la trajectoire est la distance du point à l'axe.</li>
+                    </ul>
                 </div>
+            </div>
 
-                <div class="highlight-box green">
-                    <span class="label prop">Équation horaire en abscisse curviligne</span>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$s = v \cdot (t - t_0) + s_0$$
-                    </div>
-                    <p style="font-size:12px; color:var(--text-muted);">
-                        avec $v = r \cdot \omega$ et $s_0 = r \cdot \theta_0$
-                    </p>
-                </div>
+            <!-- ============================================================ -->
+            <!-- SECTION 3: REPÉRAGE D'UN POINT -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Repérage d'un point du solide</h2>
+
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Soit M un point quelconque choisi sur la trajectoire circulaire. On oriente la trajectoire dans un sens arbitraire.
+                </p>
 
                 <div class="graph-container">
-                    <canvas id="graphUniforme" width="400" height="200"></canvas>
-                    <p>θ = f(t) pour un mouvement de rotation uniforme</p>
+                    <canvas id="graphReperage" width="400" height="250"></canvas>
+                    <p>Repérage du point M sur sa trajectoire circulaire</p>
                 </div>
 
-                <div class="exemple-box">
-                    <div class="ex-title">📝 Exemple</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Un point M tourne uniformément avec $\omega = 2\text{ rad/s}$.
-                        À $t = 0$, $\theta_0 = \frac{\pi}{4}\text{ rad}$.
-                    </p>
-                    <p style="font-size:11.5px; color:var(--text-secondary); margin-top:6px;">
-                        L'équation horaire est :
-                    </p>
-                    <div class="formula-block" style="font-size:15px; margin:4px 0;">
-                        $$\theta = 2t + \frac{\pi}{4}$$
+                <div class="highlight-box red">
+                    <span class="label def">Abscisse angulaire</span>
+                    <p>On appelle <strong>abscisse angulaire</strong> du point M à un instant t la valeur algébrique de l'angle :</p>
+                    <div class="formula-block" style="font-size:15px;">
+                        $$\theta = (\overrightarrow{OM_0}, \overrightarrow{OM})$$
                     </div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        À $t = 3\text{ s}$ : $\theta = 2 \times 3 + \frac{\pi}{4} = 6 + 0.785 = 6.785\text{ rad}$
-                    </p>
+                    <p style="font-size:11px; color:var(--text-muted);">L'unité de l'abscisse angulaire est le <strong>radian (rad)</strong>.</p>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label def">Abscisse curviligne</span>
+                    <p>On appelle <strong>abscisse curviligne</strong> du point mobile M à un instant t la valeur algébrique de l'arc :</p>
+                    <div class="formula-block" style="font-size:15px;">
+                        $$s = \overset{\frown}{M_0M}$$
+                    </div>
+                    <p style="font-size:11px; color:var(--text-muted);">L'unité de l'abscisse curviligne est le <strong>mètre (m)</strong>.</p>
+                    <p style="font-size:11px; color:var(--text-muted);">s est une grandeur algébrique, son signe dépend de l'orientation de la trajectoire.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label prop">Relation entre s et θ</span>
+                    <p>L'abscisse curviligne et l'abscisse angulaire sont <strong>proportionnelles</strong> :</p>
+                    <div class="formula-block" style="font-size:16px;">
+                        $$s = r \cdot \theta$$
+                    </div>
+                    <p style="font-size:11px; color:var(--text-muted);">où $r$ est le <strong>rayon</strong> de la trajectoire circulaire (distance du point M à l'axe $(\Delta)$).</p>
                 </div>
 
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
-                    <div class="table-wrap">
-                        <table>
-                            <tr><th>Grandeur</th><th>Symbole</th><th>Unité</th><th>Formule</th></tr>
-                            <tr><td>Période</td><td>$T$</td><td>s</td><td>$T = \dfrac{2\pi}{\omega}$</td></tr>
-                            <tr><td>Fréquence</td><td>$f$</td><td>Hz</td><td>$f = \dfrac{1}{T} = \dfrac{\omega}{2\pi}$</td></tr>
-                            <tr><td>Équation horaire (θ)</td><td>$\theta(t)$</td><td>rad</td><td>$\theta = \omega t + \theta_0$</td></tr>
-                            <tr><td>Équation horaire (s)</td><td>$s(t)$</td><td>m</td><td>$s = v t + s_0$</td></tr>
-                        </table>
-                    </div>
+                    <ul>
+                        <li><strong>Abscisse angulaire θ</strong> : angle en radians (rad)</li>
+                        <li><strong>Abscisse curviligne s</strong> : arc en mètres (m)</li>
+                        <li><strong>Relation</strong> : $s = r \cdot \theta$</li>
+                        <li>Le signe de s et θ dépend du sens de parcours choisi.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -391,8 +303,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
-                <a href="part5.html" class="next-btn">Partie 5 <i class="fas fa-arrow-left"></i></a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="part2.html" class="next-btn">Partie 2 <i class="fas fa-arrow-left"></i></a>
             </div>
 
         </div>
@@ -415,8 +327,8 @@
         // GRAPHIQUES
         // ============================================================
 
-        function drawGraphPeriode() {
-            var canvas = document.getElementById('graphPeriode');
+        function drawGraphRotation() {
+            var canvas = document.getElementById('graphRotation');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -425,8 +337,86 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            var cx = w/2, cy = h/2 + 5;
-            var rayon = 80;
+            var cx = w/2, cy = h/2 - 10;
+            var rayon = 100;
+            var rayon2 = 60;
+
+            // Axe de rotation (Δ)
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx, 20);
+            ctx.lineTo(cx, h - 20);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.fillText('(Δ)', cx + 10, 30);
+
+            // Cercles (trajectoires)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(cx, cy, rayon2, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Points
+            var pts = [
+                {x: cx + rayon * Math.cos(-Math.PI/4), y: cy + rayon * Math.sin(-Math.PI/4), color: '#4ECDC4', label: 'A'},
+                {x: cx + rayon * Math.cos(2*Math.PI/3), y: cy + rayon * Math.sin(2*Math.PI/3), color: '#FFD93D', label: 'B'},
+                {x: cx + rayon2 * Math.cos(Math.PI/2), y: cy + rayon2 * Math.sin(Math.PI/2), color: '#BB8FCE', label: 'M'},
+                {x: cx + rayon2 * Math.cos(-Math.PI/3), y: cy + rayon2 * Math.sin(-Math.PI/3), color: '#A8FF78', label: 'N'}
+            ];
+
+            for (var i = 0; i < pts.length; i++) {
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(pts[i].x, pts[i].y, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '12px Arial';
+                ctx.fillText(pts[i].label, pts[i].x + 8, pts[i].y - 6);
+            }
+
+            // Titre
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Solide en rotation autour de (Δ)', 130, 20);
+        }
+
+        function drawGraphReperage() {
+            var canvas = document.getElementById('graphReperage');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = h/2 + 10;
+            var rayon = 100;
+
+            // Axe de rotation
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx, 20);
+            ctx.lineTo(cx, h - 20);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '12px Arial';
+            ctx.fillText('(Δ)', cx + 10, 30);
 
             // Cercle
             ctx.strokeStyle = '#4ECDC4';
@@ -435,154 +425,77 @@
             ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
             ctx.stroke();
 
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
+            // Points M0 et M
+            var angle0 = -Math.PI/4;
+            var angle = Math.PI/3;
+            var M0x = cx + rayon * Math.cos(angle0);
+            var M0y = cy + rayon * Math.sin(angle0);
+            var Mx = cx + rayon * Math.cos(angle);
+            var My = cy + rayon * Math.sin(angle);
 
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('(Δ)', cx + 10, 22);
-
-            // Points sur le cercle (positions successives)
-            var angles = [];
-            var n = 6;
-            for (var i = 0; i < n; i++) {
-                angles.push(i * Math.PI/3);
-            }
-
-            // Trajectoire complète
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            for (var i = 0; i <= 360; i++) {
-                var a = i * Math.PI / 180;
-                var x = cx + rayon * Math.cos(a);
-                var y = cy + rayon * Math.sin(a);
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var i = 0; i < n; i++) {
-                var x = cx + rayon * Math.cos(angles[i]);
-                var y = cy + rayon * Math.sin(angles[i]);
-                ctx.fillStyle = i === 0 ? '#F4D03F' : '#A8FF78';
-                ctx.beginPath();
-                ctx.arc(x, y, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText('M' + i, x - 10, y + 14);
-            }
-
-            // Flèche circulaire
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon * 0.7, 0, Math.PI/4);
-            ctx.stroke();
-
-            ctx.fillStyle = '#FFD93D';
-            ctx.font = '12px Arial';
-            ctx.fillText('T', cx + 30, cy - 30);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Période T = durée d\'un tour', 170, 20);
-        }
-
-        function drawGraphUniforme() {
-            var canvas = document.getElementById('graphUniforme');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scaleX = 50, scaleY = 35;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
+            // Rayon OM
+            ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('t (s)', w - 30, oy + 18);
-            ctx.fillText('θ (rad)', ox + 8, 18);
-
-            // Droite θ = ω·t + θ₀
-            var omega = 1.5;
-            var theta0 = 0.5;
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var t = 0; t <= 6; t += 0.05) {
-                var x = ox + t * scaleX;
-                var y = oy - (omega * t + theta0) * scaleY;
-                if (t === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var t = 0; t <= 6; t += 1) {
-                var x = ox + t * scaleX;
-                var y = oy - (omega * t + theta0) * scaleY;
-                ctx.fillStyle = '#4ECDC4';
-                ctx.beginPath();
-                ctx.arc(x, y, 4, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText(t + 's', x - 8, y + 16);
-            }
-
-            // θ₀
-            var y0 = oy - theta0 * scaleY;
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
             ctx.setLineDash([4, 4]);
             ctx.beginPath();
-            ctx.moveTo(ox, y0);
-            ctx.lineTo(ox + 30, y0);
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(Mx, My);
             ctx.stroke();
             ctx.setLineDash([]);
 
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('θ₀', ox + 32, y0 + 4);
+            // Arc M0M
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, rayon * 0.7, angle0, angle);
+            ctx.stroke();
 
+            // Points
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(M0x, M0y, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('M₀', M0x - 20, M0y - 10);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(Mx, My, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('M', Mx + 8, My - 6);
+
+            // Centre O
+            ctx.fillStyle = '#BB8FCE';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('O', cx + 8, cy + 4);
+
+            // Angle
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '12px Arial';
+            ctx.fillText('θ = (OM₀, OM)', 280, 30);
+
+            // s = M₀M
             ctx.fillStyle = '#A8FF78';
             ctx.font = '11px Arial';
-            ctx.fillText('θ = ω·t + θ₀', 200, 20);
+            ctx.fillText('s = M₀M', 280, 45);
 
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
-            ctx.fillText('(droite affine)', 200, 35);
+            ctx.fillText('θ = abscisse angulaire (rad)', 280, 60);
+            ctx.fillText('s = abscisse curviligne (m)', 280, 75);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraphPeriode();
-                drawGraphUniforme();
+                drawGraphRotation();
+                drawGraphReperage();
             }, 500);
         });
     </script>
@@ -591,9 +504,3 @@
     
 </body>
 </html>
-
-
-
-
-
-

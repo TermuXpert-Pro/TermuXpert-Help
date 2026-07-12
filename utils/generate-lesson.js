@@ -155,11 +155,3 @@ for (let i = 1; i <= parts; i++) {
 
 console.log(`✅ ${title} créé avec succès dans content/${subject}/lessons/${id}/`);
 console.log(`   - ${parts} parties créées`);
-
-
-
-
-
-
-
-
