@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -343,17 +344,8 @@
             outline-offset: 2px;
         }
 
-        /* ====== حماية إضافية ====== */
-        * {
-            -webkit-touch-callout: none !important;
-            touch-callout: none !important;
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-        }
+        /* ====== حماية الصور فقط (النصوص قابلة للتحديد والنسخ) ====== */
         img {
-            pointer-events: none !important;
             -webkit-user-drag: none !important;
             -moz-user-drag: none !important;
             -ms-user-drag: none !important;
@@ -640,6 +632,19 @@
             btn.addEventListener('mouseleave', function() {
                 gsap.to(this, {
                     scale: 1,
+                    duration: 0.2,
+                    ease: 'power2.inOut',
+                    boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'
+                });
+            });
+
+            console.log('✅ GSAP - Animation complète');
+        });
+    </script>
+</body>
+</html>
+
+ 1,
                     duration: 0.2,
                     ease: 'power2.inOut',
                     boxShadow: '0 4px 20px rgba(69, 162, 158, 0.2)'

@@ -1,3 +1,4 @@
+
 /* ============================================================
  LESSON-COMMON.CSS
  أنماط مشتركة لجميع الدروس والأجزاء (نسخة مدمجة)
@@ -485,7 +486,7 @@ details div {
  .geo-pattern { font-size: 10px; letter-spacing: 8px; }
 }
 /* ============================================================
- حماية إضافية للصور - منع التحميل والضغط المطول
+ حماية الصور فقط - النصوص والصيغ بقات قابلة للتحديد والنسخ
  ============================================================ */
 img, svg, canvas, video {
  -webkit-user-drag: none !important;
@@ -494,12 +495,12 @@ img, svg, canvas, video {
  user-drag: none !important;
  -webkit-touch-callout: none !important;
  touch-callout: none !important;
- pointer-events: none !important;
 }
-img {
- -webkit-touch-callout: none !important;
- touch-callout: none !important;
- -webkit-tap-highlight-color: transparent !important;
+img::selection, svg::selection, canvas::selection {
+ background: transparent !important;
+ color: transparent !important;
+}
+transparent !important;
 }
 img::selection,
 svg::selection,

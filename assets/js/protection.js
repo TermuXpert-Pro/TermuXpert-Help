@@ -1,7 +1,8 @@
 /**
  * ============================================================
- * protection.js - حماية متقدمة للمحتوى
- * منع النسخ، التحديد، القوائم، سحب الصور، الضغط المطول
+ * protection.js - حماية الصور فقط (نسخة محسّنة)
+ * التحديث: النصوص والصيغ الرياضية بقات قابلة للتحديد والنسخ
+ * الحماية بقات غير على: سحب/حفظ الصور، القائمة المختصرة عليها
  * ============================================================
  */
 
@@ -9,79 +10,71 @@
     'use strict';
 
     // ============================================================
-    // 1. منع تحديد النصوص (Selection)
+    // 1. حماية الصور فقط (بدون التأثير على النصوص)
     // ============================================================
-    
+
     const style = document.createElement('style');
     style.textContent = `
-        * {
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-            -webkit-touch-callout: none !important;
-            -webkit-tap-highlight-color: transparent !important;
-        }
-        input, textarea, [contenteditable="true"] {
-            -webkit-user-select: text !important;
-            -moz-user-select: text !important;
-            -ms-user-select: text !important;
-            user-select: text !important;
-        }
         img, svg, canvas, video, iframe {
             -webkit-user-drag: none !important;
             -moz-user-drag: none !important;
             -ms-user-drag: none !important;
             user-drag: none !important;
             -webkit-touch-callout: none !important;
-            pointer-events: none !important;
-            touch-action: none !important;
+            touch-action: pan-y !important;
         }
-        img {
-            -webkit-touch-callout: none !important;
-            touch-callout: none !important;
-            pointer-events: none !important;
+        img::selection, svg::selection, canvas::selection {
+            background: transparent !important;
+            color: transparent !important;
         }
-        body {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
+        /* تحسين مظهر التحديد للنصوص بدل منعه */
+        ::selection {
+            background: rgba(78, 205, 196, 0.3);
         }
     `;
     document.head.appendChild(style);
 
     // ============================================================
-    // 2. منع تحديد النصوص
+    // 2. منع سحب/حفظ الصور فقط
     // ============================================================
-    
-    document.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-        return false;
-    }, { passive: false });
 
-    document.addEventListener('selectionchange', function(e) {
-        if (window.getSelection) {
-            window.getSelection().removeAllRanges();
-        }
-    }, { passive: true });
-
-    document.querySelectorAll('*').forEach(function(el) {
-        el.addEventListener('selectstart', function(e) {
+    document.querySelectorAll('img, svg, canvas, video, iframe').forEach(function(el) {
+        el.addEventListener('dragstart', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             return false;
         }, { passive: false });
     });
 
     // ============================================================
-    // 3. منع القائمة المختصرة (النقر الأيمن)
+    // 3. منع القائمة المختصرة على الصور فقط (باقي الصفحة عادي)
     // ============================================================
-    
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-    }, { passive: false });
 
-    document.querySelectorAll('*').forEach(function(el) {
+    document.querySelectorAll('img').forEach(function(img) {
+        img.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        }, { passive: false });
+
+        // منع الضغط المطول لحفظ الصورة على الهاتف
+        let touchTimer;
+        img.addEventListener('touchstart', function(e) {
+            touchTimer = setTimeout(function() {
+                e.preventDefault();
+            }, 300);
+        }, { passive: true });
+        img.addEventListener('touchend', function() {
+            clearTimeout(touchTimer);
+        }, { passive: true });
+        img.addEventListener('touchmove', function() {
+            clearTimeout(touchTimer);
+        }, { passive: true });
+    });
+
+    console.log('✅ Protection.js - حماية الصور فقط (النصوص قابلة للنسخ)');
+
+})();
+n(el) {
         el.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             e.stopPropagation();

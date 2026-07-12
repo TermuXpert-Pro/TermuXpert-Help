@@ -1,12 +1,10 @@
 // ============================================================
-// Service Worker - Xpert PWA (نسخة محسّنة)
+// Service Worker - Xpert PWA (v3)
 // ============================================================
 
-// ⚠️ مهم: زيد رقم النسخة (v2, v3...) كل مرة كتبدل فيها ملفات الموقع
-// باش يجبر المتصفح يحيّد الكاش القديم
-const CACHE_NAME = 'xpert-v2';
+// ⚠️ زيد رقم النسخة (v3, v4...) كل مرة كتبدل فيها ملفات الموقع
+const CACHE_NAME = 'xpert-v3';
 
-// استعملنا مسارات نسبية (بدون /TermuXpert-WEB/) باش تخدم فأي مكان تستضاف فيه
 const urlsToCache = [
     './',
     './index.html',
@@ -20,9 +18,32 @@ const urlsToCache = [
     './assets/images/profile.png'
 ];
 
+// صفحة بسيطة كتبان إلا كانت الصفحة المطلوبة ماشي مخزنة وما كاينش نت
+const OFFLINE_FALLBACK = `
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hors ligne - Xpert</title>
+<style>
+    body { font-family: sans-serif; background:#0B0C10; color:#E8E8E8; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; text-align:center; padding:20px; }
+    div { max-width: 340px; }
+    h1 { font-size: 20px; color:#4ECDC4; }
+    p { font-size: 14px; color:#9CA3AF; }
+</style>
+</head>
+<body>
+    <div>
+        <h1>📡 لا يوجد اتصال بالإنترنت</h1>
+        <p>هاذ الصفحة ماشي محفوظة عندك للقراءة بدون نت. زرها مرة وحدة ومنت متصل باش تقدر تفتحها لاحقاً بدون نت.</p>
+    </div>
+</body>
+</html>`;
+
 // تثبيت Service Worker
 self.addEventListener('install', function(event) {
-    self.skipWaiting(); // يفعّل النسخة الجديدة مباشرة بلا ما ينتظر
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function(cache) {
@@ -32,13 +53,13 @@ self.addEventListener('install', function(event) {
     );
 });
 
-// اعتراض الطلبات: Network-First للصفحات HTML، Cache-First للباقي
+// اعتراض الطلبات
 self.addEventListener('fetch', function(event) {
     const isHTML = event.request.mode === 'navigate' ||
                    (event.request.headers.get('accept') || '').includes('text/html');
 
     if (isHTML) {
-        // دائماً جرب تجيب النسخة الجديدة من النت أولاً
+        // Network-First + تخزين تلقائي لكل صفحة تتزار (بما فيها صفحات الدروس)
         event.respondWith(
             fetch(event.request)
                 .then(function(response) {
@@ -47,12 +68,17 @@ self.addEventListener('fetch', function(event) {
                     return response;
                 })
                 .catch(function() {
-                    // إذا ما كانش نت، رجع للنسخة المخزنة كحل بديل
-                    return caches.match(event.request);
+                    return caches.match(event.request).then(function(cached) {
+                        if (cached) return cached;
+                        // الصفحة ماشي مخزنة وما كاينش نت
+                        return new Response(OFFLINE_FALLBACK, {
+                            headers: { 'Content-Type': 'text/html; charset=UTF-8' }
+                        });
+                    });
                 })
         );
     } else {
-        // ملفات CSS/JS/صور: كاش أولاً (أسرع)
+        // ملفات CSS/JS/صور: كاش أولاً
         event.respondWith(
             caches.match(event.request)
                 .then(function(response) {
@@ -62,7 +88,7 @@ self.addEventListener('fetch', function(event) {
     }
 });
 
-// تحديث Service Worker: حذف الكاش القديم + الاستيلاء على الصفحات المفتوحة فوراً
+// تحديث Service Worker: حذف الكاش القديم + الاستيلاء الفوري
 self.addEventListener('activate', function(event) {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(

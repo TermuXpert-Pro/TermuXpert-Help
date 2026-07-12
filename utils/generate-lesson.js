@@ -110,7 +110,7 @@ for (let i = 1; i <= parts; i++) {
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
 </head>
 <body>
     <div class="bg-grid"></div>
@@ -155,3 +155,5 @@ for (let i = 1; i <= parts; i++) {
 
 console.log(`✅ ${title} créé avec succès dans content/${subject}/lessons/${id}/`);
 console.log(`   - ${parts} parties créées`);
+
+
