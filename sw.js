@@ -1,11 +1,10 @@
-
 // ============================================================
 // Service Worker - Xpert PWA
 // ============================================================
 
 // ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
 // الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
-const CACHE_NAME = 'xpert-0a94738a';
+const CACHE_NAME = 'xpert-c5c59a49';
 
 const urlsToCache = [
     './',
@@ -128,5 +127,7 @@ self.addEventListener('activate', function(event) {
         }).then(() => self.clients.claim())
     );
 });
+
+
 
 

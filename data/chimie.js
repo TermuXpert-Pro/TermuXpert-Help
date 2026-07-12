@@ -9,7 +9,7 @@ window.subjectsData.chimie = {
     title: "Chimie",
     desc: "Cours, exercices, séries, devoirs et examens régionaux",
     lessons: [
-        { semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/lessons/mesure-chimie/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/lessons/mesure-chimie/index.html", desc: "Mesurer pour informer, surveiller/protéger et agir : concentration massique, densité" },
         { semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/lessons/quantite-matiere/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/lessons/concentration-solutions/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/lessons/suivi-transformation/index.html", desc: "قيد الإعداد 🔧" },
