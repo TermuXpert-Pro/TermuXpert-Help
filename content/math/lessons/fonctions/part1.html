@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -158,6 +159,10 @@
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
         }
+        .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin: 10px 0; text-align: center; }
+        .graph-container canvas { max-width: 100%; border-radius: 6px; background: #0D1117; }
+        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 6px; }
+        .graph-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
     </style>
     <script>
         MathJax = {
@@ -292,6 +297,19 @@
                     </ul>
                 </div>
 
+                <div class="graph-container">
+                    <div class="graph-row">
+                        <div>
+                            <canvas id="paireGraph" width="150" height="150"></canvas>
+                            <p>$f(x)=x^2$ (paire) : symétrie / axe $(Oy)$</p>
+                        </div>
+                        <div>
+                            <canvas id="impaireGraph" width="150" height="150"></canvas>
+                            <p>$f(x)=x^3$ (impaire) : symétrie / origine $O$</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
@@ -348,6 +366,11 @@
                     </div>
                 </div>
 
+                <div class="graph-container">
+                    <canvas id="monotonieGraph" width="300" height="180"></canvas>
+                    <p>$f(x)=(x-1)^2$ : décroissante sur $]-\infty,1]$, croissante sur $[1,+\infty[$</p>
+                </div>
+
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
@@ -394,6 +417,11 @@
                         <li>$T_f = 0$ → $f$ constante.</li>
                     </ul>
                 </div>
+
+                <div class="graph-container">
+                    <canvas id="tauxGraph" width="300" height="190"></canvas>
+                    <p>Sécante $(AB)$ : sa pente vaut le taux d'accroissement $T_f = \dfrac{f(x_B)-f(x_A)}{x_B-x_A}$</p>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -424,7 +452,211 @@
     </script>
     <!-- ====== زر العودة للأعلى ====== --> 
     <script>
+        function drawPaire() {
+            var canvas = document.getElementById('paireGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h - 20;
+            var scaleX = (w/2 - 12) / 2;   // x ∈ [-2,2]
+            var scaleY = (h - 30) / 4;     // y ∈ [0,4]
+
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
+
+            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(w,cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx,10); ctx.lineTo(cx,cy); ctx.stroke();
+
+            // Courbe f(x)=x²
+            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            var first = true;
+            for (var x=-2; x<=2.001; x+=0.05) {
+                var y = x*x;
+                var sx = cx + x*scaleX, sy = cy - y*scaleY;
+                if (first) { ctx.moveTo(sx,sy); first=false; } else ctx.lineTo(sx,sy);
+            }
+            ctx.stroke();
+
+            // Points symétriques M(1,1) et M'(-1,1)
+            var mx = cx + 1*scaleX, my = cy - 1*scaleY;
+            var mx2 = cx - 1*scaleX;
+            ctx.strokeStyle = '#F4D03F'; ctx.setLineDash([3,3]); ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(mx,my); ctx.lineTo(mx2,my); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath(); ctx.arc(mx,my,3,0,2*Math.PI); ctx.fill();
+            ctx.beginPath(); ctx.arc(mx2,my,3,0,2*Math.PI); ctx.fill();
+            ctx.fillStyle = '#CCCCCC'; ctx.font = '9px Arial';
+            ctx.fillText('M', mx+4, my-4);
+            ctx.fillText("M'", mx2-14, my-4);
+        }
+
+        function drawImpaire() {
+            var canvas = document.getElementById('impaireGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            var cx = w/2, cy = h/2;
+            var scaleX = (w/2 - 12) / 1.5;   // x ∈ [-1.5,1.5]
+            var scaleY = (h/2 - 12) / 3.375; // y ∈ [-3.375,3.375]
+
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
+
+            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(w,cy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx,0); ctx.lineTo(cx,h); ctx.stroke();
+
+            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            var first = true;
+            for (var x=-1.5; x<=1.5001; x+=0.03) {
+                var y = x*x*x;
+                var sx = cx + x*scaleX, sy = cy - y*scaleY;
+                if (first) { ctx.moveTo(sx,sy); first=false; } else ctx.lineTo(sx,sy);
+            }
+            ctx.stroke();
+
+            // Points symétriques M(1,1) et M'(-1,-1) par rapport à O
+            var mx = cx + 1*scaleX, my = cy - 1*scaleY;
+            var mx2 = cx - 1*scaleX, my2 = cy + 1*scaleY;
+            ctx.strokeStyle = '#F4D03F'; ctx.setLineDash([3,3]); ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(mx,my); ctx.lineTo(mx2,my2); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath(); ctx.arc(mx,my,3,0,2*Math.PI); ctx.fill();
+            ctx.beginPath(); ctx.arc(mx2,my2,3,0,2*Math.PI); ctx.fill();
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath(); ctx.arc(cx,cy,2.5,0,2*Math.PI); ctx.fill();
+            ctx.fillStyle = '#CCCCCC'; ctx.font = '9px Arial';
+            ctx.fillText('M', mx+4, my-4);
+            ctx.fillText("M'", mx2-14, my2+10);
+        }
+
+        function drawMonotonie() {
+            var canvas = document.getElementById('monotonieGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            // f(x) = (x-1)², domaine x ∈ [-1,3], y ∈ [0,4]
+            var scaleX = (w - 30) / 4;
+            var scaleY = (h - 45) / 4;
+            var ox = 15 + 1*scaleX, oy = h - 30;
+
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
+
+            ctx.strokeStyle = '#1A1A2E'; ctx.lineWidth = 0.5;
+            for (var gx=-1; gx<=3; gx++) {
+                var sx = ox+gx*scaleX;
+                ctx.beginPath(); ctx.moveTo(sx,0); ctx.lineTo(sx,h-25); ctx.stroke();
+            }
+
+            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,h-25); ctx.stroke();
+
+            // Courbe en 2 couleurs : rouge (décroissante) / vert (croissante)
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.beginPath();
+            var first = true;
+            for (var x=-1; x<=1.001; x+=0.02) {
+                var y=(x-1)*(x-1);
+                var sx=ox+x*scaleX, sy=oy-y*scaleY;
+                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
+            }
+            ctx.stroke();
+            ctx.strokeStyle = '#A8FF78';
+            ctx.beginPath();
+            first = true;
+            for (var x2=1; x2<=3.001; x2+=0.02) {
+                var y2=(x2-1)*(x2-1);
+                var sx2=ox+x2*scaleX, sy2=oy-y2*scaleY;
+                if (first){ctx.moveTo(sx2,sy2); first=false;} else ctx.lineTo(sx2,sy2);
+            }
+            ctx.stroke();
+
+            // Sommet
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath(); ctx.arc(ox+1*scaleX, oy, 4, 0, 2*Math.PI); ctx.fill();
+
+            // Flèches sous l'axe
+            ctx.strokeStyle = '#FF6B6B'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(ox-1*scaleX, h-12); ctx.lineTo(ox+1*scaleX-4, h-12); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(ox+1*scaleX-4,h-12); ctx.lineTo(ox+1*scaleX-10,h-16); ctx.moveTo(ox+1*scaleX-4,h-12); ctx.lineTo(ox+1*scaleX-10,h-8); ctx.stroke();
+            ctx.strokeStyle = '#A8FF78';
+            ctx.beginPath(); ctx.moveTo(ox+1*scaleX, h-12); ctx.lineTo(ox+3*scaleX-4, h-12); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(ox+3*scaleX-4,h-12); ctx.lineTo(ox+3*scaleX-10,h-16); ctx.moveTo(ox+3*scaleX-4,h-12); ctx.lineTo(ox+3*scaleX-10,h-8); ctx.stroke();
+
+            ctx.fillStyle = '#FF6B6B'; ctx.font='9px Arial'; ctx.fillText('décroissante', ox-1*scaleX+5, h-20);
+            ctx.fillStyle = '#A8FF78'; ctx.fillText('croissante', ox+1*scaleX+20, h-20);
+        }
+
+        function drawTaux() {
+            var canvas = document.getElementById('tauxGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            // f(x) = 0.3x² + 0.5, domaine x ∈ [-1,4], y ∈ [0,5.3]
+            var scaleX = (w - 30) / 5;
+            var scaleY = (h - 40) / 5.5;
+            var ox = 15 + 1*scaleX, oy = h - 25;
+
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
+
+            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,h-15); ctx.stroke();
+
+            function f(x){ return 0.3*x*x + 0.5; }
+
+            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            var first = true;
+            for (var x=-1; x<=4.001; x+=0.05) {
+                var y=f(x);
+                var sx=ox+x*scaleX, sy=oy-y*scaleY;
+                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
+            }
+            ctx.stroke();
+
+            var xA = 0.5, xB = 3.2;
+            var yA = f(xA), yB = f(xB);
+            var Ax = ox+xA*scaleX, Ay = oy-yA*scaleY;
+            var Bx = ox+xB*scaleX, By = oy-yB*scaleY;
+
+            // Triangle Δx, Δy
+            ctx.strokeStyle = '#888888'; ctx.setLineDash([3,3]); ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(Ax,Ay); ctx.lineTo(Bx,Ay); ctx.lineTo(Bx,By); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#F4D03F'; ctx.font='9px Arial';
+            ctx.fillText('Δx', (Ax+Bx)/2-6, Ay+12);
+            ctx.fillText('Δy', Bx+4, (Ay+By)/2);
+
+            // Sécante (AB)
+            ctx.strokeStyle = '#FF6B6B'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(Ax,Ay); ctx.lineTo(Bx,By); ctx.stroke();
+
+            // Points A et B
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath(); ctx.arc(Ax,Ay,4,0,2*Math.PI); ctx.fill();
+            ctx.beginPath(); ctx.arc(Bx,By,4,0,2*Math.PI); ctx.fill();
+            ctx.fillStyle = '#FFFFFF'; ctx.font='10px Arial';
+            ctx.fillText('A', Ax-4, Ay-8);
+            ctx.fillText('B', Bx+4, By-8);
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                drawPaire();
+                drawImpaire();
+                drawMonotonie();
+                drawTaux();
+            }, 300);
         });
     </script>
     <script src="../../../../assets/js/protection.js"></script>

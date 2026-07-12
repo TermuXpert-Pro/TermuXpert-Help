@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -460,6 +461,11 @@
                     <p>La courbe de $f$ est située <strong>strictement au-dessous</strong> de l'axe des abscisses.</p>
                 </div>
 
+                <div class="graph-container">
+                    <canvas id="comparisonGraph" width="300" height="180"></canvas>
+                    <p>$f(x)=0{,}15(x-2)^2+0{,}5$ et $g(x)=f(x)+1{,}5$ : $f \le g$ sur $\mathbb{R}$</p>
+                </div>
+
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
@@ -512,6 +518,11 @@
                     </ul>
                 </div>
 
+                <div class="graph-container">
+                    <canvas id="compositionGraph" width="300" height="150"></canvas>
+                    <p>Schéma de la composée $h = g \circ f$</p>
+                </div>
+
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>
                     <ul>
@@ -545,7 +556,114 @@
     </script>
     <!-- ====== زر العودة للأعلى ====== --> 
     <script>
+        function drawComparison() {
+            var canvas = document.getElementById('comparisonGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            // f(x) = 0.15(x-2)² + 0.5 ; g(x) = f(x) + 1.5, domaine x ∈ [-1,5]
+            var scaleX = (w-30)/6, scaleY = (h-30)/6;
+            var ox = 15 + 1*scaleX, oy = h - 15;
+
+            function f(x){ return 0.15*(x-2)*(x-2) + 0.5; }
+            function g(x){ return f(x) + 1.5; }
+
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
+            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(ox,10); ctx.lineTo(ox,h-5); ctx.stroke();
+
+            // Zone hachurée entre f et g (f ≤ g)
+            ctx.fillStyle = 'rgba(78,205,196,0.12)';
+            ctx.beginPath();
+            for (var x=-1; x<=5.001; x+=0.1) {
+                var sx = ox+x*scaleX, sy = oy-g(x)*scaleY;
+                if (x===-1) ctx.moveTo(sx,sy); else ctx.lineTo(sx,sy);
+            }
+            for (var x2=5; x2>=-1.001; x2-=0.1) {
+                var sx2 = ox+x2*scaleX, sy2 = oy-f(x2)*scaleY;
+                ctx.lineTo(sx2,sy2);
+            }
+            ctx.closePath();
+            ctx.fill();
+
+            // Courbe f
+            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2.2;
+            ctx.beginPath();
+            var first = true;
+            for (var xf=-1; xf<=5.001; xf+=0.05) {
+                var sx = ox+xf*scaleX, sy = oy-f(xf)*scaleY;
+                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
+            }
+            ctx.stroke();
+
+            // Courbe g
+            ctx.strokeStyle = '#F4D03F'; ctx.lineWidth = 2.2;
+            ctx.beginPath();
+            first = true;
+            for (var xg=-1; xg<=5.001; xg+=0.05) {
+                var sx = ox+xg*scaleX, sy = oy-g(xg)*scaleY;
+                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
+            }
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4'; ctx.font='11px Arial'; ctx.fillText('f', w-24, oy-f(5)*scaleY-4);
+            ctx.fillStyle = '#F4D03F'; ctx.fillText('g', w-24, oy-g(5)*scaleY-4);
+        }
+
+        function drawComposition() {
+            var canvas = document.getElementById('compositionGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+            ctx.clearRect(0,0,w,h);
+            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
+
+            var cy = h/2;
+            var x1 = 25, x2 = 140, x3 = 255;
+
+            function box(cx, label, color) {
+                ctx.strokeStyle = color; ctx.lineWidth = 2;
+                ctx.strokeRect(cx-20, cy-16, 40, 32);
+                ctx.fillStyle = '#FFFFFF'; ctx.font = '13px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, cx, cy+5);
+                ctx.textAlign = 'left';
+            }
+            box(x1, 'x', '#F4D03F');
+            box(x2, 'f(x)', '#4ECDC4');
+            box(x3, 'g(f(x))', '#FF6B6B');
+
+            function arrow(xa, xb, label, color) {
+                ctx.strokeStyle = color; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(xa+20, cy); ctx.lineTo(xb-22, cy); ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(xb-22, cy); ctx.lineTo(xb-30, cy-5);
+                ctx.moveTo(xb-22, cy); ctx.lineTo(xb-30, cy+5);
+                ctx.stroke();
+                ctx.fillStyle = color; ctx.font = '12px Arial'; ctx.textAlign='center';
+                ctx.fillText(label, (xa+xb)/2, cy-10);
+                ctx.textAlign='left';
+            }
+            arrow(x1, x2, 'f', '#4ECDC4');
+            arrow(x2, x3, 'g', '#FF6B6B');
+
+            ctx.strokeStyle = '#888888'; ctx.setLineDash([3,3]); ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.moveTo(x1, cy+34); ctx.lineTo(x3, cy+34); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(x1, cy+30); ctx.lineTo(x1, cy+38); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(x3, cy+30); ctx.lineTo(x3, cy+38); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#888888'; ctx.font='11px Arial'; ctx.textAlign='center';
+            ctx.fillText('g ∘ f', (x1+x3)/2, cy+50);
+            ctx.textAlign='left';
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                drawComparison();
+                drawComposition();
+            }, 300);
         });
     </script>
     <script src="../../../../assets/js/protection.js"></script>

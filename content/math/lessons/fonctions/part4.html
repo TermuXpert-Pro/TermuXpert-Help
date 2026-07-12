@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -513,37 +514,60 @@
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
             var cx = w/2, cy = h/2;
-            var scale = 25;
+            // Domaine affiché : x ∈ [-2,2], y = x³ ∈ [-8,8]
+            var scaleX = (w/2 - 20) / 2;
+            var scaleY = (h/2 - 12) / 8;
 
             ctx.clearRect(0, 0, w, h);
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Axes
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var gx = -2; gx <= 2; gx += 0.5) {
+                var sx = cx + gx * scaleX;
+                ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx, h); ctx.stroke();
+            }
+            for (var gy = -8; gy <= 8; gy += 2) {
+                var sy = cy - gy * scaleY;
+                ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
+            }
+
             ctx.strokeStyle = '#2A2A3E';
             ctx.lineWidth = 1.5;
             ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
             ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
 
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('x', w-12, cy+14);
-            ctx.fillText('y', cx+6, 10);
+            ctx.fillStyle = '#666666';
+            ctx.font = '9px Arial';
+            [-2,-1,1,2].forEach(function(gx){
+                var sx = cx + gx*scaleX;
+                ctx.fillText(gx, sx-3, cy+12);
+            });
 
-            // Cube f(x) = x³
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '11px Arial';
+            ctx.fillText('x', w-14, cy-6);
+            ctx.fillText('y', cx+8, 12);
+
             ctx.strokeStyle = '#4ECDC4';
             ctx.lineWidth = 2.5;
             ctx.beginPath();
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
+            var first = true;
+            for (var x = -2; x <= 2.001; x += 0.02) {
                 var y = x * x * x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                if (px === 0) ctx.moveTo(screenX, screenY);
+                var screenX = cx + x * scaleX;
+                var screenY = cy - y * scaleY;
+                if (first) { ctx.moveTo(screenX, screenY); first = false; }
                 else ctx.lineTo(screenX, screenY);
             }
             ctx.stroke();
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath(); ctx.arc(cx, cy, 3, 0, 2*Math.PI); ctx.fill();
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '11px Arial';
+            ctx.fillText('f(x) = x³', w-70, 16);
         }
 
         function drawCubeDown() {
@@ -552,37 +576,59 @@
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
             var cx = w/2, cy = h/2;
-            var scale = 25;
+            var scaleX = (w/2 - 20) / 2;
+            var scaleY = (h/2 - 12) / 8;
 
             ctx.clearRect(0, 0, w, h);
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Axes
+            ctx.strokeStyle = '#1A1A2E';
+            ctx.lineWidth = 0.5;
+            for (var gx2 = -2; gx2 <= 2; gx2 += 0.5) {
+                var sx2 = cx + gx2 * scaleX;
+                ctx.beginPath(); ctx.moveTo(sx2, 0); ctx.lineTo(sx2, h); ctx.stroke();
+            }
+            for (var gy2 = -8; gy2 <= 8; gy2 += 2) {
+                var sy2 = cy - gy2 * scaleY;
+                ctx.beginPath(); ctx.moveTo(0, sy2); ctx.lineTo(w, sy2); ctx.stroke();
+            }
+
             ctx.strokeStyle = '#2A2A3E';
             ctx.lineWidth = 1.5;
             ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
             ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
 
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('x', w-12, cy+14);
-            ctx.fillText('y', cx+6, 10);
+            ctx.fillStyle = '#666666';
+            ctx.font = '9px Arial';
+            [-2,-1,1,2].forEach(function(gx){
+                var sx = cx + gx*scaleX;
+                ctx.fillText(gx, sx-3, cy+12);
+            });
 
-            // Cube f(x) = -x³
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '11px Arial';
+            ctx.fillText('x', w-14, cy-6);
+            ctx.fillText('y', cx+8, 12);
+
             ctx.strokeStyle = '#FF6B6B';
             ctx.lineWidth = 2.5;
             ctx.beginPath();
-            for (var px = 0; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                var y = -x * x * x;
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
+            var first2 = true;
+            for (var x2 = -2; x2 <= 2.001; x2 += 0.02) {
+                var y2 = -x2 * x2 * x2;
+                var screenX2 = cx + x2 * scaleX;
+                var screenY2 = cy - y2 * scaleY;
+                if (first2) { ctx.moveTo(screenX2, screenY2); first2 = false; }
+                else ctx.lineTo(screenX2, screenY2);
             }
             ctx.stroke();
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath(); ctx.arc(cx, cy, 3, 0, 2*Math.PI); ctx.fill();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '11px Arial';
+            ctx.fillText('f(x) = -x³', w-78, 16);
         }
 
         function drawSqrt() {
