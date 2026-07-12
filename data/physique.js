@@ -27,7 +27,7 @@ window.subjectsData.physique = {
     exercices: [
         { 
             title: "Rotation d'un solide", 
-            file: "content/physique/exercices/rotation-solide/index.html", 
+            file: "content/physique/exercises/rotation-solide/index.html", 
             desc: "6 exercices avec solutions" 
         }
     ],

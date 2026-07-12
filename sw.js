@@ -29,13 +29,13 @@ const urlsToCache = [
     './content/physique/series/rotation-solide/index.html',
     './content/physique/series/rotation-solide/serie1.html',
     // ====== تمارين الفيزياء ======
-    './content/physique/exercices/rotation-solide/index.html',
-    './content/physique/exercices/rotation-solide/exercice1.html',
-    './content/physique/exercices/rotation-solide/exercice2.html',
-    './content/physique/exercices/rotation-solide/exercice3.html',
-    './content/physique/exercices/rotation-solide/exercice4.html',
-    './content/physique/exercices/rotation-solide/exercice5.html',
-    './content/physique/exercices/rotation-solide/exercice6.html'
+    './content/physique/exercises/rotation-solide/index.html',
+    './content/physique/exercises/rotation-solide/exercice1.html',
+    './content/physique/exercises/rotation-solide/exercice2.html',
+    './content/physique/exercises/rotation-solide/exercice3.html',
+    './content/physique/exercises/rotation-solide/exercice4.html',
+    './content/physique/exercises/rotation-solide/exercice5.html',
+    './content/physique/exercises/rotation-solide/exercice6.html'
 ];
 
 // صفحة بسيطة كتبان إلا كانت الصفحة المطلوبة ماشي مخزنة وما كاينش نت
