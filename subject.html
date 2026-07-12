@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -477,58 +476,10 @@
         // ============================================================
         // البيانات - متوافقة مع الهيكل الحقيقي للمشروع
         // ============================================================
-        const data = {
-            math: {
-                title: "Mathématiques",
-                desc: "Cours, exercices, séries, devoirs et examens régionaux",
-                lessons: [
-                    { title: "Logique mathématique", file: "content/math/lessons/logique/index.html", desc: "Propositions, opérateurs, quantificateurs, raisonnements" },
-                    { title: "Généralités sur les fonctions", file: "content/math/lessons/fonctions/index.html", desc: "Fonctions numériques, parité, monotonie, études de fonctions" },
-                    { title: "Barycentre dans le plan", file: "content/math/lessons/barycentre/index.html", desc: "Barycentre de deux, trois et quatre points pondérés" }
-                ],
-                exercices: [
-                    { title: "Logique mathématique", file: "content/math/exercises/logique/index.html", desc: "8 exercices avec solutions" },
-                    { title: "Généralités sur les fonctions", file: "content/math/exercises/fonctions/index.html", desc: "10 exercices avec solutions" },
-                    { title: "Barycentre dans le plan", file: "content/math/exercises/barycentre/index.html", desc: "8 exercices avec solutions" }
-                ],
-                series: [
-                    { title: "Logique mathématique", file: "content/math/series/logique/index.html", desc: "5 séries (54 exercices)" },
-                    { title: "Généralités sur les fonctions", file: "content/math/series/fonctions/index.html", desc: "7 séries" },
-                    { title: "Barycentre dans le plan", file: "content/math/series/barycentre/index.html", desc: "6 séries" }
-                ],
-                exams: []
-            },
-            physique: {
-                title: "Physique",
-                desc: "Cours, exercices, séries, devoirs et examens régionaux",
-                lessons: [
-                    { title: "Rotation d'un solide autour d'un axe fixe", file: "content/physique/lessons/Rotation-d'un-solide-indéformable-autour-d'un-axe-fixe/index.html", desc: "Mouvement de rotation, vitesse angulaire, période, fréquence" },
-                    { title: "Travail et énergie cinétique", file: "content/physique/lessons/travail-energie-cinetique/index.html", desc: "Énergie cinétique en translation et rotation, théorème de l'énergie cinétique" },
-                    { title: "Travail et puissance d'une force", file: "content/physique/lessons/travail-puissance/index.html", desc: "Travail d'une force, puissance, couple de forces" }
-                ],
-                exercices: [
-                    { title: "Travail et énergie cinétique", file: "content/physique/exercises/travail-energie-cinetique/index.html", desc: "Exercices d'application" }
-                ],
-                series: [
-                    { title: "Travail et énergie cinétique", file: "content/physique/series/travail-energie-cinetique/index.html", desc: "Séries d'exercices" }
-                ],
-                exams: []
-            },
-            chimie: {
-                title: "Chimie",
-                desc: "Cours, exercices, séries, devoirs et examens régionaux",
-                lessons: [
-                    { title: "Structure de l'atome", file: "content/chimie/lessons/atome/index.html", desc: "Noyau, électrons, configuration électronique" }
-                ],
-                exercices: [
-                    { title: "Structure de l'atome", file: "content/chimie/exercises/atome/index.html", desc: "Exercices d'application" }
-                ],
-                series: [
-                    { title: "Structure de l'atome", file: "content/chimie/series/atome/index.html", desc: "Séries d'exercices" }
-                ],
-                exams: []
-            }
-        };
+        // ============================================================
+        // البيانات كتتحمل ديناميكياً من data/<subject>.js (شوف loadSubject)
+        // هذا كيسهّل إضافة مادة/درس/تمرين جديد بلا ما تخربق هاد الملف
+        // ============================================================
 
         let currentSubject = null;
         let currentTab = 'lessons';
@@ -569,28 +520,57 @@
         // ============================================================
         // تحميل المادة
         // ============================================================
-        function loadSubject() {
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get('subject');
-            currentSubject = data[id];
-            
-            if (!currentSubject) {
-                document.getElementById('subjectTitle').textContent = '⚠️ Matière non trouvée';
-                document.getElementById('tabContent').innerHTML = '<div class="no-data">Matière non trouvée</div>';
-                return;
-            }
-            
+        function showNotFound() {
+            document.getElementById('subjectTitle').textContent = '⚠️ Matière non trouvée';
+            document.getElementById('tabContent').innerHTML = '<div class="no-data">Matière non trouvée</div>';
+        }
+
+        function renderSubjectHeader() {
             document.getElementById('subjectTitle').textContent = currentSubject.title;
             document.getElementById('subTitle').textContent = currentSubject.desc;
-            
+
             const savedTab = getSavedTab();
             currentTab = savedTab;
-            
+
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
             if (activeBtn) activeBtn.classList.add('active');
-            
+
             renderContent(document.getElementById('tabContent'), savedTab);
+        }
+
+        function loadSubject() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('subject');
+
+            if (!id) {
+                showNotFound();
+                return;
+            }
+
+            // إذا كانت البيانات محملة من قبل (نادر، لكن للأمان)
+            if (window.subjectsData && window.subjectsData[id]) {
+                currentSubject = window.subjectsData[id];
+                renderSubjectHeader();
+                return;
+            }
+
+            // تحميل ملف بيانات المادة ديناميكياً: data/math.js أو data/physique.js أو data/chimie.js
+            const script = document.createElement('script');
+            script.src = `data/${id}.js`;
+            script.onload = function() {
+                currentSubject = (window.subjectsData || {})[id];
+                if (!currentSubject) {
+                    showNotFound();
+                    return;
+                }
+                renderSubjectHeader();
+            };
+            script.onerror = function() {
+                console.error(`❌ ملف data/${id}.js غير موجود`);
+                showNotFound();
+            };
+            document.head.appendChild(script);
         }
 
         // ============================================================
@@ -847,23 +827,6 @@
 
             runAnimation();
             console.log('📌 Animation autorisée → Animation jouée');
-        });
-    </script>
-</body>
-</html>
-                showDirect();
-                console.log('📌 subject.html - Navigation depuis Back/Forward → Affichage direct');
-                return;
-            }
-
-            if (animationAllowed !== 'true') {
-                showDirect();
-                console.log('📌 subject.html - Animation non autorisée → Affichage direct');
-                return;
-            }
-
-            runAnimation();
-            console.log('📌 subject.html - Animation autorisée → Animation jouée');
         });
     </script>
 </body>
