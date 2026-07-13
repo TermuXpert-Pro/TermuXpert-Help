@@ -69,7 +69,6 @@
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
-        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
         .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 450px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
@@ -400,14 +399,14 @@
                     <span class="label ex">Exemple : Dissolution du chlorure de sodium</span>
                     <p>Les ions sodium et chlorure sont notés :</p>
                     <div class="formula-block" style="font-size:16px;">
-                        $$Na^+_{(aq)} \quad \text{et} \quad Cl^-_{(aq)}$$
+                        $$Na^{+}_{(aq)} \quad \text{et} \quad Cl^{-}_{(aq)}$$
                     </div>
                     <p style="font-size:11px; color:var(--text-muted);">(aq) = en solution aqueuse (hydraté)</p>
                     <p style="margin-top:4px;">L'équation de dissolution :</p>
                     <div class="formula-block" style="font-size:16px;">
-                        $$NaCl_{(s)} \xrightarrow{eau} Na^+_{(aq)} + Cl^-_{(aq)}$$
+                        $$NaCl_{(s)} \xrightarrow{eau} Na^{+}_{(aq)} + Cl^{-}_{(aq)}$$
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">La solution aqueuse de chlorure de sodium est notée : \(Na^+_{(aq)} + Cl^-_{(aq)}\)</p>
+                    <p style="font-size:11px; color:var(--text-muted);">La solution aqueuse de chlorure de sodium est notée : \(Na^{+}_{(aq)} + Cl^{-}_{(aq)}\)</p>
                 </div>
 
                 <div class="highlight-box green">
@@ -437,9 +436,9 @@
                 <div class="highlight-box yellow">
                     <span class="label ex">Équation de dissolution</span>
                     <div class="formula-block" style="font-size:16px;">
-                        $$HCl_{(g)} \xrightarrow{eau} H^+_{(aq)} + Cl^-_{(aq)}$$
+                        $$HCl_{(g)} \xrightarrow{eau} H^{+}_{(aq)} + Cl^{-}_{(aq)}$$
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">La solution aqueuse d'acide chlorhydrique est notée : \(H^+_{(aq)} + Cl^-_{(aq)}\)</p>
+                    <p style="font-size:11px; color:var(--text-muted);">La solution aqueuse d'acide chlorhydrique est notée : \(H^{+}_{(aq)} + Cl^{-}_{(aq)}\)</p>
                 </div>
 
                 <div class="highlight-box purple">
@@ -465,9 +464,9 @@
                 <div class="highlight-box yellow">
                     <span class="label ex">Équation de dissolution</span>
                     <div class="formula-block" style="font-size:16px;">
-                        $$H_2SO_4{(\ell)} \xrightarrow{eau} 2H^+_{(aq)} + SO_4^{2-}_{(aq)}$$
+                        $$H_{2}SO_{4}{(\ell)} \xrightarrow{eau} 2H^{+}_{(aq)} + SO_{4}^{2-}_{(aq)}$$
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">La solution aqueuse de l'acide sulfurique contient : \(2H^+_{(aq)} + SO_4^{2-}_{(aq)}\)</p>
+                    <p style="font-size:11px; color:var(--text-muted);">La solution aqueuse de l'acide sulfurique contient : \(2H^{+}_{(aq)} + SO_{4}^{2-}_{(aq)}\)</p>
                 </div>
 
                 <div class="highlight-box green">
@@ -553,7 +552,6 @@
             ctx.textBaseline = 'bottom';
             ctx.fillText('Cristal de chlorure de sodium (NaCl)', w/2, h - 4);
 
-            // Légende
             ctx.textBaseline = 'middle';
             ctx.fillStyle = '#4ECDC4';
             ctx.beginPath();
@@ -577,14 +575,12 @@
             var ctx = c.getContext('2d'), w = c.width, h = c.height;
             ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
 
-            // H
             ctx.fillStyle = '#4ECDC4';
             ctx.font = '18px Arial';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('H', 100, 40);
 
-            // Liaison
             ctx.strokeStyle = '#888';
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -592,7 +588,6 @@
             ctx.lineTo(230, 40);
             ctx.stroke();
 
-            // Doublet électronique décalé
             ctx.fillStyle = 'rgba(244, 208, 63, 0.3)';
             ctx.beginPath();
             ctx.arc(200, 40, 12, 0, 2 * Math.PI);
@@ -605,12 +600,10 @@
             ctx.fillText('doublet', 200, 58);
             ctx.fillText('décalé', 200, 68);
 
-            // Cl
             ctx.fillStyle = '#FF6B6B';
             ctx.font = '18px Arial';
             ctx.fillText('Cl', 260, 40);
 
-            // Charges partielles
             ctx.fillStyle = '#4ECDC4';
             ctx.font = '14px Arial';
             ctx.fillText('δ⁺', 70, 18);
@@ -627,20 +620,17 @@
             var ctx = c.getContext('2d'), w = c.width, h = c.height;
             ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
 
-            // O
             ctx.fillStyle = '#FF6B6B';
             ctx.font = '18px Arial';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('O', 175, 45);
 
-            // H
             ctx.fillStyle = '#4ECDC4';
             ctx.font = '16px Arial';
             ctx.fillText('H', 100, 15);
             ctx.fillText('H', 250, 15);
 
-            // Liaisons
             ctx.strokeStyle = '#888';
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -652,7 +642,6 @@
             ctx.lineTo(240, 18);
             ctx.stroke();
 
-            // Charges partielles
             ctx.fillStyle = '#FF6B6B';
             ctx.font = '13px Arial';
             ctx.fillText('2δ⁻', 175, 75);
@@ -660,7 +649,6 @@
             ctx.fillText('δ⁺', 85, 8);
             ctx.fillText('δ⁺', 265, 8);
 
-            // Forme coudée
             ctx.strokeStyle = 'rgba(244, 208, 63, 0.15)';
             ctx.lineWidth = 1;
             ctx.setLineDash([4, 4]);
