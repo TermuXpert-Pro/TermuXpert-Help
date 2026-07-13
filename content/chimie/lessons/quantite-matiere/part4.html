@@ -99,7 +99,6 @@
         .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
         .toc ul li a:hover { color: #F4D03F; }
         .toc ul li a .num { color: #F4D03F; font-weight: 700; font-size: 11px; min-width: 20px; }
-        .formula-card { background: rgba(244, 208, 63, 0.05); border: 1px solid #F4D03F22; border-radius: 6px; padding: 6px 10px; margin: 3px 0; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -191,7 +190,7 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-book-open" style="color:#F4D03F;"></i> Résumé complet : Grandeurs physiques liées à la quantité de matière</h1>
 
-            <!-- ====== Table des matières ====== -->
+            <!-- ====== TABLE DES MATIÈRES ====== -->
             <div class="toc">
                 <h3><i class="fas fa-list"></i> Table des matières</h3>
                 <ul>
@@ -214,7 +213,7 @@
                 <h2><span class="num">1</span> La mole - Nombre d'Avogadro</h2>
 
                 <div class="summary-card">
-                    <div class="s-title">📌 Définition</div>
+                    <div class="s-title">📌 Qu'est-ce qu'une mole ?</div>
                     <div class="s-content">
                         <p>La <strong>mole</strong> est l'unité de quantité de matière. Une mole contient <strong>\(6,02 \times 10^{23}\)</strong> entités (atomes, molécules, ions...).</p>
                         <div class="formula-block" style="font-size:16px; margin:4px 0;">
@@ -226,6 +225,12 @@
                         <span style="color:var(--text-muted); font-size:11px;">\(n\) en mol, \(N\) : nombre d'entités, \(N_A\) : nombre d'Avogadro</span>
                     </div>
                 </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <p>Un échantillon contient \(1,204 \times 10^{24}\) molécules d'eau.</p>
+                    <p>\(n = \frac{1,204 \times 10^{24}}{6,02 \times 10^{23}} = 2,00 \text{ mol}\)</p>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -235,7 +240,7 @@
                 <h2><span class="num">2</span> Masse molaire - Relation \(n = m/M\)</h2>
 
                 <div class="summary-card">
-                    <div class="s-title">📌 Masse molaire</div>
+                    <div class="s-title">📌 Définition</div>
                     <div class="s-content">
                         <p>La <strong>masse molaire atomique</strong> \(M(X)\) est la masse d'une mole d'atomes de l'élément \(X\) (en g.mol⁻¹).</p>
                         <p>La <strong>masse molaire moléculaire</strong> est la <strong>somme</strong> des masses molaires atomiques des atomes constituant la molécule.</p>
@@ -246,15 +251,13 @@
                     </div>
                 </div>
 
-                <div class="summary-card">
-                    <div class="s-title">📌 Exemples</div>
-                    <div class="s-content">
-                        <ul style="font-size:12px; padding-right:14px;">
-                            <li>\(M(H_2O) = 2 \times 1 + 16 = 18 \text{ g.mol}^{-1}\)</li>
-                            <li>\(M(C_2H_6O) = 2 \times 12 + 6 \times 1 + 16 = 46 \text{ g.mol}^{-1}\)</li>
-                            <li>\(M(C_6H_{12}O_6) = 6 \times 12 + 12 \times 1 + 6 \times 16 = 180 \text{ g.mol}^{-1}\)</li>
-                        </ul>
-                    </div>
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemples</span>
+                    <ul>
+                        <li>\(M(H_2O) = 2 \times 1 + 16 = 18 \text{ g.mol}^{-1}\)</li>
+                        <li>\(M(C_2H_6O) = 2 \times 12 + 6 \times 1 + 16 = 46 \text{ g.mol}^{-1}\)</li>
+                        <li>\(M(C_6H_{12}O_6) = 6 \times 12 + 12 \times 1 + 6 \times 16 = 180 \text{ g.mol}^{-1}\)</li>
+                    </ul>
                 </div>
             </div>
 
@@ -293,6 +296,12 @@
                         </div>
                         <span style="color:var(--text-muted); font-size:11px;">Avec \(\rho_{eau} = 1,00 \text{ g.mL}^{-1}\), \(V\) en mL</span>
                     </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple</span>
+                    <p>Hexane : \(\rho = 0,66 \text{ g.mL}^{-1}\), \(M = 86 \text{ g.mol}^{-1}\)</p>
+                    <p>\(V = \frac{n \times M}{\rho} = \frac{0,1 \times 86}{0,66} = 13,0 \text{ mL}\)</p>
                 </div>
             </div>
 
@@ -344,6 +353,12 @@
                         </div>
                         <span style="color:var(--text-muted); font-size:11px;">Zéro absolu : \(0 \text{ K} = -273,15^\circ C\)</span>
                     </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Application</span>
+                    <p>Volume molaire dans les CNTP :</p>
+                    <p>\(V_m = \frac{R \times T}{P} = \frac{8,314 \times 273,15}{1013 \times 10^2} = 22,4 \text{ L.mol}^{-1}\)</p>
                 </div>
             </div>
 
@@ -404,18 +419,36 @@
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 8: MÉTHODOLOGIE -->
+            <!-- SECTION 8: MÉTHODOLOGIE DE RÉSOLUTION -->
             <!-- ============================================================ -->
             <div class="section" id="sec8">
                 <h2><span class="num">8</span> Méthodologie de résolution</h2>
 
                 <div class="highlight-box gold">
-                    <span class="label summary">Méthode pour résoudre un exercice</span>
-                    <div class="step"><span class="step-num">Étape 1 :</span> <strong>Identifier</strong> l'espèce chimique et la grandeur demandée (\(n\), \(m\), \(V\), \(C\), \(d\)...).</div>
-                    <div class="step"><span class="step-num">Étape 2 :</span> <strong>Convertir</strong> toutes les données dans des unités cohérentes (g, L, mol, K, Pa...).</div>
-                    <div class="step"><span class="step-num">Étape 3 :</span> <strong>Choisir</strong> la formule adaptée parmi celles du tableau récapitulatif.</div>
-                    <div class="step"><span class="step-num">Étape 4 :</span> <strong>Appliquer</strong> la formule et calculer le résultat avec la précision appropriée.</div>
-                    <div class="step"><span class="step-num">Étape 5 :</span> <strong>Vérifier</strong> la cohérence du résultat (ordre de grandeur, unités).</div>
+                    <span class="label summary">📋 Méthode pour résoudre un exercice de quantité de matière</span>
+
+                    <div class="step"><span class="step-num">Étape 1 :</span> <strong>Identifier</strong> l'espèce chimique et la grandeur demandée (\(n\), \(m\), \(V\), \(C\), \(d\), \(P\), \(T\)...).</div>
+
+                    <div class="step"><span class="step-num">Étape 2 :</span> <strong>Convertir</strong> toutes les données dans des unités cohérentes :
+                        <ul style="font-size:10.5px; padding-right:20px; margin-top:2px;">
+                            <li>Masse : \(1 \text{ g} = 10^3 \text{ mg}\)</li>
+                            <li>Volume : \(1 \text{ L} = 10^3 \text{ mL} = 10^{-3} \text{ m}^3\)</li>
+                            <li>Température : \(T(K) = \theta(^\circ C) + 273,15\)</li>
+                            <li>Pression : \(1 \text{ atm} = 1013 \text{ hPa} = 1,013 \times 10^5 \text{ Pa}\)</li>
+                        </ul>
+                    </div>
+
+                    <div class="step"><span class="step-num">Étape 3 :</span> <strong>Choisir</strong> la formule adaptée parmi celles du tableau récapitulatif :
+                        <ul style="font-size:10.5px; padding-right:20px; margin-top:2px;">
+                            <li>Si on a la masse → \(n = m/M\)</li>
+                            <li>Si on a le volume d'un liquide → \(n = \rho \times V / M\) ou \(n = d \times \rho_{eau} \times V / M\)</li>
+                            <li>Si on a un gaz → \(PV = nRT\) ou \(n = V/V_m\)</li>
+                        </ul>
+                    </div>
+
+                    <div class="step"><span class="step-num">Étape 4 :</span> <strong>Appliquer</strong> la formule et calculer le résultat avec la précision appropriée (généralement 3 chiffres significatifs).</div>
+
+                    <div class="step"><span class="step-num">Étape 5 :</span> <strong>Vérifier</strong> la cohérence du résultat (ordre de grandeur, unités, signe).</div>
                 </div>
             </div>
 
@@ -426,7 +459,7 @@
                 <h2><span class="num">9</span> À retenir</h2>
 
                 <div class="highlight-box gold">
-                    <span class="label summary">Essentiel</span>
+                    <span class="label summary">⭐ Essentiel</span>
                     <ul style="font-size:12px;">
                         <li>La <strong>mole</strong> est l'unité de quantité de matière (\(N_A = 6,02 \times 10^{23} \text{ mol}^{-1}\)).</li>
                         <li><strong>\(n = m/M\)</strong> : relation fondamentale pour solides et liquides.</li>
@@ -439,11 +472,14 @@
                 </div>
 
                 <div class="highlight-box purple">
-                    <span class="label rem">Et après ?</span>
+                    <span class="label rem">📖 Et après ?</span>
                     <p>Dans les prochains chapitres, on appliquera ces notions aux <strong>solutions électrolytiques</strong> avec la <strong>concentration molaire</strong> \(C = n/V\), puis aux <strong>réactions chimiques</strong> avec les <strong>dosages</strong> et les <strong>titrages</strong>.</p>
                 </div>
             </div>
 
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
             <div class="nav-buttons">
                 <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
                 <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
