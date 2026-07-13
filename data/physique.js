@@ -1,4 +1,3 @@
-
 // ============================================================
 // بيانات مادة الفيزياء
 // لإضافة درس/تمرين/سلسلة جديدة: زيد سطر جديد فـ المصفوفة المناسبة
@@ -42,6 +41,11 @@ window.subjectsData.physique = {
             title: "Rotation d'un solide",
             file: "content/physique/exercises/rotation-solide/index.html",
             desc: "6 exercices avec solutions"
+        },
+        {
+            title: "Travail et puissance d'une force",
+            file: "content/physique/exercises/travail-puissance/index.html",
+            desc: "8 exercices avec solutions détaillées"
         }
     ],
     series: [
@@ -53,4 +57,3 @@ window.subjectsData.physique = {
     ],
     exams: []
 };
-
