@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices - Barycentre | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .ex-link { padding: 8px 12px; margin-bottom: 8px; border-radius: 8px; }
+        .ex-link .ex-num { font-size: 13px; color: #4ECDC4; font-weight: 700; }
+        .ex-link .ex-title { font-size: 14px; color: var(--text-secondary); }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .ex-link:active { transform: scale(0.97); opacity: 0.8; }
+        .ex-link:hover { border-color: #4ECDC4; transform: translateX(-3px); }
+        .ex-link .ex-arrow { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
+        .badge-difficulty {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-facile { background: #4ECDC422; color: #4ECDC4; }
+        .badge-moyen { background: #F4D03F22; color: #F4D03F; }
+        .badge-difficile { background: #FF6B6B22; color: #FF6B6B; }
+        .exercice-count {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .exercice-count span { color: #4ECDC4; font-weight: 700; }
+        .badge-theme {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .ex-link { padding: 6px 10px; }
+            .ex-link .ex-num { font-size: 14px; }
+            .ex-link .ex-title { font-size: 13px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .ex-link { padding: 4px 8px; }
+            .ex-link .ex-num { font-size: 13px; }
+            .ex-link .ex-title { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../../../../../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercices - Barycentre dans le plan</h1>
+            <div class="exercice-count"><span>8</span> exercices disponibles</div>
+
+            <div class="section-list" style="max-width:700px; margin:0 auto;">
+
+                <!-- Exercice 1 -->
+                <a href="exercice1.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 1</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Coordonnées du barycentre - Exercice 1</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-facile">Facile</span>
+                                <span class="badge-theme">Bar{(A,1);(B,-5)}</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 2 -->
+                <a href="exercice2.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 2</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Point d'intersection - Exercice 2</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-facile">Facile</span>
+                                <span class="badge-theme">EG=2EF</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 3 -->
+                <a href="exercice3.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 3</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Coordonnées - Cercle - Exercice 3</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                                <span class="badge-theme">|MA+2MB|=6</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 4 -->
+                <a href="exercice4.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 4</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Barycentre de 3 points - Exercice 4</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                                <span class="badge-theme">2AC=3AG-GB</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 5 -->
+                <a href="exercice5.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 5</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Associativité - Exercices 5 et 6</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                                <span class="badge-theme">Bar{(A,2);(B,-3);(C,5)}</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 6 -->
+                <a href="exercice6.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 6</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Réduction d'écriture - Exercice 7</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-difficile">Difficile</span>
+                                <span class="badge-theme">2MA+MB-3MC</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 7 -->
+                <a href="exercice7.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 7</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Cercles - Médiatrice - Exercice 8</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-difficile">Difficile</span>
+                                <span class="badge-theme">|MA+2MB+MC|=AC</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 8 -->
+                <a href="exercice8.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:#4ECDC4; font-size:16px; flex-shrink:0;"><i class="fas fa-circle-check"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:#4ECDC4; font-weight:700; font-size:13px;">Exercice 8</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">4 points - Alignement - Exercices 9-12</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-difficile">Difficile</span>
+                                <span class="badge-theme">4 points pondérés</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const animationAllowed = sessionStorage.getItem('animation_allowed');
+            
+            if (animationAllowed === 'true') {
+                sessionStorage.removeItem('animation_allowed');
+                console.log('✅ exercices/barycentre/index.html - Animation Zellij jouée');
+            } else {
+                console.log('✅ exercices/barycentre/index.html - Affichage direct Zellij');
+            }
+        });
+    </script>
+</body>
+</html>

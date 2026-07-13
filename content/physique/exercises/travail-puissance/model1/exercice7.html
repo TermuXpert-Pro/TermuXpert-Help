@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 7 - Travail et puissance d'une force | Xpert</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #FF6B6B;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #FF6B6B;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #FF6B6B;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #FF6B6B;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 7</h1>
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Skieur tracté par une perche</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+            </p>
+
+            <div class="section">
+                <h2><span class="num">1</span> Énoncé</h2>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
+                    Un skieur de masse \(m = 80\text{ kg}\) avec son équipement est tiré par une remonte-pente.
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    Pendant le trajet sur un plan incliné de \(\alpha = 20^\circ\) par rapport à l'horizontale, la valeur moyenne des forces de frottements est \(f = 40\text{ N}\). La perche exerce sur le skieur une force \(\vec{F}\), sous un angle de \(\beta = 15^\circ\) par rapport à la pente. Le skieur monte à la vitesse constante dans un référentiel terrestre.
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    <strong>1.</strong> Représenter les forces extérieures exercées sur le skieur.
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    <strong>2.</strong> Déterminer la valeur de la force exercée \(\vec{F}\) par la perche sur le skieur. En déduire le travail de la force \(\vec{F}\) pendant un déplacement \(AB = 100\text{ m}\).
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
+                    <strong>3.</strong> Déterminer la valeur de la force normale de réaction du sol \(R\) sur le skieur.
+                </p>
+                <p style="color:var(--text-secondary); font-size:11px; margin-bottom:8px;">
+                    Donnée : \(g = 9,81\text{ N.kg}^{-1}\)
+                </p>
+
+                <div class="graph-container">
+                    <canvas id="graph7" width="420" height="240"></canvas>
+                    <p>Skieur tracté par une perche sur un plan incliné</p>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">1.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Représenter les forces extérieures exercées sur le skieur.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_1')">Voir la solution</button>
+                    <div id="sol7_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Bilan des forces :</span>
+                                <ul>
+                                    <li><strong>\(\vec{P}\)</strong> : Poids du skieur (vertical vers le bas).</li>
+                                    <li><strong>\(\vec{f}\)</strong> : Force de frottement (parallèle à la pente, vers le bas).</li>
+                                    <li><strong>\(\vec{R}\)</strong> : Réaction normale du sol (perpendiculaire à la pente, vers le haut).</li>
+                                    <li><strong>\(\vec{F}\)</strong> : Force exercée par la perche (angle \(\beta\) avec la pente).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer \(F\) et le travail de \(\vec{F}\) pour \(AB = 100\text{ m}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_2')">Voir la solution</button>
+                    <div id="sol7_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La vitesse est constante, donc d'après le principe d'inertie :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\vec{P} + \vec{f} + \vec{R} + \vec{F} = \vec{0}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 2 :</span> Projection sur l'axe des \(x\) (parallèle à la pente) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$-P\sin\alpha - f + F\cos\beta = 0$$
+                                    $$F\cos\beta = P\sin\alpha + f$$
+                                    $$F = \frac{m \cdot g \cdot \sin\alpha + f}{\cos\beta}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F = \frac{80,0 \times 9,81 \times \sin(20^\circ) + 40,0}{\cos(15^\circ)}$$
+                                    $$F = \frac{80,0 \times 9,81 \times 0,342 + 40,0}{0,966}$$
+                                    $$F = \frac{268,4 + 40,0}{0,966} = \frac{308,4}{0,966} \approx 319\text{ N}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 4 :</span> Travail de la force \(\vec{F}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W_{A\to B}(\vec{F}) = \vec{F} \cdot \vec{AB} = F \cdot AB \cdot \cos\beta$$
+                                    $$W_{A\to B}(\vec{F}) = 319 \times 100 \times \cos(15^\circ)$$
+                                    $$W_{A\to B}(\vec{F}) = 31900 \times 0,966 \approx 30800\text{ J}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$F \approx 319\text{ N} \quad ; \quad W(\vec{F}) \approx 30,8\text{ kJ}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de la réaction normale \(R\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_3')">Voir la solution</button>
+                    <div id="sol7_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Projection sur l'axe des \(y\) (perpendiculaire à la pente) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$-P\cos\alpha + R + F\sin\beta = 0$$
+                                    $$R = P\cos\alpha - F\sin\beta$$
+                                    $$R = m \cdot g \cdot \cos\alpha - F\sin\beta$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 2 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$R = 80,0 \times 9,81 \times \cos(20^\circ) - 319 \times \sin(15^\circ)$$
+                                    $$R = 784,8 \times 0,940 - 319 \times 0,259$$
+                                    $$R = 737,7 - 82,6 \approx 655\text{ N}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$R \approx 655\text{ N}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="exercice6.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Exercice 6</a>
+                <a href="exercice8.html" class="next-btn">Exercice 8 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUE - Exercice 7
+        // ============================================================
+
+        function drawGraph7() {
+            var canvas = document.getElementById('graph7');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var baseX = 30, baseY = h - 30;
+            var longueur = 250;
+            var angle = 20 * Math.PI / 180;
+
+            // Plan incliné
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(baseX, baseY);
+            var finX = baseX + longueur * Math.cos(angle);
+            var finY = baseY - longueur * Math.sin(angle);
+            ctx.lineTo(finX, finY);
+            ctx.stroke();
+
+            // Horizontale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(baseX - 10, baseY);
+            ctx.lineTo(baseX + 20, baseY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Angle α
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(baseX, baseY, 25, -angle, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('α = 20°', baseX + 18, baseY - 14);
+
+            // Skieur (point G)
+            var gx = baseX + longueur * 0.5 * Math.cos(angle);
+            var gy = baseY - longueur * 0.5 * Math.sin(angle);
+
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(gx, gy, 12, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('G', gx + 16, gy + 4);
+
+            // Flèche Poids
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(gx, gy);
+            ctx.lineTo(gx, gy + 45);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('P', gx + 8, gy + 32);
+
+            // Flèche Frottement
+            ctx.strokeStyle = '#FFA500';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(gx - 12, gy);
+            ctx.lineTo(gx - 12 - 35 * Math.cos(angle), gy + 35 * Math.sin(angle));
+            ctx.stroke();
+            ctx.fillStyle = '#FFA500';
+            ctx.font = '14px Arial';
+            ctx.fillText('f', gx - 12 - 35 * Math.cos(angle) - 8, gy + 35 * Math.sin(angle) + 4);
+
+            // Flèche Réaction
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 2;
+            var rAngle = Math.PI/2 - angle;
+            ctx.beginPath();
+            ctx.moveTo(gx, gy - 8);
+            ctx.lineTo(gx + 40 * Math.cos(rAngle), gy - 8 - 40 * Math.sin(rAngle));
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('R', gx + 44, gy - 32);
+
+            // Flèche Force (perche)
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2;
+            var beta = 15 * Math.PI / 180;
+            var fLen = 50;
+            var fx = gx + 15 + fLen * Math.cos(beta);
+            var fy = gy - 15 - fLen * Math.sin(beta);
+            ctx.beginPath();
+            ctx.moveTo(gx + 15, gy - 15);
+            ctx.lineTo(fx, fy);
+            ctx.stroke();
+            ctx.fillStyle = '#4D9DE0';
+            ctx.font = '14px Arial';
+            ctx.fillText('F', fx + 6, fy + 4);
+
+            // Angle β
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(gx + 15, gy - 15, 15, -beta, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '10px Arial';
+            ctx.fillText('β = 15°', gx + 30, gy - 22);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('m = 80 kg', 10, 20);
+            ctx.fillText('f = 40 N', 10, 35);
+            ctx.fillText('AB = 100 m', 10, 50);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraph7();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+</body>
+</html>

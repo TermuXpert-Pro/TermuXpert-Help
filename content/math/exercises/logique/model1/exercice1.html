@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 1 - Logique | Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 1</h1>
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Valeur de vérité et négation</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Facile</span>
+            </p>
+
+            <div class="section">
+                <h2><span class="num">1</span> Déterminer la valeur de vérité et la négation</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Déterminer la valeur de vérité (Vrai ou Faux) et la négation de chaque proposition.</p>
+
+                <!-- a -->
+                <div class="sub-question">
+                    <div class="letter">a.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\forall x \in \mathbb{R} ; x^2 \leq x \Rightarrow |x| = x$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1a')">Voir la solution</button>
+                    <div id="sol1a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Valeur de vérité :</strong> Vrai</p>
+                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; x^2 \leq x \land |x| \neq x$</p>
+                            <p><strong>Explication :</strong></p>
+                            <p>$x^2 \leq x \Leftrightarrow x^2 - x \leq 0 \Leftrightarrow x(x-1) \leq 0 \Leftrightarrow x \in [0,1]$</p>
+                            <p>Donc l'hypothèse $x^2 \leq x$ n'est vraie que pour $x \in [0,1]$, un intervalle où $x \geq 0$, et donc $|x| = x$.</p>
+                            <p>• Pour $x \in [0,1]$ : l'hypothèse est vraie et $|x|=x$ aussi &rarr; implication vraie.</p>
+                            <p>• Pour $x \notin [0,1]$ : l'hypothèse $x^2 \leq x$ est fausse &rarr; implication vraie par vacuité.</p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion : Vrai</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- b -->
+                <div class="sub-question">
+                    <div class="letter">b.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $x \in \mathbb{R} ; \left(x^2 = 4 \Leftrightarrow x = 2\right)$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1b')">Voir la solution</button>
+                    <div id="sol1b" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Valeur de vérité :</strong> Faux</p>
+                            <p><strong>Négation :</strong> $x \in \mathbb{R} ; \left(x^2 = 4 \nLeftrightarrow x = 2\right)$</p>
+                            <p><strong>Explication :</strong> $x^2 = 4 \Rightarrow x = 2$ ou $x = -2$</p>
+                            <p>Donc $x^2 = 4 \Leftrightarrow x = 2$ est fausse car $-2$ est un contre-exemple.</p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- c -->
+                <div class="sub-question">
+                    <div class="letter">c.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\left(7 < 5 \text{ et } 2+1=3\right) \text{ ou } \left(-3 \in \mathbb{N}\right)$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1c')">Voir la solution</button>
+                    <div id="sol1c" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Valeur de vérité :</strong> Faux</p>
+                            <p><strong>Négation :</strong> $\left(7 \geq 5 \text{ ou } 2+1 \neq 3\right) \text{ et } \left(-3 \notin \mathbb{N}\right)$</p>
+                            <p><strong>Explication :</strong></p>
+                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
+                            <p>• $2+1=3$ est <span style="color:#4ECDC4;">Vrai</span></p>
+                            <p>• Donc $(7 < 5 \text{ et } 2+1=3)$ est <span style="color:#FF6B6B;">Faux</span></p>
+                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span> ($\mathbb{N} = \{0,1,2,\ldots\}$)</p>
+                            <p>• Faux ou Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- d -->
+                <div class="sub-question">
+                    <div class="letter">d.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\left(7 < 5 \Rightarrow 2+1=0\right) \text{ ou } \left(-3 \in \mathbb{N}\right)$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1d')">Voir la solution</button>
+                    <div id="sol1d" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Valeur de vérité :</strong> Faux</p>
+                            <p><strong>Négation :</strong> $\left(7 < 5 \Rightarrow 2+1=0\right) \text{ ou } \left(-3 \notin \mathbb{N}\right)$</p>
+                            <p><strong>Explication :</strong></p>
+                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
+                            <p>• $2+1=0$ est <span style="color:#FF6B6B;">Faux</span></p>
+                            <p>• $(7 < 5 \Rightarrow 2+1=0)$ = (Faux $\Rightarrow$ Faux) = <span style="color:#4ECDC4;">Vrai</span></p>
+                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span></p>
+                            <p>• Vrai ou Faux = <span style="color:#4ECDC4;">Vrai</span></p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion : Vrai</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- e -->
+                <div class="sub-question">
+                    <div class="letter">e.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\exists n \in \mathbb{Z}, n^2 \leq n . \forall x \in \mathbb{R}, x^2 < x$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1e')">Voir la solution</button>
+                    <div id="sol1e" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Valeur de vérité :</strong> Faux</p>
+                            <p><strong>Négation :</strong> $\forall n \in \mathbb{Z}, n^2 > n . \exists x \in \mathbb{R}, x^2 \geq x$</p>
+                            <p><strong>Explication :</strong></p>
+                            <p>• $\exists n \in \mathbb{Z}, n^2 \leq n$ est <span style="color:#4ECDC4;">Vrai</span> (ex: $n=1$)</p>
+                            <p>• $\forall x \in \mathbb{R}, x^2 < x$ est <span style="color:#FF6B6B;">Faux</span> (ex: $x=2$)</p>
+                            <p>• Vrai . Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- f -->
+                <div class="sub-question">
+                    <div class="letter">f.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, x - y + 3 = 0 . \exists y \in \mathbb{R}, \forall x \in \mathbb{R}, x - y + 3 = 0$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1f')">Voir la solution</button>
+                    <div id="sol1f" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Valeur de vérité :</strong> Faux</p>
+                            <p><strong>Explication :</strong></p>
+                            <p>• $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, x - y + 3 = 0$ est <span style="color:#4ECDC4;">Vrai</span></p>
+                            <p>  Pour tout $x$, on peut choisir $y = x+3$</p>
+                            <p>• $\exists y \in \mathbb{R}, \forall x \in \mathbb{R}, x - y + 3 = 0$ est <span style="color:#FF6B6B;">Faux</span></p>
+                            <p>  Cela signifierait $x = y - 3$ pour tout $x$, impossible.</p>
+                            <p>• Vrai . Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g -->
+                <div class="sub-question">
+                    <div class="letter">g.</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\forall x \in \mathbb{R} ; \sqrt{x^2 + 3} \geq 2 \Leftrightarrow x \geq 1$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1g')">Voir la solution</button>
+                    <div id="sol1g" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Valeur de vérité :</strong> Faux</p>
+                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; \left(\sqrt{x^2 + 3} \geq 2 \nLeftrightarrow x \geq 1\right)$</p>
+                            <p><strong>Explication :</strong></p>
+                            <p>$\sqrt{x^2 + 3} \geq 2 \Leftrightarrow x^2 + 3 \geq 4 \Leftrightarrow x^2 \geq 1$</p>
+                            <p>$\Leftrightarrow x \leq -1 \text{ ou } x \geq 1$</p>
+                            <p>Donc l'équivalence $\sqrt{x^2+3} \geq 2 \Leftrightarrow x \geq 1$ est fausse.</p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="exercice2.html" class="next-btn">Exercice 2 <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+</body>
+</html>

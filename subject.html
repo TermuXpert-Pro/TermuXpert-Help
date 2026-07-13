@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -344,6 +343,56 @@
             font-size: 16px;
         }
 
+        /* ====== Accordion (مواضيع بعدة نماذج) ====== */
+        .accordion-chevron {
+            margin-inline-start: auto;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: transform 0.35s ease;
+            flex-shrink: 0;
+        }
+        .accordion-card.expanded .accordion-chevron {
+            transform: rotate(180deg);
+            color: #4ECDC4;
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .accordion-card.expanded .accordion-body {
+            max-height: 600px;
+        }
+        .modele-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .modele-link:first-child { margin-top: 14px; }
+        .modele-link:hover {
+            border-color: rgba(78, 205, 196, 0.2);
+            transform: translateX(-3px);
+            background: rgba(78, 205, 196, 0.05);
+        }
+        .modele-link .modele-name i { color: #4ECDC4; margin-inline-end: 6px; }
+        .modele-link .fa-chevron-left { font-size: 11px; color: var(--text-muted); }
+        @media (max-width: 480px) {
+            .modele-link { padding: 8px 12px; font-size: 12px; }
+        }
+
         /* ====== حماية الصور فقط (النصوص قابلة للتحديد والنسخ) ====== */
         img {
             -webkit-user-drag: none !important;
@@ -532,6 +581,21 @@
         }
 
         // ============================================================
+        // Accordion - فتح/سد قائمة النماذج (modeles) ديال موضوع
+        // ============================================================
+        function toggleAccordion(cardEl, event) {
+            event.stopPropagation();
+            const wasExpanded = cardEl.classList.contains('expanded');
+
+            // نسدو أي كارد آخر مفتوح (accordion وحدة مفتوحة فمرة)
+            document.querySelectorAll('.accordion-card.expanded').forEach(el => {
+                if (el !== cardEl) el.classList.remove('expanded');
+            });
+
+            cardEl.classList.toggle('expanded', !wasExpanded);
+        }
+
+        // ============================================================
         // تحميل المادة
         // ============================================================
         function showNotFound() {
@@ -668,26 +732,49 @@
                     </div>
                 `;
                 }).join('');
-            } else if (tab === 'exercices') {
-                html = currentSubject.exercices.map((e, i) => `
-                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${e.file}'">
+            } else if (tab === 'exercices' || tab === 'series') {
+                // ====== بنية موحدة: كل موضوع عندو modeles: [{title, file}, ...] ======
+                // موضوع بنموذج واحد → كارد عادي كيوجه مباشرة للنموذج
+                // موضوع بعدة نماذج → accordion كيبان فيه كل نموذج على حدة
+                const isSeries = tab === 'series';
+                const color = isSeries ? '#F4D03F' : '#E8873A';
+                const label = isSeries ? 'Voir les séries' : 'Voir les exercices';
+
+                html = currentSubject[tab].map((item, i) => {
+                    const modeles = item.modeles || (item.file ? [{ title: 'Modèle 1', file: item.file }] : []);
+
+                    if (modeles.length <= 1) {
+                        const file = modeles.length === 1 ? modeles[0].file : '#';
+                        return `
+                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${file}'">
                         <div class="command-title">
-                            <span class="num">${i+1}</span> ${e.title}
+                            <span class="num">${i+1}</span> ${item.title}
                         </div>
-                        <p>${e.desc}</p>
-                        <span class="badge" style="background:#E8873A22; color:#E8873A; border-color:#E8873A22;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
+                        <p>${item.desc}</p>
+                        <span class="badge" style="background:${color}22; color:${color}; border-color:${color}22;"><i class="fas fa-folder-open"></i> ${label}</span>
                     </div>
-                `).join('');
-            } else if (tab === 'series') {
-                html = currentSubject.series.map((s, i) => `
-                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${s.file}'">
+                `;
+                    }
+
+                    const modelesHtml = modeles.map((m, mi) => `
+                        <a class="modele-link" href="${m.file}" onclick="event.stopPropagation(); saveCurrentTab('${tab}');">
+                            <span class="modele-name"><i class="fas fa-layer-group"></i>${m.title || ('Modèle ' + (mi + 1))}</span>
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    `).join('');
+
+                    return `
+                    <div class="command-card accordion-card" onclick="toggleAccordion(this, event)">
                         <div class="command-title">
-                            <span class="num">${i+1}</span> ${s.title}
+                            <span class="num">${i+1}</span> ${item.title}
+                            <i class="fas fa-chevron-down accordion-chevron"></i>
                         </div>
-                        <p>${s.desc}</p>
-                        <span class="badge" style="background:#F4D03F22; color:#F4D03F; border-color:#F4D03F22;"><i class="fas fa-folder-open"></i> Voir les séries</span>
+                        <p>${item.desc}</p>
+                        <span class="badge" style="background:${color}22; color:${color}; border-color:${color}22;"><i class="fas fa-layer-group"></i> ${modeles.length} modèles</span>
+                        <div class="accordion-body">${modelesHtml}</div>
                     </div>
-                `).join('');
+                `;
+                }).join('');
             } else if (tab === 'exams') {
                 if (currentSubject.exams.length === 0) {
                     html = `
@@ -861,5 +948,3 @@
     </script>
 </body>
 </html>
-
-

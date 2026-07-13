@@ -1,0 +1,1080 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série 1 - Rotation d'un solide | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #FF6B6B;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #FF6B6B;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #FF6B6B;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #FF6B6B;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color: #FF6B6B;
+            font-weight: 700;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-sync-alt" style="color:#FF6B6B;"></i> Série 1 - Rotation d'un solide indéformable autour d'un axe fixe</h1>
+            <div class="serie-title">Exercices <span>1 à 6</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 1 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Exercice 1</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une roche est attachée au bout d'une corde mesurant \(1,00\text{ m}\). Si on lui fait décrire un mouvement circulaire uniforme, quelle distance parcourt-elle en \(10,0\) tours ?
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Un tour correspond au périmètre du cercle :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P = 2\pi R$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Avec \(R = 1,00\text{ m}\)</p>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Distance pour \(n\) tours :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d = n \times 2\pi R$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d = 10 \times 2\pi \times 1,00$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d = 62,8\text{ m}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$d = 62,8\text{ m}$$
+                                </div>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graphEx1" width="300" height="200"></canvas>
+                                <p>Trajectoire circulaire de la roche</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 2 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Exercice 2</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Un point P est situé à une distance \(R\) du centre O d'une roue. Quelle est la valeur de cette distance \(R\) si le point P parcourt en \(1,0\) tour une distance de \(3,0\text{ m}\) ?
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La distance parcourue en 1 tour est le périmètre :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d = 2\pi R$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On isole \(R\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$R = \frac{d}{2\pi}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$R = \frac{3,0}{2\pi} = 0,477\text{ m}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$R \approx 0,48\text{ m}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 3 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Exercice 3</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une roue en mouvement circulaire uniforme effectue \(20,0\) tours en \(8,0\text{ s}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la fréquence du mouvement ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3a')">Voir la solution</button>
+                    <div id="sol3a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La fréquence est le nombre de tours par seconde :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$N = \frac{n}{\Delta t}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$N = \frac{20}{8} = 2,5\text{ Hz}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$N = 2,5\text{ Hz}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la période du mouvement circulaire ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3b')">Voir la solution</button>
+                    <div id="sol3b" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La période est l'inverse de la fréquence :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$T = \frac{1}{N}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$T = \frac{1}{2,5} = 0,4\text{ s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$T = 0,4\text{ s}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 4 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Exercice 4</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Un CD de \(12\text{ cm}\) de diamètre tourne à la fréquence de \(215\) tours par minute.
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">4.1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la période de rotation du CD.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
+                    <div id="sol4_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Conversion de la fréquence en Hz :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$N = 215\text{ tr/min} = \frac{215}{60} = 3,58\text{ Hz}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> La période :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$T = \frac{1}{N} = \frac{60}{215} = 0,279\text{ s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$T = 0,28\text{ s}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4.2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la vitesse angulaire de rotation du CD.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
+                    <div id="sol4_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La vitesse angulaire :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\omega = 2\pi N$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\omega = 2\pi \times 3,58 = 22,5\text{ rad/s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\omega = 22,5\text{ rad/s}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4.3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la vitesse linéaire d'un point de la périphérie du disque.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_3')">Voir la solution</button>
+                    <div id="sol4_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Rayon du CD : \(R = \frac{12}{2} = 6\text{ cm} = 0,06\text{ m}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> La vitesse linéaire :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v = R \cdot \omega = 0,06 \times 22,5 = 1,35\text{ m/s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$v = 1,35\text{ m/s}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4.4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la vitesse linéaire d'un point situé à \(2,0\text{ cm}\) du centre du CD.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_4')">Voir la solution</button>
+                    <div id="sol4_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> \(R' = 2,0\text{ cm} = 0,02\text{ m}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v' = R' \cdot \omega = 0,02 \times 22,5 = 0,45\text{ m/s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$v' = 0,45\text{ m/s}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphEx4" width="350" height="200"></canvas>
+                    <p>Vitesse linéaire en fonction du rayon</p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 5 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">5</span> Exercice 5</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une scie circulaire d'un diamètre de \(50\text{ cm}\) tourne à vitesse angulaire constante. La vitesse linéaire d'une de ses dents est \(v = 36\text{ m/s}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">5.1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la distance parcourue par une dent pendant \(3\text{ min}\) ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_1')">Voir la solution</button>
+                    <div id="sol5_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> \(v = 36\text{ m/s}\), \(t = 3\text{ min} = 180\text{ s}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d = v \times t = 36 \times 180 = 6480\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$d = 6480\text{ m} = 6,48\text{ km}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5.2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse angulaire de la scie.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_2')">Voir la solution</button>
+                    <div id="sol5_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Diamètre \(D = 50\text{ cm} = 0,50\text{ m}\), donc \(R = 0,25\text{ m}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\omega = \frac{v}{R} = \frac{36}{0,25} = 144\text{ rad/s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\omega = 144\text{ rad/s}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5.3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire sa fréquence.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_3')">Voir la solution</button>
+                    <div id="sol5_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$N = \frac{\omega}{2\pi} = \frac{144}{2\pi} = 22,9\text{ Hz}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$N = 22,9\text{ Hz}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 6 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">6</span> Exercice 6</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Un tracteur agricole (jouet) possède deux roues :
+                </p>
+                <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:14px;">
+                    <li>La grande roue de \(7\text{ cm}\) de rayon a une vitesse de rotation de \(18\) tours par minute.</li>
+                    <li>La petite roue de \(3,5\text{ cm}\) de rayon a une vitesse de rotation de \(36\) tours par minute.</li>
+                </ul>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse angulaire de chaque roue. Quelle remarque faites-vous ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_1')">Voir la solution</button>
+                    <div id="sol6_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Grande roue :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\omega_g = 18\text{ tr/min} = \frac{18}{60} = 0,3\text{ tr/s} = 0,3 \times 2\pi = 1,88\text{ rad/s}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Petite roue :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\omega_p = 36\text{ tr/min} = \frac{36}{60} = 0,6\text{ tr/s} = 0,6 \times 2\pi = 3,77\text{ rad/s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Remarque</span>
+                                <p>La petite roue tourne <strong>deux fois plus vite</strong> que la grande roue.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la distance parcourue par les deux pierres à chaque tour de roue.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_2')">Voir la solution</button>
+                    <div id="sol6_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Grande roue :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d_g = 2\pi R_g = 2\pi \times 0,07 = 0,44\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Petite roue :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d_p = 2\pi R_p = 2\pi \times 0,035 = 0,22\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Remarque</span>
+                                <p>La petite roue avance <strong>deux fois moins vite</strong> par tour.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse de chaque roue par rapport au sol. Conclure.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_3')">Voir la solution</button>
+                    <div id="sol6_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Grande roue :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v_g = R_g \cdot \omega_g = 0,07 \times 1,88 = 0,132\text{ m/s}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Petite roue :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v_p = R_p \cdot \omega_p = 0,035 \times 3,77 = 0,132\text{ m/s}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>Les deux roues avancent à la <strong>même vitesse</strong> par rapport au sol, même si la petite roue tourne deux fois plus vite.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Pendant une minute :
+                        <ul style="font-size:11px; padding-right:14px;">
+                            <li>La distance parcourue par le tracteur.</li>
+                            <li>La distance parcourue par chaque pierre.</li>
+                            <li>Le nombre de tours effectués par chaque roue.</li>
+                        </ul>
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_4')">Voir la solution</button>
+                    <div id="sol6_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Distance parcourue par le tracteur :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d = v \times t = 0,132 \times 60 = 7,92\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Distance parcourue par chaque pierre :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$s = v \times t = 0,132 \times 60 = 7,92\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Nombre de tours :</span>
+                                <div style="font-size:13px; margin:4px 0;">
+                                    Petite roue : \(n_p = \omega_p \times t / 2\pi = 3,77 \times 60 / 2\pi = 36\) tours
+                                    <br>
+                                    Grande roue : \(n_g = \omega_g \times t / 2\pi = 1,88 \times 60 / 2\pi = 18\) tours
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <ul style="font-size:12px;">
+                                    <li>Distance parcourue : \(7,92\text{ m}\)</li>
+                                    <li>Petite roue : \(36\) tours</li>
+                                    <li>Grande roue : \(18\) tours</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphEx6" width="400" height="220"></canvas>
+                    <p>Comparaison des deux roues</p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawGraphEx1() {
+            var canvas = document.getElementById('graphEx1');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = h/2;
+            var rayon = 70;
+
+            // Cercle
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            // Centre
+            ctx.fillStyle = '#BB8FCE';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('O', cx + 8, cy + 4);
+
+            // Point M
+            var angle = Math.PI/3;
+            var mx = cx + rayon * Math.cos(angle);
+            var my = cy + rayon * Math.sin(angle);
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(mx, my, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('M', mx + 8, my - 6);
+
+            // Rayon
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(mx, my);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '10px Arial';
+            ctx.fillText('R = 1,00 m', cx + 10, cy - 20);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Trajectoire circulaire', 170, 20);
+        }
+
+        function drawGraphEx4() {
+            var canvas = document.getElementById('graphEx4');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 50, oy = h - 30;
+            var scaleX = 3800, scaleY = 80;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('R (m)', w - 40, oy + 18);
+            ctx.fillText('v (m/s)', ox + 8, 16);
+
+            // Droite v = R·ω
+            var omega = 22.5;
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(ox + 0.07 * scaleX, oy - 0.07 * omega * scaleY);
+            ctx.stroke();
+
+            // Points
+            var points = [
+                {R: 0.02, v: 0.45, label: '2 cm'},
+                {R: 0.06, v: 1.35, label: '6 cm'}
+            ];
+            for (var i = 0; i < points.length; i++) {
+                var px = ox + points[i].R * scaleX;
+                var py = oy - points[i].v * scaleY;
+                ctx.fillStyle = '#4ECDC4';
+                ctx.beginPath();
+                ctx.arc(px, py, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '9px Arial';
+                ctx.fillText(points[i].label, px - 12, py - 10);
+            }
+
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '11px Arial';
+            ctx.fillText('v = R·ω', 200, 20);
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('ω = 22,5 rad/s', 200, 35);
+        }
+
+        function drawGraphEx6() {
+            var canvas = document.getElementById('graphEx6');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Grande roue
+            var cx1 = 120, cy1 = h/2 + 20;
+            var R1 = 70;
+
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx1, cy1, R1, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '11px Arial';
+            ctx.fillText('Grande roue', cx1 - 30, cy1 - R1 - 15);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '9px Arial';
+            ctx.fillText('R = 7 cm', cx1 - 20, cy1 + R1 + 20);
+            ctx.fillText('ω = 18 tr/min', cx1 - 25, cy1 + R1 + 35);
+
+            // Petite roue
+            var cx2 = 320, cy2 = h/2 + 20;
+            var R2 = 35;
+
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx2, cy2, R2, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '11px Arial';
+            ctx.fillText('Petite roue', cx2 - 25, cy2 - R2 - 15);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '9px Arial';
+            ctx.fillText('R = 3,5 cm', cx2 - 22, cy2 + R2 + 20);
+            ctx.fillText('ω = 36 tr/min', cx2 - 27, cy2 + R2 + 35);
+
+            // Flèche de vitesse (même vitesse)
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx1 - 30, cy1 + R1 + 55);
+            ctx.lineTo(cx2 + 30, cy2 + R2 + 55);
+            ctx.stroke();
+
+            // Tête de flèche
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.moveTo(cx2 + 22, cy2 + R2 + 49);
+            ctx.lineTo(cx2 + 35, cy2 + R2 + 55);
+            ctx.lineTo(cx2 + 22, cy2 + R2 + 61);
+            ctx.fill();
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.fillText('v = 0,132 m/s', 200, cy2 + R2 + 70);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Comparaison des deux roues', 200, 20);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraphEx1();
+                drawGraphEx4();
+                drawGraphEx6();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+</body>
+</html>

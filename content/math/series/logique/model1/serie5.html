@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série 5 - Logique | Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .step { font-size: 13px; padding: 3px 10px; margin: 3px 0; }
+        .step .step-num { font-size: 13px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color: #4ECDC4;
+            font-weight: 700;
+        }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Série 5 - Logique mathématique</h1>
+            <div class="serie-title">Exercices <span>41 à 54</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 41 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">41</span> Exercice 41</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}$
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol41')">Voir la solution</button>
+                <div id="sol41" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=1 \Rightarrow 1 = \frac{1 \times 2}{2} = 1$ ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $1+2+\cdots+n = \frac{n(n+1)}{2}$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $1+2+\cdots+n+(n+1) = \frac{n(n+1)}{2} + (n+1)$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{n(n+1) + 2(n+1)}{2} = \frac{(n+1)(n+2)}{2}$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 42 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">42</span> Exercice 42</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $\forall n \geq 5 : 2^n \geq 6n$
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol42')">Voir la solution</button>
+                <div id="sol42" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=5 \Rightarrow 2^5 = 32 \geq 30$ ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $2^n \geq 6n$ pour $n \geq 5$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $2^{n+1} = 2 \times 2^n \geq 2 \times 6n = 12n$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $12n \geq 6(n+1)$ pour $n \geq 1$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $2^{n+1} \geq 6(n+1)$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 43 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">43</span> Exercice 43</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $\forall n \in \mathbb{N} : n^3 + 2n$ est divisible par 3
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol43')">Voir la solution</button>
+                <div id="sol43" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 0$ divisible par 3 ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $3 \mid (n^3 + 2n)$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $(n+1)^3 + 2(n+1) = n^3 + 3n^2 + 3n + 1 + 2n + 2$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= (n^3 + 2n) + 3n^2 + 3n + 3$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $= 3k + 3(n^2 + n + 1)$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 44 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">44</span> Exercice 44</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol44')">Voir la solution</button>
+                <div id="sol44" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=1 \Rightarrow 1^2 = \frac{1 \times 2 \times 3}{6} = 1$ ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons la formule vraie pour $n$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k^2 = \frac{n(n+1)(2n+1)}{6} + (n+1)^2$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)}{6}[n(2n+1) + 6(n+1)]$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)(2n^2 + 7n + 6)}{6} = \frac{(n+1)(n+2)(2n+3)}{6}$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 45 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">45</span> Exercice 45</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $\sum_{k=1}^{n} k^3 = \frac{n^2(n+1)^2}{4}$
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol45')">Voir la solution</button>
+                <div id="sol45" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=1 \Rightarrow 1^3 = \frac{1^2 \times 2^2}{4} = 1$ ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons la formule vraie pour $n$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k^3 = \frac{n^2(n+1)^2}{4} + (n+1)^3$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)^2}{4}[n^2 + 4(n+1)]$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)^2(n+2)^2}{4}$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 46 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">46</span> Exercice 46</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $\sum_{k=1}^{n} (2k+1) = (n+1)^2$
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol46')">Voir la solution</button>
+                <div id="sol46" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=1 \Rightarrow 3 = 2^2 = 4$ ❌</div>
+                        <p style="color:#FF6B6B;">⚠️ La formule est $1+3+5+\cdots+(2n+1) = (n+1)^2$</p>
+                        <div class="step"><span class="step-num">Vérification :</span> $n=1 \Rightarrow 1+3 = 4 = 2^2$ ✅</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 47 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">47</span> Exercice 47</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $\forall n \in \mathbb{N} : 4^n + 6n - 1$ est divisible par 9
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol47')">Voir la solution</button>
+                <div id="sol47" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 1 + 0 - 1 = 0$ divisible par 9 ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $9 \mid (4^n + 6n - 1)$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $4^{n+1} + 6(n+1) - 1 = 4 \times 4^n + 6n + 6 - 1$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= (4^n + 6n - 1) + 3 \times 4^n + 6$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $= 9k + 3(4^n + 2)$</div>
+                        <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">(Il faut montrer que $4^n + 2$ est divisible par 3)</p>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 48 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">48</span> Exercice 48</h2>
+                <div class="formula-block" style="font-size:13px;">
+                    $\forall n \in \mathbb{N} : 7^n - 1$ est divisible par 6
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol48')">Voir la solution</button>
+                <div id="sol48" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <p><strong>Par récurrence :</strong></p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 1 - 1 = 0$ divisible par 6 ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $6 \mid (7^n - 1)$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $7^{n+1} - 1 = 7 \times 7^n - 1 = 7(7^n - 1) + 6$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= 7(6k) + 6 = 6(7k + 1)$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 49 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">49</span> Exercice 49</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$P(n) : 10^n - 1$ divisible par 9</p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$Q(n) : 10^n + 1$ divisible par 9</p>
+                
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que si $P(n)$ est vraie alors $P(n+1)$ est vraie</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_1')">Voir la solution</button>
+                    <div id="sol49_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $10^{n+1} - 1 = 10 \times 10^n - 1 = 10(10^n - 1) + 9$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= 10(9k) + 9 = 9(10k + 1)$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $P(n+1)$ est vraie</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que si $Q(n)$ est vraie alors $Q(n+1)$ est vraie</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_2')">Voir la solution</button>
+                    <div id="sol49_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $10^{n+1} + 1 = 10 \times 10^n + 1 = 10(10^n + 1) - 9$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= 10(9k) - 9 = 9(10k - 1)$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $Q(n+1)$ est vraie</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Expliquer l'erreur de l'élève</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_3')">Voir la solution</button>
+                    <div id="sol49_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Erreur :</strong> L'élève n'a pas vérifié l'initialisation !</p>
+                            <div class="step"><span class="step-num">$P(0) : 10^0 - 1 = 1 - 1 = 0$ divisible par 9 ✅</span></div>
+                            <div class="step"><span class="step-num">$Q(0) : 10^0 + 1 = 1 + 1 = 2$ n'est pas divisible par 9 ❌</span></div>
+                            <p style="color:#FF6B6B;">Donc $Q(n)$ est fausse car l'initialisation échoue !</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que $P(n)$ est vraie</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_4')">Voir la solution</button>
+                    <div id="sol49_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Initialisation :</span> $P(0)$ vraie ✅</div>
+                            <div class="step"><span class="step-num">Hérédité :</span> $P(n) \Rightarrow P(n+1)$ (démontré en 1)</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $P(n)$ est vraie pour tout $n \in \mathbb{N}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que $Q(n)$ est fausse</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol49_5')">Voir la solution</button>
+                    <div id="sol49_5" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Par l'absurde :</strong> Supposons que $Q(n)$ est vraie</p>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $10^n + 1$ est divisible par 9</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $10^n - 1$ est divisible par 9 (d'après 4)</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $(10^n + 1) - (10^n - 1) = 2$ serait divisible par 9</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> Contradiction car $2$ n'est pas divisible par 9</div>
+                            <p style="color:#FF6B6B;"><strong>Conclusion :</strong> $Q(n)$ est fausse pour tout $n \in \mathbb{N}$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 50 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">50</span> Exercice 50</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$P(n) : 7^n - 1$ est divisible par 3</p>
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que si $P(n)$ est vraie alors $P(n+1)$ est vraie</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol50')">Voir la solution</button>
+                    <div id="sol50" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $7^{n+1} - 1 = 7 \times 7^n - 1 = 7(7^n - 1) + 6$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= 7(3k) + 6 = 3(7k + 2)$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $P(n+1)$ est vraie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 51 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">51</span> Exercice 51</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$a,b \in ]-1;1[$</p>
+                <div class="formula-block" style="font-size:13px;">
+                    $-1 < \frac{a+b}{1+ab} < 1$
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol51')">Voir la solution</button>
+                <div id="sol51" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="step"><span class="step-num">Étape 1 :</span> $|a| < 1$ et $|b| < 1$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $|a+b| < |1+ab|$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> Donc $-1 < \frac{a+b}{1+ab} < 1$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $-1 < \frac{a+b}{1+ab} < 1$</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 52 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">52</span> Exercice 52</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Traduire en langage courant puis déterminer la négation et la valeur de vérité :</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <div class="formula-block" style="font-size:13px;">$P: (\forall x \in \mathbb{R})(\exists y \in \mathbb{R}) : x > y$</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_1')">Voir la solution</button>
+                    <div id="sol52_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Traduction :</strong> Pour tout réel $x$, il existe un réel $y$ tel que $x > y$</p>
+                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R}(\forall y \in \mathbb{R}) : x \leq y$</p>
+                            <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> (prendre $y = x-1$)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <div class="formula-block" style="font-size:13px;">$P: (\exists x \in \mathbb{R})(\forall y \in \mathbb{R}) : x > y$</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_2')">Voir la solution</button>
+                    <div id="sol52_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Traduction :</strong> Il existe un réel $x$ qui est plus grand que tout réel $y$</p>
+                            <p><strong>Négation :</strong> $\forall x \in \mathbb{R}(\exists y \in \mathbb{R}) : x \leq y$</p>
+                            <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span> (aucun réel n'est plus grand que tous les autres)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <div class="formula-block" style="font-size:13px;">$P: (\forall x \in \mathbb{R}) : x^2 \geq 4 \Rightarrow x \geq 2$</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_3')">Voir la solution</button>
+                    <div id="sol52_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Traduction :</strong> Pour tout réel $x$, si $x^2 \geq 4$ alors $x \geq 2$</p>
+                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} : x^2 \geq 4$ et $x < 2$</p>
+                            <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span> (contre-exemple: $x = -3$)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <div class="formula-block" style="font-size:13px;">$P: (\exists x \in \mathbb{R}) : x^2 = 4$</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol52_4')">Voir la solution</button>
+                    <div id="sol52_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Traduction :</strong> Il existe un réel $x$ tel que $x^2 = 4$</p>
+                            <p><strong>Négation :</strong> $\forall x \in \mathbb{R} : x^2 \neq 4$</p>
+                            <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> ($x = 2$ ou $x = -2$)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 53 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">53</span> Exercice 53</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">À l'aide de la méthode des tables de vérité, dire si la formule est une tautologie.</p>
+                <div class="formula-block" style="font-size:13px;">
+                    $P \Rightarrow (P \text{ ou } Q)$
+                </div>
+                <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol53')">Voir la solution</button>
+                <div id="sol53" class="solution-box">
+                    <div class="sol-title">✅ Solution</div>
+                    <div class="sol-content">
+                        <div class="table-wrap">
+                            <table>
+                                <tr><th>$P$</th><th>$Q$</th><th>$P \text{ ou } Q$</th><th>$P \Rightarrow (P \text{ ou } Q)$</th></tr>
+                                <tr><td class="true">V</td><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                                <tr><td class="true">V</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
+                                <tr><td class="false">F</td><td class="true">V</td><td class="true">V</td><td class="true">V</td></tr>
+                                <tr><td class="false">F</td><td class="false">F</td><td class="false">F</td><td class="true">V</td></tr>
+                            </table>
+                        </div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> C'est une <span style="color:#4ECDC4;">tautologie</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 54 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">54</span> Exercice 54</h2>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$a \in \mathbb{R}^+$, $b \in \mathbb{R}^+$</p>
+                    <div class="formula-block" style="font-size:13px;">
+                        $a \leq b \Rightarrow a \leq \frac{a+b}{2} \leq b$ et $0 \leq \sqrt{ab} \leq b$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_1')">Voir la solution</button>
+                    <div id="sol54_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Étape 1 :</span> $a \leq b \Rightarrow a+a \leq a+b \leq b+b$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $2a \leq a+b \leq 2b \Rightarrow a \leq \frac{a+b}{2} \leq b$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $0 \leq a \leq b \Rightarrow 0 \leq ab \leq b^2$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $0 \leq \sqrt{ab} \leq b$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> Les inégalités sont vraies</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\forall n \in \mathbb{N}, n(n+1)$ est divisible par 2
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_2')">Voir la solution</button>
+                    <div id="sol54_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Cas 1 :</span> $n$ pair $\Rightarrow n$ divisible par 2</div>
+                            <div class="step"><span class="step-num">Cas 2 :</span> $n$ impair $\Rightarrow n+1$ pair</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> Dans les deux cas, $n(n+1)$ est divisible par 2</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$n \in \mathbb{N}^*$</p>
+                    <div class="formula-block" style="font-size:13px;">
+                        $n^2 + 1$ n'est pas un entier
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_3')">Voir la solution</button>
+                    <div id="sol54_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Par l'absurde :</strong> Supposons que $\sqrt{n^2+1} \in \mathbb{N}$</p>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{n^2+1} = k \in \mathbb{N}$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $n^2 + 1 = k^2 \Rightarrow k^2 - n^2 = 1$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $(k-n)(k+n) = 1$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $k-n = 1$ et $k+n = 1 \Rightarrow n = 0$, contradiction</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\sqrt{n^2+1} \notin \mathbb{N}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$\forall x \in \mathbb{R} : x < 2 \Rightarrow x^2 < 4$ ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_4')">Voir la solution</button>
+                    <div id="sol54_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Contre-exemple :</span> $x = -3$</div>
+                            <div class="step"><span class="step-num">Vérification :</span> $-3 < 2$ mais $(-3)^2 = 9 > 4$</div>
+                            <p style="color:#FF6B6B;"><strong>Conclusion :</strong> La proposition est fausse</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">6)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$a \in \mathbb{R}^*_+$</p>
+                    <div class="formula-block" style="font-size:13px;">
+                        $\forall n \in \mathbb{N} : (1+a)^n \geq 1 + n \times a$
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol54_5')">Voir la solution</button>
+                    <div id="sol54_5" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Par récurrence :</strong></p>
+                            <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 1 \geq 1$ ✅</div>
+                            <div class="step"><span class="step-num">Hérédité :</span> Supposons $(1+a)^n \geq 1 + na$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $(1+a)^{n+1} = (1+a)(1+a)^n \geq (1+a)(1+na)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= 1 + na + a + na^2 = 1 + (n+1)a + na^2$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $\geq 1 + (n+1)a$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie4.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série 4</a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script></body>
+</html>
