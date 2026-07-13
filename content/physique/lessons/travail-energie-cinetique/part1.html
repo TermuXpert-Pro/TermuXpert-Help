@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -505,7 +506,7 @@
             ctx.fillRect(0, 0, w, h);
 
             var ox = 60, oy = h - 25;
-            var scaleX = 30, scaleY = 1.2;
+            var scaleX = 60, scaleY = 12;
 
             // Axes
             ctx.strokeStyle = '#2A2A3E';
@@ -539,14 +540,14 @@
                 ctx.fillText(i, x - 4, oy + 16);
             }
             for (var i = 1; i <= 6; i++) {
-                var y = oy - i * scaleY * 5;
+                var y = oy - i * scaleY * 2;
                 ctx.beginPath();
                 ctx.moveTo(ox, y);
                 ctx.lineTo(w - 20, y);
                 ctx.stroke();
                 ctx.fillStyle = '#888888';
                 ctx.font = '8px Arial';
-                ctx.fillText(i * 5, ox - 20, y + 4);
+                ctx.fillText(i * 2, ox - 20, y + 4);
             }
 
             // Courbe E_C = 1/2 * m * V² avec m = 1 kg
