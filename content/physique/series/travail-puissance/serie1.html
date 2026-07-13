@@ -216,15 +216,6 @@
             color: #FF6B6B;
             font-weight: 700;
         }
-        .badge-exo {
-            display: inline-block;
-            background: rgba(187, 143, 206, 0.15);
-            color: #BB8FCE;
-            padding: 1px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-        }
         .graph-container {
             background: var(--bg-primary);
             border: 1px solid var(--border);
@@ -332,6 +323,11 @@
                     Donnée : \(g = 9,8\text{ N.kg}^{-1}\)
                 </p>
 
+                <div class="graph-container">
+                    <canvas id="graph1" width="380" height="200"></canvas>
+                    <p>Savon glissant sur un plan incliné sans frottement</p>
+                </div>
+
                 <div class="sub-question">
                     <div class="letter">1)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Quelles sont les forces exercées sur le morceau de savon ?</p>
@@ -412,6 +408,11 @@
                     Toute l'étude se fera du point \(G\) (départ) au point \(G_0\) (arrivée).
                 </p>
 
+                <div class="graph-container">
+                    <canvas id="graph2" width="380" height="220"></canvas>
+                    <p>Pendule simple - Oscillation</p>
+                </div>
+
                 <div class="sub-question">
                     <div class="letter">1)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Faire le bilan des forces appliquées sur la bille.</p>
@@ -480,6 +481,11 @@
                     Donnée : \(g = 9,8\text{ N.kg}^{-1}\)
                 </p>
 
+                <div class="graph-container">
+                    <canvas id="graph3" width="380" height="200"></canvas>
+                    <p>Chute libre d'un ballon</p>
+                </div>
+
                 <div class="sub-question">
                     <div class="letter">1)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Quelle est la signification de « chute libre » ?</p>
@@ -541,6 +547,11 @@
                     Calculer la puissance moyenne de cette force exercée sur le camion.
                 </p>
 
+                <div class="graph-container">
+                    <canvas id="graph4" width="380" height="180"></canvas>
+                    <p>Enfant tirant un camion</p>
+                </div>
+
                 <div class="sub-question">
                     <div class="letter">Solution</div>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
@@ -582,6 +593,11 @@
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
                     On néglige les forces de frottement.
                 </p>
+
+                <div class="graph-container">
+                    <canvas id="graph5" width="400" height="220"></canvas>
+                    <p>Traîneau tiré sur un plan incliné</p>
+                </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
@@ -659,6 +675,11 @@
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
                     Donnée : \(g = 9,81\text{ N.kg}^{-1}\)
                 </p>
+
+                <div class="graph-container">
+                    <canvas id="graph6" width="420" height="240"></canvas>
+                    <p>Skieur tracté par une perche</p>
+                </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
@@ -773,6 +794,603 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
+
+        // ============================================================
+        // GRAPHIQUES - Série 1
+        // ============================================================
+
+        function drawGraph1() {
+            var canvas = document.getElementById('graph1');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var baseX = 40, baseY = h - 30;
+            var longueur = 200;
+            var angle = 30 * Math.PI / 180;
+
+            // Plan incliné
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(baseX, baseY);
+            var finX = baseX + longueur * Math.cos(angle);
+            var finY = baseY - longueur * Math.sin(angle);
+            ctx.lineTo(finX, finY);
+            ctx.stroke();
+
+            // Horizontale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(baseX - 10, baseY);
+            ctx.lineTo(baseX + 20, baseY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Angle
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(baseX, baseY, 25, -angle, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('α = 30°', baseX + 18, baseY - 12);
+
+            // Savon
+            var sx = baseX + longueur * 0.5 * Math.cos(angle);
+            var sy = baseY - longueur * 0.5 * Math.sin(angle);
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 15;
+            ctx.beginPath();
+            ctx.arc(sx, sy, 12, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Flèche Poids
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(sx, sy + 40);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('P', sx + 6, sy + 28);
+
+            // Flèche Réaction
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 2;
+            var perpAngle = Math.PI/2 - angle;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(sx + 35 * Math.cos(perpAngle), sy - 35 * Math.sin(perpAngle));
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('R', sx + 38, sy - 28);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('m = 200 g', 250, 30);
+            ctx.fillText('L = 1,0 m', 250, 45);
+            ctx.fillText('Sans frottement', 250, 60);
+        }
+
+        function drawGraph2() {
+            var canvas = document.getElementById('graph2');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var pivotX = 190, pivotY = 30;
+            var longueur = 140;
+            var angle = 10 * Math.PI / 180;
+
+            // Verticale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(pivotX, pivotY);
+            ctx.lineTo(pivotX, pivotY + longueur + 30);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Position G
+            var gx = pivotX + longueur * Math.sin(angle);
+            var gy = pivotY + longueur * Math.cos(angle);
+            // Position G0
+            var g0x = pivotX;
+            var g0y = pivotY + longueur;
+
+            // Fil G
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(pivotX, pivotY);
+            ctx.lineTo(gx, gy);
+            ctx.stroke();
+
+            // Fil G0
+            ctx.strokeStyle = '#888';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(pivotX, pivotY);
+            ctx.lineTo(g0x, g0y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Bille G
+            ctx.fillStyle = '#F4D03F';
+            ctx.shadowColor = '#F4D03F';
+            ctx.shadowBlur = 15;
+            ctx.beginPath();
+            ctx.arc(gx, gy, 10, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('G', gx + 14, gy + 4);
+
+            // Bille G0
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(g0x, g0y, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'left';
+            ctx.fillText('G₀', g0x + 12, g0y + 4);
+
+            // Pivot
+            ctx.fillStyle = '#BB8FCE';
+            ctx.shadowColor = '#BB8FCE';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(pivotX, pivotY, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'right';
+            ctx.fillText('O', pivotX - 8, pivotY + 4);
+
+            // Angle
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(pivotX, pivotY, 25, Math.PI/2 - angle, Math.PI/2);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('α = 10°', pivotX + 28, pivotY + 16);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('L = 40 cm', 250, 30);
+            ctx.fillText('m = 5,0 g', 250, 45);
+            ctx.fillText('Sans frottement', 250, 60);
+        }
+
+        function drawGraph3() {
+            var canvas = document.getElementById('graph3');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = 50;
+
+            // Ballon haut
+            ctx.fillStyle = '#F4D03F';
+            ctx.shadowColor = '#F4D03F';
+            ctx.shadowBlur = 15;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 14, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('A', cx, cy - 22);
+            ctx.fillText('h = 5,0 m', cx, cy + 28);
+
+            // Flèche P
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy + 18);
+            ctx.lineTo(cx, cy + 55);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.fillText('P', cx + 8, cy + 42);
+
+            // Sol
+            var solY = 145;
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(30, solY);
+            ctx.lineTo(w - 30, solY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#888';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('Sol', w - 50, solY + 16);
+
+            // Ballon bas
+            var cx2 = w/2, cy2 = 135;
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(cx2, cy2, 14, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'center';
+            ctx.fillText('B', cx2, cy2 + 22);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('m = 300 g', 10, 20);
+            ctx.fillText('Δt = 1,0 s', 10, 35);
+            ctx.fillText('Chute libre', 10, 50);
+        }
+
+        function drawGraph4() {
+            var canvas = document.getElementById('graph4');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Enfant
+            var cx = 90, cy = 80;
+            ctx.fillStyle = '#4ECDC4';
+            ctx.shadowColor = '#4ECDC4';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(cx, cy - 20, 18, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Enfant', cx, cy - 5);
+
+            // Bras
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx + 15, cy - 15);
+            ctx.lineTo(cx + 55, cy - 25);
+            ctx.stroke();
+
+            // Corde
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx + 55, cy - 25);
+            ctx.lineTo(cx + 130, cy - 30);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Camion
+            var camX = 180, camY = 85;
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.fillRect(camX, camY - 35, 80, 30);
+            ctx.shadowBlur = 0;
+
+            // Roues
+            ctx.fillStyle = '#FF6B6B';
+            ctx.shadowColor = '#FF6B6B';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(camX + 15, camY + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(camX + 65, camY + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('Camion', camX + 40, camY - 10);
+
+            // Flèche F
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx + 55, cy - 25);
+            ctx.lineTo(cx + 55, cy - 55);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('F', cx + 60, cy - 45);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('t = 30 s', 270, 30);
+            ctx.fillText('W = 2,0 kJ', 270, 45);
+        }
+
+        function drawGraph5() {
+            var canvas = document.getElementById('graph5');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var baseX = 30, baseY = h - 30;
+            var longueur = 240;
+            var angle = 20 * Math.PI / 180;
+
+            // Plan incliné
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(baseX, baseY);
+            var finX = baseX + longueur * Math.cos(angle);
+            var finY = baseY - longueur * Math.sin(angle);
+            ctx.lineTo(finX, finY);
+            ctx.stroke();
+
+            // Horizontale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(baseX - 10, baseY);
+            ctx.lineTo(baseX + 20, baseY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Angle
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(baseX, baseY, 25, -angle, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('α = 20°', baseX + 18, baseY - 12);
+
+            // Traîneau
+            var tx = baseX + longueur * 0.45 * Math.cos(angle);
+            var ty = baseY - longueur * 0.45 * Math.sin(angle);
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.fillRect(tx - 20, ty - 8, 40, 16);
+            ctx.shadowBlur = 0;
+
+            // Flèche P
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(tx, ty);
+            ctx.lineTo(tx, ty + 40);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('P', tx + 8, ty + 28);
+
+            // Flèche F
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(tx - 25, ty);
+            ctx.lineTo(tx - 25 - 40 * Math.cos(angle), ty + 40 * Math.sin(angle));
+            ctx.stroke();
+            ctx.fillStyle = '#4D9DE0';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('F', tx - 25 - 20 * Math.cos(angle), ty + 20 * Math.sin(angle) - 10);
+
+            // Flèche R
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 2;
+            var rAngle = Math.PI/2 - angle;
+            ctx.beginPath();
+            ctx.moveTo(tx, ty - 10);
+            ctx.lineTo(tx + 40 * Math.cos(rAngle), ty - 10 - 40 * Math.sin(rAngle));
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('R', tx + 44, ty - 32);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('m = 50 kg', 10, 20);
+            ctx.fillText('g = 10 m/s²', 10, 35);
+            ctx.fillText('Sans frottement', 10, 50);
+        }
+
+        function drawGraph6() {
+            var canvas = document.getElementById('graph6');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var baseX = 30, baseY = h - 30;
+            var longueur = 220;
+            var angle = 20 * Math.PI / 180;
+
+            // Plan incliné
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(baseX, baseY);
+            var finX = baseX + longueur * Math.cos(angle);
+            var finY = baseY - longueur * Math.sin(angle);
+            ctx.lineTo(finX, finY);
+            ctx.stroke();
+
+            // Horizontale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(baseX - 10, baseY);
+            ctx.lineTo(baseX + 20, baseY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Angle
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(baseX, baseY, 25, -angle, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('α = 20°', baseX + 18, baseY - 12);
+
+            // Skieur
+            var sx = baseX + longueur * 0.5 * Math.cos(angle);
+            var sy = baseY - longueur * 0.5 * Math.sin(angle);
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(sx, sy, 12, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('G', sx + 16, sy + 4);
+
+            // Flèche P
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(sx, sy + 45);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('P', sx + 6, sy + 32);
+
+            // Flèche f
+            ctx.strokeStyle = '#FFA500';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx - 12, sy);
+            ctx.lineTo(sx - 12 - 35 * Math.cos(angle), sy + 35 * Math.sin(angle));
+            ctx.stroke();
+            ctx.fillStyle = '#FFA500';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('f', sx - 12 - 18 * Math.cos(angle), sy + 18 * Math.sin(angle) - 8);
+
+            // Flèche R
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 2;
+            var rAngle = Math.PI/2 - angle;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy - 8);
+            ctx.lineTo(sx + 40 * Math.cos(rAngle), sy - 8 - 40 * Math.sin(rAngle));
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('R', sx + 44, sy - 32);
+
+            // Flèche F
+            var beta = 15 * Math.PI / 180;
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx + 15, sy - 15);
+            var fx = sx + 15 + 45 * Math.cos(beta);
+            var fy = sy - 15 - 45 * Math.sin(beta);
+            ctx.lineTo(fx, fy);
+            ctx.stroke();
+            ctx.fillStyle = '#4D9DE0';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('F', fx + 6, fy + 4);
+
+            // Angle β
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(sx + 15, sy - 15, 15, -beta, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('β = 15°', sx + 30, sy - 22);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('m = 80 kg', 10, 20);
+            ctx.fillText('f = 40 N', 10, 35);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraph1();
+                drawGraph2();
+                drawGraph3();
+                drawGraph4();
+                drawGraph5();
+                drawGraph6();
+            }, 400);
+        });
     </script>
 </body>
 </html>
