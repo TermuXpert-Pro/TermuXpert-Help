@@ -10,8 +10,8 @@ window.subjectsData.chimie = {
     desc: "Cours, exercices, séries, devoirs et examens régionaux",
     lessons: [
         { semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/lessons/mesure-chimie/index.html", desc: "Mesurer pour informer, surveiller/protéger et agir : concentration massique, densité" },
-        { semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/lessons/quantite-matiere/index.html", desc: "قيد الإعداد 🔧" },
-        { semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/lessons/concentration-solutions/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/lessons/quantite-matiere/index.html", desc: "Quantité de matière, masse molaire, volume molaire, concentration molaire" },
+        { semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/lessons/concentration-solutions/index.html", desc: "Dissolution, dilution, préparation des solutions électrolytiques" },
         { semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/lessons/suivi-transformation/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/lessons/conductimetrie/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 1, title: "Les réactions acido-basiques", file: "content/chimie/lessons/reactions-acido-basiques/index.html", desc: "قيد الإعداد 🔧" },
@@ -26,4 +26,3 @@ window.subjectsData.chimie = {
     series: [],
     exams: []
 };
-

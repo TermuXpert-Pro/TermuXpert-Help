@@ -26,7 +26,6 @@ const title = params.title || 'Nouveau cours';
 const parts = parseInt(params.parts) || 3;
 
 const basePath = path.join(__dirname, '..', 'content', subject, 'lessons', id);
-const templatePath = path.join(__dirname, '..', 'templates', 'part-template.html');
 
 // إنشاء مجلد الدرس
 if (!fs.existsSync(basePath)) {
@@ -34,11 +33,15 @@ if (!fs.existsSync(basePath)) {
 }
 
 // إنشاء صفحة index.html
+// ⚠️ noindex هنا مقصودة: الدرس مازال فارغ ("قيد الإعداد") عند الإنشاء.
+// حيدها يدوياً غير ملي تكمل كتابة المحتوى الحقيقي - هذاك الوقت
+// generate-sitemap.js و sync-data.js غايعرفو بروحهم بلي الدرس كمل.
 const indexContent = `<!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <title>${title} - ${subject} - Xpert</title>
     <link rel="stylesheet" href="../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../assets/css/lesson-common.css">
@@ -100,6 +103,7 @@ for (let i = 1; i <= parts; i++) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <title>Partie ${i} - ${title} - Xpert</title>
     <link rel="stylesheet" href="../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../assets/css/lesson-common.css">
@@ -155,3 +159,4 @@ for (let i = 1; i <= parts; i++) {
 
 console.log(`✅ ${title} créé avec succès dans content/${subject}/lessons/${id}/`);
 console.log(`   - ${parts} parties créées`);
+console.log(`   - ⚠️  الصفحات معلّمة noindex (قيد الإعداد) - حيد العلامة يدوياً ملي يكمل المحتوى`);

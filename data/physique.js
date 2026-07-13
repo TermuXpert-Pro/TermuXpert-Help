@@ -36,7 +36,7 @@ window.subjectsData.physique = {
             semester: 1,
             title: "Travail et énergie interne",
             file: "content/physique/lessons/travail-energie-interne/index.html",
-            desc: "Énergie interne, transfert thermique, calorimétrie, premier principe"
+            desc: "قيد الإعداد 🔧"
         },
         { semester: 2, title: "Transfert d'énergie dans un circuit électrique", file: "content/physique/lessons/circuit-electrique/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 2, title: "Le champ magnétique", file: "content/physique/lessons/champ-magnetique/index.html", desc: "قيد الإعداد 🔧" },
@@ -80,9 +80,6 @@ window.subjectsData.physique = {
             file: "content/physique/series/travail-energie-cinetique/index.html",
             desc: "6 exercices avec solutions détaillées"
         }
-    ],
-    exams: []
-}; }
     ],
     exams: []
 };

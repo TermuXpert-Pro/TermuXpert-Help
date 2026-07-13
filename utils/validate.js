@@ -200,6 +200,21 @@ function checkJsonFiles() {
         }
     }
     if (clean) ok(`${jsonFiles.length} ملف JSON - صحيحين`);
+
+    // ====== أيقونات manifest.json خاصهم يكونوا موجودين فعلياً ======
+    const manifestPath = path.join(ROOT, 'manifest.json');
+    if (fs.existsSync(manifestPath)) {
+        try {
+            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+            for (const icon of (manifest.icons || [])) {
+                const iconPath = path.join(ROOT, icon.src);
+                if (!fs.existsSync(iconPath)) {
+                    error(`manifest.json: أيقونة "${icon.src}" غير موجودة`);
+                    clean = false;
+                }
+            }
+        } catch (e) { /* الخطأ تلقط ديجا فوق */ }
+    }
 }
 
 // ============================================================
@@ -248,6 +263,40 @@ function checkPartialsDrift() {
 }
 
 // ============================================================
+// 7. فحص الروابط المكسورة جوا data/*.js (حقل file: "...")
+//    هاذ الفحص ماشي مشمول فـ checkBrokenLinks() لأن الروابط
+//    هنا داخل نصوص JS (string) ماشي href/src فـ HTML.
+// ============================================================
+function checkDataFileLinks() {
+    console.log('\n--- 7) فحص الروابط المكسورة فـ data/*.js ---');
+    const dataDir = path.join(ROOT, 'data');
+    if (!fs.existsSync(dataDir)) {
+        warn('مجلد data/ ماكاينش - تخطيت هاد الفحص');
+        return;
+    }
+    const dataFiles = walk(dataDir, '.js');
+    let clean = true;
+    let checkedCount = 0;
+
+    for (const fp of dataFiles) {
+        const rel = path.relative(ROOT, fp);
+        const content = fs.readFileSync(fp, 'utf-8');
+        const fileRefPattern = /file:\s*"([^"]+)"/g;
+        let m;
+        while ((m = fileRefPattern.exec(content)) !== null) {
+            const refPath = m[1];
+            checkedCount++;
+            const target = path.join(ROOT, refPath);
+            if (!fs.existsSync(target)) {
+                error(`${rel}: رابط مكسور "${refPath}" غير موجود على القرص`);
+                clean = false;
+            }
+        }
+    }
+    if (clean) ok(`${checkedCount} رابط فـ data/*.js - كلهم شغالين`);
+}
+
+// ============================================================
 // تشغيل الفحوصات كاملة
 // ============================================================
 console.log('🔍 بدء الفحص الشامل للموقع قبل النشر...');
@@ -258,6 +307,7 @@ checkInlineScripts();
 checkBrokenLinks();
 checkJsonFiles();
 checkPartialsDrift();
+checkDataFileLinks();
 
 console.log('\n' + '='.repeat(60));
 if (errorCount === 0) {
