@@ -4,7 +4,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 4 - Travail et énergie cinétique | Xpert</title>
+    <title>Exercice 9 - Travail et énergie cinétique | Xpert</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -180,7 +180,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .next-btn {
+        .prev-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -193,8 +193,8 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-        .next-btn:hover {
-            transform: translateX(4px);
+        .prev-btn:hover {
+            transform: translateX(-4px);
             box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
         .graph-container {
@@ -289,81 +289,78 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 4</h1>
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 9</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Bille lancée verticalement</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Poulie - Force de traction</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    Une bille est lancée verticalement vers le haut à une altitude \(h = 2,0\text{ m}\) par rapport au sol, avec une vitesse \(v_A = 10\text{ m/s}\).
+                    Un solide S de masse \(m = 100\text{ kg}\) est attaché par un fil enroulé sur la gorge d'une poulie. À son autre extrémité, on applique une force \(\vec{F}\) horizontale de valeur constante.
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    Données : \(g = 9,81\text{ N.kg}^{-1}\)
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    La poulie est homogène de rayon \(R = 10\text{ cm}\), peut tourner sans frottement autour de son axe de rotation \(\Delta\) et a un moment d'inertie \(J_{\Delta} = 5 \times 10^{-3}\text{ kg.m}^{2}\).
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    Le solide à l'instant \(t = 0\) a une vitesse nulle. On applique la force \(\vec{F}\), à l'instant \(t\) sa vitesse est \(v = 4\text{ m.s}^{-1}\), à la hauteur \(h = 5\text{ m}\).
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    <strong>1.</strong> En appliquant le théorème de l'énergie cinétique au solide S entre les deux instants \(t = 0\) et \(t\) (instant final). Calculer la valeur de la force qu'applique le fil sur le solide \(T\).
                 </p>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    On considère que le poids est la seule force appliquée à la bille (chute libre).
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    On donne \(g = 10\text{ N/kg}\).
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    Calculer en utilisant le théorème de l'énergie cinétique :
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    <strong>1.</strong> La hauteur maximale atteinte par la bille.
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    <strong>2.</strong> La vitesse de la bille lorsqu'elle retombe sur le sol.
+                    <strong>2.</strong> En appliquant le théorème de l'énergie cinétique à la poulie entre les deux instants \(t = 0\) et \(t\). Calculer la valeur de la force \(\vec{F}\).
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph4" width="380" height="280"></canvas>
-                    <p>Bille lancée verticalement - Chute libre</p>
+                    <canvas id="graph9" width="420" height="260"></canvas>
+                    <p>Poulie - Solide attaché par un fil</p>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la hauteur maximale \(z_B\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
-                    <div id="sol4_1" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la force de tension \(T\) du fil.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9_1')">Voir la solution</button>
+                    <div id="sol9_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Système étudié : la bille.
-                                <br>Bilan des forces : \(\vec{P}\) (poids).
+                                <span class="step-num">Étape 1 :</span> Système étudié : le solide S.
+                                <br>Forces exercées : \(\vec{P}\) (poids) et \(\vec{T}\) (tension du fil).
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Tableau des états :
-                                <div class="table-wrap" style="margin:4px 0;">
-                                    <table>
-                                        <tr><th></th><th>État initial (A)</th><th>État final (B)</th></tr>
-                                        <tr><td>Altitude</td><td>\(z_A = 2,0\text{ m}\)</td><td>\(z_B = ?\)</td></tr>
-                                        <tr><td>Vitesse</td><td>\(v_A = 10\text{ m/s}\)</td><td>\(v_B = 0\)</td></tr>
-                                    </table>
+                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre l'instant initial (A) et final (B) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P}) + W_{A\to B}(\vec{T})$$
+                                    $$\frac{1}{2} m v^2 - 0 = -m \cdot g \cdot h + T \cdot h$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Application du théorème de l'énergie cinétique entre A et B :
+                                <span class="step-num">Étape 3 :</span> On isole \(T\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P})$$
-                                    $$\frac{1}{2} m v_B^2 - \frac{1}{2} m v_A^2 = m \cdot g (z_A - z_B)$$
-                                    $$-\frac{1}{2} v_A^2 = g(z_A - z_B)$$
+                                    $$T \cdot h = \frac{1}{2} m v^2 + m \cdot g \cdot h$$
+                                    $$T = m \left(\frac{v^2}{2h} + g\right)$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> On isole \(z_B\) :
+                                <span class="step-num">Étape 4 :</span> Application numérique :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$z_B = z_A + \frac{v_A^2}{2g} = 2,0 + \frac{10^2}{2 \times 10} = 2,0 + 5,0 = 7,0\text{ m}$$
+                                    $$T = 100 \times \left(\frac{4^2}{2 \times 5} + 9,81\right) = 100 \times \left(\frac{16}{10} + 9,81\right)$$
+                                    $$T = 100 \times (1,6 + 9,81) = 100 \times 11,41 = 1141\text{ N}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$z_B = 7,0\text{ m}$$
+                                    $$T = 1141\text{ N}$$
                                 </div>
                             </div>
                         </div>
@@ -372,43 +369,59 @@
 
                 <div class="sub-question">
                     <div class="letter">2.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse \(v_0\) au sol.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
-                    <div id="sol4_2" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la valeur de la force \(\vec{F}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9_2')">Voir la solution</button>
+                    <div id="sol9_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Tableau des états :
-                                <div class="table-wrap" style="margin:4px 0;">
-                                    <table>
-                                        <tr><th></th><th>État initial (B)</th><th>État final (O)</th></tr>
-                                        <tr><td>Altitude</td><td>\(z_B = 7,0\text{ m}\)</td><td>\(z_0 = 0\)</td></tr>
-                                        <tr><td>Vitesse</td><td>\(v_B = 0\)</td><td>\(v_0 = ?\)</td></tr>
-                                    </table>
+                                <span class="step-num">Étape 1 :</span> Système étudié : la poulie.
+                                <br>Forces qui travaillent : \(\vec{T}\) (tension du fil) et \(\vec{F}\) (force appliquée).
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique à la poulie :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\Delta E_c = E_{cf} - E_{ci} = W(\vec{P}) + W(\vec{R}) + W(\vec{F}) + W(\vec{T})$$
+                                    $$\frac{1}{2} J_{\Delta} \omega^2 - 0 = 0 + 0 + F \cdot h - T' \cdot h$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Avec \(T' = T\) (même tension dans le fil) et \(h = R \cdot \Delta\theta\)</p>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 3 :</span> La vitesse angulaire est liée à la vitesse linéaire par :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\omega = \frac{v}{R} = \frac{4}{0,10} = 40\text{ rad/s}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre B et O :
+                                <span class="step-num">Étape 4 :</span> On isole \(F\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta E_c = E_{cO} - E_{cB} = W_{B\to O}(\vec{P})$$
-                                    $$\frac{1}{2} m v_0^2 - 0 = m \cdot g (z_B - z_0)$$
-                                    $$\frac{1}{2} v_0^2 = g \cdot z_B$$
+                                    $$\frac{1}{2} J_{\Delta} \omega^2 = h \cdot (F - T)$$
+                                    $$F = T + \frac{J_{\Delta} \cdot \omega^2}{2h} = T + \frac{J_{\Delta} \cdot v^2}{2R^2 \cdot h}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> On isole \(v_0\) :
+                                <span class="step-num">Étape 5 :</span> Application numérique :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$v_0 = \sqrt{2g \cdot z_B} = \sqrt{2 \times 10 \times 7,0} = \sqrt{140} \approx 11,8\text{ m/s}$$
+                                    $$F = 1141 + \frac{5 \times 10^{-3} \times 4^2}{2 \times (0,10)^2 \times 5}$$
+                                    $$F = 1141 + \frac{5 \times 10^{-3} \times 16}{2 \times 0,01 \times 5} = 1141 + \frac{0,08}{0,1}$$
+                                    $$F = 1141 + 0,8 = 1141,8\text{ N} \approx 1142\text{ N}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$v_0 \approx 11,8\text{ m/s}$$
+                                    $$F \approx 1142\text{ N}$$
                                 </div>
+                            </div>
+
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rem">Remarque</span>
+                                <p>La force \(F\) est légèrement supérieure à \(T\) car une partie de l'énergie sert à mettre la poulie en rotation (énergie cinétique de rotation).</p>
                             </div>
                         </div>
                     </div>
@@ -419,8 +432,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="exercice3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Exercice 3</a>
-                <a href="exercice5.html" class="next-btn">Exercice 5 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice8.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 8</a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
             </div>
 
         </div>
@@ -452,11 +465,11 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 4
+        // GRAPHIQUE - Exercice 9
         // ============================================================
 
-        function drawGraph4() {
-            var canvas = document.getElementById('graph4');
+        function drawGraph9() {
+            var canvas = document.getElementById('graph9');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -465,93 +478,130 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Sol
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
+            // Poulie (cercle)
+            var cx = 210, cy = 50;
+            var rayon = 40;
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.moveTo(30, h - 25);
-            ctx.lineTo(w - 30, h - 25);
+            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
             ctx.stroke();
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('Sol (z = 0)', 30, h - 30);
 
-            // Échelle verticale
-            var scaleY = (h - 60) / 8; // 8 m = 8 unités
-            var baseY = h - 25;
-
-            // Position A (z = 2m)
-            var yA = baseY - 2 * scaleY;
-            ctx.fillStyle = '#4ECDC4';
-            ctx.shadowColor = '#4ECDC4';
-            ctx.shadowBlur = 10;
-            ctx.beginPath();
-            ctx.arc(170, yA, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('A (z = 2,0 m)', 185, yA + 4);
-            ctx.fillText('v_A = 10 m/s ↑', 185, yA + 18);
-
-            // Position B (z = 7m)
-            var yB = baseY - 7 * scaleY;
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 10;
-            ctx.beginPath();
-            ctx.arc(170, yB, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('B (z = 7,0 m)', 185, yB + 4);
-            ctx.fillText('v_B = 0', 185, yB + 18);
-
-            // Position O (sol)
-            var yO = baseY;
-            ctx.fillStyle = '#FF6B6B';
-            ctx.shadowColor = '#FF6B6B';
-            ctx.shadowBlur = 10;
-            ctx.beginPath();
-            ctx.arc(170, yO, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('O (sol)', 185, yO + 4);
-            ctx.fillText('v_O = ?', 185, yO + 18);
-
-            // Flèches
-            ctx.strokeStyle = '#F4D03F';
+            // Axe de rotation
+            ctx.strokeStyle = '#FF6B6B';
             ctx.lineWidth = 1.5;
             ctx.setLineDash([4, 4]);
-            // A → B
             ctx.beginPath();
-            ctx.moveTo(165, yA);
-            ctx.lineTo(165, yB);
-            ctx.stroke();
-            // B → O
-            ctx.beginPath();
-            ctx.moveTo(155, yB);
-            ctx.lineTo(155, yO);
+            ctx.moveTo(cx, 10);
+            ctx.lineTo(cx, 90);
             ctx.stroke();
             ctx.setLineDash([]);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('(Δ)', cx + 8, 20);
+
+            // Fil à gauche (vers le solide)
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx - rayon, cy);
+            ctx.lineTo(cx - rayon, 220);
+            ctx.stroke();
+
+            // Solide S
+            var solX = cx - rayon - 25;
+            var solY = 210;
+            ctx.fillStyle = '#F4D03F';
+            ctx.shadowColor = '#F4D03F';
+            ctx.shadowBlur = 10;
+            ctx.fillRect(solX - 15, solY - 15, 30, 30);
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('S', solX, solY + 4);
+
+            // Fil à droite (vers la force F)
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx + rayon, cy);
+            ctx.lineTo(cx + rayon + 80, cy);
+            ctx.stroke();
+
+            // Flèche F
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2;
+            var fX = cx + rayon + 80;
+            var fY = cy;
+            ctx.beginPath();
+            ctx.moveTo(fX, fY);
+            ctx.lineTo(fX + 35, fY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(fX + 35, fY);
+            ctx.lineTo(fX + 28, fY - 5);
+            ctx.moveTo(fX + 35, fY);
+            ctx.lineTo(fX + 28, fY + 5);
+            ctx.stroke();
+            ctx.fillStyle = '#4D9DE0';
+            ctx.font = '13px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('F', fX + 18, fY - 8);
+
+            // Flèche T (tension)
+            ctx.strokeStyle = '#FFA500';
+            ctx.lineWidth = 2;
+            var tX = cx - rayon;
+            var tY = (cy + solY) / 2;
+            ctx.beginPath();
+            ctx.moveTo(tX, tY);
+            ctx.lineTo(tX - 30, tY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(tX - 30, tY);
+            ctx.lineTo(tX - 23, tY - 5);
+            ctx.moveTo(tX - 30, tY);
+            ctx.lineTo(tX - 23, tY + 5);
+            ctx.stroke();
+            ctx.fillStyle = '#FFA500';
+            ctx.font = '13px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('T', tX - 15, tY - 8);
+
+            // Flèche Poids
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(solX, solY + 15);
+            ctx.lineTo(solX, solY + 45);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(solX, solY + 45);
+            ctx.lineTo(solX - 4, solY + 38);
+            ctx.moveTo(solX, solY + 45);
+            ctx.lineTo(solX + 4, solY + 38);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '13px Arial';
+            ctx.fillText('P', solX + 8, solY + 35);
 
             // Légende
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('Chute libre', 10, 20);
-            ctx.fillText('g = 10 N/kg', 10, 35);
-            ctx.fillText('z_A = 2,0 m', 10, 50);
+            ctx.fillText('m = 100 kg', 10, 20);
+            ctx.fillText('R = 10 cm', 10, 35);
+            ctx.fillText('JΔ = 5×10⁻³ kg.m²', 10, 50);
+            ctx.fillText('h = 5 m', 10, 65);
+            ctx.fillText('v = 4 m/s', 10, 80);
+            ctx.fillText('g = 9,81 N/kg', 10, 95);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraph4();
+                drawGraph9();
             }, 500);
         });
     </script>

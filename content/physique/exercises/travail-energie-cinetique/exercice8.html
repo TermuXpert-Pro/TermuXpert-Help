@@ -4,7 +4,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 4 - Travail et énergie cinétique | Xpert</title>
+    <title>Exercice 8 - Travail et énergie cinétique | Xpert</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -289,81 +289,86 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 4</h1>
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 8</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Bille lancée verticalement</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Point matériel sur piste</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    Une bille est lancée verticalement vers le haut à une altitude \(h = 2,0\text{ m}\) par rapport au sol, avec une vitesse \(v_A = 10\text{ m/s}\).
+                    Un solide S assimilable à un point matériel de masse \(m = 50\text{ g}\) est en mouvement sur une piste constituée d'une partie rectiligne AB inclinée d'un angle \(\alpha = 60^\circ\) par rapport à l'horizontale et d'une partie circulaire BC de centre \(I\) et de rayon \(r = 0,5\text{ m}\).
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    <strong>1.</strong> Le point matériel S est lancé du point A avec une vitesse \(v_A = 6\text{ m/s}\). Il arrive au point B avec une vitesse nulle. Calculer la distance AB sachant que le point matériel est soumis à une force \(\vec{f}\) parallèle et de sens contraire à celui de sa vitesse à chaque instant, d'intensité constante \(f = 10^{-2}\text{ N}\).
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    <strong>2.</strong> On néglige les frottements sur la partie circulaire BC. Calculer la vitesse \(v_C\) de S au point C.
                 </p>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    On considère que le poids est la seule force appliquée à la bille (chute libre).
+                    <strong>3.</strong> Le point matériel quitte le point C avec la vitesse \(v_C\). Calculer la vitesse \(v_D\) du point matériel au point D.
                 </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    On donne \(g = 10\text{ N/kg}\).
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    Calculer en utilisant le théorème de l'énergie cinétique :
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    <strong>1.</strong> La hauteur maximale atteinte par la bille.
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    <strong>2.</strong> La vitesse de la bille lorsqu'elle retombe sur le sol.
+                <p style="color:var(--text-secondary); font-size:11px; margin-bottom:8px;">
+                    Donnée : \(g = 10\text{ N/kg}\)
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph4" width="380" height="280"></canvas>
-                    <p>Bille lancée verticalement - Chute libre</p>
+                    <canvas id="graph8" width="420" height="280"></canvas>
+                    <p>Point matériel sur piste - Mouvement avec frottement</p>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la hauteur maximale \(z_B\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
-                    <div id="sol4_1" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la distance AB.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_1')">Voir la solution</button>
+                    <div id="sol8_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Système étudié : la bille.
-                                <br>Bilan des forces : \(\vec{P}\) (poids).
+                                <span class="step-num">Étape 1 :</span> Bilan des forces sur AB :
+                                <ul>
+                                    <li>\(\vec{P}\) : Poids (vertical vers le bas)</li>
+                                    <li>\(\vec{R}\) : Réaction normale</li>
+                                    <li>\(\vec{f}\) : Frottement (parallèle à la pente, opposé au mouvement)</li>
+                                </ul>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Tableau des états :
-                                <div class="table-wrap" style="margin:4px 0;">
-                                    <table>
-                                        <tr><th></th><th>État initial (A)</th><th>État final (B)</th></tr>
-                                        <tr><td>Altitude</td><td>\(z_A = 2,0\text{ m}\)</td><td>\(z_B = ?\)</td></tr>
-                                        <tr><td>Vitesse</td><td>\(v_A = 10\text{ m/s}\)</td><td>\(v_B = 0\)</td></tr>
-                                    </table>
+                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre A et B :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P}) + W_{A\to B}(\vec{R}) + W_{A\to B}(\vec{f})$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Application du théorème de l'énergie cinétique entre A et B :
+                                <span class="step-num">Étape 3 :</span> Avec \(v_B = 0\), \(W(\vec{R}) = 0\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P})$$
-                                    $$\frac{1}{2} m v_B^2 - \frac{1}{2} m v_A^2 = m \cdot g (z_A - z_B)$$
-                                    $$-\frac{1}{2} v_A^2 = g(z_A - z_B)$$
+                                    $$-\frac{1}{2} m v_A^2 = -m \cdot g \cdot AB \cdot \sin\alpha - f \cdot AB$$
+                                    $$\frac{1}{2} m v_A^2 = AB(m \cdot g \cdot \sin\alpha + f)$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> On isole \(z_B\) :
+                                <span class="step-num">Étape 4 :</span> On isole \(AB\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$z_B = z_A + \frac{v_A^2}{2g} = 2,0 + \frac{10^2}{2 \times 10} = 2,0 + 5,0 = 7,0\text{ m}$$
+                                    $$AB = \frac{m v_A^2}{2(m \cdot g \cdot \sin\alpha + f)}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 5 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$AB = \frac{50 \times 10^{-3} \times 6^2}{2 \times (50 \times 10^{-3} \times 10 \times \sin(60^\circ) + 10^{-2})}$$
+                                    $$AB = \frac{50 \times 10^{-3} \times 36}{2 \times (0,5 \times 0,866 + 0,01)}$$
+                                    $$AB = \frac{1,8}{2 \times (0,433 + 0,01)} = \frac{1,8}{0,886} \approx 2,03\text{ m}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$z_B = 7,0\text{ m}$$
+                                    $$AB \approx 2,03\text{ m}$$
                                 </div>
                             </div>
                         </div>
@@ -372,42 +377,88 @@
 
                 <div class="sub-question">
                     <div class="letter">2.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse \(v_0\) au sol.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
-                    <div id="sol4_2" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse \(v_C\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_2')">Voir la solution</button>
+                    <div id="sol8_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Tableau des états :
-                                <div class="table-wrap" style="margin:4px 0;">
-                                    <table>
-                                        <tr><th></th><th>État initial (B)</th><th>État final (O)</th></tr>
-                                        <tr><td>Altitude</td><td>\(z_B = 7,0\text{ m}\)</td><td>\(z_0 = 0\)</td></tr>
-                                        <tr><td>Vitesse</td><td>\(v_B = 0\)</td><td>\(v_0 = ?\)</td></tr>
-                                    </table>
+                                <span class="step-num">Étape 1 :</span> Sur BC, on néglige les frottements. La seule force qui travaille est le poids.
+                                <br>On applique le théorème de l'énergie cinétique entre B et C :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\Delta E_c = E_{cC} - E_{cB} = W_{B\to C}(\vec{P}) + W_{B\to C}(\vec{R})$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre B et O :
+                                <span class="step-num">Étape 2 :</span> Avec \(v_B = 0\) et \(W(\vec{R}) = 0\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta E_c = E_{cO} - E_{cB} = W_{B\to O}(\vec{P})$$
-                                    $$\frac{1}{2} m v_0^2 - 0 = m \cdot g (z_B - z_0)$$
-                                    $$\frac{1}{2} v_0^2 = g \cdot z_B$$
+                                    $$\frac{1}{2} m v_C^2 = m \cdot g \cdot r$$
+                                    $$v_C^2 = 2g \cdot r$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> On isole \(v_0\) :
+                                <span class="step-num">Étape 3 :</span> Application numérique :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$v_0 = \sqrt{2g \cdot z_B} = \sqrt{2 \times 10 \times 7,0} = \sqrt{140} \approx 11,8\text{ m/s}$$
+                                    $$v_C = \sqrt{2 \times 10 \times 0,5} = \sqrt{10} \approx 3,16\text{ m/s}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$v_0 \approx 11,8\text{ m/s}$$
+                                    $$v_C \approx 3,16\text{ m/s}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse \(v_D\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_3')">Voir la solution</button>
+                    <div id="sol8_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Entre C et D, le solide est en chute libre (seul le poids travaille).
+                                <br>On applique le théorème de l'énergie cinétique entre C et D :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\Delta E_c = E_{cD} - E_{cC} = W_{C\to D}(\vec{P})$$
+                                    $$\frac{1}{2} m v_D^2 - \frac{1}{2} m v_C^2 = m \cdot g \cdot (z_C - z_D)$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 2 :</span> La dénivellation entre C et D :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$z_C - z_D = h - r = AB \cdot \sin\alpha - r$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 3 :</span> On isole \(v_D\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v_D^2 = 2g(AB \cdot \sin\alpha - r) + v_C^2$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 4 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v_D^2 = 2 \times 10 \times (2,03 \times \sin(60^\circ) - 0,5) + (3,16)^2$$
+                                    $$v_D^2 = 20 \times (2,03 \times 0,866 - 0,5) + 10$$
+                                    $$v_D^2 = 20 \times (1,758 - 0,5) + 10 = 20 \times 1,258 + 10 = 25,16 + 10 = 35,16$$
+                                    $$v_D = \sqrt{35,16} \approx 5,93\text{ m/s}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$v_D \approx 5,93\text{ m/s}$$
                                 </div>
                             </div>
                         </div>
@@ -419,8 +470,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="exercice3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Exercice 3</a>
-                <a href="exercice5.html" class="next-btn">Exercice 5 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice7.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Exercice 7</a>
+                <a href="exercice9.html" class="next-btn">Exercice 9 <i class="fas fa-arrow-left"></i></a>
             </div>
 
         </div>
@@ -452,11 +503,11 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 4
+        // GRAPHIQUE - Exercice 8
         // ============================================================
 
-        function drawGraph4() {
-            var canvas = document.getElementById('graph4');
+        function drawGraph8() {
+            var canvas = document.getElementById('graph8');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -465,93 +516,128 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Sol
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
+            var baseX = 30, baseY = h - 30;
+            var longueur = 200;
+            var angle = 60 * Math.PI / 180;
+
+            // Partie AB (plan incliné)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.moveTo(30, h - 25);
-            ctx.lineTo(w - 30, h - 25);
+            ctx.moveTo(baseX, baseY);
+            var finX = baseX + longueur * Math.cos(angle);
+            var finY = baseY - longueur * Math.sin(angle);
+            ctx.lineTo(finX, finY);
             ctx.stroke();
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('Sol (z = 0)', 30, h - 30);
 
-            // Échelle verticale
-            var scaleY = (h - 60) / 8; // 8 m = 8 unités
-            var baseY = h - 25;
-
-            // Position A (z = 2m)
-            var yA = baseY - 2 * scaleY;
-            ctx.fillStyle = '#4ECDC4';
-            ctx.shadowColor = '#4ECDC4';
-            ctx.shadowBlur = 10;
+            // Partie BC (courbe circulaire)
+            var r = 50;
+            var cx = finX + r * Math.sin(angle);
+            var cy = finY + r * Math.cos(angle);
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.arc(170, yA, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('A (z = 2,0 m)', 185, yA + 4);
-            ctx.fillText('v_A = 10 m/s ↑', 185, yA + 18);
+            var startAngle = -Math.PI/2 + angle;
+            var endAngle = -Math.PI/2;
+            ctx.arc(cx, cy, r, startAngle, endAngle);
+            ctx.stroke();
 
-            // Position B (z = 7m)
-            var yB = baseY - 7 * scaleY;
+            // Point C
+            var cX = cx;
+            var cY = cy - r;
             ctx.fillStyle = '#A8FF78';
             ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 10;
+            ctx.shadowBlur = 8;
             ctx.beginPath();
-            ctx.arc(170, yB, 8, 0, 2 * Math.PI);
+            ctx.arc(cX, cY, 5, 0, 2 * Math.PI);
             ctx.fill();
             ctx.shadowBlur = 0;
             ctx.fillStyle = '#FFFFFF';
             ctx.font = '11px Arial';
-            ctx.fillText('B (z = 7,0 m)', 185, yB + 4);
-            ctx.fillText('v_B = 0', 185, yB + 18);
+            ctx.textAlign = 'center';
+            ctx.fillText('C', cX, cY + 16);
 
-            // Position O (sol)
-            var yO = baseY;
-            ctx.fillStyle = '#FF6B6B';
-            ctx.shadowColor = '#FF6B6B';
-            ctx.shadowBlur = 10;
+            // Point D (sol)
+            var dX = cX;
+            var dY = baseY + 20;
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 8;
             ctx.beginPath();
-            ctx.arc(170, yO, 8, 0, 2 * Math.PI);
+            ctx.arc(dX, dY, 5, 0, 2 * Math.PI);
             ctx.fill();
             ctx.shadowBlur = 0;
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('O (sol)', 185, yO + 4);
-            ctx.fillText('v_O = ?', 185, yO + 18);
+            ctx.fillText('D', dX, dY + 16);
 
-            // Flèches
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            // A → B
+            // Point A
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 8;
             ctx.beginPath();
-            ctx.moveTo(165, yA);
-            ctx.lineTo(165, yB);
-            ctx.stroke();
-            // B → O
+            ctx.arc(baseX, baseY, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'left';
+            ctx.fillText('A', baseX + 10, baseY + 4);
+
+            // Point B
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 8;
             ctx.beginPath();
-            ctx.moveTo(155, yB);
-            ctx.lineTo(155, yO);
-            ctx.stroke();
-            ctx.setLineDash([]);
+            ctx.arc(finX, finY, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'left';
+            ctx.fillText('B', finX + 10, finY + 4);
+
+            // Centre I
+            ctx.fillStyle = '#BB8FCE';
+            ctx.shadowColor = '#BB8FCE';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'right';
+            ctx.fillText('I', cx - 8, cy + 4);
 
             // Légende
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('Chute libre', 10, 20);
-            ctx.fillText('g = 10 N/kg', 10, 35);
-            ctx.fillText('z_A = 2,0 m', 10, 50);
+            ctx.fillText('m = 50 g', 10, 20);
+            ctx.fillText('α = 60°', 10, 35);
+            ctx.fillText('r = 0,5 m', 10, 50);
+            ctx.fillText('f = 10⁻² N', 10, 65);
+            ctx.fillText('v_A = 6 m/s', 10, 80);
+
+            // Flèche vitesse C
+            ctx.strokeStyle = '#FFD93D';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(cX, cY - 12);
+            ctx.lineTo(cX, cY - 35);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cX, cY - 35);
+            ctx.lineTo(cX - 4, cY - 28);
+            ctx.moveTo(cX, cY - 35);
+            ctx.lineTo(cX + 4, cY - 28);
+            ctx.stroke();
+            ctx.fillStyle = '#FFD93D';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('v_C', cX + 6, cY - 25);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraph4();
+                drawGraph8();
             }, 500);
         });
     </script>

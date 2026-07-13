@@ -4,7 +4,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 4 - Travail et énergie cinétique | Xpert</title>
+    <title>Exercice 7 - Travail et énergie cinétique | Xpert</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -289,82 +289,80 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 4</h1>
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 7</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Bille lancée verticalement</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Cylindre en rotation - Couple de frottement</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    Une bille est lancée verticalement vers le haut à une altitude \(h = 2,0\text{ m}\) par rapport au sol, avec une vitesse \(v_A = 10\text{ m/s}\).
+                    Un cylindre homogène de masse \(m\) (non donnée) et de rayon \(R = 10\text{ cm}\) tourne autour de son axe de rotation \(\Delta\) à la vitesse \(\omega = 45\text{ tours/min}\).
                 </p>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    On considère que le poids est la seule force appliquée à la bille (chute libre).
+                    On arrête le moteur qui fait tourner le cylindre, le cylindre fait \(120\) tours avant de s'arrêter.
                 </p>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    On donne \(g = 10\text{ N/kg}\).
+                    On donne le moment d'inertie du cylindre \(J_{\Delta} = 3 \times 10^{-2}\text{ kg.m}^{2}\).
                 </p>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    Calculer en utilisant le théorème de l'énergie cinétique :
-                </p>
-                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
-                    <strong>1.</strong> La hauteur maximale atteinte par la bille.
+                    <strong>1.</strong> Calculer la valeur du moment du couple de frottement qui est considéré constant.
                 </p>
                 <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
-                    <strong>2.</strong> La vitesse de la bille lorsqu'elle retombe sur le sol.
+                    <strong>2.</strong> On fait fonctionner le moteur de nouveau, le cylindre tourne à la vitesse constante \(\omega = 45\text{ tours/min}\). Calculer le travail effectué par le moteur pendant une minute et déduire sa puissance.
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph4" width="380" height="280"></canvas>
-                    <p>Bille lancée verticalement - Chute libre</p>
+                    <canvas id="graph7" width="420" height="220"></canvas>
+                    <p>Cylindre en rotation - Couple de frottement</p>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la hauteur maximale \(z_B\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
-                    <div id="sol4_1" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le moment du couple de frottement \(M_f\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_1')">Voir la solution</button>
+                    <div id="sol7_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Système étudié : la bille.
-                                <br>Bilan des forces : \(\vec{P}\) (poids).
-                            </div>
-
-                            <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Tableau des états :
-                                <div class="table-wrap" style="margin:4px 0;">
-                                    <table>
-                                        <tr><th></th><th>État initial (A)</th><th>État final (B)</th></tr>
-                                        <tr><td>Altitude</td><td>\(z_A = 2,0\text{ m}\)</td><td>\(z_B = ?\)</td></tr>
-                                        <tr><td>Vitesse</td><td>\(v_A = 10\text{ m/s}\)</td><td>\(v_B = 0\)</td></tr>
-                                    </table>
+                                <span class="step-num">Étape 1 :</span> Conversion de la vitesse angulaire en \(\text{rad.s}^{-1}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\omega = \frac{2\pi N}{60} = \frac{2\pi \times 45}{60} = 1,5\pi \approx 4,71\text{ rad.s}^{-1}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Application du théorème de l'énergie cinétique entre A et B :
+                                <span class="step-num">Étape 2 :</span> Angle de rotation avant l'arrêt :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P})$$
-                                    $$\frac{1}{2} m v_B^2 - \frac{1}{2} m v_A^2 = m \cdot g (z_A - z_B)$$
-                                    $$-\frac{1}{2} v_A^2 = g(z_A - z_B)$$
+                                    $$\Delta\theta = 2\pi \times n = 2\pi \times 120 = 240\pi \approx 754\text{ rad}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> On isole \(z_B\) :
+                                <span class="step-num">Étape 3 :</span> Application du théorème de l'énergie cinétique entre l'instant d'arrêt du moteur et l'arrêt complet du cylindre :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$z_B = z_A + \frac{v_A^2}{2g} = 2,0 + \frac{10^2}{2 \times 10} = 2,0 + 5,0 = 7,0\text{ m}$$
+                                    $$\Delta E_c = E_{cf} - E_{ci} = W(\vec{P}) + W(\vec{T}) + W_f$$
+                                    $$0 - \frac{1}{2} J_{\Delta} \omega^2 = 0 + 0 + M_f \cdot \Delta\theta$$
+                                    $$M_f = -\frac{J_{\Delta} \cdot \omega^2}{2\Delta\theta}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 4 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M_f = -\frac{3 \times 10^{-2} \times (1,5\pi)^2}{2 \times 240\pi}$$
+                                    $$M_f = -\frac{3 \times 10^{-2} \times 22,2}{1508} = -\frac{0,666}{1508}$$
+                                    $$M_f \approx -4,4 \times 10^{-4}\text{ N.m}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$z_B = 7,0\text{ m}$$
+                                    $$M_f \approx -4,4 \times 10^{-4}\text{ N.m}$$
                                 </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Le signe négatif indique que le couple de frottement est résistant.</p>
                             </div>
                         </div>
                     </div>
@@ -372,42 +370,46 @@
 
                 <div class="sub-question">
                     <div class="letter">2.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la vitesse \(v_0\) au sol.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
-                    <div id="sol4_2" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du moteur et sa puissance.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_2')">Voir la solution</button>
+                    <div id="sol7_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Tableau des états :
-                                <div class="table-wrap" style="margin:4px 0;">
-                                    <table>
-                                        <tr><th></th><th>État initial (B)</th><th>État final (O)</th></tr>
-                                        <tr><td>Altitude</td><td>\(z_B = 7,0\text{ m}\)</td><td>\(z_0 = 0\)</td></tr>
-                                        <tr><td>Vitesse</td><td>\(v_B = 0\)</td><td>\(v_0 = ?\)</td></tr>
-                                    </table>
+                                <span class="step-num">Étape 1 :</span> Le mouvement est uniforme, donc \(\Delta E_c = 0\).
+                                <br>On applique le théorème de l'énergie cinétique entre deux instants de durée \(\Delta t = 1\text{ min}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$0 = W_m + M_f \cdot \Delta\theta'$$
+                                    $$W_m = -M_f \cdot \Delta\theta'$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre B et O :
+                                <span class="step-num">Étape 2 :</span> L'angle parcouru pendant une minute :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta E_c = E_{cO} - E_{cB} = W_{B\to O}(\vec{P})$$
-                                    $$\frac{1}{2} m v_0^2 - 0 = m \cdot g (z_B - z_0)$$
-                                    $$\frac{1}{2} v_0^2 = g \cdot z_B$$
+                                    $$\Delta\theta' = \omega \cdot \Delta t = 1,5\pi \times 60 = 90\pi \text{ rad}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> On isole \(v_0\) :
+                                <span class="step-num">Étape 3 :</span> Le travail du moteur :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$v_0 = \sqrt{2g \cdot z_B} = \sqrt{2 \times 10 \times 7,0} = \sqrt{140} \approx 11,8\text{ m/s}$$
+                                    $$W_m = -(-4,4 \times 10^{-4}) \times 90\pi = 4,4 \times 10^{-4} \times 282,7$$
+                                    $$W_m \approx 0,124\text{ J}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 4 :</span> La puissance du moteur :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P = \frac{W_m}{\Delta t} = \frac{0,124}{60} \approx 2,07 \times 10^{-3}\text{ W} = 2,07\text{ mW}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$v_0 \approx 11,8\text{ m/s}$$
+                                    $$W_m \approx 0,124\text{ J} \quad ; \quad P \approx 2,07\text{ mW}$$
                                 </div>
                             </div>
                         </div>
@@ -419,8 +421,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="exercice3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Exercice 3</a>
-                <a href="exercice5.html" class="next-btn">Exercice 5 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice6.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Exercice 6</a>
+                <a href="exercice8.html" class="next-btn">Exercice 8 <i class="fas fa-arrow-left"></i></a>
             </div>
 
         </div>
@@ -452,11 +454,11 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 4
+        // GRAPHIQUE - Exercice 7
         // ============================================================
 
-        function drawGraph4() {
-            var canvas = document.getElementById('graph4');
+        function drawGraph7() {
+            var canvas = document.getElementById('graph7');
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var w = canvas.width, h = canvas.height;
@@ -465,93 +467,67 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Sol
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
+            var cx = w/2, cy = h/2 + 10;
+            var rayon = 70;
+
+            // Cercle (cylindre)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.moveTo(30, h - 25);
-            ctx.lineTo(w - 30, h - 25);
+            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
             ctx.stroke();
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('Sol (z = 0)', 30, h - 30);
 
-            // Échelle verticale
-            var scaleY = (h - 60) / 8; // 8 m = 8 unités
-            var baseY = h - 25;
-
-            // Position A (z = 2m)
-            var yA = baseY - 2 * scaleY;
-            ctx.fillStyle = '#4ECDC4';
-            ctx.shadowColor = '#4ECDC4';
-            ctx.shadowBlur = 10;
-            ctx.beginPath();
-            ctx.arc(170, yA, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('A (z = 2,0 m)', 185, yA + 4);
-            ctx.fillText('v_A = 10 m/s ↑', 185, yA + 18);
-
-            // Position B (z = 7m)
-            var yB = baseY - 7 * scaleY;
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 10;
-            ctx.beginPath();
-            ctx.arc(170, yB, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('B (z = 7,0 m)', 185, yB + 4);
-            ctx.fillText('v_B = 0', 185, yB + 18);
-
-            // Position O (sol)
-            var yO = baseY;
-            ctx.fillStyle = '#FF6B6B';
-            ctx.shadowColor = '#FF6B6B';
-            ctx.shadowBlur = 10;
-            ctx.beginPath();
-            ctx.arc(170, yO, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('O (sol)', 185, yO + 4);
-            ctx.fillText('v_O = ?', 185, yO + 18);
-
-            // Flèches
-            ctx.strokeStyle = '#F4D03F';
+            // Axe de rotation
+            ctx.strokeStyle = '#FF6B6B';
             ctx.lineWidth = 1.5;
             ctx.setLineDash([4, 4]);
-            // A → B
             ctx.beginPath();
-            ctx.moveTo(165, yA);
-            ctx.lineTo(165, yB);
-            ctx.stroke();
-            // B → O
-            ctx.beginPath();
-            ctx.moveTo(155, yB);
-            ctx.lineTo(155, yO);
+            ctx.moveTo(cx, 15);
+            ctx.lineTo(cx, h - 15);
             ctx.stroke();
             ctx.setLineDash([]);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('(Δ)', cx + 15, 30);
+
+            // Rayon
+            var angle = Math.PI/4;
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(cx + rayon * Math.cos(angle), cy - rayon * Math.sin(angle));
+            ctx.stroke();
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('R = 10 cm', cx + 35, cy - 30);
+
+            // Flèche de rotation
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, rayon * 0.6, -Math.PI/3, Math.PI/4);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('ω', cx + 65, cy - 55);
 
             // Légende
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('Chute libre', 10, 20);
-            ctx.fillText('g = 10 N/kg', 10, 35);
-            ctx.fillText('z_A = 2,0 m', 10, 50);
+            ctx.fillText('JΔ = 3×10⁻² kg.m²', 10, 20);
+            ctx.fillText('N = 45 tr/min', 10, 35);
+            ctx.fillText('120 tours avant arrêt', 10, 50);
+            ctx.fillText('Moteur', 10, 65);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraph4();
+                drawGraph7();
             }, 500);
         });
     </script>
