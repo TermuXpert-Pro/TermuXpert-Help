@@ -94,6 +94,16 @@
         .exemple-box .ex-title { color: #F4D03F; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
         .schema-box { background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin: 4px 0; text-align: center; }
         .schema-box canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #F4D03F; }
+        .toc ul li a .num { color: #F4D03F; font-weight: 700; font-size: 11px; min-width: 20px; }
+        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
+        .summary-card .s-title { color: #F4D03F; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -189,23 +199,38 @@
                 Pour les gaz, la quantité de matière est liée à la pression, au volume et à la température par l'équation d'état des gaz parfaits.
             </p>
 
+            <!-- ====== TABLE DES MATIÈRES ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Loi de Boyle-Mariotte</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Température absolue</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Équation d'état des gaz parfaits</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Volume molaire et quantité de matière d'un gaz</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Densité d'un gaz par rapport à l'air</a></li>
+                </ul>
+            </div>
+
             <!-- ============================================================ -->
             <!-- SECTION 1: LOI DE BOYLE-MARIOTTE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Loi de Boyle-Mariotte</h2>
 
+                <!-- ====== ACTIVITÉ ====== -->
                 <div class="highlight-box purple">
                     <span class="label rem">Activité</span>
                     <p>On considère une seringue remplie d'air et reliée à un manomètre qui indique la pression \(P\).</p>
                     <p>On diminue le volume occupé par l'air. On constate alors que la pression affichée par le manomètre <strong>augmente</strong>.</p>
                 </div>
 
+                <!-- ====== SCHÉMA ====== -->
                 <div class="schema-box">
                     <canvas id="schemaBoyle" width="420" height="140"></canvas>
                     <p style="color:var(--text-muted); font-size:10px; margin-top:2px;">Lorsqu'on diminue le volume, la pression augmente (\(P \times V = \text{constante}\))</p>
                 </div>
 
+                <!-- ====== TABLEAU ====== -->
                 <div class="table-wrap">
                     <table>
                         <tr><th>\(V\) (L)</th><th>\(P\) (bar)</th><th>\(P \times V\)</th></tr>
@@ -216,18 +241,22 @@
                     </table>
                 </div>
 
+                <!-- ====== GRAPHIQUE ====== -->
                 <div class="graph-container">
                     <canvas id="graphBoyle" width="400" height="200"></canvas>
                     <p>Courbe \(P = f(V)\) pour un gaz parfait à température constante</p>
                 </div>
 
-                <div class="highlight-box red">
-                    <span class="label def">Loi de Boyle-Mariotte</span>
-                    <p>À <strong>température constante</strong>, pour une <strong>quantité de matière donnée</strong> de gaz, le produit de la pression \(P\) par le volume \(V\) de ce gaz ne varie pas :</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$P \times V = \text{constante}$$
+                <!-- ====== RÉSUMÉ CARD ====== -->
+                <div class="summary-card">
+                    <div class="s-title">📌 Loi de Boyle-Mariotte</div>
+                    <div class="s-content">
+                        <p>À <strong>température constante</strong>, pour une <strong>quantité de matière donnée</strong> de gaz, le produit de la pression \(P\) par le volume \(V\) de ce gaz ne varie pas :</p>
+                        <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                            $$P \times V = \text{constante}$$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">\(P\) en Pa (ou bar, atm...), \(V\) en m³ (ou L...)</span>
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">\(P\) en Pa (ou bar, atm...), \(V\) en m³ (ou L...)</p>
                 </div>
 
                 <div class="highlight-box green">
@@ -240,17 +269,21 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: TEMPÉRATURE ABSOLUE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Température absolue</h2>
 
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>La <strong>température absolue</strong> \(T\) (en kelvin, K) est liée à la température en degrés Celsius \(\theta\) par :</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$T(K) = \theta(^\circ C) + 273,15$$
+                <!-- ====== RÉSUMÉ CARD ====== -->
+                <div class="summary-card">
+                    <div class="s-title">📌 Définition</div>
+                    <div class="s-content">
+                        <p>La <strong>température absolue</strong> \(T\) (en kelvin, K) est liée à la température en degrés Celsius \(\theta\) par :</p>
+                        <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                            $$T(K) = \theta(^\circ C) + 273,15$$
+                        </div>
                     </div>
                 </div>
 
+                <!-- ====== TABLEAU ====== -->
                 <div class="table-wrap">
                     <table>
                         <tr><th>\(\theta\) (°C)</th><th>\(T\) (K)</th></tr>
@@ -271,7 +304,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: ÉQUATION D'ÉTAT DES GAZ PARFAITS -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Équation d'état des gaz parfaits</h2>
 
                 <div class="highlight-box purple">
@@ -280,46 +313,54 @@
                     <p style="font-size:11px; color:var(--text-muted);">À basse pression et à haute température, le comportement d'un gaz réel peut se considérer comme celui d'un gaz parfait.</p>
                 </div>
 
-                <div class="highlight-box red">
-                    <span class="label def">Équation d'état des gaz parfaits</span>
-                    <p>Les quatre variables d'état \((P, V, n, T)\) sont liées par :</p>
-                    <div class="formula-block" style="font-size:20px;">
-                        $$P \times V = n \times R \times T$$
+                <!-- ====== RÉSUMÉ CARD ====== -->
+                <div class="summary-card">
+                    <div class="s-title">📌 Équation d'état des gaz parfaits</div>
+                    <div class="s-content">
+                        <p>Les quatre variables d'état \((P, V, n, T)\) sont liées par :</p>
+                        <div class="formula-block" style="font-size:20px; margin:4px 0;">
+                            $$P \times V = n \times R \times T$$
+                        </div>
+                        <ul style="font-size:11px; color:var(--text-muted); padding-right:14px;">
+                            <li>\(P\) : pression en pascal (Pa)</li>
+                            <li>\(V\) : volume en m³</li>
+                            <li>\(n\) : quantité de matière en mol</li>
+                            <li>\(T\) : température absolue en kelvin (K)</li>
+                            <li>\(R = 8,314 \text{ Pa.m}^3\text{.mol}^{-1}\text{.K}^{-1}\) (constante des gaz parfaits)</li>
+                        </ul>
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">
-                        \(P\) : pression en pascal (Pa) &emsp; \(V\) : volume en m³<br>
-                        \(n\) : quantité de matière en mol &emsp; \(T\) : température absolue en kelvin (K)<br>
-                        \(R = 8,314 \text{ Pa.m}^3\text{.mol}^{-1}\text{.K}^{-1}\) (constante des gaz parfaits)
-                    </p>
                 </div>
 
                 <div class="highlight-box yellow">
-                    <span class="label ex">Autres valeurs de R</span>
+                    <span class="label rappel">Autres valeurs de R</span>
                     <ul>
                         <li>\(R = 8,314 \text{ J.mol}^{-1}\text{.K}^{-1}\)</li>
                         <li>\(R = 0,082 \text{ atm.L.mol}^{-1}\text{.K}^{-1}\) (à utiliser avec \(P\) en atm et \(V\) en L)</li>
                     </ul>
                 </div>
 
+                <!-- ====== APPLICATION AVEC MÉTHODE ====== -->
                 <div class="exemple-box">
-                    <div class="ex-title">📝 Application : Calcul du volume molaire</div>
+                    <div class="ex-title">📝 Application : Calcul du volume molaire dans les CNTP</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
                         Calculer le volume molaire \(V_m\) dans les conditions normales de température et de pression (CNTP) :<br>
                         \(\theta = 0^\circ C\), \(P = 1013 \text{ hPa}\).
                     </p>
 
-                    <div style="margin-top:6px;">
-                        <p style="font-weight:700; color:#F4D03F; font-size:12px;">Corrigé :</p>
-                        <div class="step"><span class="step-num">Étape 1 :</span> Le volume molaire est le volume occupé par <strong>une mole</strong> de gaz parfait (\(n = 1 \text{ mol}\)).</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> \(P \times V = n \times R \times T \Rightarrow V_m = \frac{R \times T}{P}\)</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> Conversion : \(T = 0 + 273,15 = 273,15 \text{ K}\), \(P = 1013 \text{ hPa} = 1013 \times 10^2 \text{ Pa}\)</div>
+                    <p style="font-weight:700; color:#F4D03F; font-size:12px; margin-top:6px;">Méthode de résolution :</p>
 
-                        <div class="formula-block" style="font-size:16px;">
-                            $$V_m = \frac{8,314 \times 273,15}{1013 \times 10^2} = 2,24 \times 10^{-2} \text{ m}^3 \cdot \text{mol}^{-1} = 22,4 \text{ L} \cdot \text{mol}^{-1}$$
+                    <div style="margin-top:6px;">
+                        <div class="step"><span class="step-num">Étape 1 :</span> Le volume molaire est le volume occupé par <strong>une mole</strong> de gaz parfait (\(n = 1 \text{ mol}\)).</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> On utilise l'équation d'état : \(P \times V = n \times R \times T \Rightarrow V_m = \frac{R \times T}{P}\)</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> Conversion : \(T = 0 + 273,15 = 273,15 \text{ K}\), \(P = 1013 \text{ hPa} = 1013 \times 10^2 \text{ Pa}\)</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> On remplace : \(V_m = \frac{8,314 \times 273,15}{1013 \times 10^2}\)</div>
+
+                        <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                            $$V_m = 2,24 \times 10^{-2} \text{ m}^3 \cdot \text{mol}^{-1} = 22,4 \text{ L} \cdot \text{mol}^{-1}$$
                         </div>
 
                         <div class="highlight-box green" style="margin-top:4px;">
-                            <span class="label resume">Résultat</span>
+                            <span class="label resume">Réponse</span>
                             <p>Dans les CNTP, le volume molaire d'un gaz parfait est :</p>
                             <div class="formula-block" style="font-size:16px;">
                                 $$V_m = 22,4 \text{ L.mol}^{-1}$$
@@ -330,26 +371,21 @@
             </div>
 
             <!-- ============================================================ -->
-            <!-- SECTION 4: VOLUME MOLAIRE ET QUANTITÉ DE MATIÈRE -->
+            <!-- SECTION 4: VOLUME MOLAIRE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec4">
                 <h2><span class="num">4</span> Volume molaire - Quantité de matière d'un gaz</h2>
 
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>Le <strong>volume molaire</strong> \(V_m\) d'un gaz est le volume occupé par <strong>une mole</strong> de ce gaz dans des conditions de pression et de température données.</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$V_m = \frac{V}{n}$$
+                <!-- ====== RÉSUMÉ CARD ====== -->
+                <div class="summary-card">
+                    <div class="s-title">📌 Définition du volume molaire</div>
+                    <div class="s-content">
+                        <p>Le <strong>volume molaire</strong> \(V_m\) d'un gaz est le volume occupé par <strong>une mole</strong> de ce gaz dans des conditions de pression et de température données.</p>
+                        <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                            $$V_m = \frac{V}{n} \quad \text{et} \quad n(X) = \frac{V(X)}{V_m}$$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">\(V_m\) en L.mol⁻¹, \(V\) en L, \(n\) en mol</span>
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">\(V_m\) en L.mol⁻¹, \(V\) en L, \(n\) en mol</p>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label prop">Relation avec la quantité de matière</span>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$n(X) = \frac{V(X)}{V_m}$$
-                    </div>
-                    <p style="font-size:11px; color:var(--text-muted);">\(n(X)\) en mol, \(V(X)\) en L, \(V_m\) en L.mol⁻¹</p>
                 </div>
 
                 <div class="table-wrap">
@@ -365,19 +401,43 @@
                     <p>À une <strong>même température et pression</strong>, <strong>tous les gaz</strong> ont le même volume molaire.</p>
                     <p style="font-size:11px; color:var(--text-muted);">Une mole de dioxygène \(O_2\) et une mole de diazote \(N_2\) occupent le même volume dans les mêmes conditions.</p>
                 </div>
+
+                <!-- ====== EXEMPLE ====== -->
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exemple</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Quel est le volume occupé par \(0,25 \text{ mol}\) de dioxygène \(O_2\) dans les conditions normales ?
+                    </p>
+
+                    <p style="font-weight:700; color:#F4D03F; font-size:12px; margin-top:6px;">Méthode de résolution :</p>
+
+                    <div style="margin-top:6px;">
+                        <div class="step"><span class="step-num">Étape 1 :</span> On utilise la formule : \(V = n \times V_m\)</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> Dans les CNTP, \(V_m = 22,4 \text{ L.mol}^{-1}\)</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> \(V = 0,25 \times 22,4 = 5,60 \text{ L}\)</div>
+
+                        <div class="highlight-box green" style="margin-top:4px;">
+                            <span class="label resume">Réponse</span>
+                            <p>\(0,25 \text{ mol}\) de \(O_2\) occupent <strong>5,60 L</strong> dans les CNTP.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ============================================================ -->
             <!-- SECTION 5: DENSITÉ D'UN GAZ -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec5">
                 <h2><span class="num">5</span> Densité d'un gaz par rapport à l'air</h2>
 
-                <div class="highlight-box red">
-                    <span class="label def">Définition</span>
-                    <p>La <strong>densité</strong> \(d\) d'un gaz par rapport à l'air est le quotient de la masse \(m\) d'un volume \(V\) de gaz par la masse \(m_{air}\) du <strong>même volume</strong> \(V\) d'air (dans les mêmes conditions de température et de pression).</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$d = \frac{m}{m_{air}} = \frac{n \times M}{\rho_{air} \times n \times V_m} = \frac{M}{\rho_{air} \times V_m}$$
+                <!-- ====== RÉSUMÉ CARD ====== -->
+                <div class="summary-card">
+                    <div class="s-title">📌 Définition</div>
+                    <div class="s-content">
+                        <p>La <strong>densité</strong> \(d\) d'un gaz par rapport à l'air est le quotient de la masse \(m\) d'un volume \(V\) de gaz par la masse \(m_{air}\) du <strong>même volume</strong> \(V\) d'air (dans les mêmes conditions de température et de pression).</p>
+                        <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                            $$d = \frac{m}{m_{air}} = \frac{n \times M}{\rho_{air} \times n \times V_m} = \frac{M}{\rho_{air} \times V_m}$$
+                        </div>
                     </div>
                 </div>
 
@@ -385,7 +445,7 @@
                     <span class="label prop">Formule simplifiée</span>
                     <p>Dans les conditions normales : \(\rho_{air} = 1,293 \text{ g.L}^{-1}\) et \(V_m = 22,4 \text{ L.mol}^{-1}\)</p>
                     <p>Donc \(\rho_{air} \times V_m = 1,293 \times 22,4 \approx 29 \text{ g.mol}^{-1}\)</p>
-                    <div class="formula-block" style="font-size:18px;">
+                    <div class="formula-block" style="font-size:18px; margin:4px 0;">
                         $$d = \frac{M}{29}$$
                     </div>
                     <p style="font-size:11px; color:var(--text-muted);">
@@ -394,20 +454,55 @@
                     </p>
                 </div>
 
+                <!-- ====== EXEMPLE ====== -->
                 <div class="exemple-box">
                     <div class="ex-title">📝 Exemple</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
                         Calculer la densité du dioxyde de carbone \(CO_2\) par rapport à l'air. (\(M(CO_2) = 44 \text{ g.mol}^{-1}\))
                     </p>
-                    <div class="step"><span class="step-num">Solution :</span> \(d = \frac{M}{29} = \frac{44}{29} \approx 1,52\)</div>
-                    <p style="font-size:11px; color:var(--text-muted);">\(CO_2\) est plus dense que l'air (d > 1), il a tendance à s'accumuler en bas.</p>
+
+                    <p style="font-weight:700; color:#F4D03F; font-size:12px; margin-top:6px;">Méthode de résolution :</p>
+
+                    <div style="margin-top:6px;">
+                        <div class="step"><span class="step-num">Étape 1 :</span> On utilise la formule simplifiée : \(d = \frac{M}{29}\)</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> \(d = \frac{44}{29} \approx 1,52\)</div>
+
+                        <div class="highlight-box green" style="margin-top:4px;">
+                            <span class="label resume">Réponse</span>
+                            <p>La densité du \(CO_2\) est <strong>1,52</strong>.</p>
+                            <p style="font-size:11px; color:var(--text-muted);">\(CO_2\) est plus dense que l'air (d > 1), il a tendance à s'accumuler en bas.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- ====== À RETENIR ====== -->
+            <div class="highlight-box gold">
+                <span class="label summary">À retenir</span>
+                <ul>
+                    <li><strong>Loi de Boyle-Mariotte :</strong> \(P \times V = \text{constante}\) à T et n constantes.</li>
+                    <li><strong>Température absolue :</strong> \(T(K) = \theta(^\circ C) + 273,15\).</li>
+                    <li><strong>Équation des gaz parfaits :</strong> \(P \times V = n \times R \times T\) avec \(R = 8,314 \text{ J.mol}^{-1}\text{.K}^{-1}\).</li>
+                    <li><strong>Volume molaire :</strong> \(V_m = 22,4 \text{ L.mol}^{-1}\) (CNTP) et \(V_m = 24,0 \text{ L.mol}^{-1}\) (conditions ordinaires).</li>
+                    <li><strong>Densité d'un gaz :</strong> \(d = M/29\).</li>
+                    <li><strong>Toujours vérifier les unités :</strong> Pa, m³, K, mol.</li>
+                </ul>
+            </div>
+
+            <!-- ====== ET APRÈS ====== -->
+            <div class="highlight-box purple">
+                <span class="label rem">Et après ?</span>
+                <p>Dans la <strong>Partie 4 (Résumé)</strong>, on fera une synthèse complète de toutes les formules et méthodes avec un tableau récapitulatif et une fiche de révision.</p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
             <div class="nav-buttons">
                 <a href="part2.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 2</a>
                 <a href="part4.html" class="next-btn">Résumé <i class="fas fa-arrow-left"></i></a>
             </div>
+
         </div>
     </div>
 
