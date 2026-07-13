@@ -69,7 +69,6 @@
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
-        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
         .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 500px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
@@ -88,13 +87,6 @@
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
-        .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
-        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
-        .exemple-box { background: #1A2A2A; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
-        .exemple-box .ex-title { color: #F4D03F; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
-        .schema-box { background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin: 4px 0; text-align: center; }
-        .schema-box canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
         .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
         .toc ul { list-style: none; padding: 0; }
@@ -289,14 +281,14 @@
                         <p>Soit une solution de chlorure de cuivre(II) de concentration \(C\).</p>
                         <p>L'équation de dissolution :</p>
                         <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                            $$CuCl_2{(s)} \xrightarrow{eau} Cu^{2+}_{(aq)} + 2Cl^-_{(aq)}$$
+                            $$CuCl_{2}{(s)} \xrightarrow{eau} Cu^{2+}_{(aq)} + 2Cl^{-}_{(aq)}$$
                         </div>
                     </div>
                 </div>
 
                 <div class="table-wrap">
                     <table>
-                        <tr><th></th><th>\(CuCl_2{(s)}\)</th><th>\(Cu^{2+}_{(aq)}\)</th><th>\(2Cl^-_{(aq)}\)</th></tr>
+                        <tr><th></th><th>\(CuCl_{2}{(s)}\)</th><th>\(Cu^{2+}_{(aq)}\)</th><th>\(2Cl^{-}_{(aq)}\)</th></tr>
                         <tr><td>Quantité apportée</td><td>\(n_0\)</td><td>0</td><td>0</td></tr>
                         <tr><td>Quantité en solution</td><td>0</td><td>\(n_0\)</td><td>\(2n_0\)</td></tr>
                     </table>
@@ -309,9 +301,9 @@
                         $$[Cu^{2+}] = \frac{n_0}{V} = C$$
                     </div>
                     <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                        $$[Cl^-] = \frac{2n_0}{V} = 2C$$
+                        $$[Cl^{-}] = \frac{2n_0}{V} = 2C$$
                     </div>
-                    <p style="font-size:11px; color:var(--text-muted);">Donc : \([Cl^-] = 2[Cu^{2+}]\)</p>
+                    <p style="font-size:11px; color:var(--text-muted);">Donc : \([Cl^{-}] = 2[Cu^{2+}]\)</p>
                 </div>
 
                 <div class="highlight-box green">
@@ -335,7 +327,7 @@
                         <strong>1-</strong> Déterminer la concentration en soluté apporté de cette solution.
                     </p>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
-                        <strong>2-</strong> Déterminer la concentration en ions sodium \([Na^+]\) et en ions sulfate \([SO_4^{2-}]\).
+                        <strong>2-</strong> Déterminer la concentration en ions sodium \([Na^{+}]\) et en ions sulfate \([SO_{4}^{2-}]\).
                     </p>
                     <p style="font-size:11px; color:var(--text-muted);">Données : \(M(Na) = 23 \text{ g.mol}^{-1}\), \(M(S) = 32,1 \text{ g.mol}^{-1}\), \(M(O) = 16 \text{ g.mol}^{-1}\)</p>
 
@@ -348,7 +340,7 @@
 
                     <div class="step"><span class="step-num">Étape 4 :</span> Calcul de la masse molaire :</div>
                     <div class="formula-block" style="font-size:14px;">
-                        $$M(Na_2SO_4) = 2 \times 23 + 32,1 + 4 \times 16 = 142,1 \text{ g.mol}^{-1}$$
+                        $$M(Na_{2}SO_{4}) = 2 \times 23 + 32,1 + 4 \times 16 = 142,1 \text{ g.mol}^{-1}$$
                     </div>
 
                     <div class="step"><span class="step-num">Étape 5 :</span> \(C = \frac{14,2}{142,1 \times 0,50} = 0,20 \text{ mol.L}^{-1}\)</div>
@@ -361,24 +353,24 @@
                     <p style="font-weight:600; color:#F4D03F; font-size:12px; margin-top:8px;">2- Concentrations des ions :</p>
                     <p style="font-size:11.5px;">Équation de dissolution :</p>
                     <div class="formula-block" style="font-size:14px;">
-                        $$Na_2SO_4{(s)} \xrightarrow{eau} 2Na^+_{(aq)} + SO_4^{2-}_{(aq)}$$
+                        $$Na_{2}SO_{4}{(s)} \xrightarrow{eau} 2Na^{+}_{(aq)} + SO_{4}^{2-}_{(aq)}$$
                     </div>
 
-                    <div class="step"><span class="step-num">Étape 1 :</span> \([Na^+] = \frac{2n}{V} = 2C\)</div>
-                    <div class="step"><span class="step-num">Étape 2 :</span> \([Na^+] = 2 \times 0,20 = 0,40 \text{ mol.L}^{-1}\)</div>
+                    <div class="step"><span class="step-num">Étape 1 :</span> \([Na^{+}] = \frac{2n}{V} = 2C\)</div>
+                    <div class="step"><span class="step-num">Étape 2 :</span> \([Na^{+}] = 2 \times 0,20 = 0,40 \text{ mol.L}^{-1}\)</div>
 
-                    <div class="step"><span class="step-num">Étape 3 :</span> \([SO_4^{2-}] = \frac{n}{V} = C = 0,20 \text{ mol.L}^{-1}\)</div>
+                    <div class="step"><span class="step-num">Étape 3 :</span> \([SO_{4}^{2-}] = \frac{n}{V} = C = 0,20 \text{ mol.L}^{-1}\)</div>
 
                     <div class="highlight-box green" style="margin-top:4px;">
                         <span class="label resume">Réponse 2</span>
-                        <p>\([Na^+] = 0,40 \text{ mol.L}^{-1}\) et \([SO_4^{2-}] = 0,20 \text{ mol.L}^{-1}\)</p>
+                        <p>\([Na^{+}] = 0,40 \text{ mol.L}^{-1}\) et \([SO_{4}^{2-}] = 0,20 \text{ mol.L}^{-1}\)</p>
                     </div>
                 </div>
 
                 <div class="highlight-box yellow">
                     <span class="label rappel">Remarque importante</span>
                     <p>La concentration effective d'un ion dans la solution peut être <strong>différente</strong> de la concentration en soluté apporté.</p>
-                    <p style="font-size:11px; color:var(--text-muted);">Exemple : ici \(C = 0,20 \text{ mol.L}^{-1}\) mais \([Na^+] = 0,40 \text{ mol.L}^{-1}\).</p>
+                    <p style="font-size:11px; color:var(--text-muted);">Exemple : ici \(C = 0,20 \text{ mol.L}^{-1}\) mais \([Na^{+}] = 0,40 \text{ mol.L}^{-1}\).</p>
                 </div>
             </div>
 
