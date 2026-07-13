@@ -46,6 +46,11 @@ window.subjectsData.physique = {
             title: "Travail et puissance d'une force",
             file: "content/physique/exercises/travail-puissance/index.html",
             desc: "8 exercices avec solutions détaillées"
+        },
+        {
+            title: "Travail et énergie cinétique",
+            file: "content/physique/exercises/travail-energie-cinetique/index.html",
+            desc: "9 exercices avec solutions détaillées"
         }
     ],
     series: [
