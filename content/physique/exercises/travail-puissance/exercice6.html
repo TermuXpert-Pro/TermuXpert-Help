@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 6 - Travail et puissance d'une force | Xpert</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #FF6B6B;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #FF6B6B;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #FF6B6B;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #FF6B6B;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Exercice 6</h1>
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Voiture et caravane</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+            </p>
+
+            <div class="section">
+                <h2><span class="num">1</span> Énoncé</h2>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
+                    Une voiture tire une caravane de masse \(m = 800\text{ kg}\) sur une route horizontale à la vitesse constante \(v = 72\text{ km/h}\). La force de frottement s'exerçant sur la caravane est \(f = 200\text{ N}\).
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    <strong>1.</strong> Calculer la valeur de la force de traction \(F\) exercée par la voiture sur la caravane.
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    <strong>2.</strong> Calculer la puissance \(P_1\) développée par la force de traction.
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:4px;">
+                    La voiture et la caravane se déplacent maintenant sur une pente formant un angle \(\alpha = 20^\circ\) avec l'horizontale. On gardera la même valeur pour la force de frottement \(f\).
+                </p>
+                <p style="color:var(--text-secondary); font-size:11.5px; margin-bottom:8px;">
+                    <strong>3.</strong> Quelle doit être la valeur de la nouvelle puissance \(P_2\) afin que le conducteur garde la même vitesse \(v\) ?
+                </p>
+
+                <div class="graph-container">
+                    <canvas id="graph6" width="420" height="200"></canvas>
+                    <p>Voiture tirant une caravane</p>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">1.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la valeur de la force de traction \(F\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_1')">Voir la solution</button>
+                    <div id="sol6_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Système étudié : la caravane.
+                                <br>La vitesse est constante, donc d'après le principe d'inertie :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sum \vec{F} = \vec{0}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 2 :</span> Forces exercées sur la caravane :
+                                <ul>
+                                    <li>\(\vec{P}\) : Poids (vertical)</li>
+                                    <li>\(\vec{R}\) : Réaction normale</li>
+                                    <li>\(\vec{f}\) : Force de frottement (opposée au mouvement)</li>
+                                    <li>\(\vec{F}\) : Force de traction (motrice)</li>
+                                </ul>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 3 :</span> Projection sur l'axe horizontal :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F - f = 0 \quad \Rightarrow \quad F = f = 200\text{ N}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$F = 200\text{ N}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance \(P_1\) développée par la force de traction.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_2')">Voir la solution</button>
+                    <div id="sol6_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La puissance est :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P_1 = F \cdot v$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 2 :</span> Conversion de la vitesse :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v = 72\text{ km/h} = \frac{72 \times 10^3}{3600} = 20\text{ m/s}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P_1 = 200 \times 20 = 4000\text{ W} = 4,0\text{ kW}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$P_1 = 4,0\text{ kW}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3.</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la nouvelle puissance \(P_2\) sur la pente.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_3')">Voir la solution</button>
+                    <div id="sol6_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Sur la pente, la vitesse est constante, donc :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\vec{P} + \vec{R} + \vec{f} + \vec{F} = \vec{0}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 2 :</span> Projection sur l'axe parallèle à la pente :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$-P\sin\alpha - f + F = 0$$
+                                    $$F = P\sin\alpha + f = m \cdot g \cdot \sin\alpha + f$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F = 800 \times 10 \times \sin(20^\circ) + 200$$
+                                    $$F = 8000 \times 0,342 + 200 = 2736 + 200 = 2936\text{ N}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Étape 4 :</span> La puissance est :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P_2 = F \cdot v = 2936 \times 20 = 58720\text{ W} \approx 58,7\text{ kW}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$P_2 \approx 58,7\text{ kW}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="exercice5.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Exercice 5</a>
+                <a href="exercice7.html" class="next-btn">Exercice 7 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUE - Exercice 6
+        // ============================================================
+
+        function drawGraph6() {
+            var canvas = document.getElementById('graph6');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            // Sol horizontal
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(10, h - 30);
+            ctx.lineTo(w - 10, h - 30);
+            ctx.stroke();
+
+            // Caravane (simplifiée)
+            var cx = 180, cy = h - 50;
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.fillRect(cx - 30, cy - 25, 60, 25);
+            ctx.shadowBlur = 0;
+
+            // Roues de la caravane
+            ctx.fillStyle = '#FF6B6B';
+            ctx.shadowColor = '#FF6B6B';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(cx - 20, cy + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(cx + 20, cy + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Voiture (simplifiée)
+            var vx = 300, vy = cy - 10;
+            ctx.fillStyle = '#4D9DE0';
+            ctx.shadowColor = '#4D9DE0';
+            ctx.shadowBlur = 10;
+            ctx.fillRect(vx - 25, vy - 20, 50, 20);
+            ctx.shadowBlur = 0;
+
+            // Roues de la voiture
+            ctx.fillStyle = '#FF6B6B';
+            ctx.shadowColor = '#FF6B6B';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(vx - 15, vy + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(vx + 15, vy + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Barre d'attelage
+            ctx.strokeStyle = '#888';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx + 30, cy - 15);
+            ctx.lineTo(vx - 25, vy - 10);
+            ctx.stroke();
+
+            // Flèche de traction
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx + 30, cy - 15);
+            ctx.lineTo(cx + 30, cy - 45);
+            ctx.stroke();
+            ctx.fillStyle = '#4D9DE0';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('F', cx + 35, cy - 38);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('m = 800 kg', 10, 20);
+            ctx.fillText('v = 72 km/h', 10, 35);
+            ctx.fillText('f = 200 N', 10, 50);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraph6();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+</body>
+</html>
