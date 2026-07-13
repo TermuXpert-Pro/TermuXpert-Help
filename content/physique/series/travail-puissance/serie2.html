@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Série 2 - Travail et puissance d'une force | Xpert</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #FF6B6B;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: #1A2A1A;
+            border: 1px solid #A8FF7844;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: #A8FF78;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #FF6B6B;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #FF6B6B;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #FF6B6B;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color: #FF6B6B;
+            font-weight: 700;
+        }
+        .badge-exo {
+            display: inline-block;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:#FF6B6B;"></i> Série 2 - Travail et puissance d'une force</h1>
+            <div class="serie-title">Exercices <span>7 à 12</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 7 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">7</span> Exercice 7</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Un corps de masse \(m = 20\text{ kg}\) est tiré sur un plan horizontal par une force \(\vec{F} = 140\text{ N}\) faisant un angle \(\alpha = 30^\circ\) avec l'horizontale. La vitesse du corps est constante et vaut \(v = 3,3\text{ m.s}^{-1}\).
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Données : \(g = 9,8\text{ N.kg}^{-1}\)
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la valeur de la force de frottement \(f\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_1')">Voir la solution</button>
+                    <div id="sol7_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Vitesse constante → principe d'inertie : \(\sum \vec{F} = \vec{0}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Projection sur l'axe horizontal :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F \cdot \cos\alpha - f = 0 \Rightarrow f = F \cdot \cos\alpha$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$f = 140 \times \cos(30^\circ) \approx 121\text{ N}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(f \approx 121\text{ N}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Sur un plan incliné de \(\beta = 15^\circ\), quelle doit être la nouvelle force \(F'\) pour maintenir la vitesse constante ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_2')">Voir la solution</button>
+                    <div id="sol7_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Projection sur l'axe parallèle au plan incliné :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F' \cdot \cos\alpha - f - P \cdot \sin\beta = 0$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On isole \(F'\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F' = \frac{f + m \cdot g \cdot \sin\beta}{\cos\alpha}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F' = \frac{121 + 20 \times 9,8 \times \sin(15^\circ)}{\cos(30^\circ)} \approx 199\text{ N}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(F' \approx 199\text{ N}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance développée et la puissance supplémentaire.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_3')">Voir la solution</button>
+                    <div id="sol7_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Puissance initiale :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P = F \cdot v \cdot \cos\alpha = 140 \times 3,3 \times \cos(30^\circ) \approx 400\text{ W}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Nouvelle puissance :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P' = F' \cdot v \cdot \cos\alpha = 199 \times 3,3 \times \cos(30^\circ) \approx 568\text{ W}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Puissance supplémentaire :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\Delta P = P' - P = 568 - 400 = 168\text{ W}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(P' \approx 568\text{ W}\), \(\Delta P \approx 168\text{ W}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 8 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">8</span> Exercice 8</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une voiture de masse \(m = 1200\text{ kg}\) roule sur une pente de \(2\%\) (elle monte de \(2\text{ m}\) pour \(100\text{ m}\) horizontalement) à la vitesse constante \(v = 60\text{ km.h}^{-1}\).
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Donnée : \(g = 10\text{ N.kg}^{-1}\)
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la force motrice \(F\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_1')">Voir la solution</button>
+                    <div id="sol8_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Pente de \(2\%\) → \(\sin\alpha = 0,02\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Vitesse constante → \(F = m \cdot g \cdot \sin\alpha\)
+                            </div>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$F = 1200 \times 10 \times 0,02 = 240\text{ N}$$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(F = 240\text{ N}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids et de la force motrice pour \(AB = 50\text{ m}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_2')">Voir la solution</button>
+                    <div id="sol8_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Travail du poids :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{P}) = -m \cdot g \cdot AB \cdot \sin\alpha = -1200 \times 10 \times 50 \times 0,02 = -12 \times 10^3\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Travail de la force motrice :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{F}) = F \cdot AB = 240 \times 50 = 12 \times 10^3\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(W(\vec{P}) = -12\text{ kJ}\), \(W(\vec{F}) = 12\text{ kJ}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance de la force motrice.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_3')">Voir la solution</button>
+                    <div id="sol8_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Conversion de la vitesse :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v = 60\text{ km.h}^{-1} = \frac{60 \times 10^3}{3600} = 16,7\text{ m.s}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Puissance :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P = F \cdot v = 240 \times 16,7 = 4000\text{ W} = 4\text{ kW}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(P = 4\text{ kW}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 9 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">9</span> Exercice 9</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une bille de masse \(m = 50\text{ g}\) est suspendue à un fil de longueur \(L = 30\text{ cm}\). On écarte le fil d'un angle \(\alpha = 30^\circ\) par rapport à la verticale.
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Donnée : \(g = 10\text{ N.kg}^{-1}\)
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids entre A et B.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9_1')">Voir la solution</button>
+                    <div id="sol9_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Travail du poids :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{P}) = m \cdot g \cdot L \cdot (1 - \cos\alpha)$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{P}) = 50 \times 10^{-3} \times 10 \times 30 \times 10^{-2} \times (1 - \cos 30^\circ)$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{P}) \approx 2,0 \times 10^{-2}\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(W(\vec{P}) \approx 2,0 \times 10^{-2}\text{ J}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 10 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">10</span> Exercice 10</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Un corps S de masse \(m = 4\text{ kg}\) est tiré sur un plan incliné d'angle \(\alpha = 30^\circ\) par une force \(\vec{F}\) faisant un angle \(\beta = 60^\circ\) avec le plan. La vitesse est constante \(v = 9\text{ km.h}^{-1}\).
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    \(F = 44\text{ N}\), \(f = 2\text{ N}\), \(AB = 3\text{ m}\)
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Donnée : \(g = 10\text{ N.kg}^{-1}\)
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer les travaux des forces extérieures.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_1')">Voir la solution</button>
+                    <div id="sol10_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Travail de la force \(\vec{F}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{F}) = F \cdot AB \cdot \cos\beta = 44 \times 3 \times \cos 60^\circ = 66\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Travail du poids :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{P}) = -m \cdot g \cdot AB \cdot \sin\alpha = -4 \times 10 \times 3 \times \sin 30^\circ = -60\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Travail de la force de frottement :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{f}) = -f \cdot AB = -2 \times 3 = -6\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> Travail de la réaction :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{R}) = 0$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(W(\vec{F}) = 66\text{ J}\), \(W(\vec{P}) = -60\text{ J}\), \(W(\vec{f}) = -6\text{ J}\), \(W(\vec{R}) = 0\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Vérifier que la somme des travaux est nulle.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_2')">Voir la solution</button>
+                    <div id="sol10_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$\sum W = W(\vec{F}) + W(\vec{P}) + W(\vec{f}) + W(\vec{R}) = 66 - 60 - 6 + 0 = 0\text{ J}$$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Vérification</span>
+                                <p>La somme des travaux est bien nulle ✅</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance moyenne développée.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_3')">Voir la solution</button>
+                    <div id="sol10_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Conversion de la vitesse :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v = 9\text{ km.h}^{-1} = \frac{9 \times 10^3}{3600} = 2,5\text{ m.s}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Puissance :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P = F \cdot v \cdot \cos\beta = 44 \times 2,5 \times \cos 60^\circ = 55\text{ W}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(P = 55\text{ W}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 11 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">11</span> Exercice 11</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une voiture de masse \(m = 1100\text{ kg}\) roule sur une pente de \(8\%\) (elle monte de \(8\text{ m}\) pour \(100\text{ m}\) horizontalement) sur une distance \(AB = 1500\text{ m}\).
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Force de frottement \(f = 1850\text{ N}\), \(g = 10\text{ N.kg}^{-1}\)
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_1')">Voir la solution</button>
+                    <div id="sol11_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Pente de \(8\%\) → \(\sin\alpha = 0,08\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Travail du poids :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{P}) = -m \cdot g \cdot AB \cdot \sin\alpha = -1100 \times 10 \times 1500 \times 0,08 = -1,32 \times 10^6\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(W(\vec{P}) = -1,32 \times 10^6\text{ J} = -1,32\text{ MJ}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail de la force de frottement.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_2')">Voir la solution</button>
+                    <div id="sol11_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$W(\vec{f}) = -f \cdot AB = -1850 \times 1500 = -2,775 \times 10^6\text{ J} = -2775\text{ kJ}$$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(W(\vec{f}) = -2,775 \times 10^6\text{ J} = -2775\text{ kJ}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 12 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">12</span> Exercice 12</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une voiture de masse \(m = 1500\text{ kg}\) roule sur une pente de \(12\%\) à la vitesse constante \(v = 108\text{ km.h}^{-1}\).
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Force de frottement \(f = 1800\text{ N}\), \(AB = 10^4\text{ m}\), \(g = 10\text{ N.kg}^{-1}\)
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_1')">Voir la solution</button>
+                    <div id="sol12_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Pente de \(12\%\) → \(\sin\alpha = 0,12\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Travail du poids :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{P}) = -m \cdot g \cdot AB \cdot \sin\alpha = -1500 \times 10 \times 10^4 \times 0,12 = -1,8 \times 10^7\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(W(\vec{P}) = -1,8 \times 10^7\text{ J} = -18\text{ MJ}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail de la force motrice.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_2')">Voir la solution</button>
+                    <div id="sol12_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Vitesse constante → somme des travaux nulle
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Travail de la force motrice :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$W(\vec{F}) = -W(\vec{P}) - W(\vec{f}) = 1,8 \times 10^7 + 1,8 \times 10^7 = 3,6 \times 10^7\text{ J}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(W(\vec{F}) = 3,6 \times 10^7\text{ J} = 36\text{ MJ}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance du moteur.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_3')">Voir la solution</button>
+                    <div id="sol12_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Conversion de la vitesse :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$v = 108\text{ km.h}^{-1} = \frac{108 \times 10^3}{3600} = 30\text{ m.s}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Force motrice :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F = \frac{W(\vec{F})}{AB} = \frac{3,6 \times 10^7}{10^4} = 3600\text{ N}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Puissance :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$P = F \cdot v = 3600 \times 30 = 1,08 \times 10^5\text{ W} = 108\text{ kW}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(P = 108\text{ kW}\)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie1.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Série 1</a>
+                <a href="serie3.html" class="next-btn">Série 3 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script src="../../../../assets/js/protection.js"></script>
+    <script src="../../../../assets/js/script.js"></script>
+
+<script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+</body>
+</html>

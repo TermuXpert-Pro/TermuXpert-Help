@@ -58,6 +58,11 @@ window.subjectsData.physique = {
             title: "Rotation d'un solide",
             file: "content/physique/series/rotation-solide/index.html",
             desc: "6 exercices avec solutions détaillées"
+        },
+        {
+            title: "Travail et puissance d'une force",
+            file: "content/physique/series/travail-puissance/index.html",
+            desc: "6 exercices avec solutions détaillées"
         }
     ],
     exams: []
