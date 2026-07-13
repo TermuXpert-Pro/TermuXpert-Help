@@ -26,7 +26,18 @@ window.subjectsData.physique = {
             file: "content/physique/lessons/travail-energie-cinetique/index.html",
             desc: "Énergie cinétique en translation et rotation, théorème de l'énergie cinétique"
         },
-        { semester: 1, title: "Travail et énergie potentielle de pesanteur - Énergie mécanique", file: "content/physique/lessons/energie-potentielle-mecanique/index.html", desc: "قيد الإعداد 🔧" },
+        {
+            semester: 1,
+            title: "Travail et énergie potentielle de pesanteur - Énergie mécanique",
+            file: "content/physique/lessons/energie-potentielle-mecanique/index.html",
+            desc: "قيد الإعداد 🔧"
+        },
+        {
+            semester: 1,
+            title: "Énergie interne et mesure calorimétrique",
+            file: "content/physique/lessons/energie-interne-calorimetrie/index.html",
+            desc: "Énergie interne, chaleur, capacité thermique, calorimétrie"
+        },
         { semester: 2, title: "Transfert d'énergie dans un circuit électrique", file: "content/physique/lessons/circuit-electrique/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 2, title: "Le champ magnétique", file: "content/physique/lessons/champ-magnetique/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 2, title: "Le champ magnétique créé par un courant électrique", file: "content/physique/lessons/champ-magnetique-courant/index.html", desc: "قيد الإعداد 🔧" },
@@ -62,6 +73,11 @@ window.subjectsData.physique = {
         {
             title: "Travail et puissance d'une force",
             file: "content/physique/series/travail-puissance/index.html",
+            desc: "6 exercices avec solutions détaillées"
+        },
+        {
+            title: "Énergie interne et mesure calorimétrique",
+            file: "content/physique/series/energie-interne-calorimetrie/index.html",
             desc: "6 exercices avec solutions détaillées"
         }
     ],

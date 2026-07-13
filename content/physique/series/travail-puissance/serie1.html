@@ -317,102 +317,73 @@
             <div class="section">
                 <h2><span class="num">1</span> Exercice 1</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une force constante \(\vec{F} = 200\text{ N}\) est appliquée à un corps se déplaçant en ligne droite sur une distance \(AB = 30\text{ m}\).
+                    Un morceau de savon de masse \(m = 200\text{ g}\) glisse sans frottement sur un plan incliné d'un angle de \(30^\circ\) par rapport à l'horizontale.
                 </p>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
-                    La force \(\vec{F}\) est parallèle au déplacement.
-                </p>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
-                    <strong>1.a)</strong> Calculer le travail de cette force.
-                </p>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
-                    <strong>1.b)</strong> Calculer la puissance moyenne si ce travail est effectué en \(2,5\text{ min}\).
-                </p>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    <strong>1.c)</strong> Si la force fait un angle \(\alpha = 20^\circ\) avec le déplacement, calculer le nouveau travail et la nouvelle puissance.
+                    Donnée : \(g = 9,8\text{ N.kg}^{-1}\)
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph1" width="400" height="180"></canvas>
-                    <p>Force constante parallèle au déplacement</p>
+                    <canvas id="graph1" width="380" height="200"></canvas>
+                    <p>Savon glissant sur un plan incliné sans frottement</p>
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">1.a)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail de la force.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_a')">Voir la solution</button>
-                    <div id="sol1_a" class="solution-box">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelles sont les forces exercées sur le morceau de savon ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_1')">Voir la solution</button>
+                    <div id="sol1_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Le travail d'une force constante est :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W(\vec{F}) = \vec{F} \cdot \vec{AB} = F \cdot AB \cdot \cos 0^\circ = F \cdot AB$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Application numérique :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W(\vec{F}) = 200 \times 30 = 6000\text{ J} = 6,0 \times 10^3\text{ J}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{F}) = 6,0 \times 10^3\text{ J}\)</p>
+                            <ul>
+                                <li><strong>\(\vec{P}\)</strong> : Poids du savon (vertical vers le bas).</li>
+                                <li><strong>\(\vec{R}\)</strong> : Réaction normale du plan (perpendiculaire au plan).</li>
+                            </ul>
+                            <div class="highlight-box yellow" style="margin-top:4px;">
+                                <span class="label rem">Remarque</span>
+                                <p>Le savon glisse sans frottement, donc il n'y a pas de force de frottement.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">1.b)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance moyenne.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_b')">Voir la solution</button>
-                    <div id="sol1_b" class="solution-box">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail de ces forces pour un déplacement égal à \(L = 1,0\text{ m}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_2')">Voir la solution</button>
+                    <div id="sol1_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Conversion du temps :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta t = 2,5\text{ min} = 2,5 \times 60 = 150\text{ s}$$
-                                </div>
+                                <span class="step-num">Étape 1 :</span> \(W(\vec{R}) = 0\) (force perpendiculaire au déplacement)
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> La puissance moyenne est :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P_m = \frac{W}{\Delta t} = \frac{6000}{150} = 40\text{ W}$$
-                                </div>
+                                <span class="step-num">Étape 2 :</span> \(W(\vec{P}) = m \cdot g \cdot L \cdot \sin\alpha\)
+                            </div>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$W(\vec{P}) = 200 \times 10^{-3} \times 9,8 \times 1,0 \times \sin(30^\circ) = 0,98\text{ J}$$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(P_m = 40\text{ W}\)</p>
+                                <p>\(W(\vec{R}) = 0\text{ J}\), \(W(\vec{P}) = 0,98\text{ J}\)</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">1.c)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Force faisant un angle \(\alpha = 20^\circ\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_c')">Voir la solution</button>
-                    <div id="sol1_c" class="solution-box">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance moyenne du travail du poids si la durée du trajet est \(\Delta t = 1,5\text{ s}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_3')">Voir la solution</button>
+                    <div id="sol1_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Nouveau travail :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W(\vec{F}) = F \cdot AB \cdot \cos\alpha = 200 \times 30 \times \cos(20^\circ) \approx 5638\text{ J}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Nouvelle puissance :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P_m = \frac{W}{\Delta t} = \frac{5638}{150} \approx 37,6\text{ W} \approx 38\text{ W}$$
-                                </div>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$P_m = \frac{W}{\Delta t} = \frac{0,98}{1,5} \approx 0,65\text{ W}$$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{F}) \approx 5,64 \times 10^3\text{ J}\), \(P_m \approx 38\text{ W}\)</p>
+                                <p>\(P_m \approx 0,65\text{ W}\)</p>
                             </div>
                         </div>
                     </div>
@@ -425,89 +396,73 @@
             <div class="section">
                 <h2><span class="num">2</span> Exercice 2</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Un corps glisse sur un plan incliné d'angle \(\alpha = 30^\circ\) d'une hauteur \(h = 2,0\text{ m}\). La longueur \(AB = 2,0\text{ m}\) et le rayon \(r = 0,5\text{ m}\).
+                    Un pendule simple se met à osciller de part et d'autre de sa position d'équilibre \(G_0\) après l'avoir écarté de \(G_0\) d'un angle \(\alpha_m = 10^\circ\).
                 </p>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
-                    Données : \(m = 2\text{ kg}\), \(g = 10\text{ N.kg}^{-1}\)
+                    Le pendule est constitué d'une bille de masse \(m = 5,0\text{ g}\) et d'un fil, de masse négligeable, de longueur \(L = 40\text{ cm}\).
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Données : \(g = 9,8\text{ N.kg}^{-1}\) ; on négligera les frottements.
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Toute l'étude se fera du point \(G\) (départ) au point \(G_0\) (arrivée).
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph2" width="400" height="220"></canvas>
-                    <p>Corps glissant sur une piste AB puis BC</p>
+                    <canvas id="graph2" width="380" height="220"></canvas>
+                    <p>Pendule simple - Oscillation</p>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids entre A et B.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Faire le bilan des forces appliquées sur la bille.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_1')">Voir la solution</button>
                     <div id="sol2_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Travail du poids :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W(\vec{P}) = m \cdot g \cdot AB \cdot \sin\alpha = 2 \times 10 \times 2 \times \sin 30^\circ = 20\text{ J}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{P}) = 20\text{ J}\)</p>
-                            </div>
+                            <ul>
+                                <li><strong>\(\vec{P}\)</strong> : Poids de la bille</li>
+                                <li><strong>\(\vec{T}\)</strong> : Tension du fil</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids entre B et C.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la valeur du travail de la tension du fil ? Justifier.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_2')">Voir la solution</button>
                     <div id="sol2_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Entre B et C, le travail du poids est :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W(\vec{P}) = -m \cdot g \cdot r(1 - \cos\theta)$$
-                                </div>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$W(\vec{T}) = 0$$
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Application numérique :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W(\vec{P}) = -2 \times 10 \times 0,5 \times (1 - \cos 30^\circ) \approx -1,34\text{ J}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{P}) \approx -1,34\text{ J}\) (travail résistant)</p>
-                            </div>
+                            <p>La tension est toujours <strong>perpendiculaire</strong> au déplacement de la bille.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Déterminer \(\theta\) pour que le travail total soit nul.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Trouver l'expression littérale du travail du poids \(\vec{P}\). En déduire sa valeur. Donner sa nature.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_3')">Voir la solution</button>
                     <div id="sol2_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Travail total :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W_{tot} = m \cdot g \cdot AB \cdot \sin\alpha - m \cdot g \cdot r(1 - \cos\theta) = 0$$
-                                </div>
+                                <span class="step-num">Étape 1 :</span> \(W(\vec{P}) = m \cdot g \cdot L \cdot (1 - \cos\alpha_m)\)
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On isole \(\cos\theta\) :
+                                <span class="step-num">Étape 2 :</span> Application numérique :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$AB \cdot \sin\alpha = r(1 - \cos\theta)$$
-                                    $$1 - \cos\theta = \frac{AB \cdot \sin\alpha}{r} = \frac{2 \times 0,5}{0,5} = 2$$
-                                    $$\cos\theta = -1 \Rightarrow \theta = 180^\circ$$
+                                    $$W(\vec{P}) = 5,0 \times 10^{-3} \times 9,8 \times 40 \times 10^{-2} \times (1 - \cos 10^\circ)$$
+                                    $$W(\vec{P}) \approx 3,0 \times 10^{-4}\text{ J} = 0,3\text{ mJ}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(\theta = 180^\circ\)</p>
+                                <span class="label resume">Conclusion</span>
+                                <p>Travail <strong>moteur</strong> (positif).</p>
                             </div>
                         </div>
                     </div>
@@ -520,130 +475,60 @@
             <div class="section">
                 <h2><span class="num">3</span> Exercice 3</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une charrette de masse \(m = 50\text{ kg}\) est tirée par un ouvrier sur différents trajets.
+                    Un ballon de masse \(m = 300\text{ g}\) tombe en chute libre d'une hauteur de \(h = 5,0\text{ m}\). La chute dure \(\Delta t = 1,0\text{ s}\).
                 </p>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
-                    Données : \(g = 10\text{ N.kg}^{-1}\)
+                    Donnée : \(g = 9,8\text{ N.kg}^{-1}\)
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph3" width="400" height="200"></canvas>
-                    <p>Trajets de la charrette</p>
+                    <canvas id="graph3" width="380" height="200"></canvas>
+                    <p>Chute libre d'un ballon</p>
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">a)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Travail du poids sur AB (\(\alpha = 0^\circ\), \(AB = 150\text{ m}\)).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_a')">Voir la solution</button>
-                    <div id="sol3_a" class="solution-box">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la signification de « chute libre » ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_1')">Voir la solution</button>
+                    <div id="sol3_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p>Un corps est en <strong>chute libre</strong> s'il n'est soumis <strong>qu'à son poids</strong> \(\vec{P}\).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail effectué par le poids \(\vec{P}\) pendant cette chute libre.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_2')">Voir la solution</button>
+                    <div id="sol3_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$W_{AB}(\vec{P}) = m \cdot g \cdot AB \cdot \cos 0^\circ = 50 \times 10 \times 150 = 75000\text{ J} = 75\text{ kJ}$$
+                                $$W(\vec{P}) = m \cdot g \cdot h = 300 \times 10^{-3} \times 9,8 \times 5,0 = 15\text{ J}$$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(W_{AB}(\vec{P}) = 75\text{ kJ}\)</p>
+                                <p>\(W(\vec{P}) = 15\text{ J}\)</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">b)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Travail du poids sur un trajet vertical descendant de \(AB = 150\text{ m}\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_b')">Voir la solution</button>
-                    <div id="sol3_b" class="solution-box">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance moyenne du poids.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_3')">Voir la solution</button>
+                    <div id="sol3_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$W(\vec{P}) = m \cdot g \cdot h = 50 \times 10 \times 150 = 75000\text{ J} = 75\text{ kJ}$$
+                                $$P_m = \frac{W}{\Delta t} = \frac{15}{1,0} = 15\text{ W}$$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{P}) = 75\text{ kJ}\)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">c)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Travail du poids sur BC si \(W(\vec{P}) = 4000\text{ J}\), \(BC = 100\text{ m}\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_c')">Voir la solution</button>
-                    <div id="sol3_c" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Détermination de l'angle \(\alpha\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\cos\left(\frac{\pi}{2} - \alpha\right) = \frac{W}{m \cdot g \cdot BC} = \frac{4000}{50 \times 10 \times 100} = 0,8$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\frac{\pi}{2} - \alpha = \arccos(0,8) \approx 36,87^\circ$$
-                                    $$\alpha = 90^\circ - 36,87^\circ \approx 53,13^\circ$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(\alpha \approx 53,1^\circ\)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">d)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Puissance développée sur BC si \(P = 50\text{ W}\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_d')">Voir la solution</button>
-                    <div id="sol3_d" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Temps mis pour parcourir BC :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta t_2 = \frac{W}{P} = \frac{4000}{50} = 80\text{ s}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Temps total pour AC :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta t = 80 + 5 \times 60 = 380\text{ s} = 6\text{ min }20\text{ s}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(\Delta t = 380\text{ s} = 6\text{ min }20\text{ s}\)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">e)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Puissance moyenne sur AC.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_e')">Voir la solution</button>
-                    <div id="sol3_e" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Puissance sur AB :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P_{AB} = \frac{W_{AB}}{t_{AB}} = \frac{75000}{300} = 250\text{ W}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Puissance totale sur AC :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P_{AC} = P_{AB} + P_{BC} = 250 + 50 = 300\text{ W}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(P_{AC} = 300\text{ W}\)</p>
+                                <p>\(P_m = 15\text{ W}\)</p>
                             </div>
                         </div>
                     </div>
@@ -656,87 +541,38 @@
             <div class="section">
                 <h2><span class="num">4</span> Exercice 4</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Un moteur développe une puissance \(P = 1500\text{ kW}\) et tourne à \(1500\text{ tr/min}\).
+                    Un enfant tire un camion en bois à l'aide d'une petite corde. Le travail effectué pendant une demi-minute est égal à \(2,0\text{ kJ}\).
                 </p>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Calculer le travail effectué en \(30\text{ min}\), le moment du couple et l'angle de rotation.
+                    Calculer la puissance moyenne de cette force exercée sur le camion.
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph4" width="400" height="180"></canvas>
-                    <p>Moteur en rotation</p>
+                    <canvas id="graph4" width="380" height="180"></canvas>
+                    <p>Enfant tirant un camion</p>
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail effectué en \(30\text{ min}\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
-                    <div id="sol4_1" class="solution-box">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
+                                <span class="step-num">Étape 1 :</span> \(\Delta t = 0,5 \times 60 = 30\text{ s}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> \(W = 2,0 \times 10^3\text{ J}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W = P \cdot \Delta t = 1500 \times 10^3 \times 30 \times 60 = 2,7 \times 10^9\text{ J}$$
+                                    $$P_m = \frac{W}{\Delta t} = \frac{2,0 \times 10^3}{30} \approx 67\text{ W}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(W = 2,7 \times 10^9\text{ J}\)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le moment du couple.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
-                    <div id="sol4_2" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Fréquence de rotation :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$f = \frac{1500}{60} = 25\text{ Hz}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Vitesse angulaire :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\omega = 2\pi \cdot f = 2\pi \times 25 = 50\pi\text{ rad.s}^{-1}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> Moment du couple :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = \frac{P}{\omega} = \frac{1500 \times 10^3}{50\pi} \approx 9,55 \times 10^3\text{ N.m}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(M \approx 9,55 \times 10^3\text{ N.m}\)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer l'angle de rotation.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_3')">Voir la solution</button>
-                    <div id="sol4_3" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta\theta = \frac{W}{M} = \frac{2,7 \times 10^9}{9,55 \times 10^3} \approx 2,83 \times 10^5\text{ rad}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(\Delta\theta \approx 2,83 \times 10^5\text{ rad}\)</p>
+                                <p>\(P_m \approx 67\text{ W}\)</p>
                             </div>
                         </div>
                     </div>
@@ -749,69 +585,55 @@
             <div class="section">
                 <h2><span class="num">5</span> Exercice 5</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Un treuil est constitué d'un tambour de rayon \(r = 10\text{ cm}\) sur lequel est enroulé un fil. Une force \(\vec{F}\) est appliquée à l'extrémité d'une manivelle de longueur \(L = 50\text{ cm}\). Le treuil soulève une charge de masse \(m = 50\text{ kg}\).
+                    Un petit traîneau est tiré par une personne à l'aide d'un câble parallèle au sol. La vitesse du traîneau est constante. Le sol est incliné d'un angle \(\alpha = 20^\circ\) par rapport à l'horizontale.
                 </p>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
-                    Donnée : \(g = 10\text{ N.kg}^{-1}\)
+                    Masse du traîneau : \(m = 50\text{ kg}\), \(g = 10\text{ m.s}^{-2}\).
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On néglige les forces de frottement.
                 </p>
 
                 <div class="graph-container">
                     <canvas id="graph5" width="400" height="220"></canvas>
-                    <p>Treuil - Manivelle et tambour</p>
+                    <p>Traîneau tiré sur un plan incliné</p>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la force \(F\) pour soulever la charge à vitesse constante.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Faire le bilan des forces exercées sur le traîneau.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_1')">Voir la solution</button>
                     <div id="sol5_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Vitesse constante → \(\sum M = 0\)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Équilibre des moments :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$F \cdot L = m \cdot g \cdot r$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> Application numérique :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$F = \frac{50 \times 10 \times 10 \times 10^{-2}}{50 \times 10^{-2}} = 100\text{ N}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(F = 100\text{ N}\)</p>
-                            </div>
+                            <ul>
+                                <li><strong>\(\vec{P}\)</strong> : Poids (vertical vers le bas)</li>
+                                <li><strong>\(\vec{R}\)</strong> : Réaction normale du sol</li>
+                                <li><strong>\(\vec{F}\)</strong> : Force de traction (parallèle au plan)</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail effectué pour \(n = 10\) tours.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Trouver la valeur de la force de traction \(F\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_2')">Voir la solution</button>
                     <div id="sol5_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Angle de rotation :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta\theta = 2\pi \cdot n = 20\pi\text{ rad}$$
-                                </div>
+                                <span class="step-num">Étape 1 :</span> Vitesse constante → principe d'inertie : \(\sum \vec{F} = \vec{0}\)
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Travail :
+                                <span class="step-num">Étape 2 :</span> Projection sur l'axe parallèle au plan :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$W = F \cdot L \cdot \Delta\theta = 100 \times 0,50 \times 20\pi \approx 3142\text{ J}$$
+                                    $$F = m \cdot g \cdot \sin\alpha = 50 \times 10 \times \sin(20^\circ) \approx 171\text{ N}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(W \approx 3142\text{ J}\)</p>
+                                <p>\(F \approx 171\text{ N}\)</p>
                             </div>
                         </div>
                     </div>
@@ -819,50 +641,20 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la hauteur \(h\) dont s'élève la charge.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Trouver la valeur de la réaction normale du sol \(R\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_3')">Voir la solution</button>
                     <div id="sol5_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$h = 2\pi \cdot r \cdot n = 2\pi \times 0,10 \times 10 \approx 6,28\text{ m}$$
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(h \approx 6,28\text{ m}\)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">4)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la puissance du treuil si \(f = 1\text{ tr.s}^{-1}\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_4')">Voir la solution</button>
-                    <div id="sol5_4" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Moment du couple :
+                                <span class="step-num">Étape 1 :</span> Projection sur l'axe perpendiculaire au plan :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = F \cdot L = 100 \times 0,50 = 50\text{ N.m}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Vitesse angulaire :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\omega = 2\pi \cdot f = 2\pi\text{ rad.s}^{-1}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> Puissance :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P = M \cdot \omega = 50 \times 2\pi \approx 314\text{ W}$$
+                                    $$R = m \cdot g \cdot \cos\alpha = 50 \times 10 \times \cos(20^\circ) \approx 470\text{ N}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(P \approx 314\text{ W}\)</p>
+                                <p>\(R \approx 470\text{ N}\)</p>
                             </div>
                         </div>
                     </div>
@@ -875,51 +667,62 @@
             <div class="section">
                 <h2><span class="num">6</span> Exercice 6</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une particule de masse \(m = 400\text{ g}\) glisse sur une piste constituée d'une partie AB inclinée d'angle \(\alpha = 30^\circ\) et d'une partie circulaire BC de rayon \(r\).
+                    Un skieur de masse \(m = 80\text{ kg}\) avec son équipement est tiré par une remonte-pente.
                 </p>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
-                    Données : \(g = 10\text{ N.kg}^{-1}\)
+                    Plan incliné de \(\alpha = 20^\circ\), force de frottement \(f = 40\text{ N}\). La perche exerce une force \(\vec{F}\) sous un angle \(\beta = 15^\circ\) par rapport à la pente. Le skieur monte à vitesse constante.
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:4px;">
+                    Donnée : \(g = 9,81\text{ N.kg}^{-1}\)
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph6" width="400" height="240"></canvas>
-                    <p>Particule sur piste AB puis BC</p>
+                    <canvas id="graph6" width="420" height="240"></canvas>
+                    <p>Skieur tracté par une perche</p>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids entre A et B (\(AB = 1,2\text{ m}\)).</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Représenter les forces extérieures sur le skieur.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_1')">Voir la solution</button>
                     <div id="sol6_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$W(\vec{P}) = m \cdot g \cdot AB \cdot \sin\alpha = 400 \times 10^{-3} \times 10 \times 1,2 \times \sin 30^\circ = 2,4\text{ J}$$
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{P}) = 2,4\text{ J}\)</p>
-                            </div>
+                            <ul>
+                                <li><strong>\(\vec{P}\)</strong> : Poids (vertical vers le bas)</li>
+                                <li><strong>\(\vec{f}\)</strong> : Frottement (parallèle à la pente, vers le bas)</li>
+                                <li><strong>\(\vec{R}\)</strong> : Réaction normale du sol</li>
+                                <li><strong>\(\vec{F}\)</strong> : Force de la perche (angle \(\beta\) avec la pente)</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids entre B et C (\(r = 0,8\text{ m}\), \(\beta = 60^\circ\), \(\theta = 45^\circ\)).</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de la force \(\vec{F}\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_2')">Voir la solution</button>
                     <div id="sol6_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$W(\vec{P}) = m \cdot g \cdot r \cdot (\sin\beta - \sin\theta)$$
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Vitesse constante → \(\sum \vec{F} = \vec{0}\)
                             </div>
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$W(\vec{P}) = 400 \times 10^{-3} \times 10 \times 0,8 \times (\sin 60^\circ - \sin 45^\circ) \approx 0,51\text{ J}$$
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Projection sur l'axe parallèle à la pente :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F = \frac{m \cdot g \cdot \sin\alpha + f}{\cos\beta}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F = \frac{80 \times 9,81 \times \sin(20^\circ) + 40}{\cos(15^\circ)} \approx 319\text{ N}$$
+                                </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{P}) \approx 0,51\text{ J}\)</p>
+                                <p>\(F \approx 319\text{ N}\)</p>
                             </div>
                         </div>
                     </div>
@@ -927,17 +730,26 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer le travail du poids entre C et D (\(\theta = 45^\circ\)).</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de la réaction normale \(R\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_3')">Voir la solution</button>
                     <div id="sol6_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$W(\vec{P}) = m \cdot g \cdot r \cdot \sin\theta = 400 \times 10^{-3} \times 10 \times 0,8 \times \sin 45^\circ \approx 2,26\text{ J}$$
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Projection sur l'axe perpendiculaire à la pente :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$R = m \cdot g \cdot \cos\alpha - F \cdot \sin\beta$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$R = 80 \times 9,81 \times \cos(20^\circ) - 319 \times \sin(15^\circ) \approx 655\text{ N}$$
+                                </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Réponse</span>
-                                <p>\(W(\vec{P}) \approx 2,26\text{ J}\)</p>
+                                <p>\(R \approx 655\text{ N}\)</p>
                             </div>
                         </div>
                     </div>
@@ -984,7 +796,7 @@
         }
 
         // ============================================================
-        // GRAPHIQUES
+        // GRAPHIQUES - Série 1
         // ============================================================
 
         function drawGraph1() {
@@ -997,77 +809,83 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Corps
-            var cx = 120, cy = h/2;
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 10;
-            ctx.fillRect(cx - 20, cy - 15, 40, 30);
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('S', cx, cy + 5);
+            var baseX = 40, baseY = h - 30;
+            var longueur = 200;
+            var angle = 30 * Math.PI / 180;
 
-            // Trajectoire
+            // Plan incliné
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(baseX, baseY);
+            var finX = baseX + longueur * Math.cos(angle);
+            var finY = baseY - longueur * Math.sin(angle);
+            ctx.lineTo(finX, finY);
+            ctx.stroke();
+
+            // Horizontale
             ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
+            ctx.lineWidth = 1;
             ctx.setLineDash([4, 4]);
             ctx.beginPath();
-            ctx.moveTo(cx + 25, cy);
-            ctx.lineTo(cx + 150, cy);
+            ctx.moveTo(baseX - 10, baseY);
+            ctx.lineTo(baseX + 20, baseY);
             ctx.stroke();
             ctx.setLineDash([]);
 
-            // Points A et B
-            ctx.fillStyle = '#4ECDC4';
-            ctx.shadowColor = '#4ECDC4';
-            ctx.shadowBlur = 8;
+            // Angle
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.arc(cx - 20, cy, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'left';
-            ctx.fillText('A', cx - 30, cy + 4);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.shadowColor = '#4ECDC4';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(cx + 150, cy, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'left';
-            ctx.fillText('B', cx + 155, cy + 4);
-
-            // Flèche F
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(cx + 25, cy);
-            ctx.lineTo(cx + 110, cy);
+            ctx.arc(baseX, baseY, 25, -angle, 0);
             ctx.stroke();
-            // Tête de flèche
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('α = 30°', baseX + 18, baseY - 12);
+
+            // Savon
+            var sx = baseX + longueur * 0.5 * Math.cos(angle);
+            var sy = baseY - longueur * 0.5 * Math.sin(angle);
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 15;
             ctx.beginPath();
-            ctx.moveTo(cx + 110, cy);
-            ctx.lineTo(cx + 103, cy - 5);
-            ctx.moveTo(cx + 110, cy);
-            ctx.lineTo(cx + 103, cy + 5);
+            ctx.arc(sx, sy, 12, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Flèche Poids
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(sx, sy + 40);
             ctx.stroke();
             ctx.fillStyle = '#FF6B6B';
             ctx.font = '14px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('F = 200 N', cx + 65, cy - 18);
+            ctx.textAlign = 'left';
+            ctx.fillText('P', sx + 6, sy + 28);
 
-            // Légende
+            // Flèche Réaction
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 2;
+            var perpAngle = Math.PI/2 - angle;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(sx + 35 * Math.cos(perpAngle), sy - 35 * Math.sin(perpAngle));
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('R', sx + 38, sy - 28);
+
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('AB = 30 m', 260, 30);
-            ctx.fillText('Δt = 2,5 min', 260, 45);
-            ctx.fillText('Mouvement rectiligne', 260, 60);
+            ctx.fillText('m = 200 g', 250, 30);
+            ctx.fillText('L = 1,0 m', 250, 45);
+            ctx.fillText('Sans frottement', 250, 60);
         }
 
         function drawGraph2() {
@@ -1080,95 +898,100 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            var baseX = 30, baseY = h - 30;
-            var longueur = 150;
-            var angle = 30 * Math.PI / 180;
+            var pivotX = 190, pivotY = 30;
+            var longueur = 140;
+            var angle = 10 * Math.PI / 180;
 
-            // Plan incliné AB
+            // Verticale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(pivotX, pivotY);
+            ctx.lineTo(pivotX, pivotY + longueur + 30);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Position G
+            var gx = pivotX + longueur * Math.sin(angle);
+            var gy = pivotY + longueur * Math.cos(angle);
+            // Position G0
+            var g0x = pivotX;
+            var g0y = pivotY + longueur;
+
+            // Fil G
             ctx.strokeStyle = '#4ECDC4';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(baseX, baseY);
-            var finX = baseX + longueur * Math.cos(angle);
-            var finY = baseY - longueur * Math.sin(angle);
-            ctx.lineTo(finX, finY);
+            ctx.moveTo(pivotX, pivotY);
+            ctx.lineTo(gx, gy);
             ctx.stroke();
 
-            // Partie circulaire BC
-            var r = 60;
-            var cx = finX + r * Math.sin(angle);
-            var cy = finY + r * Math.cos(angle);
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
+            // Fil G0
+            ctx.strokeStyle = '#888';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([3, 3]);
             ctx.beginPath();
-            var startAngle = -Math.PI/2 + angle;
-            var endAngle = -Math.PI/2 + 0.3;
-            ctx.arc(cx, cy, r, startAngle, endAngle);
+            ctx.moveTo(pivotX, pivotY);
+            ctx.lineTo(g0x, g0y);
             ctx.stroke();
+            ctx.setLineDash([]);
 
-            // Points
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
+            // Bille G
+            ctx.fillStyle = '#F4D03F';
+            ctx.shadowColor = '#F4D03F';
+            ctx.shadowBlur = 15;
             ctx.beginPath();
-            ctx.arc(baseX, baseY, 5, 0, 2 * Math.PI);
+            ctx.arc(gx, gy, 10, 0, 2 * Math.PI);
             ctx.fill();
             ctx.shadowBlur = 0;
             ctx.fillStyle = '#FFFFFF';
             ctx.font = '11px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('A', baseX + 8, baseY + 4);
+            ctx.fillText('G', gx + 14, gy + 4);
 
+            // Bille G0
             ctx.fillStyle = '#A8FF78';
             ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 10;
             ctx.beginPath();
-            ctx.arc(finX, finY, 5, 0, 2 * Math.PI);
+            ctx.arc(g0x, g0y, 8, 0, 2 * Math.PI);
             ctx.fill();
             ctx.shadowBlur = 0;
-            ctx.fillText('B', finX + 8, finY + 4);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textAlign = 'left';
+            ctx.fillText('G₀', g0x + 12, g0y + 4);
 
-            var cX = cx;
-            var cY = cy - r;
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(cX, cY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillText('C', cX + 8, cY + 4);
-
-            // Centre I
+            // Pivot
             ctx.fillStyle = '#BB8FCE';
             ctx.shadowColor = '#BB8FCE';
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 10;
             ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+            ctx.arc(pivotX, pivotY, 5, 0, 2 * Math.PI);
             ctx.fill();
             ctx.shadowBlur = 0;
             ctx.fillStyle = '#FFFFFF';
             ctx.textAlign = 'right';
-            ctx.fillText('I', cx - 8, cy + 4);
+            ctx.fillText('O', pivotX - 8, pivotY + 4);
 
             // Angle
             ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.arc(baseX, baseY, 20, -angle, 0);
+            ctx.arc(pivotX, pivotY, 25, Math.PI/2 - angle, Math.PI/2);
             ctx.stroke();
             ctx.fillStyle = '#F4D03F';
             ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('α = 30°', baseX + 18, baseY - 14);
+            ctx.textAlign = 'left';
+            ctx.fillText('α = 10°', pivotX + 28, pivotY + 16);
 
             // Légende
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('h = 2,0 m', 250, 30);
-            ctx.fillText('r = 0,5 m', 250, 45);
-            ctx.fillText('m = 2 kg', 250, 60);
+            ctx.fillText('L = 40 cm', 250, 30);
+            ctx.fillText('m = 5,0 g', 250, 45);
+            ctx.fillText('Sans frottement', 250, 60);
         }
 
         function drawGraph3() {
@@ -1181,51 +1004,68 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Trajet AB (horizontal)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
+            var cx = w/2, cy = 50;
+
+            // Ballon haut
+            ctx.fillStyle = '#F4D03F';
+            ctx.shadowColor = '#F4D03F';
+            ctx.shadowBlur = 15;
             ctx.beginPath();
-            ctx.moveTo(50, h/2);
-            ctx.lineTo(150, h/2);
-            ctx.stroke();
+            ctx.arc(cx, cy, 14, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
             ctx.fillStyle = '#FFFFFF';
             ctx.font = '11px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('AB', 100, h/2 + 18);
-            ctx.fillText('150 m', 100, h/2 - 8);
+            ctx.fillText('A', cx, cy - 22);
+            ctx.fillText('h = 5,0 m', cx, cy + 28);
 
-            // Trajet vertical
+            // Flèche P
             ctx.strokeStyle = '#FF6B6B';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(200, h/2);
-            ctx.lineTo(200, h/2 - 100);
+            ctx.moveTo(cx, cy + 18);
+            ctx.lineTo(cx, cy + 55);
             ctx.stroke();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'center';
-            ctx.fillText('Vertical', 200, h/2 - 112);
-            ctx.fillText('150 m', 200, h/2 - 48);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.fillText('P', cx + 8, cy + 42);
 
-            // Trajet BC
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            var angle = 53 * Math.PI / 180;
+            // Sol
+            var solY = 145;
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([6, 4]);
             ctx.beginPath();
-            ctx.moveTo(280, h/2);
-            ctx.lineTo(280 + 100 * Math.cos(angle), h/2 - 100 * Math.sin(angle));
+            ctx.moveTo(30, solY);
+            ctx.lineTo(w - 30, solY);
             ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#888';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('Sol', w - 50, solY + 16);
+
+            // Ballon bas
+            var cx2 = w/2, cy2 = 135;
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(cx2, cy2, 14, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
             ctx.fillStyle = '#FFFFFF';
             ctx.textAlign = 'center';
-            ctx.fillText('BC', 280 + 50 * Math.cos(angle), h/2 - 50 * Math.sin(angle) + 18);
-            ctx.fillText('100 m', 280 + 50 * Math.cos(angle), h/2 - 50 * Math.sin(angle) - 8);
+            ctx.fillText('B', cx2, cy2 + 22);
 
             // Légende
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('m = 50 kg', 10, 20);
-            ctx.fillText('g = 10 N/kg', 10, 35);
-            ctx.fillText('3 trajets différents', 10, 50);
+            ctx.fillText('m = 300 g', 10, 20);
+            ctx.fillText('Δt = 1,0 s', 10, 35);
+            ctx.fillText('Chute libre', 10, 50);
         }
 
         function drawGraph4() {
@@ -1238,59 +1078,78 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Moteur (cercle)
-            var cx = w/2, cy = h/2;
-            var rayon = 50;
-
-            // Axe
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
+            // Enfant
+            var cx = 90, cy = 80;
+            ctx.fillStyle = '#4ECDC4';
+            ctx.shadowColor = '#4ECDC4';
+            ctx.shadowBlur = 8;
             ctx.beginPath();
-            ctx.moveTo(cx, 10);
-            ctx.lineTo(cx, h - 10);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('(Δ)', cx + 10, 20);
+            ctx.arc(cx, cy - 20, 18, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Enfant', cx, cy - 5);
 
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Rayon
-            var angle = Math.PI/4;
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(cx + rayon * Math.cos(angle), cy - rayon * Math.sin(angle));
-            ctx.stroke();
-
-            // Flèche de rotation
+            // Bras
             ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.arc(cx, cy, rayon * 0.5, -Math.PI/3, Math.PI/4);
+            ctx.moveTo(cx + 15, cy - 15);
+            ctx.lineTo(cx + 55, cy - 25);
             ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '13px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('ω', cx + 50, cy - 35);
 
-            // Légende
+            // Corde
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx + 55, cy - 25);
+            ctx.lineTo(cx + 130, cy - 30);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Camion
+            var camX = 180, camY = 85;
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.fillRect(camX, camY - 35, 80, 30);
+            ctx.shadowBlur = 0;
+
+            // Roues
+            ctx.fillStyle = '#FF6B6B';
+            ctx.shadowColor = '#FF6B6B';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(camX + 15, camY + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(camX + 65, camY + 5, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('Camion', camX + 40, camY - 10);
+
+            // Flèche F
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx + 55, cy - 25);
+            ctx.lineTo(cx + 55, cy - 55);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('F', cx + 60, cy - 45);
+
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('P = 1500 kW', 10, 20);
-            ctx.fillText('N = 1500 tr/min', 10, 35);
-            ctx.fillText('Δt = 30 min', 10, 50);
-            ctx.fillText('Moteur en rotation', 10, 65);
+            ctx.fillText('t = 30 s', 270, 30);
+            ctx.fillText('W = 2,0 kJ', 270, 45);
         }
 
         function drawGraph5() {
@@ -1303,89 +1162,93 @@
             ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, w, h);
 
-            // Tambour
-            var cx = 180, cy = 70;
-            var r = 40;
+            var baseX = 30, baseY = h - 30;
+            var longueur = 240;
+            var angle = 20 * Math.PI / 180;
+
+            // Plan incliné
             ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, r, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Axe
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 10);
-            ctx.lineTo(cx, 130);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('(Δ)', cx + 8, 20);
-
-            // Manivelle
-            var L = 60;
-            ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(cx + r, cy);
-            ctx.lineTo(cx + r + L, cy);
+            ctx.moveTo(baseX, baseY);
+            var finX = baseX + longueur * Math.cos(angle);
+            var finY = baseY - longueur * Math.sin(angle);
+            ctx.lineTo(finX, finY);
             ctx.stroke();
-            // Poignée
+
+            // Horizontale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(baseX - 10, baseY);
+            ctx.lineTo(baseX + 20, baseY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Angle
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(baseX, baseY, 25, -angle, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('α = 20°', baseX + 18, baseY - 12);
+
+            // Traîneau
+            var tx = baseX + longueur * 0.45 * Math.cos(angle);
+            var ty = baseY - longueur * 0.45 * Math.sin(angle);
             ctx.fillStyle = '#A8FF78';
             ctx.shadowColor = '#A8FF78';
             ctx.shadowBlur = 10;
-            ctx.beginPath();
-            ctx.arc(cx + r + L, cy, 6, 0, 2 * Math.PI);
-            ctx.fill();
+            ctx.fillRect(tx - 20, ty - 8, 40, 16);
             ctx.shadowBlur = 0;
 
-            // Fil et charge
-            ctx.strokeStyle = '#BB8FCE';
+            // Flèche P
+            ctx.strokeStyle = '#FF6B6B';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(cx, cy + r);
-            ctx.lineTo(cx, h - 30);
+            ctx.moveTo(tx, ty);
+            ctx.lineTo(tx, ty + 40);
             ctx.stroke();
             ctx.fillStyle = '#FF6B6B';
-            ctx.shadowColor = '#FF6B6B';
-            ctx.shadowBlur = 10;
-            ctx.fillRect(cx - 15, h - 45, 30, 30);
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('m', cx, h - 25);
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('P', tx + 8, ty + 28);
 
             // Flèche F
             ctx.strokeStyle = '#4D9DE0';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.moveTo(cx + r + L + 10, cy);
-            ctx.lineTo(cx + r + L + 50, cy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(cx + r + L + 50, cy);
-            ctx.lineTo(cx + r + L + 43, cy - 5);
-            ctx.moveTo(cx + r + L + 50, cy);
-            ctx.lineTo(cx + r + L + 43, cy + 5);
+            ctx.moveTo(tx - 25, ty);
+            ctx.lineTo(tx - 25 - 40 * Math.cos(angle), ty + 40 * Math.sin(angle));
             ctx.stroke();
             ctx.fillStyle = '#4D9DE0';
             ctx.font = '14px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('F', cx + r + L + 30, cy - 10);
+            ctx.fillText('F', tx - 25 - 20 * Math.cos(angle), ty + 20 * Math.sin(angle) - 10);
 
-            // Légende
+            // Flèche R
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 2;
+            var rAngle = Math.PI/2 - angle;
+            ctx.beginPath();
+            ctx.moveTo(tx, ty - 10);
+            ctx.lineTo(tx + 40 * Math.cos(rAngle), ty - 10 - 40 * Math.sin(rAngle));
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('R', tx + 44, ty - 32);
+
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('r = 10 cm', 10, 20);
-            ctx.fillText('L = 50 cm', 10, 35);
-            ctx.fillText('m = 50 kg', 10, 50);
-            ctx.fillText('Treuil', 10, 65);
+            ctx.fillText('m = 50 kg', 10, 20);
+            ctx.fillText('g = 10 m/s²', 10, 35);
+            ctx.fillText('Sans frottement', 10, 50);
         }
 
         function drawGraph6() {
@@ -1399,10 +1262,10 @@
             ctx.fillRect(0, 0, w, h);
 
             var baseX = 30, baseY = h - 30;
-            var longueur = 180;
-            var angle = 30 * Math.PI / 180;
+            var longueur = 220;
+            var angle = 20 * Math.PI / 180;
 
-            // Plan incliné AB
+            // Plan incliné
             ctx.strokeStyle = '#4ECDC4';
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -1412,94 +1275,110 @@
             ctx.lineTo(finX, finY);
             ctx.stroke();
 
-            // Partie circulaire BC
-            var r = 70;
-            var cx = finX + r * Math.sin(angle);
-            var cy = finY + r * Math.cos(angle);
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
+            // Horizontale
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
             ctx.beginPath();
-            var startAngle = -Math.PI/2 + angle;
-            var endAngle = -Math.PI/2 + 0.5;
-            ctx.arc(cx, cy, r, startAngle, endAngle);
+            ctx.moveTo(baseX - 10, baseY);
+            ctx.lineTo(baseX + 20, baseY);
             ctx.stroke();
-
-            // Points
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(baseX, baseY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('A', baseX + 8, baseY + 4);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(finX, finY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillText('B', finX + 8, finY + 4);
-
-            var cX = cx + r * Math.cos(-Math.PI/2 + 0.5);
-            var cY = cy + r * Math.sin(-Math.PI/2 + 0.5);
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(cX, cY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillText('C', cX + 8, cY + 4);
-
-            // Point D (sol)
-            var dX = cX;
-            var dY = baseY + 20;
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(dX, dY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillText('D', dX + 8, dY + 4);
-
-            // Centre I
-            ctx.fillStyle = '#BB8FCE';
-            ctx.shadowColor = '#BB8FCE';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'right';
-            ctx.fillText('I', cx - 8, cy + 4);
+            ctx.setLineDash([]);
 
             // Angle
             ctx.strokeStyle = '#F4D03F';
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.arc(baseX, baseY, 20, -angle, 0);
+            ctx.arc(baseX, baseY, 25, -angle, 0);
             ctx.stroke();
             ctx.fillStyle = '#F4D03F';
             ctx.font = '11px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText('α = 30°', baseX + 18, baseY - 14);
+            ctx.fillText('α = 20°', baseX + 18, baseY - 12);
 
-            // Légende
+            // Skieur
+            var sx = baseX + longueur * 0.5 * Math.cos(angle);
+            var sy = baseY - longueur * 0.5 * Math.sin(angle);
+            ctx.fillStyle = '#A8FF78';
+            ctx.shadowColor = '#A8FF78';
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(sx, sy, 12, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('G', sx + 16, sy + 4);
+
+            // Flèche P
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy);
+            ctx.lineTo(sx, sy + 45);
+            ctx.stroke();
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('P', sx + 6, sy + 32);
+
+            // Flèche f
+            ctx.strokeStyle = '#FFA500';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx - 12, sy);
+            ctx.lineTo(sx - 12 - 35 * Math.cos(angle), sy + 35 * Math.sin(angle));
+            ctx.stroke();
+            ctx.fillStyle = '#FFA500';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('f', sx - 12 - 18 * Math.cos(angle), sy + 18 * Math.sin(angle) - 8);
+
+            // Flèche R
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 2;
+            var rAngle = Math.PI/2 - angle;
+            ctx.beginPath();
+            ctx.moveTo(sx, sy - 8);
+            ctx.lineTo(sx + 40 * Math.cos(rAngle), sy - 8 - 40 * Math.sin(rAngle));
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('R', sx + 44, sy - 32);
+
+            // Flèche F
+            var beta = 15 * Math.PI / 180;
+            ctx.strokeStyle = '#4D9DE0';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(sx + 15, sy - 15);
+            var fx = sx + 15 + 45 * Math.cos(beta);
+            var fy = sy - 15 - 45 * Math.sin(beta);
+            ctx.lineTo(fx, fy);
+            ctx.stroke();
+            ctx.fillStyle = '#4D9DE0';
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('F', fx + 6, fy + 4);
+
+            // Angle β
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(sx + 15, sy - 15, 15, -beta, 0);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('β = 15°', sx + 30, sy - 22);
+
             ctx.fillStyle = '#888888';
             ctx.font = '10px Arial';
             ctx.textAlign = 'left';
-            ctx.fillText('m = 400 g', 10, 20);
-            ctx.fillText('r = 0,8 m', 10, 35);
-            ctx.fillText('β = 60°, θ = 45°', 10, 50);
-            ctx.fillText('AB = 1,2 m', 10, 65);
+            ctx.fillText('m = 80 kg', 10, 20);
+            ctx.fillText('f = 40 N', 10, 35);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
