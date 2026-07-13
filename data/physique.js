@@ -47,54 +47,39 @@ window.subjectsData.physique = {
         { semester: 2, title: "Les images formées par une lentille mince convergente", file: "content/physique/lessons/lentille-convergente/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 2, title: "Quelques instruments optiques", file: "content/physique/lessons/instruments-optiques/index.html", desc: "قيد الإعداد 🔧" }
     ],
-    // كل موضوع عندو "modeles": مصفوفة نماذج - نموذج 1 دابا، ونموذج 2/3... يتزادو
-    // بلا ما نبدلو بنية الكود، غير نزيدو عنصر جديد فمصفوفة modeles.
     exercices: [
         {
             title: "Rotation d'un solide",
-            desc: "6 exercices avec solutions",
-            modeles: [
-                { title: "Modèle 1", file: "content/physique/exercises/rotation-solide/model1/index.html" }
-            ]
+            file: "content/physique/exercises/rotation-solide/index.html",
+            desc: "6 exercices avec solutions"
         },
         {
             title: "Travail et puissance d'une force",
-            desc: "8 exercices avec solutions détaillées",
-            modeles: [
-                { title: "Modèle 1", file: "content/physique/exercises/travail-puissance/model1/index.html" }
-            ]
+            file: "content/physique/exercises/travail-puissance/index.html",
+            desc: "8 exercices avec solutions détaillées"
         },
         {
             title: "Travail et énergie cinétique",
-            desc: "9 exercices avec solutions détaillées",
-            modeles: [
-                { title: "Modèle 1", file: "content/physique/exercises/travail-energie-cinetique/model1/index.html" }
-            ]
+            file: "content/physique/exercises/travail-energie-cinetique/index.html",
+            desc: "9 exercices avec solutions détaillées"
         }
     ],
     series: [
         {
             title: "Rotation d'un solide",
-            desc: "6 exercices avec solutions détaillées",
-            modeles: [
-                { title: "Modèle 1", file: "content/physique/series/rotation-solide/model1/index.html" }
-            ]
+            file: "content/physique/series/rotation-solide/index.html",
+            desc: "6 exercices avec solutions détaillées"
         },
         {
             title: "Travail et puissance d'une force",
-            desc: "6 exercices avec solutions détaillées",
-            modeles: [
-                { title: "Modèle 1", file: "content/physique/series/travail-puissance/model1/index.html" }
-            ]
+            file: "content/physique/series/travail-puissance/index.html",
+            desc: "6 exercices avec solutions détaillées"
         },
         {
             title: "Travail et énergie cinétique",
-            desc: "6 exercices avec solutions détaillées",
-            modeles: [
-                { title: "Modèle 1", file: "content/physique/series/travail-energie-cinetique/model1/index.html" }
-            ]
+            file: "content/physique/series/travail-energie-cinetique/index.html",
+            desc: "6 exercices avec solutions détaillées"
         }
     ],
     exams: []
 };
-

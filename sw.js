@@ -4,7 +4,7 @@
 
 // ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
 // الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
-const CACHE_NAME = 'xpert-7db524ca';
+const CACHE_NAME = 'xpert-2328f228';
 
 const urlsToCache = [
     './',
@@ -54,6 +54,7 @@ const urlsToCache = [
     './content/math/lessons/logique/part5.html',
 
     // ====== سلاسل الرياضيات ======
+    './content/math/series/barycentre/index.html',
     './content/math/series/barycentre/model1/index.html',
     './content/math/series/barycentre/model1/serie1.html',
     './content/math/series/barycentre/model1/serie2.html',
@@ -61,6 +62,7 @@ const urlsToCache = [
     './content/math/series/barycentre/model1/serie4.html',
     './content/math/series/barycentre/model1/serie5.html',
     './content/math/series/barycentre/model1/serie6.html',
+    './content/math/series/fonctions/index.html',
     './content/math/series/fonctions/model1/index.html',
     './content/math/series/fonctions/model1/serie1.html',
     './content/math/series/fonctions/model1/serie2.html',
@@ -69,6 +71,7 @@ const urlsToCache = [
     './content/math/series/fonctions/model1/serie5.html',
     './content/math/series/fonctions/model1/serie6.html',
     './content/math/series/fonctions/model1/serie7.html',
+    './content/math/series/logique/index.html',
     './content/math/series/logique/model1/index.html',
     './content/math/series/logique/model1/serie1.html',
     './content/math/series/logique/model1/serie2.html',
@@ -77,6 +80,7 @@ const urlsToCache = [
     './content/math/series/logique/model1/serie5.html',
 
     // ====== تمارين الرياضيات ======
+    './content/math/exercises/barycentre/index.html',
     './content/math/exercises/barycentre/model1/exercice1.html',
     './content/math/exercises/barycentre/model1/exercice2.html',
     './content/math/exercises/barycentre/model1/exercice3.html',
@@ -86,6 +90,7 @@ const urlsToCache = [
     './content/math/exercises/barycentre/model1/exercice7.html',
     './content/math/exercises/barycentre/model1/exercice8.html',
     './content/math/exercises/barycentre/model1/index.html',
+    './content/math/exercises/fonctions/index.html',
     './content/math/exercises/fonctions/model1/exercice1.html',
     './content/math/exercises/fonctions/model1/exercice10.html',
     './content/math/exercises/fonctions/model1/exercice2.html',
@@ -97,6 +102,7 @@ const urlsToCache = [
     './content/math/exercises/fonctions/model1/exercice8.html',
     './content/math/exercises/fonctions/model1/exercice9.html',
     './content/math/exercises/fonctions/model1/index.html',
+    './content/math/exercises/logique/index.html',
     './content/math/exercises/logique/model1/exercice1.html',
     './content/math/exercises/logique/model1/exercice2.html',
     './content/math/exercises/logique/model1/exercice3.html',
@@ -130,14 +136,18 @@ const urlsToCache = [
     './content/physique/lessons/travail-puissance/part5.html',
 
     // ====== سلاسل الفيزياء ======
+    './content/physique/series/rotation-solide/index.html',
     './content/physique/series/rotation-solide/model1/index.html',
     './content/physique/series/rotation-solide/model1/serie1.html',
+    './content/physique/series/travail-energie-cinetique/index.html',
     './content/physique/series/travail-energie-cinetique/model1/index.html',
     './content/physique/series/travail-energie-cinetique/model1/serie1.html',
+    './content/physique/series/travail-puissance/index.html',
     './content/physique/series/travail-puissance/model1/index.html',
     './content/physique/series/travail-puissance/model1/serie1.html',
 
     // ====== تمارين الفيزياء ======
+    './content/physique/exercises/rotation-solide/index.html',
     './content/physique/exercises/rotation-solide/model1/exercice1.html',
     './content/physique/exercises/rotation-solide/model1/exercice2.html',
     './content/physique/exercises/rotation-solide/model1/exercice3.html',
@@ -145,6 +155,7 @@ const urlsToCache = [
     './content/physique/exercises/rotation-solide/model1/exercice5.html',
     './content/physique/exercises/rotation-solide/model1/exercice6.html',
     './content/physique/exercises/rotation-solide/model1/index.html',
+    './content/physique/exercises/travail-energie-cinetique/index.html',
     './content/physique/exercises/travail-energie-cinetique/model1/exercice1.html',
     './content/physique/exercises/travail-energie-cinetique/model1/exercice2.html',
     './content/physique/exercises/travail-energie-cinetique/model1/exercice3.html',
@@ -155,6 +166,7 @@ const urlsToCache = [
     './content/physique/exercises/travail-energie-cinetique/model1/exercice8.html',
     './content/physique/exercises/travail-energie-cinetique/model1/exercice9.html',
     './content/physique/exercises/travail-energie-cinetique/model1/index.html',
+    './content/physique/exercises/travail-puissance/index.html',
     './content/physique/exercises/travail-puissance/model1/exercice1.html',
     './content/physique/exercises/travail-puissance/model1/exercice2.html',
     './content/physique/exercises/travail-puissance/model1/exercice3.html',
