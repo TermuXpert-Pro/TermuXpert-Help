@@ -79,36 +79,3 @@ console.log('✅ Xpert - Scripts chargés avec succès !');
             .catch(function(err) { console.log('❌ Service Worker échoué:', err); });
     });
 })();
-
-
-(function() {
-    var toggleBtn = document.getElementById('menuToggleBtn');
-    var panel = document.getElementById('sidePanel');
-    var overlay = document.getElementById('sidePanelOverlay');
-    var closeBtn = document.getElementById('sidePanelClose');
-    if (!toggleBtn || !panel || !overlay) return;
-
-    function openPanel() {
-        panel.classList.add('active');
-        overlay.classList.add('active');
-        document.body.classList.add('side-panel-open');
-        toggleBtn.setAttribute('aria-expanded', 'true');
-        panel.setAttribute('aria-hidden', 'false');
-    }
-    function closePanel() {
-        panel.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.classList.remove('side-panel-open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        panel.setAttribute('aria-hidden', 'true');
-    }
-
-    toggleBtn.addEventListener('click', function() {
-        panel.classList.contains('active') ? closePanel() : openPanel();
-    });
-    overlay.addEventListener('click', closePanel);
-    if (closeBtn) closeBtn.addEventListener('click', closePanel);
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && panel.classList.contains('active')) closePanel();
-    });
-})();
