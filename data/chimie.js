@@ -22,7 +22,15 @@ window.subjectsData.chimie = {
         { semester: 2, title: "Modification du squelette carboné", file: "content/chimie/lessons/modification-squelette/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 2, title: "Les groupes caractéristiques en chimie organique - La réactivité des alcools", file: "content/chimie/lessons/groupes-caracteristiques/index.html", desc: "قيد الإعداد 🔧" }
     ],
-    exercices: [],
-    series: [],
+    exercices: [
+        { title: "concentration-solutions", file: "content/chimie/exercises/concentration-solutions/index.html", desc: "" },
+        { title: "mesure-chimie", file: "content/chimie/exercises/mesure-chimie/index.html", desc: "" },
+        { title: "quantite-matiere", file: "content/chimie/exercises/quantite-matiere/index.html", desc: "" }
+    ],
+    series: [
+        { title: "concentration-solutions", file: "content/chimie/series/concentration-solutions/index.html", desc: "" },
+        { title: "mesure-chimie", file: "content/chimie/series/mesure-chimie/index.html", desc: "" },
+        { title: "quantite-matiere", file: "content/chimie/series/quantite-matiere/index.html", desc: "" }
+    ],
     exams: []
 };
