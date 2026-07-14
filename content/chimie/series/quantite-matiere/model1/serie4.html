@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Série 3 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
+    <title>Série 4 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,8 +77,6 @@
         .step .step-num { color: #F4D03F; font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
         .nav-buttons { margin-top: 14px; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; border: none; }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
         .bg-grid { opacity: 0.3; }
@@ -263,205 +261,140 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Série 3 - Grandeurs physiques liées à la quantité de matière</h1>
-            <div class="serie-title">Exercices <span>7 à 8</span> : Dilution - Solutions aqueuses - Protocole expérimental</div>
+            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Série 4 - Grandeurs physiques liées à la quantité de matière</h1>
+            <div class="serie-title">Exercices <span>9 à 13</span> : Gaz parfaits - Volume molaire - Pluies acides - Formol</div>
 
             <!-- ============================================================ -->
-            <!-- EXERCICE 7 : Éthanol 95% -->
+            <!-- EXERCICE 9 : Gaz parfait -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">7</span> Solution d'éthanol à 95%</h2>
+                <h2><span class="num">9</span> Gaz parfait</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une solution aqueuse \(S_1\) d'éthanol à \(95\%\) en volume contient \(95\text{ mL}\) d'éthanol de formule \(\text{C}_2\text{H}_6\text{O}\) dans un volume de \(100\text{ mL}\) de solution. La densité de l'éthanol pur est \(d = 0,79\).
+                    À température \(t = 20^\circ\text{C}\) et sous une pression \(P = 1,013 \times 10^5\text{ Pa}\), un hydrocarbure gazeux de formule \(\text{C}_n\text{H}_{2n+2}\) a une densité par rapport à l'air \(d = 2,00\).
                 </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
                     <strong>Données :</strong> 
-                    \(\rho_{eau} = 1,00\text{ g/mL}\), 
+                    \(\rho_{air} = 1,21\text{ g/L}\), 
+                    \(R = 8,314\text{ Pa.m}^3/(\text{K.mol})\), 
                     \(M_C = 12\text{ g/mol}\), 
-                    \(M_H = 1\text{ g/mol}\), 
-                    \(M_O = 16\text{ g/mol}\)
+                    \(M_H = 1\text{ g/mol}\)
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la masse d'éthanol dans \(100\text{ mL}\) de solution \(S_1\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_1')">Voir la solution</button>
-                    <div id="sol7_1" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le volume molaire des gaz dans les conditions étudiées.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9_1')">Voir la solution</button>
+                    <div id="sol9_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Masse volumique de l'éthanol : \(\rho = d \times \rho_{eau} = 0,79 \times 1,00 = 0,79\text{ g/mL}\)
+                                \(T = 20 + 273 = 293\text{ K}\)
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Volume d'éthanol dans 100 mL : \(V = 95\text{ mL}\)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = \rho \times V = 0,79 \times 95 = 75,1\text{ g}$$
+                                    $$V_m = \frac{RT}{P} = \frac{8,314 \times 293}{1,013 \times 10^5} = 0,0240\text{ m}^3/\text{mol} = 24,0\text{ L/mol}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(m = 75,1\text{ g}\)</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_m = 24,0\text{ L/mol}\)</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la concentration molaire \(C_1\) de l'éthanol dans cette solution ?</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_2')">Voir la solution</button>
-                    <div id="sol7_2" class="solution-box">
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la masse molaire de l'hydrocarbure.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9_2')">Voir la solution</button>
+                    <div id="sol9_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Masse molaire de l'éthanol :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 2 \times 12 + 6 \times 1 + 16 = 24 + 6 + 16 = 46\text{ g/mol}$$
-                                </div>
+                                \(\rho_{hydrocarbure} = d \times \rho_{air} = 2,00 \times 1,21 = 2,42\text{ g/L}\)
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Quantité de matière :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n = \frac{m}{M} = \frac{75,1}{46} = 1,63\text{ mol}$$
+                                    $$M = \rho \times V_m = 2,42 \times 24,0 = 58,1\text{ g/mol}$$
                                 </div>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Concentration molaire :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_1 = \frac{n}{V} = \frac{1,63}{0,100} = 16,3\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(C_1 = 16,3\text{ mol/L}\)</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(M \approx 58\text{ g/mol}\)</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">3a)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">On souhaite préparer un volume \(V_2 = 100\text{ mL}\) de solution \(S_2\) à \(70\%\). Calculer le volume \(V_1\) de solution \(S_1\) à prélever.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_3a')">Voir la solution</button>
-                    <div id="sol7_3a" class="solution-box">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire sa formule brute.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9_3')">Voir la solution</button>
+                    <div id="sol9_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Volume d'éthanol dans \(S_2\) : \(V_{éthanol} = 70\text{ mL}\)
+                                \(M = n \times 12 + (2n+2) \times 1 = 14n + 2 = 58\)
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                L'éthanol provient de \(S_1\), donc le volume d'éthanol est conservé :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$V_1 \times 0,95 = 70 \iff V_1 = \frac{70}{0,95} = 73,7\text{ mL}$$
-                                </div>
+                                \(14n = 56 \iff n = 4\)
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_1 = 73,7\text{ mL}\)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">3b)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Décrire le mode opératoire de cette préparation en choisissant le matériel nécessaire.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_3b')">Voir la solution</button>
-                    <div id="sol7_3b" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Matériel nécessaire :</strong></p>
-                            <ul style="font-size:12px; padding-right:18px;">
-                                <li>Solution mère \(S_1\)</li>
-                                <li>Eau distillée</li>
-                                <li>Fiole jaugée de 100 mL</li>
-                                <li>Pipette jaugée de 73,7 mL (ou éprouvette graduée)</li>
-                                <li>Propipette</li>
-                                <li>Becher</li>
-                            </ul>
-                            
-                            <p style="margin-top:6px;"><strong>Protocole :</strong></p>
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                À l'aide d'une pipette jaugée, prélever \(73,7\text{ mL}\) de la solution \(S_1\).
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Introduire le prélèvement dans une fiole jaugée de \(100\text{ mL}\).
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Ajouter de l'eau distillée jusqu'au trait de jauge.
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                Homogénéiser par retournement.
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> On obtient \(100\text{ mL}\) de solution à \(70\%\).</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La formule brute est \(\text{C}_4\text{H}_{10}\) (butane).</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- ============================================================ -->
-            <!-- EXERCICE 8 : Acide éthanoïque -->
+            <!-- EXERCICE 10 : Formol -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">8</span> Acide éthanoïque</h2>
+                <h2><span class="num">10</span> Formol</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une solution \(S_0\) d'acide éthanoïque \(\text{C}_2\text{H}_4\text{O}_2\) a une densité par rapport à l'eau \(d = 1,05\). Le pourcentage massique en acide éthanoïque vaut \(p = 90,0\%\).
+                    Une solution de formol a une densité \(d = 1,08\), un pourcentage massique \(p = 37\%\) et une concentration molaire \(C = 13,3\text{ mol/L}\).
                 </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
                     <strong>Données :</strong> 
-                    \(\rho_{eau} = 1,00\text{ g/mL}\), 
                     \(M_C = 12\text{ g/mol}\), 
                     \(M_H = 1\text{ g/mol}\), 
-                    \(M_O = 16\text{ g/mol}\)
+                    \(M_O = 16\text{ g/mol}\), 
+                    \(M_N = 14\text{ g/mol}\)
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la concentration molaire \(C_0\) de l'acide éthanoïque dans cette solution.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_1')">Voir la solution</button>
-                    <div id="sol8_1" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer le titre massique et la masse molaire du formol.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_1')">Voir la solution</button>
+                    <div id="sol10_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Masse molaire de l'acide éthanoïque :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 2 \times 12 + 4 \times 1 + 2 \times 16 = 24 + 4 + 32 = 60\text{ g/mol}$$
-                                </div>
+                                Titre massique : \(C_m = C \times M\)
                             </div>
-
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Masse volumique de la solution : \(\rho = d \times \rho_{eau} = 1,05 \times 1,00 = 1,05\text{ g/mL} = 1050\text{ g/L}\)
+                                Masse molaire : \(M = \dfrac{C_m}{C}\)
                             </div>
-
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                Masse d'acide dans 1 L : 
+                                Titre massique : 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = \rho \times V \times p = 1050 \times 1 \times 0,900 = 945\text{ g}$$
+                                    $$C_m = \frac{C}{p} \times d \times 1000 = \frac{13,3}{0,37} \times 1,08 \times 1000 = 38800\text{ g/L}$$
                                 </div>
                             </div>
-
                             <div class="step">
                                 <span class="step-num">Étape 4 :</span> 
-                                Concentration molaire :
+                                Masse molaire : 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_0 = \frac{n}{V} = \frac{m}{M \times V} = \frac{945}{60 \times 1} = 15,8\text{ mol/L}$$
+                                    $$M = \frac{38800}{13,3} = 29,2\text{ g/mol}$$
                                 </div>
                             </div>
-
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(C_0 = 15,8\text{ mol/L}\)</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(M \approx 30\text{ g/mol}\)</p>
                         </div>
                     </div>
                 </div>
@@ -469,53 +402,24 @@
                 <div class="sub-question">
                     <div class="letter">2)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        On dilue cette solution \(200\) fois de façon à obtenir un volume \(V = 100\text{ mL}\) de solution diluée. Décrire avec précision le protocole expérimental en indiquant les précautions à prendre sachant que la solution \(S_0\) est corrosive.
+                        Sa composition centésimale massique est : \(C : 40,0\%\), \(H : 6,7\%\), \(O : 53,3\%\). Déterminer la formule brute.
                     </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_2')">Voir la solution</button>
-                    <div id="sol8_2" class="solution-box">
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_2')">Voir la solution</button>
+                    <div id="sol10_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Matériel nécessaire :</strong></p>
-                            <ul style="font-size:12px; padding-right:18px;">
-                                <li>Solution mère \(S_0\) (corrosive)</li>
-                                <li>Eau distillée</li>
-                                <li>Fiole jaugée de 100 mL</li>
-                                <li>Pipette jaugée de 0,5 mL</li>
-                                <li>Propipette</li>
-                                <li>Becher</li>
-                                <li>Gants de protection</li>
-                                <li>Lunettes de sécurité</li>
-                                <li>Hotte aspirante</li>
-                            </ul>
-                            
-                            <p style="margin-top:6px;"><strong>Calcul :</strong> \(V_0 = \dfrac{V}{200} = \dfrac{100}{200} = 0,5\text{ mL}\)</p>
-                            
-                            <p style="margin-top:6px;"><strong>Protocole :</strong></p>
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                <span style="color:#FF6B6B;">⚠️ Porter des gants et des lunettes de protection. Travailler sous hotte aspirante.</span>
+                                Pour 100 g de formol :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_C = \frac{40}{12} = 3,33 \quad ; \quad n_H = \frac{6,7}{1} = 6,7 \quad ; \quad n_O = \frac{53,3}{16} = 3,33$$
+                                </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Prélever \(0,5\text{ mL}\) de la solution \(S_0\) à l'aide d'une pipette jaugée.
+                                Rapport molaire : \(C : H : O = 3,33 : 6,7 : 3,33 = 1 : 2 : 1\)
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Introduire le prélèvement dans une fiole jaugée de \(100\text{ mL}\).
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                Rincer la pipette avec de l'eau distillée et ajouter dans la fiole.
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> 
-                                Compléter avec de l'eau distillée jusqu'au trait de jauge.
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 6 :</span> 
-                                Homogénéiser par retournement.
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> On obtient \(100\text{ mL}\) de solution diluée \(200\) fois.</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La formule brute est \(\text{CH}_2\text{O}\) (formaldéhyde).</p>
                         </div>
                     </div>
                 </div>
@@ -523,47 +427,235 @@
                 <div class="sub-question">
                     <div class="letter">3)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        Quel volume de solution \(S_0\) faut-il prélever pour obtenir une solution de degré d'acidité égale à \(7,0\) (masse d'acide en gramme dans \(100\text{ g}\) de solution) de volume \(V' = 1,0\text{ L}\) et de masse volumique \(\rho' = 1,01\text{ g/mL}\) ?
+                        Le formol réagit avec l'urée pour former une résine. On utilise un volume \(V = 10\text{ mL}\) de la solution de formol. Quelle masse d'urée \(\text{CH}_4\text{N}_2\text{O}\) faut-il utiliser pour obtenir un mélange équimolaire ?
                     </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8_3')">Voir la solution</button>
-                    <div id="sol8_3" class="solution-box">
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_3')">Voir la solution</button>
+                    <div id="sol10_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Masse de \(100\text{ g}\) de solution :
+                                Quantité de formol :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$V_{100g} = \frac{100}{\rho'} = \frac{100}{1,01} = 99,0\text{ mL}$$
+                                    $$n = C \times V = 13,3 \times 0,010 = 0,133\text{ mol}$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Pour 1 L, le degré d'acidité est :
+                                Masse molaire de l'urée :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{Degré} = 7,0 \times \frac{1000}{99,0} = 70,7$$
+                                    $$M_{\text{urée}} = 12 + 4 \times 1 + 2 \times 14 + 16 = 60\text{ g/mol}$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                Masse d'acide dans 1 L :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = 70,7\text{ g}$$
-                                </div>
+                                Mélange équimolaire : \(n_{\text{urée}} = n_{\text{formol}} = 0,133\text{ mol}\)
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 4 :</span> 
-                                Masse d'acide dans \(S_0\) pour 1 L :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m_0 = \rho \times V_0 \times 0,900 = 1050 \times V_0 \times 0,900$$
+                                    $$m_{\text{urée}} = n \times M = 0,133 \times 60 = 7,98\text{ g}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(m_{\text{urée}} \approx 8,0\text{ g}\)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 11 : Mercure -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">11</span> Volume molaire du mercure</h2>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Calculer le volume molaire du mercure \(\text{Hg}\) liquide à \(20^\circ\text{C}\) sous une pression de \(101,3\text{ kPa}\), sachant que sa masse volumique est \(\rho = 13,6 \times 10^3\text{ kg/m}^3\). Comparer au volume molaire d'un gaz dans les mêmes conditions.
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Donnée :</strong> \(M(\text{Hg}) = 200,6\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">Solution</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11')">Voir la solution</button>
+                    <div id="sol11" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(\rho = 13,6 \times 10^3\text{ kg/m}^3 = 13,6\text{ g/mL}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_m = \frac{M}{\rho} = \frac{200,6}{13,6} = 14,8\text{ mL/mol} = 1,48 \times 10^{-5}\text{ m}^3/\text{mol}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> 
+                                <span class="step-num">Étape 3 :</span> 
+                                Volume molaire d'un gaz dans les mêmes conditions : \(V_{m,gaz} \approx 24\text{ L/mol} = 2,4 \times 10^{-2}\text{ m}^3/\text{mol}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Comparaison :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$70,7 = 1050 \times V_0 \times 0,900 \iff V_0 = \frac{70,7}{945} = 0,0748\text{ L} = 74,8\text{ mL}$$
+                                    $$\frac{V_{m,gaz}}{V_{m,Hg}} = \frac{2,4 \times 10^{-2}}{1,48 \times 10^{-5}} \approx 1600$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_0 = 74,8\text{ mL}\)</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> Le volume molaire d'un gaz est environ \(1600\) fois plus grand que celui du mercure liquide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 12 : Dioxygène et Dioxyde de carbone -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">12</span> Dioxygène et Dioxyde de carbone</h2>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On considère \(100\text{ g}\) de dioxygène et \(100\text{ g}\) de dioxyde de carbone, pris tous les deux à \(20^\circ\text{C}\) sous \(101,3\text{ kPa}\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(V_m = 24\text{ L/mol}\), 
+                    \(M_O = 16\text{ g/mol}\), 
+                    \(M_C = 12\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quels volumes occupent-ils séparément ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_1')">Voir la solution</button>
+                    <div id="sol12_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Dioxygène :</span> 
+                                \(M(\text{O}_2) = 32\text{ g/mol}\)
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n = \frac{100}{32} = 3,125\text{ mol} \quad ; \quad V = n \times V_m = 3,125 \times 24 = 75,0\text{ L}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Dioxyde de carbone :</span> 
+                                \(M(\text{CO}_2) = 44\text{ g/mol}\)
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n = \frac{100}{44} = 2,27\text{ mol} \quad ; \quad V = 2,27 \times 24 = 54,5\text{ L}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>\(V(\text{O}_2) = 75,0\text{ L}\)</li>
+                                <li>\(V(\text{CO}_2) = 54,5\text{ L}\)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quel volume occupe-t-ils si on les mélange ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_2')">Voir la solution</button>
+                    <div id="sol12_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(n_{\text{total}} = 3,125 + 2,27 = 5,395\text{ mol}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_{\text{total}} = n_{\text{total}} \times V_m = 5,395 \times 24 = 129,5\text{ L}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_{\text{total}} = 129,5\text{ L}\)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 13 : Éther -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">13</span> Éther</h2>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    À \(20^\circ\text{C}\) et sous \(101,3\text{ kPa}\), l'éthoxyéthane (\(\text{C}_4\text{H}_{10}\text{O}\)), plus couramment appelé éther, est un liquide ; sa masse volumique vaut \(0,71\text{ g/mL}\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_C = 12\text{ g/mol}\), 
+                    \(M_H = 1\text{ g/mol}\), 
+                    \(M_O = 16\text{ g/mol}\), 
+                    \(R = 8,314\text{ Pa.m}^3/(\text{K.mol})\)
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quel est le volume molaire de l'éther liquide ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_1')">Voir la solution</button>
+                    <div id="sol13_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(M(\text{C}_4\text{H}_{10}\text{O}) = 4 \times 12 + 10 \times 1 + 16 = 48 + 10 + 16 = 74\text{ g/mol}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_{m,l} = \frac{M}{\rho} = \frac{74}{0,71} = 104,2\text{ mL/mol}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_{m,l} = 104,2\text{ mL/mol}\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">L'éther est volatile : sa température d'ébullition est de \(34^\circ\text{C}\) sous cette pression. Quel est le volume molaire de l'éther gazeux dans ces conditions ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_2')">Voir la solution</button>
+                    <div id="sol13_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(T = 34 + 273 = 307\text{ K}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_{m,g} = \frac{RT}{P} = \frac{8,314 \times 307}{1,013 \times 10^5} = 0,0252\text{ m}^3/\text{mol} = 25,2\text{ L/mol}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_{m,g} = 25,2\text{ L/mol}\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la masse volumique de l'éther gazeux.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_3')">Voir la solution</button>
+                    <div id="sol13_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\rho_g = \frac{M}{V_{m,g}} = \frac{74}{25,2} = 2,94\text{ g/L}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(\rho_g = 2,94\text{ g/L}\)</p>
                         </div>
                     </div>
                 </div>
@@ -573,8 +665,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="serie2.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Série 2</a>
-                <a href="serie4.html" class="next-btn">Série 4 <i class="fas fa-arrow-left"></i></a>
+                <a href="serie3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Série 3</a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
             </div>
 
         </div>
