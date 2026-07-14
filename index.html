@@ -200,7 +200,7 @@
             padding: 50px 50px 50px;
             max-width: 700px;
             width: 100%;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(12px);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             margin-top: 10px;
@@ -700,15 +700,6 @@
             .to('#desc', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
             .to('#buttons', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
             
-            // ====== نبض النقطة ======
-            .to('.dot', {
-                scale: 1.2,
-                duration: 0.5,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            }, '-=0.2')
-            
             // ====== إزالة طبقة الحماية ======
             .call(function() {
                 overlay.classList.remove('active');
@@ -725,13 +716,6 @@
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut'
-            });
-
-            gsap.to('.moroccan-star', {
-                rotation: 360,
-                duration: 30,
-                repeat: -1,
-                ease: 'none'
             });
 
             gsap.to('.geo-pattern-1', {
@@ -812,3 +796,5 @@
     </script>
 </body>
 </html>
+
+
