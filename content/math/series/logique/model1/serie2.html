@@ -257,7 +257,7 @@
             <rect width="400" height="400" fill="url(#sidebarZellij)"/>
         </svg>
     </div>
-    <!-- ====== خلفية رياضية متحركة (GSAP) ====== -->
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
     <div class="sidebar-math-bg" aria-hidden="true">
         <span class="math-symbol">∫</span>
         <span class="math-symbol">π</span>
@@ -348,63 +348,6 @@
 
 <!-- ====== Overlay ====== -->
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
-
-<!-- ====== GSAP: خلفية رياضية متحركة فـ Sidebar ====== -->
-<script>
-(function() {
-    var started = false;
-    var tweens = [];
-
-    function initSidebarMathBg() {
-        if (typeof gsap === 'undefined') return;
-        const symbols = document.querySelectorAll('.sidebar-math-bg .math-symbol');
-        if (!symbols.length) return;
-
-        tweens.push(gsap.to(symbols, {
-            opacity: 0.12,
-            scale: 1,
-            duration: 1.5,
-            stagger: 0.15,
-            ease: 'power2.out'
-        }));
-
-        symbols.forEach(function(el, i) {
-            tweens.push(gsap.to(el, {
-                y: '+=' + (14 + (i % 3) * 6),
-                x: '+=' + (i % 2 === 0 ? 8 : -8),
-                rotation: i % 2 === 0 ? 8 : -8,
-                duration: 4 + (i % 4),
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                delay: i * 0.3
-            }));
-        });
-
-        started = true;
-    }
-
-    function pauseSidebarMathBg() {
-        tweens.forEach(function(t) { t.pause(); });
-    }
-
-    function resumeSidebarMathBg() {
-        tweens.forEach(function(t) { t.resume(); });
-    }
-
-    // كنبداو الأنيميشن غير أول مرة كتفتح الـsidebar (مش من ساعة تحميل
-    // الصفحة)، وكنوقفوه/كنكملوه مع كل فتح وغلق، باش ما يخدمش فارغ
-    // فالخلفية طول الوقت اللي الـsidebar مغلق فيه.
-    document.addEventListener('sidebar:opened', function() {
-        if (!started) {
-            initSidebarMathBg();
-        } else {
-            resumeSidebarMathBg();
-        }
-    });
-    document.addEventListener('sidebar:closed', pauseSidebarMathBg);
-})();
-</script>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
