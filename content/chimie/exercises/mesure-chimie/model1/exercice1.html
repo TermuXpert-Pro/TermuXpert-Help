@@ -211,20 +211,20 @@
             background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
-            max-width: 350px;
+            max-width: 380px;
             margin: 0 auto;
         }
         .table-wrap th {
             background: var(--bg-card);
             color: var(--accent-light);
-            padding: 3px 8px;
+            padding: 4px 10px;
             border: 1px solid var(--border);
             font-weight: 700;
             text-align: center;
             font-size: 11px;
         }
         .table-wrap td {
-            padding: 3px 8px;
+            padding: 4px 10px;
             border: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
@@ -251,6 +251,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
 </head>
@@ -316,62 +317,110 @@
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    <strong>Ionogramme plasmatique</strong>
+                    Un patient a effectué une analyse de sang. Les résultats de son ionogramme plasmatique sont les suivants :
                 </p>
 
                 <div class="table-wrap">
                     <table>
                         <tr>
-                            <th>Mesures</th>
-                            <th>Valeurs limites</th>
+                            <th>Ion</th>
+                            <th>Mesure (g/L)</th>
+                            <th>Valeurs normales (g/L)</th>
                         </tr>
                         <tr>
-                            <td>Sodium : \(3,24\text{ g/L}\)</td>
-                            <td>\((3,10 ; 3,34)\)</td>
+                            <td>Sodium \(\text{Na}^+\)</td>
+                            <td>\(3,24\)</td>
+                            <td>\([3,10 ; 3,34]\)</td>
                         </tr>
                         <tr>
-                            <td>Potassium : \(0,12\text{ g/L}\)</td>
-                            <td>\((0,14 ; 0,22)\)</td>
+                            <td>Potassium \(\text{K}^+\)</td>
+                            <td>\(0,12\)</td>
+                            <td>\([0,14 ; 0,22]\)</td>
                         </tr>
                     </table>
                 </div>
 
-                <div class="sub-question" style="margin-top:8px;">
+                <div class="sub-question" style="margin-top:10px;">
                     <div class="letter">1)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        Examinant les résultats de son analyse de sang, préciser si les teneurs en ions sodium et potassium de ce patient sont suffisantes.
+                        Examiner les résultats de cette analyse. Les teneurs en ions sodium et potassium de ce patient sont-elles suffisantes ?
                     </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>Pour les analyses on donne le titre massique en ion sodium et en ion potassium.</p>
                             
+                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">1) Étude de la teneur en Sodium \(\text{Na}^+\)</p>
+
                             <div class="step">
-                                <span class="step-num">Sodium :</span> 
-                                La teneur en ions sodium est correcte. Elle se situe dans l'intervalle toléré :
+                                <span class="step-num">Étape 1 :</span> 
+                                On compare la mesure avec l'intervalle des valeurs normales :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3,10\text{ g/L} < t(\text{Na}^+) = 3,24\text{ g/L} < 3,34\text{ g/L}$$
+                                    $$3,10 \le t(\text{Na}^+) \le 3,34$$
                                 </div>
-                                <span style="color:#4ECDC4;">✅ Teneur en sodium suffisante</span>
                             </div>
 
-                            <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Potassium :</span> 
-                                La teneur en ions potassium est insuffisante. La teneur est inférieure à la valeur limite inférieure.
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                On vérifie si la mesure \(3,24\) appartient à cet intervalle :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$t(\text{K}^+) = 0,12\text{ g/L} < 0,14\text{ g/L}$$
+                                    $$3,10 < 3,24 < 3,34 \quad \text{✔️}$$
                                 </div>
-                                <span style="color:#FF6B6B;">❌ Teneur en potassium insuffisante</span>
                             </div>
 
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <ul style="font-size:12px;">
-                                    <li>Sodium : \(3,24\text{ g/L} \in [3,10 ; 3,34]\) → ✅ correct</li>
-                                    <li>Potassium : \(0,12\text{ g/L} < 0,14\) → ❌ insuffisant</li>
-                                </ul>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <span style="color:#4ECDC4; font-weight:700;">✅ Conclusion :</span> 
+                                La teneur en sodium est <strong>suffisante</strong> et se situe dans l'intervalle normal.
                             </div>
+
+                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">2) Étude de la teneur en Potassium \(\text{K}^+\)</p>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                On compare la mesure avec l'intervalle des valeurs normales :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$0,14 \le t(\text{K}^+) \le 0,22$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 5 :</span> 
+                                On vérifie si la mesure \(0,12\) appartient à cet intervalle :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$0,12 < 0,14 \quad \text{❌}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 6 :</span> 
+                                <span style="color:#FF6B6B; font-weight:700;">❌ Conclusion :</span> 
+                                La teneur en potassium est <strong>insuffisante</strong> car elle est inférieure à la limite inférieure normale \((0,14\text{ g/L})\).
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:8px;">
+                                <span class="label resume">Résumé des résultats</span>
+                                <div class="table-wrap">
+                                    <table style="max-width:280px;">
+                                        <tr>
+                                            <th>Ion</th>
+                                            <th>Mesure</th>
+                                            <th>Normale ?</th>
+                                        </tr>
+                                        <tr>
+                                            <td>\(\text{Na}^+\)</td>
+                                            <td>\(3,24\text{ g/L}\)</td>
+                                            <td class="true">✅ Oui</td>
+                                        </tr>
+                                        <tr>
+                                            <td>\(\text{K}^+\)</td>
+                                            <td>\(0,12\text{ g/L}\)</td>
+                                            <td class="false">❌ Non (insuffisant)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -379,50 +428,99 @@
                 <div class="sub-question">
                     <div class="letter">2)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        Pour compenser le déficit observé, le médecin prescrit un médicament. Sur la notice on peut lire : <br>
-                        <em>"Chlorure de potassium 600 mg par comprimé soit 314 mg de potassium"</em>.<br><br>
-                        Le patient peut également manger des aliments riches en potassium tel que la banane : <br>
-                        <em>100 g de banane contiennent 385 mg de potassium</em>.<br><br>
-                        Quelle masse de banane doit-il consommer pour absorber l'équivalent d'un comprimé ? <br>
-                        On suppose que tout le potassium présent dans la banane est assimilé par l'organisme.
+                        Pour compenser le déficit en potassium observé, le médecin prescrit un médicament. Sur la notice on peut lire :
+                    </p>
+                    <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
+                        <li><strong>Chlorure de potassium 600 mg par comprimé</strong> soit <strong>314 mg de potassium</strong>.</li>
+                    </ul>
+                    <p style="font-size:11.5px; margin:6px 0;">
+                        Le patient peut également manger des aliments riches en potassium comme la banane :
+                    </p>
+                    <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
+                        <li><strong>100 g de banane</strong> contiennent <strong>385 mg de potassium</strong>.</li>
+                    </ul>
+                    <p style="font-size:11.5px; margin:6px 0;">
+                        Quelle masse de banane le patient doit-il consommer pour absorber l'équivalent d'un comprimé ?
+                        <br><span style="color:var(--text-muted); font-size:11px;">(On suppose que tout le potassium présent dans la banane est assimilé par l'organisme.)</span>
                     </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Masse de banane à consommer :</strong></p>
+                            
+                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">1) Identifier les données</p>
+
+                            <div class="step">
+                                <span class="step-num">Donnée 1 :</span> 
+                                Un comprimé apporte \(314\text{ mg}\) de potassium.
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Donnée 2 :</span> 
+                                \(100\text{ g}\) de banane apportent \(385\text{ mg}\) de potassium.
+                            </div>
+
+                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">2) Mettre en place un tableau de proportionnalité</p>
 
                             <div class="table-wrap">
-                                <table>
+                                <table style="max-width:300px;">
                                     <tr>
-                                        <th>Masse de banane</th>
-                                        <th>Teneur en potassium</th>
+                                        <th>Masse de banane (g)</th>
+                                        <th>Masse de potassium (mg)</th>
                                     </tr>
                                     <tr>
-                                        <td>\(100\text{ g}\)</td>
-                                        <td>\(385\text{ mg}\)</td>
+                                        <td>\(100\)</td>
+                                        <td>\(385\)</td>
                                     </tr>
                                     <tr>
-                                        <td>\(m\)</td>
-                                        <td>\(314\text{ mg}\)</td>
+                                        <td style="font-weight:700; color:#F4D03F;">\(m\)</td>
+                                        <td style="font-weight:700; color:#F4D03F;">\(314\)</td>
                                     </tr>
                                 </table>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Produit en croix :</span>
+                                <span class="step-num">Étape 1 :</span> 
+                                On utilise le produit en croix (règle de trois) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = \frac{100 \times 314}{385} = 81,6\text{ g}$$
+                                    $$m = \frac{100 \times 314}{385}$$
                                 </div>
                             </div>
 
-                            <div class="highlight-box green" style="margin-top:6px;">
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                On effectue le calcul :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m = \frac{31400}{385} \approx 81,56\text{ g}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                On arrondit avec deux chiffres significatifs (données en mg) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m \approx 81,6\text{ g}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:8px;">
                                 <span class="label resume">Conclusion</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
                                     $$m \approx 81,6\text{ g de banane}$$
                                 </div>
-                                <p style="font-size:11px; color:var(--text-muted);">Le patient doit consommer environ 81,6 g de banane pour absorber l'équivalent d'un comprimé.</p>
+                                <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
+                                    Le patient doit consommer environ <strong>81,6 g de banane</strong> pour absorber l'équivalent en potassium d'un comprimé.
+                                </p>
                             </div>
+
+                            <div class="highlight-box yellow" style="margin-top:8px;">
+                                <span class="label rappel">Astuce</span>
+                                <p style="font-size:11px;">
+                                    Pour vérifier : si 100 g de banane donnent 385 mg, alors 80 g donnent environ 308 mg. <br>
+                                    \(81,6\text{ g}\) donne \(314\text{ mg}\), ce qui est cohérent ✅
+                                </p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
