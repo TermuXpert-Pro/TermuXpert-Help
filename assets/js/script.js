@@ -80,6 +80,7 @@ console.log('✅ Xpert - Scripts chargés avec succès !');
     });
 })();
 
+
 // ============================================================
 // SIDEBAR - تصميم مبتكر
 // ============================================================
@@ -88,12 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
+    const closeBtn = document.getElementById('sidebarClose');
     const navbar = document.getElementById('navbar');
 
-    // ملاحظة: تم حذف الاعتماد على closeBtn (id="sidebarClose") لأنه
-    // ماكاينش هاد الزر فـ navbar.html الحالي. الإغلاق كيتم عبر
-    // الـ overlay، ESC، أو الضغط على menuToggle نفسو (toggle).
-    if (!menuToggle || !sidebar || !overlay) return;
+    if (!menuToggle || !sidebar || !overlay || !closeBtn) return;
 
     // ====== Scroll effect ======
     window.addEventListener('scroll', function () {
@@ -131,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    closeBtn.addEventListener('click', closeSidebar);
     overlay.addEventListener('click', closeSidebar);
 
     // ====== ESC ======
@@ -195,6 +195,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('✅ Sidebar v3.0 initialisée');
 });
-
-
-
