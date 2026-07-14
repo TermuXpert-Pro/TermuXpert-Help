@@ -403,7 +403,9 @@ input, textarea, [contenteditable="true"] {
     left: -380px;
     width: 360px;
     height: 100%;
-    background: var(--bg-card);
+    background: rgba(31, 40, 51, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border-right: 1px solid var(--border);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
     transition: left 0.45s cubic-bezier(0.4, 0, 0.2, 1);
@@ -791,17 +793,11 @@ input, textarea, [contenteditable="true"] {
 }
 .sidebar-footer-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    text-align: center;
     font-size: 0.65rem;
     color: var(--text-muted);
-}
-.sidebar-version {
-    background: rgba(78, 205, 196, 0.08);
-    color: #4ECDC4;
-    padding: 1px 10px;
-    border-radius: 10px;
-    font-weight: 600;
 }
 
 /* ============================================================
@@ -963,78 +959,86 @@ input, textarea, [contenteditable="true"] {
    SIDEBAR - القائمة الجانبية
    ============================================================ */
 
-/* ====== Menu Toggle ====== */
+/* ====== Menu Toggle (Hamburger animé) ====== */
 .menu-toggle {
-    background: none;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
-    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
     cursor: pointer;
-    padding: 6px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    padding: 0;
 }
+.menu-toggle:hover {
+    background: rgba(78, 205, 196, 0.1);
+    border-color: rgba(78, 205, 196, 0.2);
+}
+.menu-toggle:active {
+    transform: scale(0.92);
+}
+
 .menu-icon {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 22px;
-    height: 16px;
+    gap: 5px;
+    width: 20px;
+    transition: all 0.3s ease;
 }
 .menu-line {
     display: block;
-    width: 100%;
     height: 2px;
     background: var(--text-primary);
     border-radius: 2px;
-    transition: background 0.2s ease, transform 0.3s ease, opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
+.menu-line:nth-child(1) { width: 20px; }
+.menu-line:nth-child(2) { width: 16px; }
+.menu-line:nth-child(3) { width: 12px; }
+
 .menu-toggle:hover .menu-line {
-    background: var(--accent-light);
+    background: #4ECDC4;
 }
-/* حالة "مفتوح" (اختياري): تحويل الخطوط لعلامة X إلا زدتي toggle class="open" بالـJS */
+/* script.js كيدير classList.add('active') + aria-expanded='true' ملي تفتح -
+   كنغطيو الحالتين بجوج باش يخدم فكل الحالات */
+.menu-toggle.active .menu-line:nth-child(1),
 .menu-toggle[aria-expanded="true"] .menu-line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: rotate(45deg) translate(5px, 5px);
+    width: 20px;
 }
+.menu-toggle.active .menu-line:nth-child(2),
 .menu-toggle[aria-expanded="true"] .menu-line:nth-child(2) {
     opacity: 0;
 }
+.menu-toggle.active .menu-line:nth-child(3),
 .menu-toggle[aria-expanded="true"] .menu-line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: rotate(-45deg) translate(5px, -5px);
+    width: 20px;
 }
 
-/* ====== Sidebar ====== */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 290px;
-    height: 100%;
-    background: var(--bg-card);
-    border-right: 1px solid var(--border);
-    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.4);
-    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10000;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-}
-.sidebar.open {
-    left: 0;
+/* ====== Menu Toggle - Responsive (موبايل صغير) ====== */
+@media (max-width: 480px) {
+    .menu-toggle {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+    }
+    .menu-icon {
+        gap: 4px;
+        width: 17px;
+    }
+    .menu-line {
+        height: 1.5px;
+    }
+    .menu-line:nth-child(1) { width: 17px; }
+    .menu-line:nth-child(2) { width: 13px; }
+    .menu-line:nth-child(3) { width: 9px; }
 }
 
-.sidebar::-webkit-scrollbar {
-    width: 4px;
-}
-.sidebar::-webkit-scrollbar-track {
-    background: var(--bg-primary);
-}
-.sidebar::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 4px;
-}
 
 /* ====== Sidebar Header ====== */
 .sidebar-header {
@@ -1227,9 +1231,9 @@ input, textarea, [contenteditable="true"] {
 }
 .sidebar-math-bg .math-symbol {
     position: absolute;
-    color: rgba(78, 205, 196, 0.10);
+    color: rgba(78, 205, 196, 0.16);
     font-weight: 700;
-    opacity: 0;
+    opacity: 1;
     user-select: none;
 }
 .sidebar-math-bg .math-symbol:nth-child(1) { top: 8%;  left: 12%; font-size: 34px; }
