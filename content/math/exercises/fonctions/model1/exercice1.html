@@ -57,7 +57,24 @@
         .section ul li { margin-bottom: 4px; }
         .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
         .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
@@ -133,6 +150,19 @@
             overflow-x: auto;
             font-size: 12px;
         }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .toggle-sol {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -185,10 +215,13 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
+            width: 100%;
+            height: auto;
+            display: block;
         }
         .graph-container p {
             color: var(--text-muted);
@@ -298,7 +331,7 @@
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(-x) = f(x)$ donc <strong>$f$ est paire</strong>.</p>
                             <div class="graph-container">
-                                <canvas id="graphParite" width="350" height="150"></canvas>
+                                <svg id="graphPariteSVG" width="100%" height="200" viewBox="0 0 400 200"></svg>
                                 <p>Courbe de $f(x) = \cos(\pi x)$ (fonction paire)</p>
                             </div>
                         </div>
@@ -348,7 +381,7 @@
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est périodique de période <strong>$T = 2$</strong>.</p>
                             <p style="font-size:11px; color:var(--text-muted);">Remarque : La période de $\cos(\pi x)$ est $T = \dfrac{2\pi}{\pi} = 2$.</p>
                             <div class="graph-container">
-                                <canvas id="graphPeriodique" width="350" height="150"></canvas>
+                                <svg id="graphPeriodiqueSVG" width="100%" height="200" viewBox="0 0 450 200"></svg>
                                 <p>Périodicité de $f(x) = \cos(\pi x)$ avec $T=2$</p>
                             </div>
                         </div>
@@ -387,129 +420,11 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphParite() {
-            var canvas = document.getElementById('graphParite');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-            
-            var ox = w/2, oy = h - 20;
-            var scale = 30;
-            
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(0, oy);
-            ctx.lineTo(w, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 10);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-            
-            // Courbe cos(πx)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var px = -140; px <= 140; px += 0.5) {
-                var x = px / scale;
-                var y = Math.cos(Math.PI * x);
-                var screenX = ox + px;
-                var screenY = oy - y * 40;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === -140) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('f(x) = cos(πx) est paire', 190, 20);
-        }
-
-        function drawGraphPeriodique() {
-            var canvas = document.getElementById('graphPeriodique');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-            
-            var ox = 30, oy = h - 20;
-            var scale = 40;
-            
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 10, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 10);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-            
-            // Courbe cos(πx)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var px = 0; px <= 300; px += 0.5) {
-                var x = px / scale;
-                var y = Math.cos(Math.PI * x);
-                var screenX = ox + px;
-                var screenY = oy - y * 35;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            
-            // T=2
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            var x1 = ox + 2 * scale;
-            var x2 = ox + 4 * scale;
-            ctx.beginPath();
-            ctx.moveTo(x1, 0);
-            ctx.lineTo(x1, h);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(x2, 0);
-            ctx.lineTo(x2, h);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('T=2', x1 + 5, 15);
-            ctx.fillText('T=2', x2 + 5, 15);
-            
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Période T = 2', 250, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphParite();
-                drawGraphPeriodique();
-            }, 300);
-        });
     </script>
+    
+    <!-- ====== SVG Utils + Figures ====== -->
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvg.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
