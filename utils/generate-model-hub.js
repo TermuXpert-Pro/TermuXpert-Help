@@ -1,16 +1,23 @@
 #!/usr/bin/env node
 /**
  * generate-model-hub.js
- * كيمسح content/<matiere>/{series,exercises}/<sujet>/ ويولّد/يحدّث
- * index.html فمستوى السجيت (خارج model1/model2/...) كيعرض كارد
+ * كيمسح content/<matiere>/{series,exercises,lessons}/<sujet>/ ويولّد/يحدّث
+ * index.html فمستوى السجيت/الدرس (خارج model1/model2/...) كيعرض كارد
  * لكل نموذج (modelN) موجود فعلياً فالقرص.
  *
  * الفكرة: data/*.js و subject.html كيشيرو ديما لهاذ index.html (الـ hub)
  * وماشي مباشرة لـ model1/. ملي تزيد model2 مستقبلاً، غير عاود شغّل هاذ
  * السكريبت - صفر تعديل يدوي فأي حتة أخرى.
  *
+ * ⚠️ تحديث: زدنا دعم "lessons" بحال exercises/series بالضبط. الدرس
+ * (model1/index.html) يقدر يكون:
+ *   - راوتر فيه روابط part-link (Cours - Partie 1, 2, 3...) → كنعدو عدد
+ *     الـ part-link باش نعرضو "N parties disponibles"
+ *   - ولا صفحة واحدة فيها المحتوى مباشرة (بلا parts) → كنعرضو غير
+ *     "Modèle 1" بلا عدد.
+ *
  * الاستخدام: node utils/generate-model-hub.js
- * شغّلها كل مرة تزيد نموذج (modelN) جديد لسجيت كاين، ولا سجيت جديد.
+ * شغّلها كل مرة تزيد نموذج (modelN) جديد لسجيت/درس كاين، ولا سجيت/درس جديد.
  */
 
 const fs = require('fs');
@@ -19,8 +26,9 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content');
 const TYPES = {
-    exercises: { label: 'Exercices', icon: 'fa-pencil', color: '#4ECDC4' },
-    series:    { label: 'Séries',    icon: 'fa-layer-group', color: '#F4D03F' },
+    exercises: { label: 'Exercices', icon: 'fa-pencil',       color: '#4ECDC4', unit: 'exercices' },
+    series:    { label: 'Séries',    icon: 'fa-layer-group',  color: '#F4D03F', unit: 'séries' },
+    lessons:   { label: 'Cours',     icon: 'fa-book',         color: '#4ECDC4', unit: 'parties' },
 };
 
 function listDirs(dir) {
@@ -32,10 +40,19 @@ function listDirs(dir) {
 
 // كيجيب عنوان + عدد العناصر من داخل model1/index.html (باش الـ hub يبان فيه
 // نفس المعلومة بلا ما نكتبوها يدوياً مرتين)
-function extractInfo(modelIndexPath, typeLabel) {
+function extractInfo(modelIndexPath, type) {
     let title = null, count = null;
-    if (fs.existsSync(modelIndexPath)) {
-        const html = fs.readFileSync(modelIndexPath, 'utf-8');
+    if (!fs.existsSync(modelIndexPath)) return { title, count };
+    const html = fs.readFileSync(modelIndexPath, 'utf-8');
+
+    if (type === 'lessons') {
+        // عنوان الدرس مكتوب مباشرة بلا "Cours -" فالبداية
+        const titleMatch = html.match(/<title>\s*(.*?)\s*\|\s*Xpert\s*<\/title>/i);
+        if (titleMatch) title = titleMatch[1].trim();
+        // نعدو الروابط ديال part-link إلا كان الدرس مقسم لأجزاء
+        const partMatches = html.match(/class="part-link"/g);
+        count = partMatches ? partMatches.length : null;
+    } else {
         const titleMatch = html.match(/<title>\s*(?:Exercices|Séries)\s*-\s*(.*?)\s*\|\s*Xpert\s*<\/title>/i);
         if (titleMatch) title = titleMatch[1].trim();
         const countMatch = html.match(/<span>(\d+)<\/span>\s*(?:exercices|séries)/i);
@@ -46,17 +63,23 @@ function extractInfo(modelIndexPath, typeLabel) {
 
 function buildHubHtml({ subject, type, topicSlug, topicTitle, models }) {
     const meta = TYPES[type];
-    const cards = models.map(m => `
+    const cards = models.map(m => {
+        const n = m.count ? Number(m.count) : 0;
+        const subtitle = m.count
+            ? `<div style="color:var(--text-secondary); font-size:12px;">${m.count} ${meta.unit} disponible${n > 1 ? 's' : ''}</div>`
+            : '';
+        return `
                 <a href="${m.slug}/index.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-bottom:10px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease;">
                     <div style="display:flex; align-items:center; gap:10px;">
                         <span style="color:${meta.color}; font-size:18px; flex-shrink:0;"><i class="fas ${meta.icon}"></i></span>
                         <div style="flex:1;">
                             <div style="color:${meta.color}; font-weight:700; font-size:15px;">${m.title}</div>
-                            ${m.count ? `<div style="color:var(--text-secondary); font-size:12px;">${m.count} ${meta.label.toLowerCase()} disponibles</div>` : ''}
+                            ${subtitle}
                         </div>
                         <span style="color:var(--text-muted); font-size:14px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
-                </a>`).join('\n');
+                </a>`;
+    }).join('\n');
 
     return `<!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -131,7 +154,7 @@ for (const subject of subjects) {
 
             let topicTitle = topicSlug;
             const models = modelSlugs.map((slug, i) => {
-                const info = extractInfo(path.join(topicDir, slug, 'index.html'), TYPES[type].label);
+                const info = extractInfo(path.join(topicDir, slug, 'index.html'), type);
                 if (info.title) topicTitle = info.title;
                 return { slug, title: `Modèle ${i + 1}`, count: info.count };
             });
@@ -148,5 +171,5 @@ for (const subject of subjects) {
 console.log('');
 console.log('='.repeat(60));
 console.log(`✅ تم! تولّد/تحدّث ${totalGenerated} صفحة hub.`);
-console.log('⚠️  تذكّر: بدّل روابط data/*.js باش تشير لهاذ index.html');
-console.log('   (المجلد ديال السجيت) وماشي مباشرة لـ model1/index.html');
+console.log('⚠️  تذكّر: data/*.js وsubject.html خاصهم يشيرو لهاذ index.html');
+console.log('   (المجلد ديال السجيت/الدرس) وماشي مباشرة لـ model1/index.html');

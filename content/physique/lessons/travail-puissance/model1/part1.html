@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 1 - Travail et puissance d'une force | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .exemple-box {
+            background: #1A2A2A;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .exemple-box .ex-title {
+            color: #F4D03F;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-arrow-right" style="color:#FF6B6B;"></i> Partie 1 : Notion de force - Travail d'une force constante</h1>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: NOTION DE FORCE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> Notion de force</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Une <strong>force</strong> est une action mécanique capable de :</p>
+                    <ul>
+                        <li>mettre en mouvement un corps</li>
+                        <li>modifier son mouvement</li>
+                        <li>le maintenir en équilibre</li>
+                        <li>le déformer</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Force constante</span>
+                    <p>Une force est dite <strong>constante</strong> si sa <strong>valeur</strong>, sa <strong>direction</strong> et son <strong>sens</strong> ne varient pas au cours du temps.</p>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exemple</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Le <strong>poids</strong> d'un corps solide est une force constante.
+                    </p>
+                    <div class="graph-container">
+                        <canvas id="graphForce" width="300" height="180"></canvas>
+                        <p>Force constante : le poids</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: NOTION DE TRAVAIL -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> Notion de travail d'une force</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>En physique, le <strong>travail</strong> est une notion liée aux <strong>forces</strong> et aux <strong>déplacements</strong> de leurs points d'application.</p>
+                    <p style="margin-top:4px;">On dit qu'une force <strong>travaille</strong> lorsque son point d'application se déplace.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Remarque</span>
+                    <ul>
+                        <li>Si le point d'application de la force ne se déplace pas, le travail est <strong>nul</strong>.</li>
+                        <li>Le travail est une grandeur <strong>algébrique</strong> (positive ou négative).</li>
+                        <li>L'unité du travail dans le système international (SI) est le <strong>Joule (J)</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: TRAVAIL D'UNE FORCE CONSTANTE EN TRANSLATION RECTILIGNE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Travail d'une force constante en translation rectiligne</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Le travail d'une force constante \(\vec{F}\) pour un déplacement rectiligne \(AB\) de son point d'application est le <strong>produit scalaire</strong> du vecteur force \(\vec{F}\) et du vecteur déplacement \(\overrightarrow{AB}\) :</p>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$W_{A \to B}(\vec{F}) = \vec{F} \cdot \overrightarrow{AB} = F \cdot AB \cdot \cos \alpha$$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Notations</span>
+                    <ul>
+                        <li>\(W_{A \to B}(\vec{F})\) : travail de la force \(\vec{F}\) en <strong>Joules (J)</strong></li>
+                        <li>\(F\) : valeur de la force en <strong>Newtons (N)</strong></li>
+                        <li>\(AB\) : longueur du déplacement en <strong>mètres (m)</strong></li>
+                        <li>\(\alpha\) : angle entre les vecteurs \(\vec{F}\) et \(\overrightarrow{AB}\)</li>
+                    </ul>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphTravail" width="400" height="200"></canvas>
+                    <p>Travail d'une force constante : W = F · AB · cos α</p>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Application</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Calculer le travail de la force \(\vec{F}\) sachant que : \(F = 10\text{ N}\), \(AB = 10\text{ cm}\) et \(\alpha = 60^\circ\).
+                    </p>
+                    <div style="margin-top:6px;">
+                        <div class="step">
+                            <span class="step-num">Étape 1 :</span> \(W = F \cdot AB \cdot \cos \alpha\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Étape 2 :</span> \(W = 10 \times 10 \times 10^{-2} \times \cos(60^\circ)\)
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Étape 3 :</span> \(W = 10 \times 0.1 \times 0.5 = 0.5\text{ J}\)
+                        </div>
+                    </div>
+                    <div style="margin-top:6px; color:#4ECDC4; font-weight:700;">
+                        ✅ \(W = 0.5\text{ J}\)
+                    </div>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Expression en coordonnées</span>
+                    <p>Le travail peut s'écrire en fonction des coordonnées du vecteur force et du vecteur déplacement :</p>
+                    <div class="formula-block" style="font-size:14px;">
+                        $$\vec{F} = \begin{pmatrix} F_x \\ F_y \end{pmatrix} \quad \text{et} \quad \overrightarrow{AB} = \begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}$$
+                    </div>
+                    <div class="formula-block" style="font-size:15px;">
+                        $$W_{A \to B}(\vec{F}) = F_x \cdot (x_B - x_A) + F_y \cdot (y_B - y_A)$$
+                    </div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Le travail d'une force constante est le <strong>produit scalaire</strong> \(\vec{F} \cdot \overrightarrow{AB}\).</li>
+                        <li>Unité : le <strong>Joule (J)</strong>.</li>
+                        <li>Le travail est une grandeur <strong>algébrique</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="part2.html" class="next-btn">Partie 2 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawGraphForce() {
+            var canvas = document.getElementById('graphForce');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = 50;
+            var r = 30;
+
+            // Cercle (corps)
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Flèche vers le bas (poids)
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy + r);
+            ctx.lineTo(cx, cy + r + 80);
+            ctx.stroke();
+
+            // Tête de flèche
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.moveTo(cx - 8, cy + r + 70);
+            ctx.lineTo(cx, cy + r + 85);
+            ctx.lineTo(cx + 8, cy + r + 70);
+            ctx.fill();
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '14px Arial';
+            ctx.fillText('P', cx + 10, cy + r + 45);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('Corps', cx - 20, cy - 10);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Force constante : le poids', 100, 165);
+        }
+
+        function drawGraphTravail() {
+            var canvas = document.getElementById('graphTravail');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h - 30;
+
+            // Point A
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(ox, oy - 50, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('A', ox - 15, oy - 50 - 8);
+
+            // Point B
+            var bx = ox + 180;
+            var by = oy - 50;
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('B', bx + 8, by - 8);
+
+            // Flèche AB
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(ox, by);
+            ctx.lineTo(bx, by);
+            ctx.stroke();
+            ctx.fillStyle = '#A8FF78';
+            ctx.beginPath();
+            ctx.moveTo(bx - 10, by - 6);
+            ctx.lineTo(bx, by);
+            ctx.lineTo(bx - 10, by + 6);
+            ctx.fill();
+
+            // Force F
+            var angle = 60 * Math.PI / 180;
+            var fx = bx - 60 * Math.cos(angle);
+            var fy = by - 60 * Math.sin(angle);
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(bx, by);
+            ctx.lineTo(fx, fy);
+            ctx.stroke();
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.moveTo(fx + 8 * Math.cos(angle - 0.3), fy + 8 * Math.sin(angle - 0.3));
+            ctx.lineTo(fx, fy);
+            ctx.lineTo(fx + 8 * Math.cos(angle + 0.3), fy + 8 * Math.sin(angle + 0.3));
+            ctx.fill();
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '14px Arial';
+            ctx.fillText('F', fx - 20, fy - 10);
+
+            // Angle α
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(bx, by, 30, -angle, 0);
+            ctx.stroke();
+
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '13px Arial';
+            ctx.fillText('α', bx + 20, by - 25);
+
+            // AB
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '12px Arial';
+            ctx.fillText('AB', (ox + bx)/2 - 10, by + 20);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('W = F · AB · cos α', 200, 20);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraphForce();
+                drawGraphTravail();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    
+</body>
+</html>

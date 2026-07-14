@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 4 - Résumé complet | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.summary { background: #F4D03F44; color: #F4D03F; font-size: 14px; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
+        .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 500px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
+        .summary-card .s-title { color: #4ECDC4; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+        .formula-card { background: rgba(78, 205, 196, 0.05); border: 1px solid #4ECDC422; border-radius: 6px; padding: 6px 10px; margin: 3px 0; }
+        .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
+        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-book-open" style="color:#F4D03F;"></i> Résumé complet : Barycentre dans le plan</h1>
+
+            <!-- ====== Table des matières ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Vocabulaire et définitions</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Barycentre de deux points</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Barycentre de trois points</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Barycentre de quatre points</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Propriétés communes</a></li>
+                    <li><a href="#sec6"><span class="num">6.</span> Coordonnées du barycentre</a></li>
+                    <li><a href="#sec7"><span class="num">7.</span> Tableau récapitulatif</a></li>
+                </ul>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: VOCABULAIRE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Vocabulaire et définitions</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Système pondéré</div>
+                    <div class="s-content">
+                        <ul style="font-size:12px; padding-right:14px;">
+                            <li>Un <strong>point pondéré</strong> est un couple $(A, a)$ où $A$ est un point et $a$ est un <strong>poids</strong> (nombre réel).</li>
+                            <li>Un <strong>système pondéré</strong> est un ensemble de points pondérés : $S = \{(A,a), (B,b), (C,c), ...\}$</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Barycentre</div>
+                    <div class="s-content">
+                        <p>Soit $S = \{(A_1, a_1), (A_2, a_2), ..., (A_n, a_n)\}$ avec $\sum_{i=1}^{n} a_i \neq 0$.</p>
+                        <p>Le <strong>barycentre</strong> de $S$ est l'unique point $G$ tel que :</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $a_1\overrightarrow{GA_1} + a_2\overrightarrow{GA_2} + ... + a_n\overrightarrow{GA_n} = \overrightarrow{0}$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">Le barycentre est une moyenne pondérée des points.</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Isobarycentre</div>
+                    <div class="s-content">
+                        <p>Un <strong>isobarycentre</strong> est un barycentre dont tous les poids sont <strong>égaux</strong>.</p>
+                        <span style="color:var(--text-muted); font-size:11px;">Exemple : Le centre de gravité d'un triangle est l'isobarycentre de ses sommets.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: BARYCENTRE DE DEUX POINTS -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Barycentre de deux points</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Définition</div>
+                    <div class="s-content">
+                        <p>Soient $(A,a)$ et $(B,b)$ deux points pondérés avec $a+b \neq 0$.</p>
+                        <p>Le barycentre $G$ est l'unique point tel que :</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $a\overrightarrow{GA} + b\overrightarrow{GB} = \overrightarrow{0}$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Formule fondamentale</div>
+                    <div class="s-content">
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $\overrightarrow{AG} = \dfrac{b}{a+b}\overrightarrow{AB}$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">$G$ est situé sur la droite $(AB)$.</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Cas particuliers</div>
+                    <div class="s-content">
+                        <ul style="font-size:12px; padding-right:14px;">
+                            <li>Si $a = b$ : $G$ est le <strong>milieu</strong> de $[AB]$.</li>
+                            <li>Si $\dfrac{b}{a+b} > 0$ : $G$ est entre $A$ et $B$.</li>
+                            <li>Si $\dfrac{b}{a+b} < 0$ : $G$ est à l'extérieur du segment $[AB]$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: BARYCENTRE DE TROIS POINTS -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Barycentre de trois points</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Définition</div>
+                    <div class="s-content">
+                        <p>Soient $(A,a)$, $(B,b)$, $(C,c)$ avec $a+b+c \neq 0$.</p>
+                        <p>Le barycentre $G$ est l'unique point tel que :</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} = \overrightarrow{0}$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Formule fondamentale</div>
+                    <div class="s-content">
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $\overrightarrow{AG} = \dfrac{b\overrightarrow{AB} + c\overrightarrow{AC}}{a+b+c}$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">Généralisation de la formule à trois points.</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Centre de gravité d'un triangle</div>
+                    <div class="s-content">
+                        <p>Le centre de gravité $G$ du triangle $ABC$ est le barycentre de $\{(A,1), (B,1), (C,1)\}$.</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}$
+                        </div>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $\overrightarrow{AG} = \dfrac{2}{3}\overrightarrow{AA'}$ où $A'$ est le milieu de $[BC]$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">Le centre de gravité est situé aux $\dfrac{2}{3}$ de la médiane.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: BARYCENTRE DE QUATRE POINTS -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Barycentre de quatre points</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Définition</div>
+                    <div class="s-content">
+                        <p>Soient $(A,a)$, $(B,b)$, $(C,c)$, $(D,d)$ avec $a+b+c+d \neq 0$.</p>
+                        <p>Le barycentre $G$ est l'unique point tel que :</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} + d\overrightarrow{GD} = \overrightarrow{0}$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Isobarycentre d'un parallélogramme</div>
+                    <div class="s-content">
+                        <p>Le centre $O$ d'un parallélogramme $ABCD$ est l'isobarycentre de $A, B, C, D$.</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $\overrightarrow{OA} + \overrightarrow{OB} + \overrightarrow{OC} + \overrightarrow{OD} = \overrightarrow{0}$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">Les diagonales d'un parallélogramme se coupent en leur milieu.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 5: PROPRIÉTÉS COMMUNES -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec5">
+                <h2><span class="num">5</span> Propriétés communes</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Invariance</div>
+                    <div class="s-content">
+                        <p>Si $G$ est barycentre de $S$, alors pour tout $k \in \mathbb{R}^*$, $G$ est aussi barycentre du système dont les poids sont multipliés par $k$.</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $\{(A, a), (B, b), ...\} \iff \{(A, ka), (B, kb), ...\}$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">On peut multiplier tous les poids par un même nombre non nul.</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Propriété caractéristique</div>
+                    <div class="s-content">
+                        <p>$G$ est barycentre de $S$ ssi pour tout point $M$ du plan :</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $a\overrightarrow{MA} + b\overrightarrow{MB} + c\overrightarrow{MC} = (a+b+c)\overrightarrow{MG}$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">Utile pour transformer des sommes de vecteurs.</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Associativité</div>
+                    <div class="s-content">
+                        <p>On peut remplacer plusieurs points par leur barycentre.</p>
+                        <span style="color:var(--text-muted); font-size:11px;">Exemple : Si $G_1$ est barycentre de $(A,a)$ et $(B,b)$, alors le barycentre de $(G_1, a+b)$ et $(C,c)$ est le même que celui de $(A,a)$, $(B,b)$, $(C,c)$.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 6: COORDONNÉES -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec6">
+                <h2><span class="num">6</span> Coordonnées du barycentre</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Formule générale</div>
+                    <div class="s-content">
+                        <p>Soit $G$ barycentre de $\{(A_1, a_1), (A_2, a_2), ..., (A_n, a_n)\}$.</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $x_G = \dfrac{\sum_{i=1}^{n} a_i x_{A_i}}{\sum_{i=1}^{n} a_i}$ &nbsp;&nbsp; et &nbsp;&nbsp; $y_G = \dfrac{\sum_{i=1}^{n} a_i y_{A_i}}{\sum_{i=1}^{n} a_i}$
+                        </div>
+                        <span style="color:var(--text-muted); font-size:11px;">Les coordonnées du barycentre sont les moyennes pondérées des coordonnées.</span>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Exemple pour 2 points</div>
+                    <div class="s-content">
+                        <p>Pour $G$ barycentre de $\{(A,a), (B,b)\}$ :</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $x_G = \dfrac{ax_A + bx_B}{a+b}$ &nbsp;&nbsp; et &nbsp;&nbsp; $y_G = \dfrac{ay_A + by_B}{a+b}$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Exemple pour 3 points</div>
+                    <div class="s-content">
+                        <p>Pour $G$ barycentre de $\{(A,a), (B,b), (C,c)\}$ :</p>
+                        <div class="formula-block" style="font-size:12px; margin:4px 0;">
+                            $x_G = \dfrac{ax_A + bx_B + cx_C}{a+b+c}$ &nbsp;&nbsp; et &nbsp;&nbsp; $y_G = \dfrac{ay_A + by_B + cy_C}{a+b+c}$
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 7: TABLEAU RÉCAPITULATIF -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec7">
+                <h2><span class="num">7</span> Tableau récapitulatif</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Nombre de points</th><th>Condition</th><th>Formule</th></tr>
+                        <tr><td>2 points</td><td>$a+b \neq 0$</td><td>$\overrightarrow{AG} = \dfrac{b}{a+b}\overrightarrow{AB}$</td></tr>
+                        <tr><td>3 points</td><td>$a+b+c \neq 0$</td><td>$\overrightarrow{AG} = \dfrac{b\overrightarrow{AB} + c\overrightarrow{AC}}{a+b+c}$</td></tr>
+                        <tr><td>4 points</td><td>$a+b+c+d \neq 0$</td><td>Généralisation</td></tr>
+                        <tr><td>n points</td><td>$\sum a_i \neq 0$</td><td>$\sum a_i\overrightarrow{GA_i} = \overrightarrow{0}$</td></tr>
+                    </table>
+                </div>
+
+                <div class="table-wrap" style="margin-top:8px;">
+                    <table>
+                        <tr><th>Propriété</th><th>Formule</th></tr>
+                        <tr><td>Invariance</td><td>$\{(A,a), (B,b)\} \iff \{(A,ka), (B,kb)\}$</td></tr>
+                        <tr><td>Caractéristique</td><td>$a\overrightarrow{MA} + b\overrightarrow{MB} = (a+b)\overrightarrow{MG}$</td></tr>
+                        <tr><td>Centre de gravité</td><td>$\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}$</td></tr>
+                        <tr><td>Isobarycentre</td><td>Poids tous égaux</td></tr>
+                    </table>
+                </div>
+
+                <div class="highlight-box green" style="margin-top:8px;">
+                    <span class="label resume">À retenir</span>
+                    <ul style="font-size:12px;">
+                        <li>Le barycentre existe si et seulement si la <strong>somme des poids</strong> est <strong>non nulle</strong>.</li>
+                        <li>Le barycentre est <strong>unique</strong>.</li>
+                        <li>Les coordonnées du barycentre sont les <strong>moyennes pondérées</strong>.</li>
+                        <li>L'<strong>associativité</strong> permet de simplifier les calculs.</li>
+                    </ul>
+                </div>
+            </div>
+
+                        <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+<div class="nav-buttons">
+                <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
+                <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    
+<script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+</body>
+</html>

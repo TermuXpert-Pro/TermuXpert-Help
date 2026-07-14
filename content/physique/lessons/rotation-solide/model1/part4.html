@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie 4 - Rotation d'un solide | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .navbar { height: 44px; padding: 0 10px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .exemple-box {
+            background: #1A2A2A;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .exemple-box .ex-title {
+            color: #F4D03F;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .conversion-box {
+            background: #1A1A2E;
+            border: 1px solid #4ECDC422;
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-clock" style="color:#FF6B6B;"></i> Partie 4 : Période - Fréquence - Mouvement de rotation uniforme</h1>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: PÉRIODE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">1</span> La période</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>La <strong>période</strong> $T$ d'un mouvement de rotation uniforme est la <strong>durée d'un tour</strong>.</p>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Relation</span>
+                    <p>Pour un tour complet, l'angle de rotation est $\Delta \theta = 2\pi$ et la durée est $T$ :</p>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$2\pi = \omega \cdot T \quad \Rightarrow \quad T = \frac{2\pi}{\omega}$$
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted);">
+                        avec $T$ en <strong>secondes (s)</strong> et $\omega$ en <strong>rad/s</strong>.
+                    </p>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exemple</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un disque tourne avec une vitesse angulaire $\omega = 10\text{ rad/s}$.
+                        Sa période est :
+                    </p>
+                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                        $$T = \frac{2\pi}{10} = 0.628\text{ s}$$
+                    </div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Le disque fait un tour complet en $0.628$ secondes.
+                    </p>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphPeriode" width="400" height="200"></canvas>
+                    <p>Période T : durée d'un tour complet</p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: FRÉQUENCE -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">2</span> La fréquence</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>La <strong>fréquence</strong> $f$ d'un mouvement de rotation uniforme est le <strong>nombre de tours par seconde</strong>.</p>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Relation</span>
+                    <div class="formula-block" style="font-size:17px;">
+                        $$f = \frac{1}{T} = \frac{\omega}{2\pi}$$
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted);">
+                        avec $f$ en <strong>hertz (Hz)</strong>, $T$ en <strong>secondes (s)</strong> et $\omega$ en <strong>rad/s</strong>.
+                    </p>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exemple</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un moteur tourne avec une période $T = 0.02\text{ s}$.
+                        Sa fréquence est :
+                    </p>
+                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                        $$f = \frac{1}{0.02} = 50\text{ Hz}$$
+                    </div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Le moteur fait 50 tours par seconde.
+                    </p>
+                </div>
+
+                <div class="conversion-box">
+                    <div class="ex-title" style="color:#4ECDC4;">📐 Conversion des unités de vitesse angulaire</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        La vitesse angulaire $\omega$ peut être exprimée en tours par seconde (tr/s) ou tours par minute (tr/min) :
+                    </p>
+                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                        $$1\text{ tr/s} = 2\pi\text{ rad/s}$$
+                    </div>
+                    <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                        $$1\text{ tr/min} = \frac{2\pi}{60}\text{ rad/s}$$
+                    </div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Exemple : $300\text{ tr/min} = 300 \times \frac{2\pi}{60} = 31.4\text{ rad/s}$
+                    </p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: MOUVEMENT DE ROTATION UNIFORME -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">3</span> Mouvement de rotation uniforme</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Un mouvement de rotation est dit <strong>uniforme</strong> si la <strong>vitesse angulaire</strong> $\omega$ est <strong>constante</strong>.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Caractéristiques</span>
+                    <ul>
+                        <li>$\omega = \text{constante}$</li>
+                        <li>La période $T$ est <strong>constante</strong></li>
+                        <li>La fréquence $f$ est <strong>constante</strong></li>
+                        <li>L'abscisse angulaire $\theta$ varie <strong>linéairement</strong> avec le temps</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Équation horaire en abscisse angulaire</span>
+                    <p>Pour un mouvement de rotation uniforme :</p>
+                    <div class="formula-block" style="font-size:16px;">
+                        $$\theta = \omega \cdot (t - t_0) + \theta_0$$
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted);">
+                        Si l'origine des temps est $t_0 = 0$ : $\theta = \omega \cdot t + \theta_0$
+                    </p>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Équation horaire en abscisse curviligne</span>
+                    <div class="formula-block" style="font-size:16px;">
+                        $$s = v \cdot (t - t_0) + s_0$$
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted);">
+                        avec $v = r \cdot \omega$ et $s_0 = r \cdot \theta_0$
+                    </p>
+                </div>
+
+                <div class="graph-container">
+                    <canvas id="graphUniforme" width="400" height="200"></canvas>
+                    <p>θ = f(t) pour un mouvement de rotation uniforme</p>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exemple</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un point M tourne uniformément avec $\omega = 2\text{ rad/s}$.
+                        À $t = 0$, $\theta_0 = \frac{\pi}{4}\text{ rad}$.
+                    </p>
+                    <p style="font-size:11.5px; color:var(--text-secondary); margin-top:6px;">
+                        L'équation horaire est :
+                    </p>
+                    <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                        $$\theta = 2t + \frac{\pi}{4}$$
+                    </div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        À $t = 3\text{ s}$ : $\theta = 2 \times 3 + \frac{\pi}{4} = 6 + 0.785 = 6.785\text{ rad}$
+                    </p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><th>Grandeur</th><th>Symbole</th><th>Unité</th><th>Formule</th></tr>
+                            <tr><td>Période</td><td>$T$</td><td>s</td><td>$T = \dfrac{2\pi}{\omega}$</td></tr>
+                            <tr><td>Fréquence</td><td>$f$</td><td>Hz</td><td>$f = \dfrac{1}{T} = \dfrac{\omega}{2\pi}$</td></tr>
+                            <tr><td>Équation horaire (θ)</td><td>$\theta(t)$</td><td>rad</td><td>$\theta = \omega t + \theta_0$</td></tr>
+                            <tr><td>Équation horaire (s)</td><td>$s(t)$</td><td>m</td><td>$s = v t + s_0$</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
+                <a href="part5.html" class="next-btn">Partie 5 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawGraphPeriode() {
+            var canvas = document.getElementById('graphPeriode');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = h/2 + 5;
+            var rayon = 80;
+
+            // Cercle
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            // Axe de rotation
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx, 15);
+            ctx.lineTo(cx, h - 15);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '10px Arial';
+            ctx.fillText('(Δ)', cx + 10, 22);
+
+            // Points sur le cercle (positions successives)
+            var angles = [];
+            var n = 6;
+            for (var i = 0; i < n; i++) {
+                angles.push(i * Math.PI/3);
+            }
+
+            // Trajectoire complète
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            for (var i = 0; i <= 360; i++) {
+                var a = i * Math.PI / 180;
+                var x = cx + rayon * Math.cos(a);
+                var y = cy + rayon * Math.sin(a);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Points
+            for (var i = 0; i < n; i++) {
+                var x = cx + rayon * Math.cos(angles[i]);
+                var y = cy + rayon * Math.sin(angles[i]);
+                ctx.fillStyle = i === 0 ? '#F4D03F' : '#A8FF78';
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '8px Arial';
+                ctx.fillText('M' + i, x - 10, y + 14);
+            }
+
+            // Flèche circulaire
+            ctx.strokeStyle = '#FFD93D';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, rayon * 0.7, 0, Math.PI/4);
+            ctx.stroke();
+
+            ctx.fillStyle = '#FFD93D';
+            ctx.font = '12px Arial';
+            ctx.fillText('T', cx + 30, cy - 30);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Période T = durée d\'un tour', 170, 20);
+        }
+
+        function drawGraphUniforme() {
+            var canvas = document.getElementById('graphUniforme');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h - 30;
+            var scaleX = 50, scaleY = 15;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, 20);
+            ctx.lineTo(ox, oy);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('t (s)', w - 30, oy + 18);
+            ctx.fillText('θ (rad)', ox + 8, 18);
+
+            // Droite θ = ω·t + θ₀
+            var omega = 1.5;
+            var theta0 = 0.5;
+            ctx.strokeStyle = '#A8FF78';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            for (var t = 0; t <= 6; t += 0.05) {
+                var x = ox + t * scaleX;
+                var y = oy - (omega * t + theta0) * scaleY;
+                if (t === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Points
+            for (var t = 0; t <= 6; t += 1) {
+                var x = ox + t * scaleX;
+                var y = oy - (omega * t + theta0) * scaleY;
+                ctx.fillStyle = '#4ECDC4';
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '8px Arial';
+                ctx.fillText(t + 's', x - 8, y + 16);
+            }
+
+            // θ₀
+            var y0 = oy - theta0 * scaleY;
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ox, y0);
+            ctx.lineTo(ox + 30, y0);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '10px Arial';
+            ctx.fillText('θ₀', ox + 32, y0 + 4);
+
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '11px Arial';
+            ctx.fillText('θ = ω·t + θ₀', 200, 20);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('(droite affine)', 200, 35);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraphPeriode();
+                drawGraphUniforme();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    
+</body>
+</html>

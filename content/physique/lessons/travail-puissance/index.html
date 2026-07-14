@@ -1,127 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Xpert",
-        "description": "Cours de 1 Bac Sciences Expérimentales"
-    }
-    </script>
-    
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travail et puissance d'une force | Xpert</title>
-    
-    <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <title>Cours - Travail et puissance d'une force | Xpert</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../assets/css/global-control.css">
-    
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
-    
-    <style>
-        body { font-size: 14px; }
-        .navbar { height: 44px; padding: 0 10px; }
-        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
-        .nav-logo-text { font-size: 14px; }
-        .nav-links a { font-size: 13px; padding: 3px 8px; }
-        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
-        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
-        .part-link { padding: 8px 12px; margin-bottom: 8px; border-radius: 8px; }
-        .part-link .part-num { font-size: 13px; color: #FF6B6B; font-weight: 700; }
-        .part-link .part-title { font-size: 14px; color: var(--text-secondary); }
-        .part-link .part-icon { font-size: 18px; flex-shrink: 0; }
-        .footer p { font-size: 13px; }
-        .lesson-container { padding: 8px; }
-        .glow-orb { display: none; }
-        .bg-grid { opacity: 0.3; }
-        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .progress-bar { display: none; }
-        .scroll-top-btn { display: none; }
-        .part-link:active { transform: scale(0.97); opacity: 0.8; }
-        .part-link:hover { border-color: #FF6B6B; transform: translateX(-3px); }
-        .part-link .part-arrow { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
-        @media (max-width: 768px) {
-            body { font-size: 13px; }
-            .lesson-title { font-size: 17px; }
-            .part-link { padding: 6px 10px; }
-            .part-link .part-num { font-size: 14px; }
-            .part-link .part-title { font-size: 13px; }
-            .nav-links a { font-size: 13px; padding: 2px 6px; }
-        }
-        @media (max-width: 480px) {
-            body { font-size: 13px; }
-            .lesson-title { font-size: 15px; }
-            .back-btn { font-size: 13px; padding: 3px 10px; }
-            .nav-logo-text { font-size: 14px; }
-            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
-            .part-link { padding: 4px 8px; }
-            .part-link .part-num { font-size: 13px; }
-            .part-link .part-title { font-size: 13px; }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- ====== طبقة الحماية غير المرئية ====== -->
-<div class="overlay-protection" id="overlayProtection"></div>
-
-<!-- ====== خلفية زليج ====== -->
-<div class="moroccan-bg" aria-hidden="true">
-    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                <rect width="200" height="200" fill="none"/>
-                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
-                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
-                <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
-                <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
-            </pattern>
-        </defs>
-        <rect width="800" height="800" fill="url(#zellij)"/>
-    </svg>
-</div>
-<div class="moroccan-shadow" aria-hidden="true"></div>
-<div class="moroccan-star" aria-hidden="true">✦</div>
-<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
-<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
-<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
-<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
-
-<div class="bg-grid"></div>
-<div class="glow-orb glow-orb-1"></div>
-<div class="glow-orb glow-orb-2"></div>
+    <div class="overlay-protection" id="overlayProtection"></div>
+    <div class="bg-grid"></div>
 
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
     <a href="../../../../index.html" class="nav-logo">
@@ -136,63 +30,21 @@
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="../../../../subject.html?subject=physique" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
-        
+
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-arrow-right" style="color:#FF6B6B;"></i> Travail et puissance d'une force</h1>
-            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                Choisissez une partie pour commencer
-            </p>
+            <h1 class="lesson-title"><i class="fas fa-book" style="color:#4ECDC4;"></i> Cours - Travail et puissance d'une force</h1>
+            <div class="exercice-count"><span>1</span> modèle disponible</div>
 
             <div class="section-list" style="max-width:700px; margin:0 auto;">
-                <!-- Partie 1 -->
-                <a href="part1.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+
+                <a href="model1/index.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-bottom:10px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease;">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#FF6B6B; font-size:18px; flex-shrink:0;"><i class="fas fa-arrow-right"></i></span>
+                        <span style="color:#4ECDC4; font-size:18px; flex-shrink:0;"><i class="fas fa-book"></i></span>
                         <div style="flex:1;">
-                            <div style="color:#FF6B6B; font-weight:700; font-size:13px;">Cours - Partie 1</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Notion de force - Notion de travail - Travail d'une force constante</div>
+                            <div style="color:#4ECDC4; font-weight:700; font-size:15px;">Modèle 1</div>
+                            <div style="color:var(--text-secondary); font-size:12px;">5 parties disponibles</div>
                         </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part2.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#FF6B6B; font-size:18px; flex-shrink:0;"><i class="fas fa-arrow-right"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#FF6B6B; font-weight:700; font-size:13px;">Cours - Partie 2</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Travail moteur - Travail résistant - Translation curviligne</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part3.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#FF6B6B; font-size:18px; flex-shrink:0;"><i class="fas fa-arrow-right"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#FF6B6B; font-weight:700; font-size:13px;">Cours - Partie 3</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Travail du poids - Travail d'un ensemble de forces</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part4.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#FF6B6B; font-size:18px; flex-shrink:0;"><i class="fas fa-bolt"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#FF6B6B; font-weight:700; font-size:13px;">Cours - Partie 4</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Puissance moyenne - Puissance instantanée - Puissance en rotation</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part5.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-book-open"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Résumé du cours</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Couple de forces - Moment - Résumé complet</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                        <span style="color:var(--text-muted); font-size:14px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
                 </a>
             </div>
@@ -203,28 +55,7 @@
     <div class="divider"></div>
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
-
     <script src="../../../../assets/js/protection.js"></script>
     <script src="../../../../assets/js/script.js"></script>
-    
-<script>
-        window.addEventListener('scroll', function() {
-            var navbar = document.getElementById('navbar');
-            if (navbar) {
-                navbar.classList.toggle('scrolled', window.scrollY > 30);
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const animationAllowed = sessionStorage.getItem('animation_allowed');
-            
-            if (animationAllowed === 'true') {
-                sessionStorage.removeItem('animation_allowed');
-                console.log('✅ physique/lessons/travail-puissance/index.html - Animation Zellij jouée');
-            } else {
-                console.log('✅ physique/lessons/travail-puissance/index.html - Affichage direct Zellij');
-            }
-        });
-    </script>
 </body>
 </html>
