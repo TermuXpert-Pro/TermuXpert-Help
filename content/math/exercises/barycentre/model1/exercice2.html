@@ -439,112 +439,11 @@
 
         // ============================================================
         // GRAPHIQUE - Exercice 2
+        // كود الرسمة تحول لـ figures.js (كيستعمل canvas-utils.js المشترك)
         // ============================================================
-
-        function drawGraph2() {
-            var canvas = document.getElementById('graph2');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scale = 30;
-
-            // Points fictifs pour la démonstration
-            var A = {x: 1, y: 4};
-            var B = {x: 5, y: 0.5};
-            // G barycentre de (A,2) et (B,-3)
-            var Gx = (2*A.x + (-3)*B.x) / (2-3);
-            var Gy = (2*A.y + (-3)*B.y) / (2-3);
-            // E sur AB
-            var E = {x: A.x + 0.4*(B.x-A.x), y: A.y + 0.4*(B.y-A.y)};
-            // F tel que EG = 2EF
-            var Fx = E.x + (Gx - E.x)/2;
-            var Fy = E.y + (Gy - E.y)/2;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Labels axes
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 10, 16);
-
-            // Droite (AB)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Droite (EF)
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox + E.x * scale, oy - E.y * scale);
-            ctx.lineTo(ox + F.x * scale, oy - F.y * scale);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Points
-            var pts = [
-                {x: A.x, y: A.y, color: '#4ECDC4', label: 'A'},
-                {x: B.x, y: B.y, color: '#FF6B6B', label: 'B'},
-                {x: E.x, y: E.y, color: '#BB8FCE', label: 'E'},
-                {x: F.x, y: F.y, color: '#BB8FCE', label: 'F'},
-                {x: Gx, y: Gy, color: '#F4D03F', label: 'G'}
-            ];
-
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            // Légende
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('--- (AB)', 10, 20);
-            ctx.fillStyle = '#A8FF78';
-            ctx.fillText('--- (EF)', 10, 35);
-            ctx.fillStyle = '#F4D03F';
-            ctx.fillText('G = intersection', 10, 50);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('(EF) ∩ (AB) = {G}', 200, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph2();
-            }, 500);
-        });
     </script>
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
