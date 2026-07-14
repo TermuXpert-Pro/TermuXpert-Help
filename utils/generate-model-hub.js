@@ -165,7 +165,11 @@ function buildHubHtml({ subject, type, topicSlug, topicTitle, models }) {
 
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas ${meta.icon}" style="color:${meta.color};"></i> ${meta.label} - ${topicTitle}</h1>
-            <div class="exercice-count"><span>${models.length}</span> modèle${models.length > 1 ? 's' : ''} disponible${models.length > 1 ? 's' : ''}</div>
+            <div style="text-align:center; margin-bottom:18px;">
+                <span style="display:inline-block; background:${meta.color}22; color:${meta.color}; padding:5px 18px; border-radius:14px; font-size:13px; font-weight:700;">
+                    <i class="fas fa-cubes" style="margin-left:5px;"></i> ${models.length} modèle${models.length > 1 ? 's' : ''} disponible${models.length > 1 ? 's' : ''}
+                </span>
+            </div>
 
             <div class="section-list" style="max-width:700px; margin:0 auto;">
 ${cards}
