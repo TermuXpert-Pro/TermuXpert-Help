@@ -1,3 +1,4 @@
+
 <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
     <!-- الشعار -->
     <a href="{{BASE}}index.html" class="nav-logo" aria-label="Accueil">
@@ -38,28 +39,25 @@
             <rect width="400" height="400" fill="url(#sidebarZellij)"/>
         </svg>
     </div>
+    <!-- ====== خلفية رياضية متحركة (GSAP) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
     <div class="sidebar-glow sidebar-glow-1"></div>
     <div class="sidebar-glow sidebar-glow-2"></div>
 
-    <!-- ====== القسم 1: Profil ====== -->
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
-        <div class="profile-card">
-            <div class="profile-avatar">
-                <div class="profile-avatar-ring">
-                    <div class="profile-avatar-inner">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                </div>
-                <div class="profile-status"></div>
-            </div>
-            <div class="profile-info">
-                <h3 class="profile-name">1 Bac SE</h3>
-                <p class="profile-role">Sciences Expérimentales</p>
-                <div class="profile-badge">
-                    <i class="fas fa-star"></i>
-                    <span>Élève</span>
-                </div>
-            </div>
+        <div class="profile-simple">
+            <img src="{{BASE}}assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
         </div>
     </div>
 
@@ -142,3 +140,38 @@
 
 <!-- ====== Overlay ====== -->
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<!-- ====== GSAP: خلفية رياضية متحركة فـ Sidebar ====== -->
+<script>
+(function() {
+    function initSidebarMathBg() {
+        if (typeof gsap === 'undefined') return;
+        const symbols = document.querySelectorAll('.sidebar-math-bg .math-symbol');
+        if (!symbols.length) return;
+
+        gsap.to(symbols, {
+            opacity: 0.12,
+            scale: 1,
+            duration: 1.5,
+            stagger: 0.15,
+            ease: 'power2.out'
+        });
+
+        symbols.forEach(function(el, i) {
+            gsap.to(el, {
+                y: '+=' + (14 + (i % 3) * 6),
+                x: '+=' + (i % 2 === 0 ? 8 : -8),
+                rotation: i % 2 === 0 ? 8 : -8,
+                duration: 4 + (i % 4),
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: i * 0.3
+            });
+        });
+    }
+    document.readyState === 'loading'
+        ? document.addEventListener('DOMContentLoaded', initSidebarMathBg)
+        : initSidebarMathBg();
+})();
+</script>

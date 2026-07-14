@@ -74,12 +74,25 @@ function getSubject(filePath) {
     return null;
 }
 
-// النافبار + Sidebar كامل: من <nav> حتى آخر نسخة موجودة من sidebarOverlay
-// (+ السكريبت ديال GSAP إلا كان موجود). الـ [\s\S]* (بلا ? أي greedy) عمداً
-// باش كي تكون كاين نسخ مكررة/متراكمة من السايدبار فنفس الملف (بق قديم كان
-// كيخلي النسخ القديمة ماكيتبدلوش)، الاستبدال يبلعهم كاملين ويخلي غير
-// نسخة واحدة نظيفة من partials/navbar.html.
-const NAVBAR_RE = /<nav class="navbar"[\s\S]*<div id="sidebarOverlay" class="sidebar-overlay"><\/div>(?:\s*(?:<!--[\s\S]*?-->\s*)?<script>[\s\S]*?<\/script>)?/;
+// النافبار + Sidebar: كاين حالتين ممكنين فالصفحات:
+//
+// 1) صفحة "مهاجرة" ديجا للتصميم الجديد (فيها نسخة كاملة أو مكررة من
+//    navbar+sidebar+sidebarOverlay): كنستعملو pattern greedy من <nav>
+//    حتى آخر نسخة موجودة من sidebarOverlay - باش يبلع أي نسخ مكررة
+//    متراكمة (بق قديم كان كيخلي النسخ القديمة ماكيتبدلوش) ويخلي غير
+//    نسخة واحدة نظيفة.
+// 2) صفحة "قديمة" مازال ماهاجرتش (فيها غير <nav class="navbar">...</nav>
+//    بسيط، بلا sidebar/sidebarOverlay أصلا): الـ pattern الأول ماغاديش
+//    يطابق (العلامة sidebarOverlay مكاينة فالصفحة أصلا)، فكنرجعو
+//    لـ pattern لازي بسيط كيمسك غير <nav>...</nav> الأولانية.
+const NAVBAR_NEW_RE = /<nav class="navbar"[\s\S]*<div id="sidebarOverlay" class="sidebar-overlay"><\/div>(?:\s*(?:<!--[\s\S]*?-->\s*)?<script>[\s\S]*?<\/script>)?/;
+const NAVBAR_OLD_RE = /<nav class="navbar"[\s\S]*?<\/nav>/;
+
+function matchNavbarRe(content) {
+    if (NAVBAR_NEW_RE.test(content)) return NAVBAR_NEW_RE;
+    if (NAVBAR_OLD_RE.test(content)) return NAVBAR_OLD_RE;
+    return null;
+}
 // الفوتر
 const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
 // الديكور: من التعليق أو overlay-protection حتى آخر glow-orb-2
@@ -112,8 +125,9 @@ for (const file of walk(ROOT)) {
     const base = getBase(file);
     let changed = false;
 
-    if (NAVBAR_RE.test(content)) {
-        content = content.replace(NAVBAR_RE, render(navbarTpl, { BASE: base }));
+    const navRe = matchNavbarRe(content);
+    if (navRe) {
+        content = content.replace(navRe, render(navbarTpl, { BASE: base }));
         changed = true;
     }
     if (FOOTER_RE.test(content)) {
