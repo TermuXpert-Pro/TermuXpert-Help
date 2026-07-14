@@ -400,7 +400,7 @@ input, textarea, [contenteditable="true"] {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -380px;
+    left: 0;
     width: 360px;
     height: 100%;
     background: rgba(31, 40, 51, 0.82);
@@ -408,7 +408,9 @@ input, textarea, [contenteditable="true"] {
     -webkit-backdrop-filter: blur(6px);
     border-right: 1px solid var(--border);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
-    transition: left 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-100%);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
     z-index: 10001;
     display: flex;
     flex-direction: column;
@@ -416,7 +418,7 @@ input, textarea, [contenteditable="true"] {
     overflow-x: hidden;
 }
 .sidebar.open {
-    left: 0;
+    transform: translateX(0);
 }
 
 /* ====== خلفية زليج خاصة بالـ Sidebar ====== */
@@ -803,25 +805,6 @@ input, textarea, [contenteditable="true"] {
    Overlay
    ============================================================ */
 
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-}
-.sidebar-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
 /* ============================================================
    Responsive
    ============================================================ */
@@ -829,7 +812,6 @@ input, textarea, [contenteditable="true"] {
 @media (max-width: 768px) {
     .sidebar {
         width: 320px;
-        left: -340px;
     }
     .sidebar-section {
         padding: 0 16px;
@@ -874,7 +856,6 @@ input, textarea, [contenteditable="true"] {
 @media (max-width: 480px) {
     .sidebar {
         width: 280px;
-        left: -300px;
     }
     .sidebar-section {
         padding: 0 12px;
@@ -949,7 +930,6 @@ input, textarea, [contenteditable="true"] {
 @media (min-width: 1200px) {
     .sidebar {
         width: 380px;
-        left: -400px;
     }
 }
 
@@ -1170,7 +1150,6 @@ input, textarea, [contenteditable="true"] {
 @media (max-width: 480px) {
     .sidebar {
         width: 260px;
-        left: -270px;
     }
     .sidebar-header {
         padding: 14px 18px;
