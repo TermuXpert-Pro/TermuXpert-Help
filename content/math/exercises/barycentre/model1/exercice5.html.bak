@@ -5,7 +5,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 6 - Barycentre | Xpert</title>
+    <title>Exercice 5 - Barycentre | Xpert</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -294,227 +294,155 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 6</h1>
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 5</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Réduction d'écriture - Ensembles de points</span>
-                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Associativité - Centre de gravité</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
             <div class="section">
-                <h2><span class="num">1</span> Énoncé</h2>
+                <h2><span class="num">1</span> Exercice 5 - Associativité</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Soit $ABC$ un triangle. Pour tout point $M$, on pose :
+                    Soit $G = \text{Bar}\{(A, 2); (B, -3); (C, 5)\}$.
                 </p>
-                <div class="formula-block" style="font-size:16px;">
-                    $$V = 2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}$$
-                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Utiliser la propriété d'associativité pour construire le point $G$.
+                </p>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Réduire l'écriture de $V$ et montrer que $V$ ne dépend pas du point $M$.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Construire le barycentre $G$ du système pondéré $\{(A, 2); (B, -3); (C, 5)\}$.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> On utilise la relation de Chasles :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}$$
+                            <p><strong>Propriété d'associativité :</strong></p>
+                            <div class="highlight-box purple" style="margin:6px 0;">
+                                <span class="label rem">Rappel</span>
+                                <p>Si $E = \text{Bar}\{(A, \alpha); (B, \beta)\}$ alors :</p>
+                                <div class="formula-block" style="font-size:13px;">
+                                    $$G = \text{Bar}\{(A, \alpha); (B, \beta); (C, \gamma)\} = \text{Bar}\{(E, \alpha + \beta); (C, \gamma)\}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On écrit chaque vecteur à partir de $M$ :
+                                <span class="step-num">Étape 1 :</span> Soit $E = \text{Bar}\{(A, 2); (B, -3)\}$.
+                                <br>La somme des poids est : $2 + (-3) = -1 \neq 0$ ✅
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On construit le point $E$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\overrightarrow{MA} = \overrightarrow{MA}$$
-                                    $$\overrightarrow{MB} = \overrightarrow{MA} + \overrightarrow{AB}$$
-                                    $$\overrightarrow{MC} = \overrightarrow{MA} + \overrightarrow{AC}$$
+                                    $$2\overrightarrow{EA} + (-3)\overrightarrow{EB} = 0$$
+                                    $$2\overrightarrow{EA} = 3\overrightarrow{EB}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On remplace :
+                                <span class="step-num">Étape 3 :</span> On pose $M = A$ dans la propriété caractéristique :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{MA} + (\overrightarrow{MA} + \overrightarrow{AB}) - 3(\overrightarrow{MA} + \overrightarrow{AC})$$
+                                    $$(-1)\overrightarrow{AE} = 2\overrightarrow{AA} - 3\overrightarrow{AB} = -3\overrightarrow{AB}$$
+                                    $$\overrightarrow{AE} = 3\overrightarrow{AB}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> On développe :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{MA} + \overrightarrow{MA} + \overrightarrow{AB} - 3\overrightarrow{MA} - 3\overrightarrow{AC}$$
+                                <span class="step-num">Étape 4 :</span> D'après l'associativité :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$G = \text{Bar}\{(E, -1); (C, 5)\}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> On regroupe les termes :
+                                <span class="step-num">Étape 5 :</span> On construit $G$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = (2 + 1 - 3)\overrightarrow{MA} + \overrightarrow{AB} - 3\overrightarrow{AC}$$
-                                    $$V = 0 \times \overrightarrow{MA} + \overrightarrow{AB} - 3\overrightarrow{AC}$$
+                                    $$(-1)\overrightarrow{GE} + 5\overrightarrow{GC} = 0$$
+                                    $$5\overrightarrow{GC} = \overrightarrow{GE}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 6 :</span> On obtient :
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$V = \overrightarrow{AB} - 3\overrightarrow{AC}$$
+                                <span class="step-num">Étape 6 :</span> On pose $M = C$ :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$4\overrightarrow{CG} = -\overrightarrow{CE} + 5\overrightarrow{CC} = -\overrightarrow{CE}$$
+                                    $$\overrightarrow{CG} = -\frac{1}{4}\overrightarrow{CE}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>$V$ est un vecteur <strong>constant</strong> (indépendant de $M$).</p>
-                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
-                                    $$V = \overrightarrow{AB} - 3\overrightarrow{AC}$$
-                                </div>
+                                <p>$G$ est construit tel que :</p>
+                                <ul style="font-size:12px; padding-right:14px;">
+                                    <li>$E$ est sur $(AB)$ avec $\overrightarrow{AE} = 3\overrightarrow{AB}$</li>
+                                    <li>$G$ est sur $(CE)$ avec $\overrightarrow{CG} = -\frac{1}{4}\overrightarrow{CE}$</li>
+                                </ul>
+                            </div>
+
+                            <div class="graph-container">
+                                <canvas id="graph5" width="450" height="280"></canvas>
+                                <p>Construction de G par associativité</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="num">2</span> Exercice 6 - Centre de gravité</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Soit $ABC$ un triangle et $G$ le centre de gravité du triangle $ABC$.
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Soit $I$ le milieu du segment $[BC]$.
+                </p>
 
                 <div class="sub-question">
-                    <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Soit $K = \text{Bar}\{(C, -3); (B, 1)\}$.
-                        <br>Montrer que $V = 2\overrightarrow{KA}$.
-                    </p>
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $G$ est le barycentre du système pondéré $\{(A, 1); (I, 2)\}$.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $K = \text{Bar}\{(C, -3); (B, 1)\}$, donc :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$-3\overrightarrow{KC} + 1\overrightarrow{KB} = 0$$
-                                    $$\overrightarrow{KB} - 3\overrightarrow{KC} = 0$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la propriété caractéristique du barycentre, pour tout point $M$ :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$-3\overrightarrow{MC} + \overrightarrow{MB} = (-3 + 1)\overrightarrow{MK} = -2\overrightarrow{MK}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> On sait que $V = \overrightarrow{AB} - 3\overrightarrow{AC}$.
-                                <br>On va exprimer $V$ en fonction de $K$ :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = \overrightarrow{AK} + \overrightarrow{KB} - 3(\overrightarrow{AK} + \overrightarrow{KC})$$
-                                    $$V = \overrightarrow{AK} + \overrightarrow{KB} - 3\overrightarrow{AK} - 3\overrightarrow{KC}$$
-                                    $$V = -2\overrightarrow{AK} + (\overrightarrow{KB} - 3\overrightarrow{KC})$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> D'après l'étape 1, $\overrightarrow{KB} - 3\overrightarrow{KC} = 0$, donc :
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$V = -2\overrightarrow{AK} = 2\overrightarrow{KA}$$
-                                </div>
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{KA}$$
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Soit $G = \text{Bar}\{(A, 2); (B, -1); (C, -3)\}$.
-                        <br>Montrer que pour tout point $M$ :
-                    </p>
-                    <div class="formula-block" style="font-size:15px;">
-                        $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}$$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
-                    <div id="sol3" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $G = \text{Bar}\{(A, 2); (B, -1); (C, -3)\}$.
-                                <br>La somme des poids est : $2 + (-1) + (-3) = -2 \neq 0$ ✅
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la propriété caractéristique du barycentre :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = (2 - 1 - 3)\overrightarrow{MG} = -2\overrightarrow{MG}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> On sait que $-2\overrightarrow{MG} = 2\overrightarrow{GM}$.
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}$$
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">4)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        En déduire l'ensemble des points $M$ tels que :
-                    </p>
-                    <div class="formula-block" style="font-size:15px;">
-                        $$\|2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC}\| = \|2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}\|$$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
-                    <div id="sol4" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> D'après la question 3 :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la question 2, $V = 2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{KA}$.
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> L'égalité devient :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\|2\overrightarrow{GM}\| = \|2\overrightarrow{KA}\|$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> On simplifie :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$2 \| \overrightarrow{GM} \| = 2 \| \overrightarrow{KA} \| \iff \| \overrightarrow{GM} \| = \| \overrightarrow{KA} \|$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> Cela signifie que $GM = KA$.
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p>L'ensemble des points $M$ est le <strong>cercle</strong> de centre $G$ et de rayon $r = KA$.</p>
+                                <span class="step-num">Étape 1 :</span> Le centre de gravité $G$ du triangle $ABC$ est le barycentre de :
                                 <div class="formula-block" style="font-size:15px; margin:4px 0;">
-                                    $$(C) = \mathcal{C}(G, KA)$$
+                                    $$G = \text{Bar}\{(A, 1); (B, 1); (C, 1)\}$$
                                 </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $I$ est le milieu du segment $[BC]$, donc :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$I = \text{Bar}\{(B, 1); (C, 1)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> D'après la propriété d'associativité, on peut remplacer $(B, 1)$ et $(C, 1)$ par $(I, 2)$ :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$G = \text{Bar}\{(A, 1); (I, 2)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> Vérification :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$\overrightarrow{GA} + 2\overrightarrow{GI} = 0$$
+                                </div>
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$\overrightarrow{GA} + 2\overrightarrow{GI} = \overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = 0$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$G$ est le barycentre de $\{(A, 1); (I, 2)\}$.</p>
+                                <p style="font-size:12px; color:var(--text-muted);">C'est-à-dire que $G$ est situé aux $\frac{2}{3}$ de la médiane $[AI]$.</p>
                             </div>
 
                             <div class="graph-container">
-                                <svg id="graph6svg" width="450" height="280"></svg>
-                                <p>Cercle de centre G et de rayon KA</p>
+                                <canvas id="graph6cg" width="450" height="280"></canvas>
+                                <p>Centre de gravité G = Bar{(A,1); (I,2)}</p>
                             </div>
                         </div>
                     </div>
@@ -522,8 +450,8 @@
             </div>
 
             <div class="nav-buttons">
-                <a href="exercice5.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 5</a>
-                <a href="exercice7.html" class="next-btn">Exercice 7 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice4.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 4</a>
+                <a href="exercice6.html" class="next-btn">Exercice 6 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
@@ -554,12 +482,12 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 6
-        // كود الرسمة تحول لـ figuresvg.js (كيستعمل svg-utils.js المشترك)
+        // GRAPHIQUES - Exercice 5 et 6
+        // كود الرسمة تحول لـ figures.js (كيستعمل canvas-utils.js المشترك)
         // ============================================================
     </script>
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="figuresvg.js"></script>
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

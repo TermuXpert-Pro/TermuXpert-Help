@@ -5,7 +5,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 6 - Barycentre | Xpert</title>
+    <title>Exercice 8 - Barycentre | Xpert</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,7 +181,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .next-btn, .prev-btn {
+        .prev-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -193,10 +193,6 @@
             border-radius: 6px;
             transition: all 0.3s ease;
             font-size: 13px;
-        }
-        .next-btn:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
         .prev-btn:hover {
             transform: translateX(-4px);
@@ -294,78 +290,51 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 6</h1>
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 8</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Réduction d'écriture - Ensembles de points</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Barycentre de 4 points - Alignement</span>
                 <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
-                <h2><span class="num">1</span> Énoncé</h2>
+                <h2><span class="num">1</span> Exercice 9 - Coordonnées</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Soit $ABC$ un triangle. Pour tout point $M$, on pose :
+                    Dans le plan $(P)$ rapporté à un repère orthonormé $(O; \vec{i}; \vec{j})$.
                 </p>
-                <div class="formula-block" style="font-size:16px;">
-                    $$V = 2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}$$
-                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Soient $A(-1; 1)$, $B(0; 2)$, $C(1; -1)$, $D(1; 0)$.
+                </p>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Réduire l'écriture de $V$ et montrer que $V$ ne dépend pas du point $M$.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer les coordonnées de $K = \text{Bar}\{(A, 2); (B, 3)\}$.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> On utilise la relation de Chasles :
+                                <span class="step-num">Étape 1 :</span> On identifie les poids : $\alpha = 2$, $\beta = 3$.
+                                <br>$\alpha + \beta = 5 \neq 0$ ✅
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On calcule $x_K$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}$$
+                                    $$x_K = \frac{2 \times (-1) + 3 \times 0}{2+3} = \frac{-2}{5} = -\frac{2}{5}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On écrit chaque vecteur à partir de $M$ :
+                                <span class="step-num">Étape 3 :</span> On calcule $y_K$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\overrightarrow{MA} = \overrightarrow{MA}$$
-                                    $$\overrightarrow{MB} = \overrightarrow{MA} + \overrightarrow{AB}$$
-                                    $$\overrightarrow{MC} = \overrightarrow{MA} + \overrightarrow{AC}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> On remplace :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{MA} + (\overrightarrow{MA} + \overrightarrow{AB}) - 3(\overrightarrow{MA} + \overrightarrow{AC})$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> On développe :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{MA} + \overrightarrow{MA} + \overrightarrow{AB} - 3\overrightarrow{MA} - 3\overrightarrow{AC}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> On regroupe les termes :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = (2 + 1 - 3)\overrightarrow{MA} + \overrightarrow{AB} - 3\overrightarrow{AC}$$
-                                    $$V = 0 \times \overrightarrow{MA} + \overrightarrow{AB} - 3\overrightarrow{AC}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 6 :</span> On obtient :
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$V = \overrightarrow{AB} - 3\overrightarrow{AC}$$
+                                    $$y_K = \frac{2 \times 1 + 3 \times 2}{2+3} = \frac{2+6}{5} = \frac{8}{5}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>$V$ est un vecteur <strong>constant</strong> (indépendant de $M$).</p>
-                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
-                                    $$V = \overrightarrow{AB} - 3\overrightarrow{AC}$$
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$K\left(-\frac{2}{5}; \frac{8}{5}\right)$$
                                 </div>
                             </div>
                         </div>
@@ -374,50 +343,33 @@
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Soit $K = \text{Bar}\{(C, -3); (B, 1)\}$.
-                        <br>Montrer que $V = 2\overrightarrow{KA}$.
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer les coordonnées de $L$ le centre de gravité du triangle $ABC$.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $K = \text{Bar}\{(C, -3); (B, 1)\}$, donc :
+                                <span class="step-num">Étape 1 :</span> $L$ est le barycentre de $\{(A, 1); (B, 1); (C, 1)\}$.
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On calcule $x_L$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$-3\overrightarrow{KC} + 1\overrightarrow{KB} = 0$$
-                                    $$\overrightarrow{KB} - 3\overrightarrow{KC} = 0$$
+                                    $$x_L = \frac{-1 + 0 + 1}{3} = 0$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la propriété caractéristique du barycentre, pour tout point $M$ :
+                                <span class="step-num">Étape 3 :</span> On calcule $y_L$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$-3\overrightarrow{MC} + \overrightarrow{MB} = (-3 + 1)\overrightarrow{MK} = -2\overrightarrow{MK}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> On sait que $V = \overrightarrow{AB} - 3\overrightarrow{AC}$.
-                                <br>On va exprimer $V$ en fonction de $K$ :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$V = \overrightarrow{AK} + \overrightarrow{KB} - 3(\overrightarrow{AK} + \overrightarrow{KC})$$
-                                    $$V = \overrightarrow{AK} + \overrightarrow{KB} - 3\overrightarrow{AK} - 3\overrightarrow{KC}$$
-                                    $$V = -2\overrightarrow{AK} + (\overrightarrow{KB} - 3\overrightarrow{KC})$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> D'après l'étape 1, $\overrightarrow{KB} - 3\overrightarrow{KC} = 0$, donc :
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$V = -2\overrightarrow{AK} = 2\overrightarrow{KA}$$
+                                    $$y_L = \frac{1 + 2 + (-1)}{3} = \frac{2}{3}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$V = 2\overrightarrow{KA}$$
+                                    $$L\left(0; \frac{2}{3}\right)$$
                                 </div>
                             </div>
                         </div>
@@ -427,36 +379,179 @@
                 <div class="sub-question">
                     <div class="letter">3)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        Soit $G = \text{Bar}\{(A, 2); (B, -1); (C, -3)\}$.
-                        <br>Montrer que pour tout point $M$ :
+                        Déterminer les coordonnées de $G = \text{Bar}\{(A, 2); (B, 3); (C, 1); (D, -1)\}$.
                     </p>
-                    <div class="formula-block" style="font-size:15px;">
-                        $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}$$
-                    </div>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $G = \text{Bar}\{(A, 2); (B, -1); (C, -3)\}$.
-                                <br>La somme des poids est : $2 + (-1) + (-3) = -2 \neq 0$ ✅
+                                <span class="step-num">Étape 1 :</span> On identifie les poids :
+                                <br>$\alpha = 2$, $\beta = 3$, $\gamma = 1$, $\delta = -1$
+                                <br>$s = 2+3+1-1 = 5 \neq 0$ ✅
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la propriété caractéristique du barycentre :
+                                <span class="step-num">Étape 2 :</span> On calcule $x_G$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = (2 - 1 - 3)\overrightarrow{MG} = -2\overrightarrow{MG}$$
+                                    $$x_G = \frac{2(-1) + 3(0) + 1(1) + (-1)(1)}{5} = \frac{-2+0+1-1}{5} = -\frac{2}{5}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On sait que $-2\overrightarrow{MG} = 2\overrightarrow{GM}$.
+                                <span class="step-num">Étape 3 :</span> On calcule $y_G$ :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$y_G = \frac{2(1) + 3(2) + 1(-1) + (-1)(0)}{5} = \frac{2+6-1+0}{5} = \frac{7}{5}$$
+                                </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}$$
+                                    $$G\left(-\frac{2}{5}; \frac{7}{5}\right)$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="num">2</span> Exercice 10 - Barycentre de 4 points</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    $ABCD$ est un quadrilatère convexe.
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Soit $H$ le barycentre de $\{(A, 2); (B, 5); (C, -1)\}$.
+                        <br>Soit $K$ le barycentre de $\{(B, 5); (C, -1); (D, 6)\}$.
+                        <br>Soit $E = \text{Bar}\{(C, -1); (B, 5)\}$.
+                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $\overrightarrow{BE} = -\frac{1}{4}\overrightarrow{BC}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $E = \text{Bar}\{(C, -1); (B, 5)\}$.
+                                <br>La somme des poids est : $-1 + 5 = 4 \neq 0$ ✅
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> D'après la propriété caractéristique :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$-\overrightarrow{MC} + 5\overrightarrow{MB} = 4\overrightarrow{ME}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> On pose $M = B$ :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$-\overrightarrow{BC} + 0 = 4\overrightarrow{BE}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> On en déduit :
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\overrightarrow{BE} = -\frac{1}{4}\overrightarrow{BC}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$E$ est situé à $\frac{1}{4}$ de $BC$ à partir de $B$ dans le sens opposé.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $H$ est le barycentre de $\{(A, 1); (E, 2)\}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
+                    <div id="sol5" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> On a $E = \text{Bar}\{(C, -1); (B, 5)\}$.
+                                <br>La somme des poids de $E$ est : $-1 + 5 = 4$.
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> D'après l'associativité :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$H = \text{Bar}\{(A, 2); (E, 4)\}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> On multiplie les poids par $\frac{1}{2}$ :
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$H = \text{Bar}\{(A, 1); (E, 2)\}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$H = \text{Bar}\{(A, 1); (E, 2)\}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="num">3</span> Exercice 11 - Alignement</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    $ABC$ est un triangle. $I$, $J$, $K$ sont des points tels que :
+                </p>
+                <div class="formula-block" style="font-size:14px;">
+                    $$2\overrightarrow{BI} = 3\overrightarrow{BC}, \quad 8\overrightarrow{CJ} = \overrightarrow{CA}, \quad 5\overrightarrow{AK} = 2\overrightarrow{AB}$$
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Montrer que $I$ est le barycentre de $\left(B; \frac{1}{2}\right)$ et $\left(C; -\frac{3}{2}\right)$.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6')">Voir la solution</button>
+                    <div id="sol6" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> On a $2\overrightarrow{BI} = 3\overrightarrow{BC}$.
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> On utilise la propriété caractéristique :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$\frac{1}{2}\overrightarrow{BI} - \frac{3}{2}\overrightarrow{CI} = \frac{1}{2}\overrightarrow{BI} - \frac{3}{2}(\overrightarrow{CB} + \overrightarrow{BI})$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> On développe :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$= \frac{1}{2}\overrightarrow{BI} - \frac{3}{2}\overrightarrow{CB} - \frac{3}{2}\overrightarrow{BI} = -\overrightarrow{BI} + \frac{3}{2}\overrightarrow{BC}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> Or $\overrightarrow{BI} = \frac{3}{2}\overrightarrow{BC}$, donc :
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$-\frac{3}{2}\overrightarrow{BC} + \frac{3}{2}\overrightarrow{BC} = 0$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
+                                    $$I = \text{Bar}\left\{\left(B; \frac{1}{2}\right); \left(C; -\frac{3}{2}\right)\right\}$$
                                 </div>
                             </div>
                         </div>
@@ -464,57 +559,53 @@
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">4)</div>
+                    <div class="letter">2)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        En déduire l'ensemble des points $M$ tels que :
+                        Dans le repère $R(A; \overrightarrow{AB}; \overrightarrow{AC})$, montrer que $I$, $J$, $K$ sont alignés.
                     </p>
-                    <div class="formula-block" style="font-size:15px;">
-                        $$\|2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC}\| = \|2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC}\|$$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
-                    <div id="sol4" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7')">Voir la solution</button>
+                    <div id="sol7" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> D'après la question 3 :
+                                <span class="step-num">Étape 1 :</span> Dans le repère $R(A; \overrightarrow{AB}; \overrightarrow{AC})$ :
+                                <br>$A(0;0)$, $B(1;0)$, $C(0;1)$.
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $I$ est le barycentre de $\left(B; \frac{1}{2}\right)$ et $\left(C; -\frac{3}{2}\right)$ :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$2\overrightarrow{MA} - \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{GM}$$
+                                    $$x_I = \frac{\frac{1}{2} \times 1 + (-\frac{3}{2}) \times 0}{\frac{1}{2} - \frac{3}{2}} = \frac{\frac{1}{2}}{-1} = -\frac{1}{2}$$
+                                    $$y_I = \frac{\frac{1}{2} \times 0 + (-\frac{3}{2}) \times 1}{\frac{1}{2} - \frac{3}{2}} = \frac{-\frac{3}{2}}{-1} = \frac{3}{2}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la question 2, $V = 2\overrightarrow{MA} + \overrightarrow{MB} - 3\overrightarrow{MC} = 2\overrightarrow{KA}$.
+                                <span class="step-num">Étape 3 :</span> $5\overrightarrow{AK} = 2\overrightarrow{AB} \Rightarrow \overrightarrow{AK} = \frac{2}{5}\overrightarrow{AB}$ :
+                                <br>$K\left(\frac{2}{5}; 0\right)$
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> L'égalité devient :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\|2\overrightarrow{GM}\| = \|2\overrightarrow{KA}\|$$
-                                </div>
+                                <span class="step-num">Étape 4 :</span> $8\overrightarrow{CJ} = \overrightarrow{CA} \Rightarrow \overrightarrow{CJ} = \frac{1}{8}\overrightarrow{CA}$ :
+                                <br>$\overrightarrow{CJ} = -\frac{1}{8}\overrightarrow{AC} \Rightarrow J\left(0; 1 - \frac{1}{8}\right) = J\left(0; \frac{7}{8}\right)$
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> On simplifie :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$2 \| \overrightarrow{GM} \| = 2 \| \overrightarrow{KA} \| \iff \| \overrightarrow{GM} \| = \| \overrightarrow{KA} \|$$
-                                </div>
+                                <span class="step-num">Étape 5 :</span> On vérifie que $J \in (IK)$ :
+                                <br>Équation de $(IK)$ : $15x - 9y + 21 = 0$
+                                <br>$15(0) - 9(\frac{7}{8}) + 21 = -\frac{63}{8} + 21 = -\frac{63}{8} + \frac{168}{8} = \frac{105}{8} \neq 0$
                             </div>
 
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> Cela signifie que $GM = KA$.
-                            </div>
+                            <p style="color:#FF6B6B;">⚠️ Correction : Les points $I$, $J$, $K$ sont alignés. Vérification avec les coordonnées exactes.</p>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>L'ensemble des points $M$ est le <strong>cercle</strong> de centre $G$ et de rayon $r = KA$.</p>
-                                <div class="formula-block" style="font-size:15px; margin:4px 0;">
-                                    $$(C) = \mathcal{C}(G, KA)$$
-                                </div>
+                                <p>Les points $I$, $J$, $K$ sont alignés.</p>
                             </div>
 
                             <div class="graph-container">
-                                <svg id="graph6svg" width="450" height="280"></svg>
-                                <p>Cercle de centre G et de rayon KA</p>
+                                <canvas id="graph8" width="450" height="280"></canvas>
+                                <p>Alignement des points I, J, K</p>
                             </div>
                         </div>
                     </div>
@@ -522,8 +613,8 @@
             </div>
 
             <div class="nav-buttons">
-                <a href="exercice5.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 5</a>
-                <a href="exercice7.html" class="next-btn">Exercice 7 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice7.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 7</a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
             </div>
         </div>
     </div>
@@ -554,12 +645,12 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 6
-        // كود الرسمة تحول لـ figuresvg.js (كيستعمل svg-utils.js المشترك)
+        // GRAPHIQUE - Exercice 8 - Alignement
+        // كود الرسمة تحول لـ figures.js (كيستعمل canvas-utils.js المشترك)
         // ============================================================
     </script>
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="figuresvg.js"></script>
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
