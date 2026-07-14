@@ -5,17 +5,21 @@
  * فكل صفحات الموقع انطلاقاً من partials/ بدل ما تكون مكررة يدوياً فكل ملف.
  *
  * كيفاش خدام:
- * - partials/navbar.html   → {{BASE}}
- * - partials/footer.html   → (بلا متغيرات)
- * - partials/decor.html    → {{BASE}}, {{ACCENT}}, {{ACCENT_LIGHT}}
+ * - partials/navbar.html      → {{BASE}}
+ * - partials/footer.html      → (بلا متغيرات)
+ * - partials/decor.html       → {{BASE}}, {{ACCENT}}, {{ACCENT_LIGHT}}
+ * - partials/decor-root.html  → (بلا متغيرات - décor multicolore ثابت)
  *
  * الاستخدام: node utils/build.js
  * خاصك تشغلها من بعد أي تعديل فـ partials/ أو من بعد ما تزيد صفحة جديدة،
  * وقبل كل نشر (deploy) - بحال validate.js بالضبط.
  *
  * ⚠️ الصفحات الجذرية (index.html, subject.html, subjects.html) عندها
- * décor خاص بيها (multicolore) وماشي مشمولة هنا عمداً - التوحيد كيدير
- * غير للـ navbar و footer ديالها.
+ * décor خاص بيها (multicolore، 4 ألوان بدل لون وحيد ديال المادة).
+ * التوحيد ديالها كيدير عبر partials/decor-root.html (نفس التقنية اللي
+ * كتستعمل f navbar/footer/décor ديال باقي الصفحات) - والـ CSS ديال
+ * هاد الـdécor بقى مركّز فـ assets/css/root-decor.css بدل ما يكون
+ * مكرر جوة <style> ديال كل صفحة من الصفحات الثلاث.
  */
 
 const fs = require('fs');
@@ -39,6 +43,7 @@ function loadPartial(name) {
 const navbarTpl = loadPartial('navbar.html');
 const footerTpl = loadPartial('footer.html');
 const decorTpl = loadPartial('decor.html');
+const decorRootTpl = loadPartial('decor-root.html');
 
 function render(tpl, vars) {
     let out = tpl;
@@ -95,8 +100,12 @@ function matchNavbarRe(content) {
 }
 // الفوتر
 const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
-// الديكور: من التعليق أو overlay-protection حتى آخر glow-orb-2
+// الديكور (صفحات المحتوى): من التعليق أو overlay-protection حتى آخر glow-orb-2
 const DECOR_RE = /(?:<!-- ====== طبقة الحماية[\s\S]*?-->\s*)?<div class="overlay-protection"[\s\S]*?<div class="glow-orb glow-orb-2"><\/div>/;
+// الديكور (الصفحات الجذرية - multicolore): من التعليق أو overlay-protection
+// حتى آخر geo-pattern-4 (ماشي glow-orb، حيت الصفحات الجذرية عندها
+// progress-bar/bg-grid/glow-orb خاصين بيها بعد الـdécor، ماشي جزء منو)
+const ROOT_DECOR_RE = /(?:<!-- ====== طبقة الحماية[\s\S]*?-->\s*)?<div class="overlay-protection"[\s\S]*?<div class="geo-pattern geo-pattern-4"[^>]*>[\s\S]*?<\/div>/;
 
 let updated = 0;
 let skipped = 0;
@@ -143,6 +152,10 @@ for (const file of walk(ROOT)) {
         );
         changed = true;
     }
+    if (isRoot && ROOT_DECOR_RE.test(content)) {
+        content = content.replace(ROOT_DECOR_RE, decorRootTpl.trim());
+        changed = true;
+    }
 
     if (changed) {
         fs.writeFileSync(file, content);
@@ -165,8 +178,9 @@ function computeSiteHash() {
     const filesToHash = [
         'index.html', 'subjects.html', 'subject.html',
         'assets/css/style.css', 'assets/css/lesson-common.css', 'assets/css/global-control.css',
+        'assets/css/root-decor.css',
         'assets/js/script.js', 'assets/js/protection.js',
-        'partials/navbar.html', 'partials/footer.html', 'partials/decor.html',
+        'partials/navbar.html', 'partials/footer.html', 'partials/decor.html', 'partials/decor-root.html',
     ];
     const hash = crypto.createHash('sha256');
     for (const f of filesToHash) {

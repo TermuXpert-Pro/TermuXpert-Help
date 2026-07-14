@@ -32,101 +32,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/root-decor.css">
     
     <!-- ====== GSAP ====== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     
     <style>
         /* ====== طبقة الحماية غير المرئية ====== */
-        .overlay-protection {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background: transparent;
-            pointer-events: all;
-            cursor: default;
-            opacity: 0;
-            display: none;
-        }
-        .overlay-protection.active {
-            display: block !important;
-            opacity: 1 !important;
-            pointer-events: all !important;
-        }
-        .overlay-protection.hidden {
-            display: none !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-        }
-
-        .moroccan-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-            opacity: 0;
-        }
-        .moroccan-bg svg { width: 100%; height: 100%; }
-
-        .moroccan-shadow {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            background: radial-gradient(circle at center, #4ECDC4 0%, #FF6B6B 40%, #F4D03F 70%, transparent 100%);
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: shadowPulse 8s ease-in-out infinite;
-        }
-        @keyframes shadowPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
-        }
-
-        .moroccan-star {
-            position: fixed;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            font-size: 120px;
-            color: #4ECDC4;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: starSpin 20s linear infinite;
-        }
-        @keyframes starSpin {
-            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
-            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-        }
-
-        .geo-pattern {
-            position: fixed;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            color: #F4D03F;
-            font-size: 20px;
-            letter-spacing: 20px;
-        }
-        .geo-pattern-1 { top: 10%; left: 5%; transform: rotate(-15deg); }
-        .geo-pattern-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
-        .geo-pattern-3 { top: 50%; left: 2%; transform: rotate(90deg); }
-        .geo-pattern-4 { top: 50%; right: 2%; transform: rotate(-90deg); }
-
         .hero-wrapper {
             position: fixed;
             top: 0;
@@ -312,17 +224,11 @@
         }
 
         @media (max-width: 768px) {
-            .moroccan-shadow { width: 300px; height: 300px; }
-            .moroccan-star { font-size: 60px; }
-            .geo-pattern { font-size: 14px; letter-spacing: 12px; }
             .grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
             .card { padding: 20px 16px; }
             .card .card-icon { width: 56px; height: 56px; font-size: 24px; }
         }
         @media (max-width: 480px) {
-            .moroccan-shadow { width: 200px; height: 200px; }
-            .moroccan-star { font-size: 40px; }
-            .geo-pattern { font-size: 10px; letter-spacing: 8px; }
             .hero-wrapper h1 { font-size: 28px; }
             .hero-wrapper .subtitle { font-size: 14px; }
             .card { padding: 16px 12px; }
@@ -334,39 +240,40 @@
 <body>
 
     <!-- ====== طبقة الحماية غير المرئية ====== -->
-    <div class="overlay-protection" id="overlayProtection"></div>
+<div class="overlay-protection" id="overlayProtection" aria-hidden="true"></div>
 
-    <div class="moroccan-bg">
-        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                    <rect width="200" height="200" fill="none"/>
-                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                </pattern>
-            </defs>
-            <rect width="800" height="800" fill="url(#zellij)"/>
-        </svg>
-    </div>
+<!-- ====== خلفية زليج (multicolore - خاصة بالصفحات الجذرية) ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
 
-    <div class="moroccan-shadow"></div>
-    <div class="moroccan-star">✦</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
 
-    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-1" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
 
     <div class="progress-bar" id="progressBar"></div>
     <div class="bg-grid"></div>
@@ -825,3 +732,4 @@
     </script>
 </body>
 </html>
+
