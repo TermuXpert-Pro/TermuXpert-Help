@@ -4,36 +4,32 @@
 // ============================================================
 
 function drawGraphDecanter() {
-    var canvas = document.getElementById('graphDecanter');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var w = canvas.width, h = canvas.height;
+    const s = CanvasUtils.setupCanvas('graphDecanter');
+    if (!s) return;
+    const { ctx, w, h } = s;
 
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#0D1117';
-    ctx.fillRect(0, 0, w, h);
+    const cx = w / 2;
+    const topY = 20;
+    const bottomY = h - 20;
 
-    var cx = w/2;
-    var topY = 20;
-    var bottomY = h - 20;
-
-    // Ampoule à décanter (forme)
+    // ====== Ampoule à décanter (forme) ======
     ctx.strokeStyle = '#4ECDC4';
     ctx.lineWidth = 2;
 
-    // Partie supérieure (cylindre)
+    // Partie supérieure (cylindre) - trait horizontal
     ctx.beginPath();
     ctx.moveTo(cx - 40, topY);
     ctx.lineTo(cx + 40, topY);
     ctx.stroke();
 
-    // Côtés
+    // Côté gauche
     ctx.beginPath();
     ctx.moveTo(cx - 40, topY);
     ctx.lineTo(cx - 50, topY + 30);
     ctx.lineTo(cx - 40, bottomY);
     ctx.stroke();
 
+    // Côté droit
     ctx.beginPath();
     ctx.moveTo(cx + 40, topY);
     ctx.lineTo(cx + 50, topY + 30);
@@ -46,38 +42,29 @@ function drawGraphDecanter() {
     ctx.lineTo(cx + 40, bottomY);
     ctx.stroke();
 
-    // Robinet
+    // ====== Robinet ======
     ctx.fillStyle = '#FF6B6B';
     ctx.fillRect(cx - 4, bottomY, 8, 10);
 
-    // Phase supérieure : Heptane (moins dense)
-    var phase1Y = topY + 5;
-    var phase1H = 80;
-    ctx.fillStyle = 'rgba(78, 205, 196, 0.3)';
+    // ====== Phase supérieure : Heptane (moins dense) ======
+    const phase1Y = topY + 5;
+    const phase1H = 80;
+    ctx.fillStyle = 'rgba(78, 205, 196, 0.25)';
     ctx.fillRect(cx - 38, phase1Y, 76, phase1H);
     ctx.strokeStyle = '#4ECDC4';
     ctx.lineWidth = 1;
     ctx.strokeRect(cx - 38, phase1Y, 76, phase1H);
 
-    // Phase inférieure : Éthanol (plus dense)
-    var phase2Y = phase1Y + phase1H;
-    var phase2H = 120;
-    ctx.fillStyle = 'rgba(244, 208, 63, 0.25)';
+    // ====== Phase inférieure : Éthanol (plus dense) ======
+    const phase2Y = phase1Y + phase1H;
+    const phase2H = 120;
+    ctx.fillStyle = 'rgba(244, 208, 63, 0.2)';
     ctx.fillRect(cx - 38, phase2Y, 76, phase2H);
     ctx.strokeStyle = '#F4D03F';
     ctx.lineWidth = 1;
     ctx.strokeRect(cx - 38, phase2Y, 76, phase2H);
 
-    // Labels
-    ctx.fillStyle = '#4ECDC4';
-    ctx.font = '11px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Heptane', cx, phase1Y + phase1H/2 + 4);
-
-    ctx.fillStyle = '#F4D03F';
-    ctx.fillText('Éthanol', cx, phase2Y + phase2H/2 + 4);
-
-    // Ligne de séparation
+    // ====== Ligne de séparation ======
     ctx.strokeStyle = '#FFFFFF';
     ctx.lineWidth = 1.5;
     ctx.setLineDash([4, 4]);
@@ -87,20 +74,33 @@ function drawGraphDecanter() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Flèches pour indiquer les densités
+    // ====== Labels des phases ======
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    ctx.fillStyle = '#4ECDC4';
+    ctx.font = '12px Arial';
+    ctx.fillText('Heptane', cx, phase1Y + phase1H / 2);
+    
+    ctx.fillStyle = '#F4D03F';
+    ctx.fillText('Éthanol', cx, phase2Y + phase2H / 2);
+
+    // ====== Indications des densités ======
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+
     ctx.fillStyle = '#4ECDC4';
     ctx.font = '9px Arial';
-    ctx.textAlign = 'left';
-    ctx.fillText('d = 0,68', cx + 45, phase1Y + phase1H/2 + 3);
+    ctx.fillText('d = 0,68', cx + 45, phase1Y + phase1H / 2);
 
     ctx.fillStyle = '#F4D03F';
-    ctx.fillText('d = 0,81', cx + 45, phase2Y + phase2H/2 + 3);
+    ctx.fillText('d = 0,81', cx + 45, phase2Y + phase2H / 2);
 
-    // Titre de la figure
-    ctx.fillStyle = '#888888';
-    ctx.font = '9px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Ampoule à décanter - Mélange non miscible', cx, h - 5);
+    // ====== Légende en bas ======
+    CanvasUtils.drawNote(ctx, 'Ampoule à décanter - Mélange non miscible', cx - 100, h - 5, {
+        font: '9px Arial',
+        color: '#888888'
+    });
 }
 
 // ============================================================
@@ -111,5 +111,5 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.getElementById('graphDecanter')) {
             drawGraphDecanter();
         }
-    }, 400);
+    }, 300);
 });

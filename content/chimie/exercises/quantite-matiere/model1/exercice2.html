@@ -223,6 +223,35 @@
             font-size: 11px;
             margin-top: 4px;
         }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -231,6 +260,7 @@
             .section p { font-size: 10.5px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
+            .graph-container canvas { width: 100%; height: auto; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
@@ -314,6 +344,9 @@
                     <strong>Donnée :</strong> \(\rho_{eau} = 1,00\text{ g/mL}\)
                 </div>
 
+                <!-- ============================================================ -->
+                <!-- Question 1 -->
+                <!-- ============================================================ -->
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Calculer la masse d'éthanol contenu dans l'éprouvette.</p>
@@ -325,7 +358,14 @@
                                 <span class="step-num">Étape 1 :</span> 
                                 La masse d'éthanol est la différence entre la masse de l'éprouvette pleine et la masse de l'éprouvette vide :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m_{\text{éthanol}} = m - m' = 94,3 - 53,8 = 40,5\text{ g}$$
+                                    $$m_{\text{éthanol}} = m - m'$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m_{\text{éthanol}} = 94,3 - 53,8 = 40,5\text{ g}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
@@ -338,6 +378,9 @@
                     </div>
                 </div>
 
+                <!-- ============================================================ -->
+                <!-- Question 2 -->
+                <!-- ============================================================ -->
                 <div class="sub-question">
                     <div class="letter">2)</div>
                     <p style="font-size:11.5px; margin:4px 0;">Calculer la densité de l'éthanol.</p>
@@ -356,7 +399,14 @@
                                 <span class="step-num">Étape 2 :</span> 
                                 La densité est le rapport des masses à volume égal :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$d_{\text{éthanol}} = \frac{m_{\text{éthanol}}}{m_{eau}} = \frac{40,5}{50,0} = 0,81$$
+                                    $$d_{\text{éthanol}} = \frac{m_{\text{éthanol}}}{m_{eau}}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Application numérique :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d_{\text{éthanol}} = \frac{40,5}{50,0} = 0,81$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
@@ -366,10 +416,19 @@
                                 </div>
                                 <p style="font-size:11px; color:var(--text-muted);">L'éthanol est moins dense que l'eau (\(d < 1\)).</p>
                             </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Formule à retenir</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d = \frac{m_{\text{corps}}}{m_{\text{eau}}} \quad (\text{à volume égal})$$
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- ============================================================ -->
+                <!-- Question 3 -->
+                <!-- ============================================================ -->
                 <div class="sub-question">
                     <div class="letter">3)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
@@ -395,10 +454,13 @@
                                 Le liquide le <strong>moins dense</strong> se place au-dessus.
                                 <br>Donc l'<strong>heptane</strong> (\(d = 0,68\)) surmonte l'<strong>éthanol</strong> (\(d = 0,81\)).
                             </div>
+
+                            <!-- ====== Graphique ====== -->
                             <div class="graph-container">
-                                <canvas id="graphDecanter" width="200" height="280"></canvas>
+                                <canvas id="graphDecanter" width="220" height="280"></canvas>
                                 <p>Ampoule à décanter - Heptane (haut) / Éthanol (bas)</p>
                             </div>
+
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
                                 <ul style="font-size:12px;">
@@ -412,6 +474,9 @@
                 </div>
             </div>
 
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
             <div class="nav-buttons">
                 <a href="exercice1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 1</a>
                 <a href="exercice3.html" class="next-btn">Exercice 3 <i class="fas fa-arrow-left"></i></a>
@@ -424,6 +489,7 @@
         <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
     </footer>
 
+    <!-- ====== Scripts ====== -->
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -443,101 +509,12 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
-
-        // ============================================================
-        // GRAPHIQUE - Ampoule à décanter
-        // ============================================================
-        function drawDecanter() {
-            var canvas = document.getElementById('graphDecanter');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2;
-            var topY = 20;
-            var bottomY = h - 20;
-
-            // Ampoule à décanter (forme)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-
-            // Partie supérieure (cylindre)
-            ctx.beginPath();
-            ctx.moveTo(cx - 40, topY);
-            ctx.lineTo(cx + 40, topY);
-            ctx.stroke();
-
-            // Côtés
-            ctx.beginPath();
-            ctx.moveTo(cx - 40, topY);
-            ctx.lineTo(cx - 50, topY + 30);
-            ctx.lineTo(cx - 40, bottomY);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.moveTo(cx + 40, topY);
-            ctx.lineTo(cx + 50, topY + 30);
-            ctx.lineTo(cx + 40, bottomY);
-            ctx.stroke();
-
-            // Fond
-            ctx.beginPath();
-            ctx.moveTo(cx - 40, bottomY);
-            ctx.lineTo(cx + 40, bottomY);
-            ctx.stroke();
-
-            // Robinet
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillRect(cx - 4, bottomY, 8, 10);
-
-            // Phase supérieure : Heptane (moins dense)
-            var phase1Y = topY + 5;
-            var phase1H = 80;
-            ctx.fillStyle = 'rgba(78, 205, 196, 0.3)';
-            ctx.fillRect(cx - 38, phase1Y, 76, phase1H);
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(cx - 38, phase1Y, 76, phase1H);
-
-            // Phase inférieure : Éthanol (plus dense)
-            var phase2Y = phase1Y + phase1H;
-            var phase2H = 120;
-            ctx.fillStyle = 'rgba(244, 208, 63, 0.25)';
-            ctx.fillRect(cx - 38, phase2Y, 76, phase2H);
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(cx - 38, phase2Y, 76, phase2H);
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('Heptane', cx, phase1Y + phase1H/2 + 4);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.fillText('Éthanol', cx, phase2Y + phase2H/2 + 4);
-
-            // Ligne de séparation
-            ctx.strokeStyle = '#FFFFFF';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx - 38, phase1Y + phase1H);
-            ctx.lineTo(cx + 38, phase1Y + phase1H);
-            ctx.stroke();
-            ctx.setLineDash([]);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawDecanter();
-            }, 400);
-        });
     </script>
+    
+    <!-- ====== Canvas Utils + Figures ====== -->
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
+    
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
