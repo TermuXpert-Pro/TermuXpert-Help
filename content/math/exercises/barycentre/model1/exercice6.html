@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -16,9 +17,9 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../../../../assets/css/style.css">
-    <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
-    <link rel="stylesheet" href="../../../../assets/css/global-control.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     
     <script>
         MathJax = {
@@ -279,13 +280,13 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-    <a href="../../../../index.html" class="nav-logo">
+    <a href="../../../../../index.html" class="nav-logo">
         <div class="nav-logo-icon">X</div>
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
     <ul class="nav-links">
-        <li><a href="../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
-        <li><a href="../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
     </ul>
 </nav>
 
@@ -553,106 +554,17 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 6 - Cercle
+        // GRAPHIQUE - Exercice 6
+        // كود الرسمة تحول لـ figures.js (كيستعمل canvas-utils.js المشترك)
         // ============================================================
-
-        function drawGraph6() {
-            var canvas = document.getElementById('graph6');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 40;
-
-            // Points pour la construction
-            var A = {x: 1, y: 1, color: '#4ECDC4', label: 'A'};
-            var B = {x: 5, y: 0.5, color: '#FF6B6B', label: 'B'};
-            var C = {x: 3, y: 4.5, color: '#BB8FCE', label: 'C'};
-            // K = Bar{(C,-3);(B,1)}
-            var Kx = (-3*C.x + 1*B.x) / (-3+1);
-            var Ky = (-3*C.y + 1*B.y) / (-3+1);
-            var K = {x: Kx, y: Ky, color: '#A8FF78', label: 'K'};
-            // G = Bar{(A,2);(B,-1);(C,-3)}
-            var Gx = (2*A.x + (-1)*B.x + (-3)*C.x) / (2-1-3);
-            var Gy = (2*A.y + (-1)*B.y + (-3)*C.y) / (2-1-3);
-            var G = {x: Gx, y: Gy, color: '#F4D03F', label: 'G'};
-
-            // Rayon KA
-            var r = Math.sqrt(Math.pow(K.x - A.x, 2) + Math.pow(K.y - A.y, 2));
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Labels axes
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 10, 16);
-
-            // Cercle de centre G et rayon KA
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 2.5;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.arc(ox + G.x * scale, oy - G.y * scale, r * scale, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Points
-            var pts = [A, B, C, K, G];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            // Légende
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('A', 10, 20);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillText('B', 30, 20);
-            ctx.fillStyle = '#BB8FCE';
-            ctx.fillText('C', 50, 20);
-            ctx.fillStyle = '#A8FF78';
-            ctx.fillText('K', 70, 20);
-            ctx.fillStyle = '#F4D03F';
-            ctx.fillText('G (centre)', 10, 35);
-            ctx.fillStyle = '#4D9DE0';
-            ctx.fillText('--- Cercle C(G, KA)', 10, 50);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Cercle de centre G et de rayon KA', 200, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph6();
-            }, 500);
-        });
     </script>
-    <script src="../../../../assets/js/protection.js"></script>
-    <script src="../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
 </body>
 </html>
+
+
+========================================
+📄 الملف: exercice8.html

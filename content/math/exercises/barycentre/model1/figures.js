@@ -1,3 +1,4 @@
+
 // ============================================================
 // figures.js - رسومات موضوع "Barycentre" - Modèle 1
 // كل درس/تمرين فهاذ الموضوع كيزيد دالة رسمة ديالو هنا
@@ -308,3 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(drawGraph6cg, 500);
     setTimeout(drawGraph6, 500);
 });
+
+
+========================================
+📄 الملف: exercice2.html
