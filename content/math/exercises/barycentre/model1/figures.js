@@ -116,8 +116,59 @@ function drawGraph3() {
     CanvasUtils.drawNote(ctx, 'Cercle de centre G(2;3) rayon 2', 200, 20);
 }
 
+// ====== Exercice 4 : Triangle ABC + construction de G ======
+function drawGraph4() {
+    const s = CanvasUtils.setupCanvas('graph4');
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const ox = 80, oy = h - 30, scale = 45;
+
+    // Points du triangle
+    const A = { x: 2, y: 1, color: '#4ECDC4', label: 'A' };
+    const B = { x: 5, y: 0.5, color: '#FF6B6B', label: 'B' };
+    const C = { x: 3, y: 4.5, color: '#BB8FCE', label: 'C' };
+
+    // G = barycentre de (A,1), (B,1), (C,2)
+    const Gx = (1 * A.x + 1 * B.x + 2 * C.x) / (1 + 1 + 2);
+    const Gy = (1 * A.y + 1 * B.y + 2 * C.y) / (1 + 1 + 2);
+    const G = { x: Gx, y: Gy, color: '#F4D03F', label: 'G' };
+
+    // I milieu de [BC]
+    const I = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2, color: '#A8FF78', label: 'I' };
+
+    CanvasUtils.drawAxes(ctx, ox, oy, w, h);
+    CanvasUtils.drawNote(ctx, 'x', w - 20, oy + 18, { color: '#4ECDC4', font: '12px Arial' });
+    CanvasUtils.drawNote(ctx, 'y', ox + 10, 16, { color: '#4ECDC4', font: '12px Arial' });
+
+    // Triangle ABC
+    ctx.strokeStyle = '#2A2A3E';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+    ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+    ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Médiane AI
+    CanvasUtils.drawLine(ctx, ox, oy, scale, A.x, A.y, I.x, I.y, {
+        color: '#A8FF78', lineWidth: 1.5, dashed: true, dashPattern: [4, 4]
+    });
+
+    CanvasUtils.drawPoints(ctx, ox, oy, scale, [A, B, C, G, I].map(p => ({ ...p, showCoords: false })));
+
+    // Légende
+    CanvasUtils.drawNote(ctx, 'Triangle ABC', 10, 20, { color: '#4ECDC4' });
+    CanvasUtils.drawNote(ctx, 'G barycentre', 10, 35, { color: '#F4D03F' });
+    CanvasUtils.drawNote(ctx, 'I milieu de [BC]', 10, 50, { color: '#A8FF78' });
+    CanvasUtils.drawNote(ctx, 'AG = 1/4 AB + 1/2 AC', 250, 20);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(drawGraph1, 500);
     setTimeout(drawGraph2, 500);
     setTimeout(drawGraph3, 500);
+    setTimeout(drawGraph4, 500);
 });
