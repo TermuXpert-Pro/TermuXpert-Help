@@ -230,7 +230,12 @@ function checkPartialsDrift() {
     }
     const navbarTpl = fs.readFileSync(path.join(partialsDir, 'navbar.html'), 'utf-8').trim();
     const footerTpl = fs.readFileSync(path.join(partialsDir, 'footer.html'), 'utf-8').trim();
-    const NAVBAR_RE = /<nav class="navbar"[\s\S]*?<\/nav>/;
+    // ⚠️ لازم يطابق بالضبط نفس الحدود اللي كيستعملها utils/build.js
+    // (نفس NAVBAR_RE) - navbar.html فيه <nav class="navbar"> رئيسي
+    // ومن بعد <nav class="sidebar-nav"> منفصل + sidebarOverlay، فخاص
+    // الفحص يمسك البلوك الكامل ماشي غير أول </nav> - وإلا كايقارن جزء
+    // بكامل الملف وكيعطي تحذير كاذب حتى ولو build.js خدم صحيح.
+    const NAVBAR_RE = /<nav class="navbar"[\s\S]*<div id="sidebarOverlay" class="sidebar-overlay"><\/div>(?:\s*(?:<!--[\s\S]*?-->\s*)?<script>[\s\S]*?<\/script>)?/;
     const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
 
     function getBase(fp) {
@@ -317,3 +322,5 @@ if (errorCount === 0) {
     console.log(`❌ الفحص كامل: ${errorCount} خطأ/أخطاء، ${warnCount} تحذير(ات). خاصك تصلحهم قبل النشر.`);
     process.exit(1);
 }
+
+
