@@ -346,21 +346,24 @@
 <!-- ====== GSAP: خلفية رياضية متحركة فـ Sidebar ====== -->
 <script>
 (function() {
+    var started = false;
+    var tweens = [];
+
     function initSidebarMathBg() {
         if (typeof gsap === 'undefined') return;
         const symbols = document.querySelectorAll('.sidebar-math-bg .math-symbol');
         if (!symbols.length) return;
 
-        gsap.to(symbols, {
+        tweens.push(gsap.to(symbols, {
             opacity: 0.12,
             scale: 1,
             duration: 1.5,
             stagger: 0.15,
             ease: 'power2.out'
-        });
+        }));
 
         symbols.forEach(function(el, i) {
-            gsap.to(el, {
+            tweens.push(gsap.to(el, {
                 y: '+=' + (14 + (i % 3) * 6),
                 x: '+=' + (i % 2 === 0 ? 8 : -8),
                 rotation: i % 2 === 0 ? 8 : -8,
@@ -369,12 +372,31 @@
                 yoyo: true,
                 ease: 'sine.inOut',
                 delay: i * 0.3
-            });
+            }));
         });
+
+        started = true;
     }
-    document.readyState === 'loading'
-        ? document.addEventListener('DOMContentLoaded', initSidebarMathBg)
-        : initSidebarMathBg();
+
+    function pauseSidebarMathBg() {
+        tweens.forEach(function(t) { t.pause(); });
+    }
+
+    function resumeSidebarMathBg() {
+        tweens.forEach(function(t) { t.resume(); });
+    }
+
+    // كنبداو الأنيميشن غير أول مرة كتفتح الـsidebar (مش من ساعة تحميل
+    // الصفحة)، وكنوقفوه/كنكملوه مع كل فتح وغلق، باش ما يخدمش فارغ
+    // فالخلفية طول الوقت اللي الـsidebar مغلق فيه.
+    document.addEventListener('sidebar:opened', function() {
+        if (!started) {
+            initSidebarMathBg();
+        } else {
+            resumeSidebarMathBg();
+        }
+    });
+    document.addEventListener('sidebar:closed', pauseSidebarMathBg);
 })();
 </script>
 

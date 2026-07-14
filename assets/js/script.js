@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = 'hidden';
         menuToggle.classList.add('active');
         menuToggle.setAttribute('aria-expanded', 'true');
+        document.dispatchEvent(new CustomEvent('sidebar:opened'));
     }
 
     function closeSidebar() {
@@ -103,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = '';
         menuToggle.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
+        document.dispatchEvent(new CustomEvent('sidebar:closed'));
     }
 
     // ====== Events ======
