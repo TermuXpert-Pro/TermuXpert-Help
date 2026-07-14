@@ -23,22 +23,6 @@
     updateProgress();
 })();
 
-(function() {
-    var navbar = document.getElementById('navbar');
-    if (!navbar) return;
-    
-    function updateNavbar() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }
-    
-    window.addEventListener('scroll', updateNavbar, { passive: true });
-    updateNavbar();
-})();
-
 document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('page-transition');
     setTimeout(function() {
