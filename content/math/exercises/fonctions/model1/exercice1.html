@@ -144,19 +144,6 @@
             overflow-x: auto;
             font-size: 12px;
         }
-        .solution-box .sol-content .highlight-box {
-            padding: 4px 8px;
-            margin: 4px 0;
-            border-right-width: 3px;
-        }
-        .solution-box .sol-content .highlight-box .label {
-            font-size: 11px;
-            padding: 1px 8px;
-            margin-bottom: 2px;
-        }
-        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
-        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
-        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .toggle-sol {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -209,11 +196,10 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container svg {
+        .graph-container canvas {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
-            height: auto;
         }
         .graph-container p {
             color: var(--text-muted);
@@ -326,7 +312,7 @@
                                 <p>$\forall x \in \mathbb{R},\ f(-x) = f(x)$ donc <strong>$f$ est paire</strong>.</p>
                             </div>
                             <div class="graph-container">
-                                <svg id="graphParite" width="100%" viewBox="0 0 400 200"></svg>
+                                <canvas id="graphParite" width="350" height="150"></canvas>
                                 <p>Courbe de $f(x) = \cos(\pi x)$ (fonction paire)</p>
                             </div>
                         </div>
@@ -382,7 +368,7 @@
                             </div>
                             <p style="font-size:11px; color:var(--text-muted);">Remarque : La période de $\cos(\pi x)$ est $T = \dfrac{2\pi}{\pi} = 2$.</p>
                             <div class="graph-container">
-                                <svg id="graphPeriodique" width="100%" viewBox="0 0 400 200"></svg>
+                                <canvas id="graphPeriodique" width="350" height="150"></canvas>
                                 <p>Périodicité de $f(x) = \cos(\pi x)$ avec $T=2$</p>
                             </div>
                         </div>
@@ -423,12 +409,11 @@
         }
 
         // ============================================================
-        // GRAPHIQUES - Version SVG
-        // Les graphiques sont maintenant gérés par figuresvg.js
+        // GRAPHIQUES - Les dessins sont maintenant dans figures.js
         // ============================================================
     </script>
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="figuresvg.js"></script>
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
