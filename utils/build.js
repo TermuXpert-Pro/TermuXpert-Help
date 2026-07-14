@@ -81,20 +81,6 @@ const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
 // الديكور: من التعليق أو overlay-protection حتى آخر glow-orb-2
 const DECOR_RE = /(?:<!-- ====== طبقة الحماية[\s\S]*?-->\s*)?<div class="overlay-protection"[\s\S]*?<div class="glow-orb glow-orb-2"><\/div>/;
 
-// ====== إدراج ملفات الـ Sidebar ======
-// هذه الأنماط والسكريبتات تضاف في <head> قبل إغلاق </head>
-const SIDEBAR_CSS = `<link rel="stylesheet" href="{{BASE}}assets/css/sidebar.css">`;
-const SIDEBAR_JS = `<script src="{{BASE}}assets/js/sidebar.js" defer></script>`;
-
-// نبحث عن </head> لإدراج الأنماط، وعن </body> لإدراج السكريبتات
-const HEAD_END_RE = /<\/head>/i;
-const BODY_END_RE = /<\/body>/i;
-
-// نتأكد من أن الملفات غير مضمنة بالفعل (لتجنب التكرار)
-function isSidebarIncluded(content) {
-    return content.includes('sidebar.css') || content.includes('sidebar.js');
-}
-
 let updated = 0;
 let skipped = 0;
 
@@ -106,19 +92,14 @@ for (const file of walk(ROOT)) {
     const base = getBase(file);
     let changed = false;
 
-    // 1. استبدال الـ navbar
     if (NAVBAR_RE.test(content)) {
         content = content.replace(NAVBAR_RE, render(navbarTpl, { BASE: base }));
         changed = true;
     }
-
-    // 2. استبدال الـ footer
     if (FOOTER_RE.test(content)) {
         content = content.replace(FOOTER_RE, render(footerTpl, {}));
         changed = true;
     }
-
-    // 3. استبدال الـ décor (لغير الصفحات الجذرية)
     if (!isRoot && DECOR_RE.test(content)) {
         const subject = getSubject(file);
         const colors = SUBJECT_COLORS[subject] || SUBJECT_COLORS.math;
@@ -129,26 +110,6 @@ for (const file of walk(ROOT)) {
         changed = true;
     }
 
-    // ====== 4. إدراج الـ Sidebar CSS و JS ======
-    // نضيف الأنماط في <head>
-    const sidebarCssWithBase = SIDEBAR_CSS.replace(/\{\{BASE\}\}/g, base);
-    const sidebarJsWithBase = SIDEBAR_JS.replace(/\{\{BASE\}\}/g, base);
-
-    // إدراج CSS قبل </head> إذا لم يكن موجوداً
-    if (!isSidebarIncluded(content) && HEAD_END_RE.test(content)) {
-        content = content.replace(HEAD_END_RE, `    ${sidebarCssWithBase}\n${'    '}${HEAD_END_RE.source}`);
-        changed = true;
-    }
-
-    // إدراج JS قبل </body> إذا لم يكن موجوداً
-    // نبحث عن مكان مناسب قبل </body>، ونتأكد من عدم وجوده
-    if (!isSidebarIncluded(content) && BODY_END_RE.test(content)) {
-        // نضع السكريبتات قبل </body> بمسافة مناسبة
-        content = content.replace(BODY_END_RE, `    ${sidebarJsWithBase}\n${'    '}${BODY_END_RE.source}`);
-        changed = true;
-    }
-
-    // 5. حفظ الملف إذا تغير
     if (changed) {
         fs.writeFileSync(file, content);
         updated++;
@@ -157,10 +118,12 @@ for (const file of walk(ROOT)) {
     }
 }
 
-console.log(`✅ build.js: ${updated} صفحة تحدّثت من partials/ و sidebar/, ${skipped} صفحة ما فيهاش تغيير.`);
+console.log(`✅ build.js: ${updated} صفحة تحدّثت من partials/, ${skipped} صفحة ما فيهاش تغيير.`);
 
 // ============================================================
 // تحديث تلقائي لرقم نسخة الكاش فـ sw.js (cache busting)
+// بدل ما تكون يدوية (v3, v4...)، كنحسبو hash انطلاقاً من محتوى
+// أهم ملفات الموقع - كي تبدل شي حاجة فيهم، الكاش كيتجدد وحدو.
 // ============================================================
 const crypto = require('crypto');
 
@@ -168,9 +131,7 @@ function computeSiteHash() {
     const filesToHash = [
         'index.html', 'subjects.html', 'subject.html',
         'assets/css/style.css', 'assets/css/lesson-common.css', 'assets/css/global-control.css',
-        'assets/css/sidebar.css', // نضيف ملف sidebar.css للتحديث
         'assets/js/script.js', 'assets/js/protection.js',
-        'assets/js/sidebar.js', // نضيف ملف sidebar.js للتحديث
         'partials/navbar.html', 'partials/footer.html', 'partials/decor.html',
     ];
     const hash = crypto.createHash('sha256');

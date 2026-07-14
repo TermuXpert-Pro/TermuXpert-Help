@@ -121,8 +121,7 @@
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
     </style>
-    <link rel="stylesheet" href="../../../../../assets/css/sidebar.css">
-    <\/head>
+</head>
 <body>
 
     <!-- ====== طبقة الحماية غير المرئية ====== -->
@@ -163,59 +162,16 @@
 <div class="glow-orb glow-orb-1"></div>
 <div class="glow-orb glow-orb-2"></div>
 
-    <!-- ====== الشريط الجانبي (Sidebar) ====== -->
-
-<!-- Overlay خلفي -->
-<div id="sidebarOverlay" class="sidebar-overlay"></div>
-
-<!-- الشريط الجانبي نفسه -->
-<aside id="sidebar" class="sidebar" role="navigation" aria-label="Navigation latérale">
-
-    <!-- رأس الشريط -->
-    <div class="sidebar-header">
-        <a href="../../../../../index.html" class="logo">
-            <div class="icon">X</div>
-            <span>X</span>pert
-        </a>
-        <button id="sidebarClose" class="sidebar-close" aria-label="Fermer le menu">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-
-    <!-- زر الرجوع للصفحة الرئيسية -->
-    <a href="../../../../../index.html" class="sidebar-link">
-        <i class="fas fa-house"></i> Accueil
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <a href="../../../../../index.html" class="nav-logo">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
-
-    <!-- زر المواد (يؤدي إلى صفحة المواد) -->
-    <a href="../../../../../subjects.html" class="sidebar-link">
-        <i class="fas fa-th-list"></i> Matières
-    </a>
-
-    <div class="divider"></div>
-
-    <!-- اختصارات المواد -->
-    <div class="sidebar-subtitle">Matières</div>
-
-    <!-- الرياضيات -->
-    <a href="../../../../../subject.html?subject=math" class="sidebar-subject-link">
-        <span class="subject-dot math"></span>
-        <i class="fas fa-calculator"></i> الرياضيات
-    </a>
-
-    <!-- الفيزياء -->
-    <a href="../../../../../subject.html?subject=physique" class="sidebar-subject-link">
-        <span class="subject-dot physique"></span>
-        <i class="fas fa-atom"></i> الفيزياء
-    </a>
-
-    <!-- الكيمياء -->
-    <a href="../../../../../subject.html?subject=chimie" class="sidebar-subject-link">
-        <span class="subject-dot chimie"></span>
-        <i class="fas fa-flask"></i> الكيمياء
-    </a>
-
-</aside>
+    <ul class="nav-links">
+        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+    </ul>
+</nav>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
