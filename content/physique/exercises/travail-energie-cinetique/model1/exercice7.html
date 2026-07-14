@@ -275,17 +275,94 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-    <!-- الشعار في اليسار -->
-    <a href="../../../../../index.html" class="nav-logo">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
         <div class="nav-logo-icon">X</div>
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية في اليمين -->
-    <div class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">
-        <i class="fas fa-bars"></i>
-    </div>
+    <!-- أيقونة القائمة الجانبية -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="menu-icon">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+        </span>
+    </button>
 </nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">
+            <span class="sidebar-logo">X</span>
+            <span class="sidebar-brand-text">pert</span>
+        </div>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Fermer le menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="sidebar-user">
+        <div class="sidebar-avatar">
+            <i class="fas fa-user-graduate"></i>
+        </div>
+        <div class="sidebar-user-info">
+            <span class="sidebar-user-name">1 Bac SE</span>
+            <span class="sidebar-user-role">Sciences Expérimentales</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <ul class="sidebar-menu">
+            <li>
+                <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                    <i class="fas fa-house"></i>
+                    <span>Accueil</span>
+                </a>
+            </li>
+            <li>
+                <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                    <i class="fas fa-book-open"></i>
+                    <span>Matières</span>
+                </a>
+            </li>
+            <li class="sidebar-divider"></li>
+            <li class="sidebar-label">📚 Matières</li>
+            <li>
+                <a href="../../../../../subject.html?subject=math" class="sidebar-link sidebar-link-math" data-subject="math">
+                    <i class="fas fa-calculator"></i>
+                    <span>Mathématiques</span>
+                    <span class="sidebar-badge">12</span>
+                </a>
+            </li>
+            <li>
+                <a href="../../../../../subject.html?subject=physique" class="sidebar-link sidebar-link-physique" data-subject="physique">
+                    <i class="fas fa-atom"></i>
+                    <span>Physique</span>
+                    <span class="sidebar-badge">10</span>
+                </a>
+            </li>
+            <li>
+                <a href="../../../../../subject.html?subject=chimie" class="sidebar-link sidebar-link-chimie" data-subject="chimie">
+                    <i class="fas fa-flask"></i>
+                    <span>Chimie</span>
+                    <span class="sidebar-badge">8</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-version">v2.0</span>
+            <span class="sidebar-copy">Xpert &copy; 2026</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->
 <div id="sidebar" class="sidebar">

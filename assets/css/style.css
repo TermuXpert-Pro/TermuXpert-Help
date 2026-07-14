@@ -393,23 +393,31 @@ input, textarea, [contenteditable="true"] {
 }
 
 /* ============================================================
-   NAVBAR - مع أيقونة القائمة في اليمين
+   NAVBAR - تصميم متطور
    ============================================================ */
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
-    height: 56px;
-    background: var(--bg-card);
-    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    height: 60px;
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ====== الشعار ====== */
+.navbar.scrolled {
+    background: rgba(13, 17, 23, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ====== Logo ====== */
 .nav-logo {
     display: flex;
     align-items: center;
@@ -417,77 +425,128 @@ input, textarea, [contenteditable="true"] {
     text-decoration: none;
     color: var(--text-primary);
     flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+.nav-logo:hover {
+    transform: scale(1.02);
 }
 .nav-logo-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--gradient);
-    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, #4ECDC4, #2ECC71);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     font-weight: 900;
     color: #fff;
+    box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+.nav-logo:hover .nav-logo-icon {
+    box-shadow: 0 4px 20px rgba(78, 205, 196, 0.5);
 }
 .nav-logo-text {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 800;
     color: var(--text-primary);
+    letter-spacing: -0.5px;
 }
 .nav-logo-text span {
-    color: var(--accent-light);
+    color: #4ECDC4;
 }
 
-/* ====== Menu Toggle (في اليمين) ====== */
+/* ====== Menu Toggle (Hamburger animé) ====== */
 .menu-toggle {
-    font-size: 1.5rem;
-    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
     cursor: pointer;
-    padding: 6px 10px;
-    transition: color 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
     flex-shrink: 0;
+    padding: 0;
 }
 .menu-toggle:hover {
-    color: var(--accent-light);
+    background: rgba(78, 205, 196, 0.1);
+    border-color: rgba(78, 205, 196, 0.2);
+}
+.menu-toggle:active {
+    transform: scale(0.92);
+}
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 20px;
+    transition: all 0.3s ease;
+}
+.menu-line {
+    display: block;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.menu-line:nth-child(1) { width: 20px; }
+.menu-line:nth-child(2) { width: 16px; }
+.menu-line:nth-child(3) { width: 12px; }
+
+.menu-toggle:hover .menu-line {
+    background: #4ECDC4;
+}
+.menu-toggle.active .menu-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    width: 20px;
+}
+.menu-toggle.active .menu-line:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active .menu-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    width: 20px;
 }
 
 /* ============================================================
-   SIDEBAR - القائمة الجانبية (تظهر من اليسار)
+   SIDEBAR - تصميم متطور
    ============================================================ */
 
 .sidebar {
     position: fixed;
     top: 0;
-    left: -300px;
-    width: 290px;
+    left: -340px;
+    width: 320px;
     height: 100%;
     background: var(--bg-card);
     border-right: 1px solid var(--border);
-    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.4);
-    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10000;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10001;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 .sidebar.open {
     left: 0;
 }
 
-/* ====== Scrollbar ====== */
+/* ====== Sidebar Scrollbar ====== */
 .sidebar::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
 }
 .sidebar::-webkit-scrollbar-track {
-    background: var(--bg-primary);
+    background: transparent;
 }
 .sidebar::-webkit-scrollbar-thumb {
     background: var(--border);
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 /* ====== Sidebar Header ====== */
@@ -495,102 +554,228 @@ input, textarea, [contenteditable="true"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 22px;
+    padding: 18px 24px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-primary);
     flex-shrink: 0;
 }
-.sidebar-logo {
-    font-size: 1.3rem;
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem;
     font-weight: 900;
-    color: var(--accent-light);
-    font-family: var(--font-main);
-    letter-spacing: 0.5px;
 }
+.sidebar-logo {
+    color: #4ECDC4;
+}
+.sidebar-brand-text {
+    color: var(--text-primary);
+}
+
 .sidebar-close {
-    background: none;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.04);
     border: none;
+    border-radius: 50%;
     color: var(--text-muted);
-    font-size: 2rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    line-height: 1;
-    transition: color 0.2s ease, transform 0.2s ease;
-    padding: 0 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .sidebar-close:hover {
-    color: var(--text-primary);
+    background: rgba(255, 107, 107, 0.15);
+    color: #FF6B6B;
     transform: rotate(90deg);
 }
 
-/* ====== Sidebar Menu ====== */
-.sidebar-menu {
-    list-style: none;
-    padding: 8px 0;
-    margin: 0;
-    flex: 1;
-}
-.sidebar-menu li {
-    padding: 0;
-}
-.sidebar-menu li a {
+/* ====== Sidebar User ====== */
+.sidebar-user {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 13px 24px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    border-left: 3px solid transparent;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(78, 205, 196, 0.03);
 }
-.sidebar-menu li a:hover {
-    background: rgba(78, 205, 196, 0.06);
-    color: var(--text-primary);
-    border-left-color: var(--accent);
-}
-.sidebar-menu li a:active {
-    transform: scale(0.97);
-}
-.sidebar-menu li a i {
-    width: 24px;
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--accent-light);
+.sidebar-avatar {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #4ECDC4, #2ECC71);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
     flex-shrink: 0;
 }
-.sidebar-menu li a .fa-house {
+.sidebar-user-info {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-user-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+.sidebar-user-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ====== Sidebar Navigation ====== */
+.sidebar-nav {
+    flex: 1;
+    padding: 8px 0;
+}
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-menu li {
+    padding: 0 12px;
+}
+.sidebar-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    padding: 12px 12px 6px;
+    opacity: 0.6;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    position: relative;
+}
+.sidebar-link i {
+    width: 22px;
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    transition: color 0.25s ease;
+}
+.sidebar-link:hover {
+    background: rgba(78, 205, 196, 0.08);
+    color: var(--text-primary);
+}
+.sidebar-link:hover i {
     color: #4ECDC4;
 }
-.sidebar-menu li a .fa-book-open {
-    color: #F4D03F;
+.sidebar-link:active {
+    transform: scale(0.97);
 }
-.sidebar-menu li a .fa-calculator {
+
+.sidebar-link.active {
+    background: rgba(78, 205, 196, 0.12);
     color: #4ECDC4;
 }
-.sidebar-menu li a .fa-atom {
+.sidebar-link.active i {
+    color: #4ECDC4;
+}
+.sidebar-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 24px;
+    background: #4ECDC4;
+    border-radius: 0 3px 3px 0;
+}
+
+/* ====== Couleurs par matière ====== */
+.sidebar-link-math:hover,
+.sidebar-link-math.active {
+    background: rgba(78, 205, 196, 0.12);
+    color: #4ECDC4;
+}
+.sidebar-link-math:hover i,
+.sidebar-link-math.active i {
+    color: #4ECDC4;
+}
+
+.sidebar-link-physique:hover,
+.sidebar-link-physique.active {
+    background: rgba(255, 107, 107, 0.12);
     color: #FF6B6B;
 }
-.sidebar-menu li a .fa-flask {
-    color: #BB8FCE;
+.sidebar-link-physique:hover i,
+.sidebar-link-physique.active i {
+    color: #FF6B6B;
+}
+
+.sidebar-link-chimie:hover,
+.sidebar-link-chimie.active {
+    background: rgba(244, 208, 63, 0.12);
+    color: #F4D03F;
+}
+.sidebar-link-chimie:hover i,
+.sidebar-link-chimie.active i {
+    color: #F4D03F;
+}
+
+/* ====== Sidebar Badge ====== */
+.sidebar-badge {
+    margin-left: auto;
+    background: rgba(78, 205, 196, 0.15);
+    color: #4ECDC4;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+.sidebar-link-physique .sidebar-badge {
+    background: rgba(255, 107, 107, 0.15);
+    color: #FF6B6B;
+}
+.sidebar-link-chimie .sidebar-badge {
+    background: rgba(244, 208, 63, 0.15);
+    color: #F4D03F;
 }
 
 /* ====== Sidebar Divider ====== */
 .sidebar-divider {
     height: 1px;
     background: var(--border);
-    margin: 6px 18px;
-    flex-shrink: 0;
+    margin: 6px 16px;
 }
 
 /* ====== Sidebar Footer ====== */
 .sidebar-footer {
     padding: 16px 24px;
     border-top: 1px solid var(--border);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-align: center;
     flex-shrink: 0;
+}
+.sidebar-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+.sidebar-version {
+    background: rgba(78, 205, 196, 0.1);
+    color: #4ECDC4;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
 }
 
 /* ====== Sidebar Overlay ====== */
@@ -600,40 +785,144 @@ input, textarea, [contenteditable="true"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 9999;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 .sidebar-overlay.active {
     opacity: 1;
     visibility: visible;
 }
 
-/* ====== Responsive ====== */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablettes */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 16px;
+        height: 54px;
+    }
+    .nav-logo-text {
+        font-size: 17px;
+    }
+    .nav-logo-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+    .sidebar {
+        width: 280px;
+        left: -300px;
+    }
+}
+
+/* Mobiles */
 @media (max-width: 480px) {
+    .navbar {
+        padding: 0 12px;
+        height: 50px;
+    }
+    .nav-logo-text {
+        font-size: 15px;
+    }
+    .nav-logo-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+    .menu-toggle {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+    }
+    .menu-icon {
+        gap: 4px;
+        width: 17px;
+    }
+    .menu-line {
+        height: 1.5px;
+    }
+    .menu-line:nth-child(1) { width: 17px; }
+    .menu-line:nth-child(2) { width: 13px; }
+    .menu-line:nth-child(3) { width: 9px; }
+
     .sidebar {
         width: 260px;
-        left: -270px;
+        left: -280px;
     }
     .sidebar-header {
         padding: 14px 18px;
     }
-    .sidebar-logo {
-        font-size: 1.1rem;
+    .sidebar-user {
+        padding: 14px 18px;
     }
-    .sidebar-menu li a {
-        padding: 11px 18px;
-        font-size: 0.9rem;
-    }
-    .sidebar-menu li a i {
-        width: 20px;
+    .sidebar-avatar {
+        width: 36px;
+        height: 36px;
         font-size: 1rem;
     }
+    .sidebar-user-name {
+        font-size: 0.85rem;
+    }
+    .sidebar-link {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        gap: 12px;
+    }
+    .sidebar-link i {
+        width: 18px;
+        font-size: 0.95rem;
+    }
+    .sidebar-badge {
+        font-size: 0.55rem;
+        padding: 1px 8px;
+    }
+    .sidebar-label {
+        font-size: 0.6rem;
+        padding: 10px 12px 4px;
+    }
+    .sidebar-footer {
+        padding: 12px 18px;
+    }
+    .sidebar-footer-content {
+        font-size: 0.6rem;
+    }
 }
+
+/* Grands écrans */
+@media (min-width: 1200px) {
+    .navbar {
+        padding: 0 32px;
+    }
+    .sidebar {
+        width: 340px;
+        left: -360px;
+    }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.sidebar.open .sidebar-link {
+    animation: slideIn 0.3s ease forwards;
+}
+.sidebar.open .sidebar-link:nth-child(1) { animation-delay: 0.05s; }
+.sidebar.open .sidebar-link:nth-child(2) { animation-delay: 0.1s; }
+.sidebar.open .sidebar-link:nth-child(3) { animation-delay: 0.15s; }
+.sidebar.open .sidebar-link:nth-child(4) { animation-delay: 0.2s; }
+.sidebar.open .sidebar-link:nth-child(5) { animation-delay: 0.25s; }
 
 
 /* ============================================================
