@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 1 - Mesure en chimie | Xpert</title>
+    <title>Exercice 2 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,7 +184,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .next-btn {
+        .next-btn, .prev-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -201,37 +201,28 @@
             transform: translateX(4px);
             box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
-        .table-wrap {
-            overflow-x: auto;
-            margin: 4px 0;
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
-        .table-wrap table {
-            width: 100%;
-            border-collapse: collapse;
+        .graph-container {
             background: var(--bg-primary);
+            border: 1px solid var(--border);
             border-radius: 6px;
-            overflow: hidden;
-            max-width: 380px;
-            margin: 0 auto;
-        }
-        .table-wrap th {
-            background: var(--bg-card);
-            color: var(--accent-light);
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            font-weight: 700;
+            padding: 8px;
+            margin: 4px 0;
             text-align: center;
-            font-size: 11px;
         }
-        .table-wrap td {
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 11px;
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
         }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -251,7 +242,6 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
         }
     </style>
 </head>
@@ -293,23 +283,23 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-    <a href="../../../../../index.html" class="nav-logo">
-        <div class="nav-logo-icon">X</div>
-        <div class="nav-logo-text"><span>X</span>pert</div>
-    </a>
-    <ul class="nav-links">
-        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
-        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
-    </ul>
-</nav>
+        <a href="../../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Exercice 1</h1>
+            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Exercice 2</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Ionogramme plasmatique</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Densité de l'éthanol - Mélange avec l'heptane</span>
                 <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
             </p>
 
@@ -317,226 +307,122 @@
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Un patient a effectué une analyse de sang. Les résultats de son ionogramme plasmatique sont les suivants :
+                    L'éthanol est un solvant. Pour déterminer sa densité, on verse \(50\text{ mL}\) d'éthanol dans une éprouvette graduée que l'on pèse sur une balance de précision : la masse mesurée est \(m = 94,3\text{ g}\). L'éprouvette vide a une masse \(m' = 53,8\text{ g}\).
                 </p>
 
-                <div class="table-wrap">
-                    <table>
-                        <tr>
-                            <th>Ion</th>
-                            <th>Mesure (g/L)</th>
-                            <th>Valeurs normales (g/L)</th>
-                        </tr>
-                        <tr>
-                            <td>Sodium \(\text{Na}^+\)</td>
-                            <td>\(3,24\)</td>
-                            <td>\([3,10 ; 3,34]\)</td>
-                        </tr>
-                        <tr>
-                            <td>Potassium \(\text{K}^+\)</td>
-                            <td>\(0,12\)</td>
-                            <td>\([0,14 ; 0,22]\)</td>
-                        </tr>
-                    </table>
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Donnée :</strong> \(\rho_{eau} = 1,00\text{ g/mL}\)
                 </div>
 
-                <div class="sub-question" style="margin-top:10px;">
+                <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Examiner les résultats de cette analyse. Les teneurs en ions sodium et potassium de ce patient sont-elles suffisantes ?
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la masse d'éthanol contenu dans l'éprouvette.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">1) Étude de la teneur en Sodium \(\text{Na}^+\)</p>
-
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                On compare la mesure avec l'intervalle des valeurs normales :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3,10 \le t(\text{Na}^+) \le 3,34$$
+                                La masse d'éthanol est la différence entre la masse de l'éprouvette pleine et la masse de l'éprouvette vide :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m_{\text{éthanol}} = m - m' = 94,3 - 53,8 = 40,5\text{ g}$$
                                 </div>
                             </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                On vérifie si la mesure \(3,24\) appartient à cet intervalle :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3,10 < 3,24 < 3,34 \quad \text{✔️}$$
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m_{\text{éthanol}} = 40,5\text{ g}$$
                                 </div>
                             </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <span style="color:#4ECDC4; font-weight:700;">✅ Conclusion :</span> 
-                                La teneur en sodium est <strong>suffisante</strong> et se situe dans l'intervalle normal.
-                            </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">2) Étude de la teneur en Potassium \(\text{K}^+\)</p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                On compare la mesure avec l'intervalle des valeurs normales :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$0,14 \le t(\text{K}^+) \le 0,22$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> 
-                                On vérifie si la mesure \(0,12\) appartient à cet intervalle :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$0,12 < 0,14 \quad \text{❌}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 6 :</span> 
-                                <span style="color:#FF6B6B; font-weight:700;">❌ Conclusion :</span> 
-                                La teneur en potassium est <strong>insuffisante</strong> car elle est inférieure à la limite inférieure normale \((0,14\text{ g/L})\).
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:8px;">
-                                <span class="label resume">Résumé des résultats</span>
-                                <div class="table-wrap">
-                                    <table style="max-width:280px;">
-                                        <tr>
-                                            <th>Ion</th>
-                                            <th>Mesure</th>
-                                            <th>Normale ?</th>
-                                        </tr>
-                                        <tr>
-                                            <td>\(\text{Na}^+\)</td>
-                                            <td>\(3,24\text{ g/L}\)</td>
-                                            <td class="true">✅ Oui</td>
-                                        </tr>
-                                        <tr>
-                                            <td>\(\text{K}^+\)</td>
-                                            <td>\(0,12\text{ g/L}\)</td>
-                                            <td class="false">❌ Non (insuffisant)</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Pour compenser le déficit en potassium observé, le médecin prescrit un médicament. Sur la notice on peut lire :
-                    </p>
-                    <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                        <li><strong>Chlorure de potassium 600 mg par comprimé</strong> soit <strong>314 mg de potassium</strong>.</li>
-                    </ul>
-                    <p style="font-size:11.5px; margin:6px 0;">
-                        Le patient peut également manger des aliments riches en potassium comme la banane :
-                    </p>
-                    <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                        <li><strong>100 g de banane</strong> contiennent <strong>385 mg de potassium</strong>.</li>
-                    </ul>
-                    <p style="font-size:11.5px; margin:6px 0;">
-                        Quelle masse de banane le patient doit-il consommer pour absorber l'équivalent d'un comprimé ?
-                        <br><span style="color:var(--text-muted); font-size:11px;">(On suppose que tout le potassium présent dans la banane est assimilé par l'organisme.)</span>
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la densité de l'éthanol.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">1) Identifier les données</p>
-
                             <div class="step">
-                                <span class="step-num">Donnée 1 :</span> 
-                                Un comprimé apporte \(314\text{ mg}\) de potassium.
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Donnée 2 :</span> 
-                                \(100\text{ g}\) de banane apportent \(385\text{ mg}\) de potassium.
-                            </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">2) Mettre en place un tableau de proportionnalité</p>
-
-                            <div class="table-wrap">
-                                <table style="max-width:300px;">
-                                    <tr>
-                                        <th>Masse de banane (g)</th>
-                                        <th>Masse de potassium (mg)</th>
-                                    </tr>
-                                    <tr>
-                                        <td>\(100\)</td>
-                                        <td>\(385\)</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="font-weight:700; color:#F4D03F;">\(m\)</td>
-                                        <td style="font-weight:700; color:#F4D03F;">\(314\)</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="step" style="margin-top:6px;">
                                 <span class="step-num">Étape 1 :</span> 
-                                On utilise le produit en croix (règle de trois) :
+                                À volume égal (\(50\text{ mL}\)), la masse d'eau est :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = \frac{100 \times 314}{385}$$
+                                    $$m_{eau} = \rho_{eau} \times V = 1,00 \times 50 = 50,0\text{ g}$$
                                 </div>
                             </div>
-
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                On effectue le calcul :
+                                La densité est le rapport des masses à volume égal :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = \frac{31400}{385} \approx 81,56\text{ g}$$
+                                    $$d_{\text{éthanol}} = \frac{m_{\text{éthanol}}}{m_{eau}} = \frac{40,5}{50,0} = 0,81$$
                                 </div>
                             </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                On arrondit avec deux chiffres significatifs (données en mg) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m \approx 81,6\text{ g}$$
-                                </div>
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:8px;">
-                                <span class="label resume">Conclusion</span>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$m \approx 81,6\text{ g de banane}$$
+                                    $$d_{\text{éthanol}} = 0,81$$
                                 </div>
-                                <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
-                                    Le patient doit consommer environ <strong>81,6 g de banane</strong> pour absorber l'équivalent en potassium d'un comprimé.
-                                </p>
+                                <p style="font-size:11px; color:var(--text-muted);">L'éthanol est moins dense que l'eau (\(d < 1\)).</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="highlight-box yellow" style="margin-top:8px;">
-                                <span class="label rappel">Astuce</span>
-                                <p style="font-size:11px;">
-                                    Pour vérifier : si 100 g de banane donnent 385 mg, alors 80 g donnent environ 308 mg. <br>
-                                    \(81,6\text{ g}\) donne \(314\text{ mg}\), ce qui est cohérent ✅
-                                </p>
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        On mélange \(50\text{ mL}\) d'heptane avec \(20\text{ mL}\) d'éthanol. On verse dans une ampoule à décanter. Il se forme deux phases. Commenter et schématiser l'ampoule.
+                    </p>
+                    <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                        <strong>Donnée :</strong> Densité de l'heptane \(d = 0,68\)
+                    </div>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Comparaison des densités :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$d_{\text{heptane}} = 0,68 \quad ; \quad d_{\text{éthanol}} = 0,81$$
+                                </div>
+                                <p style="color:#F4D03F; font-weight:700;">\(d_{\text{heptane}} < d_{\text{éthanol}}\)</p>
                             </div>
-
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Le liquide le <strong>moins dense</strong> se place au-dessus.
+                                <br>Donc l'<strong>heptane</strong> (\(d = 0,68\)) surmonte l'<strong>éthanol</strong> (\(d = 0,81\)).
+                            </div>
+                            <div class="graph-container">
+                                <canvas id="graphDecanter" width="200" height="280"></canvas>
+                                <p>Ampoule à décanter - Heptane (haut) / Éthanol (bas)</p>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <ul style="font-size:12px;">
+                                    <li>Phase supérieure : <strong>Heptane</strong> (\(d = 0,68\))</li>
+                                    <li>Phase inférieure : <strong>Éthanol</strong> (\(d = 0,81\))</li>
+                                </ul>
+                                <p style="font-size:11px; color:var(--text-muted);">Les deux liquides sont non miscibles.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-buttons">
-                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
-                <a href="exercice2.html" class="next-btn">Exercice 2 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 1</a>
+                <a href="exercice3.html" class="next-btn">Exercice 3 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-    <div class="divider"></div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
 
     <script>
         window.addEventListener('scroll', function() {
@@ -557,6 +443,100 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
+
+        // ============================================================
+        // GRAPHIQUE - Ampoule à décanter
+        // ============================================================
+        function drawDecanter() {
+            var canvas = document.getElementById('graphDecanter');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2;
+            var topY = 20;
+            var bottomY = h - 20;
+
+            // Ampoule à décanter (forme)
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+
+            // Partie supérieure (cylindre)
+            ctx.beginPath();
+            ctx.moveTo(cx - 40, topY);
+            ctx.lineTo(cx + 40, topY);
+            ctx.stroke();
+
+            // Côtés
+            ctx.beginPath();
+            ctx.moveTo(cx - 40, topY);
+            ctx.lineTo(cx - 50, topY + 30);
+            ctx.lineTo(cx - 40, bottomY);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(cx + 40, topY);
+            ctx.lineTo(cx + 50, topY + 30);
+            ctx.lineTo(cx + 40, bottomY);
+            ctx.stroke();
+
+            // Fond
+            ctx.beginPath();
+            ctx.moveTo(cx - 40, bottomY);
+            ctx.lineTo(cx + 40, bottomY);
+            ctx.stroke();
+
+            // Robinet
+            ctx.fillStyle = '#FF6B6B';
+            ctx.fillRect(cx - 4, bottomY, 8, 10);
+
+            // Phase supérieure : Heptane (moins dense)
+            var phase1Y = topY + 5;
+            var phase1H = 80;
+            ctx.fillStyle = 'rgba(78, 205, 196, 0.3)';
+            ctx.fillRect(cx - 38, phase1Y, 76, phase1H);
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(cx - 38, phase1Y, 76, phase1H);
+
+            // Phase inférieure : Éthanol (plus dense)
+            var phase2Y = phase1Y + phase1H;
+            var phase2H = 120;
+            ctx.fillStyle = 'rgba(244, 208, 63, 0.25)';
+            ctx.fillRect(cx - 38, phase2Y, 76, phase2H);
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(cx - 38, phase2Y, 76, phase2H);
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Heptane', cx, phase1Y + phase1H/2 + 4);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.fillText('Éthanol', cx, phase2Y + phase2H/2 + 4);
+
+            // Ligne de séparation
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx - 38, phase1Y + phase1H);
+            ctx.lineTo(cx + 38, phase1Y + phase1H);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawDecanter();
+            }, 400);
+        });
     </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>

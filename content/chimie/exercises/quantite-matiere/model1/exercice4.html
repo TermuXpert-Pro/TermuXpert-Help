@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 2 - Mesure en chimie | Xpert</title>
+    <title>Exercice 4 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,7 +184,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .prev-btn {
+        .next-btn, .prev-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -196,6 +196,10 @@
             border-radius: 6px;
             transition: all 0.3s ease;
             font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
         .prev-btn:hover {
             transform: translateX(-4px);
@@ -211,27 +215,25 @@
             background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
-            max-width: 400px;
+            max-width: 350px;
             margin: 0 auto;
         }
         .table-wrap th {
             background: var(--bg-card);
             color: var(--accent-light);
-            padding: 4px 10px;
+            padding: 3px 8px;
             border: 1px solid var(--border);
             font-weight: 700;
             text-align: center;
             font-size: 11px;
         }
         .table-wrap td {
-            padding: 4px 10px;
+            padding: 3px 8px;
             border: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
             font-size: 11px;
         }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -251,7 +253,6 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
         }
     </style>
 </head>
@@ -293,23 +294,23 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-    <a href="../../../../../index.html" class="nav-logo">
-        <div class="nav-logo-icon">X</div>
-        <div class="nav-logo-text"><span>X</span>pert</div>
-    </a>
-    <ul class="nav-links">
-        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
-        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
-    </ul>
-</nav>
+        <a href="../../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Exercice 2</h1>
+            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:#F4D03F;"></i> Exercice 4</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Urée et Glucose - Diagnostic</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Boisson énergétique - Vitamines C et B1</span>
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
@@ -317,275 +318,214 @@
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Les résultats d'analyses biochimiques d'un adulte donnent les résultats suivants :
+                    Une boisson énergétique pour sportifs est obtenue en dissolvant \(790\text{ g}\) de poudre dans de l'eau pour obtenir \(5,0\text{ L}\) de solution.
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Sur l'étiquette on lit : 
+                    <em>"100 g de poudre contiennent \(47,5\text{ mg}\) de vitamine C et \(0,95\text{ mg}\) de vitamine B1."</em>
                 </p>
 
                 <div class="table-wrap">
-                    <table style="max-width:320px;">
+                    <table>
                         <tr>
-                            <th>Substance</th>
-                            <th>Titre massique (g/L)</th>
+                            <th>Élément</th>
+                            <th>C</th>
+                            <th>O</th>
+                            <th>H</th>
+                            <th>N</th>
+                            <th>S</th>
+                            <th>Cl</th>
                         </tr>
                         <tr>
-                            <td>Urée</td>
-                            <td>\(3,5 \times 10^{-1}\text{ g/L}\)</td>
-                        </tr>
-                        <tr>
-                            <td>Glucose</td>
-                            <td>\(7,5 \times 10^{-3}\text{ g/L}\)</td>
+                            <td><strong>Masse molaire (g/mol)</strong></td>
+                            <td>12</td>
+                            <td>16</td>
+                            <td>1</td>
+                            <td>14</td>
+                            <td>32</td>
+                            <td>35,5</td>
                         </tr>
                     </table>
                 </div>
 
-                <p style="color:var(--text-muted); font-size:11px; margin-top:10px; margin-bottom:6px;">
-                    Les <strong>valeurs normales</strong> dans le sang sont :
-                </p>
-
-                <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                    <li>
-                        <strong>Urée</strong> : concentration comprise entre <strong>3 et 8 mmol/L</strong><br>
-                        <span style="font-size:11px; color:var(--text-muted);">Formule brute : \(\text{CH}_4\text{N}_2\text{O}\)</span>
-                    </li>
-                    <li style="margin-top:6px;">
-                        <strong>Glucose</strong> : concentration comprise entre <strong>3 et 8 mmol/L</strong><br>
-                        <span style="font-size:11px; color:var(--text-muted);">Formule brute : \(\text{C}_6\text{H}_{12}\text{O}_6\)</span>
-                    </li>
-                </ul>
-
-                <div class="formula-block" style="font-size:12px; margin:8px 0; background:rgba(255,255,255,0.03);">
-                    <strong>Données :</strong> 
-                    \(M_C = 12\text{ g/mol}\), 
-                    \(M_O = 16\text{ g/mol}\), 
-                    \(M_H = 1\text{ g/mol}\), 
-                    \(M_N = 14\text{ g/mol}\)
-                </div>
-
-                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:6px; padding:8px 10px; margin:8px 0;">
-                    <p style="font-size:11.5px; margin:0; color:var(--text-secondary);">
-                        <strong>Question :</strong> Ce patient souffre-t-il d'<strong>hyperglycémie</strong> (trop de glucose) ou d'<strong>insuffisance rénale</strong> (trop d'urée) ?
-                    </p>
-                </div>
-
                 <div class="sub-question" style="margin-top:8px;">
-                    <div class="letter">Solution</div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol')">Voir la solution</button>
-                    <div id="sol" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Calculer les masses molaires moléculaires des vitamines C (\(C_6H_8O_6\)) et B1 (\(C_{12}H_{17}ON_4SCI\)).
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Vitamine C :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M_C = 6 \times 12 + 8 \times 1 + 6 \times 16 = 72 + 8 + 96 = 176\text{ g/mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Vitamine B1 :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M_{B1} = 12 \times 12 + 17 \times 1 + 16 + 4 \times 14 + 32 + 35,5$$
+                                    $$M_{B1} = 144 + 17 + 16 + 56 + 32 + 35,5 = 300,5\text{ g/mol}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(M_{\text{vitamine C}} = 176\text{ g/mol}\)</li>
+                                    <li>\(M_{\text{vitamine B1}} = 300,5\text{ g/mol}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Déterminer les quantités de matière de vitamine C et B1 présentes dans \(100\text{ g}\) puis dans \(790\text{ g}\) de poudre.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             
-                            <!-- ============================================= -->
-                            <!-- PARTIE 1 : URÉE -->
-                            <!-- ============================================= -->
-                            <p style="font-weight:700; color:#F4D03F; font-size:13px; margin-top:4px; margin-bottom:6px;">
-                                <i class="fas fa-flask" style="margin-left:6px;"></i> 1) Étude de l'urée
-                            </p>
+                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">a) Dans 100 g de poudre</p>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Calcul de la masse molaire de l'urée \(\text{CH}_4\text{N}_2\text{O}\)
+                                <span class="step-num">Vitamine C :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M_{\text{urée}} = M_C + 4M_H + 2M_N + M_O$$
-                                    $$M_{\text{urée}} = 12 + 4 + 2 \times 14 + 16 = 60\text{ g/mol}$$
+                                    $$n_C = \frac{m}{M} = \frac{47,5 \times 10^{-3}}{176} = 2,70 \times 10^{-4}\text{ mol}$$
                                 </div>
                             </div>
-
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Rappel de la formule reliant le titre massique \(C_m\) et la concentration molaire \(C\) :
+                                <span class="step-num">Vitamine B1 :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{C_m}{M}$$
+                                    $$n_{B1} = \frac{0,95 \times 10^{-3}}{300,5} = 3,16 \times 10^{-6}\text{ mol}$$
                                 </div>
-                                <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">
-                                    Où \(C\) est en mol/L, \(C_m\) en g/L et \(M\) en g/mol.
-                                </p>
                             </div>
 
+                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">b) Dans 790 g de poudre</p>
+                            <p style="font-size:11px; color:var(--text-muted);">\(790\text{ g} = 7,90 \times 100\text{ g}\)</p>
+
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Application numérique pour l'urée :
+                                <span class="step-num">Vitamine C :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{urée}} = \frac{3,5 \times 10^{-1}}{60}$$
-                                    $$C_{\text{urée}} = 5,83 \times 10^{-3}\text{ mol/L}$$
+                                    $$n_C = 7,90 \times 2,70 \times 10^{-4} = 2,13 \times 10^{-3}\text{ mol}$$
                                 </div>
                             </div>
-
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                Conversion en mmol/L (1 mol = 1000 mmol) :
+                                <span class="step-num">Vitamine B1 :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{urée}} = 5,83 \times 10^{-3} \times 1000 = 5,83\text{ mmol/L}$$
+                                    $$n_{B1} = 7,90 \times 3,16 \times 10^{-6} = 2,50 \times 10^{-5}\text{ mol}$$
                                 </div>
                             </div>
 
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> 
-                                Comparaison avec les valeurs normales \([3 ; 8]\text{ mmol/L}\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$3 \le 5,83 \le 8 \quad \text{✔️}$$
-                                </div>
-                                <p style="color:#4ECDC4; font-weight:700; margin-top:2px;">
-                                    ✅ La concentration en urée est <strong>normale</strong>.
-                                </p>
-                                <p style="font-size:11px; color:var(--text-muted);">
-                                    Le patient <strong>n'est pas</strong> atteint d'insuffisance rénale.
-                                </p>
-                            </div>
-
-                            <!-- ============================================= -->
-                            <!-- PARTIE 2 : GLUCOSE -->
-                            <!-- ============================================= -->
-                            <p style="font-weight:700; color:#F4D03F; font-size:13px; margin-top:12px; margin-bottom:6px;">
-                                <i class="fas fa-flask" style="margin-left:6px;"></i> 2) Étude du glucose
-                            </p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 6 :</span> 
-                                Calcul de la masse molaire du glucose \(\text{C}_6\text{H}_{12}\text{O}_6\)
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M_{\text{glucose}} = 6M_C + 12M_H + 6M_O$$
-                                    $$M_{\text{glucose}} = 6 \times 12 + 12 \times 1 + 6 \times 16 = 180\text{ g/mol}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 7 :</span> 
-                                Application numérique pour le glucose :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{glucose}} = \frac{7,5 \times 10^{-3}}{180}$$
-                                    $$C_{\text{glucose}} = 4,17 \times 10^{-5}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 8 :</span> 
-                                Conversion en mmol/L :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{glucose}} = 4,17 \times 10^{-5} \times 1000 = 0,0417\text{ mmol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 9 :</span> 
-                                Comparaison avec les valeurs normales \([3 ; 8]\text{ mmol/L}\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$0,0417 < 3 \quad \text{❌}$$
-                                </div>
-                                <p style="color:#FF6B6B; font-weight:700; margin-top:2px;">
-                                    ❌ La concentration en glucose est <strong>très inférieure</strong> à la normale.
-                                </p>
-                            </div>
-
-                            <!-- ============================================= -->
-                            <!-- VÉRIFICATION PAR LA MASSE VOLUMIQUE -->
-                            <!-- ============================================= -->
-                            <p style="font-weight:700; color:#BB8FCE; font-size:13px; margin-top:12px; margin-bottom:6px;">
-                                <i class="fas fa-check-circle" style="margin-left:6px;"></i> 3) Vérification par le titre massique
-                            </p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 10 :</span> 
-                                Calcul des valeurs normales du glucose en g/L :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3\text{ mmol/L} = 3 \times 10^{-3}\text{ mol/L}$$
-                                    $$C_m = C \times M = 3 \times 10^{-3} \times 180 = 0,54\text{ g/L}$$
-                                </div>
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$8\text{ mmol/L} = 8 \times 10^{-3}\text{ mol/L}$$
-                                    $$C_m = 8 \times 10^{-3} \times 180 = 1,44\text{ g/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 11 :</span> 
-                                Les valeurs normales du glucose sont donc comprises entre :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$0,54\text{ g/L} \le C_m(\text{glucose}) \le 1,44\text{ g/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 12 :</span> 
-                                Comparaison avec la mesure du patient \(7,5 \times 10^{-3}\text{ g/L}\) :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$7,5 \times 10^{-3} < 0,54 \quad \text{❌}$$
-                                </div>
-                                <p style="color:#FF6B6B; font-weight:700; margin-top:2px;">
-                                    ❌ Le patient a un taux de glucose <strong>anormalement bas</strong>.
-                                </p>
-                            </div>
-
-                            <!-- ============================================= -->
-                            <!-- DIAGNOSTIC FINAL -->
-                            <!-- ============================================= -->
-                            <div class="highlight-box green" style="margin-top:8px;">
-                                <span class="label resume">Diagnostic final</span>
-                                
-                                <div class="table-wrap" style="margin-top:4px;">
-                                    <table style="max-width:350px;">
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <div class="table-wrap">
+                                    <table>
                                         <tr>
-                                            <th>Substance</th>
-                                            <th>Mesure</th>
-                                            <th>Normale</th>
-                                            <th>Diagnostic</th>
+                                            <th></th>
+                                            <th>Vitamine C</th>
+                                            <th>Vitamine B1</th>
                                         </tr>
                                         <tr>
-                                            <td>Urée</td>
-                                            <td>\(5,83\text{ mmol/L}\)</td>
-                                            <td>\([3 ; 8]\text{ mmol/L}\)</td>
-                                            <td class="true">✅ Normale</td>
+                                            <td>Dans 100 g</td>
+                                            <td>\(2,70 \times 10^{-4}\text{ mol}\)</td>
+                                            <td>\(3,16 \times 10^{-6}\text{ mol}\)</td>
                                         </tr>
                                         <tr>
-                                            <td>Glucose</td>
-                                            <td>\(0,0417\text{ mmol/L}\)</td>
-                                            <td>\([3 ; 8]\text{ mmol/L}\)</td>
-                                            <td class="false">❌ Trop bas</td>
+                                            <td>Dans 790 g</td>
+                                            <td>\(2,13 \times 10^{-3}\text{ mol}\)</td>
+                                            <td>\(2,50 \times 10^{-5}\text{ mol}\)</td>
                                         </tr>
                                     </table>
                                 </div>
-
-                                <div style="margin-top:6px; padding:6px 10px; background:rgba(255,107,107,0.1); border-radius:6px; border-right:3px solid #FF6B6B;">
-                                    <p style="font-size:12px; margin:0; color:#FF6B6B; font-weight:700;">
-                                        ❌ Le patient souffre d'<strong>hypoglycémie</strong> (manque de glucose), 
-                                        et <strong>non</strong> d'hyperglycémie.
-                                    </p>
-                                </div>
-
-                                <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
-                                    Le patient doit consulter un médecin pour traiter son hypoglycémie.
-                                </p>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <!-- ============================================= -->
-                            <!-- RAPPEL DE LA FORMULE -->
-                            <!-- ============================================= -->
-                            <div class="highlight-box yellow" style="margin-top:8px;">
-                                <span class="label rappel">Formule clé à retenir</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0; border-color:#F4D03F;">
-                                    $$C = \frac{C_m}{M}$$
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Déterminer les concentrations molaires de ces vitamines dans la boisson préparée.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Vitamine C :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_C = \frac{n}{V} = \frac{2,13 \times 10^{-3}}{5,0} = 4,26 \times 10^{-4}\text{ mol/L}$$
                                 </div>
-                                <ul style="font-size:11px; color:var(--text-secondary); padding-right:18px; margin:2px 0;">
-                                    <li>\(C\) : concentration molaire (mol/L)</li>
-                                    <li>\(C_m\) : titre massique (g/L)</li>
-                                    <li>\(M\) : masse molaire (g/mol)</li>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Vitamine B1 :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_{B1} = \frac{2,50 \times 10^{-5}}{5,0} = 5,00 \times 10^{-6}\text{ mol/L}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(C_{\text{vitamine C}} = 4,26 \times 10^{-4}\text{ mol/L}\)</li>
+                                    <li>\(C_{\text{vitamine B1}} = 5,00 \times 10^{-6}\text{ mol/L}\)</li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Au cours d'une compétition, un athlète boit \(2,4\text{ L}\) de cette boisson. Calculer les masses de vitamine C et B1 absorbées.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Vitamine C :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m_C = C_C \times M_C \times V = 4,26 \times 10^{-4} \times 176 \times 2,4$$
+                                    $$m_C = 0,180\text{ g} = 180\text{ mg}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Vitamine B1 :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m_{B1} = 5,00 \times 10^{-6} \times 300,5 \times 2,4$$
+                                    $$m_{B1} = 3,61 \times 10^{-3}\text{ g} = 3,61\text{ mg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(m_{\text{vitamine C}} = 180\text{ mg}\)</li>
+                                    <li>\(m_{\text{vitamine B1}} = 3,61\text{ mg}\)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-buttons">
-                <a href="exercice1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 1</a>
-                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="exercice3.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 3</a>
+                <a href="exercice5.html" class="next-btn">Exercice 5 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-    <div class="divider"></div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
 
     <script>
         window.addEventListener('scroll', function() {

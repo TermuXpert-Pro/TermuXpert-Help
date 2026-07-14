@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 2 - Mesure en chimie | Xpert</title>
+    <title>Exercice 3 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,7 +184,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .prev-btn {
+        .next-btn, .prev-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -196,6 +196,10 @@
             border-radius: 6px;
             transition: all 0.3s ease;
             font-size: 13px;
+        }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
         .prev-btn:hover {
             transform: translateX(-4px);
@@ -211,27 +215,29 @@
             background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
-            max-width: 400px;
+            max-width: 650px;
             margin: 0 auto;
         }
         .table-wrap th {
             background: var(--bg-card);
             color: var(--accent-light);
-            padding: 4px 10px;
+            padding: 4px 8px;
             border: 1px solid var(--border);
             font-weight: 700;
             text-align: center;
             font-size: 11px;
         }
         .table-wrap td {
-            padding: 4px 10px;
+            padding: 4px 8px;
             border: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
             font-size: 11px;
         }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .table-wrap .highlight-cell {
+            color: #F4D03F;
+            font-weight: 700;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -240,6 +246,8 @@
             .section p { font-size: 10.5px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
+            .table-wrap table { max-width: 100%; }
+            .table-wrap th, .table-wrap td { font-size: 10px; padding: 2px 4px; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
@@ -251,7 +259,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
+            .table-wrap th, .table-wrap td { font-size: 9px; padding: 2px 3px; }
         }
     </style>
 </head>
@@ -293,23 +301,23 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-    <a href="../../../../../index.html" class="nav-logo">
-        <div class="nav-logo-icon">X</div>
-        <div class="nav-logo-text"><span>X</span>pert</div>
-    </a>
-    <ul class="nav-links">
-        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
-        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
-    </ul>
-</nav>
+        <a href="../../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Exercice 2</h1>
+            <h1 class="lesson-title"><i class="fas fa-table" style="color:#F4D03F;"></i> Exercice 3</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Urée et Glucose - Diagnostic</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Tableau à compléter</span>
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
@@ -317,56 +325,64 @@
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Les résultats d'analyses biochimiques d'un adulte donnent les résultats suivants :
+                    Recopier et compléter le tableau suivant :
                 </p>
 
                 <div class="table-wrap">
-                    <table style="max-width:320px;">
+                    <table>
                         <tr>
-                            <th>Substance</th>
-                            <th>Titre massique (g/L)</th>
+                            <th>État liquide</th>
+                            <th>Acide éthanoïque</th>
+                            <th>Benzaldéhyde</th>
+                            <th>Alcool benzylique</th>
                         </tr>
                         <tr>
-                            <td>Urée</td>
-                            <td>\(3,5 \times 10^{-1}\text{ g/L}\)</td>
+                            <td><strong>Formule chimique</strong></td>
+                            <td>\(C_2H_4O_2\)</td>
+                            <td>\(C_7H_6O\)</td>
+                            <td>\(C_7H_8O\)</td>
                         </tr>
                         <tr>
-                            <td>Glucose</td>
-                            <td>\(7,5 \times 10^{-3}\text{ g/L}\)</td>
+                            <td><strong>Masse molaire \(M\) (g/mol)</strong></td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Masse volumique \(\mu\) (g/mL)</strong></td>
+                            <td>\(1,05\)</td>
+                            <td>\(1,05\)</td>
+                            <td>\(1,04\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volume \(V\) (mL)</strong></td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                            <td>\(12\)</td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Masse \(m\) (g)</strong></td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                            <td>\(15,0\)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quantité de matière \(n\) (mol)</strong></td>
+                            <td>\(0,100\)</td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
+                            <td style="color:#F4D03F; font-weight:700;">?</td>
                         </tr>
                     </table>
                 </div>
 
-                <p style="color:var(--text-muted); font-size:11px; margin-top:10px; margin-bottom:6px;">
-                    Les <strong>valeurs normales</strong> dans le sang sont :
-                </p>
-
-                <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                    <li>
-                        <strong>Urée</strong> : concentration comprise entre <strong>3 et 8 mmol/L</strong><br>
-                        <span style="font-size:11px; color:var(--text-muted);">Formule brute : \(\text{CH}_4\text{N}_2\text{O}\)</span>
-                    </li>
-                    <li style="margin-top:6px;">
-                        <strong>Glucose</strong> : concentration comprise entre <strong>3 et 8 mmol/L</strong><br>
-                        <span style="font-size:11px; color:var(--text-muted);">Formule brute : \(\text{C}_6\text{H}_{12}\text{O}_6\)</span>
-                    </li>
-                </ul>
-
-                <div class="formula-block" style="font-size:12px; margin:8px 0; background:rgba(255,255,255,0.03);">
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin:8px 0;">
                     <strong>Données :</strong> 
                     \(M_C = 12\text{ g/mol}\), 
                     \(M_O = 16\text{ g/mol}\), 
-                    \(M_H = 1\text{ g/mol}\), 
-                    \(M_N = 14\text{ g/mol}\)
+                    \(M_H = 1\text{ g/mol}\)
                 </div>
 
-                <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:6px; padding:8px 10px; margin:8px 0;">
-                    <p style="font-size:11.5px; margin:0; color:var(--text-secondary);">
-                        <strong>Question :</strong> Ce patient souffre-t-il d'<strong>hyperglycémie</strong> (trop de glucose) ou d'<strong>insuffisance rénale</strong> (trop d'urée) ?
-                    </p>
-                </div>
-
-                <div class="sub-question" style="margin-top:8px;">
+                <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">Solution</div>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol')">Voir la solution</button>
                     <div id="sol" class="solution-box">
@@ -374,200 +390,159 @@
                         <div class="sol-content">
                             
                             <!-- ============================================= -->
-                            <!-- PARTIE 1 : URÉE -->
+                            <!-- ACIDE ÉTHANOÏQUE -->
                             <!-- ============================================= -->
-                            <p style="font-weight:700; color:#F4D03F; font-size:13px; margin-top:4px; margin-bottom:6px;">
-                                <i class="fas fa-flask" style="margin-left:6px;"></i> 1) Étude de l'urée
+                            <p style="font-weight:600; color:#F4D03F; margin-top:4px; margin-bottom:6px;">
+                                <i class="fas fa-flask" style="margin-left:6px;"></i> 1) Acide éthanoïque \(C_2H_4O_2\)
                             </p>
 
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Calcul de la masse molaire de l'urée \(\text{CH}_4\text{N}_2\text{O}\)
+                                Masse molaire :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M_{\text{urée}} = M_C + 4M_H + 2M_N + M_O$$
-                                    $$M_{\text{urée}} = 12 + 4 + 2 \times 14 + 16 = 60\text{ g/mol}$$
+                                    $$M = 2M_C + 4M_H + 2M_O = 2 \times 12 + 4 \times 1 + 2 \times 16$$
+                                    $$M = 24 + 4 + 32 = 60\text{ g/mol}$$
                                 </div>
                             </div>
 
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Rappel de la formule reliant le titre massique \(C_m\) et la concentration molaire \(C\) :
+                                Masse :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{C_m}{M}$$
+                                    $$m = n \times M = 0,100 \times 60 = 6,00\text{ g}$$
                                 </div>
-                                <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">
-                                    Où \(C\) est en mol/L, \(C_m\) en g/L et \(M\) en g/mol.
-                                </p>
                             </div>
 
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                Application numérique pour l'urée :
+                                Volume :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{urée}} = \frac{3,5 \times 10^{-1}}{60}$$
-                                    $$C_{\text{urée}} = 5,83 \times 10^{-3}\text{ mol/L}$$
+                                    $$\mu = \frac{m}{V} \quad \Rightarrow \quad V = \frac{m}{\mu} = \frac{6,00}{1,05} = 5,71\text{ mL}$$
                                 </div>
                             </div>
 
+                            <!-- ============================================= -->
+                            <!-- BENZALDÉHYDE -->
+                            <!-- ============================================= -->
+                            <p style="font-weight:600; color:#F4D03F; margin-top:12px; margin-bottom:6px;">
+                                <i class="fas fa-flask" style="margin-left:6px;"></i> 2) Benzaldéhyde \(C_7H_6O\)
+                            </p>
+
                             <div class="step">
                                 <span class="step-num">Étape 4 :</span> 
-                                Conversion en mmol/L (1 mol = 1000 mmol) :
+                                Masse molaire :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{urée}} = 5,83 \times 10^{-3} \times 1000 = 5,83\text{ mmol/L}$$
+                                    $$M = 7M_C + 6M_H + M_O = 7 \times 12 + 6 \times 1 + 16$$
+                                    $$M = 84 + 6 + 16 = 106\text{ g/mol}$$
                                 </div>
                             </div>
 
                             <div class="step">
                                 <span class="step-num">Étape 5 :</span> 
-                                Comparaison avec les valeurs normales \([3 ; 8]\text{ mmol/L}\) :
+                                Masse :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$3 \le 5,83 \le 8 \quad \text{✔️}$$
+                                    $$m = \mu \times V = 1,05 \times 12 = 12,6\text{ g}$$
                                 </div>
-                                <p style="color:#4ECDC4; font-weight:700; margin-top:2px;">
-                                    ✅ La concentration en urée est <strong>normale</strong>.
-                                </p>
-                                <p style="font-size:11px; color:var(--text-muted);">
-                                    Le patient <strong>n'est pas</strong> atteint d'insuffisance rénale.
-                                </p>
                             </div>
-
-                            <!-- ============================================= -->
-                            <!-- PARTIE 2 : GLUCOSE -->
-                            <!-- ============================================= -->
-                            <p style="font-weight:700; color:#F4D03F; font-size:13px; margin-top:12px; margin-bottom:6px;">
-                                <i class="fas fa-flask" style="margin-left:6px;"></i> 2) Étude du glucose
-                            </p>
 
                             <div class="step">
                                 <span class="step-num">Étape 6 :</span> 
-                                Calcul de la masse molaire du glucose \(\text{C}_6\text{H}_{12}\text{O}_6\)
+                                Quantité de matière :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M_{\text{glucose}} = 6M_C + 12M_H + 6M_O$$
-                                    $$M_{\text{glucose}} = 6 \times 12 + 12 \times 1 + 6 \times 16 = 180\text{ g/mol}$$
+                                    $$n = \frac{m}{M} = \frac{12,6}{106} = 0,119\text{ mol}$$
                                 </div>
                             </div>
 
+                            <!-- ============================================= -->
+                            <!-- ALCOOL BENZYLIQUE -->
+                            <!-- ============================================= -->
+                            <p style="font-weight:600; color:#F4D03F; margin-top:12px; margin-bottom:6px;">
+                                <i class="fas fa-flask" style="margin-left:6px;"></i> 3) Alcool benzylique \(C_7H_8O\)
+                            </p>
+
                             <div class="step">
                                 <span class="step-num">Étape 7 :</span> 
-                                Application numérique pour le glucose :
+                                Masse molaire :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{glucose}} = \frac{7,5 \times 10^{-3}}{180}$$
-                                    $$C_{\text{glucose}} = 4,17 \times 10^{-5}\text{ mol/L}$$
+                                    $$M = 7M_C + 8M_H + M_O = 7 \times 12 + 8 \times 1 + 16$$
+                                    $$M = 84 + 8 + 16 = 108\text{ g/mol}$$
                                 </div>
                             </div>
 
                             <div class="step">
                                 <span class="step-num">Étape 8 :</span> 
-                                Conversion en mmol/L :
+                                Volume :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{glucose}} = 4,17 \times 10^{-5} \times 1000 = 0,0417\text{ mmol/L}$$
+                                    $$V = \frac{m}{\mu} = \frac{15,0}{1,04} = 14,4\text{ mL}$$
                                 </div>
                             </div>
 
                             <div class="step">
                                 <span class="step-num">Étape 9 :</span> 
-                                Comparaison avec les valeurs normales \([3 ; 8]\text{ mmol/L}\) :
+                                Quantité de matière :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$0,0417 < 3 \quad \text{❌}$$
-                                </div>
-                                <p style="color:#FF6B6B; font-weight:700; margin-top:2px;">
-                                    ❌ La concentration en glucose est <strong>très inférieure</strong> à la normale.
-                                </p>
-                            </div>
-
-                            <!-- ============================================= -->
-                            <!-- VÉRIFICATION PAR LA MASSE VOLUMIQUE -->
-                            <!-- ============================================= -->
-                            <p style="font-weight:700; color:#BB8FCE; font-size:13px; margin-top:12px; margin-bottom:6px;">
-                                <i class="fas fa-check-circle" style="margin-left:6px;"></i> 3) Vérification par le titre massique
-                            </p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 10 :</span> 
-                                Calcul des valeurs normales du glucose en g/L :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3\text{ mmol/L} = 3 \times 10^{-3}\text{ mol/L}$$
-                                    $$C_m = C \times M = 3 \times 10^{-3} \times 180 = 0,54\text{ g/L}$$
-                                </div>
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$8\text{ mmol/L} = 8 \times 10^{-3}\text{ mol/L}$$
-                                    $$C_m = 8 \times 10^{-3} \times 180 = 1,44\text{ g/L}$$
+                                    $$n = \frac{m}{M} = \frac{15,0}{108} = 0,139\text{ mol}$$
                                 </div>
                             </div>
 
-                            <div class="step">
-                                <span class="step-num">Étape 11 :</span> 
-                                Les valeurs normales du glucose sont donc comprises entre :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$0,54\text{ g/L} \le C_m(\text{glucose}) \le 1,44\text{ g/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 12 :</span> 
-                                Comparaison avec la mesure du patient \(7,5 \times 10^{-3}\text{ g/L}\) :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$7,5 \times 10^{-3} < 0,54 \quad \text{❌}$$
-                                </div>
-                                <p style="color:#FF6B6B; font-weight:700; margin-top:2px;">
-                                    ❌ Le patient a un taux de glucose <strong>anormalement bas</strong>.
-                                </p>
-                            </div>
-
                             <!-- ============================================= -->
-                            <!-- DIAGNOSTIC FINAL -->
+                            <!-- TABLEAU FINAL -->
                             <!-- ============================================= -->
-                            <div class="highlight-box green" style="margin-top:8px;">
-                                <span class="label resume">Diagnostic final</span>
-                                
-                                <div class="table-wrap" style="margin-top:4px;">
-                                    <table style="max-width:350px;">
+                            <div class="highlight-box green" style="margin-top:12px;">
+                                <span class="label resume">Tableau complété</span>
+                                <div class="table-wrap">
+                                    <table>
                                         <tr>
-                                            <th>Substance</th>
-                                            <th>Mesure</th>
-                                            <th>Normale</th>
-                                            <th>Diagnostic</th>
+                                            <th>État liquide</th>
+                                            <th>Acide éthanoïque</th>
+                                            <th>Benzaldéhyde</th>
+                                            <th>Alcool benzylique</th>
                                         </tr>
                                         <tr>
-                                            <td>Urée</td>
-                                            <td>\(5,83\text{ mmol/L}\)</td>
-                                            <td>\([3 ; 8]\text{ mmol/L}\)</td>
-                                            <td class="true">✅ Normale</td>
+                                            <td><strong>Formule chimique</strong></td>
+                                            <td>\(C_2H_4O_2\)</td>
+                                            <td>\(C_7H_6O\)</td>
+                                            <td>\(C_7H_8O\)</td>
                                         </tr>
                                         <tr>
-                                            <td>Glucose</td>
-                                            <td>\(0,0417\text{ mmol/L}\)</td>
-                                            <td>\([3 ; 8]\text{ mmol/L}\)</td>
-                                            <td class="false">❌ Trop bas</td>
+                                            <td><strong>Masse molaire \(M\) (g/mol)</strong></td>
+                                            <td style="color:#F4D03F; font-weight:700;">60</td>
+                                            <td style="color:#F4D03F; font-weight:700;">106</td>
+                                            <td style="color:#F4D03F; font-weight:700;">108</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Masse volumique \(\mu\) (g/mL)</strong></td>
+                                            <td>\(1,05\)</td>
+                                            <td>\(1,05\)</td>
+                                            <td>\(1,04\)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Volume \(V\) (mL)</strong></td>
+                                            <td style="color:#F4D03F; font-weight:700;">5,71</td>
+                                            <td>\(12\)</td>
+                                            <td style="color:#F4D03F; font-weight:700;">14,4</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Masse \(m\) (g)</strong></td>
+                                            <td style="color:#F4D03F; font-weight:700;">6,00</td>
+                                            <td style="color:#F4D03F; font-weight:700;">12,6</td>
+                                            <td>\(15,0\)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Quantité de matière \(n\) (mol)</strong></td>
+                                            <td>\(0,100\)</td>
+                                            <td style="color:#F4D03F; font-weight:700;">0,119</td>
+                                            <td style="color:#F4D03F; font-weight:700;">0,139</td>
                                         </tr>
                                     </table>
                                 </div>
-
-                                <div style="margin-top:6px; padding:6px 10px; background:rgba(255,107,107,0.1); border-radius:6px; border-right:3px solid #FF6B6B;">
-                                    <p style="font-size:12px; margin:0; color:#FF6B6B; font-weight:700;">
-                                        ❌ Le patient souffre d'<strong>hypoglycémie</strong> (manque de glucose), 
-                                        et <strong>non</strong> d'hyperglycémie.
-                                    </p>
-                                </div>
-
-                                <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
-                                    Le patient doit consulter un médecin pour traiter son hypoglycémie.
-                                </p>
                             </div>
 
-                            <!-- ============================================= -->
-                            <!-- RAPPEL DE LA FORMULE -->
-                            <!-- ============================================= -->
                             <div class="highlight-box yellow" style="margin-top:8px;">
-                                <span class="label rappel">Formule clé à retenir</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0; border-color:#F4D03F;">
-                                    $$C = \frac{C_m}{M}$$
+                                <span class="label rappel">Formules clés</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M = \sum M_{atomes} \quad ; \quad n = \frac{m}{M} \quad ; \quad \mu = \frac{m}{V}$$
                                 </div>
-                                <ul style="font-size:11px; color:var(--text-secondary); padding-right:18px; margin:2px 0;">
-                                    <li>\(C\) : concentration molaire (mol/L)</li>
-                                    <li>\(C_m\) : titre massique (g/L)</li>
-                                    <li>\(M\) : masse molaire (g/mol)</li>
-                                </ul>
                             </div>
 
                         </div>
@@ -576,16 +551,16 @@
             </div>
 
             <div class="nav-buttons">
-                <a href="exercice1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 1</a>
-                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="exercice2.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 2</a>
+                <a href="exercice4.html" class="next-btn">Exercice 4 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-    <div class="divider"></div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
 
     <script>
         window.addEventListener('scroll', function() {

@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 1 - Mesure en chimie | Xpert</title>
+    <title>Exercice 5 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,7 +184,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .next-btn {
+        .prev-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -197,41 +197,10 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-        .next-btn:hover {
-            transform: translateX(4px);
+        .prev-btn:hover {
+            transform: translateX(-4px);
             box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
-        .table-wrap {
-            overflow-x: auto;
-            margin: 4px 0;
-        }
-        .table-wrap table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--bg-primary);
-            border-radius: 6px;
-            overflow: hidden;
-            max-width: 380px;
-            margin: 0 auto;
-        }
-        .table-wrap th {
-            background: var(--bg-card);
-            color: var(--accent-light);
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            font-weight: 700;
-            text-align: center;
-            font-size: 11px;
-        }
-        .table-wrap td {
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 11px;
-        }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -251,7 +220,6 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
         }
     </style>
 </head>
@@ -293,250 +261,186 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-    <a href="../../../../../index.html" class="nav-logo">
-        <div class="nav-logo-icon">X</div>
-        <div class="nav-logo-text"><span>X</span>pert</div>
-    </a>
-    <ul class="nav-links">
-        <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
-        <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
-    </ul>
-</nav>
+        <a href="../../../../../index.html" class="nav-logo">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../../../../../index.html"><i class="fas fa-house"></i> Accueil</a></li>
+            <li><a href="../../../../../subjects.html"><i class="fas fa-book-open"></i> Matières</a></li>
+        </ul>
+    </nav>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Exercice 1</h1>
+            <h1 class="lesson-title"><i class="fas fa-water" style="color:#F4D03F;"></i> Exercice 5</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Ionogramme plasmatique</span>
-                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Eau salée - Chlorure de sodium</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Un patient a effectué une analyse de sang. Les résultats de son ionogramme plasmatique sont les suivants :
+                    Une eau contient du chlorure de sodium.
                 </p>
 
-                <div class="table-wrap">
-                    <table>
-                        <tr>
-                            <th>Ion</th>
-                            <th>Mesure (g/L)</th>
-                            <th>Valeurs normales (g/L)</th>
-                        </tr>
-                        <tr>
-                            <td>Sodium \(\text{Na}^+\)</td>
-                            <td>\(3,24\)</td>
-                            <td>\([3,10 ; 3,34]\)</td>
-                        </tr>
-                        <tr>
-                            <td>Potassium \(\text{K}^+\)</td>
-                            <td>\(0,12\)</td>
-                            <td>\([0,14 ; 0,22]\)</td>
-                        </tr>
-                    </table>
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Na} = 23\text{ g/mol}\), 
+                    \(M_{Cl} = 35,5\text{ g/mol}\)
                 </div>
 
-                <div class="sub-question" style="margin-top:10px;">
+                <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Examiner les résultats de cette analyse. Les teneurs en ions sodium et potassium de ce patient sont-elles suffisantes ?
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la formule du chlorure de sodium dans l'eau ?</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">1) Étude de la teneur en Sodium \(\text{Na}^+\)</p>
-
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                On compare la mesure avec l'intervalle des valeurs normales :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3,10 \le t(\text{Na}^+) \le 3,34$$
+                                Dans l'eau, le chlorure de sodium se dissocie en ions :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\text{NaCl}_{(s)} \longrightarrow \text{Na}^+_{(aq)} + \text{Cl}^-_{(aq)}$$
                                 </div>
                             </div>
-
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                On vérifie si la mesure \(3,24\) appartient à cet intervalle :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3,10 < 3,24 < 3,34 \quad \text{✔️}$$
+                                Dans l'eau, la formule est donc :
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\text{Na}^+ + \text{Cl}^-$$
                                 </div>
+                                <p style="font-size:11px; color:var(--text-muted);">On ne peut pas mettre \(\text{NaCl}\) car le sel est dissous.</p>
                             </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <span style="color:#4ECDC4; font-weight:700;">✅ Conclusion :</span> 
-                                La teneur en sodium est <strong>suffisante</strong> et se situe dans l'intervalle normal.
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <p>\(\text{Na}^+ + \text{Cl}^-\) (ions en solution)</p>
                             </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">2) Étude de la teneur en Potassium \(\text{K}^+\)</p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                On compare la mesure avec l'intervalle des valeurs normales :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$0,14 \le t(\text{K}^+) \le 0,22$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> 
-                                On vérifie si la mesure \(0,12\) appartient à cet intervalle :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$0,12 < 0,14 \quad \text{❌}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 6 :</span> 
-                                <span style="color:#FF6B6B; font-weight:700;">❌ Conclusion :</span> 
-                                La teneur en potassium est <strong>insuffisante</strong> car elle est inférieure à la limite inférieure normale \((0,14\text{ g/L})\).
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:8px;">
-                                <span class="label resume">Résumé des résultats</span>
-                                <div class="table-wrap">
-                                    <table style="max-width:280px;">
-                                        <tr>
-                                            <th>Ion</th>
-                                            <th>Mesure</th>
-                                            <th>Normale ?</th>
-                                        </tr>
-                                        <tr>
-                                            <td>\(\text{Na}^+\)</td>
-                                            <td>\(3,24\text{ g/L}\)</td>
-                                            <td class="true">✅ Oui</td>
-                                        </tr>
-                                        <tr>
-                                            <td>\(\text{K}^+\)</td>
-                                            <td>\(0,12\text{ g/L}\)</td>
-                                            <td class="false">❌ Non (insuffisant)</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Pour compenser le déficit en potassium observé, le médecin prescrit un médicament. Sur la notice on peut lire :
-                    </p>
-                    <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                        <li><strong>Chlorure de potassium 600 mg par comprimé</strong> soit <strong>314 mg de potassium</strong>.</li>
-                    </ul>
-                    <p style="font-size:11.5px; margin:6px 0;">
-                        Le patient peut également manger des aliments riches en potassium comme la banane :
-                    </p>
-                    <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                        <li><strong>100 g de banane</strong> contiennent <strong>385 mg de potassium</strong>.</li>
-                    </ul>
-                    <p style="font-size:11.5px; margin:6px 0;">
-                        Quelle masse de banane le patient doit-il consommer pour absorber l'équivalent d'un comprimé ?
-                        <br><span style="color:var(--text-muted); font-size:11px;">(On suppose que tout le potassium présent dans la banane est assimilé par l'organisme.)</span>
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la masse molaire du chlorure de sodium.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">1) Identifier les données</p>
-
                             <div class="step">
-                                <span class="step-num">Donnée 1 :</span> 
-                                Un comprimé apporte \(314\text{ mg}\) de potassium.
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Donnée 2 :</span> 
-                                \(100\text{ g}\) de banane apportent \(385\text{ mg}\) de potassium.
-                            </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">2) Mettre en place un tableau de proportionnalité</p>
-
-                            <div class="table-wrap">
-                                <table style="max-width:300px;">
-                                    <tr>
-                                        <th>Masse de banane (g)</th>
-                                        <th>Masse de potassium (mg)</th>
-                                    </tr>
-                                    <tr>
-                                        <td>\(100\)</td>
-                                        <td>\(385\)</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="font-weight:700; color:#F4D03F;">\(m\)</td>
-                                        <td style="font-weight:700; color:#F4D03F;">\(314\)</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="step" style="margin-top:6px;">
                                 <span class="step-num">Étape 1 :</span> 
-                                On utilise le produit en croix (règle de trois) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = \frac{100 \times 314}{385}$$
+                                    $$M_{\text{NaCl}} = M_{Na} + M_{Cl} = 23 + 35,5 = 58,5\text{ g/mol}$$
                                 </div>
                             </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$M_{\text{NaCl}} = 58,5\text{ g/mol}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        L'eau salée a une concentration massique en sel de \(200\text{ g/L}\). Quelle est la concentration molaire du chlorure de sodium dans cette eau ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Rappel de la formule :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C = \frac{C_m}{M}$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">\(C_m\) en g/L, \(M\) en g/mol</p>
+                            </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                On effectue le calcul :
+                                Application numérique :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = \frac{31400}{385} \approx 81,56\text{ g}$$
+                                    $$C = \frac{200}{58,5} = 3,42\text{ mol/L}$$
                                 </div>
                             </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$C = 3,42\text{ mol/L}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Formule à retenir</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C = \frac{C_m}{M}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        De combien de litres d'une telle eau faut-il disposer pour pouvoir extraire une masse de sel égale à une tonne ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Conversion de la masse :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$1\text{ tonne} = 10^3\text{ kg} = 10^6\text{ g}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                On sait que \(1\text{ L}\) contient \(200\text{ g}\) de sel.
+                                <br>Donc pour \(10^6\text{ g}\), le volume nécessaire est :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V = \frac{10^6}{200} = 5000\text{ L}$$
+                                </div>
+                            </div>
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                On arrondit avec deux chiffres significatifs (données en mg) :
+                                Conversion en m³ :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m \approx 81,6\text{ g}$$
+                                    $$V = 5000\text{ L} = 5,00\text{ m}^3$$
                                 </div>
                             </div>
-
-                            <div class="highlight-box green" style="margin-top:8px;">
-                                <span class="label resume">Conclusion</span>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponse</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$m \approx 81,6\text{ g de banane}$$
+                                    $$V = 5,00 \times 10^3\text{ L} = 5,00\text{ m}^3$$
                                 </div>
-                                <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
-                                    Le patient doit consommer environ <strong>81,6 g de banane</strong> pour absorber l'équivalent en potassium d'un comprimé.
-                                </p>
+                                <p style="font-size:11px; color:var(--text-muted);">Il faut \(5000\text{ L}\) d'eau salée pour extraire \(1\) tonne de sel.</p>
                             </div>
-
-                            <div class="highlight-box yellow" style="margin-top:8px;">
-                                <span class="label rappel">Astuce</span>
-                                <p style="font-size:11px;">
-                                    Pour vérifier : si 100 g de banane donnent 385 mg, alors 80 g donnent environ 308 mg. <br>
-                                    \(81,6\text{ g}\) donne \(314\text{ mg}\), ce qui est cohérent ✅
-                                </p>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-buttons">
+                <a href="exercice4.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 4</a>
                 <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
-                <a href="exercice2.html" class="next-btn">Exercice 2 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
 
     <footer class="footer">
-    <div class="divider"></div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
+        <div class="divider"></div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
 
     <script>
         window.addEventListener('scroll', function() {
