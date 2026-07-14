@@ -166,9 +166,145 @@ function drawGraph4() {
     CanvasUtils.drawNote(ctx, 'AG = 1/4 AB + 1/2 AC', 250, 20);
 }
 
+// ====== Exercice 5 (partie 1) : Construction de G par associativité ======
+function drawGraph5() {
+    const s = CanvasUtils.setupCanvas('graph5');
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const ox = 60, oy = h - 30, scale = 40;
+
+    const A = { x: 1, y: 1, color: '#4ECDC4', label: 'A' };
+    const B = { x: 4, y: 0.5, color: '#FF6B6B', label: 'B' };
+    const C = { x: 2.5, y: 4.5, color: '#BB8FCE', label: 'C' };
+    // E = Bar{(A,2);(B,-3)} => AE = 3AB
+    const E = { x: A.x + 3 * (B.x - A.x), y: A.y + 3 * (B.y - A.y), color: '#A8FF78', label: 'E' };
+    // G = Bar{(E,-1);(C,5)} => CG = -1/4 CE
+    const G = { x: C.x - 0.25 * (E.x - C.x), y: C.y - 0.25 * (E.y - C.y), color: '#F4D03F', label: 'G' };
+
+    CanvasUtils.drawAxes(ctx, ox, oy, w, h);
+    CanvasUtils.drawNote(ctx, 'x', w - 20, oy + 18, { color: '#4ECDC4', font: '12px Arial' });
+    CanvasUtils.drawNote(ctx, 'y', ox + 10, 16, { color: '#4ECDC4', font: '12px Arial' });
+
+    // Droite (AB)
+    CanvasUtils.drawLine(ctx, ox, oy, scale, A.x, A.y, B.x, B.y, { dashed: true, dashPattern: [3, 3] });
+    // Droite (CE)
+    CanvasUtils.drawLine(ctx, ox, oy, scale, C.x, C.y, E.x, E.y, {
+        color: '#A8FF78', lineWidth: 1.5, dashed: true, dashPattern: [4, 4]
+    });
+
+    CanvasUtils.drawPoints(ctx, ox, oy, scale, [A, B, C, E, G].map(p => ({ ...p, showCoords: false })));
+
+    // Légende
+    CanvasUtils.drawNote(ctx, 'A', 10, 20, { color: '#4ECDC4' });
+    CanvasUtils.drawNote(ctx, 'B', 30, 20, { color: '#FF6B6B' });
+    CanvasUtils.drawNote(ctx, 'C', 50, 20, { color: '#BB8FCE' });
+    CanvasUtils.drawNote(ctx, 'E (AE = 3AB)', 70, 20, { color: '#A8FF78' });
+    CanvasUtils.drawNote(ctx, 'G (CG = -1/4 CE)', 10, 35, { color: '#F4D03F' });
+    CanvasUtils.drawNote(ctx, 'Associativité : G = Bar{(E,-1);(C,5)}', 200, 20);
+}
+
+// ====== Exercice 5 (partie 2) : Centre de gravité G = Bar{(A,1);(I,2)} ======
+// ملاحظة: الكانفاس هنا سميتو graph6cg (ماشي graph6) باش ما يتصادمش مع
+// drawGraph6 الحقيقية ديال exercice6.html (رسمة ديال دائرة مختلفة تماماً).
+function drawGraph6cg() {
+    const s = CanvasUtils.setupCanvas('graph6cg');
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const ox = 60, oy = h - 30, scale = 45;
+
+    const A = { x: 2.5, y: 0.8, color: '#4ECDC4', label: 'A' };
+    const B = { x: 5.5, y: 1, color: '#FF6B6B', label: 'B' };
+    const C = { x: 3.5, y: 5, color: '#BB8FCE', label: 'C' };
+    const I = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2, color: '#A8FF78', label: 'I' };
+    const G = { x: (1 * A.x + 2 * I.x) / 3, y: (1 * A.y + 2 * I.y) / 3, color: '#F4D03F', label: 'G' };
+
+    CanvasUtils.drawAxes(ctx, ox, oy, w, h);
+    CanvasUtils.drawNote(ctx, 'x', w - 20, oy + 18, { color: '#4ECDC4', font: '12px Arial' });
+    CanvasUtils.drawNote(ctx, 'y', ox + 10, 16, { color: '#4ECDC4', font: '12px Arial' });
+
+    // Triangle ABC
+    ctx.strokeStyle = '#2A2A3E';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+    ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+    ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Médiane AI
+    CanvasUtils.drawLine(ctx, ox, oy, scale, A.x, A.y, I.x, I.y, {
+        color: '#A8FF78', lineWidth: 2, dashed: true, dashPattern: [4, 4]
+    });
+
+    CanvasUtils.drawPoints(ctx, ox, oy, scale, [A, B, C, I, G].map(p => ({ ...p, showCoords: false })));
+
+    // Légende
+    CanvasUtils.drawNote(ctx, 'Triangle ABC', 10, 20, { color: '#4ECDC4' });
+    CanvasUtils.drawNote(ctx, 'I milieu de [BC]', 10, 35, { color: '#A8FF78' });
+    CanvasUtils.drawNote(ctx, 'G centre de gravité', 10, 50, { color: '#F4D03F' });
+    CanvasUtils.drawNote(ctx, 'G = Bar{(A,1); (I,2)}', 280, 20);
+    CanvasUtils.drawNote(ctx, 'AG = 2/3 AI', 280, 35);
+}
+
+// ====== Exercice 6 : Réduction d'écriture - Cercle C(G, KA) ======
+function drawGraph6() {
+    const s = CanvasUtils.setupCanvas('graph6');
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const ox = 80, oy = h - 30, scale = 40;
+
+    const A = { x: 1, y: 1, color: '#4ECDC4', label: 'A' };
+    const B = { x: 5, y: 0.5, color: '#FF6B6B', label: 'B' };
+    const C = { x: 3, y: 4.5, color: '#BB8FCE', label: 'C' };
+    // K = Bar{(C,-3);(B,1)}
+    const K = {
+        x: (-3 * C.x + 1 * B.x) / (-3 + 1),
+        y: (-3 * C.y + 1 * B.y) / (-3 + 1),
+        color: '#A8FF78', label: 'K'
+    };
+    // G = Bar{(A,2);(B,-1);(C,-3)}
+    const G = {
+        x: (2 * A.x + (-1) * B.x + (-3) * C.x) / (2 - 1 - 3),
+        y: (2 * A.y + (-1) * B.y + (-3) * C.y) / (2 - 1 - 3),
+        color: '#F4D03F', label: 'G'
+    };
+    // Rayon KA
+    const r = Math.sqrt((K.x - A.x) ** 2 + (K.y - A.y) ** 2);
+
+    CanvasUtils.drawAxes(ctx, ox, oy, w, h);
+    CanvasUtils.drawNote(ctx, 'x', w - 20, oy + 18, { color: '#4ECDC4', font: '12px Arial' });
+    CanvasUtils.drawNote(ctx, 'y', ox + 10, 16, { color: '#4ECDC4', font: '12px Arial' });
+
+    // Cercle de centre G et rayon KA
+    ctx.strokeStyle = '#4D9DE0';
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    ctx.arc(ox + G.x * scale, oy - G.y * scale, r * scale, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    CanvasUtils.drawPoints(ctx, ox, oy, scale, [A, B, C, K, G].map(p => ({ ...p, showCoords: false })));
+
+    // Légende
+    CanvasUtils.drawNote(ctx, 'A', 10, 20, { color: '#4ECDC4' });
+    CanvasUtils.drawNote(ctx, 'B', 30, 20, { color: '#FF6B6B' });
+    CanvasUtils.drawNote(ctx, 'C', 50, 20, { color: '#BB8FCE' });
+    CanvasUtils.drawNote(ctx, 'K', 70, 20, { color: '#A8FF78' });
+    CanvasUtils.drawNote(ctx, 'G (centre)', 10, 35, { color: '#F4D03F' });
+    CanvasUtils.drawNote(ctx, '--- Cercle C(G, KA)', 10, 50, { color: '#4D9DE0' });
+    CanvasUtils.drawNote(ctx, 'Cercle de centre G et de rayon KA', 200, 20);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(drawGraph1, 500);
     setTimeout(drawGraph2, 500);
     setTimeout(drawGraph3, 500);
     setTimeout(drawGraph4, 500);
+    setTimeout(drawGraph5, 500);
+    setTimeout(drawGraph6cg, 500);
+    setTimeout(drawGraph6, 500);
 });

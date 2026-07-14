@@ -464,108 +464,11 @@
 
         // ============================================================
         // GRAPHIQUE - Exercice 4 - Triangle + Barycentre
+        // كود الرسمة تحول لـ figures.js (كيستعمل canvas-utils.js المشترك)
         // ============================================================
-
-        function drawGraph4() {
-            var canvas = document.getElementById('graph4');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 45;
-
-            // Points du triangle
-            var A = {x: 2, y: 1, color: '#4ECDC4', label: 'A'};
-            var B = {x: 5, y: 0.5, color: '#FF6B6B', label: 'B'};
-            var C = {x: 3, y: 4.5, color: '#BB8FCE', label: 'C'};
-
-            // G = barycentre de (A,1), (B,1), (C,2)
-            var Gx = (1*A.x + 1*B.x + 2*C.x) / (1+1+2);
-            var Gy = (1*A.y + 1*B.y + 2*C.y) / (1+1+2);
-            var G = {x: Gx, y: Gy, color: '#F4D03F', label: 'G'};
-
-            // I milieu de [BC]
-            var I = {x: (B.x + C.x)/2, y: (B.y + C.y)/2, color: '#A8FF78', label: 'I'};
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Labels axes
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 10, 16);
-
-            // Triangle ABC
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
-            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
-            ctx.closePath();
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Médiane AI
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + I.x * scale, oy - I.y * scale);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Points
-            var pts = [A, B, C, G, I];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            // Légende
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('Triangle ABC', 10, 20);
-            ctx.fillStyle = '#F4D03F';
-            ctx.fillText('G barycentre', 10, 35);
-            ctx.fillStyle = '#A8FF78';
-            ctx.fillText('I milieu de [BC]', 10, 50);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('AG = 1/4 AB + 1/2 AC', 250, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph4();
-            }, 500);
-        });
     </script>
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
