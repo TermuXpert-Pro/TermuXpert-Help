@@ -88,10 +88,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
-    const closeBtn = document.getElementById('sidebarClose');
     const navbar = document.getElementById('navbar');
 
-    if (!menuToggle || !sidebar || !overlay || !closeBtn) return;
+    // ملاحظة: تم حذف الاعتماد على closeBtn (id="sidebarClose") لأنه
+    // ماكاينش هاد الزر فـ navbar.html الحالي. الإغلاق كيتم عبر
+    // الـ overlay، ESC، أو الضغط على menuToggle نفسو (toggle).
+    if (!menuToggle || !sidebar || !overlay) return;
 
     // ====== Scroll effect ======
     window.addEventListener('scroll', function () {
@@ -129,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    closeBtn.addEventListener('click', closeSidebar);
     overlay.addEventListener('click', closeSidebar);
 
     // ====== ESC ======
@@ -196,166 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ============================================================
-// SIDEBAR - القائمة الجانبية
-// ============================================================
 
-document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const closeBtn = document.getElementById('sidebarClose');
-
-    // التأكد من وجود العناصر
-    if (!menuToggle || !sidebar || !overlay || !closeBtn) return;
-
-    function openSidebar() {
-        sidebar.classList.add('open');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeSidebar() {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // فتح القائمة
-    menuToggle.addEventListener('click', openSidebar);
-
-    // إغلاق القائمة
-    closeBtn.addEventListener('click', closeSidebar);
-    overlay.addEventListener('click', closeSidebar);
-
-    // إغلاق عند الضغط على ESC
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closeSidebar();
-        }
-    });
-
-    // إغلاق القائمة عند تغيير حجم النافذة
-    let resizeTimer;
-    window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-            if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
-                closeSidebar();
-            }
-        }, 300);
-    });
-
-    // منع إغلاق القائمة عند النقر داخلها
-    sidebar.addEventListener('click', function (e) {
-        e.stopPropagation();
-    });
-
-    // إغلاق القائمة عند النقر على رابط داخلها
-    document.querySelectorAll('.sidebar-menu a').forEach(function (link) {
-        link.addEventListener('click', function () {
-            setTimeout(closeSidebar, 150);
-        });
-    });
-
-    // ====== تفعيل الرابط النشط ======
-    // تحديد المادة الحالية من URL
-    const currentUrl = new URL(window.location.href);
-    const subjectParam = currentUrl.searchParams.get('subject');
-    
-    if (subjectParam) {
-        document.querySelectorAll('.sidebar-menu a').forEach(function (link) {
-            if (link.href.includes('subject=' + subjectParam)) {
-                link.style.borderLeftColor = 'var(--accent)';
-                link.style.color = 'var(--text-primary)';
-                link.style.background = 'rgba(78, 205, 196, 0.06)';
-            }
-        });
-    }
-
-    console.log('✅ Sidebar initialisée');
-});
-
-
-// ============================================================
-// SIDEBAR - القائمة الجانبية
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const closeBtn = document.getElementById('sidebarClose');
-
-    // التأكد من وجود العناصر
-    if (!menuToggle || !sidebar || !overlay || !closeBtn) return;
-
-    function openSidebar() {
-        sidebar.classList.add('open');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeSidebar() {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // فتح القائمة
-    menuToggle.addEventListener('click', openSidebar);
-
-    // إغلاق القائمة
-    closeBtn.addEventListener('click', closeSidebar);
-    overlay.addEventListener('click', closeSidebar);
-
-    // إغلاق عند الضغط على ESC
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closeSidebar();
-        }
-    });
-
-    // إغلاق القائمة عند تغيير حجم النافذة
-    let resizeTimer;
-    window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-            if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
-                closeSidebar();
-            }
-        }, 300);
-    });
-
-    // منع إغلاق القائمة عند النقر داخلها
-    sidebar.addEventListener('click', function (e) {
-        e.stopPropagation();
-    });
-
-    // إغلاق القائمة عند النقر على رابط داخلها
-    document.querySelectorAll('.sidebar-menu a').forEach(function (link) {
-        link.addEventListener('click', function () {
-            setTimeout(closeSidebar, 150);
-        });
-    });
-
-    // ====== تفعيل الرابط النشط ======
-    // تحديد المادة الحالية من URL
-    const currentUrl = new URL(window.location.href);
-    const subjectParam = currentUrl.searchParams.get('subject');
-    
-    if (subjectParam) {
-        document.querySelectorAll('.sidebar-menu a').forEach(function (link) {
-            if (link.href.includes('subject=' + subjectParam)) {
-                link.style.borderLeftColor = 'var(--accent)';
-                link.style.color = 'var(--text-primary)';
-                link.style.background = 'rgba(78, 205, 196, 0.06)';
-            }
-        });
-    }
-
-    console.log('✅ Sidebar initialisée');
-});
 
 
 // ============================================================
