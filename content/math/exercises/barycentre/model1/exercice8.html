@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -644,105 +645,17 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 11 - Alignement
+        // GRAPHIQUE - Exercice 8 - Alignement
+        // كود الرسمة تحول لـ figures.js (كيستعمل canvas-utils.js المشترك)
         // ============================================================
-
-        function drawGraph8() {
-            var canvas = document.getElementById('graph8');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 50;
-
-            // Points du triangle dans le repère A(0,0), B(1,0), C(0,1)
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
-            var C = {x: 0, y: 1, color: '#BB8FCE', label: 'C'};
-
-            // I = (-1/2, 3/2)
-            var I = {x: -0.5, y: 1.5, color: '#A8FF78', label: 'I'};
-            // K = (2/5, 0)
-            var K = {x: 0.4, y: 0, color: '#F4D03F', label: 'K'};
-            // J = (0, 7/8)
-            var J = {x: 0, y: 0.875, color: '#4D9DE0', label: 'J'};
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Labels axes
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 10, 16);
-
-            // Triangle ABC
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
-            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
-            ctx.closePath();
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Droite (IK)
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox + I.x * scale, oy - I.y * scale);
-            ctx.lineTo(ox + K.x * scale, oy - K.y * scale);
-            ctx.stroke();
-
-            // Points
-            var pts = [A, B, C, I, J, K];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            // Légende
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '10px Arial';
-            ctx.fillText('--- (IK) droite', 10, 20);
-            ctx.fillStyle = '#4D9DE0';
-            ctx.fillText('J ∈ (IK)', 10, 35);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('I, J, K sont alignés', 250, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph8();
-            }, 500);
-        });
     </script>
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
 </html>
+
+
+========================================
+📄 الملف: exercice7.html

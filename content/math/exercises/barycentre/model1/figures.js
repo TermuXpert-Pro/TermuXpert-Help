@@ -300,6 +300,158 @@ function drawGraph6() {
     CanvasUtils.drawNote(ctx, 'Cercle de centre G et de rayon KA', 200, 20);
 }
 
+// ====== Exercice 7 (partie b) : Cercle (E) = C(G, 1.5) ======
+function drawGraph7a() {
+    const s = CanvasUtils.setupCanvas('graph7a');
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const ox = 60, oy = h - 30, scale = 35;
+
+    const A = { x: 2, y: 1, color: '#4ECDC4', label: 'A' };
+    const B = { x: 5.5, y: 0.8, color: '#FF6B6B', label: 'B' };
+    const C = { x: 3.5, y: 5, color: '#BB8FCE', label: 'C' };
+    const I = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2, color: '#A8FF78', label: 'I' };
+    // G = Bar{(A,1);(I,2)}
+    const G = { x: (1 * A.x + 2 * I.x) / 3, y: (1 * A.y + 2 * I.y) / 3, color: '#F4D03F', label: 'G' };
+    const r = 1.5 / 2; // rayon (unités approximatives)
+
+    CanvasUtils.drawAxes(ctx, ox, oy, w, h);
+    CanvasUtils.drawNote(ctx, 'x', w - 20, oy + 18, { color: '#4ECDC4', font: '12px Arial' });
+    CanvasUtils.drawNote(ctx, 'y', ox + 10, 16, { color: '#4ECDC4', font: '12px Arial' });
+
+    // Triangle ABC
+    ctx.strokeStyle = '#2A2A3E';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+    ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+    ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Médiane AI
+    CanvasUtils.drawLine(ctx, ox, oy, scale, A.x, A.y, I.x, I.y, {
+        color: '#A8FF78', lineWidth: 1.5, dashed: true, dashPattern: [4, 4]
+    });
+
+    // Cercle (E) de centre G et rayon 1.5
+    ctx.strokeStyle = '#4D9DE0';
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    ctx.arc(ox + G.x * scale, oy - G.y * scale, r * scale, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    CanvasUtils.drawPoints(ctx, ox, oy, scale, [A, B, C, I, G].map(p => ({ ...p, showCoords: false })));
+
+    // Légende
+    CanvasUtils.drawNote(ctx, 'G', 10, 20, { color: '#F4D03F' });
+    CanvasUtils.drawNote(ctx, '--- Cercle (E)', 30, 20, { color: '#4D9DE0' });
+    CanvasUtils.drawNote(ctx, 'Cercle de centre G rayon 1.5 cm', 200, 20);
+}
+
+// ====== Exercice 7 (partie c) : Médiatrice de [GG'] ======
+function drawGraph7b() {
+    const s = CanvasUtils.setupCanvas('graph7b');
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const ox = 60, oy = h - 30, scale = 35;
+
+    const A = { x: 2, y: 1, color: '#4ECDC4', label: 'A' };
+    const B = { x: 5.5, y: 0.8, color: '#FF6B6B', label: 'B' };
+    const C = { x: 3.5, y: 5, color: '#BB8FCE', label: 'C' };
+    const I = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2, color: '#A8FF78', label: 'I' };
+    const G = { x: (1 * A.x + 2 * I.x) / 3, y: (1 * A.y + 2 * I.y) / 3, color: '#F4D03F', label: 'G' };
+    // G' = Bar{(A,3);(C,1)}
+    const Gp = { x: (3 * A.x + 1 * C.x) / 4, y: (3 * A.y + 1 * C.y) / 4, color: '#F4D03F', label: "G'" };
+
+    CanvasUtils.drawAxes(ctx, ox, oy, w, h);
+    CanvasUtils.drawNote(ctx, 'x', w - 20, oy + 18, { color: '#4ECDC4', font: '12px Arial' });
+    CanvasUtils.drawNote(ctx, 'y', ox + 10, 16, { color: '#4ECDC4', font: '12px Arial' });
+
+    // Triangle ABC
+    ctx.strokeStyle = '#2A2A3E';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+    ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+    ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Segment GG'
+    CanvasUtils.drawLine(ctx, ox, oy, scale, G.x, G.y, Gp.x, Gp.y, { color: '#F4D03F', lineWidth: 2 });
+
+    // Médiatrice de [GG']
+    const mx = (G.x + Gp.x) / 2, my = (G.y + Gp.y) / 2;
+    const dx = -(Gp.y - G.y), dy = (Gp.x - G.x);
+    const len = Math.sqrt(dx * dx + dy * dy);
+    const nx = dx / len, ny = dy / len, ext = 4;
+
+    ctx.strokeStyle = '#A8FF78';
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    ctx.moveTo(ox + (mx - nx * ext) * scale, oy - (my - ny * ext) * scale);
+    ctx.lineTo(ox + (mx + nx * ext) * scale, oy - (my + ny * ext) * scale);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    CanvasUtils.drawPoints(ctx, ox, oy, scale, [A, B, C, G, Gp].map(p => ({ ...p, showCoords: false })));
+
+    // Légende
+    CanvasUtils.drawNote(ctx, "G et G'", 10, 20, { color: '#F4D03F' });
+    CanvasUtils.drawNote(ctx, "--- Médiatrice de [GG']", 10, 35, { color: '#A8FF78' });
+    CanvasUtils.drawNote(ctx, "Médiatrice de [GG']", 200, 20);
+}
+
+// ====== Exercice 8 : Alignement de I, J, K ======
+function drawGraph8() {
+    const s = CanvasUtils.setupCanvas('graph8');
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const ox = 80, oy = h - 30, scale = 50;
+
+    // Repère A(0,0), B(1,0), C(0,1)
+    const A = { x: 0, y: 0, color: '#4ECDC4', label: 'A' };
+    const B = { x: 1, y: 0, color: '#FF6B6B', label: 'B' };
+    const C = { x: 0, y: 1, color: '#BB8FCE', label: 'C' };
+    const I = { x: -0.5, y: 1.5, color: '#A8FF78', label: 'I' };
+    const K = { x: 0.4, y: 0, color: '#F4D03F', label: 'K' };
+    const J = { x: 0, y: 0.875, color: '#4D9DE0', label: 'J' };
+
+    CanvasUtils.drawAxes(ctx, ox, oy, w, h);
+    CanvasUtils.drawNote(ctx, 'x', w - 20, oy + 18, { color: '#4ECDC4', font: '12px Arial' });
+    CanvasUtils.drawNote(ctx, 'y', ox + 10, 16, { color: '#4ECDC4', font: '12px Arial' });
+
+    // Triangle ABC
+    ctx.strokeStyle = '#2A2A3E';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
+    ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
+    ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Droite (IK)
+    CanvasUtils.drawLine(ctx, ox, oy, scale, I.x, I.y, K.x, K.y, { color: '#F4D03F', lineWidth: 2.5 });
+
+    CanvasUtils.drawPoints(ctx, ox, oy, scale, [A, B, C, I, J, K].map(p => ({ ...p, showCoords: false })));
+
+    // Légende
+    CanvasUtils.drawNote(ctx, '--- (IK) droite', 10, 20, { color: '#F4D03F' });
+    CanvasUtils.drawNote(ctx, 'J ∈ (IK)', 10, 35, { color: '#4D9DE0' });
+    CanvasUtils.drawNote(ctx, 'I, J, K sont alignés', 250, 20);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(drawGraph1, 500);
     setTimeout(drawGraph2, 500);
@@ -308,8 +460,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(drawGraph5, 500);
     setTimeout(drawGraph6cg, 500);
     setTimeout(drawGraph6, 500);
+    setTimeout(drawGraph7a, 500);
+    setTimeout(drawGraph7b, 500);
+    setTimeout(drawGraph8, 500);
 });
-
-
-========================================
-📄 الملف: exercice2.html
