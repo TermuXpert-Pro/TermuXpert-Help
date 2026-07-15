@@ -14,8 +14,8 @@
  * خاصك تشغلها من بعد أي تعديل فـ partials/ أو من بعد ما تزيد صفحة جديدة،
  * وقبل كل نشر (deploy) - بحال validate.js بالضبط.
  *
- * ⚠️ الصفحات الجذرية (index.html, subject.html, subjects.html, calendrier.html)
- * عندها décor خاص بيها (multicolore، 4 ألوان بدل لون وحيد ديال المادة).
+ * ⚠️ الصفحات الجذرية (index.html, subject.html, subjects.html) عندها
+ * décor خاص بيها (multicolore، 4 ألوان بدل لون وحيد ديال المادة).
  * التوحيد ديالها كيدير عبر partials/decor-root.html (نفس التقنية اللي
  * كتستعمل f navbar/footer/décor ديال باقي الصفحات) - والـ CSS ديال
  * هاد الـdécor بقى مركّز فـ assets/css/root-decor.css بدل ما يكون
@@ -116,12 +116,20 @@ let skipped = 0;
 
 console.log('🔨 بدء بناء الموقع...\n');
 
+// ملاحظة: تم حذف injectSidebarAssets() - كانت كتلصق كود سايدبار
+// قديم (.sidebar-header, .sidebar-close, .sidebar-menu li a) غير
+// متوافق مع البنية الحالية (partials/navbar.html + style.css + script.js
+// المعدلين)، وزيادة على ذلك كان فيها بق: شرط الفحص ديالها
+// (`/* ====== SIDEBAR ====== */` و `// ====== SIDEBAR ======`) ماكانش
+// كيطابق النص المُلصَق فعليا، فكانت كتزيد تلصق نفس الكود فكل تشغيلة
+// لـ build.js - وهاد السبب لي كان مكرر فـ style.css و script.js.
+
 console.log('\n📄 تحديث صفحات HTML...');
 
 for (const file of walk(ROOT)) {
     const rel = path.relative(ROOT, file);
-    // الصفحات الجذرية: index.html, subjects.html, subject.html, calendrier.html
-    const isRoot = !rel.includes(path.sep) || rel === 'calendrier.html';
+    // الصفحات الجذرية: navbar + footer غير (décor خاص بيهم، ماشي مشمول)
+    const isRoot = !rel.includes(path.sep);
     let content = fs.readFileSync(file, 'utf-8');
     const base = getBase(file);
     let changed = false;
@@ -161,25 +169,18 @@ console.log(`✅ build.js: ${updated} صفحة تحدّثت من partials/, ${sk
 
 // ============================================================
 // تحديث تلقائي لرقم نسخة الكاش فـ sw.js (cache busting)
+// بدل ما تكون يدوية (v3, v4...)، كنحسبو hash انطلاقاً من محتوى
+// أهم ملفات الموقع - كي تبدل شي حاجة فيهم، الكاش كيتجدد وحدو.
 // ============================================================
 const crypto = require('crypto');
 
 function computeSiteHash() {
     const filesToHash = [
-        'index.html', 
-        'subjects.html', 
-        'subject.html',
-        'calendrier.html',  // ← تمت الإضافة
-        'assets/css/style.css', 
-        'assets/css/lesson-common.css', 
-        'assets/css/global-control.css',
+        'index.html', 'subjects.html', 'subject.html',
+        'assets/css/style.css', 'assets/css/lesson-common.css', 'assets/css/global-control.css',
         'assets/css/root-decor.css',
-        'assets/js/script.js', 
-        'assets/js/protection.js',
-        'partials/navbar.html', 
-        'partials/footer.html', 
-        'partials/decor.html', 
-        'partials/decor-root.html',
+        'assets/js/script.js', 'assets/js/protection.js',
+        'partials/navbar.html', 'partials/footer.html', 'partials/decor.html', 'partials/decor-root.html',
     ];
     const hash = crypto.createHash('sha256');
     for (const f of filesToHash) {
