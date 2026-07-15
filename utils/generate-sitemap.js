@@ -67,6 +67,7 @@ let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sit
 xml += `    <!-- ====== الصفحات الرئيسية ====== -->\n`;
 xml += `    <url><loc>${SITE}index.html</loc><priority>1.0</priority></url>\n`;
 xml += `    <url><loc>${SITE}subjects.html</loc><priority>0.9</priority></url>\n`;
+xml += `    <url><loc>${SITE}calendrier.html</loc><priority>0.6</priority></url>\n`;
 
 // المواد: نكتشفها تلقائياً من أسماء مجلدات content/*
 const subjects = fs.readdirSync(CONTENT_DIR, { withFileTypes: true })
@@ -86,5 +87,5 @@ for (const key of Object.keys(grouped).sort()) {
 xml += `</urlset>\n`;
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
-console.log(`✅ sitemap.xml محدّث بنجاح: ${relFiles.length + 2 + subjects.length} رابط` +
+console.log(`✅ sitemap.xml محدّث بنجاح: ${relFiles.length + 3 + subjects.length} رابط` +
     (excludedCount > 0 ? ` (${excludedCount} صفحة مؤقتة "noindex" تستثنات)` : ''));
