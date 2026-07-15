@@ -1,206 +1,129 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendrier scolaire 2026/2027 | Xpert</title>
+    <title>التقويم الدراسي 2026/2027 | Xpert</title>
 
-    <!-- Preconnect CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/lesson-common.css">
     <link rel="stylesheet" href="assets/css/global-control.css">
 
     <style>
+        :root{
+            --bg-primary:#0D1117;
+            --bg-card:#151B23;
+            --border:#232B36;
+            --gold:#F4D03F;
+            --gold-soft:#F7DC6F;
+            --teal:#4ECDC4;
+            --text-primary:#EDEDED;
+            --text-secondary:#B7BEC7;
+            --text-muted:#7C8593;
+        }
+        *{box-sizing:border-box; margin:0; padding:0;}
+        body{
+            background:var(--bg-primary);
+            color:var(--text-primary);
+            font-family:'Cairo','Tajawal',sans-serif;
+            line-height:1.7;
+            overflow-x:hidden;
+            position:relative;
+        }
+
         /* ====== Hero ====== */
-        .hero {
-            text-align: center;
-            margin-bottom: 34px;
+        .hero{text-align:center; margin-bottom:34px;}
+        .hero .eyebrow{
+            display:inline-flex; align-items:center; gap:8px;
+            color:var(--gold); font-size:13px; font-weight:700;
+            letter-spacing:0.5px; background:rgba(244,208,63,0.08);
+            padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
+            margin-bottom:16px;
         }
-        .hero .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--gold);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            background: rgba(244, 208, 63, 0.08);
-            padding: 6px 16px;
-            border-radius: 20px;
-            border: 1px solid rgba(244, 208, 63, 0.25);
-            margin-bottom: 16px;
+        .hero h1{
+            font-size:clamp(24px, 5vw, 34px); font-weight:900; color:#fff;
+            margin-bottom:8px;
         }
-        .hero h1 {
-            font-size: clamp(24px, 5vw, 34px);
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        .hero h1 span {
-            color: var(--gold);
-        }
-        .hero p {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
+        .hero h1 span{color:var(--gold);}
+        .hero p{color:var(--text-muted); font-size:14px;}
 
-        /* ====== Cartes ====== */
-        .cal-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 22px 20px;
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease, transform 0.2s ease;
-            position: relative;
-            overflow: hidden;
+        /* ====== Sections ====== */
+        .section{
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            border-radius:16px;
+            padding:22px 20px;
+            margin-bottom:20px;
+            position:relative;
+            overflow:hidden;
         }
-        .cal-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-2px);
+        .section::before{
+            content:"";
+            position:absolute; top:0; right:0; width:4px; height:100%;
+            background:linear-gradient(180deg, var(--gold), transparent);
         }
-        .cal-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--gold), transparent);
+        .section h2{
+            display:flex; align-items:center; gap:10px;
+            font-size:17px; font-weight:700; color:var(--gold);
+            margin-bottom:14px;
         }
-        .cal-card .card-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 14px;
-        }
-        .cal-card .card-title i {
-            font-size: 15px;
-        }
+        .section h2 i{font-size:15px;}
 
-        /* ====== Date rows ====== */
-        .date-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 14px;
-            margin-bottom: 10px;
-            transition: border-color 0.2s ease;
+        .date-row{
+            display:flex; align-items:center; gap:14px;
+            background:var(--bg-primary);
+            border:1px solid var(--border);
+            border-radius:10px;
+            padding:12px 14px;
+            margin-bottom:10px;
         }
-        .date-row:last-child {
-            margin-bottom: 0;
+        .date-row:last-child{margin-bottom:0;}
+        .date-badge{
+            flex-shrink:0; min-width:74px; text-align:center;
+            background:rgba(244,208,63,0.12); color:var(--gold);
+            font-weight:700; font-size:13px; padding:8px 6px; border-radius:8px;
         }
-        .date-row:hover {
-            border-color: var(--gold);
-        }
-        .date-badge {
-            flex-shrink: 0;
-            min-width: 74px;
-            text-align: center;
-            background: rgba(244, 208, 63, 0.12);
-            color: var(--gold);
-            font-weight: 700;
-            font-size: 13px;
-            padding: 8px 6px;
-            border-radius: 8px;
-        }
-        .date-badge.teal {
-            background: rgba(78, 205, 196, 0.12);
-            color: var(--teal);
-        }
-        .date-text {
-            font-size: 13.5px;
-            color: var(--text-secondary);
-        }
-        .date-text strong {
-            color: var(--text-primary);
-        }
+        .date-badge.teal{background:rgba(78,205,196,0.12); color:var(--teal);}
+        .date-text{font-size:13.5px; color:var(--text-secondary);}
+        .date-text strong{color:var(--text-primary);}
 
         /* ====== Table ====== */
-        .table-wrap {
-            overflow-x: auto;
-            border-radius: 10px;
-            border: 1px solid var(--border);
+        .table-wrap{overflow-x:auto; border-radius:10px; border:1px solid var(--border);}
+        table{width:100%; border-collapse:collapse; font-size:13px; background:var(--bg-primary);}
+        th{
+            background:rgba(244,208,63,0.08); color:var(--gold);
+            padding:9px 8px; font-weight:700; text-align:center;
+            border-bottom:1px solid var(--border);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            background: var(--bg-primary);
+        td{
+            padding:8px 8px; text-align:center; color:var(--text-secondary);
+            border-bottom:1px solid var(--border);
         }
-        th {
-            background: rgba(244, 208, 63, 0.08);
-            color: var(--gold);
-            padding: 9px 8px;
-            font-weight: 700;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-        td {
-            padding: 8px 8px;
-            text-align: center;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        td.label {
-            color: var(--text-primary);
-            font-weight: 600;
-            text-align: right;
-        }
+        tr:last-child td{border-bottom:none;}
+        td.label{color:var(--text-primary); font-weight:600; text-align:right;}
 
-        /* ====== CTA Button (style original) ====== */
-        .cta-wrap {
-            text-align: center;
-            margin-top: 30px;
+        /* ====== CTA Button ====== */
+        .cta-wrap{text-align:center; margin-top:30px;}
+        .cta-btn{
+            display:inline-flex; align-items:center; gap:10px;
+            background:linear-gradient(135deg, var(--gold), var(--gold-soft));
+            color:#1A1A1A; font-weight:700; font-size:15px;
+            padding:14px 28px; border-radius:12px; text-decoration:none;
+            box-shadow:0 8px 24px rgba(244,208,63,0.25);
+            transition:transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--bg-primary);
-            background: var(--gradient);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
-            padding: 12px 28px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(78, 205, 196, 0.25);
-        }
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 28px rgba(78, 205, 196, 0.35);
-        }
-        .cta-note {
-            color: var(--text-muted);
-            font-size: 12px;
-            margin-top: 10px;
-        }
+        .cta-btn:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(244,208,63,0.35);}
+        .cta-note{color:var(--text-muted); font-size:12px; margin-top:10px;}
 
         /* ====== Responsive ====== */
-        @media (max-width: 480px) {
-            .date-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-            }
-            .date-badge {
-                min-width: unset;
-            }
+        @media (max-width:480px){
+            .date-row{flex-direction:column; align-items:flex-start; gap:6px;}
+            .date-badge{min-width:unset;}
         }
     </style>
 </head>
@@ -387,10 +310,12 @@
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <!-- ====== Contenu principal ====== -->
-    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+    <div class="wrap" style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
 
         <!-- ====== Bouton retour ====== -->
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        <a href="index.html" class="back-btn" style="display:inline-flex; align-items:center; gap:8px; margin-bottom:20px;">
+            <i class="fas fa-arrow-right"></i> Retour
+        </a>
 
         <div class="hero">
             <div class="eyebrow"><i class="fas fa-graduation-cap"></i> السنة الأولى بكالوريا · 2026/2027</div>
@@ -399,8 +324,8 @@
         </div>
 
         <!-- ====== التسجيل والدخول ====== -->
-        <div class="cal-card">
-            <div class="card-title"><i class="fas fa-door-open"></i> التسجيل والدخول المدرسي</div>
+        <div class="section">
+            <h2><i class="fas fa-door-open"></i> التسجيل والدخول المدرسي</h2>
             <div class="date-row">
                 <div class="date-badge">4 شتنبر</div>
                 <div class="date-text"><strong>الجمعة 4 شتنبر 2026</strong> — التحاق تلاميذ السنة الأولى بكالوريا بمؤسساتهم التعليمية.</div>
@@ -412,8 +337,8 @@
         </div>
 
         <!-- ====== مواعيد الفروض والامتحانات ====== -->
-        <div class="cal-card">
-            <div class="card-title"><i class="fas fa-file-pen"></i> مواعيد آخر الفروض والامتحانات</div>
+        <div class="section">
+            <h2><i class="fas fa-file-pen"></i> مواعيد آخر الفروض والامتحانات</h2>
             <div class="table-wrap">
                 <table>
                     <tr><th>الأسدوس</th><th>العملية</th><th>التاريخ</th></tr>
@@ -429,8 +354,8 @@
         </div>
 
         <!-- ====== العطل المدرسية ====== -->
-        <div class="cal-card">
-            <div class="card-title"><i class="fas fa-umbrella-beach"></i> العطل المدرسية</div>
+        <div class="section">
+            <h2><i class="fas fa-umbrella-beach"></i> العطل المدرسية</h2>
             <div class="table-wrap">
                 <table>
                     <tr><th>العطلة</th><th>التاريخ</th><th>المدة</th></tr>
