@@ -153,16 +153,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.sidebar-link').forEach(function (link) {
         const href = link.getAttribute('href');
-        if (href) {
-            if (href.includes('index.html') && currentPath.endsWith('index.html')) {
+        if (!href) return;
+
+        // Accueil (index)
+        if (href.includes('index.html') && (currentPath === '/' || currentPath === '' || currentPath.endsWith('index.html'))) {
+            link.classList.add('active');
+        }
+        // Matières
+        else if (href.includes('subjects.html') && currentPath.includes('subjects.html')) {
+            link.classList.add('active');
+        }
+        // Calendrier (AJOUT)
+        else if (href.includes('calendrier.html') && currentPath.includes('calendrier.html')) {
+            link.classList.add('active');
+        }
+        // Matière spécifique (subject.html?subject=...)
+        else if (href.includes('subject.html') && currentSearch.includes('subject=')) {
+            const subject = new URLSearchParams(currentSearch).get('subject');
+            if (href.includes('subject=' + subject)) {
                 link.classList.add('active');
-            } else if (href.includes('subjects.html') && currentPath.includes('subjects.html')) {
-                link.classList.add('active');
-            } else if (href.includes('subject.html') && currentSearch.includes('subject=')) {
-                const subject = new URLSearchParams(currentSearch).get('subject');
-                if (href.includes('subject=' + subject)) {
-                    link.classList.add('active');
-                }
             }
         }
     });
@@ -181,6 +190,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('✅ Sidebar v3.0 initialisée');
 });
-
-
-

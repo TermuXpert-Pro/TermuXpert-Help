@@ -27,7 +27,7 @@ window.subjectsData.math = {
         { title: "Barycentre dans le plan", file: "content/math/exercises/barycentre/index.html", desc: "8 exercices avec solutions" }
     ],
     series: [
-        { title: "Logique mathématique", file: "content/math/series/logique/index.html", desc: "5 séries (54 exercices)" },
+        { title: "Logique mathématique", file: "content/math/series/logique/index.html", desc: "5 séries" },
         { title: "Généralités sur les fonctions", file: "content/math/series/fonctions/index.html", desc: "7 séries" },
         { title: "Barycentre dans le plan", file: "content/math/series/barycentre/index.html", desc: "6 séries" }
     ],
