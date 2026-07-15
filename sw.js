@@ -4,13 +4,14 @@
 
 // ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
 // الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
-const CACHE_NAME = 'xpert-8c0df224';
+const CACHE_NAME = 'xpert-57f9e174';
 
 const urlsToCache = [
     './',
     './index.html',
     './subjects.html',
     './subject.html',
+    './calendrier.html',
     './assets/css/style.css',
     './assets/css/lesson-common.css',
     './assets/css/global-control.css',
@@ -299,3 +300,4 @@ self.addEventListener('activate', function(event) {
         }).then(() => self.clients.claim())
     );
 });
+

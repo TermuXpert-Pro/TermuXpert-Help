@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Calendrier Scolaire 2026-2027 - Xpert",
+        "description": "Dates officielles de la rentrée scolaire, des vacances, des devoirs et de l'examen régional 1 Bac au Maroc pour l'année 2026-2027.",
+        "url": "https://termuxpert-pro.github.io/TermuXpert-WEB/calendrier.html"
+    }
+    </script>
+
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="description" content="Calendrier scolaire officiel 2026-2027 : rentrée, vacances, dates des devoirs et examen régional - Xpert 1 Bac Sciences Expérimentales.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpert - Calendrier Scolaire 2026-2027</title>
+
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/root-decor.css">
+
+    <style>
+        /* ====== Page Calendrier ====== */
+        .cal-wrapper{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:clamp(70px,10vh,90px) var(--container-padding) 40px}
+
+        .cal-header{text-align:center;margin-bottom:clamp(24px,4vw,36px)}
+        .cal-header .hero-label{display:inline-flex;align-items:center;gap:6px;background:rgba(69,162,158,0.1);border:1px solid rgba(69,162,158,0.2);color:var(--accent-light);padding:4px 16px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:14px}
+        .cal-header .hero-label .dot{width:6px;height:6px;background:#06D6A0;border-radius:50%;animation:dotPulse 2s ease-in-out infinite}
+        .cal-header h1{font-size:clamp(24px,5vw,36px);font-weight:900;line-height:1.3;margin-bottom:10px}
+        .cal-header h1 .gradient-text{background:linear-gradient(135deg,#4ECDC4,#66FCF1,#F4D03F,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:300% 300%;animation:gradientShift 6s ease-in-out infinite}
+        @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+        .cal-header p{color:var(--text-muted);font-size:clamp(12px,1.6vw,15px);max-width:560px;margin:0 auto;line-height:1.8}
+        .cal-source{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);padding:5px 14px;border-radius:20px}
+        .cal-source i{color:var(--accent-light)}
+
+        /* ====== Bloc mise en avant (date clé) ====== */
+        .cal-highlight{background:linear-gradient(135deg,rgba(69,162,158,0.12),rgba(102,252,241,0.04));border:1px solid rgba(69,162,158,0.25);border-radius:20px;padding:clamp(20px,3vw,28px);text-align:center;margin-bottom:clamp(24px,4vw,32px);position:relative;overflow:hidden}
+        .cal-highlight .cal-highlight-icon{width:52px;height:52px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--bg-primary);margin:0 auto 12px}
+        .cal-highlight h2{font-size:clamp(16px,2.2vw,20px);font-weight:800;margin-bottom:6px}
+        .cal-highlight .cal-highlight-date{font-family:var(--font-mono);font-size:clamp(18px,2.6vw,24px);font-weight:900;color:var(--accent-light)}
+        .cal-highlight p{color:var(--text-secondary);font-size:12px;margin-top:8px}
+
+        /* ====== Sections ====== */
+        .cal-section{margin-bottom:clamp(28px,4vw,40px)}
+        .cal-section-title{display:flex;align-items:center;gap:10px;font-size:clamp(16px,2vw,19px);font-weight:800;margin-bottom:16px}
+        .cal-section-title i{width:34px;height:34px;border-radius:10px;background:rgba(69,162,158,0.1);color:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+
+        /* ====== Timeline ====== */
+        .timeline{position:relative;padding-right:26px;border-right:2px solid var(--border)}
+        .timeline-item{position:relative;padding-bottom:20px}
+        .timeline-item:last-child{padding-bottom:0}
+        .timeline-dot{position:absolute;right:-32px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--gradient);box-shadow:0 0 0 4px var(--bg-primary)}
+        .timeline-item.done .timeline-dot{background:#06D6A0}
+        .timeline-card{background:var(--bg-card);border:1px solid var(--border);border-right:3px solid var(--accent);border-radius:12px;padding:12px 16px;transition:all 0.3s ease}
+        .timeline-card:hover{border-color:var(--accent);transform:translateX(-3px)}
+        .timeline-date{font-family:var(--font-mono);font-weight:800;color:var(--accent-light);font-size:13px;margin-bottom:2px}
+        .timeline-label{font-size:13px;color:var(--text-secondary);line-height:1.6}
+        .timeline-label strong{color:var(--text-primary)}
+
+        /* ====== Grille de cartes (dates devoirs / examens) ====== */
+        .cal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px}
+        .cal-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:16px}
+        .cal-card-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+        .cal-card-top i{color:var(--accent-light);font-size:15px}
+        .cal-card-top span{font-weight:700;font-size:13px}
+        .cal-card-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:6px 0;border-top:1px dashed var(--border)}
+        .cal-card-row:first-of-type{border-top:none}
+        .cal-card-row .lbl{color:var(--text-muted)}
+        .cal-card-row .val{font-family:var(--font-mono);font-weight:700;color:var(--text-primary)}
+        .cal-card.accent-exam{border-right:3px solid #FF6B6B}
+        .cal-card.accent-devoir{border-right:3px solid #4ECDC4}
+
+        /* ====== Tableau des vacances ====== */
+        .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:14px}
+        .cal-table{width:100%;border-collapse:collapse;font-size:12.5px}
+        .cal-table thead th{background:rgba(69,162,158,0.08);color:var(--accent-light);font-weight:700;padding:10px 12px;text-align:right;white-space:nowrap}
+        .cal-table tbody td{padding:9px 12px;border-top:1px solid var(--border);color:var(--text-secondary)}
+        .cal-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        .cal-table td.holiday-name{color:var(--text-primary);font-weight:600}
+        .cal-table td.holiday-days{font-family:var(--font-mono);font-weight:700;color:var(--accent-light);text-align:center;width:60px}
+        .approx-badge{display:inline-block;font-size:10px;background:rgba(244,208,63,0.12);color:#F4D03F;border:1px solid rgba(244,208,63,0.3);border-radius:8px;padding:1px 6px;margin-right:4px}
+
+        .cal-note{display:flex;gap:10px;align-items:flex-start;background:rgba(244,208,63,0.06);border:1px solid rgba(244,208,63,0.2);border-radius:12px;padding:12px 14px;margin-top:14px;font-size:12px;color:var(--text-secondary);line-height:1.7}
+        .cal-note i{color:#F4D03F;margin-top:2px}
+
+        @media (max-width:480px){
+            .cal-table{font-size:11px}
+            .cal-table thead th, .cal-table tbody td{padding:7px 8px}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection" aria-hidden="true"></div>
+
+<!-- ====== خلفية زليج (multicolore - خاصة بالصفحات الجذرية) ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+
+<div class="geo-pattern geo-pattern-1" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="glow-orb glow-orb-1" aria-hidden="true"></div>
+    <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <!-- أيقونة القائمة الجانبية -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="menu-icon">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+        </span>
+    </button>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+            <a href="subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">10 cours</span>
+                </div>
+            </a>
+            <a href="subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">8 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- ====== محتوى الصفحة ====== -->
+    <div class="cal-wrapper">
+
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour à l'accueil</a>
+
+        <header class="cal-header">
+            <div class="hero-label"><span class="dot"></span> Année scolaire 2026 / 2027</div>
+            <h1>Calendrier <span class="gradient-text">Scolaire</span></h1>
+            <p>Toutes les dates officielles pour le cycle secondaire qualifiant : rentrée, vacances, devoirs et examen régional.</p>
+            <div class="cal-source"><i class="fas fa-file-shield"></i> Source : Note ministérielle n°047.26 du 3 juillet 2026</div>
+        </header>
+
+        <!-- ====== أهم موعد: انطلاق الدراسة الفعلية ====== -->
+        <div class="cal-highlight">
+            <div class="cal-highlight-icon"><i class="fas fa-flag-checkered"></i></div>
+            <h2>Début effectif et obligatoire des cours</h2>
+            <div class="cal-highlight-date">Lundi 7 Septembre 2026</div>
+            <p>Pour tous les cycles (primaire, collégial et qualifiant) — l'inscription à l'établissement pour le Tronc commun / 1 Bac se fait le vendredi 4 septembre 2026.</p>
+        </div>
+
+        <!-- ====== المراحل الأساسية قبل الدخول ====== -->
+        <section class="cal-section">
+            <h2 class="cal-section-title"><i class="fas fa-timeline"></i> Étapes de la rentrée</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Mardi 1 Septembre 2026</div>
+                        <div class="timeline-label">Reprise des cadres de <strong>l'administration et de l'inspection</strong>.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Mercredi 2 Septembre 2026</div>
+                        <div class="timeline-label">Reprise des <strong>professeurs</strong> : préparation des dossiers pédagogiques, plannings et cahiers de textes.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Vendredi 4 Septembre 2026</div>
+                        <div class="timeline-label">Inscription des élèves de <strong>1ère année Bac</strong> et du <strong>Tronc commun</strong>.</div>
+                    </div>
+                </div>
+                <div class="timeline-item done">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Lundi 7 Septembre 2026</div>
+                        <div class="timeline-label"><strong>Démarrage effectif et obligatoire</strong> des cours pour tous les cycles.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Lundi 5 Octobre 2026</div>
+                        <div class="timeline-label">Démarrage des classes d'éducation non-formelle et de la 2ème chance.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== المراقبة المستمرة و الامتحان الجهوي ====== -->
+        <section class="cal-section">
+            <h2 class="cal-section-title"><i class="fas fa-pen-to-square"></i> Devoirs & Examen régional (1 Bac)</h2>
+            <div class="cal-grid">
+                <div class="cal-card accent-devoir">
+                    <div class="cal-card-top"><i class="fas fa-clipboard-check"></i><span>Semestre 1 — Contrôle continu</span></div>
+                    <div class="cal-card-row"><span class="lbl">Derniers devoirs</span><span class="val">4 → 9 Jan 2027</span></div>
+                    <div class="cal-card-row"><span class="lbl">Clôture des notes</span><span class="val">16 Jan 2027</span></div>
+                    <div class="cal-card-row"><span class="lbl">Conseils de classe</span><span class="val">21-22 Jan 2027</span></div>
+                </div>
+                <div class="cal-card accent-devoir">
+                    <div class="cal-card-top"><i class="fas fa-clipboard-check"></i><span>Semestre 2 — Contrôle continu</span></div>
+                    <div class="cal-card-row"><span class="lbl">Derniers devoirs</span><span class="val">14 → 19 Juin 2027</span></div>
+                    <div class="cal-card-row"><span class="lbl">Clôture des notes</span><span class="val">26 Juin 2027</span></div>
+                </div>
+                <div class="cal-card accent-exam">
+                    <div class="cal-card-top"><i class="fas fa-graduation-cap"></i><span>Examen régional — Session normale</span></div>
+                    <div class="cal-card-row"><span class="lbl">Épreuves</span><span class="val">28-29 Mai 2027</span></div>
+                    <div class="cal-card-row"><span class="lbl">Résultats</span><span class="val">8 Juillet 2027</span></div>
+                </div>
+                <div class="cal-card accent-exam">
+                    <div class="cal-card-top"><i class="fas fa-rotate-right"></i><span>Examen régional — Rattrapage</span></div>
+                    <div class="cal-card-row"><span class="lbl">Épreuves</span><span class="val">28-29 Juin 2027</span></div>
+                    <div class="cal-card-row"><span class="lbl">Conseils d'orientation</span><span class="val">9-10 Juillet 2027</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== نهاية السنة الدراسية ====== -->
+        <section class="cal-section">
+            <h2 class="cal-section-title"><i class="fas fa-hourglass-end"></i> Fin de l'année scolaire</h2>
+            <div class="cal-grid">
+                <div class="cal-card">
+                    <div class="cal-card-top"><i class="fas fa-book"></i><span>1 Bac, Tronc commun, Collège & Primaire</span></div>
+                    <div class="cal-card-row"><span class="lbl">Fin des cours</span><span class="val">26 Juin 2027</span></div>
+                </div>
+                <div class="cal-card">
+                    <div class="cal-card-top"><i class="fas fa-award"></i><span>2ème année Bac (info)</span></div>
+                    <div class="cal-card-row"><span class="lbl">Fin des cours</span><span class="val">29 Mai 2027</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== جدول العطل ====== -->
+        <section class="cal-section">
+            <h2 class="cal-section-title"><i class="fas fa-umbrella-beach"></i> Vacances scolaires 2026/2027</h2>
+            <div class="table-wrap">
+                <table class="cal-table">
+                    <thead>
+                        <tr><th>Vacance</th><th>Dates</th><th>Jours</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="holiday-name">Congé intermédiaire 1</td><td>18 → 25 Octobre 2026</td><td class="holiday-days">8</td></tr>
+                        <tr><td class="holiday-name">Fête de l'Unité</td><td>31 Octobre 2026</td><td class="holiday-days">1</td></tr>
+                        <tr><td class="holiday-name">Anniversaire Marche Verte</td><td>6 Novembre 2026</td><td class="holiday-days">1</td></tr>
+                        <tr><td class="holiday-name">Fête de l'Indépendance</td><td>18 Novembre 2026</td><td class="holiday-days">1</td></tr>
+                        <tr><td class="holiday-name">Congé intermédiaire 2</td><td>6 → 13 Décembre 2026</td><td class="holiday-days">8</td></tr>
+                        <tr><td class="holiday-name">Nouvel An</td><td>1 Janvier 2027</td><td class="holiday-days">1</td></tr>
+                        <tr><td class="holiday-name">Doc. de l'Indépendance</td><td>11 Janvier 2027</td><td class="holiday-days">1</td></tr>
+                        <tr><td class="holiday-name">Nouvel An Amazigh</td><td>14 Janvier 2027</td><td class="holiday-days">1</td></tr>
+                        <tr><td class="holiday-name">Vacances de mi-année</td><td>24 → 31 Janvier 2027</td><td class="holiday-days">8</td></tr>
+                        <tr><td class="holiday-name">Aïd Al-Fitr <span class="approx-badge">approx.</span></td><td>fin Ramadan 1448</td><td class="holiday-days">3-4</td></tr>
+                        <tr><td class="holiday-name">Congé intermédiaire 3</td><td>21 → 28 Mars 2027</td><td class="holiday-days">8</td></tr>
+                        <tr><td class="holiday-name">Fête du Travail</td><td>1 Mai 2027</td><td class="holiday-days">1</td></tr>
+                        <tr><td class="holiday-name">Congé intermédiaire 4</td><td>9 → 16 Mai 2027</td><td class="holiday-days">8</td></tr>
+                        <tr><td class="holiday-name">Aïd Al-Adha <span class="approx-badge">approx.</span></td><td>9-11 Dhou Al Hijja 1448</td><td class="holiday-days">3</td></tr>
+                        <tr><td class="holiday-name">Fatih Moharram <span class="approx-badge">approx.</span></td><td>1 Moharram 1449</td><td class="holiday-days">1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cal-note">
+                <i class="fas fa-triangle-exclamation"></i>
+                <span>Les dates des fêtes religieuses (Aïd Al-Fitr, Aïd Al-Adha, Fatih Moharram) restent approximatives et dépendent de l'annonce officielle du Ministère des Habous à la veille de chaque occasion.</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+    <div class="divider"></div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+    </div>
+
+    <script src="assets/js/protection.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
