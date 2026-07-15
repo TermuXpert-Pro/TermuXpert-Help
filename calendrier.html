@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/global-control.css">
 
     <style>
+        /* ====== Hero ====== */
         .hero {
             text-align: center;
             margin-bottom: 34px;
@@ -48,16 +49,22 @@
             font-size: 14px;
         }
 
-        .section {
+        /* ====== Cartes ====== */
+        .cal-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 22px 20px;
             margin-bottom: 20px;
+            transition: border-color 0.3s ease, transform 0.2s ease;
             position: relative;
             overflow: hidden;
         }
-        .section::before {
+        .cal-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+        .cal-card::before {
             content: "";
             position: absolute;
             top: 0;
@@ -66,7 +73,7 @@
             height: 100%;
             background: linear-gradient(180deg, var(--gold), transparent);
         }
-        .section h2 {
+        .cal-card .card-title {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -75,10 +82,11 @@
             color: var(--gold);
             margin-bottom: 14px;
         }
-        .section h2 i {
+        .cal-card .card-title i {
             font-size: 15px;
         }
 
+        /* ====== Date rows ====== */
         .date-row {
             display: flex;
             align-items: center;
@@ -88,9 +96,13 @@
             border-radius: 10px;
             padding: 12px 14px;
             margin-bottom: 10px;
+            transition: border-color 0.2s ease;
         }
         .date-row:last-child {
             margin-bottom: 0;
+        }
+        .date-row:hover {
+            border-color: var(--gold);
         }
         .date-badge {
             flex-shrink: 0;
@@ -115,6 +127,7 @@
             color: var(--text-primary);
         }
 
+        /* ====== Table ====== */
         .table-wrap {
             overflow-x: auto;
             border-radius: 10px;
@@ -149,6 +162,7 @@
             text-align: right;
         }
 
+        /* ====== CTA Button (style original) ====== */
         .cta-wrap {
             text-align: center;
             margin-top: 30px;
@@ -157,19 +171,19 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-soft));
-            color: #1A1A1A;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
             font-weight: 700;
             font-size: 15px;
-            padding: 14px 28px;
+            padding: 12px 28px;
             border-radius: 12px;
-            text-decoration: none;
-            box-shadow: 0 8px 24px rgba(244, 208, 63, 0.25);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(78, 205, 196, 0.25);
         }
         .cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(244, 208, 63, 0.35);
+            box-shadow: 0 8px 28px rgba(78, 205, 196, 0.35);
         }
         .cta-note {
             color: var(--text-muted);
@@ -177,6 +191,7 @@
             margin-top: 10px;
         }
 
+        /* ====== Responsive ====== */
         @media (max-width: 480px) {
             .date-row {
                 flex-direction: column;
@@ -384,8 +399,8 @@
         </div>
 
         <!-- ====== التسجيل والدخول ====== -->
-        <div class="section">
-            <h2><i class="fas fa-door-open"></i> التسجيل والدخول المدرسي</h2>
+        <div class="cal-card">
+            <div class="card-title"><i class="fas fa-door-open"></i> التسجيل والدخول المدرسي</div>
             <div class="date-row">
                 <div class="date-badge">4 شتنبر</div>
                 <div class="date-text"><strong>الجمعة 4 شتنبر 2026</strong> — التحاق تلاميذ السنة الأولى بكالوريا بمؤسساتهم التعليمية.</div>
@@ -397,8 +412,8 @@
         </div>
 
         <!-- ====== مواعيد الفروض والامتحانات ====== -->
-        <div class="section">
-            <h2><i class="fas fa-file-pen"></i> مواعيد آخر الفروض والامتحانات</h2>
+        <div class="cal-card">
+            <div class="card-title"><i class="fas fa-file-pen"></i> مواعيد آخر الفروض والامتحانات</div>
             <div class="table-wrap">
                 <table>
                     <tr><th>الأسدوس</th><th>العملية</th><th>التاريخ</th></tr>
@@ -414,8 +429,8 @@
         </div>
 
         <!-- ====== العطل المدرسية ====== -->
-        <div class="section">
-            <h2><i class="fas fa-umbrella-beach"></i> العطل المدرسية</h2>
+        <div class="cal-card">
+            <div class="card-title"><i class="fas fa-umbrella-beach"></i> العطل المدرسية</div>
             <div class="table-wrap">
                 <table>
                     <tr><th>العطلة</th><th>التاريخ</th><th>المدة</th></tr>
