@@ -235,8 +235,8 @@ function checkPartialsDrift() {
     // ومن بعد <nav class="sidebar-nav"> منفصل + sidebarOverlay، فخاص
     // الفحص يمسك البلوك الكامل ماشي غير أول </nav> - وإلا كايقارن جزء
     // بكامل الملف وكيعطي تحذير كاذب حتى ولو build.js خدم صحيح.
-    const NAVBAR_RE = /<nav class="navbar"[\s\S]*<div id="sidebarOverlay" class="sidebar-overlay"><\/div>(?:\s*(?:<!--[\s\S]*?-->\s*)?<script>[\s\S]*?<\/script>)?/;
-    const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
+    const NAVBAR_RE = /<nav class="navbar"[\s\S]*?<div id="sidebarOverlay" class="sidebar-overlay"><\/div>/;
+    const FOOTER_RE = /<footer class="footer"[^>]*>[\s\S]*?<\/footer>/;
 
     function getBase(fp) {
         const rel = path.relative(ROOT, path.dirname(fp));
@@ -259,7 +259,7 @@ function checkPartialsDrift() {
             driftCount++;
         }
         const footMatch = content.match(FOOTER_RE);
-        if (footMatch && footMatch[0] !== render(footerTpl, '')) {
+        if (footMatch && footMatch[0] !== render(footerTpl, base)) {
             warn(`${rel}: footer ماشي متوافق مع partials/footer.html - شغّل node utils/build.js`);
             driftCount++;
         }
@@ -322,5 +322,3 @@ if (errorCount === 0) {
     console.log(`❌ الفحص كامل: ${errorCount} خطأ/أخطاء، ${warnCount} تحذير(ات). خاصك تصلحهم قبل النشر.`);
     process.exit(1);
 }
-
-

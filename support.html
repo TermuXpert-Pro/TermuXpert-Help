@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="سياسة الخصوصية لموقع Xpert - منصة تعليمية للسنة الأولى بكالوريا علوم تجريبية.">
+    <meta name="description" content="صفحة الدعم لموقع Xpert - بلّغ عن أي مشكل تقني أو خطأ فالمحتوى وحنا نعاونوك.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سياسة الخصوصية | Xpert</title>
+    <title>الدعم | Xpert</title>
 
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/icon-192.png" type="image/png">
@@ -32,7 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <style>
-        /* ====== تصميم صفحات قانونية (privacy/terms) ====== */
+        /* ====== تصميم صفحات قانونية (privacy/terms/support) ====== */
         .legal-wrap{
             --legal-gold:#F4D03F;
             --legal-teal:#4ECDC4;
@@ -84,6 +84,41 @@
         .legal-updated{
             text-align:center; color:var(--text-muted); font-size:12px; margin-top:24px;
             font-family:'Cairo','Tajawal',sans-serif;
+        }
+
+        /* ====== بطاقات أنواع المشاكل ====== */
+        .support-issue-grid{
+            display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;
+        }
+        @media (min-width:600px){
+            .support-issue-grid{grid-template-columns:1fr 1fr;}
+        }
+        .support-issue-card{
+            display:flex; align-items:flex-start; gap:12px;
+            background:rgba(255,255,255,0.03);
+            border:1px solid var(--border);
+            border-radius:12px;
+            padding:14px;
+        }
+        .support-issue-card i{
+            font-size:18px; color:var(--legal-teal); margin-top:2px; flex-shrink:0;
+        }
+        .support-issue-card .support-issue-title{
+            font-weight:700; color:var(--text-primary); font-size:14px;
+            margin-bottom:4px; font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .support-issue-card .support-issue-desc{
+            font-size:13px; color:var(--text-secondary); line-height:1.7;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .support-email-box{
+            display:flex; align-items:center; justify-content:center; gap:10px;
+            background:rgba(78,205,196,0.08);
+            border:1px solid rgba(78,205,196,0.25);
+            border-radius:12px; padding:16px; margin-top:10px;
+        }
+        .support-email-box a{
+            color:var(--legal-teal); text-decoration:none; font-weight:700; font-size:15px;
         }
     </style>
 </head>
@@ -217,6 +252,13 @@
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
+                <li>
+                    <a href="about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -261,7 +303,9 @@
     <!-- ====== القسم 4: روابط قانونية ====== -->
     <div class="sidebar-section sidebar-section-legal">
         <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="privacy.html" data-page="privacy" style="color:var(--text-muted);text-decoration:none;">سياسة الخصوصية</a>
+            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
             <span style="color:var(--text-muted);opacity:0.4;">•</span>
             <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
         </div>
@@ -278,58 +322,71 @@
 <!-- ====== Overlay ====== -->
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-    <!-- ====== محتوى صفحة سياسة الخصوصية ====== -->
-    <div class="legal-wrap">
+    <!-- ====== محتوى صفحة الدعم ====== -->
+    <div class="legal-wrap" id="legalWrap">
 
         <div class="legal-hero">
-            <div class="legal-eyebrow"><i class="fas fa-shield-halved"></i> Xpert</div>
-            <h1>سياسة <span>الخصوصية</span></h1>
-            <p>آخر تحديث: يوليوز 2026</p>
+            <div class="legal-eyebrow"><i class="fas fa-headset"></i> Xpert</div>
+            <h1>مركز <span>الدعم</span></h1>
+            <p>واجهتك مشكل فالموقع؟ حنا هنا باش نعاونوك</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-info"></i> مقدمة</h2>
-            <p>موقع Xpert منصة تعليمية مجانية موجهة لتلاميذ السنة الأولى بكالوريا علوم تجريبية بالمغرب. نحترم خصوصية زوارنا، وهاذي الصفحة كتوضح شنو كنجمعو من معلومات وكيفاش كنستعملوها.</p>
+            <h2><i class="fas fa-circle-info"></i> مرحبا بيك</h2>
+            <p>إلا صادفتك أي مشكل فمحتوى ولا فتقنية الموقع، قبل ما تتواصل معانا، عيّط شنو نوع المشكل من اللائحة تحت. هاد الشي غادي يعاوننا نفهمو المشكل بسرعة ونحلوه فأقرب وقت.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-database"></i> المعلومات اللي كنجمعو</h2>
-            <p>الموقع <strong>ما كيطلبش منك تسجيل حساب</strong> ولا كيجمع معلومات شخصية (اسم، إيميل، رقم هاتف...). المعلومات الوحيدة اللي كيتم تخزينها هي:</p>
+            <h2><i class="fas fa-list-check"></i> أنواع المشاكل الشائعة</h2>
+            <div class="support-issue-grid">
+                <div class="support-issue-card">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <div class="support-issue-title">رسم أو بيان مشوّه</div>
+                        <div class="support-issue-desc">شكل، منحنى، أو بيان بان ماشي واضح ولا غير دقيق.</div>
+                    </div>
+                </div>
+                <div class="support-issue-card">
+                    <i class="fas fa-circle-exclamation"></i>
+                    <div>
+                        <div class="support-issue-title">معلومة خاطئة</div>
+                        <div class="support-issue-desc">نتيجة، قانون، أو معطى غلط فدرس ولا فتمرين معيّن.</div>
+                    </div>
+                </div>
+                <div class="support-issue-card">
+                    <i class="fas fa-book-open"></i>
+                    <div>
+                        <div class="support-issue-title">نقص تمرين</div>
+                        <div class="support-issue-desc">درس معيّن ناقصو تمرين ولا كاين تمرين ما كيفتحش.</div>
+                    </div>
+                </div>
+                <div class="support-issue-card">
+                    <i class="fas fa-gears"></i>
+                    <div>
+                        <div class="support-issue-title">مشكل تقني</div>
+                        <div class="support-issue-desc">صفحة ما كتفتحش، الموقع بطيء، ولا مشكل فالعرض بشكل عام.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2><i class="fas fa-paper-plane"></i> كيفاش تبلغ عن مشكل</h2>
+            <p>باش نحلو المشكل بسرعة، حاول تعطينا:</p>
             <ul>
-                <li>ملفات مخزنة محلياً فـ المتصفح ديالك (Cache / Service Worker) باش الموقع يخدم بسرعة وحتى بلا انترنت.</li>
-                <li>معلومات تقنية عامة (نوع المتصفح، الجهاز) قد تجمعها منصة الاستضافة تلقائياً لأغراض إحصائية عامة.</li>
+                <li>اسم الصفحة ولا الدرس ولا التمرين اللي فيه المشكل.</li>
+                <li>وصف قصير للمشكل اللي واجهتك.</li>
+                <li>صورة للشاشة (screenshot) إلا كان ممكن.</li>
             </ul>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-cookie-bite"></i> ملفات تعريف الارتباط (Cookies)</h2>
-            <p>الموقع لا يستعمل حالياً ملفات cookies خاصة بالتتبع الإعلاني. الخدمات الخارجية (Google Fonts، Font Awesome) قد تستعمل تقنيات مشابهة لتحميل الخطوط والأيقونات فقط.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-server"></i> خدمات خارجية (Third-party)</h2>
-            <p>كنستعملو خدمات خارجية موثوقة لتحسين تجربة الاستخدام:</p>
-            <ul>
-                <li><strong>Google Fonts</strong> — لتحميل الخطوط.</li>
-                <li><strong>Font Awesome (cdnjs)</strong> — للأيقونات.</li>
-                <li><strong>GSAP (cdnjs)</strong> — للرسوم المتحركة.</li>
-            </ul>
-            <p>هاذي الخدمات عندها سياسات خصوصية خاصة بيها، ونشجعك تطلع عليها إلا بغيتي التفاصيل الكاملة.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-child-reaching"></i> خصوصية القاصرين</h2>
-            <p>الموقع موجه بالأساس لتلاميذ الثانوي، ونولي اهتمام خاص بعدم جمع أي معلومة شخصية من الزوار القاصرين. إلا كنتي ولي أمر وعندك سؤال، تواصل معانا.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-pen"></i> تحديثات على هاذي السياسة</h2>
-            <p>ممكن نحدثو هاذي الصفحة من وقت لآخر. أي تعديل جوهري غادي يبان هنا مع تاريخ التحديث فالأعلى.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-envelope"></i> التواصل معانا</h2>
-            <p>إلا عندك أي سؤال حول هاذي السياسة، تقدر تتواصل معانا عبر: <strong>contact@jdxpert.com</strong></p>
+            <h2><i class="fas fa-envelope"></i> تواصل معانا</h2>
+            <p>بعث لينا المشكل اللي واجهتك عبر الإيميل:</p>
+            <div class="support-email-box">
+                <i class="fas fa-envelope" style="color:var(--legal-teal);"></i>
+                <a href="mailto:jdelkhayaty@gmail.com">jdelkhayaty@gmail.com</a>
+            </div>
         </div>
 
         <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
@@ -339,9 +396,11 @@
     <footer class="footer">
     <div class="divider"></div>
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="{{BASE}}privacy.html" style="color:var(--text-muted);text-decoration:none;">سياسة الخصوصية</a>
+        <a href="support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
         <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="{{BASE}}terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <a href="installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
     </div>
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
@@ -349,6 +408,74 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
+
+  <!-- ====== GSAP Animation (نفس أنميشن privacy.html/calendrier.html) ====== -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // إذا لم يتم تحميل GSAP → عرض مباشر
+        if (typeof gsap === 'undefined') {
+            console.warn('⚠️ GSAP non chargé - Affichage direct');
+            document.querySelector('.moroccan-bg').style.opacity = '0.6';
+            document.querySelector('.moroccan-shadow').style.opacity = '0.08';
+            document.querySelector('.moroccan-star').style.opacity = '0.04';
+            document.querySelectorAll('.geo-pattern').forEach(el => el.style.opacity = '0.03');
+            document.getElementById('legalWrap').style.opacity = '1';
+            document.getElementById('legalWrap').style.transform = 'none';
+            document.getElementById('overlayProtection').classList.add('hidden');
+            return;
+        }
+
+        const overlay = document.getElementById('overlayProtection');
+
+        // ====== إعداد العناصر (كلها مخفية) ======
+        gsap.set('.moroccan-bg', { opacity: 0 });
+        gsap.set('.moroccan-shadow', { opacity: 0 });
+        gsap.set('.moroccan-star', { opacity: 0 });
+        gsap.set('.geo-pattern', { opacity: 0 });
+        gsap.set('#legalWrap', { opacity: 0, y: 40 });
+        gsap.set('.legal-hero', { opacity: 0, y: 30 });
+        gsap.set('.legal-section', { opacity: 0, y: 30 });
+
+        // تفعيل طبقة الحماية (تمنع التفاعل أثناء الأنميشن)
+        overlay.classList.add('active');
+
+        // ====== تشغيل الأنميشن ======
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        tl
+            // 1. ظهور الخلفيات
+            .to('.moroccan-bg', { opacity: 0.6, duration: 1.8, ease: 'power1.out' })
+            .to('.moroccan-shadow', { opacity: 0.08, duration: 1.8, ease: 'power1.out' }, '-=1.2')
+            .to('.moroccan-star', { opacity: 0.04, duration: 1.8, ease: 'power1.out' }, '-=1.2')
+            .to('.geo-pattern', { opacity: 0.03, duration: 1.8, stagger: 0.08, ease: 'power1.out' }, '-=1.4')
+
+            // 2. ظهور المحتوى الرئيسي
+            .to('#legalWrap', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+            .to('.legal-hero', { opacity: 1, y: 0, duration: 0.7, ease: 'back.out(1.7)' }, '-=0.4')
+            .to('.legal-section', {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.12,
+                ease: 'back.out(1.7)'
+            }, '-=0.3')
+
+            // 3. إخفاء طبقة الحماية بعد الأنميشن
+            .call(() => {
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ support.html - Animation jouée');
+            });
+
+        // ====== حركات مستمرة للخلفيات ======
+        gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+        gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
+    });
+</script>
 
 </body>
 </html>

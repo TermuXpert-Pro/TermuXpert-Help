@@ -3,11 +3,11 @@
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="شروط الاستخدام لموقع Xpert - منصة تعليمية للسنة الأولى بكالوريا علوم تجريبية.">
+    <meta name="description" content="دليل تثبيت Xpert كتطبيق (PWA) فالهاتف أو الحاسوب - خطوة بخطوة.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شروط الاستخدام | Xpert</title>
+    <title>دليل التثبيت | Xpert</title>
 
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/icon-192.png" type="image/png">
@@ -32,7 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <style>
-        /* ====== تصميم صفحات قانونية (privacy/terms) ====== */
+        /* ====== تصميم صفحات قانونية (privacy/terms/support/about/installation) ====== */
         .legal-wrap{
             --legal-gold:#F4D03F;
             --legal-teal:#4ECDC4;
@@ -83,6 +83,67 @@
         .legal-section strong{color:var(--text-primary);}
         .legal-updated{
             text-align:center; color:var(--text-muted); font-size:12px; margin-top:24px;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+
+        /* ====== شبكة الفوائد ====== */
+        .install-benefit-grid{
+            display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;
+        }
+        @media (min-width:600px){
+            .install-benefit-grid{grid-template-columns:1fr 1fr;}
+        }
+        .install-benefit-card{
+            display:flex; align-items:flex-start; gap:12px;
+            background:rgba(255,255,255,0.03);
+            border:1px solid var(--border);
+            border-radius:12px;
+            padding:14px;
+        }
+        .install-benefit-card i{
+            font-size:18px; color:var(--legal-teal); margin-top:2px; flex-shrink:0;
+        }
+        .install-benefit-card .install-benefit-title{
+            font-weight:700; color:var(--text-primary); font-size:14px;
+            margin-bottom:4px; font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .install-benefit-card .install-benefit-desc{
+            font-size:13px; color:var(--text-secondary); line-height:1.7;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+
+        /* ====== خطوات التثبيت ====== */
+        .install-steps{
+            list-style:none; padding:0; margin-top:14px; counter-reset:step;
+        }
+        .install-steps li{
+            display:flex; align-items:flex-start; gap:14px;
+            margin-bottom:16px; padding-bottom:16px;
+            border-bottom:1px dashed var(--border);
+        }
+        .install-steps li:last-child{border-bottom:none; margin-bottom:0; padding-bottom:0;}
+        .install-step-num{
+            counter-increment:step;
+            flex-shrink:0; width:30px; height:30px; border-radius:50%;
+            background:rgba(78,205,196,0.12); border:1px solid rgba(78,205,196,0.35);
+            color:var(--legal-teal); font-weight:900; font-size:14px;
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .install-step-num::before{content:counter(step);}
+        .install-step-text{font-size:14px; line-height:1.8; color:var(--text-secondary); font-family:'Cairo','Tajawal',sans-serif;}
+        .install-step-text strong{color:var(--text-primary);}
+        .install-step-text code{
+            background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:6px;
+            color:var(--legal-gold); font-size:13px; direction:ltr; display:inline-block;
+        }
+
+        /* ====== تبويبات الجهاز ====== */
+        .install-device-tag{
+            display:inline-flex; align-items:center; gap:6px;
+            background:rgba(244,208,63,0.1); border:1px solid rgba(244,208,63,0.3);
+            color:var(--legal-gold); font-size:12px; font-weight:700;
+            padding:4px 12px; border-radius:16px; margin-bottom:10px;
             font-family:'Cairo','Tajawal',sans-serif;
         }
     </style>
@@ -287,52 +348,112 @@
 <!-- ====== Overlay ====== -->
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-    <!-- ====== محتوى صفحة شروط الاستخدام ====== -->
+    <!-- ====== محتوى صفحة دليل التثبيت ====== -->
     <div class="legal-wrap" id="legalWrap">
 
         <div class="legal-hero">
-            <div class="legal-eyebrow"><i class="fas fa-file-contract"></i> Xpert</div>
-            <h1>شروط <span>الاستخدام</span></h1>
-            <p>آخر تحديث: يوليوز 2026</p>
+            <div class="legal-eyebrow"><i class="fas fa-download"></i> Xpert</div>
+            <h1>دليل <span>التثبيت</span></h1>
+            <p>ثبّت Xpert كتطبيق فهاتفك أو حاسوبك فبضع خطوات بسيطة</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-info"></i> قبول الشروط</h2>
-            <p>باستخدامك لموقع Xpert، فإنك توافق على الشروط المذكورة فهاذي الصفحة. إلا ما وافقتش على شي بند، نرجو منك التوقف عن استعمال الموقع.</p>
+            <h2><i class="fas fa-circle-question"></i> شنو معنى PWA؟</h2>
+            <p><strong>PWA</strong> معناها <strong>Progressive Web App</strong>، أي تطبيق ويب متطوّر. بمعنى آخر، Xpert هو موقع ويب، ولكن مبني بطريقة تخليك تقدر <strong>تثبتو</strong> فهاتفك أو حاسوبك بحال أي تطبيق عادي، بلا ما تدخل لـ Play Store ولا App Store.</p>
+            <p>من بعد التثبيت، غادي تلقى أيقونة Xpert فالشاشة الرئيسية ديالك، وكيفتح فنافذة خاصة بيه (بلا شريط عنوان المتصفح)، وبعض الصفحات كتخدم حتى بلا انترنت.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-graduation-cap"></i> طبيعة الخدمة</h2>
-            <p>Xpert منصة تعليمية <strong>مجانية</strong> موجهة لتلاميذ السنة الأولى بكالوريا علوم تجريبية بالمغرب. المحتوى (دروس، تمارين، سلاسل) معد لأغراض تعليمية ومساعدة فقط، وما كيعوضش المقرر الرسمي ولا المدرس.</p>
+            <h2><i class="fas fa-star"></i> فوائد التثبيت</h2>
+            <div class="install-benefit-grid">
+                <div class="install-benefit-card">
+                    <i class="fas fa-bolt"></i>
+                    <div>
+                        <div class="install-benefit-title">أسرع فالفتح</div>
+                        <div class="install-benefit-desc">كيفتح مباشرة من الأيقونة، بلا ما تبحث عليه فالمتصفح.</div>
+                    </div>
+                </div>
+                <div class="install-benefit-card">
+                    <i class="fas fa-wifi"></i>
+                    <div>
+                        <div class="install-benefit-title">يخدم بلا انترنت</div>
+                        <div class="install-benefit-desc">الصفحات اللي زرتيها من قبل كتبقى محفوظة وتقدر تفتحها بلا واي فاي.</div>
+                    </div>
+                </div>
+                <div class="install-benefit-card">
+                    <i class="fas fa-window-maximize"></i>
+                    <div>
+                        <div class="install-benefit-title">واجهة نظيفة</div>
+                        <div class="install-benefit-desc">كيخدم فنافذة خاصة بيه بلا شريط عنوان المتصفح، بحال تطبيق حقيقي.</div>
+                    </div>
+                </div>
+                <div class="install-benefit-card">
+                    <i class="fas fa-hard-drive"></i>
+                    <div>
+                        <div class="install-benefit-title">ما كيخديش حيز</div>
+                        <div class="install-benefit-desc">ماشي بحال تطبيقات الـ Play Store، ما كيتزّلش وزنو على الذاكرة ديال الهاتف.</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-triangle-exclamation"></i> إخلاء المسؤولية</h2>
-            <ul>
-                <li>نبذلو مجهود باش يكون المحتوى دقيق، ولكن ما نضمنوش خلوه التام من الأخطاء.</li>
-                <li>الموقع "كما هو" (as-is) بلا أي ضمان، وما نتحملوش مسؤولية أي ضرر ناتج عن استعمال المعلومات المقدمة.</li>
-                <li>يُنصح دائماً بالرجوع للمقرر الرسمي والمدرس فأي حالة شك.</li>
-            </ul>
+            <span class="install-device-tag"><i class="fas fa-mobile-screen-button"></i> Android / Google Chrome</span>
+            <h2><i class="fas fa-mobile"></i> كيفاش تثبت من الهاتف</h2>
+            <ol class="install-steps">
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">افتح متصفح <strong>Google Chrome</strong> ودخل لموقع Xpert.</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">اضغط على أيقونة القائمة <code>⋮</code> (ثلاث نقط) فالزاوية العليا يمين.</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">اختار من اللائحة <strong>"تثبيت وإنشاء اختصار"</strong> (بالإنجليزية: <code>Install and create shortcut</code>).</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">فالنافذة اللي غتبان، اضغط على زر <strong>"تثبيت"</strong> (<code>Install</code>).</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">تسالا! غادي يتخلق تطبيق Xpert فهاتفك، وتقدر تفتحو من الشاشة الرئيسية بحال أي تطبيق آخر.</span>
+                </li>
+            </ol>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-copyright"></i> حقوق الملكية</h2>
-            <p>جميع المحتويات (نصوص، تصاميم، شعار Xpert) محمية بحقوق الملكية. يُسمح باستخدام المحتوى للأغراض الشخصية والتعليمية، لكن يُمنع إعادة نشره أو بيعه أو استخدامه تجارياً بلا إذن مسبق.</p>
+            <span class="install-device-tag"><i class="fas fa-desktop"></i> Windows / macOS - Chrome أو Edge</span>
+            <h2><i class="fas fa-computer"></i> كيفاش تثبت من الحاسوب</h2>
+            <ol class="install-steps">
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">افتح Xpert من متصفح <strong>Google Chrome</strong> (ولا Edge).</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">اضغط على أيقونة القائمة <code>⋮</code> فالزاوية العليا يمين ديال المتصفح.</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">اختار <strong>"تثبيت وإنشاء اختصار"</strong> (<code>Install and create shortcut</code>).</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">أكّد بالضغط على <strong>"تثبيت"</strong> (<code>Install</code>).</span>
+                </li>
+                <li>
+                    <span class="install-step-num"></span>
+                    <span class="install-step-text">تطبيق Xpert غادي يتزاد فحاسوبك، وتقدر تفتحو من مكتب العمل (Bureau) ولا من قائمة البرامج.</span>
+                </li>
+            </ol>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-link"></i> روابط خارجية</h2>
-            <p>الموقع قد يحتوي على روابط لمواقع خارجية (مثلاً المقرر الرسمي). ما نتحملوش مسؤولية محتوى ولا سياسات هاذي المواقع الخارجية.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-arrows-rotate"></i> تعديل الشروط</h2>
-            <p>نحتفظ بالحق فـ تعديل هاذي الشروط فأي وقت. الاستمرار فـ استخدام الموقع بعد أي تعديل يعتبر موافقة على الشروط الجديدة.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-envelope"></i> التواصل معانا</h2>
-            <p>لأي سؤال أو استفسار حول هاذي الشروط: <strong><a href="mailto:jdelkhayaty@gmail.com" style="color:var(--legal-teal);text-decoration:none;">jdelkhayaty@gmail.com</a></strong></p>
+            <h2><i class="fas fa-lightbulb"></i> ملاحظة</h2>
+            <p>الخطوات فوق خاصة بمتصفح Chrome (وباقي المتصفحات المبنية عليه بحال Edge). إلا كنتي كتخدم بمتصفح آخر ولا بجهاز iPhone/iPad، اسم الخيار قد يختلف شوية، ولكن المبدأ هو نفسو: قائمة المتصفح ← خيار "تثبيت" ولا "إضافة للشاشة الرئيسية".</p>
         </div>
 
         <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
@@ -355,7 +476,7 @@
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
 
-  <!-- ====== GSAP Animation (نفس أنميشن calendrier.html) ====== -->
+  <!-- ====== GSAP Animation (نفس أنميشن support.html/terms.html/about.html) ====== -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // إذا لم يتم تحميل GSAP → عرض مباشر
@@ -412,7 +533,7 @@
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
-                console.log('✅ terms.html - Animation jouée');
+                console.log('✅ installation.html - Animation jouée');
             });
 
         // ====== حركات مستمرة للخلفيات ======

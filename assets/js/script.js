@@ -151,12 +151,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentPath = window.location.pathname;
     const currentSearch = window.location.search;
 
+    // كنشيلو "index.html" وأي "/" فالأخر باش نقارنو المسارات بشكل
+    // مستقل عن العمق - هكذا صفحة الجذر ("/" أو "/index.html") غادي
+    // تعطي نفس القيمة، وصفحة فرعية بحال "/content/math/serie1/index.html"
+    // (اللي هي واحدة من 108 صفحة اسمها index.html بالضبط) ماغاديش تلتبس
+    // بالصفحة الرئيسية.
+    function normalizePath(p) {
+        return p.replace(/index\.html$/, '').replace(/\/+$/, '') || '/';
+    }
+    const currentNorm = normalizePath(currentPath);
+
     document.querySelectorAll('.sidebar-link').forEach(function (link) {
         const href = link.getAttribute('href');
         if (!href) return;
 
-        // Accueil (index)
-        if (href.includes('index.html') && (currentPath === '/' || currentPath === '' || currentPath.endsWith('index.html') || currentPath.endsWith('/'))) {
+        // Accueil (index) - كنقارنو المسار المطلق المحلول من طرف
+        // المتصفح لهاد الرابط (link.pathname) مع المسار الحالي، بعد
+        // التطبيع - ماشي endsWith('index.html') اللي كان كيطابق
+        // بالغلط أي واحدة من 108 صفحة اسمها index.html فالموقع.
+        if (href.includes('index.html') && normalizePath(link.pathname) === currentNorm) {
             link.classList.add('active');
         }
         // Matières

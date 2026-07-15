@@ -96,7 +96,7 @@ function getSubject(filePath) {
 //    بسيط، بلا sidebar/sidebarOverlay أصلا): الـ pattern الأول ماغاديش
 //    يطابق (العلامة sidebarOverlay مكاينة فالصفحة أصلا)، فكنرجعو
 //    لـ pattern لازي بسيط كيمسك غير <nav>...</nav> الأولانية.
-const NAVBAR_NEW_RE = /<nav class="navbar"[\s\S]*<div id="sidebarOverlay" class="sidebar-overlay"><\/div>(?:\s*(?:<!--[\s\S]*?-->\s*)?<script>[\s\S]*?<\/script>)?/;
+const NAVBAR_NEW_RE = /<nav class="navbar"[\s\S]*?<div id="sidebarOverlay" class="sidebar-overlay"><\/div>/;
 const NAVBAR_OLD_RE = /<nav class="navbar"[\s\S]*?<\/nav>/;
 
 function matchNavbarRe(content) {
@@ -106,7 +106,7 @@ function matchNavbarRe(content) {
 }
 
 // الفوتر
-const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
+const FOOTER_RE = /<footer class="footer"[^>]*>[\s\S]*?<\/footer>/;
 
 // الديكور (صفحات المحتوى): من التعليق أو overlay-protection حتى آخر glow-orb-2
 const DECOR_RE = /(?:<!-- ====== طبقة الحماية[\s\S]*?-->\s*)?<div class="overlay-protection"[\s\S]*?<div class="glow-orb glow-orb-2"><\/div>/;
@@ -142,7 +142,7 @@ for (const file of walk(ROOT)) {
         changed = true;
     }
     if (FOOTER_RE.test(content)) {
-        content = content.replace(FOOTER_RE, render(footerTpl, {}));
+        content = content.replace(FOOTER_RE, render(footerTpl, { BASE: base }));
         changed = true;
     }
     if (!isRoot && DECOR_RE.test(content)) {

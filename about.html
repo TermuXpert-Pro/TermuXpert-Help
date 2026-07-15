@@ -3,11 +3,11 @@
 <head>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="شروط الاستخدام لموقع Xpert - منصة تعليمية للسنة الأولى بكالوريا علوم تجريبية.">
+    <meta name="description" content="تعرف على منصة Xpert وعلى مطورها - موقع تعليمي مجاني لتلاميذ الأولى باكالوريا علوم تجريبية.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شروط الاستخدام | Xpert</title>
+    <title>من نحن | Xpert</title>
 
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/icon-192.png" type="image/png">
@@ -32,7 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <style>
-        /* ====== تصميم صفحات قانونية (privacy/terms) ====== */
+        /* ====== تصميم صفحات قانونية (privacy/terms/support/about) ====== */
         .legal-wrap{
             --legal-gold:#F4D03F;
             --legal-teal:#4ECDC4;
@@ -83,6 +83,86 @@
         .legal-section strong{color:var(--text-primary);}
         .legal-updated{
             text-align:center; color:var(--text-muted); font-size:12px; margin-top:24px;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+
+        /* ====== بطاقة المطور ====== */
+        .about-dev-card{
+            display:flex; flex-direction:column; align-items:center; text-align:center;
+            gap:14px;
+        }
+        .about-avatar-wrap{
+            position:relative; width:96px; height:96px; flex-shrink:0;
+        }
+        .about-avatar-wrap img{
+            width:100%; height:100%; border-radius:50%; object-fit:cover;
+            border:3px solid var(--legal-teal);
+            box-shadow:0 0 0 4px rgba(78,205,196,0.15);
+        }
+        .about-avatar-badge{
+            position:absolute; bottom:-2px; left:-2px;
+            width:28px; height:28px; border-radius:50%;
+            background:var(--legal-teal); color:#0b0f0f;
+            display:flex; align-items:center; justify-content:center;
+            font-size:13px; border:2px solid var(--bg-card);
+        }
+        .about-dev-name{
+            font-size:19px; font-weight:900; color:#fff;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .about-dev-role{
+            font-size:13px; color:var(--legal-gold); font-weight:700;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .about-badge-row{
+            display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:4px;
+        }
+        .about-badge{
+            display:flex; align-items:center; gap:6px;
+            background:rgba(255,255,255,0.04);
+            border:1px solid var(--border);
+            border-radius:20px; padding:6px 14px;
+            font-size:12.5px; color:var(--text-secondary);
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .about-badge i{color:var(--legal-teal); font-size:12px;}
+
+        .about-social-row{
+            display:flex; justify-content:center; gap:10px; margin-top:6px;
+        }
+        .about-social-link{
+            display:flex; align-items:center; gap:8px;
+            background:linear-gradient(135deg, rgba(225,48,108,0.12), rgba(131,58,180,0.12));
+            border:1px solid rgba(225,48,108,0.3);
+            border-radius:20px; padding:8px 16px;
+            font-size:13px; font-weight:700; color:#fff; text-decoration:none;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .about-social-link i{color:#e1306c; font-size:15px;}
+
+        /* ====== شبكة المميزات ====== */
+        .about-feature-grid{
+            display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;
+        }
+        @media (min-width:600px){
+            .about-feature-grid{grid-template-columns:1fr 1fr;}
+        }
+        .about-feature-card{
+            display:flex; align-items:flex-start; gap:12px;
+            background:rgba(255,255,255,0.03);
+            border:1px solid var(--border);
+            border-radius:12px;
+            padding:14px;
+        }
+        .about-feature-card i{
+            font-size:18px; color:var(--legal-teal); margin-top:2px; flex-shrink:0;
+        }
+        .about-feature-card .about-feature-title{
+            font-weight:700; color:var(--text-primary); font-size:14px;
+            margin-bottom:4px; font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .about-feature-card .about-feature-desc{
+            font-size:13px; color:var(--text-secondary); line-height:1.7;
             font-family:'Cairo','Tajawal',sans-serif;
         }
     </style>
@@ -287,52 +367,85 @@
 <!-- ====== Overlay ====== -->
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-    <!-- ====== محتوى صفحة شروط الاستخدام ====== -->
+    <!-- ====== محتوى صفحة "من نحن" ====== -->
     <div class="legal-wrap" id="legalWrap">
 
         <div class="legal-hero">
-            <div class="legal-eyebrow"><i class="fas fa-file-contract"></i> Xpert</div>
-            <h1>شروط <span>الاستخدام</span></h1>
-            <p>آخر تحديث: يوليوز 2026</p>
+            <div class="legal-eyebrow"><i class="fas fa-circle-info"></i> Xpert</div>
+            <h1>من <span>نحن</span></h1>
+            <p>تعرف على منصة Xpert وعلى الشخص اللي كايطورها</p>
+        </div>
+
+        <!-- ====== بطاقة المطور ====== -->
+        <div class="legal-section">
+            <div class="about-dev-card">
+                <div class="about-avatar-wrap">
+                    <img src="assets/images/profile.png" alt="صورة المطور">
+                    <span class="about-avatar-badge"><i class="fas fa-code"></i></span>
+                </div>
+                <div class="about-dev-name">جواد الخياطي</div>
+                <div class="about-dev-role">تلميذ ومبرمج مواقع</div>
+                <div class="about-badge-row">
+                    <span class="about-badge"><i class="fas fa-graduation-cap"></i> تلميذ بالثانوي التأهيلي</span>
+                    <span class="about-badge"><i class="fas fa-flag"></i> مغربي الجنسية</span>
+                    <span class="about-badge"><i class="fas fa-laptop-code"></i> مبرمج مواقع ويب</span>
+                </div>
+                <div class="about-social-row">
+                    <a href="https://www.instagram.com/elkayatyjaouad?igsh=MTc1bXppcjg1N2p1ag==" target="_blank" rel="noopener noreferrer" class="about-social-link">
+                        <i class="fab fa-instagram"></i> elkayatyjaouad
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-info"></i> قبول الشروط</h2>
-            <p>باستخدامك لموقع Xpert، فإنك توافق على الشروط المذكورة فهاذي الصفحة. إلا ما وافقتش على شي بند، نرجو منك التوقف عن استعمال الموقع.</p>
+            <h2><i class="fas fa-user-pen"></i> نبذة عني</h2>
+            <p>سلام، أنا تلميذ مغربي كنقرا فالثانوي التأهيلي، وفنفس الوقت كنبرمج مواقع الويب من الهاتف الذكي ديالي (Termux). عندي شغف كبير بالمعلوميات والتعليم، وهاد المزيج هو اللي دفعني نبني <strong>Xpert</strong> بيدي، بلا فريق ولا ميزانية، غير بالإرادة والوقت الفاضي.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-graduation-cap"></i> طبيعة الخدمة</h2>
-            <p>Xpert منصة تعليمية <strong>مجانية</strong> موجهة لتلاميذ السنة الأولى بكالوريا علوم تجريبية بالمغرب. المحتوى (دروس، تمارين، سلاسل) معد لأغراض تعليمية ومساعدة فقط، وما كيعوضش المقرر الرسمي ولا المدرس.</p>
+            <h2><i class="fas fa-graduation-cap"></i> عن منصة Xpert</h2>
+            <p>Xpert هو موقع تعليمي مجاني موجّه لتلاميذ <strong>الأولى باكالوريا شعبة العلوم التجريبية</strong> بالمغرب. الهدف ديالو بسيط: نجمع فمكان واحد الدروس والتمارين والسلاسل ديال الرياضيات، الفيزياء، والكيمياء، بطريقة واضحة ومنظمة حسب المنهاج الرسمي.</p>
+            <div class="about-feature-grid">
+                <div class="about-feature-card">
+                    <i class="fas fa-calculator"></i>
+                    <div>
+                        <div class="about-feature-title">الرياضيات</div>
+                        <div class="about-feature-desc">دروس، تمارين مصححة، وسلاسل تمارين لكل درس.</div>
+                    </div>
+                </div>
+                <div class="about-feature-card">
+                    <i class="fas fa-atom"></i>
+                    <div>
+                        <div class="about-feature-title">الفيزياء</div>
+                        <div class="about-feature-desc">شروحات مع رسومات ومخططات توضيحية.</div>
+                    </div>
+                </div>
+                <div class="about-feature-card">
+                    <i class="fas fa-flask"></i>
+                    <div>
+                        <div class="about-feature-title">الكيمياء</div>
+                        <div class="about-feature-desc">مفاهيم مبسطة مع تمارين للتطبيق.</div>
+                    </div>
+                </div>
+                <div class="about-feature-card">
+                    <i class="fas fa-mobile-screen"></i>
+                    <div>
+                        <div class="about-feature-title">مجاني ومتاح للكل</div>
+                        <div class="about-feature-desc">كيخدم على الهاتف والحاسوب بلا تسجيل ولا أداء.</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-triangle-exclamation"></i> إخلاء المسؤولية</h2>
-            <ul>
-                <li>نبذلو مجهود باش يكون المحتوى دقيق، ولكن ما نضمنوش خلوه التام من الأخطاء.</li>
-                <li>الموقع "كما هو" (as-is) بلا أي ضمان، وما نتحملوش مسؤولية أي ضرر ناتج عن استعمال المعلومات المقدمة.</li>
-                <li>يُنصح دائماً بالرجوع للمقرر الرسمي والمدرس فأي حالة شك.</li>
-            </ul>
+            <h2><i class="fas fa-heart"></i> ليماذا Xpert؟</h2>
+            <p>كتلميذ، عشت بنفسي صعوبة اللقاء بموارد ديال المراجعة منظمة ومطابقة للمنهاج المغربي. فقررت نبني الحل اللي كنت كنبحث عليه، ونشاركو مع تلاميذ آخرين كايعيشو نفس الوضعية.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-copyright"></i> حقوق الملكية</h2>
-            <p>جميع المحتويات (نصوص، تصاميم، شعار Xpert) محمية بحقوق الملكية. يُسمح باستخدام المحتوى للأغراض الشخصية والتعليمية، لكن يُمنع إعادة نشره أو بيعه أو استخدامه تجارياً بلا إذن مسبق.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-link"></i> روابط خارجية</h2>
-            <p>الموقع قد يحتوي على روابط لمواقع خارجية (مثلاً المقرر الرسمي). ما نتحملوش مسؤولية محتوى ولا سياسات هاذي المواقع الخارجية.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-arrows-rotate"></i> تعديل الشروط</h2>
-            <p>نحتفظ بالحق فـ تعديل هاذي الشروط فأي وقت. الاستمرار فـ استخدام الموقع بعد أي تعديل يعتبر موافقة على الشروط الجديدة.</p>
-        </div>
-
-        <div class="legal-section">
-            <h2><i class="fas fa-envelope"></i> التواصل معانا</h2>
-            <p>لأي سؤال أو استفسار حول هاذي الشروط: <strong><a href="mailto:jdelkhayaty@gmail.com" style="color:var(--legal-teal);text-decoration:none;">jdelkhayaty@gmail.com</a></strong></p>
+            <h2><i class="fas fa-comment-dots"></i> كلمة أخيرة</h2>
+            <p>كنتمنى بصح أن يفيدكم هاد الموقع فالمراجعة ديالكم. استمتعت بزاف وأنا كنبنيه، وحاولت جهدي نخلي استعمالو سهل وبسيط قدر الإمكان. بالتوفيق للجميع! 🍀</p>
         </div>
 
         <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
@@ -355,7 +468,7 @@
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
 
-  <!-- ====== GSAP Animation (نفس أنميشن calendrier.html) ====== -->
+  <!-- ====== GSAP Animation (نفس أنميشن support.html/terms.html) ====== -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // إذا لم يتم تحميل GSAP → عرض مباشر
@@ -412,7 +525,7 @@
                 overlay.classList.add('hidden');
                 overlay.style.display = 'none';
                 overlay.style.pointerEvents = 'none';
-                console.log('✅ terms.html - Animation jouée');
+                console.log('✅ about.html - Animation jouée');
             });
 
         // ====== حركات مستمرة للخلفيات ======
