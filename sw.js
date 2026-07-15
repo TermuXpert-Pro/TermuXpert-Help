@@ -4,7 +4,7 @@
 
 // ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
 // الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
-const CACHE_NAME = 'xpert-69a43c2b';
+const CACHE_NAME = 'xpert-11e4ca17';
 
 const urlsToCache = [
     './',
@@ -18,6 +18,9 @@ const urlsToCache = [
     './assets/js/script.js',
     './assets/js/protection.js',
     './assets/images/profile.png',
+    './manifest.json',
+    './assets/images/icon-192.png',
+    './assets/images/icon-512.png',
 
     // ====== دروس الكيمياء ======
     './content/chimie/lessons/chimie-organique/index.html',

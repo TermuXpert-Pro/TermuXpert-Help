@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!href) return;
 
         // Accueil (index)
-        if (href.includes('index.html') && (currentPath === '/' || currentPath === '' || currentPath.endsWith('index.html'))) {
+        if (href.includes('index.html') && (currentPath === '/' || currentPath === '' || currentPath.endsWith('index.html') || currentPath.endsWith('/'))) {
             link.classList.add('active');
         }
         // Matières
