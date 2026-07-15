@@ -13,13 +13,6 @@
  * الاستخدام: node utils/build.js
  * خاصك تشغلها من بعد أي تعديل فـ partials/ أو من بعد ما تزيد صفحة جديدة،
  * وقبل كل نشر (deploy) - بحال validate.js بالضبط.
- *
- * ⚠️ الصفحات الجذرية (index.html, subject.html, subjects.html) عندها
- * décor خاص بيها (multicolore، 4 ألوان بدل لون وحيد ديال المادة).
- * التوحيد ديالها كيدير عبر partials/decor-root.html (نفس التقنية اللي
- * كتستعمل f navbar/footer/décor ديال باقي الصفحات) - والـ CSS ديال
- * هاد الـdécor بقى مركّز فـ assets/css/root-decor.css بدل ما يكون
- * مكرر جوة <style> ديال كل صفحة من الصفحات الثلاث.
  */
 
 const fs = require('fs');
@@ -28,6 +21,16 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const PARTIALS_DIR = path.join(ROOT, 'partials');
 const SKIP_DIRS = ['node_modules', '.git', 'partials', 'templates'];
+
+// ====== الملفات المستثناة من المعالجة ======
+// هاد الملفات ما كيتغيروش بواسطة build.js (كيتحافظو على محتواهم)
+const SKIP_FILES = [
+    'calendrier.html',  // صفحة التقويم - محتواها ثابت
+    'sitemap.xml',      // خريطة الموقع
+    'manifest.json',    // ملف الـ PWA
+    'sw.js',            // Service Worker
+    'robots.txt',       // ملف الروبوتات
+];
 
 // ألوان كل مادة (نفس الألوان اللي كانت مستعملة يدوياً من قبل)
 const SUBJECT_COLORS = {
@@ -60,7 +63,10 @@ function walk(dir, fileList = []) {
         if (entry.isDirectory()) {
             walk(full, fileList);
         } else if (entry.name.endsWith('.html')) {
-            fileList.push(full);
+            // استثناء الملفات المحددة
+            if (!SKIP_FILES.includes(entry.name)) {
+                fileList.push(full);
+            }
         }
     }
     return fileList;
@@ -98,10 +104,13 @@ function matchNavbarRe(content) {
     if (NAVBAR_OLD_RE.test(content)) return NAVBAR_OLD_RE;
     return null;
 }
+
 // الفوتر
 const FOOTER_RE = /<footer class="footer">[\s\S]*?<\/footer>/;
+
 // الديكور (صفحات المحتوى): من التعليق أو overlay-protection حتى آخر glow-orb-2
 const DECOR_RE = /(?:<!-- ====== طبقة الحماية[\s\S]*?-->\s*)?<div class="overlay-protection"[\s\S]*?<div class="glow-orb glow-orb-2"><\/div>/;
+
 // الديكور (الصفحات الجذرية - multicolore): من التعليق أو overlay-protection
 // حتى آخر geo-pattern-4 (ماشي glow-orb، حيت الصفحات الجذرية عندها
 // progress-bar/bg-grid/glow-orb خاصين بيها بعد الـdécor، ماشي جزء منو)
@@ -109,6 +118,7 @@ const ROOT_DECOR_RE = /(?:<!-- ====== طبقة الحماية[\s\S]*?-->\s*)?<di
 
 let updated = 0;
 let skipped = 0;
+let skippedFiles = [];
 
 // ============================================================
 // تشغيل البناء
@@ -116,15 +126,7 @@ let skipped = 0;
 
 console.log('🔨 بدء بناء الموقع...\n');
 
-// ملاحظة: تم حذف injectSidebarAssets() - كانت كتلصق كود سايدبار
-// قديم (.sidebar-header, .sidebar-close, .sidebar-menu li a) غير
-// متوافق مع البنية الحالية (partials/navbar.html + style.css + script.js
-// المعدلين)، وزيادة على ذلك كان فيها بق: شرط الفحص ديالها
-// (`/* ====== SIDEBAR ====== */` و `// ====== SIDEBAR ======`) ماكانش
-// كيطابق النص المُلصَق فعليا، فكانت كتزيد تلصق نفس الكود فكل تشغيلة
-// لـ build.js - وهاد السبب لي كان مكرر فـ style.css و script.js.
-
-console.log('\n📄 تحديث صفحات HTML...');
+console.log('📄 تحديث صفحات HTML...');
 
 for (const file of walk(ROOT)) {
     const rel = path.relative(ROOT, file);
@@ -160,17 +162,23 @@ for (const file of walk(ROOT)) {
     if (changed) {
         fs.writeFileSync(file, content);
         updated++;
+        console.log(`   ✅ ${path.basename(file)} - تم التحديث`);
     } else {
         skipped++;
+        if (!SKIP_FILES.includes(path.basename(file))) {
+            console.log(`   ⏭️ ${path.basename(file)} - لا تغيير`);
+        }
     }
 }
 
-console.log(`✅ build.js: ${updated} صفحة تحدّثت من partials/, ${skipped} صفحة ما فيهاش تغيير.`);
+// عرض الملفات المستثناة
+console.log('\n📋 الملفات المستثناة من المعالجة:');
+SKIP_FILES.forEach(f => console.log(`   ⏭️ ${f}`));
+
+console.log(`\n✅ build.js: ${updated} صفحة تحدّثت من partials/, ${skipped} صفحة ما فيهاش تغيير.`);
 
 // ============================================================
 // تحديث تلقائي لرقم نسخة الكاش فـ sw.js (cache busting)
-// بدل ما تكون يدوية (v3, v4...)، كنحسبو hash انطلاقاً من محتوى
-// أهم ملفات الموقع - كي تبدل شي حاجة فيهم، الكاش كيتجدد وحدو.
 // ============================================================
 const crypto = require('crypto');
 
