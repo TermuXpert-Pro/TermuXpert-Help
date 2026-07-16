@@ -187,6 +187,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.classList.add('active');
             }
         }
+        // Pages générales via data-page (about, support, installation,
+        // terms, privacy...) - كيقارن اسم الصفحة الحالية مع data-page
+        // ديال الرابط، بلا ما نكرر else if خاصة بكل صفحة
+        else if (link.dataset.page && currentPath.endsWith('/' + link.dataset.page + '.html')) {
+            link.classList.add('active');
+        }
     });
 
     // ====== Activation de la matière ======

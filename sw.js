@@ -4,7 +4,7 @@
 
 // ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
 // الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
-const CACHE_NAME = 'xpert-587809ae';
+const CACHE_NAME = 'xpert-0753255c';
 
 const urlsToCache = [
     './',
