@@ -416,12 +416,22 @@ input, textarea, [contenteditable="true"] {
     z-index: 10001;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .sidebar.open {
     transform: translateX(0);
     pointer-events: auto;
+}
+
+/* ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== */
+.sidebar-scroll {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
 }
 
 /* ====== خلفية زليج خاصة بالـ Sidebar ====== */
@@ -780,6 +790,10 @@ input, textarea, [contenteditable="true"] {
 }
 .subject-chimie .subject-progress-bar {
     background: linear-gradient(90deg, #F4D03F, #F7DC6F);
+}
+
+.sidebar-section-legal {
+    flex-shrink: 0;
 }
 
 /* ============================================================
