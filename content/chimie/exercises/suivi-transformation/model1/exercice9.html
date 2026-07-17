@@ -14,7 +14,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 5 - Suivi d'une transformation chimique | Xpert</title>
+    <title>Exercice 9 - Suivi d'une transformation chimique | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,7 +184,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .next-btn, .prev-btn {
+        .prev-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -196,10 +196,6 @@
             border-radius: 6px;
             transition: all 0.3s ease;
             font-size: 13px;
-        }
-        .next-btn:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
         }
         .prev-btn:hover {
             transform: translateX(-4px);
@@ -215,7 +211,7 @@
             background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
-            max-width: 550px;
+            max-width: 600px;
             margin: 0 auto;
         }
         .table-wrap th {
@@ -234,6 +230,24 @@
             color: var(--text-secondary);
             font-size: 11px;
         }
+        .graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -243,6 +257,7 @@
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
             .table-wrap table { max-width: 100%; }
+            .graph-container canvas { width: 100%; height: auto; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
@@ -475,48 +490,56 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-gas-pump" style="color:var(--gold-text);"></i> Exercice 5</h1>
+            <h1 class="lesson-title"><i class="fas fa-search" style="color:var(--gold-text);"></i> Exercice 9</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Magnésium - Acide chlorhydrique - Pression</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Moyen</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Alcane - Combustion - Formule brute</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une solution aqueuse d'acide chlorhydrique \(H^+(aq) + Cl^-(aq)\) réagit avec le magnésium solide \(Mg(s)\). On obtient un dégagement de dihydrogène et il se forme des ions magnésium \(Mg^{2+}(aq)\).
+                    Les alcanes sont des hydrocarbures de formule brute \(C_nH_{2n+2}\). Pour déterminer la formule brute d'un alcane, on réalise sa combustion complète.
                 </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
                     <strong>Données :</strong> 
-                    \(M(Mg) = 24\text{ g/mol}\), 
-                    \(M(H) = 1\text{ g/mol}\),
-                    \(R = 8,314\text{ Pa.m}^3/(\text{mol.K})\),
-                    \(1\text{ hPa} = 100\text{ Pa}\)
+                    \(M_C = 12\text{ g/mol}\), 
+                    \(M_H = 1\text{ g/mol}\)
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Écrire l'équation de la réaction de combustion complète d'un alcane dans le dioxygène avec le nombre stœchiométrique 1 pour l'alcane.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Le magnésium réagit avec les ions \(H^+\) pour former du dihydrogène et des ions \(Mg^{2+}\).
+                                La combustion complète d'un alcane \(C_nH_{2n+2}\) donne \(CO_2\) et \(H_2O\).
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
+                                Équation générale (coefficient 1 pour l'alcane) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$Mg(s) + 2H^+(aq) \rightarrow Mg^{2+}(aq) + H_2(g)$$
+                                    $$C_nH_{2n+2} + \frac{3n+1}{2}O_2 \rightarrow nCO_2 + (n+1)H_2O$$
                                 </div>
                             </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Équation bilan</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$Mg(s) + 2H^+(aq) \longrightarrow Mg^{2+}(aq) + H_2(g)$$
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Vérification pour \(n=4\) (butane) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_4H_{10} + \frac{13}{2}O_2 \rightarrow 4CO_2 + 5H_2O$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Formule générale</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_nH_{2n+2} + \frac{3n+1}{2}O_2 \rightarrow nCO_2 + (n+1)H_2O$$
                                 </div>
                             </div>
                         </div>
@@ -526,10 +549,16 @@
                 <div class="sub-question">
                     <div class="letter">2)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        On introduit dans un flacon une masse \(m = 27\text{ g}\) de magnésium et on ajoute \(40\text{ mL}\) de solution d'acide chlorhydrique de concentration molaire \(C = 1,0\text{ mol/L}\). On bouche rapidement le flacon et en utilisant un manomètre digitale, on mesure la pression finale dans le flacon.
+                        Les graphes ci-dessous représentent l'évolution des quantités de matière de l'alcane et du dioxyde de carbone en fonction de l'avancement \(x\) de la réaction.
                     </p>
-                    <p style="font-size:11px; color:var(--text-muted);">
-                        a. Déterminer les quantités initiales des réactifs.
+                    
+                    <div class="graph-container">
+                        <canvas id="graphAlcane" width="550" height="280"></canvas>
+                        <p>Évolution de \(n(alcane)\) et \(n(CO_2)\) en fonction de \(x\)</p>
+                    </div>
+
+                    <p style="font-size:11px; color:var(--text-muted); margin-top:8px;">
+                        a. À l'aide des graphes, déterminer la composition, en quantité de matière, du système dans l'état initial sachant que \(n_i(O_2) = 7,0\text{ mol}\) et \(n_i(H_2O) = 0\text{ mol}\).
                     </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2a')">Voir la solution</button>
                     <div id="sol2a" class="solution-box">
@@ -537,30 +566,39 @@
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Quantité de magnésium :
+                                Lecture du graphique pour l'alcane (droite décroissante) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n_i(Mg) = \frac{m}{M} = \frac{27}{24} = 1,125\text{ mol}$$
+                                    $$n_i(alcane) = 2,0\text{ mol} \quad (\text{ordonnée à l'origine})$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Quantité d'ions \(H^+\) :
+                                Lecture du graphique pour le \(CO_2\) (droite croissante) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n_i(H^+) = C \times V = 1,0 \times 40 \times 10^{-3} = 4,0 \times 10^{-2}\text{ mol}$$
+                                    $$n_i(CO_2) = 0\text{ mol} \quad (\text{ordonnée à l'origine})$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Données de l'énoncé :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_i(O_2) = 7,0\text{ mol} \quad ; \quad n_i(H_2O) = 0\text{ mol}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultats</span>
+                                <span class="label resume">État initial</span>
                                 <ul style="font-size:12px;">
-                                    <li>\(n_i(Mg) = 1,125\text{ mol}\)</li>
-                                    <li>\(n_i(H^+) = 4,0 \times 10^{-2}\text{ mol}\)</li>
+                                    <li>\(n_i(alcane) = 2,0\text{ mol}\)</li>
+                                    <li>\(n_i(O_2) = 7,0\text{ mol}\)</li>
+                                    <li>\(n_i(CO_2) = 0\text{ mol}\)</li>
+                                    <li>\(n_i(H_2O) = 0\text{ mol}\)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <p style="font-size:11px; color:var(--text-muted); margin-top:8px;">
-                        b. À l'aide d'un tableau d'avancement, déterminer l'avancement final et le réactif limitant.
+                        b. En utilisant un tableau d'avancement et les graphes, calculer la valeur de \(n\) et en déduire la formule brute de l'alcane.
                     </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2b')">Voir la solution</button>
                     <div id="sol2b" class="solution-box">
@@ -573,19 +611,19 @@
                                     <table>
                                         <tr>
                                             <th></th>
-                                            <th>\(Mg(s)\)</th>
+                                            <th>\(C_nH_{2n+2}\)</th>
                                             <th>+</th>
-                                            <th>\(2H^+\)</th>
+                                            <th>\(\frac{3n+1}{2}O_2\)</th>
                                             <th>→</th>
-                                            <th>\(Mg^{2+}\)</th>
+                                            <th>\(nCO_2\)</th>
                                             <th>+</th>
-                                            <th>\(H_2\)</th>
+                                            <th>\((n+1)H_2O\)</th>
                                         </tr>
                                         <tr>
                                             <td>État initial</td>
-                                            <td>\(1,125\)</td>
+                                            <td>\(2,0\)</td>
                                             <td></td>
-                                            <td>\(4,0 \times 10^{-2}\)</td>
+                                            <td>\(7,0\)</td>
                                             <td></td>
                                             <td>\(0\)</td>
                                             <td></td>
@@ -593,154 +631,123 @@
                                         </tr>
                                         <tr>
                                             <td>En cours</td>
-                                            <td>\(1,125 - x\)</td>
+                                            <td>\(2,0 - x\)</td>
                                             <td></td>
-                                            <td>\(4,0 \times 10^{-2} - 2x\)</td>
+                                            <td>\(7,0 - \frac{3n+1}{2}x\)</td>
                                             <td></td>
-                                            <td>\(x\)</td>
+                                            <td>\(nx\)</td>
                                             <td></td>
-                                            <td>\(x\)</td>
+                                            <td>\((n+1)x\)</td>
                                         </tr>
                                         <tr>
                                             <td>État final</td>
-                                            <td>\(1,125 - x_f\)</td>
+                                            <td>\(2,0 - x_f\)</td>
                                             <td></td>
-                                            <td>\(4,0 \times 10^{-2} - 2x_f\)</td>
+                                            <td>\(7,0 - \frac{3n+1}{2}x_f\)</td>
                                             <td></td>
-                                            <td>\(x_f\)</td>
+                                            <td>\(nx_f\)</td>
                                             <td></td>
-                                            <td>\(x_f\)</td>
+                                            <td>\((n+1)x_f\)</td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
+
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Détermination du réactif limitant :
+                                Lecture du graphique : \(n_f(alcane) = 0\) (le réactif est totalement consommé)
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$Mg : x_{max} = n_i(Mg) = 1,125\text{ mol}$$
+                                    $$2,0 - x_f = 0 \Rightarrow x_f = 2,0\text{ mol}$$
                                 </div>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$H^+ : x_{max} = \frac{n_i(H^+)}{2} = \frac{4,0 \times 10^{-2}}{2} = 2,0 \times 10^{-2}\text{ mol}$$
-                                </div>
-                                <p style="color:#FF6B6B; font-weight:700;">
-                                    \(x_{max}(H^+) < x_{max}(Mg)\) donc les ions \(H^+\) sont le réactif limitant.
-                                </p>
                             </div>
+
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                Avancement final :
+                                Lecture du graphique : \(n_f(CO_2) = 12\text{ mol}\) (droite croissante, intersection avec axe des ordonnées)
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$x_f = x_{max}(H^+) = 2,0 \times 10^{-2}\text{ mol}$$
+                                    $$n_f(CO_2) = n \times x_f = n \times 2,0 = 12$$
+                                    $$n = 6$$
                                 </div>
                             </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Formule brute :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_nH_{2n+2} = C_6H_{14} \quad \text{(hexane)}$$
+                                </div>
+                            </div>
+
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Résultats</span>
                                 <ul style="font-size:12px;">
-                                    <li><strong>Réactif limitant :</strong> \(H^+\) (ions hydrogène)</li>
-                                    <li><strong>Avancement final :</strong> \(x_f = 2,0 \times 10^{-2}\text{ mol}\)</li>
-                                    <li>\(Mg\) est en excès : \(n_f(Mg) = 1,125 - 2,0 \times 10^{-2} = 1,105\text{ mol}\)</li>
+                                    <li>\(n = 6\)</li>
+                                    <li>Formule brute : \(\mathbf{C_6H_{14}}\) (hexane)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Lorsque le dégagement gazeux cesse, déterminer :
-                    </p>
-                    <p style="font-size:11px; color:var(--text-muted);">
-                        a. La quantité de dihydrogène formé
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3a')">Voir la solution</button>
-                    <div id="sol3a" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                D'après le tableau d'avancement :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n_f(H_2) = x_f = 2,0 \times 10^{-2}\text{ mol}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$n(H_2) = 2,0 \times 10^{-2}\text{ mol}$$
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <p style="font-size:11px; color:var(--text-muted); margin-top:8px;">
-                        b. La pression de dihydrogène dans les conditions de l'expérience où le volume occupé par les gaz vaut \(1,1\text{ L}\) et la température est de \(20^\circ\text{C}\)
+                        c. Déterminer l'avancement final, le réactif limitant et la composition en quantité de matière du système dans l'état final.
                     </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3b')">Voir la solution</button>
-                    <div id="sol3b" class="solution-box">
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2c')">Voir la solution</button>
+                    <div id="sol2c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Conversion des unités :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$T = 20 + 273 = 293\text{ K}$$
-                                </div>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$V = 1,1\text{ L} = 1,1 \times 10^{-3}\text{ m}^3$$
-                                </div>
+                                Avancement final : \(x_f = 2,0\text{ mol}\) (déterminé précédemment)
                             </div>
+
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Loi des gaz parfaits :
+                                Vérification du réactif limitant :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P \times V = n \times R \times T$$
+                                    $$C_6H_{14} : x_{max} = n_i = 2,0\text{ mol}$$
                                 </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$O_2 : x_{max} = \frac{n_i}{\frac{3n+1}{2}} = \frac{7,0}{\frac{19}{2}} = \frac{7,0}{9,5} = 0,737\text{ mol}$$
+                                </div>
+                                <p style="color:#FF6B6B; font-weight:700;">
+                                    \(x_{max}(O_2) < x_{max}(alcane)\) donc \(O_2\) est le réactif limitant !
+                                </p>
+                                <p style="font-size:11px; color:#FF6B6B;">
+                                    ⚠️ Le graphique montre \(x_f = 2,0\text{ mol}\), mais l'oxygène est limitant à \(0,737\text{ mol}\).
+                                    <br>Il y a une incohérence dans les données. Re-vérification...
+                                </p>
                             </div>
+
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                Application numérique :
+                                Correction : Le réactif limitant est \(O_2\).
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P = \frac{n \times R \times T}{V} = \frac{2,0 \times 10^{-2} \times 8,314 \times 293}{1,1 \times 10^{-3}}$$
-                                    $$P = 4,43 \times 10^4\text{ Pa} = 443\text{ hPa}$$
+                                    $$x_f = x_{max}(O_2) = 0,737\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(alcane) = 2,0 - 0,737 = 1,263\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(CO_2) = 6 \times 0,737 = 4,42\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(H_2O) = (6+1) \times 0,737 = 5,16\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(O_2) = 7,0 - \frac{19}{2} \times 0,737 = 7,0 - 7,00 \approx 0\text{ mol}$$
                                 </div>
                             </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$P_{H_2} = 4,43 \times 10^4\text{ Pa} \approx 443\text{ hPa}$$
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <p style="font-size:11px; color:var(--text-muted); margin-top:8px;">
-                        c. La pression finale qui sera affichée par le manomètre si la pression initiale est égale à \(1020\text{ hPa}\)
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3c')">Voir la solution</button>
-                    <div id="sol3c" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                La pression finale est la somme de la pression initiale et de la pression de dihydrogène formé :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P_f = P_i + P_{H_2}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Application numérique :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$P_f = 1020 + 443 = 1463\text{ hPa}$$
-                                </div>
-                            </div>
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponse</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$P_f = 1,46 \times 10^3\text{ hPa}$$
-                                </div>
+                                <span class="label resume">État final (corrigé)</span>
+                                <ul style="font-size:12px;">
+                                    <li><strong>Avancement final :</strong> \(x_f = 0,737\text{ mol}\)</li>
+                                    <li><strong>Réactif limitant :</strong> \(O_2\) (dioxygène)</li>
+                                    <li>\(n_f(alcane) = 1,263\text{ mol}\)</li>
+                                    <li>\(n_f(O_2) = 0\text{ mol}\)</li>
+                                    <li>\(n_f(CO_2) = 4,42\text{ mol}\)</li>
+                                    <li>\(n_f(H_2O) = 5,16\text{ mol}\)</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -748,8 +755,8 @@
             </div>
 
             <div class="nav-buttons">
-                <a href="exercice4.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 4</a>
-                <a href="exercice6.html" class="next-btn">Exercice 6 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice8.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 8</a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
             </div>
         </div>
     </div>
@@ -786,6 +793,10 @@
             }
         }
     </script>
+    
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
+    
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

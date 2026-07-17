@@ -14,7 +14,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 3 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
+    <title>Exercice 3 - Suivi d'une transformation chimique | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -207,35 +207,45 @@
         }
         .table-wrap {
             overflow-x: auto;
-            margin: 4px 0;
+            margin: 8px 0;
         }
         .table-wrap table {
             width: 100%;
             border-collapse: collapse;
             background: var(--bg-primary);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
-            max-width: 350px;
+            min-width: 700px;
             margin: 0 auto;
         }
         .table-wrap th {
             background: var(--bg-card);
             color: var(--accent-light);
-            padding: 3px 8px;
+            padding: 10px 12px;
             border: 1px solid var(--border);
             font-weight: 700;
             text-align: center;
-            font-size: 11px;
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
         }
         .table-wrap td {
-            padding: 3px 8px;
+            padding: 10px 12px;
             border: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
-            font-size: 11px;
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
         }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .table-wrap .highlight-cell {
+            color:var(--gold-text);
+            font-weight: 700;
+        }
+        .table-wrap .row-label {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 12px;
+            font-family: var(--font-main);
+        }
         .graph-container {
             background: #0D1117;
             border: 1px solid var(--border);
@@ -262,6 +272,8 @@
             .section p { font-size: 10.5px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
+            .table-wrap table { min-width: 500px; font-size: 11px; }
+            .table-wrap th, .table-wrap td { padding: 6px 8px; font-size: 11px; }
             .graph-container canvas { width: 100%; height: auto; }
         }
         @media (max-width: 480px) {
@@ -274,7 +286,8 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
+            .table-wrap table { min-width: 400px; font-size: 10px; }
+            .table-wrap th, .table-wrap td { padding: 4px 6px; font-size: 10px; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -498,7 +511,7 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-chart-line" style="color:var(--gold-text);"></i> Exercice 3</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Suivi conductimétrique - Étude graphique</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Permanganate - Fer II - Graphique</span>
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
@@ -506,39 +519,79 @@
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Lors du dosage conductimétrique d'une solution d'acide chlorhydrique par une solution d'hydroxyde de sodium, on a obtenu la courbe suivante :
+                    Les ions permanganate, violets, réagissent sur des ions fer II en milieu acide pour les transformer en ions fer III. L'équation associée est :
+                </p>
+                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                    $$MnO_4^-(aq) + 5Fe^{2+}(aq) + 8H^+(aq) \rightarrow Mn^{2+}(aq) + 5Fe^{3+}(aq) + 4H_2O(l)$$
+                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Aux concentrations utilisées, seuls les ions permanganates sont notablement colorés.
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Dans un bécher, on introduit \(V_1 = 10,0\text{ mL}\) de solution de sulfate de fer II de concentration \(C_1 = 0,055\text{ mol.L}^{-1}\) et \(V = 5\text{ mL}\) d'acide sulfurique, dans lequel \([H^+] = 1,0\text{ mol.L}^{-1}\). On ajoute \(V_2 = 4,0\text{ mL}\) de solution de permanganate de potassium (\(C_2 = 0,025\text{ mol/L}\)). Le mélange devient incolore.
                 </p>
 
-                <div class="graph-container">
-                    <canvas id="graphDosage" width="500" height="300"></canvas>
-                    <p>Évolution de la conductivité \(\sigma\) en fonction du volume \(V_B\) de soude versé</p>
-                </div>
-
-                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin:8px 0;">
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
                     <strong>Données :</strong> 
-                    \(V_A = 20,0\text{ mL}\), \(C_B = 0,10\text{ mol/L}\)
+                    \(M_{Fe} = 55,8\text{ g/mol}\), 
+                    \(M_{Mn} = 54,9\text{ g/mol}\), 
+                    \(M_O = 16\text{ g/mol}\)
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Déterminer graphiquement le volume à l'équivalence \(V_{BE}\).</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Faire le bilan des espèces présentes à l'état initial. Calculer les quantités de matière de celles qui participent à la réaction. Quelle espèce n'est plus présente à l'état final ?
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            <p style="font-weight:600; color:var(--gold-text); margin-bottom:6px;">
+                                <i class="fas fa-list" style="margin-left:6px;"></i> Bilan des espèces à l'état initial
+                            </p>
+
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Le volume à l'équivalence correspond au point d'intersection des deux droites (point de rupture de pente).
+                                Espèces présentes :
+                                <ul style="font-size:12px; padding-right:18px;">
+                                    <li>\(Fe^{2+}\) (ions fer II) - du sulfate de fer II</li>
+                                    <li>\(MnO_4^-\) (ions permanganate) - du permanganate de potassium</li>
+                                    <li>\(H^+\) (ions hydrogène) - de l'acide sulfurique</li>
+                                    <li>\(SO_4^{2-}\) (ions sulfate) - spectateurs</li>
+                                    <li>\(K^+\) (ions potassium) - spectateurs</li>
+                                    <li>\(H_2O\) (eau) - solvant</li>
+                                </ul>
                             </div>
+
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                D'après le graphique, le point d'intersection se situe à \(V_B = 15,0\text{ mL}\).
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultat</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$V_{BE} = 15,0\text{ mL}$$
+                                Calcul des quantités de matière initiales :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_i(Fe^{2+}) = C_1 \times V_1 = 0,055 \times 10,0 \times 10^{-3} = 5,50 \times 10^{-4}\text{ mol}$$
                                 </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_i(MnO_4^-) = C_2 \times V_2 = 0,025 \times 4,0 \times 10^{-3} = 1,00 \times 10^{-4}\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_i(H^+) = [H^+] \times V = 1,0 \times 5,0 \times 10^{-3} = 5,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Le mélange devient incolore donc les ions <strong>\(MnO_4^-\)</strong> (violets) ont été totalement consommés.
+                                <br><span style="color:#4ECDC4; font-weight:700;">L'espèce qui n'est plus présente à l'état final est \(MnO_4^-\).</span>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(n_i(Fe^{2+}) = 5,50 \times 10^{-4}\text{ mol}\)</li>
+                                    <li>\(n_i(MnO_4^-) = 1,00 \times 10^{-4}\text{ mol}\)</li>
+                                    <li>\(n_i(H^+) = 5,0 \times 10^{-3}\text{ mol}\)</li>
+                                    <li>\(MnO_4^-\) est l'espèce limitante (totalement consommée)</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -546,31 +599,118 @@
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        En déduire la concentration \(C_A\) de la solution d'acide chlorhydrique.
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Construire le tableau d'avancement de la réaction et trouver les quantités de matière des espèces présentes à l'état final.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                À l'équivalence :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_A \times V_A = C_B \times V_{BE}$$
+                                Tableau d'avancement :
+                                <div class="table-wrap">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:70px;"></th>
+                                                <th style="min-width:90px;">\(MnO_4^-\)</th>
+                                                <th style="min-width:30px;">+</th>
+                                                <th style="min-width:90px;">\(5Fe^{2+}\)</th>
+                                                <th style="min-width:30px;">+</th>
+                                                <th style="min-width:90px;">\(8H^+\)</th>
+                                                <th style="min-width:30px;">→</th>
+                                                <th style="min-width:90px;">\(Mn^{2+}\)</th>
+                                                <th style="min-width:30px;">+</th>
+                                                <th style="min-width:90px;">\(5Fe^{3+}\)</th>
+                                                <th style="min-width:30px;">+</th>
+                                                <th style="min-width:90px;">\(4H_2O\)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="row-label">État initial</td>
+                                                <td>\(1,00 \times 10^{-4}\)</td>
+                                                <td></td>
+                                                <td>\(5,50 \times 10^{-4}\)</td>
+                                                <td></td>
+                                                <td>\(5,0 \times 10^{-3}\)</td>
+                                                <td></td>
+                                                <td>0</td>
+                                                <td></td>
+                                                <td>0</td>
+                                                <td></td>
+                                                <td>excès</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="row-label">En cours</td>
+                                                <td>\(1,00 \times 10^{-4} - x\)</td>
+                                                <td></td>
+                                                <td>\(5,50 \times 10^{-4} - 5x\)</td>
+                                                <td></td>
+                                                <td>\(5,0 \times 10^{-3} - 8x\)</td>
+                                                <td></td>
+                                                <td>\(x\)</td>
+                                                <td></td>
+                                                <td>\(5x\)</td>
+                                                <td></td>
+                                                <td>excès</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="row-label">État final</td>
+                                                <td>\(1,00 \times 10^{-4} - x_f\)</td>
+                                                <td></td>
+                                                <td>\(5,50 \times 10^{-4} - 5x_f\)</td>
+                                                <td></td>
+                                                <td>\(5,0 \times 10^{-3} - 8x_f\)</td>
+                                                <td></td>
+                                                <td>\(x_f\)</td>
+                                                <td></td>
+                                                <td>\(5x_f\)</td>
+                                                <td></td>
+                                                <td>excès</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
+                                \(MnO_4^-\) est le réactif limitant (totalement consommé) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_A = \frac{C_B \times V_{BE}}{V_A} = \frac{0,10 \times 15,0}{20,0} = 0,075\text{ mol/L}$$
+                                    $$1,00 \times 10^{-4} - x_f = 0 \Rightarrow x_f = 1,00 \times 10^{-4}\text{ mol}$$
                                 </div>
                             </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultat</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$C_A = 7,5 \times 10^{-2}\text{ mol/L}$$
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Composition à l'état final :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(MnO_4^-) = 0\text{ mol}$$
                                 </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(Fe^{2+}) = 5,50 \times 10^{-4} - 5 \times 1,00 \times 10^{-4} = 5,0 \times 10^{-5}\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(H^+) = 5,0 \times 10^{-3} - 8 \times 1,00 \times 10^{-4} = 4,2 \times 10^{-3}\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(Mn^{2+}) = x_f = 1,00 \times 10^{-4}\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(Fe^{3+}) = 5x_f = 5,00 \times 10^{-4}\text{ mol}$$
+                                </div>
+                            </div>
+
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">État final</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(n_f(MnO_4^-) = 0\text{ mol}\)</li>
+                                    <li>\(n_f(Fe^{2+}) = 5,0 \times 10^{-5}\text{ mol}\)</li>
+                                    <li>\(n_f(H^+) = 4,2 \times 10^{-3}\text{ mol}\)</li>
+                                    <li>\(n_f(Mn^{2+}) = 1,00 \times 10^{-4}\text{ mol}\)</li>
+                                    <li>\(n_f(Fe^{3+}) = 5,00 \times 10^{-4}\text{ mol}\)</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -579,29 +719,62 @@
                 <div class="sub-question">
                     <div class="letter">3)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        Expliquer pourquoi la conductivité diminue avant l'équivalence puis augmente après l'équivalence.
+                        Construire un graphique représentant les variations des quantités de matière d'ions fer II et d'ions \(MnO_4^-\) en fonction de l'avancement \(x\).
                     </p>
+                    <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:4px 8px; border-radius:4px; margin:4px 0;">
+                        <strong>Échelle :</strong> 1 cm ↔ \(2,0 \times 10^{-5}\text{ mol}\) pour l'avancement \(x\)<br>
+                        1 cm ↔ \(1,0 \times 10^{-4}\text{ mol}\) pour la quantité de matière \(n\)
+                    </div>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            
+                            <p style="font-weight:600; color:var(--gold-text); margin-bottom:6px;">
+                                <i class="fas fa-chart-line" style="margin-left:6px;"></i> Graphique \(n = f(x)\)
+                            </p>
+
+                            <div class="graph-container">
+                                <canvas id="graphPermanganate" width="500" height="320"></canvas>
+                                <p>Évolution de \(n(Fe^{2+})\) et \(n(MnO_4^-)\) en fonction de l'avancement</p>
+                            </div>
+
                             <div class="step">
-                                <span class="step-num">Avant l'équivalence :</span> 
-                                <ul style="font-size:11px; padding-right:18px;">
-                                    <li>Les ions \(\text{H}^+\) (très conducteurs) sont remplacés par les ions \(\text{Na}^+\) (moins conducteurs).</li>
-                                    <li>La conductivité diminue.</li>
+                                <span class="step-num">Étape 1 :</span> 
+                                Droite pour \(MnO_4^-\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(MnO_4^-) = 1,00 \times 10^{-4} - x$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Droite décroissante, coefficient directeur \(-1\).</p>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Droite pour \(Fe^{2+}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(Fe^{2+}) = 5,50 \times 10^{-4} - 5x$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Droite décroissante, coefficient directeur \(-5\).</p>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Points importants :
+                                <ul style="font-size:12px; padding-right:18px;">
+                                    <li>Pour \(x = 0\) : \(n(MnO_4^-) = 1,00 \times 10^{-4}\text{ mol}\), \(n(Fe^{2+}) = 5,50 \times 10^{-4}\text{ mol}\)</li>
+                                    <li>Pour \(x = x_f = 1,00 \times 10^{-4}\text{ mol}\) : \(n(MnO_4^-) = 0\), \(n(Fe^{2+}) = 5,0 \times 10^{-5}\text{ mol}\)</li>
                                 </ul>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Après l'équivalence :</span> 
-                                <ul style="font-size:11px; padding-right:18px;">
-                                    <li>On ajoute des ions \(\text{Na}^+\) et \(\text{OH}^-\) en excès.</li>
-                                    <li>La conductivité augmente car on ajoute des ions dans le milieu.</li>
-                                </ul>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p>La courbe présente un minimum à l'équivalence, correspondant au point où la concentration en ions \(\text{H}^+\) est nulle.</p>
+
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Interprétation</span>
+                                <p style="font-size:11px;">
+                                    Les deux droites coupent l'axe des abscisses pour des valeurs différentes de \(x\).
+                                    <br>
+                                    \(MnO_4^-\) s'annule pour \(x = 1,00 \times 10^{-4}\text{ mol}\) (limitant).
+                                    <br>
+                                    \(Fe^{2+}\) s'annulerait pour \(x = 1,10 \times 10^{-4}\text{ mol}\) (en excès).
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -648,7 +821,6 @@
         }
     </script>
     
-    <!-- ====== Canvas Utils + Figures ====== -->
     <script src="../../../../../assets/js/canvas-utils.js"></script>
     <script src="figures.js"></script>
     

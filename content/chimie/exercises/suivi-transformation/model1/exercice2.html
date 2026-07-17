@@ -14,7 +14,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 2 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
+    <title>Exercice 2 - Suivi d'une transformation chimique | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -215,44 +215,28 @@
             background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
         }
         .table-wrap th {
             background: var(--bg-card);
             color: var(--accent-light);
-            padding: 3px 8px;
+            padding: 4px 8px;
             border: 1px solid var(--border);
             font-weight: 700;
             text-align: center;
             font-size: 11px;
         }
         .table-wrap td {
-            padding: 3px 8px;
+            padding: 4px 8px;
             border: 1px solid var(--border);
             text-align: center;
             color: var(--text-secondary);
             font-size: 11px;
         }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
-        .graph-container {
-            background: #0D1117;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px;
-            margin: 4px 0;
-            text-align: center;
-        }
-        .graph-container canvas {
-            max-width: 100%;
-            border-radius: 4px;
-            background: #0D1117;
-        }
-        .graph-container p {
-            color: var(--text-muted);
-            font-size: 11px;
-            margin-top: 4px;
+        .table-wrap .highlight-cell {
+            color:var(--gold-text);
+            font-weight: 700;
         }
         @media (max-width: 768px) {
             body { font-size: 13px; }
@@ -262,7 +246,8 @@
             .section p { font-size: 10.5px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
-            .graph-container canvas { width: 100%; height: auto; }
+            .table-wrap table { max-width: 100%; }
+            .table-wrap th, .table-wrap td { font-size: 10px; padding: 2px 4px; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
@@ -274,7 +259,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
+            .table-wrap th, .table-wrap td { font-size: 9px; padding: 2px 3px; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -496,144 +481,197 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:var(--gold-text);"></i> Exercice 2</h1>
+            <h1 class="lesson-title"><i class="fas fa-table" style="color:var(--gold-text);"></i> Exercice 2</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Dosage conductimétrique - Acide chlorhydrique</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Moyen</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Tableau d'avancement - Combustion de l'éthane</span>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On dose un volume \(V_A = 20,0\text{ mL}\) d'une solution d'acide chlorhydrique \(\text{HCl}\) de concentration inconnue \(C_A\) par une solution d'hydroxyde de sodium \(\text{NaOH}\) de concentration \(C_B = 0,10\text{ mol/L}\). On suit l'évolution de la conductivité \(\sigma\) du mélange en fonction du volume \(V_B\) de solution de soude versé.
-                </p>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    L'équivalence est atteinte pour un volume versé \(V_{BE} = 15,0\text{ mL}\).
+                    On considère la combustion complète de l'éthane \(C_2H_6\) dans le dioxygène.
                 </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
-                    <strong>Rappel :</strong> \(\text{HCl} + \text{NaOH} \longrightarrow \text{NaCl} + \text{H}_2\text{O}\)
+                    <strong>Rappel :</strong> La combustion complète d'un hydrocarbure donne \(CO_2\) et \(H_2O\).
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction de dosage.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction de combustion complète de l'éthane.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$\text{HCl}_{(aq)} + \text{NaOH}_{(aq)} \longrightarrow \text{NaCl}_{(aq)} + \text{H}_2\text{O}_{(l)}$$
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                L'éthane réagit avec le dioxygène pour former du dioxyde de carbone et de l'eau.
                             </div>
-                            <p style="color:var(--text-muted); font-size:11px;">
-                                Il s'agit d'une réaction acido-basique.
-                            </p>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Équation non équilibrée :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_2H_6 + O_2 \rightarrow CO_2 + H_2O$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Équilibrage :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$2C_2H_6 + 7O_2 \rightarrow 4CO_2 + 6H_2O$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Équation bilan</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$2C_2H_6(g) + 7O_2(g) \rightarrow 4CO_2(g) + 6H_2O(l)$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Vérification : C(4), H(12), O(14) ✅</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la concentration \(C_A\) de la solution d'acide chlorhydrique.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Recopier puis compléter le tableau d'avancement suivant :</p>
+                    
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <th colspan="2"></th>
+                                <th colspan="2">\(2C_2H_6(g)\)</th>
+                                <th>+</th>
+                                <th colspan="2">\(7O_2(g)\)</th>
+                                <th>→</th>
+                                <th colspan="2">\(4CO_2(g)\)</th>
+                                <th>+</th>
+                                <th colspan="2">\(6H_2O(l)\)</th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">État initial</td>
+                                <td colspan="2">\(0\)</td>
+                                <td></td>
+                                <td colspan="2">\(5\)</td>
+                                <td></td>
+                                <td colspan="2">\(0\)</td>
+                                <td></td>
+                                <td colspan="2">\(1\)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">En cours</td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">État final</td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td colspan="2"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
+                        Les quantités sont en <strong>mol</strong>.
+                    </p>
+
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                À l'équivalence, les quantités de matière des réactifs sont égales :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n_A = n_B \quad \Rightarrow \quad C_A \times V_A = C_B \times V_{BE}$$
-                                </div>
+                                Tableau d'avancement avec l'avancement \(x\) :
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_A = \frac{C_B \times V_{BE}}{V_A} = \frac{0,10 \times 15,0}{20,0} = 0,075\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultat</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$C_A = 7,5 \times 10^{-2}\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box yellow" style="margin-top:6px;">
-                                <span class="label rappel">À l'équivalence</span>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_A \times V_A = C_B \times V_{BE}$$
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="sub-question">
-                    <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        On considère qu'avant l'équivalence, la conductivité du mélange diminue. Justifier cette observation.
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
-                    <div id="sol3" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Avant l'équivalence, les ions \(\text{H}^+\) (très mobiles) sont progressivement remplacés par les ions \(\text{Na}^+\) (moins mobiles).
+                            <div class="table-wrap">
+                                <table>
+                                    <tr>
+                                        <th colspan="2"></th>
+                                        <th colspan="2">\(2C_2H_6(g)\)</th>
+                                        <th>+</th>
+                                        <th colspan="2">\(7O_2(g)\)</th>
+                                        <th>→</th>
+                                        <th colspan="2">\(4CO_2(g)\)</th>
+                                        <th>+</th>
+                                        <th colspan="2">\(6H_2O(l)\)</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">État initial</td>
+                                        <td colspan="2" style="color:var(--gold-text); font-weight:700;">0</td>
+                                        <td></td>
+                                        <td colspan="2" style="color:var(--gold-text); font-weight:700;">5</td>
+                                        <td></td>
+                                        <td colspan="2" style="color:var(--gold-text); font-weight:700;">0</td>
+                                        <td></td>
+                                        <td colspan="2" style="color:var(--gold-text); font-weight:700;">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">En cours</td>
+                                        <td colspan="2">\(0 + 2x\)</td>
+                                        <td></td>
+                                        <td colspan="2">\(5 - 7x\)</td>
+                                        <td></td>
+                                        <td colspan="2">\(0 + 4x\)</td>
+                                        <td></td>
+                                        <td colspan="2">\(1 + 6x\)</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">État final</td>
+                                        <td colspan="2">\(2x_f\)</td>
+                                        <td></td>
+                                        <td colspan="2">\(5 - 7x_f\)</td>
+                                        <td></td>
+                                        <td colspan="2">\(4x_f\)</td>
+                                        <td></td>
+                                        <td colspan="2">\(1 + 6x_f\)</td>
+                                    </tr>
+                                </table>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\lambda_{\text{H}^+} \gg \lambda_{\text{Na}^+}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                La conductivité diminue car les ions \(\text{H}^+\) sont remplacés par des ions \(\text{Na}^+\) moins conducteurs.
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p>La diminution de la conductivité avant l'équivalence est due au remplacement des ions \(\text{H}^+\) par des ions \(\text{Na}^+\).</p>
-                            </div>
-                            <div class="highlight-box yellow" style="margin-top:6px;">
-                                <span class="label rappel">Conductivité molaire ionique</span>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\lambda_{\text{H}^+} \approx 35,0 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
-                                    $$\lambda_{\text{Na}^+} \approx 5,01 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
-                                </div>
-                                <p style="font-size:11px; color:var(--text-muted);">Les ions \(\text{H}^+\) sont environ 7 fois plus conducteurs que les ions \(\text{Na}^+\).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="sub-question">
-                    <div class="letter">4)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Après l'équivalence, la conductivité augmente. Justifier cette observation.
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
-                    <div id="sol4" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Après l'équivalence, on ajoute des ions \(\text{Na}^+\) et \(\text{OH}^-\) en excès.
-                            </div>
-                            <div class="step">
+                            <div class="step" style="margin-top:8px;">
                                 <span class="step-num">Étape 2 :</span> 
-                                La conductivité augmente car on ajoute des ions dans le milieu.
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
+                                Détermination du réactif limitant et de \(x_f\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma_{\text{après}} = \lambda_{\text{Na}^+} \times [\text{Na}^+] + \lambda_{\text{OH}^-} \times [\text{OH}^-] + \lambda_{\text{Cl}^-} \times [\text{Cl}^-]$$
+                                    $$C_2H_6 : n_i = 0 \text{ mol} \Rightarrow \text{Il n'y a pas d'éthane initialement !}$$
                                 </div>
+                                <p style="color:#FF6B6B; font-weight:700; font-size:12px;">
+                                    ⚠️ Attention : Le tableau indique \(n_i(C_2H_6) = 0\) mol.
+                                    <br>Il n'y a donc <strong>pas de réaction</strong> car il manque l'éthane !
+                                </p>
                             </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p>L'augmentation de la conductivité après l'équivalence est due à l'ajout d'ions \(\text{Na}^+\) et \(\text{OH}^-\).</p>
+
+                            <div class="highlight-box red" style="margin-top:6px;">
+                                <span class="label" style="background:#FF6B6B22; color:#FF6B6B;">⚠️ Remarque</span>
+                                <p style="font-size:11px; color:#FF6B6B;">
+                                    Le tableau donné dans l'énoncé indique \(n_i(C_2H_6) = 0\) mol.
+                                    <br>La combustion ne peut pas avoir lieu car il n'y a pas d'éthane.
+                                    <br>La réaction est impossible dans ces conditions.
+                                </p>
+                            </div>
+
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Tableau d'avancement - Général</span>
+                                <div style="font-size:12px; color:var(--text-secondary);">
+                                    Pour une réaction : \(aA + bB \rightarrow cC + dD\)
+                                    <br>
+                                    État initial : \(n_i(A)\), \(n_i(B)\), \(n_i(C)\), \(n_i(D)\)
+                                    <br>
+                                    En cours : \(n_i(A) - ax\), \(n_i(B) - bx\), \(n_i(C) + cx\), \(n_i(D) + dx\)
+                                    <br>
+                                    État final : \(n_i(A) - ax_f\), \(n_i(B) - bx_f\), \(n_i(C) + cx_f\), \(n_i(D) + dx_f\)
+                                </div>
                             </div>
                         </div>
                     </div>

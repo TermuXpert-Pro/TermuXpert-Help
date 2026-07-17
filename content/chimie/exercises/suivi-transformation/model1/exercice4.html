@@ -14,7 +14,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 4 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
+    <title>Exercice 4 - Suivi d'une transformation chimique | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -215,7 +215,7 @@
             background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
-            max-width: 500px;
+            max-width: 650px;
             margin: 0 auto;
         }
         .table-wrap th {
@@ -234,6 +234,24 @@
             color: var(--text-secondary);
             font-size: 11px;
         }
+        .graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -242,6 +260,7 @@
             .section p { font-size: 10.5px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
+            .graph-container canvas { width: 100%; height: auto; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
@@ -253,7 +272,6 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -475,82 +493,69 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-water" style="color:var(--gold-text);"></i> Exercice 4</h1>
+            <h1 class="lesson-title"><i class="fas fa-industry" style="color:var(--gold-text);"></i> Exercice 4</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Analyse d'une eau minérale - Conductimétrie</span>
-                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Haut fourneau - Magnétite - Graphique</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une eau minérale contient les ions suivants :
+                    Le graphe ci-dessous représente l'évolution, en fonction de l'avancement de la réaction \(x\), des quantités de matière des réactifs et des produits d'une réaction se produisant dans le haut fourneau.
                 </p>
-                
-                <div class="table-wrap">
-                    <table>
-                        <tr>
-                            <th>Ion</th>
-                            <th>\(\text{Ca}^{2+}\)</th>
-                            <th>\(\text{Mg}^{2+}\)</th>
-                            <th>\(\text{Na}^+\)</th>
-                            <th>\(\text{HCO}_3^-\)</th>
-                            <th>\(\text{SO}_4^{2-}\)</th>
-                            <th>\(\text{Cl}^-\)</th>
-                        </tr>
-                        <tr>
-                            <td>Concentration (mmol/L)</td>
-                            <td>2,0</td>
-                            <td>1,5</td>
-                            <td>0,5</td>
-                            <td>5,0</td>
-                            <td>1,0</td>
-                            <td>0,5</td>
-                        </tr>
-                    </table>
-                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Les réactifs sont la magnétite \(Fe_3O_4\), le monoxyde de carbone \(CO\) ; les produits sont le fer et le dioxyde de carbone.
+                </p>
 
-                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin:8px 0;">
-                    <strong>Données (\(\times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)) :</strong> 
-                    \(\lambda(\text{Ca}^{2+}) = 11,90\), 
-                    \(\lambda(\text{Mg}^{2+}) = 10,60\), 
-                    \(\lambda(\text{Na}^+) = 5,01\), 
-                    \(\lambda(\text{HCO}_3^-) = 4,46\), 
-                    \(\lambda(\text{SO}_4^{2-}) = 16,00\), 
-                    \(\lambda(\text{Cl}^-) = 7,63\)
+                <div class="graph-container">
+                    <canvas id="graphHautFourneau" width="550" height="300"></canvas>
+                    <p>
+                        Courbe (1) : CO ; Courbe (2) : magnétite \(Fe_3O_4\)<br>
+                        Courbe (3) : CO₂ ; Courbe (4) : Fe
+                    </p>
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Vérifier que la solution est électriquement neutre.
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de cette réaction en utilisant les nombres stœchiométriques entiers les plus petits possibles.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Charges positives (en mmol/L) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$Q_+ = 2 \times [\text{Ca}^{2+}] + 2 \times [\text{Mg}^{2+}] + 1 \times [\text{Na}^+]$$
-                                    $$= 2 \times 2,0 + 2 \times 1,5 + 1 \times 0,5 = 4,0 + 3,0 + 0,5 = 7,5$$
-                                </div>
+                                Les réactifs sont \(Fe_3O_4\) et \(CO\). Les produits sont \(Fe\) et \(CO_2\).
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Charges négatives (en mmol/L) :
+                                Équation non équilibrée :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$Q_- = 1 \times [\text{HCO}_3^-] + 2 \times [\text{SO}_4^{2-}] + 1 \times [\text{Cl}^-]$$
-                                    $$= 1 \times 5,0 + 2 \times 1,0 + 1 \times 0,5 = 5,0 + 2,0 + 0,5 = 7,5$$
+                                    $$Fe_3O_4 + CO \rightarrow Fe + CO_2$$
                                 </div>
                             </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Équilibrage :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$Fe_3O_4 + 4CO \rightarrow 3Fe + 4CO_2$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Vérification :
+                                <ul style="font-size:11px;">
+                                    <li>Fe : 3 à gauche, 3 à droite ✅</li>
+                                    <li>O : 4 + 4 = 8 à gauche, 4 × 2 = 8 à droite ✅</li>
+                                    <li>C : 4 à gauche, 4 à droite ✅</li>
+                                </ul>
+                            </div>
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p style="font-size:11px; color:#4ECDC4; font-weight:700;">
-                                    \(Q_+ = Q_- = 7,5\) → La solution est électriquement neutre.
-                                </p>
+                                <span class="label resume">Équation bilan</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$Fe_3O_4(s) + 4CO(g) \rightarrow 3Fe(s) + 4CO_2(g)$$
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -558,36 +563,57 @@
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Calculer la conductivité de cette eau à 25°C.
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Comparer le nombre stœchiométrique de chaque espèce et le coefficient directeur de la droite correspondante.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                \(\sigma = \sum_i \lambda_i \times [X_i]\)
+                                Tableau des coefficients stœchiométriques :
+                                <div class="table-wrap">
+                                    <table>
+                                        <tr>
+                                            <th>Espèce</th>
+                                            <th>\(Fe_3O_4\)</th>
+                                            <th>\(CO\)</th>
+                                            <th>\(Fe\)</th>
+                                            <th>\(CO_2\)</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Coefficient \(\nu\)</td>
+                                            <td>1</td>
+                                            <td>4</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rôle</td>
+                                            <td>Réactif</td>
+                                            <td>Réactif</td>
+                                            <td>Produit</td>
+                                            <td>Produit</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Conversion : 1 mmol/L = 1 mol/m³
+                                Coefficient directeur des droites (d'après le graphique) :
+                                <ul style="font-size:11px;">
+                                    <li>\(CO\) : décroissant, \(|p| = 4\) (diminue de 4 mol par mole d'avancement)</li>
+                                    <li>\(Fe_3O_4\) : décroissant, \(|p| = 1\) (diminue de 1 mol par mole d'avancement)</li>
+                                    <li>\(Fe\) : croissant, \(p = 3\) (augmente de 3 mol par mole d'avancement)</li>
+                                    <li>\(CO_2\) : croissant, \(p = 4\) (augmente de 4 mol par mole d'avancement)</li>
+                                </ul>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <div class="formula-block" style="font-size:13px; margin:4px 0; text-align:left; padding:4px 8px;">
-                                    \(\sigma = (11,90 \times 2,0 + 10,60 \times 1,5 + 5,01 \times 0,5 + 4,46 \times 5,0 + 16,00 \times 1,0 + 7,63 \times 0,5) \times 10^{-3}\)
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Propriété</span>
+                                <p style="font-size:11px;">
+                                    Le <strong>coefficient directeur</strong> d'une droite \(n_i = f(x)\) est égal au <strong>coefficient stœchiométrique</strong> de l'espèce.
                                     <br>
-                                    \(= (23,80 + 15,90 + 2,505 + 22,30 + 16,00 + 3,815) \times 10^{-3}\)
-                                    <br>
-                                    \(= 84,32 \times 10^{-3} = 8,43 \times 10^{-2}\text{ S/m}\)
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultat</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$\sigma \approx 8,4 \times 10^{-2}\text{ S/m}$$
-                                </div>
+                                    Pour les réactifs, le coefficient est négatif ; pour les produits, il est positif.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -595,33 +621,73 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        La conductivité mesurée expérimentalement est \(\sigma_{exp} = 8,1 \times 10^{-2}\text{ S/m}\). Proposer une explication à la différence.
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">À partir du graphe, déterminer :</p>
+                    <ul style="font-size:11.5px; padding-right:20px;">
+                        <li>a. l'avancement maximal de la réaction</li>
+                        <li>b. le réactif limitant</li>
+                        <li>c. la composition (en mol) de l'état initial et de l'état final</li>
+                    </ul>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Différence entre les valeurs :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\Delta\sigma = 8,43 \times 10^{-2} - 8,1 \times 10^{-2} = 0,33 \times 10^{-2}\text{ S/m}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Explications possibles :
-                                <ul style="font-size:11px; padding-right:18px;">
-                                    <li>Présence d'ions non pris en compte</li>
-                                    <li>Erreurs de mesure</li>
-                                    <li>Les conductivités molaires ioniques dépendent de la température</li>
-                                    <li>Les conductivités molaires ioniques varient avec la concentration (effet de la force ionique)</li>
+                                Lecture du graphique :
+                                <ul style="font-size:11px;">
+                                    <li>\(n_i(CO) = 20\text{ mol}\) (droite 1, intersection avec axe des ordonnées)</li>
+                                    <li>\(n_i(Fe_3O_4) = 5\text{ mol}\) (droite 2, intersection avec axe des ordonnées)</li>
+                                    <li>\(n_i(Fe) = 0\text{ mol}\) (droite 4)</li>
+                                    <li>\(n_i(CO_2) = 0\text{ mol}\) (droite 3)</li>
                                 </ul>
                             </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Détermination du réactif limitant :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$Fe_3O_4 : x_{max} = \frac{n_i}{1} = 5\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$CO : x_{max} = \frac{n_i}{4} = \frac{20}{4} = 5\text{ mol}$$
+                                </div>
+                                <p style="color:#4ECDC4; font-weight:700;">Les deux réactifs sont consommés simultanément. Le mélange est stœchiométrique.</p>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Avancement maximal :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$x_f = x_{max} = 5\text{ mol}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Composition à l'état final :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(Fe_3O_4) = 5 - 1 \times 5 = 0\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(CO) = 20 - 4 \times 5 = 0\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(Fe) = 0 + 3 \times 5 = 15\text{ mol}$$
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(CO_2) = 0 + 4 \times 5 = 20\text{ mol}$$
+                                </div>
+                            </div>
+
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p>La différence est faible et peut être attribuée aux approximations et aux conditions expérimentales.</p>
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li><strong>Avancement maximal :</strong> \(x_f = 5\text{ mol}\)</li>
+                                    <li><strong>Réactif limitant :</strong> Aucun (mélange stœchiométrique)</li>
+                                    <li><strong>État initial :</strong> \(n_i(Fe_3O_4)=5\text{ mol}\), \(n_i(CO)=20\text{ mol}\), \(n_i(Fe)=0\), \(n_i(CO_2)=0\)</li>
+                                    <li><strong>État final :</strong> \(n_f(Fe_3O_4)=0\), \(n_f(CO)=0\), \(n_f(Fe)=15\text{ mol}\), \(n_f(CO_2)=20\text{ mol}\)</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -667,6 +733,10 @@
             }
         }
     </script>
+    
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
+    
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

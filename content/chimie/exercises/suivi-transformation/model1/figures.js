@@ -1,365 +1,309 @@
 // ============================================================
-// figures.js - رسومات درس "Mesure des quantités de matière en solution par conductimétrie"
-// Exercice 3 - Suivi conductimétrique
-// Exercice 5 - Dosage conductimétrique
+// figures.js - Graphiques pour le chapitre "Suivi d'une transformation chimique"
+// Exercice 3 - Permanganate / Fer II
+// Exercice 4 - Haut fourneau
+// Exercice 9 - Combustion d'un alcane
 // ============================================================
 
 // ============================================================
-// EXERCICE 3 - Graphique du dosage conductimétrique
+// EXERCICE 3 : Permanganate / Fer II
 // ============================================================
-function drawGraphDosage() {
-    const s = CanvasUtils.setupCanvas('graphDosage');
+function drawGraphPermanganate() {
+    const s = CanvasUtils.setupCanvas('graphPermanganate');
     if (!s) return;
     const { ctx, w, h } = s;
 
-    const padding = { top: 30, bottom: 40, left: 50, right: 20 };
-    const graphW = w - padding.left - padding.right;
-    const graphH = h - padding.top - padding.bottom;
-
-    const ox = padding.left;
-    const oy = padding.top + graphH;
-
-    // ====== Échelles ======
-    // x : 0 à 25 mL, y : 0 à 4 mS/m
-    const xMax = 25;
-    const yMax = 4;
-    const scaleX = graphW / xMax;
-    const scaleY = graphH / yMax;
-
-    // ====== Points expérimentaux ======
-    const points = [
-        { x: 0, y: 3.50 },
-        { x: 5, y: 2.72 },
-        { x: 10, y: 1.94 },
-        { x: 15, y: 1.16 },
-        { x: 20, y: 1.56 },
-        { x: 25, y: 2.05 }
-    ];
-
-    // ====== Fond ======
-    ctx.fillStyle = '#0D1117';
-    ctx.fillRect(0, 0, w, h);
+    const ox = 60, oy = h - 40;
+    const xMax = 1.2; // en 10^-4 mol
+    const yMax = 6.0; // en 10^-4 mol
+    const scaleX = (w - 80) / xMax;
+    const scaleY = (h - 60) / yMax;
 
     // ====== Axes ======
-    ctx.strokeStyle = '#2A2A3E';
-    ctx.lineWidth = 1.5;
-    
-    // Axe x
-    ctx.beginPath();
-    ctx.moveTo(ox, oy);
-    ctx.lineTo(w - padding.right, oy);
-    ctx.stroke();
-    
-    // Axe y
-    ctx.beginPath();
-    ctx.moveTo(ox, padding.top);
-    ctx.lineTo(ox, oy);
-    ctx.stroke();
-
-    // ====== Flèches ======
-    ctx.fillStyle = '#4ECDC4';
-    // Flèche x
-    ctx.beginPath();
-    ctx.moveTo(w - padding.right - 10, oy - 5);
-    ctx.lineTo(w - padding.right, oy);
-    ctx.lineTo(w - padding.right - 10, oy + 5);
-    ctx.fill();
-    // Flèche y
-    ctx.beginPath();
-    ctx.moveTo(ox - 5, padding.top + 10);
-    ctx.lineTo(ox, padding.top);
-    ctx.lineTo(ox + 5, padding.top + 10);
-    ctx.fill();
-
-    // ====== Labels des axes ======
-    ctx.fillStyle = '#4ECDC4';
-    ctx.font = '12px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillText('V_B (mL)', w / 2, h - 20);
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'bottom';
-    ctx.fillText('σ (mS/m)', 15, h / 2);
+    CanvasUtils.drawAxesWithArrows(ctx, ox, oy, w, h, {
+        xLabel: 'x (×10⁻⁴ mol)',
+        yLabel: 'n (×10⁻⁴ mol)'
+    });
 
     // ====== Grille ======
-    ctx.strokeStyle = '#1A1A2E';
-    ctx.lineWidth = 0.5;
-    for (let i = 1; i <= 5; i++) {
-        const xPos = ox + i * 5 * scaleX;
-        ctx.beginPath();
-        ctx.moveTo(xPos, padding.top);
-        ctx.lineTo(xPos, oy);
-        ctx.stroke();
-    }
-    for (let i = 1; i <= 4; i++) {
-        const yPos = oy - i * 1 * scaleY;
-        ctx.beginPath();
-        ctx.moveTo(ox, yPos);
-        ctx.lineTo(w - padding.right, yPos);
-        ctx.stroke();
+    CanvasUtils.drawGrid(ctx, ox, oy, w, h, scaleX, 0, xMax, { color: '#1A1A2E' });
+    CanvasUtils.drawGrid(ctx, ox, oy, w, h, scaleY, 0, yMax, { color: '#1A1A2E' });
+
+    // ====== Données ======
+    // MnO4^- : n = 1.0 - x (x en 10^-4 mol)
+    const pointsMnO4 = [];
+    for (let i = 0; i <= 10; i++) {
+        const x = i * 0.1;
+        const n = 1.0 - x;
+        if (n >= 0) pointsMnO4.push({ x: x, y: n });
     }
 
-    // ====== Graduations ======
-    ctx.fillStyle = '#888888';
-    ctx.font = '10px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    for (let i = 0; i <= 5; i++) {
-        const xPos = ox + i * 5 * scaleX;
-        ctx.fillText(i * 5, xPos, oy + 5);
-    }
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'middle';
-    for (let i = 1; i <= 4; i++) {
-        const yPos = oy - i * 1 * scaleY;
-        ctx.fillText(i, ox - 8, yPos);
+    // Fe2+ : n = 5.5 - 5x (x en 10^-4 mol)
+    const pointsFe2 = [];
+    for (let i = 0; i <= 10; i++) {
+        const x = i * 0.1;
+        const n = 5.5 - 5 * x;
+        if (n >= 0) pointsFe2.push({ x: x, y: n });
     }
 
-    // ====== Tracer les points et les droites ======
-    ctx.strokeStyle = '#4ECDC4';
-    ctx.lineWidth = 2;
-
-    // Tracer la droite avant l'équivalence (points 0 à 3)
-    const p0 = points[0];
-    const p3 = points[3];
-    ctx.beginPath();
-    ctx.moveTo(ox + p0.x * scaleX, oy - p0.y * scaleY);
-    ctx.lineTo(ox + p3.x * scaleX, oy - p3.y * scaleY);
-    ctx.stroke();
-
-    // Tracer la droite après l'équivalence (points 3 à 5)
-    const p5 = points[5];
-    ctx.beginPath();
-    ctx.moveTo(ox + p3.x * scaleX, oy - p3.y * scaleY);
-    ctx.lineTo(ox + p5.x * scaleX, oy - p5.y * scaleY);
-    ctx.stroke();
-
-    // Tracer les points expérimentaux
-    for (let i = 0; i < points.length; i++) {
-        const px = ox + points[i].x * scaleX;
-        const py = oy - points[i].y * scaleY;
-        
-        ctx.fillStyle = '#4ECDC4';
-        ctx.beginPath();
-        ctx.arc(px, py, 5, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '9px Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.fillText('(' + points[i].x + ',' + points[i].y.toFixed(2) + ')', px, py - 6);
-    }
-
-    // ====== Indication de l'équivalence ======
-    const eqX = ox + 15 * scaleX;
-    const eqY = oy - 1.16 * scaleY;
-    
+    // ====== Tracer les courbes ======
+    // MnO4^- en rouge
     ctx.strokeStyle = '#FF6B6B';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([5, 5]);
-    
-    // Ligne verticale
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.moveTo(eqX, padding.top);
-    ctx.lineTo(eqX, oy);
+    for (let i = 0; i < pointsMnO4.length; i++) {
+        const px = ox + pointsMnO4[i].x * scaleX;
+        const py = oy - pointsMnO4[i].y * scaleY;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+    }
     ctx.stroke();
-    
-    // Ligne horizontale
+
+    // Fe2+ en vert
+    ctx.strokeStyle = '#4ECDC4';
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.moveTo(ox, eqY);
-    ctx.lineTo(w - padding.right, eqY);
+    for (let i = 0; i < pointsFe2.length; i++) {
+        const px = ox + pointsFe2[i].x * scaleX;
+        const py = oy - pointsFe2[i].y * scaleY;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+    }
     ctx.stroke();
-    
-    ctx.setLineDash([]);
-    
-    // Label
+
+    // ====== Points d'intersection ======
+    // x_f = 1.0 (MnO4^- s'annule)
+    const xf = 1.0;
+    const yf = 5.0; // Fe2+ restant
+
     ctx.fillStyle = '#FF6B6B';
-    ctx.font = '11px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'bottom';
-    ctx.fillText('Équivalence', eqX, padding.top + 10);
-    ctx.fillText('V_B = 15,0 mL', eqX, padding.top + 25);
+    ctx.beginPath();
+    ctx.arc(ox + xf * scaleX, oy, 6, 0, 2 * Math.PI);
+    ctx.fill();
+
+    ctx.fillStyle = '#4ECDC4';
+    ctx.beginPath();
+    ctx.arc(ox + xf * scaleX, oy - yf * scaleY, 6, 0, 2 * Math.PI);
+    ctx.fill();
 
     // ====== Légende ======
-    CanvasUtils.drawNote(ctx, 'Dosage conductimétrique HCl par NaOH', padding.left, h - 8, {
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+
+    // MnO4^- (rouge)
+    ctx.fillStyle = '#FF6B6B';
+    ctx.font = '11px Arial';
+    ctx.fillRect(w - 160, 20, 20, 3);
+    ctx.fillRect(w - 160, 20, 20, 3);
+    ctx.fillText('MnO₄⁻', w - 135, 15);
+
+    // Fe2+ (vert)
+    ctx.fillStyle = '#4ECDC4';
+    ctx.fillRect(w - 160, 40, 20, 3);
+    ctx.fillText('Fe²⁺', w - 135, 35);
+
+    // ====== Annotation x_f ======
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = '10px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('x_f = 1,0 × 10⁻⁴ mol', ox + xf * scaleX, oy + 16);
+
+    // ====== Note ======
+    CanvasUtils.drawNote(ctx, '1 cm ↔ 2,0×10⁻⁵ mol (x) / 1 cm ↔ 1,0×10⁻⁴ mol (n)', 10, h - 8, {
         font: '9px Arial',
         color: '#888888'
     });
 }
 
 // ============================================================
-// EXERCICE 5 - Deuxième graphique du dosage conductimétrique
+// EXERCICE 4 : Haut fourneau
 // ============================================================
-function drawGraphDosage2() {
-    const s = CanvasUtils.setupCanvas('graphDosage2');
+function drawGraphHautFourneau() {
+    const s = CanvasUtils.setupCanvas('graphHautFourneau');
     if (!s) return;
     const { ctx, w, h } = s;
 
-    const padding = { top: 30, bottom: 40, left: 50, right: 20 };
-    const graphW = w - padding.left - padding.right;
-    const graphH = h - padding.top - padding.bottom;
-
-    const ox = padding.left;
-    const oy = padding.top + graphH;
-
-    // ====== Échelles ======
-    const xMax = 25;
-    const yMax = 4;
-    const scaleX = graphW / xMax;
-    const scaleY = graphH / yMax;
-
-    // ====== Points expérimentaux ======
-    const points = [
-        { x: 0, y: 3.50 },
-        { x: 5, y: 2.72 },
-        { x: 10, y: 1.94 },
-        { x: 15, y: 1.16 },
-        { x: 20, y: 1.56 },
-        { x: 25, y: 2.05 }
-    ];
-
-    // ====== Fond ======
-    ctx.fillStyle = '#0D1117';
-    ctx.fillRect(0, 0, w, h);
+    const ox = 60, oy = h - 40;
+    const xMax = 6.0;
+    const yMax = 22.0;
+    const scaleX = (w - 80) / xMax;
+    const scaleY = (h - 60) / yMax;
 
     // ====== Axes ======
-    ctx.strokeStyle = '#2A2A3E';
-    ctx.lineWidth = 1.5;
-    
-    ctx.beginPath();
-    ctx.moveTo(ox, oy);
-    ctx.lineTo(w - padding.right, oy);
-    ctx.stroke();
-    
-    ctx.beginPath();
-    ctx.moveTo(ox, padding.top);
-    ctx.lineTo(ox, oy);
-    ctx.stroke();
-
-    // ====== Flèches ======
-    ctx.fillStyle = '#4ECDC4';
-    ctx.beginPath();
-    ctx.moveTo(w - padding.right - 10, oy - 5);
-    ctx.lineTo(w - padding.right, oy);
-    ctx.lineTo(w - padding.right - 10, oy + 5);
-    ctx.fill();
-    
-    ctx.beginPath();
-    ctx.moveTo(ox - 5, padding.top + 10);
-    ctx.lineTo(ox, padding.top);
-    ctx.lineTo(ox + 5, padding.top + 10);
-    ctx.fill();
-
-    // ====== Labels ======
-    ctx.fillStyle = '#4ECDC4';
-    ctx.font = '12px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillText('V_B (mL)', w / 2, h - 20);
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'bottom';
-    ctx.fillText('σ (mS/m)', 15, h / 2);
+    CanvasUtils.drawAxesWithArrows(ctx, ox, oy, w, h, {
+        xLabel: 'x (mol)',
+        yLabel: 'n (mol)'
+    });
 
     // ====== Grille ======
-    ctx.strokeStyle = '#1A1A2E';
-    ctx.lineWidth = 0.5;
-    for (let i = 1; i <= 5; i++) {
-        const xPos = ox + i * 5 * scaleX;
+    CanvasUtils.drawGrid(ctx, ox, oy, w, h, scaleX, 0, xMax, { color: '#1A1A2E' });
+    CanvasUtils.drawGrid(ctx, ox, oy, w, h, scaleY, 0, yMax, { color: '#1A1A2E' });
+
+    // ====== Données ======
+    // Fe3O4 : n = 5 - x
+    const pointsFe3O4 = [
+        { x: 0, y: 5 },
+        { x: 5, y: 0 }
+    ];
+
+    // CO : n = 20 - 4x
+    const pointsCO = [
+        { x: 0, y: 20 },
+        { x: 5, y: 0 }
+    ];
+
+    // Fe : n = 3x
+    const pointsFe = [
+        { x: 0, y: 0 },
+        { x: 5, y: 15 }
+    ];
+
+    // CO2 : n = 4x
+    const pointsCO2 = [
+        { x: 0, y: 0 },
+        { x: 5, y: 20 }
+    ];
+
+    // ====== Tracer les courbes ======
+    const colors = ['#4ECDC4', '#F4D03F', '#BB8FCE', '#FF6B6B'];
+    const labels = ['CO', 'Fe₃O₄', 'CO₂', 'Fe'];
+    const allPoints = [pointsCO, pointsFe3O4, pointsCO2, pointsFe];
+
+    for (let idx = 0; idx < allPoints.length; idx++) {
+        const pts = allPoints[idx];
+        ctx.strokeStyle = colors[idx];
+        ctx.lineWidth = 2.5;
         ctx.beginPath();
-        ctx.moveTo(xPos, padding.top);
-        ctx.lineTo(xPos, oy);
-        ctx.stroke();
-    }
-    for (let i = 1; i <= 4; i++) {
-        const yPos = oy - i * 1 * scaleY;
-        ctx.beginPath();
-        ctx.moveTo(ox, yPos);
-        ctx.lineTo(w - padding.right, yPos);
+        for (let i = 0; i < pts.length; i++) {
+            const px = ox + pts[i].x * scaleX;
+            const py = oy - pts[i].y * scaleY;
+            if (i === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+        }
         ctx.stroke();
     }
 
-    // ====== Graduations ======
-    ctx.fillStyle = '#888888';
+    // ====== Légende ======
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+
+    for (let idx = 0; idx < labels.length; idx++) {
+        ctx.fillStyle = colors[idx];
+        ctx.font = '11px Arial';
+        ctx.fillRect(w - 150, 20 + idx * 20, 20, 3);
+        ctx.fillText(labels[idx], w - 125, 15 + idx * 20);
+    }
+
+    // ====== Annotation x_f ======
+    ctx.fillStyle = '#FFFFFF';
     ctx.font = '10px Arial';
     ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    for (let i = 0; i <= 5; i++) {
-        const xPos = ox + i * 5 * scaleX;
-        ctx.fillText(i * 5, xPos, oy + 5);
-    }
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'middle';
-    for (let i = 1; i <= 4; i++) {
-        const yPos = oy - i * 1 * scaleY;
-        ctx.fillText(i, ox - 8, yPos);
-    }
+    ctx.fillText('x_f = 5,0 mol', ox + 5 * scaleX, oy + 16);
 
-    // ====== Tracer les droites ======
-    ctx.strokeStyle = '#4ECDC4';
-    ctx.lineWidth = 2;
+    // ====== Note ======
+    CanvasUtils.drawNote(ctx, 'Mélange stœchiométrique - Tous les réactifs sont consommés', 10, h - 8, {
+        font: '9px Arial',
+        color: '#888888'
+    });
+}
 
-    // Droite avant l'équivalence
-    const p0 = points[0];
-    const p3 = points[3];
+// ============================================================
+// EXERCICE 9 : Combustion d'un alcane
+// ============================================================
+function drawGraphAlcane() {
+    const s = CanvasUtils.setupCanvas('graphAlcane');
+    if (!s) return;
+    const { ctx, w, h } = s;
+
+    const ox = 60, oy = h - 40;
+    const xMax = 2.5;
+    const yMax = 14.0;
+    const scaleX = (w - 80) / xMax;
+    const scaleY = (h - 60) / yMax;
+
+    // ====== Axes ======
+    CanvasUtils.drawAxesWithArrows(ctx, ox, oy, w, h, {
+        xLabel: 'x (mol)',
+        yLabel: 'n (mol)'
+    });
+
+    // ====== Grille ======
+    CanvasUtils.drawGrid(ctx, ox, oy, w, h, scaleX, 0, xMax, { color: '#1A1A2E' });
+    CanvasUtils.drawGrid(ctx, ox, oy, w, h, scaleY, 0, yMax, { color: '#1A1A2E' });
+
+    // ====== Données ======
+    // Alcane : n = 2.0 - x
+    const pointsAlcane = [
+        { x: 0, y: 2.0 },
+        { x: 2.0, y: 0 }
+    ];
+
+    // CO2 : n = 6x (pour C6H14)
+    const pointsCO2 = [
+        { x: 0, y: 0 },
+        { x: 2.0, y: 12.0 }
+    ];
+
+    // ====== Tracer les courbes ======
+    // Alcane en jaune
+    ctx.strokeStyle = '#F4D03F';
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.moveTo(ox + p0.x * scaleX, oy - p0.y * scaleY);
-    ctx.lineTo(ox + p3.x * scaleX, oy - p3.y * scaleY);
+    for (let i = 0; i < pointsAlcane.length; i++) {
+        const px = ox + pointsAlcane[i].x * scaleX;
+        const py = oy - pointsAlcane[i].y * scaleY;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+    }
     ctx.stroke();
 
-    // Droite après l'équivalence
-    const p5 = points[5];
+    // CO2 en vert
+    ctx.strokeStyle = '#4ECDC4';
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.moveTo(ox + p3.x * scaleX, oy - p3.y * scaleY);
-    ctx.lineTo(ox + p5.x * scaleX, oy - p5.y * scaleY);
+    for (let i = 0; i < pointsCO2.length; i++) {
+        const px = ox + pointsCO2[i].x * scaleX;
+        const py = oy - pointsCO2[i].y * scaleY;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+    }
     ctx.stroke();
 
     // ====== Points ======
-    for (let i = 0; i < points.length; i++) {
-        const px = ox + points[i].x * scaleX;
-        const py = oy - points[i].y * scaleY;
-        
-        ctx.fillStyle = '#4ECDC4';
-        ctx.beginPath();
-        ctx.arc(px, py, 5, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '9px Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.fillText('(' + points[i].x + ',' + points[i].y.toFixed(2) + ')', px, py - 6);
-    }
+    // x_f = 2.0
+    const xf = 2.0;
 
-    // ====== Équivalence ======
-    const eqX = ox + 15 * scaleX;
-    const eqY = oy - 1.16 * scaleY;
-    
-    ctx.strokeStyle = '#FF6B6B';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([5, 5]);
-    
+    ctx.fillStyle = '#F4D03F';
     ctx.beginPath();
-    ctx.moveTo(eqX, padding.top);
-    ctx.lineTo(eqX, oy);
-    ctx.stroke();
-    
+    ctx.arc(ox + xf * scaleX, oy, 6, 0, 2 * Math.PI);
+    ctx.fill();
+
+    ctx.fillStyle = '#4ECDC4';
     ctx.beginPath();
-    ctx.moveTo(ox, eqY);
-    ctx.lineTo(w - padding.right, eqY);
-    ctx.stroke();
-    
-    ctx.setLineDash([]);
-    
-    ctx.fillStyle = '#FF6B6B';
-    ctx.font = '11px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'bottom';
-    ctx.fillText('Équivalence', eqX, padding.top + 10);
-    ctx.fillText('V_B = 15,0 mL', eqX, padding.top + 25);
+    ctx.arc(ox + xf * scaleX, oy - 12 * scaleY, 6, 0, 2 * Math.PI);
+    ctx.fill();
 
     // ====== Légende ======
-    CanvasUtils.drawNote(ctx, 'Dosage conductimétrique - Points expérimentaux', padding.left, h - 8, {
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+
+    ctx.fillStyle = '#F4D03F';
+    ctx.font = '11px Arial';
+    ctx.fillRect(w - 150, 20, 20, 3);
+    ctx.fillText('Alcane', w - 125, 15);
+
+    ctx.fillStyle = '#4ECDC4';
+    ctx.fillRect(w - 150, 40, 20, 3);
+    ctx.fillText('CO₂', w - 125, 35);
+
+    // ====== Annotation ======
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = '10px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('x_f = 2,0 mol', ox + xf * scaleX, oy + 16);
+
+    // ====== Note ======
+    CanvasUtils.drawNote(ctx, 'Alcane C₆H₁₄ (hexane) - n(alcane)₀ = 2,0 mol', 10, h - 8, {
         font: '9px Arial',
         color: '#888888'
     });
@@ -370,11 +314,14 @@ function drawGraphDosage2() {
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
-        if (document.getElementById('graphDosage')) {
-            drawGraphDosage();
+        if (document.getElementById('graphPermanganate')) {
+            drawGraphPermanganate();
         }
-        if (document.getElementById('graphDosage2')) {
-            drawGraphDosage2();
+        if (document.getElementById('graphHautFourneau')) {
+            drawGraphHautFourneau();
+        }
+        if (document.getElementById('graphAlcane')) {
+            drawGraphAlcane();
         }
     }, 300);
 });
