@@ -57,13 +57,13 @@
         .section ul li { margin-bottom: 1px; }
         .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
         .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .highlight-box .label.def { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
         .highlight-box .label.ex { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
-        .highlight-box .label.resume { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
-        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
-        .highlight-box .label.summary { background: #F4D03F44; color: #F4D03F; font-size: 14px; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.summary { background: #F4D03F44; color:var(--gold-text); font-size: 14px; }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
@@ -76,7 +76,7 @@
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 14px; }
         .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
         .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
-        .step .step-num { color: #F4D03F; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .step .step-num { color:var(--gold-text); font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
         .nav-buttons { margin-top: 14px; padding-top: 10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; border-top: 1px solid var(--border); }
         .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; }
@@ -92,16 +92,16 @@
         .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
-        .exemple-box .ex-title { color: #F4D03F; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+        .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
         .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
-        .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
         .toc ul { list-style: none; padding: 0; }
         .toc ul li { margin-bottom: 2px; }
         .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
-        .toc ul li a:hover { color: #F4D03F; }
-        .toc ul li a .num { color: #F4D03F; font-weight: 700; font-size: 11px; min-width: 20px; }
+        .toc ul li a:hover { color:var(--gold-text); }
+        .toc ul li a .num { color:var(--gold-text); font-weight: 700; font-size: 11px; min-width: 20px; }
         .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
-        .summary-card .s-title { color: #F4D03F; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .summary-card .s-title { color:var(--gold-text); font-weight: 700; font-size: 13px; margin-bottom: 2px; }
         .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
@@ -409,7 +409,7 @@
                     <p style="font-size:11.5px; color:var(--text-secondary);">On introduit une masse \(m = 0{,}2\ g\) de grenaille de zinc \(Zn\) dans un volume \(V = 10\ mL\) d'acide chlorhydrique de concentration \(C = 2\ mol.L^{-1}\).</p>
                     <p style="font-size:11px; color:var(--text-muted);">Données : \(M(Zn) = 65{,}4\ g.mol^{-1}\)</p>
 
-                    <p style="font-weight:700; color:#F4D03F; font-size:12px; margin-top:6px;">Méthode de résolution :</p>
+                    <p style="font-weight:700; color:var(--gold-text); font-size:12px; margin-top:6px;">Méthode de résolution :</p>
                     <div class="step"><span class="step-num">Étape 1 :</span> \(n_i(Zn) = \dfrac{m}{M(Zn)} = \dfrac{0{,}2}{65{,}4} = 3.10^{-3}\ mol = 3\ mmol\)</div>
                     <div class="step"><span class="step-num">Étape 2 :</span> \(n_i(H^+) = C \times V = 2 \times 10.10^{-3} = 2.10^{-2}\ mol = 20\ mmol\)</div>
                     <div class="step"><span class="step-num">Étape 3 :</span> Équation : \(Zn_{(s)} + 2\,H^+_{(aq)} \longrightarrow Zn^{2+}_{(aq)} + H_{2(g)}\)</div>
@@ -499,7 +499,7 @@
                     <div class="ex-title">📝 Application : quel volume de phosphate de sodium pour un mélange stœchiométrique ?</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">On reprend \(n_i(Ca^{2+}) = 3\ mmol\) et une solution de phosphate de sodium de concentration \(C = 0{,}20\ mol.L^{-1}\). On veut calculer le volume \(V'\) de cette solution à ajouter pour que le mélange avec \(Ca^{2+}\) soit stœchiométrique.</p>
 
-                    <p style="font-weight:700; color:#F4D03F; font-size:12px; margin-top:6px;">Méthode de résolution :</p>
+                    <p style="font-weight:700; color:var(--gold-text); font-size:12px; margin-top:6px;">Méthode de résolution :</p>
                     <div class="step"><span class="step-num">Étape 1 :</span> Condition de stœchiométrie : \(\dfrac{n_i(Ca^{2+})}{3} = \dfrac{n'_i(PO_4^{3-})}{2}\)</div>
                     <div class="step"><span class="step-num">Étape 2 :</span> \(n'_i(PO_4^{3-}) = \dfrac{2}{3} \times n_i(Ca^{2+}) = \dfrac{2}{3} \times 3 = 2\ mmol\)</div>
                     <div class="step"><span class="step-num">Étape 3 :</span> Or \(n'_i(PO_4^{3-}) = C \times V'\), donc \(V' = \dfrac{n'_i(PO_4^{3-})}{C} = \dfrac{2.10^{-3}}{0{,}20}\)</div>

@@ -26,6 +26,8 @@
  --solution-bg: #1A2A1A;
  --solution-title: #A8FF78;
  --solution-border: #A8FF7844;
+ /* أصفر واضح بحال بحال فـ dark، وكيولي أغمق (dark goldenrod) فـ light باش يبان مقروء فوق البيض */
+ --gold-text: #F4D03F;
  color-scheme: dark;
 }
 
@@ -53,6 +55,7 @@ html[data-theme="light"] {
  --solution-bg: #EEFBEF;
  --solution-title: #2F8F3D;
  --solution-border: #2F8F3D33;
+ --gold-text: #B8860B;
  color-scheme: light;
 }
 
@@ -626,7 +629,7 @@ input, textarea, [contenteditable="true"] {
     gap: 4px;
     font-size: 0.6rem;
     font-weight: 600;
-    color: #F4D03F;
+    color: var(--gold-text);
     background: rgba(244, 208, 63, 0.12);
     padding: 2px 10px;
     border-radius: 12px;
@@ -805,7 +808,7 @@ input, textarea, [contenteditable="true"] {
 }
 .subject-chimie .subject-card-icon {
     background: rgba(244, 208, 63, 0.12);
-    color: #F4D03F;
+    color: var(--gold-text);
 }
 
 .subject-card-info {
@@ -1211,7 +1214,7 @@ html[data-theme="light"] .btn-primary:hover { box-shadow: 0 6px 30px rgba(47, 14
     color: #4ECDC4;
 }
 .sidebar-menu li a .fa-book-open {
-    color: #F4D03F;
+    color: var(--gold-text);
 }
 .sidebar-menu li a .fa-calculator {
     color: #4ECDC4;

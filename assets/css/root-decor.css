@@ -1,15 +1,24 @@
 /* ============================================================
-   ROOT-DECOR.CSS
+   ROOT-DECOR.CSS  (نسخة مصححة - إصلاح مشكلة البطء)
    ديكور الزليج المغربي متعدد الألوان (multicolore) الخاص بالصفحات
    الجذرية الثلاث: index.html, subject.html, subjects.html.
 
-   هاد الأنماط كانت مكررة 3 مرات (نفس الكود بالحرف) جوة <style>
-   ديال كل صفحة من الصفحات الثلاث. تصايفات هنا فملف وحيد، كيتحمّل
-   مرة وحدة ويستافد منو الكاش عبر الصفحات الثلاث - بحال بالضبط
-   lesson-common.css كيدير لصفحات الدروس/التمارين/السلاسل.
+   ====== التعديلات ديال هاد النسخة ======
+   1) .moroccan-star: تحيدت خاصية animation (starSpin) من هنا،
+      حيت GSAP كيدير gsap.to('.moroccan-star', {rotation:360,...})
+      بلا توقف فنفس الصفحات. كانو جوج محركات (CSS + GSAP) كيخدمو
+      فنفس الوقت على نفس transform ديال نفس العنصر = تنافس وحمل
+      مضاعف بلا فائدة. دابا GSAP وحدو اللي كيدير rotation.
 
-   الترميز (partials/decor-root.html) كيتلصق من build.js فالصفحات
-   الجذرية، وهاد الملف هو اللي كيعطيه الشكل.
+   2) .moroccan-shadow: shadowPulse كان كيحرك transform:scale()
+      على عنصر فيه filter:blur(80px) بحجم 600px - تركيبة غالية بزاف
+      حيت المتصفح خاصو يعاود يحسب الـ blur من جديد فكل frame ملي
+      كيتبدل الحجم. دابا كيحرك غير opacity، والـ transform ديال
+      التوسيط (translate) بقا ثابت برا الأنيميشن.
+
+   3) زدت تعطيل كامل للأنيميشن فالموبايل الصغير (بحال بالضبط اللي
+      كيدار مع .glow-orb فصفحات المحتوى)، باش الهاتف ما يخلصش
+      ثمن blur متحرك بلا داعي.
    ============================================================ */
 
 .overlay-protection {
@@ -58,6 +67,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
+    /* التوسيط ثابت وبرا الأنيميشن - ماكيتحسبش من جديد كل frame */
     transform: translate(-50%, -50%);
     width: 600px;
     height: 600px;
@@ -67,11 +77,14 @@
     background: radial-gradient(circle at center, #4ECDC4 0%, #FF6B6B 40%, #F4D03F 70%, transparent 100%);
     border-radius: 50%;
     filter: blur(80px);
+    will-change: opacity;
     animation: shadowPulse 8s ease-in-out infinite;
 }
 @keyframes shadowPulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.15; }
+    /* كنحركو غير opacity، ماشي transform:scale - باش نتفاداو
+       إعادة حساب الـ blur فكل frame */
+    0%, 100% { opacity: 0.08; }
+    50% { opacity: 0.15; }
 }
 
 .moroccan-star {
@@ -84,12 +97,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: starSpin 20s linear infinite;
-}
-@keyframes starSpin {
-    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+    will-change: transform, opacity;
+    /* ملاحظة: ماكاينش animation هنا. GSAP هو اللي كيدور rotation
+       بلا توقف (شوف gsap.to('.moroccan-star', {rotation:360,...})
+       فالصفحة). خاصك ماتزيدش animation:starSpin هنا مرة أخرى،
+       حيت غادي يرجع نفس التعارض. */
 }
 
 .geo-pattern {
@@ -97,7 +109,7 @@
     z-index: 0;
     pointer-events: none;
     opacity: 0;
-    color: #F4D03F;
+    color:var(--gold-text);
     font-size: 20px;
     letter-spacing: 20px;
 }
@@ -112,7 +124,14 @@
     .geo-pattern { font-size: 14px; letter-spacing: 12px; }
 }
 @media (max-width: 480px) {
-    .moroccan-shadow { width: 200px; height: 200px; }
+    .moroccan-shadow {
+        width: 200px;
+        height: 200px;
+        /* تعطيل كامل ديال pulse فالهواتف الصغيرة - بحال .glow-orb
+           فصفحات المحتوى */
+        animation: none;
+        opacity: 0.08 !important;
+    }
     .moroccan-star { font-size: 40px; }
     .geo-pattern { font-size: 10px; letter-spacing: 8px; }
 }
