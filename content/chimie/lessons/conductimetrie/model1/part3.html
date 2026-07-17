@@ -14,7 +14,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
+    <title>Partie 3 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,37 +48,80 @@
         .nav-links a { font-size: 13px; padding: 3px 8px; }
         .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
         .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
-        .part-link { padding: 8px 12px; margin-bottom: 8px; border-radius: 8px; }
-        .part-link .part-num { font-size: 13px; color: #F4D03F; font-weight: 700; }
-        .part-link .part-title { font-size: 14px; color: var(--text-secondary); }
-        .part-link .part-icon { font-size: 18px; flex-shrink: 0; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #F4D03F22; color: #F4D03F; }
+        .highlight-box .label.ex { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #F4D03F; font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; border-top: 1px solid var(--border); }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(244, 208, 63, 0.3); }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
         .bg-grid { opacity: 0.3; }
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
-        .part-link:active { transform: scale(0.97); opacity: 0.8; }
-        .part-link:hover { border-color: #F4D03F; transform: translateX(-3px); }
-        .part-link .part-arrow { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
+        .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
+        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container svg { max-width: 100%; height: auto; border-radius: 4px; background: #0D1117; }
+        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
+        .exemple-box { background: #1A2A2A; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
+        .exemple-box .ex-title { color: #F4D03F; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
-            .part-link { padding: 6px 10px; }
-            .part-link .part-num { font-size: 14px; }
-            .part-link .part-title { font-size: 13px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 15px; }
-            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
-            .part-link { padding: 4px 8px; }
-            .part-link .part-num { font-size: 13px; }
-            .part-link .part-title { font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -292,55 +335,89 @@
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
-        <a href="../../../../../subject.html?subject=chimie" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:#F4D03F;"></i> Mesure des quantités de matière en solution par conductimétrie</h1>
+            <h1 class="lesson-title"><i class="fas fa-chart-line" style="color:#F4D03F;"></i> Partie 3 : Détermination d'une concentration par conductimétrie</h1>
+
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                Choisissez une partie pour commencer
+                La conductimétrie permet de déterminer la concentration d'une solution ionique inconnue, à condition de connaître d'abord comment la conductance de solutions de référence varie avec leur concentration.
             </p>
 
-            <div class="section-list" style="max-width:700px; margin:0 auto;">
-                <a href="part1.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-arrows-left-right"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Cours - Partie 1</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Conductance d'une solution électrolytique - loi d'Ohm et facteurs d'influence</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part2.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-water"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Cours - Partie 2</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Conductivité de la solution et conductivité molaire ionique</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part3.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-chart-line"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Cours - Partie 3</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Détermination d'une concentration par la courbe d'étalonnage $G = f(C)$</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part4.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-book-open"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Résumé du cours</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Résumé complet - Synthèse du chapitre</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
+            <div class="section">
+                <h2><span class="num">1</span> La courbe d'étalonnage $G = f(C)$</h2>
+
+                <div class="highlight-box purple">
+                    <span class="label rem">Activité</span>
+                    <p>On verse dans un bécher des solutions de chlorure de sodium de concentrations connues et on mesure, pour chacune, la conductance $G$ (dimensions de la cellule fixées) :</p>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>$C$ ($mmol.L^{-1}$)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+                        <tr><th>$G$ (mS)</th><td>0,35</td><td>0,70</td><td>1,05</td><td>1,40</td><td>1,75</td></tr>
+                    </table>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="graphEtalonnage" width="380" height="280"></svg>
+                    <p>Courbe d'étalonnage $G = f(C)$ pour des solutions de chlorure de sodium</p>
+                </div>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>On appelle <strong>courbe d'étalonnage</strong> $G = f(C)$ la courbe obtenue en mesurant la conductance de plusieurs échantillons d'un même type de solution électrolytique, de concentrations connues. Une fois tracée, elle permet de déterminer la concentration d'une solution <strong>inconnue</strong> du même soluté, en mesurant simplement sa conductance $G$.</p>
+                </div>
+
+                <p>Les points sont alignés avec l'origine : la courbe est une <strong>fonction linéaire</strong>, ce qui confirme que, pour ces solutions diluées, $G = k.C$.</p>
+            </div>
+
+            <div class="section">
+                <h2><span class="num">2</span> Limites d'utilisation d'une courbe d'étalonnage</h2>
+
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Conditions à respecter</span>
+                    <p>Pour déterminer correctement la concentration d'une solution à l'aide d'une courbe d'étalonnage, il faut que :</p>
+                    <ul style="font-size:12px; padding-right:14px;">
+                        <li>la solution contienne un <strong>seul soluté</strong> (un seul type d'ions responsable de la conduction) ;</li>
+                        <li>tous les <strong>autres facteurs</strong> (température, dimensions de la cellule, nature du soluté) soient les <strong>mêmes</strong> que lors de l'étalonnage ;</li>
+                        <li>la concentration inconnue reste dans le <strong>domaine des concentrations diluées</strong> utilisées pour tracer la courbe, typiquement $C < 1{,}5.10^{-2}\ mol.L^{-1}$ (au-delà, la relation $G = k.C$ n'est plus linéaire).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><span class="num">3</span> Application : dosage du sérum physiologique</h2>
+
+                <div class="highlight-box purple">
+                    <span class="label rem">Activité</span>
+                    <p>Le sérum physiologique est une solution de chlorure de sodium trop concentrée pour être mesurée directement (hors du domaine de linéarité). On verse $V_i = 5\ mL$ de sérum physiologique dans une fiole jaugée de $V_f = 500\ mL$, et on complète avec de l'eau distillée jusqu'au trait de jauge. On mesure ensuite la conductance de la solution diluée obtenue : $G = 1{,}25\ mS$.</p>
+                </div>
+
+                <h3>a) Le coefficient de dilution</h3>
+                <p>D'après la relation de dilution $C_i.V_i = C_f.V_f$, le coefficient de dilution $\alpha$ vaut :</p>
+                <div class="formula-block" style="font-size:16px;">
+                    $$\alpha = \frac{V_f}{V_i} = \frac{500}{5} = 100$$
+                </div>
+                <p>On dilue le sérum physiologique car sa conductance, trop élevée, sort du domaine de linéarité de la courbe d'étalonnage : seule une solution diluée permet une lecture fiable de la concentration.</p>
+
+                <h3>b) Détermination de la concentration</h3>
+                <div class="step"><span class="step-num">Étape 1 :</span> On mesure $G = 1{,}25\ mS$ pour la solution diluée.</div>
+                <div class="step"><span class="step-num">Étape 2 :</span> À l'aide de la courbe d'étalonnage, on lit la concentration correspondante : $C_f = 3{,}6\ mmol.L^{-1}$.</div>
+                <div class="step"><span class="step-num">Étape 3 :</span> On en déduit la concentration du sérum physiologique non dilué, à l'aide du coefficient de dilution : $C_i = \alpha . C_f$.</div>
+                <div class="formula-block" style="font-size:14px;">
+                    $$C_i = 100 \times 3{,}6.10^{-3} = 0{,}36\ mol.L^{-1}$$
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label resume">Conclusion</span>
+                    <p>La concentration en chlorure de sodium du sérum physiologique est $C_i = 0{,}36\ mol.L^{-1}$. Cette méthode illustre la démarche générale de la conductimétrie : mesurer $G$, lire $C$ sur la courbe d'étalonnage, puis remonter à la concentration réelle en tenant compte d'une éventuelle dilution.</p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="part2.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 2</a>
+                <a href="part4.html" class="next-btn">Résumé <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
@@ -358,17 +435,15 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
-    <script src="../../../../../assets/js/protection.js"></script>
-    <script src="../../../../../assets/js/script.js"></script>
-
-<script>
+    <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
-            if (navbar) {
-                navbar.classList.toggle('scrolled', window.scrollY > 30);
-            }
+            if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
 </body>
 </html>
-

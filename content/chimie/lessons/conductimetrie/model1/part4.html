@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -13,7 +14,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suivi d'une transformation chimique | Xpert</title>
+    <title>Résumé - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,17 +63,15 @@
         .highlight-box .label.resume { background: #F4D03F44; color: #F4D03F; }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
-        .highlight-box .label.summary { background: #F4D03F44; color: #F4D03F; font-size: 14px; }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
-        .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 500px; margin: 0 auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
         .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
-        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 14px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
         .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
         .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
         .step .step-num { color: #F4D03F; font-weight: 700; margin-left: 6px; font-size: 11px; }
@@ -88,19 +87,10 @@
         .scroll-top-btn { display: none; }
         .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
         .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container svg { max-width: 100%; height: auto; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: #1A2A2A; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color: #F4D03F; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
-        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
-        .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-        .toc ul { list-style: none; padding: 0; }
-        .toc ul li { margin-bottom: 2px; }
-        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
-        .toc ul li a:hover { color: #F4D03F; }
-        .toc ul li a .num { color: #F4D03F; font-weight: 700; font-size: 11px; min-width: 20px; }
-        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
-        .summary-card .s-title { color: #F4D03F; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
-        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -345,71 +335,159 @@
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
-        <a href="../../../../../subject.html?subject=chimie" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask-vial" style="color:#4ECDC4;"></i> Suivi d'une transformation chimique</h1>
-            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                Choisissez une partie pour commencer
-            </p>
+            <h1 class="lesson-title"><i class="fas fa-book-open" style="color:#F4D03F;"></i> Résumé complet : Mesure des quantités de matière par conductimétrie</h1>
 
-            <div class="section-list" style="max-width:700px; margin:0 auto;">
-                <a href="part1.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-flask-vial"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Cours - Partie 1</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Système chimique - Transformation chimique - Réaction chimique</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part2.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-table"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Cours - Partie 2</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">L'avancement de la réaction - Le tableau d'avancement</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part3.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-scale-balanced"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Cours - Partie 3</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Réactif limitant - Avancement maximal - Bilan de matière - Mélange stœchiométrique</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part4.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-gauge-high"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Cours - Partie 4</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Prévoir l'état final : masse, volume, pression - Applications</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
-                <a href="part5.html" class="part-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="color:#F4D03F; font-size:18px; flex-shrink:0;"><i class="fas fa-book-open"></i></span>
-                        <div style="flex:1;">
-                            <div style="color:#F4D03F; font-weight:700; font-size:13px;">Résumé du cours</div>
-                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Synthèse complète - Formules et méthodes - Fiche de révision</div>
-                        </div>
-                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
-                    </div>
-                </a>
+            <!-- ====== Table des matières ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Nature du courant dans un électrolyte</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Conductance et loi d'Ohm</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Facteurs influençant la conductance</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Conductivité et conductivité molaire ionique</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Courbe d'étalonnage et dosage</a></li>
+                    <li><a href="#sec6"><span class="num">6.</span> Tableau récapitulatif des formules</a></li>
+                    <li><a href="#sec7"><span class="num">7.</span> Méthode : résoudre un exercice de conductimétrie</a></li>
+                    <li><a href="#sec8"><span class="num">8.</span> À retenir</a></li>
+                </ul>
             </div>
+
+            <!-- SECTION 1 -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Nature du courant dans un électrolyte</h2>
+                <div class="summary-card">
+                    <div class="s-title">📌 Double migration des ions</div>
+                    <div class="s-content">
+                        <p>Dans un électrolyte, le courant électrique résulte d'un <strong>double déplacement des ions</strong> : les <strong>cations</strong> se déplacent dans le sens conventionnel du courant, les <strong>anions</strong> en sens inverse. (Dans un métal, seuls les électrons libres se déplacent, en sens inverse du courant.)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2 -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Conductance et loi d'Ohm</h2>
+                <div class="summary-card">
+                    <div class="s-title">📌 Conductance $G$</div>
+                    <div class="s-content">
+                        <p>Une solution électrolytique vérifie la loi d'Ohm : $U = R.I$. La <strong>conductance</strong> $G$ d'une portion de solution est l'inverse de sa résistance :</p>
+                        <div class="formula-block" style="font-size:14px; margin:4px 0;">$G = \dfrac{1}{R} = \dfrac{I}{U}$</div>
+                        <span style="color:var(--text-muted); font-size:11px;">$G$ en siemens $(S)$, souvent en $mS$ ou $\mu S$. Les mesures se font en courant alternatif.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Facteurs influençant la conductance</h2>
+                <div class="summary-card">
+                    <div class="s-title">📌 Facteurs géométriques (cellule)</div>
+                    <div class="s-content">
+                        <p>$G$ augmente si la surface immergée $S$ des électrodes augmente ; $G$ augmente si la distance $L$ entre les électrodes diminue ; $G$ dépend de l'état de surface des électrodes.</p>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="s-title">📌 Facteurs liés à la solution</div>
+                    <div class="s-content">
+                        <p>$G$ augmente avec la <strong>température</strong> ; $G$ augmente avec la <strong>concentration</strong> ($G = \alpha.C$ pour une solution diluée) ; $G$ dépend de la <strong>nature du soluté</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4 -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Conductivité et conductivité molaire ionique</h2>
+                <div class="summary-card">
+                    <div class="s-title">📌 Conductivité $\sigma$</div>
+                    <div class="s-content">
+                        <p>La conductivité $\sigma$ est une propriété propre à la solution (contrairement à $G$) :</p>
+                        <div class="formula-block" style="font-size:14px; margin:4px 0;">$G = \sigma . \dfrac{S}{L} = \sigma.k$</div>
+                        <span style="color:var(--text-muted); font-size:11px;">$\sigma$ en $S.m^{-1}$ ; $k = S/L$ : constante de cellule, en $m$.</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="s-title">📌 Conductivité molaire du soluté et conductivité molaire ionique</div>
+                    <div class="s-content">
+                        <p>Pour une solution diluée : $\sigma = \Lambda.C$ ($\Lambda$ : conductivité molaire du soluté). Ion par ion : $\sigma = \sum_i \lambda_{X_i}.[X_i]$, où $\lambda_{X_i}$ est la conductivité molaire ionique (dépend de la nature de l'ion et de la température). Les ions $H_3O^+$ et $HO^-$ ont une conductivité molaire ionique particulièrement élevée.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 5 -->
+            <div class="section" id="sec5">
+                <h2><span class="num">5</span> Courbe d'étalonnage et dosage</h2>
+                <div class="summary-card">
+                    <div class="s-title">📌 Principe</div>
+                    <div class="s-content">
+                        <p>On mesure $G$ pour des solutions de concentrations connues du même soluté et on trace $G = f(C)$ : c'est la <strong>courbe d'étalonnage</strong>. En mesurant ensuite la conductance d'une solution inconnue, on lit sa concentration sur cette courbe.</p>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="s-title">📌 Limites d'utilisation</div>
+                    <div class="s-content">
+                        <p>Un seul soluté ; tous les autres facteurs fixés (température, cellule, nature du soluté) ; concentration dans le domaine linéaire, typiquement $C < 1{,}5.10^{-2}\ mol.L^{-1}$. Au-delà, on dilue avant de mesurer, puis on multiplie par le coefficient de dilution $\alpha = V_f/V_i$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 6 -->
+            <div class="section" id="sec6">
+                <h2><span class="num">6</span> Tableau récapitulatif des formules</h2>
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Grandeur</th><th>Formule</th><th>Unité SI</th></tr>
+                        <tr><td>Conductance</td><td>$G = I/U$</td><td>$S$</td></tr>
+                        <tr><td>Conductance et cellule</td><td>$G = \sigma.S/L$</td><td>$S$</td></tr>
+                        <tr><td>Constante de cellule</td><td>$k = S/L$</td><td>$m$</td></tr>
+                        <tr><td>Conductivité (solution diluée)</td><td>$\sigma = \Lambda.C$</td><td>$S.m^{-1}$</td></tr>
+                        <tr><td>Conductivité (par ion)</td><td>$\sigma = \sum \lambda_i.[X_i]$</td><td>$S.m^{-1}$</td></tr>
+                        <tr><td>Coefficient de dilution</td><td>$\alpha = V_f/V_i = C_i/C_f$</td><td>sans unité</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECTION 7 -->
+            <div class="section" id="sec7">
+                <h2><span class="num">7</span> Méthode : résoudre un exercice de conductimétrie</h2>
+                <div class="step"><span class="step-num">Étape 1 :</span> Identifier ce qui est demandé : $G$, $\sigma$, $C$, ou une comparaison entre solutions.</div>
+                <div class="step"><span class="step-num">Étape 2 :</span> Convertir toutes les données en unités SI (concentration en $mol.m^{-3}$, longueurs en $m$).</div>
+                <div class="step"><span class="step-num">Étape 3 :</span> Choisir la formule adaptée : $G = I/U$, $G = \sigma.S/L$, ou $\sigma = \sum \lambda_i.[X_i]$.</div>
+                <div class="step"><span class="step-num">Étape 4 :</span> Si une courbe d'étalonnage est fournie, lire graphiquement la concentration, en tenant compte d'une éventuelle dilution ($C_i = \alpha.C_f$).</div>
+                <div class="step"><span class="step-num">Étape 5 :</span> Vérifier la cohérence du résultat (ordre de grandeur, unité) et conclure par une phrase claire.</div>
+            </div>
+
+            <!-- SECTION 8 -->
+            <div class="section" id="sec8">
+                <h2><span class="num">8</span> À retenir</h2>
+                <div class="highlight-box gold">
+                    <span class="label summary">Essentiel</span>
+                    <ul style="font-size:12px;">
+                        <li>Le courant dans un électrolyte = <strong>double migration des ions</strong> (cations et anions en sens opposés).</li>
+                        <li><strong>Conductance</strong> : $G = I/U$ (dépend de la géométrie de la cellule).</li>
+                        <li><strong>Conductivité</strong> : $G = \sigma.S/L$ (propriété propre à la solution).</li>
+                        <li>Solution diluée : $\sigma = \Lambda.C$, et par ion $\sigma = \sum \lambda_i.[X_i]$.</li>
+                        <li>La <strong>courbe d'étalonnage</strong> $G = f(C)$ permet de déterminer une concentration inconnue, dans le domaine linéaire et sous les mêmes conditions expérimentales.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label rem">Et après ?</span>
+                    <p>La conductimétrie n'est qu'une des techniques de mesure d'une quantité de matière en solution. D'autres méthodes, comme les <strong>dosages par titrage</strong> (acido-basiques, d'oxydoréduction), permettront de déterminer des concentrations pour des solutés qui ne sont pas de simples électrolytes forts.</p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
+                <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
+            </div>
+
         </div>
     </div>
 
-
-    <footer class="footer">
+    
+<footer class="footer">
     <div class="divider"></div>
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
         <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
@@ -421,13 +499,14 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
-    
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
