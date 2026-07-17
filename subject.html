@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -107,18 +108,18 @@
             position: sticky;
             top: 70px;
             z-index: 10;
-            background: rgba(11, 12, 16, 0.7);
+            background: rgba(var(--bg-primary-rgb), 0.7);
             backdrop-filter: blur(20px);
             padding: 10px 15px;
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(var(--overlay-rgb), 0.04);
         }
 
         .tab-btn {
             padding: 10px 22px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(var(--overlay-rgb), 0.06);
             border-radius: 14px;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(var(--overlay-rgb), 0.03);
             backdrop-filter: blur(10px);
             color: var(--text-secondary);
             cursor: pointer;
@@ -174,10 +175,10 @@
         }
 
         .command-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(var(--overlay-rgb), 0.02);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(var(--overlay-rgb), 0.04);
             border-radius: 18px;
             padding: 18px 22px;
             cursor: pointer;
@@ -367,14 +368,22 @@
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->
@@ -746,7 +755,7 @@
                             <span class="num">${i+1}</span> ${e.title}
                         </div>
                         <p>${e.desc}</p>
-                        <span class="badge" style="background:#E8873A22; color:#E8873A; border-color:#E8873A22;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
+                        <span class="badge" style="background:#E8873A22; color: var(--exercice-title); border-color:#E8873A22;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
                     </div>
                 `).join('');
             } else if (tab === 'series') {

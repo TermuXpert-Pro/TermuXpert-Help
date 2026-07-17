@@ -2,6 +2,51 @@
 // script.js - الوظائف العامة للموقع
 // ============================================================
 
+// ============================================================
+// THEME TOGGLE (Dark / Light)
+// ملاحظة: التفعيل المبكر (بلا وميض) خاصو يتدار عبر inline script صغير
+// فـ <head> ديال كل صفحة (شوف THEME_INIT_SNIPPET فالتعليمات) - هوما اللي
+// كيحطو data-theme على <html> قبل ما يتحمل الـ CSS. الجزء لي تحت غير
+// كيدير sync ديال الزر + احفظ الاختيار.
+// ============================================================
+(function() {
+    var STORAGE_KEY = 'xpert-theme';
+
+    function getStoredTheme() {
+        try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+    }
+    function setStoredTheme(value) {
+        try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
+    }
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+        var btn = document.getElementById('themeToggle');
+        if (btn) btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#2F8F89' : '#45A29E');
+    }
+
+    // الصفحة توصل هنا ب data-theme محطوطة من قبل (من الـ inline script فالـ head)،
+    // غير كنأكدو التزامن مع الزر ومع meta theme-color.
+    var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    applyTheme(current);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+        btn.addEventListener('click', function() {
+            var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            applyTheme(next);
+            setStoredTheme(next);
+        });
+    });
+})();
+
 (function() {
     var progressBar = document.getElementById('progressBar');
     if (!progressBar) {
@@ -209,3 +254,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('✅ Sidebar v3.0 initialisée');
 });
+
+

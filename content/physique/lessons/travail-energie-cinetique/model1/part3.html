@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -86,7 +87,7 @@
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
         .graph-container {
-            background: var(--bg-primary);
+            background: #0D1117;
             border: 1px solid var(--border);
             border-radius: 6px;
             padding: 8px;
@@ -104,7 +105,7 @@
             margin-top: 4px;
         }
         .exemple-box {
-            background: #1A2A2A;
+            background: var(--exercice-bg);
             border: 1px solid var(--border);
             border-radius: 6px;
             padding: 8px 10px;
@@ -130,14 +131,14 @@
             margin-bottom: 4px;
         }
         .result-box {
-            background: #1A2A1A;
-            border: 1px solid #A8FF7844;
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
             border-radius: 6px;
             padding: 6px 10px;
             margin: 4px 0;
         }
         .result-box .res-title {
-            color: #A8FF78;
+            color: var(--solution-title);
             font-weight: 700;
             font-size: 12px;
             margin-bottom: 2px;
@@ -229,14 +230,22 @@
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->

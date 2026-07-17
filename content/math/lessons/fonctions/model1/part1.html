@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -157,7 +158,8 @@
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
         }
-        .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin: 10px 0; text-align: center; }
+        .graph-container {
+            background: #0D1117; border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin: 10px 0; text-align: center; }
         .graph-container canvas { max-width: 100%; border-radius: 6px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 6px; }
         .graph-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -227,14 +229,22 @@
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->
@@ -494,7 +504,7 @@
                     </div>
                 </div>
 
-                <div class="highlight-box" style="border-color:#A8FF78;">
+                <div class="highlight-box" style="border-color: var(--solution-title);">
                     <p><strong>Fonction strictement croissante :</strong></p>
                     <div class="formula-block">
                         $$\forall x,x' \in I : x < x' \Rightarrow f(x) < f(x')$$

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -85,11 +86,12 @@
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
-        .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
+        .graph-container {
+            background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
         .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container svg { max-width: 100%; height: auto; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
-        .exemple-box { background: #1A2A2A; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
+        .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color: #F4D03F; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
@@ -178,14 +180,22 @@
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->

@@ -199,14 +199,14 @@
  font-weight: 600;
 }
 .exercice-box {
- background: #1A2A2A;
+ background: var(--exercice-bg);
  border: 1px solid var(--border);
  border-radius: 8px;
  padding: 8px 10px;
  margin: 4px 0;
 }
 .exercice-box .ex-title {
- color: #E8873A;
+ color: var(--exercice-title);
  font-weight: 700;
  font-size: 12px;
  margin-bottom: 4px;
@@ -217,8 +217,8 @@
  line-height: 1.6;
 }
 .solution-box {
- background: #1A2A1A;
- border: 1px solid #A8FF7844;
+ background: var(--solution-bg);
+ border: 1px solid var(--solution-border);
  border-radius: 6px;
  padding: 6px 10px;
  margin: 4px 0;
@@ -228,7 +228,7 @@
  display: block;
 }
 .solution-box .sol-title {
- color: #A8FF78;
+ color: var(--solution-title);
  font-weight: 700;
  font-size: 11px;
  margin-bottom: 2px;
@@ -326,17 +326,22 @@ details div {
  font-size: 11px;
 }
 .graph-container {
- background: var(--bg-primary);
- border: 1px solid var(--border);
- border-radius: 12px;
- padding: 16px;
- margin: 12px 0;
- text-align: center;
+    background: #0D1117;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+    text-align: center;
 }
 .graph-container canvas {
- max-width: 100%;
- border-radius: 8px;
- background: #0D1117;
+    max-width: 100%;
+    border-radius: 8px;
+    background: #0D1117;
+}
+.graph-container svg {
+    max-width: 100%;
+    border-radius: 8px;
+    background: #0D1117;
 }
 .graph-container p {
  color: var(--text-muted);
@@ -526,3 +531,5 @@ input, textarea, [contenteditable="true"] {
  -ms-user-select: text !important;
  user-select: text !important;
 }
+
+

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -81,9 +82,9 @@
         .exercice-box { padding: 8px 10px; margin: 4px 0; }
         .exercice-box .ex-title { font-size: 14px; }
         .exercice-box .ex-question { font-size: 11.5px; }
-        .solution-box { background: #1A2A1A; border: 1px solid #A8FF7844; border-radius: 6px; padding: 6px 10px; margin: 4px 0; display: none; }
+        .solution-box { background: var(--solution-bg); border: 1px solid var(--solution-border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; display: none; }
         .solution-box.show { display: block; }
-        .solution-box .sol-title { color: #A8FF78; font-weight: 700; font-size: 11px; margin-bottom: 2px; }
+        .solution-box .sol-title { color: var(--solution-title); font-weight: 700; font-size: 11px; margin-bottom: 2px; }
         .solution-box .sol-content { color: var(--text-secondary); font-size: 11.5px; line-height: 1.6; }
         .solution-box .sol-content .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
         .solution-box .sol-content .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
@@ -102,7 +103,8 @@
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
         .badge-exercice { display: inline-block; background: rgba(78, 205, 196, 0.15); color: #4ECDC4; padding: 2px 12px; border-radius: 12px; font-size: 13px; font-weight: 600; }
-        .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
+        .graph-container {
+            background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
         .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         @media (max-width: 768px) {
@@ -192,14 +194,22 @@
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->

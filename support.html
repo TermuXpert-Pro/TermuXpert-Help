@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="description" content="صفحة الدعم لموقع Xpert - بلّغ عن أي مشكل تقني أو خطأ فالمحتوى وحنا نعاونوك.">
@@ -48,7 +49,7 @@
             margin-bottom:16px;
         }
         .legal-hero h1{
-            font-size:clamp(24px, 5vw, 34px); font-weight:900; color:#fff;
+            font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
             margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
         }
         .legal-hero h1 span{color:var(--legal-gold);}
@@ -95,7 +96,7 @@
         }
         .support-issue-card{
             display:flex; align-items:flex-start; gap:12px;
-            background:rgba(255,255,255,0.03);
+            background:rgba(var(--overlay-rgb), 0.03);
             border:1px solid var(--border);
             border-radius:12px;
             padding:14px;
@@ -172,14 +173,22 @@
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->
@@ -485,3 +494,5 @@
 
 </body>
 </html>
+
+

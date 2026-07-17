@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -244,7 +245,7 @@
             gap: 10px;
         }
         .graph-container {
-            background: var(--bg-primary);
+            background: #0D1117;
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 16px;
@@ -257,14 +258,14 @@
             background: #0D1117;
         }
         .exercice-box {
-            background: #1A2A2A;
+            background: var(--exercice-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 16px 20px;
             margin: 12px 0;
         }
         .exercice-box .ex-title {
-            color: #E8873A;
+            color: var(--exercice-title);
             font-weight: 700;
             font-size: 16px;
             margin-bottom: 8px;
@@ -275,8 +276,8 @@
             line-height: 1.8;
         }
         .solution-box {
-            background: #1A2A1A;
-            border: 1px solid #A8FF7844;
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
             border-radius: 8px;
             padding: 12px 16px;
             margin: 8px 0;
@@ -286,7 +287,7 @@
             display: block;
         }
         .solution-box .sol-title {
-            color: #A8FF78;
+            color: var(--solution-title);
             font-weight: 700;
             font-size: 14px;
             margin-bottom: 6px;
@@ -382,14 +383,22 @@
         <div class="nav-logo-text"><span>X</span>pert</div>
     </a>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->
