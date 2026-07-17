@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 4 - Concentration et solutions électrolytiques | Xpert</title>
+    <title>Exercice 4 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -196,12 +196,43 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -221,6 +252,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -434,9 +466,9 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:#F4D03F;"></i> Exercice 4</h1>
+            <h1 class="lesson-title"><i class="fas fa-water" style="color:#F4D03F;"></i> Exercice 4</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Sel de Mohr - Préparation et dilution</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Analyse d'une eau minérale - Conductimétrie</span>
                 <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
@@ -444,77 +476,109 @@
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Le sel de Mohr est un solide de formule \(\text{FeSO}_4, (\text{NH}_2)_2\text{SO}_4, 6\text{H}_2\text{O}\). On veut préparer une solution \(S_0\) de sel de Mohr de volume \(V_0 = 200,0\text{ mL}\) de concentration \(C_0 = 1,50 \times 10^{-2}\text{ mol/L}\).
+                    Une eau minérale contient les ions suivants :
                 </p>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On dilue ensuite pour obtenir un volume \(V_1 = 100,0\text{ mL}\) de solution \(S_1\) dans laquelle la concentration massique des ions fer II est égale à \(C_{m1} = 0,209\text{ g/L}\).
-                </p>
+                
+                <div class="table-wrap">
+                    <table>
+                        <tr>
+                            <th>Ion</th>
+                            <th>\(\text{Ca}^{2+}\)</th>
+                            <th>\(\text{Mg}^{2+}\)</th>
+                            <th>\(\text{Na}^+\)</th>
+                            <th>\(\text{HCO}_3^-\)</th>
+                            <th>\(\text{SO}_4^{2-}\)</th>
+                            <th>\(\text{Cl}^-\)</th>
+                        </tr>
+                        <tr>
+                            <td>Concentration (mmol/L)</td>
+                            <td>2,0</td>
+                            <td>1,5</td>
+                            <td>0,5</td>
+                            <td>5,0</td>
+                            <td>1,0</td>
+                            <td>0,5</td>
+                        </tr>
+                    </table>
+                </div>
 
-                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
-                    <strong>Données :</strong> 
-                    \(M_{Fe} = 55,8\text{ g/mol}\), 
-                    \(M_S = 32,1\text{ g/mol}\), 
-                    \(M_O = 16,0\text{ g/mol}\), 
-                    \(M_N = 14,0\text{ g/mol}\), 
-                    \(M_H = 1,0\text{ g/mol}\)
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin:8px 0;">
+                    <strong>Données (\(\times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)) :</strong> 
+                    \(\lambda(\text{Ca}^{2+}) = 11,90\), 
+                    \(\lambda(\text{Mg}^{2+}) = 10,60\), 
+                    \(\lambda(\text{Na}^+) = 5,01\), 
+                    \(\lambda(\text{HCO}_3^-) = 4,46\), 
+                    \(\lambda(\text{SO}_4^{2-}) = 16,00\), 
+                    \(\lambda(\text{Cl}^-) = 7,63\)
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la masse molaire du sel de Mohr.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Vérifier que la solution est électriquement neutre.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Formule : \(\text{FeSO}_4, (\text{NH}_2)_2\text{SO}_4, 6\text{H}_2\text{O}\)
+                                Charges positives (en mmol/L) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$Q_+ = 2 \times [\text{Ca}^{2+}] + 2 \times [\text{Mg}^{2+}] + 1 \times [\text{Na}^+]$$
+                                    $$= 2 \times 2,0 + 2 \times 1,5 + 1 \times 0,5 = 4,0 + 3,0 + 0,5 = 7,5$$
+                                </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$M = M_{Fe} + 2M_S + 8M_O + 2M_N + 8M_H + 6 \times (2M_H + M_O)$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$M = 55,8 + 2(32,1) + 8(16,0) + 2(14,0) + 8(1,0) + 6(2 \times 1,0 + 16,0)$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
+                                Charges négatives (en mmol/L) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 55,8 + 64,2 + 128 + 28 + 8 + 6 \times 18 = 55,8 + 64,2 + 128 + 28 + 8 + 108 = 392\text{ g/mol}$$
+                                    $$Q_- = 1 \times [\text{HCO}_3^-] + 2 \times [\text{SO}_4^{2-}] + 1 \times [\text{Cl}^-]$$
+                                    $$= 1 \times 5,0 + 2 \times 1,0 + 1 \times 0,5 = 5,0 + 2,0 + 0,5 = 7,5$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(M = 392\text{ g/mol}\)</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p style="font-size:11px; color:#4ECDC4; font-weight:700;">
+                                    \(Q_+ = Q_- = 7,5\) → La solution est électriquement neutre.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la dissolution dans l'eau et préciser le nom des ions.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Calculer la conductivité de cette eau à 25°C.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Équation de dissolution :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{FeSO}_4, (\text{NH}_2)_2\text{SO}_4, 6\text{H}_2\text{O} \xrightarrow{eau} \text{Fe}^{2+}_{(aq)} + 2\text{SO}_4^{2-}_{(aq)} + 2\text{NH}_4^+_{(aq)} + 6\text{H}_2\text{O}_{(l)}$$
-                                </div>
+                                \(\sigma = \sum_i \lambda_i \times [X_i]\)
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Noms des ions :
-                                <ul style="font-size:12px; padding-right:18px;">
-                                    <li>\(\text{Fe}^{2+}\) : ion <strong>fer II</strong></li>
-                                    <li>\(\text{SO}_4^{2-}\) : ion <strong>sulfate</strong></li>
-                                    <li>\(\text{NH}_4^+\) : ion <strong>ammonium</strong></li>
-                                </ul>
+                                Conversion : 1 mmol/L = 1 mol/m³
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <div class="formula-block" style="font-size:13px; margin:4px 0; text-align:left; padding:4px 8px;">
+                                    \(\sigma = (11,90 \times 2,0 + 10,60 \times 1,5 + 5,01 \times 0,5 + 4,46 \times 5,0 + 16,00 \times 1,0 + 7,63 \times 0,5) \times 10^{-3}\)
+                                    <br>
+                                    \(= (23,80 + 15,90 + 2,505 + 22,30 + 16,00 + 3,815) \times 10^{-3}\)
+                                    <br>
+                                    \(= 84,32 \times 10^{-3} = 8,43 \times 10^{-2}\text{ S/m}\)
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\sigma \approx 8,4 \times 10^{-2}\text{ S/m}$$
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -522,136 +586,33 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Indiquer les tests chimiques permettant de mettre en évidence, dans cette solution, le cation métallique et l'anion.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        La conductivité mesurée expérimentalement est \(\sigma_{exp} = 8,1 \times 10^{-2}\text{ S/m}\). Proposer une explication à la différence.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Cation métallique \(\text{Fe}^{2+}\) :</span> 
-                                En présence d'ions hydroxyde (\(\text{OH}^-\)), les ions fer II donnent un <strong>précipité vert</strong>.
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{Fe}^{2+}_{(aq)} + 2\text{OH}^-_{(aq)} \longrightarrow \text{Fe(OH)}_2(s)$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Anion sulfate \(\text{SO}_4^{2-}\) :</span> 
-                                En présence d'ions baryum (\(\text{Ba}^{2+}\)), les ions sulfate donnent un <strong>précipité blanc</strong> de sulfate de baryum.
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{SO}_4^{2-}_{(aq)} + \text{Ba}^{2+}_{(aq)} \longrightarrow \text{BaSO}_4(s)$$
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">4)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la masse nécessaire de sel de Mohr pour la préparation de la solution \(S_0\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
-                    <div id="sol4" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
+                                Différence entre les valeurs :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n = C_0 \times V_0 = 1,50 \times 10^{-2} \times 0,200 = 3,00 \times 10^{-3}\text{ mol}$$
+                                    $$\Delta\sigma = 8,43 \times 10^{-2} - 8,1 \times 10^{-2} = 0,33 \times 10^{-2}\text{ S/m}$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = n \times M = 3,00 \times 10^{-3} \times 392 = 1,18\text{ g}$$
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(m = 1,18\text{ g}\)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">5)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelles sont les concentrations molaires effectives de tous les ions présents dans la solution \(S_0\) ?</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
-                    <div id="sol5" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p>D'après l'équation de dissolution :</p>
-                            <div class="table-wrap">
-                                <table>
-                                    <tr>
-                                        <th>Ion</th>
-                                        <th>\(\text{Fe}^{2+}\)</th>
-                                        <th>\(\text{SO}_4^{2-}\)</th>
-                                        <th>\(\text{NH}_4^+\)</th>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Concentration (mol/L)</strong></td>
-                                        <td>\(1,50 \times 10^{-2}\)</td>
-                                        <td>\(3,00 \times 10^{-2}\)</td>
-                                        <td>\(3,00 \times 10^{-2}\)</td>
-                                    </tr>
-                                </table>
+                                Explications possibles :
+                                <ul style="font-size:11px; padding-right:18px;">
+                                    <li>Présence d'ions non pris en compte</li>
+                                    <li>Erreurs de mesure</li>
+                                    <li>Les conductivités molaires ioniques dépendent de la température</li>
+                                    <li>Les conductivités molaires ioniques varient avec la concentration (effet de la force ionique)</li>
+                                </ul>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultats</span>
-                                <ul style="font-size:12px;">
-                                    <li>\([\text{Fe}^{2+}] = 1,50 \times 10^{-2}\text{ mol/L}\)</li>
-                                    <li>\([\text{SO}_4^{2-}] = 3,00 \times 10^{-2}\text{ mol/L}\)</li>
-                                    <li>\([\text{NH}_4^+] = 3,00 \times 10^{-2}\text{ mol/L}\)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">6)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la concentration massique des ions fer II dans la solution \(S_0\) ? Indiquer brièvement le mode opératoire pour obtenir la solution \(S_1\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6')">Voir la solution</button>
-                    <div id="sol6" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">a) Concentration massique des ions fer II dans \(S_0\)</p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{m0} = C_0 \times M_{Fe} = 1,50 \times 10^{-2} \times 55,8 = 0,837\text{ g/L}$$
-                                </div>
-                            </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">b) Mode opératoire pour obtenir \(S_1\)</p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Calcul du volume de \(S_0\) à prélever :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_1 = \frac{C_{m1}}{M_{Fe}} = \frac{0,209}{55,8} = 3,75 \times 10^{-3}\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Conservation de la matière :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_0 \times V_0 = C_1 \times V_1 \iff V_0 = \frac{C_1 \times V_1}{C_0} = \frac{3,75 \times 10^{-3} \times 100}{1,50 \times 10^{-2}} = 25,0\text{ mL}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <strong>Protocole :</strong>
-                                <ul style="font-size:12px; padding-right:18px;">
-                                    <li>Prélever \(25,0\text{ mL}\) de la solution \(S_0\) à l'aide d'une pipette jaugée.</li>
-                                    <li>Introduire le prélèvement dans une fiole jaugée de \(100\text{ mL}\).</li>
-                                    <li>Compléter avec de l'eau distillée jusqu'au trait de jauge.</li>
-                                    <li>Homogénéiser par retournement.</li>
-                                </ul>
-                            </div>
-                            <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:6px; padding:6px 10px; margin-top:6px;">
-                                <p style="font-size:11px; color:var(--text-muted); margin:0;">
-                                    <strong>Matériel :</strong> Pipette jaugée de \(25\text{ mL}\), fiole jaugée de \(100\text{ mL}\), pro-pipette, eau distillée.
-                                </p>
+                                <span class="label resume">Conclusion</span>
+                                <p>La différence est faible et peut être attribuée aux approximations et aux conditions expérimentales.</p>
                             </div>
                         </div>
                     </div>

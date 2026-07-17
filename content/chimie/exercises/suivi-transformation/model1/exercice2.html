@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 2 - Concentration et solutions électrolytiques | Xpert</title>
+    <title>Exercice 2 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
     
     <style>
-        /* ====== Mêmes styles que exercice1.html ====== */
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
         .nav-logo-text { font-size: 14px; }
@@ -197,12 +196,63 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -211,6 +261,7 @@
             .section p { font-size: 10.5px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
+            .graph-container canvas { width: 100%; height: auto; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
@@ -222,6 +273,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -435,79 +487,74 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-cube" style="color:#F4D03F;"></i> Exercice 2</h1>
+            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Exercice 2</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Sulfate de zinc - Dissolution et concentrations ioniques</span>
-                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Dosage conductimétrique - Acide chlorhydrique</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une solution de sulfate de zinc est obtenue en dissolvant \(m = 32,3\text{ g}\) de sulfate de zinc dans \(V = 250\text{ mL}\) d'eau.
+                    On dose un volume \(V_A = 20,0\text{ mL}\) d'une solution d'acide chlorhydrique \(\text{HCl}\) de concentration inconnue \(C_A\) par une solution d'hydroxyde de sodium \(\text{NaOH}\) de concentration \(C_B = 0,10\text{ mol/L}\). On suit l'évolution de la conductivité \(\sigma\) du mélange en fonction du volume \(V_B\) de solution de soude versé.
+                </p>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    L'équivalence est atteinte pour un volume versé \(V_{BE} = 15,0\text{ mL}\).
                 </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
-                    <strong>Données :</strong> 
-                    \(M_{Zn} = 65,4\text{ g/mol}\), 
-                    \(M_S = 32\text{ g/mol}\), 
-                    \(M_O = 16\text{ g/mol}\)
+                    <strong>Rappel :</strong> \(\text{HCl} + \text{NaOH} \longrightarrow \text{NaCl} + \text{H}_2\text{O}\)
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la masse molaire du sulfate de zinc ?</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction de dosage.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Formule du sulfate de zinc : \(\text{ZnSO}_4\)
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$\text{HCl}_{(aq)} + \text{NaOH}_{(aq)} \longrightarrow \text{NaCl}_{(aq)} + \text{H}_2\text{O}_{(l)}$$
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = M_{Zn} + M_S + 4M_O = 65,4 + 32 + 4 \times 16 = 65,4 + 32 + 64 = 161,4\text{ g/mol}$$
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(M = 161,4\text{ g/mol}\)</p>
+                            <p style="color:var(--text-muted); font-size:11px;">
+                                Il s'agit d'une réaction acido-basique.
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quels sont la concentration massique (titre) et la concentration en soluté apporté du sulfate de zinc ?</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la concentration \(C_A\) de la solution d'acide chlorhydrique.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                \(V = 250\text{ mL} = 0,250\text{ L}\)
+                                À l'équivalence, les quantités de matière des réactifs sont égales :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_A = n_B \quad \Rightarrow \quad C_A \times V_A = C_B \times V_{BE}$$
+                                </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_m = \frac{m}{V} = \frac{32,3}{0,250} = 129,2\text{ g/L}$$
+                                    $$C_A = \frac{C_B \times V_{BE}}{V_A} = \frac{0,10 \times 15,0}{20,0} = 0,075\text{ mol/L}$$
                                 </div>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{C_m}{M} = \frac{129,2}{161,4} = 0,80\text{ mol/L}$$
-                                </div>
-                            </div>
-
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultats</span>
-                                <ul style="font-size:12px;">
-                                    <li>\(C_m = 129,2\text{ g/L}\)</li>
-                                    <li>\(C = 0,80\text{ mol/L}\)</li>
-                                </ul>
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$C_A = 7,5 \times 10^{-2}\text{ mol/L}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">À l'équivalence</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_A \times V_A = C_B \times V_{BE}$$
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -515,65 +562,70 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelles sont les concentrations effectives des ions \(\text{Zn}^{2+}\) et \(\text{SO}_4^{2-}\) ?</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        On considère qu'avant l'équivalence, la conductivité du mélange diminue. Justifier cette observation.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Équation de dissolution :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{ZnSO}_4 \longrightarrow \text{Zn}^{2+} + \text{SO}_4^{2-}$$
-                                </div>
+                                Avant l'équivalence, les ions \(\text{H}^+\) (très mobiles) sont progressivement remplacés par les ions \(\text{Na}^+\) (moins mobiles).
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Zn}^{2+}] = C = 0,80\text{ mol/L}$$
+                                    $$\lambda_{\text{H}^+} \gg \lambda_{\text{Na}^+}$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{SO}_4^{2-}] = C = 0,80\text{ mol/L}$$
-                                </div>
+                                La conductivité diminue car les ions \(\text{H}^+\) sont remplacés par des ions \(\text{Na}^+\) moins conducteurs.
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
-                            <ul style="font-size:12px;">
-                                <li>\([\text{Zn}^{2+}] = 0,80\text{ mol/L}\)</li>
-                                <li>\([\text{SO}_4^{2-}] = 0,80\text{ mol/L}\)</li>
-                            </ul>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>La diminution de la conductivité avant l'équivalence est due au remplacement des ions \(\text{H}^+\) par des ions \(\text{Na}^+\).</p>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Conductivité molaire ionique</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\lambda_{\text{H}^+} \approx 35,0 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                    $$\lambda_{\text{Na}^+} \approx 5,01 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Les ions \(\text{H}^+\) sont environ 7 fois plus conducteurs que les ions \(\text{Na}^+\).</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">4)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Vérifier que la solution est électriquement neutre.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Après l'équivalence, la conductivité augmente. Justifier cette observation.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
                     <div id="sol4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$2 \times [\text{Zn}^{2+}] = 2 \times 0,80 = 1,60\text{ mol/L}$$
-                                </div>
+                                Après l'équivalence, on ajoute des ions \(\text{Na}^+\) et \(\text{OH}^-\) en excès.
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$2 \times [\text{SO}_4^{2-}] = 2 \times 0,80 = 1,60\text{ mol/L}$$
-                                </div>
+                                La conductivité augmente car on ajoute des ions dans le milieu.
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$2[\text{Zn}^{2+}] = 2[\text{SO}_4^{2-}] = 1,60\text{ mol/L}$$
+                                    $$\sigma_{\text{après}} = \lambda_{\text{Na}^+} \times [\text{Na}^+] + \lambda_{\text{OH}^-} \times [\text{OH}^-] + \lambda_{\text{Cl}^-} \times [\text{Cl}^-]$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La solution est électriquement neutre ✅</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>L'augmentation de la conductivité après l'équivalence est due à l'ajout d'ions \(\text{Na}^+\) et \(\text{OH}^-\).</p>
+                            </div>
                         </div>
                     </div>
                 </div>

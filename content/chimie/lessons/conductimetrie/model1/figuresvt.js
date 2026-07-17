@@ -1,176 +1,287 @@
 // ============================================================
 // figuresvt.js - رسومات درس "Mesure des quantités de matière en
-// solution par conductimétrie"
-// كنستافدو من svg-utils.js المشترك (نفس المنطق ديال figuresvg.js
-// فتمارين barycentre وفيگورسفت ديال suivi-transformation).
+// solution par conductimétrie" (Partie 1).
+// كنستافدو من svg-utils.js المشترك لغرافات graphUI/graphGS/graphGL،
+// وكنديرو svg يدوي (بلا محاور رياضية) للمخطط التوضيحي graphTubeU.
 // كيتحمل هاذ الملف بعد svg-utils.js فكل صفحة محتاجاه.
 // ============================================================
 
-// ====== Partie 1 - Fig 1 : migration des ions dans le tube en U ======
-function drawGraphTubeU() {
-    const s = SvgUtils.setupSVG('graphTubeU', { xMin: -1.2, xMax: 11.2, yMin: -0.6, yMax: 8.6 });
-    if (!s) return;
-
-    // ---- tube en U (contour lisse, plusieurs segments pour arrondir le fond) ----
-    const tube = { color: '#8A8FA3', lineWidth: 2.2 };
-    const tubePts = [
-        [1, 6.4], [1, 3.2], [1.05, 2.2], [1.25, 1.5], [1.65, 0.95], [2.2, 0.6],
-        [3, 0.4], [4, 0.32], [5, 0.3], [6, 0.32], [7, 0.4], [7.8, 0.6],
-        [8.35, 0.95], [8.75, 1.5], [8.95, 2.2], [9, 3.2], [9, 6.4]
-    ];
-    for (let i = 0; i < tubePts.length - 1; i++) {
-        SvgUtils.drawLine(s, tubePts[i][0], tubePts[i][1], tubePts[i + 1][0], tubePts[i + 1][1], tube);
-    }
-    // niveau du liquide (ligne pointillée fine des deux côtés)
-    SvgUtils.drawLine(s, 0.75, 6.4, 1.5, 6.4, { color: '#4D9DE0', lineWidth: 1, dashed: true, dashPattern: [3, 2] });
-    SvgUtils.drawLine(s, 8.5, 6.4, 9.25, 6.4, { color: '#4D9DE0', lineWidth: 1, dashed: true, dashPattern: [3, 2] });
-
-    // ---- électrodes de graphite (immergées) ----
-    SvgUtils.drawLine(s, 1.55, 7.1, 1.55, 2.3, { color: '#333', lineWidth: 4 });
-    SvgUtils.drawLine(s, 8.45, 7.1, 8.45, 2.3, { color: '#333', lineWidth: 4 });
-
-    // ---- fils électriques vers le générateur ----
-    const wire = { color: '#BBB', lineWidth: 1.6 };
-    SvgUtils.drawLine(s, 1.55, 7.1, 1.55, 7.9, wire);
-    SvgUtils.drawLine(s, 1.55, 7.9, 4.15, 7.9, wire);
-    SvgUtils.drawLine(s, 8.45, 7.1, 8.45, 7.9, wire);
-    SvgUtils.drawLine(s, 8.45, 7.9, 5.85, 7.9, wire);
-
-    // ---- générateur (symbole pile : deux barres inégales) ----
-    SvgUtils.drawLine(s, 4.15, 8.35, 4.15, 7.45, { color: '#EEE', lineWidth: 2.6 });
-    SvgUtils.drawLine(s, 5.0, 8.55, 5.0, 7.25, { color: '#EEE', lineWidth: 1.4 });
-    SvgUtils.drawLine(s, 5.0, 8.55, 5.0, 7.25, { color: '#EEE', lineWidth: 1.4 });
-    SvgUtils.drawLine(s, 5.85, 8.35, 5.85, 7.45, { color: '#EEE', lineWidth: 2.6 });
-    SvgUtils.drawNote(s, 'Générateur', 3.55, 8.9, { color: '#888', fontSize: s.fontSize * 0.8 });
-    SvgUtils.drawNote(s, '+', 3.95, 8.2, { color: '#FF6B6B', fontSize: s.fontSize * 0.95 });
-    SvgUtils.drawNote(s, '−', 5.75, 8.2, { color: '#4D9DE0', fontSize: s.fontSize * 0.95 });
-
-    // ---- labels anode / cathode ----
-    SvgUtils.drawNote(s, 'Anode (+)', 0.1, 7.55, { color: '#FF6B6B', fontSize: s.fontSize * 0.85 });
-    SvgUtils.drawNote(s, 'Cathode (−)', 7.15, 7.55, { color: '#4D9DE0', fontSize: s.fontSize * 0.85 });
-
-    // ---- nuages d'ions colorés (au lieu de texte superposé) ----
-    const orangeDots = [[2.1, 3.6], [2.5, 3.0], [2.0, 2.6], [2.6, 2.2], [1.85, 3.15]];
-    orangeDots.forEach(p => SvgUtils.drawPoint(s, { x: p[0], y: p[1], color: '#F4A300', radius: 0.16 }));
-    const blueDots = [[7.9, 3.6], [7.5, 3.0], [8.0, 2.6], [7.4, 2.2], [8.15, 3.15]];
-    blueDots.forEach(p => SvgUtils.drawPoint(s, { x: p[0], y: p[1], color: '#4D9DE0', radius: 0.16 }));
-
-    SvgUtils.drawNote(s, 'orange : Cr₂O₇²⁻', 1.35, 4.35, { color: '#F4A300', fontSize: s.fontSize * 0.72 });
-    SvgUtils.drawNote(s, 'bleu : Cu²⁺', 7.0, 4.35, { color: '#4D9DE0', fontSize: s.fontSize * 0.72 });
-
-    // ---- flèches de migration (deux niveaux séparés pour ne pas se croiser) ----
-    SvgUtils.drawLine(s, 4.15, 1.55, 5.85, 1.55, { color: '#4D9DE0', lineWidth: 2.2 });
-    SvgUtils.drawNote(s, 'K⁺, Cu²⁺ →', 3.55, 1.85, { color: '#4D9DE0', fontSize: s.fontSize * 0.72 });
-    SvgUtils.drawLine(s, 5.85, 0.95, 4.15, 0.95, { color: '#F4A300', lineWidth: 2.2 });
-    SvgUtils.drawNote(s, '← Cr₂O₇²⁻, SO₄²⁻', 3.2, 0.55, { color: '#F4A300', fontSize: s.fontSize * 0.72 });
+// ------------------------------------------------------------
+// أداة صغيرة محلية باش نديرو عناصر SVG يدوية (مستطيلات، مسارات...)
+// اللي ماكايناش فـ svg-utils.js (اللي مبنية غير على محاور رياضية)
+// ------------------------------------------------------------
+function svtEl(tag, attrs) {
+    const NS = 'http://www.w3.org/2000/svg';
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
 }
 
-// ====== Partie 1 - Fig 2 : U = f(I), vérification de la loi d'Ohm ======
-function drawGraphUI() {
-    const s = SvgUtils.setupSVG('graphUI', { xMin: -2, xMax: 16.5, yMin: -0.25, yMax: 1.45 });
+// ============================================================
+// 1) graphTubeU : مخطط توضيحي (schéma) لأنبوب على شكل U
+//    مهاجرة الأيونات: الكاتيونات (K+, Cu2+) نحو الكاتود (−)
+//    الأنيونات (Cr2O7^2-, SO4^2-) نحو الأنود (+)
+//    كنستعملو svg مباشرة بإحداثيات بيكسل عادية (0..380 / 0..280)
+//    باش يطابق بالضبط width/height ديال <svg> فـ HTML، بلا أي تشويه.
+// ============================================================
+function drawGraphTubeUsvg() {
+    const svg = document.getElementById('graphTubeU');
+    if (!svg) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    const W = 380, H = 280;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+    // --- الأنبوب (شكل U) ---
+    const tubePath = svtEl('path', {
+        d: 'M 95,25 L 95,185 C 95,235 130,255 165,255 L 215,255 C 250,255 285,235 285,185 L 285,25',
+        fill: 'none',
+        stroke: '#4ECDC4',
+        'stroke-width': 4,
+        'stroke-linecap': 'round'
+    });
+    svg.appendChild(tubePath);
+
+    // --- السائل داخل الأنبوب (محلول ممزوج) ---
+    const liquidPath = svtEl('path', {
+        d: 'M 97,110 L 97,185 C 97,232 131,253 165,253 L 215,253 C 249,253 283,232 283,185 L 283,110 Z',
+        fill: '#2E1F4A',
+        opacity: 0.85
+    });
+    svg.appendChild(liquidPath);
+    // خط مستوى السائل
+    svg.appendChild(svtEl('line', { x1: 97, y1: 110, x2: 283, y2: 110, stroke: '#4ECDC4', 'stroke-width': 1, opacity: 0.5 }));
+
+    // --- بقعة اللون البرتقالي قرب الأنود (يسار) و الأزرق قرب الكاتود (يمين) ---
+    const orangeBlob = svtEl('ellipse', { cx: 118, cy: 205, rx: 30, ry: 40, fill: '#F4A63C', opacity: 0.55 });
+    svg.appendChild(orangeBlob);
+    const blueBlob = svtEl('ellipse', { cx: 262, cy: 205, rx: 30, ry: 40, fill: '#4D9DE0', opacity: 0.55 });
+    svg.appendChild(blueBlob);
+
+    // --- أقطاب الغرافيت (électrodes) ---
+    svg.appendChild(svtEl('rect', { x: 112, y: 55, width: 12, height: 130, rx: 3, fill: '#3A3A3A', stroke: '#888', 'stroke-width': 1 }));
+    svg.appendChild(svtEl('rect', { x: 256, y: 55, width: 12, height: 130, rx: 3, fill: '#3A3A3A', stroke: '#888', 'stroke-width': 1 }));
+
+    // --- أسلاك نحو المولد ---
+    svg.appendChild(svtEl('line', { x1: 118, y1: 55, x2: 118, y2: 25, stroke: '#F4D03F', 'stroke-width': 2 }));
+    svg.appendChild(svtEl('line', { x1: 118, y1: 25, x2: 190, y2: 25, stroke: '#F4D03F', 'stroke-width': 2 }));
+    svg.appendChild(svtEl('line', { x1: 262, y1: 55, x2: 262, y2: 25, stroke: '#F4D03F', 'stroke-width': 2 }));
+    svg.appendChild(svtEl('line', { x1: 262, y1: 25, x2: 190, y2: 25, stroke: '#F4D03F', 'stroke-width': 2 }));
+
+    // --- رمز المولد (دائرة صغيرة فالوسط فوق) ---
+    svg.appendChild(svtEl('circle', { cx: 190, cy: 25, r: 14, fill: '#0D1117', stroke: '#F4D03F', 'stroke-width': 2 }));
+    const genText = svtEl('text', { x: 190, y: 30, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 'bold', fill: '#F4D03F', 'font-family': 'Arial, sans-serif' });
+    genText.textContent = 'G';
+    svg.appendChild(genText);
+
+    // --- علامات + و − عند الأقطاب ---
+    const plusText = svtEl('text', { x: 118, y: 48, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 'bold', fill: '#F4A63C', 'font-family': 'Arial, sans-serif' });
+    plusText.textContent = '+';
+    svg.appendChild(plusText);
+    const minusText = svtEl('text', { x: 262, y: 48, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 'bold', fill: '#4D9DE0', 'font-family': 'Arial, sans-serif' });
+    minusText.textContent = '−';
+    svg.appendChild(minusText);
+
+    // --- تسميات الأقطاب ---
+    const anodeLabel = svtEl('text', { x: 118, y: 275, 'text-anchor': 'middle', 'font-size': 11, fill: '#F4A63C', 'font-family': 'Arial, sans-serif' });
+    anodeLabel.textContent = 'Anode (+)';
+    svg.appendChild(anodeLabel);
+    const cathodeLabel = svtEl('text', { x: 262, y: 275, 'text-anchor': 'middle', 'font-size': 11, fill: '#4D9DE0', 'font-family': 'Arial, sans-serif' });
+    cathodeLabel.textContent = 'Cathode (−)';
+    svg.appendChild(cathodeLabel);
+
+    // --- سهام الهجرة المزدوجة فوسط السائل ---
+    // أنيونات (Cr2O7^2-, SO4^2-) نحو الأنود (يسار)
+    svg.appendChild(svtEl('line', { x1: 175, y1: 150, x2: 145, y2: 150, stroke: '#F4A63C', 'stroke-width': 2 }));
+    svg.appendChild(svtEl('polygon', { points: '140,150 150,145 150,155', fill: '#F4A63C' }));
+    const anionText = svtEl('text', { x: 160, y: 140, 'text-anchor': 'middle', 'font-size': 9, fill: '#F4A63C', 'font-family': 'Arial, sans-serif' });
+    anionText.textContent = 'anions';
+    svg.appendChild(anionText);
+
+    // كاتيونات (K+, Cu2+) نحو الكاتود (يمين)
+    svg.appendChild(svtEl('line', { x1: 205, y1: 175, x2: 235, y2: 175, stroke: '#4D9DE0', 'stroke-width': 2 }));
+    svg.appendChild(svtEl('polygon', { points: '240,175 230,170 230,180', fill: '#4D9DE0' }));
+    const cationText = svtEl('text', { x: 220, y: 190, 'text-anchor': 'middle', 'font-size': 9, fill: '#4D9DE0', 'font-family': 'Arial, sans-serif' });
+    cationText.textContent = 'cations';
+    svg.appendChild(cationText);
+}
+
+// ============================================================
+// 2) graphUI : U (V) en fonction de I (mA) — droite passant par l'origine
+//    I(mA): 0 ; 2,4 ; 6,4 ; 10 ; 14,4
+//    U(V) : 0 ; 0,2 ; 0,44 ; 0,8 ; 1,2
+//    باش الغرافيك يبان متوازن (بلا ما يتشد بزاف من جهة)، كنرسمو
+//    U بمقياس داخلي × 10 (بلا ما تبان هاذ القيمة للمستخدم، غير
+//    التسميات كتبين بالقيمة الحقيقية بالفولط).
+// ============================================================
+function drawGraphUIsvg() {
+    const s = SvgUtils.setupSVG('graphUI', { xMin: -1.5, xMax: 16.5, yMin: -1.5, yMax: 14.5 });
     if (!s) return;
 
     SvgUtils.drawAxesWithArrows(s, { xLabel: 'I (mA)', yLabel: 'U (V)' });
     SvgUtils.drawGrid(s);
 
-    const pts = [
-        { x: 0, y: 0 }, { x: 2.4, y: 0.2 }, { x: 6.4, y: 0.44 },
-        { x: 10, y: 0.8 }, { x: 14.4, y: 1.2 }
+    const data = [
+        { I: 0, U: 0 },
+        { I: 2.4, U: 0.2 },
+        { I: 6.4, U: 0.44 },
+        { I: 10, U: 0.8 },
+        { I: 14.4, U: 1.2 }
     ];
-    for (let i = 0; i < pts.length - 1; i++) {
-        SvgUtils.drawLine(s, pts[i].x, pts[i].y, pts[i + 1].x, pts[i + 1].y, { color: '#4ECDC4', lineWidth: 2 });
-    }
-    SvgUtils.drawPoints(s, pts.map(p => ({ x: p.x, y: p.y, color: '#F4D03F', radius: 0.09, showCoords: false })));
+    const K = 10; // مقياس عرض داخلي غير مرئي: y_dessin = U * K
 
-    // graduations numériques sur les deux axes (repères de lecture)
-    [0, 2.4, 6.4, 10, 14.4].forEach(v => {
-        SvgUtils.drawNote(s, v.toString().replace('.', ','), v - 0.3, -0.14, { color: '#666', fontSize: s.fontSize * 0.6 });
-    });
-    [0.2, 0.44, 0.8, 1.2].forEach(v => {
-        SvgUtils.drawNote(s, v.toString().replace('.', ','), -1.95, v - 0.03, { color: '#666', fontSize: s.fontSize * 0.6 });
-    });
+    // droite moyenne : U ≈ 0,083 . I  (منحدر متوسط محسوب من النقط)
+    const slope = 0.0833;
+    SvgUtils.drawLine(s, 0, 0, 16, 16 * slope * K, { color: '#4ECDC4', lineWidth: 2 });
+    SvgUtils.drawNote(s, 'U = R.I', 11, 12.5, { color: '#4ECDC4', fontSize: s.fontSize * 0.9 });
 
-    SvgUtils.drawNote(s, 'droite passant par l\'origine', 2, 1.32, { color: '#4ECDC4', fontSize: s.fontSize * 0.78 });
+    SvgUtils.drawPoints(s, data.map(d => ({
+        x: d.I,
+        y: d.U * K,
+        color: '#FF6B6B',
+        label: d.U.toString().replace('.', ',') + ' V',
+        showCoords: false,
+        fontSize: s.fontSize * 0.75,
+        offsetY: s.fontSize * 0.9
+    })));
 }
 
-// ====== Partie 1 - Fig 3 : G = f(S), à L fixe ======
-function drawGraphGS() {
-    const s = SvgUtils.setupSVG('graphGS', { xMin: -0.85, xMax: 5, yMin: -80, yMax: 640 });
+// ============================================================
+// 3) graphGS : G (µS) en fonction de S (cm²) — droite passant par l'origine
+//    S(cm²): 1 ; 2 ; 3 ; 4      G(µS): 137 ; 280 ; 415 ; 545
+//    مقياس داخلي: y_dessin = G / 110 (باش يبقى قريب من مدى S)
+// ============================================================
+function drawGraphGSsvg() {
+    const s = SvgUtils.setupSVG('graphGS', { xMin: -0.6, xMax: 5, yMin: -0.6, yMax: 3.2 });
     if (!s) return;
 
-    SvgUtils.drawAxesWithArrows(s, { xLabel: 'S (cm²)', yLabel: 'G (µS)' });
+    SvgUtils.drawAxesWithArrows(s, { xLabel: 'S (cm²)', yLabel: 'G' });
     SvgUtils.drawGrid(s);
 
-    const pts = [
-        { x: 0, y: 0 }, { x: 1, y: 137 }, { x: 2, y: 280 }, { x: 3, y: 415 }, { x: 4, y: 545 }
+    const data = [
+        { S: 1, G: 137 },
+        { S: 2, G: 280 },
+        { S: 3, G: 415 },
+        { S: 4, G: 545 }
     ];
-    for (let i = 0; i < pts.length - 1; i++) {
-        SvgUtils.drawLine(s, pts[i].x, pts[i].y, pts[i + 1].x, pts[i + 1].y, { color: '#4ECDC4', lineWidth: 2 });
-    }
-    SvgUtils.drawPoints(s, pts.slice(1).map(p => ({ x: p.x, y: p.y, color: '#F4D03F', radius: 0.09, showCoords: false })));
+    const K = 1 / 220; // y_dessin = G * K
 
-    [1, 2, 3, 4].forEach(v => SvgUtils.drawNote(s, v.toString(), v - 0.08, -32, { color: '#666', fontSize: s.fontSize * 0.65 }));
-    [137, 280, 415, 545].forEach(v => SvgUtils.drawNote(s, v.toString(), -0.8, v - 12, { color: '#666', fontSize: s.fontSize * 0.6 }));
+    const slope = 137.8; // µS/cm² (متوسط G/S)
+    SvgUtils.drawLine(s, 0, 0, 4.8, 4.8 * slope * K, { color: '#4ECDC4', lineWidth: 2 });
+    SvgUtils.drawNote(s, 'G proportionnelle à S', 1, 3.0, { color: '#4ECDC4', fontSize: s.fontSize * 0.85 });
 
-    SvgUtils.drawNote(s, 'G proportionnelle à S', 1.3, 590, { color: '#4ECDC4', fontSize: s.fontSize * 0.78 });
+    SvgUtils.drawPoints(s, data.map(d => ({
+        x: d.S,
+        y: d.G * K,
+        color: '#FF6B6B',
+        label: d.G + ' µS',
+        showCoords: false,
+        fontSize: s.fontSize * 0.75,
+        offsetY: s.fontSize * 0.9
+    })));
 }
 
-// ====== Partie 1 - Fig 4 : G = f(1/L), à S fixe (nouveau : complète la Fig 3) ======
-function drawGraphGL() {
-    const s = SvgUtils.setupSVG('graphGL', { xMin: -0.55, xMax: 4.5, yMin: -20, yMax: 160 });
+// ============================================================
+// 4) graphGL : G (µS) en fonction de L (cm) — courbe décroissante G = k/L
+//    L(cm): 1 ; 2 ; 3 ; 4       G(µS): 137 ; 70 ; 44 ; 34
+//    مقياس داخلي: y_dessin = G / 35
+// ============================================================
+function drawGraphGLsvg() {
+    const s = SvgUtils.setupSVG('graphGL', { xMin: -0.6, xMax: 5, yMin: -0.6, yMax: 3.7 });
     if (!s) return;
 
-    SvgUtils.drawAxesWithArrows(s, { xLabel: 'L (cm)', yLabel: 'G (µS)' });
+    SvgUtils.drawAxesWithArrows(s, { xLabel: 'L (cm)', yLabel: 'G' });
     SvgUtils.drawGrid(s);
 
-    // G = k / L, avec k = 137 (valeur mesurée pour L = 1 cm)
-    const k = 137;
-    const curvePts = [];
-    for (let l = 0.55; l <= 4.3; l += 0.08) curvePts.push({ x: l, y: k / l });
-    for (let i = 0; i < curvePts.length - 1; i++) {
-        SvgUtils.drawLine(s, curvePts[i].x, curvePts[i].y, curvePts[i + 1].x, curvePts[i + 1].y, { color: '#BB8FCE', lineWidth: 2 });
+    const data = [
+        { L: 1, G: 137 },
+        { L: 2, G: 70 },
+        { L: 3, G: 44 },
+        { L: 4, G: 34 }
+    ];
+    const K = 1 / 42; // y_dessin = G * K
+    const k = 136; // µS.cm (متوسط G × L)
+
+    // منحنى G = k / L : كنرسموه بقطع صغيرة متتالية (polyline) باش يبان
+    // منحنى ناعم بلا تشوه، انطلاقا من L=0.42 حتى L=5
+    let prevX = 0.42, prevY = (k / prevX) * K;
+    for (let L = 0.55; L <= 5.01; L += 0.15) {
+        const y = (k / L) * K;
+        SvgUtils.drawLine(s, prevX, prevY, L, y, { color: '#4ECDC4', lineWidth: 2 });
+        prevX = L;
+        prevY = y;
     }
-    const measured = [{ x: 1, y: 137 }, { x: 2, y: 70 }, { x: 3, y: 44 }, { x: 4, y: 34 }];
-    SvgUtils.drawPoints(s, measured.map(p => ({ x: p.x, y: p.y, color: '#F4D03F', radius: 0.09, showCoords: false })));
+    SvgUtils.drawNote(s, 'G = k / L', 3.2, 1.4, { color: '#4ECDC4', fontSize: s.fontSize * 0.9 });
 
-    [1, 2, 3, 4].forEach(v => SvgUtils.drawNote(s, v.toString(), v - 0.08, -9, { color: '#666', fontSize: s.fontSize * 0.65 }));
-    [137, 70, 44, 34].forEach(v => SvgUtils.drawNote(s, v.toString(), -0.5, v + 5, { color: '#666', fontSize: s.fontSize * 0.6 }));
-
-    SvgUtils.drawNote(s, 'G inversement proportionnelle à L', 1.05, 145, { color: '#BB8FCE', fontSize: s.fontSize * 0.72 });
+    SvgUtils.drawPoints(s, data.map(d => ({
+        x: d.L,
+        y: d.G * K,
+        color: '#FF6B6B',
+        label: d.G + ' µS',
+        showCoords: false,
+        fontSize: s.fontSize * 0.75,
+        offsetY: s.fontSize * 0.9
+    })));
 }
 
-// ====== Partie 3 : courbe d'étalonnage G = f(C) ======
-function drawGraphEtalonnage() {
-    const s = SvgUtils.setupSVG('graphEtalonnage', { xMin: -0.85, xMax: 6, yMin: -0.35, yMax: 2.15 });
+// ============================================================
+// 5) graphEtalonnage : courbe d'étalonnage G = f(C) (Partie 3)
+//    C (mmol/L): 1 ; 2 ; 3 ; 4 ; 5     G (mS): 0,35 ; 0,70 ; 1,05 ; 1,40 ; 1,75
+//    خط تناسب طردي تام (k = 0,35 mS par mmol/L). كنزيدو أيضا القراءة
+//    البيانية ديال المثال (G = 1,25 mS → C ≈ 3,6 mmol/L) بخطوط متقطعة.
+//    مقياس داخلي: y_dessin = G * 2.4 (باش يتوازن الغرافيك مع الصندوق
+//    380×280).
+// ============================================================
+function drawGraphEtalonnagesvg() {
+    const s = SvgUtils.setupSVG('graphEtalonnage', { xMin: -0.5, xMax: 5.5, yMin: -0.3, yMax: 4.6 });
     if (!s) return;
 
-    SvgUtils.drawAxesWithArrows(s, { xLabel: 'C (mmol/L)', yLabel: 'G (mS)' });
+    SvgUtils.drawAxesWithArrows(s, { xLabel: 'C (mmol/L)', yLabel: 'G' });
     SvgUtils.drawGrid(s);
 
-    const pts = [
-        { x: 0, y: 0 }, { x: 1, y: 0.35 }, { x: 2, y: 0.70 },
-        { x: 3, y: 1.05 }, { x: 4, y: 1.40 }, { x: 5, y: 1.75 }
-    ];
-    for (let i = 0; i < pts.length - 1; i++) {
-        SvgUtils.drawLine(s, pts[i].x, pts[i].y, pts[i + 1].x, pts[i + 1].y, { color: '#4ECDC4', lineWidth: 2 });
-    }
-    SvgUtils.drawPoints(s, pts.slice(1).map(p => ({ x: p.x, y: p.y, color: '#F4D03F', radius: 0.09, showCoords: false })));
+    const K = 2.4; // y_dessin = G(mS) * K
+    const k = 0.35; // مS par mmol/L (منحدر الخط)
 
-    // lecture graphique : G1 = 1,25 mS -> C1 = 3,6 mmol/L
-    const C1 = 3.6, G1 = 1.25;
-    SvgUtils.drawLine(s, 0, G1, C1, G1, { color: '#BB8FCE', lineWidth: 1.5, dashed: true, dashPattern: [5, 3] });
-    SvgUtils.drawLine(s, C1, 0, C1, G1, { color: '#BB8FCE', lineWidth: 1.5, dashed: true, dashPattern: [5, 3] });
-    SvgUtils.drawNote(s, 'G₁ = 1,25', -0.8, G1 + 0.09, { color: '#BB8FCE', fontSize: s.fontSize * 0.8 });
-    SvgUtils.drawNote(s, 'C₁ = 3,6', C1 - 0.32, -0.2, { color: '#BB8FCE', fontSize: s.fontSize * 0.8 });
-    SvgUtils.drawPoint(s, { x: C1, y: G1, color: '#BB8FCE', radius: 0.1 });
+    const data = [
+        { C: 1, G: 0.35 },
+        { C: 2, G: 0.70 },
+        { C: 3, G: 1.05 },
+        { C: 4, G: 1.40 },
+        { C: 5, G: 1.75 }
+    ];
+
+    // خط الاستشارة (droite d'étalonnage) : G = k.C
+    SvgUtils.drawLine(s, 0, 0, 5.1, 5.1 * k * K, { color: '#4ECDC4', lineWidth: 2 });
+    SvgUtils.drawNote(s, 'G = k.C', 3.7, 1.3, { color: '#4ECDC4', fontSize: s.fontSize * 0.9 });
+
+    // القراءة البيانية ديال المثال : G = 1,25 mS  →  C ≈ 3,6 mmol/L
+    const Gread = 1.25, Cread = 3.6;
+    const yRead = Gread * K;
+    SvgUtils.drawLine(s, 0, yRead, Cread, yRead, { color: '#BB8FCE', lineWidth: 1.5, dashed: true, dashPattern: [5, 3] });
+    SvgUtils.drawLine(s, Cread, 0, Cread, yRead, { color: '#BB8FCE', lineWidth: 1.5, dashed: true, dashPattern: [5, 3] });
+    SvgUtils.drawNote(s, '1,25 mS', -0.45, yRead + 0.18, { color: '#BB8FCE', fontSize: s.fontSize * 0.75 });
+    SvgUtils.drawNote(s, '3,6', Cread - 0.15, -0.15, { color: '#BB8FCE', fontSize: s.fontSize * 0.75 });
+
+    SvgUtils.drawPoints(s, data.map(d => ({
+        x: d.C,
+        y: d.G * K,
+        color: '#FF6B6B',
+        label: d.G.toString().replace('.', ',') + ' mS',
+        showCoords: false,
+        fontSize: s.fontSize * 0.7,
+        offsetY: s.fontSize * 0.9
+    })));
+
+    SvgUtils.drawPoints(s, [
+        { x: Cread, y: yRead, color: '#BB8FCE', radius: s.fontSize * 0.32, label: undefined }
+    ]);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-        drawGraphTubeU();
-        drawGraphUI();
-        drawGraphGS();
-        drawGraphGL();
-        drawGraphEtalonnage();
-    }, 400);
+    setTimeout(drawGraphTubeUsvg, 400);
+    setTimeout(drawGraphUIsvg, 400);
+    setTimeout(drawGraphGSsvg, 400);
+    setTimeout(drawGraphGLsvg, 400);
+    setTimeout(drawGraphEtalonnagesvg, 400);
 });

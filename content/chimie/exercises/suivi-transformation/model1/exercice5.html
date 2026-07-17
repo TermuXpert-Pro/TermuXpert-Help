@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 5 - Concentration et solutions électrolytiques | Xpert</title>
+    <title>Exercice 5 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
     
     <style>
-        /* ====== Mêmes styles que exercice1.html ====== */
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
         .nav-logo-text { font-size: 14px; }
@@ -197,12 +196,43 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -222,6 +252,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -435,79 +466,93 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-water" style="color:#F4D03F;"></i> Exercice 5</h1>
+            <h1 class="lesson-title"><i class="fas fa-syringe" style="color:#F4D03F;"></i> Exercice 5</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Chlorure de cobalt hydraté - Dissolution</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Dosage conductimétrique - Acide fort par base forte</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On dissout \(m = 1,19\text{ g}\) de chlorure de cobalt hydraté \(\text{CoCl}_2 \cdot 6\text{H}_2\text{O}\) dans \(V = 250\text{ mL}\) d'eau pour obtenir une solution \(S\).
+                    On dose \(V_A = 20,0\text{ mL}\) d'une solution d'acide chlorhydrique \(\text{HCl}\) de concentration inconnue par une solution d'hydroxyde de sodium \(\text{NaOH}\) de concentration \(C_B = 0,10\text{ mol/L}\). On mesure la conductivité \(\sigma\) du mélange en fonction du volume \(V_B\) de soude versé.
                 </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
                     <strong>Données :</strong> 
-                    \(M_{Co} = 58,9\text{ g/mol}\), 
-                    \(M_{Cl} = 35,5\text{ g/mol}\), 
-                    \(M_O = 16\text{ g/mol}\), 
-                    \(M_H = 1\text{ g/mol}\)
+                    \(\lambda_{\text{H}^+} = 35,0 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{Na}^+} = 5,01 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{OH}^-} = 19,9 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{Cl}^-} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)
+                </div>
+
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Les résultats expérimentaux sont les suivants :
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr>
+                            <th>\(V_B\) (mL)</th>
+                            <th>0</th>
+                            <th>5,0</th>
+                            <th>10,0</th>
+                            <th>15,0</th>
+                            <th>20,0</th>
+                            <th>25,0</th>
+                        </tr>
+                        <tr>
+                            <td>\(\sigma\) (mS/m)</td>
+                            <td>3,50</td>
+                            <td>2,72</td>
+                            <td>1,94</td>
+                            <td>1,16</td>
+                            <td>1,56</td>
+                            <td>2,05</td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la concentration molaire de la solution \(S\) obtenue.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Tracer le graphique \(\sigma = f(V_B)\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Masse molaire du chlorure de cobalt hydraté :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = M_{Co} + 2M_{Cl} + 12M_H + 6M_O$$
-                                </div>
+                            <div class="graph-container">
+                                <canvas id="graphDosage2" width="500" height="300"></canvas>
+                                <p>Évolution de la conductivité \(\sigma\) en fonction du volume \(V_B\) de soude versé</p>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 58,9 + 2 \times 35,5 + 12 \times 1 + 6 \times 16 = 58,9 + 71 + 12 + 96 = 237,9\text{ g/mol}$$
-                                </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Graphique</span>
+                                <p>Le graphique montre une diminution linéaire de la conductivité jusqu'à \(V_B = 15,0\text{ mL}\), puis une augmentation linéaire.</p>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Quantité de matière :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n = \frac{m}{M} = \frac{1,19}{237,9} = 5,00 \times 10^{-3}\text{ mol}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                Concentration molaire :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{n}{V} = \frac{5,00 \times 10^{-3}}{0,250} = 2,00 \times 10^{-2}\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(C = 2,00 \times 10^{-2}\text{ mol/L}\)</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de dissolution.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer graphiquement le volume à l'équivalence \(V_{BE}\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$\text{CoCl}_2 \cdot 6\text{H}_2\text{O} \xrightarrow{eau} \text{Co}^{2+}_{(aq)} + 2\text{Cl}^-_{(aq)} + 6\text{H}_2\text{O}_{(l)}$$
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Le volume à l'équivalence correspond au point d'intersection des deux droites.
                             </div>
-                            <p style="font-size:11px; color:var(--text-muted);">Ou bien si on ne tient pas compte de l'eau d'hydratation :</p>
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$\text{CoCl}_2 \xrightarrow{eau} \text{Co}^{2+}_{(aq)} + 2\text{Cl}^-_{(aq)}$$
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                D'après le graphique, l'intersection se situe à \(V_B = 15,0\text{ mL}\).
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$V_{BE} = 15,0\text{ mL}$$
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -515,35 +560,66 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">En déduire les concentrations molaires des ions présents dans la solution.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la concentration \(C_A\) de la solution d'acide chlorhydrique.</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                D'après l'équation de dissolution :
+                                À l'équivalence :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Co}^{2+}] = C = 2,00 \times 10^{-2}\text{ mol/L}$$
+                                    $$C_A \times V_A = C_B \times V_{BE}$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Cl}^-] = 2C = 4,00 \times 10^{-2}\text{ mol/L}$$
+                                    $$C_A = \frac{0,10 \times 15,0}{20,0} = 0,075\text{ mol/L}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultats</span>
-                                <ul style="font-size:12px;">
-                                    <li>\([\text{Co}^{2+}] = 2,00 \times 10^{-2}\text{ mol/L}\)</li>
-                                    <li>\([\text{Cl}^-] = 4,00 \times 10^{-2}\text{ mol/L}\)</li>
-                                </ul>
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$C_A = 7,5 \times 10^{-2}\text{ mol/L}$$
+                                </div>
                             </div>
-                            <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:6px; padding:6px 10px; margin-top:6px;">
-                                <p style="font-size:11px; color:var(--text-muted); margin:0;">
-                                    <strong>Remarque :</strong> \(\text{CaCl}_2\) n'existe pas dans la solution, on ne trouve que des ions \(\text{Co}^{2+}\) et \(\text{Cl}^-\).
-                                </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Calculer théoriquement la conductivité initiale (\(\sigma_0\)) et la comparer à la valeur expérimentale.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(C_A = 0,075\text{ mol/L} = 75\text{ mol/m}^3\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Avant le dosage, la solution contient \(\text{H}^+\) et \(\text{Cl}^-\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma_0 = (\lambda_{\text{H}^+} + \lambda_{\text{Cl}^-}) \times C_A$$
+                                    $$= (35,0 + 7,63) \times 10^{-3} \times 75$$
+                                    $$= 42,63 \times 10^{-3} \times 75 = 3,20\text{ S/m} = 3,20 \times 10^3\text{ mS/m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Comparaison :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma_{exp} = 3,50\text{ mS/m} \quad ; \quad \sigma_{th} = 3,20\text{ mS/m}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>L'écart est dû aux approximations et aux conditions expérimentales.</p>
                             </div>
                         </div>
                     </div>
@@ -589,6 +665,11 @@
             }
         }
     </script>
+    
+    <!-- ====== Canvas Utils + Figures ====== -->
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
+    
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

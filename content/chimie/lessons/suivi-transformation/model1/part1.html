@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -14,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partie 1 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
+    <title>Partie 1 - Suivi d'une transformation chimique | Xpert</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,15 +62,17 @@
         .highlight-box .label.resume { background: #F4D03F44; color: #F4D03F; }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rappel { background: #F4D03F44; color: #F4D03F; }
+        .highlight-box .label.summary { background: #F4D03F44; color: #F4D03F; font-size: 14px; }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 500px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
         .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
-        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 14px; }
         .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
         .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
         .step .step-num { color: #F4D03F; font-weight: 700; margin-left: 6px; font-size: 11px; }
@@ -87,10 +88,19 @@
         .scroll-top-btn { display: none; }
         .graph-container { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
         .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
-        .graph-container svg { max-width: 100%; height: auto; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: #1A2A2A; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color: #F4D03F; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color: #F4D03F; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #F4D03F; }
+        .toc ul li a .num { color: #F4D03F; font-weight: 700; font-size: 11px; min-width: 20px; }
+        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
+        .summary-card .s-title { color: #F4D03F; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -338,185 +348,214 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-arrows-left-right" style="color:#F4D03F;"></i> Partie 1 : Conductance d'une solution électrolytique</h1>
+            <h1 class="lesson-title"><i class="fas fa-flask-vial" style="color:#4ECDC4;"></i> Partie 1 : Système chimique, transformation chimique et réaction chimique</h1>
 
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                Une solution qui contient des ions peut conduire le courant électrique : on l'appelle une <strong>solution électrolytique</strong> (ou électrolyte). Comment ce courant circule-t-il dans la solution, et comment le mesurer ?
+                Comment décrire l'état d'un système chimique et modéliser son évolution lorsqu'il subit une transformation ?
             </p>
 
-            <div class="section">
-                <h2><span class="num">1</span> Nature du courant électrique dans les électrolytes</h2>
-
-                <div class="highlight-box purple">
-                    <span class="label rem">Activité</span>
-                    <p>On place dans un tube en forme de $U$ un mélange de solution aqueuse de sulfate de cuivre II $(Cu^{2+} + SO_4^{2-})$ et de solution aqueuse de dichromate de potassium acidifiée $(2K^+ + Cr_2O_7^{2-})$. On plonge une électrode de graphite à chaque extrémité du tube et on les relie à un générateur électrique.</p>
-                    <p>Après un certain temps, on observe l'apparition d'une couleur <strong>orange</strong> près de l'anode (électrode reliée au pôle $+$ du générateur) et d'une couleur <strong>bleue</strong> près de la cathode (électrode reliée au pôle $-$).</p>
-                </div>
-
-                <div class="graph-container">
-                    <svg id="graphTubeU" width="380" height="280"></svg>
-                    <p>Migration des ions dans le tube en U : les cations vont vers la cathode, les anions vers l'anode</p>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>Question</th><th>Réponse</th></tr>
-                        <tr><td>Espèces qui conduisent le courant</td><td>Les ions $K^+$, $Cu^{2+}$, $Cr_2O_7^{2-}$, $SO_4^{2-}$</td></tr>
-                        <tr><td>Espèce responsable de la couleur bleue (cathode)</td><td>Les ions $Cu^{2+}$</td></tr>
-                        <tr><td>Espèce responsable de la couleur orange (anode)</td><td>Les ions $Cr_2O_7^{2-}$</td></tr>
-                    </table>
-                </div>
-
-                <p>La couleur bleue apparaît près de la cathode : les ions $Cu^{2+}$ se déplacent donc vers la cathode. La couleur orange apparaît près de l'anode : les ions $Cr_2O_7^{2-}$ se déplacent donc vers l'anode. Les ions incolores $K^+$ et $SO_4^{2-}$ subissent le même type de déplacement (vers la cathode pour $K^+$, vers l'anode pour $SO_4^{2-}$), même si on ne peut pas l'observer directement par la couleur.</p>
-
-                <div class="highlight-box red">
-                    <span class="label def">Conclusion</span>
-                    <p>Le courant électrique dans un électrolyte résulte d'une <strong>double migration des ions</strong> : les <strong>cations</strong> se déplacent dans le sens conventionnel du courant (vers la cathode), et les <strong>anions</strong> se déplacent en sens inverse (vers l'anode).</p>
-                </div>
-
-                <div class="highlight-box yellow">
-                    <span class="label rappel">Rappel</span>
-                    <p>Dans un métal, le courant électrique correspond à un déplacement d'électrons libres, dans le sens opposé au sens conventionnel du courant. Dans un électrolyte, il n'y a pas d'électrons libres : ce sont les ions eux-mêmes qui se déplacent, dans les deux sens à la fois (double migration).</p>
-                </div>
+            <!-- ====== TABLE DES MATIÈRES ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Le système chimique</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> La transformation chimique</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> La réaction chimique et les lois de conservation</a></li>
+                </ul>
             </div>
 
-            <div class="section">
-                <h2><span class="num">2</span> La loi d'Ohm dans les solutions électrolytiques</h2>
+            <!-- ============================================================ -->
+            <!-- SECTION 1: LE SYSTÈME CHIMIQUE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Le système chimique</h2>
 
-                <div class="highlight-box purple">
-                    <span class="label rem">Activité</span>
-                    <p>On réalise un montage où un bécher contient une solution de chlorure de sodium, avec deux électrodes parallèles complètement immergées. On applique une tension alternative sinusoïdale et on relève, pour différentes valeurs, la tension efficace $U$ et l'intensité efficace $I$ du courant :</p>
+                <div class="summary-card">
+                    <div class="s-title">📌 Qu'est-ce qu'un système chimique ?</div>
+                    <div class="s-content">
+                        <p>Un <strong>système chimique</strong> est l'ensemble des espèces chimiques (réactifs, produits, espèces inactives, solvant...) que l'on étudie et qui sont susceptibles de réagir entre elles.</p>
+                    </div>
                 </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$I$ (mA)</th><td>0</td><td>2,4</td><td>6,4</td><td>10</td><td>14,4</td></tr>
-                        <tr><th>$U$ (V)</th><td>0</td><td>0,2</td><td>0,44</td><td>0,8</td><td>1,2</td></tr>
-                    </table>
-                </div>
-
-                <div class="graph-container">
-                    <svg id="graphUI" width="360" height="260"></svg>
-                    <p>Tension efficace $U$ en fonction de l'intensité efficace $I$ : une droite passant par l'origine</p>
-                </div>
-
-                <p>La courbe obtenue est une <strong>droite passant par l'origine</strong> : $U$ et $I$ sont proportionnelles. La solution électrolytique vérifie donc, elle aussi, la <strong>loi d'Ohm</strong>.</p>
 
                 <div class="highlight-box red">
                     <span class="label def">Définition</span>
-                    <p>Entre deux électrodes plongées dans une portion de solution électrolytique, la tension efficace $U$ et l'intensité efficace $I$ vérifient la loi d'Ohm :</p>
-                    <div class="formula-block" style="font-size:16px;">
-                        $$U = R.I \quad \text{ou} \quad I = G.U$$
+                    <p>L'<strong>état d'un système chimique</strong> est entièrement défini par la donnée de :</p>
+                    <ul>
+                        <li>La <strong>nature</strong> et l'<strong>état physique</strong> (solide <strong>s</strong>, liquide <strong>ℓ</strong>, gaz <strong>g</strong>, aqueux <strong>aq</strong>) de chaque espèce chimique constituant le système ;</li>
+                        <li>La <strong>quantité de matière</strong> (en mol) de chaque espèce chimique ;</li>
+                        <li>La <strong>température</strong> \(T\) et la <strong>pression</strong> \(P\) du système.</li>
+                    </ul>
+                </div>
+
+                <!-- ====== ACTIVITÉ : composition de l'acide chlorhydrique ====== -->
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Activité : Déterminer la composition de l'acide chlorhydrique</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Le fer solide n'a pas besoin d'être analysé : il est uniquement constitué de fer. En revanche, il faut analyser la solution d'acide chlorhydrique pour connaître les espèces chimiques qu'elle contient.
+                    </p>
+
+                    <div class="step"><span class="step-num">Manipulation 1 :</span> On verse de l'acide chlorhydrique dans un bécher et on mesure son pH à l'aide d'un pH-mètre : \(pH = 2{,}35\).</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">Puisque \(pH < 7\), l'acide chlorhydrique possède un caractère <strong>acide</strong> : cela signifie que la solution contient des ions hydrogène \(H^+_{(aq)}\) en quantité importante.</p>
+
+                    <div class="step"><span class="step-num">Manipulation 2 :</span> On verse quelques gouttes de solution de nitrate d'argent dans un peu d'acide chlorhydrique contenu dans un tube à essais.</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">On observe la formation d'un <strong>précipité blanc</strong> (chlorure d'argent) qui noircit à la lumière : cela montre la présence des ions chlorure \(Cl^-_{(aq)}\) dans l'acide chlorhydrique.</p>
+
+                    <div class="highlight-box green" style="margin-top:4px;">
+                        <span class="label resume">Conclusion</span>
+                        <p>L'acide chlorhydrique contient des ions hydrogène \(H^+_{(aq)}\) et des ions chlorure \(Cl^-_{(aq)}\) en solution dans l'eau, de formule \((H^+_{(aq)} + Cl^-_{(aq)})\).</p>
                     </div>
-                    <p>où $G = \dfrac{1}{R} = \dfrac{I}{U}$ est la <strong>conductance</strong> de la portion de solution, exprimée en <strong>siemens</strong> $(S)$. On utilise souvent ses sous-multiples : le millisiemens $(mS)$ et le microsiemens $(\mu S)$.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label rem">Remarque</span>
+                    <p>Le système chimique comprend aussi bien les <strong>réactifs</strong> et les <strong>produits</strong> que les espèces qui ne participent pas à la réaction (comme le solvant \(H_2O_{(\ell)}\) ou des ions <strong>inactifs</strong>).</p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: LA TRANSFORMATION CHIMIQUE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> La transformation chimique</h2>
+
+                <!-- ====== ACTIVITÉ : réaction Fe + HCl ====== -->
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Activité : La réaction entre le fer et l'acide chlorhydrique</div>
+
+                    <div class="step"><span class="step-num">Manipulation 1 :</span> Dans un tube à essais, on introduit environ \(\frac{1}{2}\) spatule de fer \(Fe\) en poudre, puis on ajoute environ \(2\ cm^3\) d'acide chlorhydrique.</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">On observe une <strong>effervescence</strong> d'un gaz qui se forme et le tube devient <strong>chaud</strong> : le fer est attaqué par l'acide chlorhydrique, une réaction chimique se produit.</p>
+
+                    <div class="step"><span class="step-num">Manipulation 2 :</span> On bouche le tube, on attend que le dégagement de gaz soit suffisant, puis on approche une allumette enflammée de l'ouverture du tube légèrement incliné.</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">On entend une petite détonation (« pop ») puis le gaz brûle sans bruit : c'est la <strong>caractéristique du gaz dihydrogène</strong> \(H_{2(g)}\).</p>
+
+                    <div class="step"><span class="step-num">Manipulation 3 :</span> On ajoute de l'eau distillée à la solution obtenue, puis on la répartit dans deux tubes. Dans le tube 1, on verse du nitrate d'argent ; dans le tube 2, on verse de la soude goutte à goutte.</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">Dans le tube 1, un <strong>précipité blanc</strong> se forme : présence des ions chlorure \(Cl^-_{(aq)}\). Dans le tube 2, un <strong>précipité vert</strong> (hydroxyde de fer II) se forme : présence des ions fer II \(Fe^{2+}_{(aq)}\).</p>
+
+                    <div class="highlight-box green" style="margin-top:4px;">
+                        <span class="label resume">Conclusion</span>
+                        <p>La solution finale contient des ions fer II \(Fe^{2+}_{(aq)}\) et des ions chlorure \(Cl^-_{(aq)}\) en solution dans l'eau.</p>
+                    </div>
+                </div>
+
+                <!-- ====== ANALYSE ====== -->
+                <div class="highlight-box yellow">
+                    <span class="label ex">Analyse de l'évolution du système</span>
+                    <p><strong>a) État initial :</strong> le système contient la solution d'acide chlorhydrique \((H^+_{(aq)} + Cl^-_{(aq)})\) et le fer solide \(Fe_{(s)}\).</p>
+                    <p><strong>b) Espèces transformées :</strong> on observe la disparition d'une partie du fer, l'augmentation du pH et le dégagement d'un gaz avec apparition de la coloration verte. Les réactifs \(H^+_{(aq)}\) et \(Fe_{(s)}\) se transforment en produits \(H_{2(g)}\) et \(Fe^{2+}_{(aq)}\).</p>
+                    <p><strong>c) Espèces non participantes :</strong> les ions \(Cl^-_{(aq)}\) n'ont pas participé à la transformation : ce sont des ions <strong>inactifs</strong> (ou spectateurs).</p>
+                </div>
+
+                <!-- ====== DÉFINITION ====== -->
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Au cours d'une <strong>transformation chimique</strong>, de nouvelles espèces chimiques apparaissent, appelées <strong>produits</strong>, tandis que d'autres espèces disparaissent, appelées <strong>réactifs</strong>, lorsque certaines conditions sont réunies.</p>
+                    <p>Lorsqu'on mélange les espèces chimiques qui composent le système, on dit que le système est à l'<strong>état initial (EI)</strong>. La transformation commence alors avec la disparition des réactifs et l'apparition des produits : le système <strong>évolue</strong>. Lorsque l'évolution du système s'arrête, on dit que le système est à l'<strong>état final (EF)</strong>.</p>
+                    <p>La <strong>transformation chimique</strong> est donc le passage du système chimique de l'état initial à l'état final.</p>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th style="width:45%;">État initial (EI)</th><th style="width:10%;"><i class="fas fa-arrow-left" style="color:#4ECDC4;"></i><br><span style="font-size:9px;">transformation</span></th><th style="width:45%;">État final (EF)</th></tr>
+                        <tr>
+                            <td style="text-align:right; direction:ltr;">
+                                Réactifs : \(H^+_{(aq)}\ :\ n_i(H^+)\)<br>\(Fe_{(s)}\ :\ n_i(Fe)\)<br>
+                                Inactif : \(Cl^-_{(aq)}\ :\ n_i(Cl^-)\)<br>
+                                Solvant : \(H_2O_{(\ell)}\)
+                            </td>
+                            <td></td>
+                            <td style="text-align:left; direction:ltr;">
+                                \(H^+_{(aq)}\ :\ n_f(H^+)\)<br>\(Fe_{(s)}\ :\ n_f(Fe)\)<br>
+                                \(H_{2(g)}\ :\ n_f(H_2)\)<br>\(Fe^{2+}_{(aq)}\ :\ n_f(Fe^{2+})\)<br>
+                                \(Cl^-_{(aq)}\ :\ n_f(Cl^-)\)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p style="font-size:11px; color:var(--text-muted); text-align:center;">Le passage de l'état initial à l'état final se fait à \((T, P)\) donnés.</p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: LA RÉACTION CHIMIQUE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> La réaction chimique et les lois de conservation</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 La réaction chimique : un modèle</div>
+                    <div class="s-content">
+                        <p>La <strong>réaction chimique</strong> est un modèle descriptif de la transformation chimique. Elle se réfère uniquement aux réactifs, aux produits et à leurs proportions, et est représentée par une écriture symbolique appelée <strong>équation chimique</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Forme générale d'une équation chimique</span>
+                    <div class="formula-block" style="font-size:16px;">
+                        $$\alpha\, A + \beta\, B \longrightarrow \gamma\, C + \delta\, D$$
+                    </div>
+                    <p style="font-size:11px; color:var(--text-muted);">\(A\) et \(B\) sont les réactifs, \(C\) et \(D\) sont les produits, et \(\alpha, \beta, \gamma, \delta\) sont les <strong>coefficients stœchiométriques</strong> (nombres entiers).</p>
                 </div>
 
                 <div class="highlight-box yellow">
-                    <span class="label rappel">Remarque</span>
-                    <p>Les mesures de conductance se font toujours en <strong>courant alternatif</strong> (jamais en continu), afin d'éviter l'électrolyse de la solution qui fausserait la mesure.</p>
+                    <span class="label ex">Exemples d'équations chimiques</span>
+                    <div class="formula-block" style="font-size:14px;">
+                        \(Fe_{(s)} + 2\,H^+_{(aq)} \longrightarrow Fe^{2+}_{(aq)} + H_{2(g)}\)
+                    </div>
+                    <div class="formula-block" style="font-size:14px;">
+                        \(Cu_{(s)} + 2\,Ag^+_{(aq)} \longrightarrow Cu^{2+}_{(aq)} + 2\,Ag_{(s)}\)
+                    </div>
+                    <div class="formula-block" style="font-size:14px;">
+                        \(Zn_{(s)} + 2\,H^+_{(aq)} \longrightarrow Zn^{2+}_{(aq)} + H_{2(g)}\)
+                    </div>
+                </div>
+
+                <!-- ====== LOIS DE CONSERVATION ====== -->
+                <div class="highlight-box red">
+                    <span class="label def">Les lois de conservation</span>
+                    <p>Au cours d'une transformation chimique, il y a conservation :</p>
+                    <ul>
+                        <li><strong>Des éléments chimiques</strong> : les éléments présents dans les réactifs et les produits sont identiques.</li>
+                        <li><strong>De la charge électrique</strong> : la somme des charges des réactifs est égale à la somme des charges des produits.</li>
+                        <li><strong>Du nombre d'entités</strong> : le nombre d'entités chimiques (atomes ou ions) de chaque élément dans les réactifs est identique à celui dans les produits.</li>
+                        <li><strong>De la masse</strong> : la masse totale des réactifs est égale à la masse totale des produits.</li>
+                    </ul>
+                    <p>Pour respecter ces lois, il faut <strong>ajuster</strong> l'équation chimique en plaçant les coefficients stœchiométriques adéquats devant les formules des espèces.</p>
                 </div>
 
                 <div class="exemple-box">
-                    <div class="ex-title">📝 Application</div>
-                    <p style="font-size:11.5px; color:var(--text-secondary);">
-                        Pour une solution aqueuse de chlorure de sodium de concentration $c = 5.10^{-3}\ mol.L^{-1}$, les mesures donnent $I = 1{,}08\ mA$ et $U = 1\ V$. Calculer la conductance $G$.
-                    </p>
-                    <div class="step"><span class="step-num">Étape 1 :</span> On utilise $G = \dfrac{I}{U}$.</div>
-                    <div class="formula-block" style="font-size:14px;">
-                        $$G = \frac{1{,}08.10^{-3}}{1} = 1{,}08.10^{-3}\ S = 1{,}08\ mS$$
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2><span class="num">3</span> Facteurs influençant la conductance d'une solution</h2>
-
-                <h3>a) Facteurs liés à la cellule conductimétrique</h3>
-                <p>La <strong>cellule conductimétrique</strong> est constituée de deux plaques planes et parallèles, de même surface $S$ (immergée dans la solution), séparées par une distance $L$.</p>
-
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$S$ (cm²)</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-                        <tr><th>$G$ ($\mu S$)</th><td>137</td><td>280</td><td>415</td><td>545</td></tr>
-                        <tr><th>$G/S$ (SI)</th><td>1,4</td><td>1,4</td><td>1,4</td><td>1,4</td></tr>
-                    </table>
+                    <div class="ex-title">📝 Exemple : Vérifier la conservation dans \(Fe_{(s)} + 2\,H^+_{(aq)} \rightarrow Fe^{2+}_{(aq)} + H_{2(g)}\)</div>
+                    <div class="step"><span class="step-num">Éléments :</span> 1 atome de Fe et 2 atomes de H de chaque côté ✅</div>
+                    <div class="step"><span class="step-num">Charge :</span> à gauche \(0 + 2(+1) = +2\) ; à droite \(+2 + 0 = +2\) ✅</div>
+                    <div class="step"><span class="step-num">Nombre d'entités :</span> 1 Fe et 2 H⁺ à gauche ↔ 1 Fe²⁺ et 2 H (dans H₂) à droite ✅</div>
                 </div>
 
-                <div class="graph-container">
-                    <svg id="graphGS" width="360" height="240"></svg>
-                    <p>La conductance $G$ en fonction de la surface immergée $S$ : une droite passant par l'origine</p>
-                </div>
-
-                <p>Le rapport $G/S$ reste constant : $G$ est <strong>proportionnelle à $S$</strong>, car plus la surface immergée est grande, plus le nombre d'ions capables de se déplacer d'une électrode à l'autre est élevé.</p>
-
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$L$ (cm)</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-                        <tr><th>$G$ ($\mu S$)</th><td>137</td><td>70</td><td>44</td><td>34</td></tr>
-                        <tr><th>$G \times L$ ($10^{-6}$ SI)</th><td>1,4</td><td>1,4</td><td>1,4</td><td>1,4</td></tr>
-                    </table>
-                </div>
-
-                <div class="graph-container">
-                    <svg id="graphGL" width="360" height="240"></svg>
-                    <p>La conductance $G$ en fonction de la distance $L$ entre les électrodes : une courbe décroissante ($G = k/L$)</p>
-                </div>
-
-                <p>Le produit $G \times L$ reste constant : $G$ est <strong>inversement proportionnelle à $L$</strong>, car augmenter la distance revient à augmenter le nombre d'espèces qui gênent le déplacement des ions entre les deux électrodes.</p>
-
-                <div class="highlight-box green">
-                    <span class="label resume">Conclusion</span>
-                    <p>Pour une solution donnée, la conductance $G$ d'une portion de solution électrolytique :</p>
-                    <ul style="font-size:12px; padding-right:14px;">
-                        <li><strong>augmente</strong> quand la surface immergée $S$ des électrodes augmente ;</li>
-                        <li><strong>augmente</strong> quand la distance $L$ entre les électrodes diminue ;</li>
-                        <li>dépend de l'état de surface des électrodes (propre, sale, rugueuse).</li>
+                <div class="highlight-box gold">
+                    <span class="label summary">À retenir</span>
+                    <ul>
+                        <li>Un <strong>système chimique</strong> est défini par la nature, l'état physique, la quantité de matière de ses espèces, ainsi que \(T\) et \(P\).</li>
+                        <li>Une <strong>transformation chimique</strong> fait passer le système de l'état initial (réactifs) à l'état final (produits).</li>
+                        <li>La <strong>réaction chimique</strong> modélise la transformation par une équation ajustée respectant les lois de conservation (éléments, charge, nombre d'entités, masse).</li>
                     </ul>
                 </div>
 
-                <h3>b) Facteurs liés aux caractéristiques de la solution</h3>
-                <p>En gardant fixes les dimensions géométriques de la cellule, on fait varier successivement la température, la concentration, puis la nature de la solution :</p>
-
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$\theta$ (°C)</th><td>9,2</td><td>18,7</td></tr>
-                        <tr><th>$G$ ($\mu S$)</th><td>24,7</td><td>35,4</td></tr>
-                    </table>
-                </div>
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>$C$ ($mol.L^{-1}$)</th><td>$2.10^{-3}$</td><td>$5.10^{-3}$</td><td>$10^{-2}$</td></tr>
-                        <tr><th>$G$ (mS)</th><td>0,65</td><td>1,6</td><td>3,2</td></tr>
-                    </table>
-                </div>
-                <div class="table-wrap">
-                    <table>
-                        <tr><th>Solution ($C = 10^{-2}\ mol.L^{-1}$)</th><th>$G$ (mS)</th></tr>
-                        <tr><td>$Na^+_{(aq)} + Cl^-_{(aq)}$</td><td>3,2</td></tr>
-                        <tr><td>$Na^+_{(aq)} + OH^-_{(aq)}$</td><td>6,2</td></tr>
-                        <tr><td>$H^+_{(aq)} + Cl^-_{(aq)}$</td><td>10,8</td></tr>
-                    </table>
-                </div>
-
-                <div class="highlight-box green">
-                    <span class="label resume">Conclusion</span>
-                    <ul style="font-size:12px; padding-right:14px;">
-                        <li>La conductance $G$ <strong>augmente</strong> avec la <strong>température</strong> : les ions se déplacent plus rapidement.</li>
-                        <li>La conductance $G$ <strong>augmente</strong> avec la <strong>concentration</strong> de la solution, c'est-à-dire $G = \alpha.C$.</li>
-                        <li>La conductance $G$ dépend de la <strong>nature du soluté</strong> (nature des ions présents) : à concentration égale, $NaCl$, $NaOH$ et $HCl$ n'ont pas la même conductance.</li>
-                    </ul>
+                <div class="highlight-box purple">
+                    <span class="label rem">Et après ?</span>
+                    <p>Dans la <strong>Partie 2</strong>, on introduit une grandeur essentielle pour suivre quantitativement l'évolution du système : l'<strong>avancement de la réaction</strong> \(x\), et on construit le <strong>tableau d'avancement</strong>.</p>
                 </div>
             </div>
 
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
             <div class="nav-buttons">
                 <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
                 <a href="part2.html" class="next-btn">Partie 2 <i class="fas fa-arrow-left"></i></a>
             </div>
+
         </div>
     </div>
 
-    
-<footer class="footer">
+
+    <footer class="footer">
     <div class="divider"></div>
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
         <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
@@ -528,16 +567,14 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
+    
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
     </script>
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
 </html>
-

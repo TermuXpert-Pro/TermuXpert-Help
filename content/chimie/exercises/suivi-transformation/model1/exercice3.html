@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 3 - Concentration et solutions électrolytiques | Xpert</title>
+    <title>Exercice 3 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
     
     <style>
-        /* ====== Mêmes styles que exercice1.html ====== */
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
         .nav-logo-text { font-size: 14px; }
@@ -197,12 +196,63 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .next-btn:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .graph-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -211,7 +261,7 @@
             .section p { font-size: 10.5px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
             .sub-question { padding: 6px 8px; }
-            .table-wrap table { max-width: 100%; }
+            .graph-container canvas { width: 100%; height: auto; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
@@ -223,8 +273,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; font-size: 10px; }
-            .table-wrap th, .table-wrap td { padding: 2px 4px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -438,9 +487,9 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Exercice 3</h1>
+            <h1 class="lesson-title"><i class="fas fa-chart-line" style="color:#F4D03F;"></i> Exercice 3</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Chlorure de baryum - Tableau d'avancement</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Suivi conductimétrique - Étude graphique</span>
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:#F4D03F;"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
@@ -448,154 +497,102 @@
                 <h2><span class="num">1</span> Énoncé</h2>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On dissout \(0,20\text{ g}\) de chlorure de baryum (II) \(\text{BaCl}_2\) dans une quantité d'eau suffisante de manière à obtenir \(500\text{ mL}\) de solution.
+                    Lors du dosage conductimétrique d'une solution d'acide chlorhydrique par une solution d'hydroxyde de sodium, on a obtenu la courbe suivante :
                 </p>
 
-                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                <div class="graph-container">
+                    <canvas id="graphDosage" width="500" height="300"></canvas>
+                    <p>Évolution de la conductivité \(\sigma\) en fonction du volume \(V_B\) de soude versé</p>
+                </div>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin:8px 0;">
                     <strong>Données :</strong> 
-                    \(M_{Ba} = 137\text{ g/mol}\), 
-                    \(M_{Cl} = 35,5\text{ g/mol}\)
+                    \(V_A = 20,0\text{ mL}\), \(C_B = 0,10\text{ mol/L}\)
                 </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la quantité de matière de soluté dissous dans l'eau ?</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer graphiquement le volume à l'équivalence \(V_{BE}\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Masse molaire du chlorure de baryum :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = M_{Ba} + 2M_{Cl} = 137 + 2 \times 35,5 = 137 + 71 = 208\text{ g/mol}$$
-                                </div>
+                                Le volume à l'équivalence correspond au point d'intersection des deux droites (point de rupture de pente).
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Quantité de matière :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n = \frac{m}{M} = \frac{0,20}{208} = 9,6 \times 10^{-4}\text{ mol}$$
+                                D'après le graphique, le point d'intersection se situe à \(V_B = 15,0\text{ mL}\).
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$V_{BE} = 15,0\text{ mL}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(n = 9,6 \times 10^{-4}\text{ mol}\)</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">En déduire la concentration molaire en soluté apporté de la solution obtenue.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        En déduire la concentration \(C_A\) de la solution d'acide chlorhydrique.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                \(V = 500\text{ mL} = 0,500\text{ L}\)
+                                À l'équivalence :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_A \times V_A = C_B \times V_{BE}$$
+                                </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{n}{V} = \frac{9,6 \times 10^{-4}}{0,500} = 1,92 \times 10^{-3}\text{ mol/L}$$
+                                    $$C_A = \frac{C_B \times V_{BE}}{V_A} = \frac{0,10 \times 15,0}{20,0} = 0,075\text{ mol/L}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(C = 1,92 \times 10^{-3}\text{ mol/L}\)</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$C_A = 7,5 \times 10^{-2}\text{ mol/L}$$
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation bilan de la dissolution du chlorure de baryum (II) dans l'eau.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Expliquer pourquoi la conductivité diminue avant l'équivalence puis augmente après l'équivalence.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$\text{BaCl}_2 \xrightarrow{H_2O} \text{Ba}^{2+}_{(aq)} + 2\text{Cl}^-_{(aq)}$$
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">4)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">En déduire les concentrations molaires des ions \(\text{Ba}^{2+}\) et \(\text{Cl}^-\) dans la solution.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
-                    <div id="sol4" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">Tableau d'avancement</p>
-
-                            <div class="table-wrap">
-                                <table>
-                                    <tr>
-                                        <th colspan="2">Équation</th>
-                                        <th colspan="3">\(\text{BaCl}_2 \longrightarrow \text{Ba}^{2+} + 2\text{Cl}^-\)</th>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><strong>État du système</strong></td>
-                                        <td><strong>Avancement</strong></td>
-                                        <td>\(\text{BaCl}_2\)</td>
-                                        <td>\(\text{Ba}^{2+}\)</td>
-                                        <td>\(\text{Cl}^-\)</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Initial</td>
-                                        <td>\(x = 0\)</td>
-                                        <td>\(9,6 \times 10^{-4}\)</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Intermédiaire</td>
-                                        <td>\(x\)</td>
-                                        <td>\(9,6 \times 10^{-4} - x\)</td>
-                                        <td>\(x\)</td>
-                                        <td>\(2x\)</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Final</td>
-                                        <td>\(x_{max}\)</td>
-                                        <td>0</td>
-                                        <td>\(x_{max}\)</td>
-                                        <td>\(2x_{max}\)</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 1 :</span> 
-                                Avancement maximal :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$x_{max} = 9,6 \times 10^{-4}\text{ mol}$$
-                                </div>
-                            </div>
-
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Concentration des ions \(\text{Ba}^{2+}\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Ba}^{2+}] = \frac{x_{max}}{V} = \frac{9,6 \times 10^{-4}}{0,500} = 1,92 \times 10^{-3}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Concentration des ions \(\text{Cl}^-\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Cl}^-] = \frac{2x_{max}}{V} = 2 \times 1,92 \times 10^{-3} = 3,84 \times 10^{-3}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultats</span>
-                                <ul style="font-size:12px;">
-                                    <li>\([\text{Ba}^{2+}] = 1,92 \times 10^{-3}\text{ mol/L}\)</li>
-                                    <li>\([\text{Cl}^-] = 3,84 \times 10^{-3}\text{ mol/L}\)</li>
+                                <span class="step-num">Avant l'équivalence :</span> 
+                                <ul style="font-size:11px; padding-right:18px;">
+                                    <li>Les ions \(\text{H}^+\) (très conducteurs) sont remplacés par les ions \(\text{Na}^+\) (moins conducteurs).</li>
+                                    <li>La conductivité diminue.</li>
                                 </ul>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Après l'équivalence :</span> 
+                                <ul style="font-size:11px; padding-right:18px;">
+                                    <li>On ajoute des ions \(\text{Na}^+\) et \(\text{OH}^-\) en excès.</li>
+                                    <li>La conductivité augmente car on ajoute des ions dans le milieu.</li>
+                                </ul>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>La courbe présente un minimum à l'équivalence, correspondant au point où la concentration en ions \(\text{H}^+\) est nulle.</p>
                             </div>
                         </div>
                     </div>
@@ -641,6 +638,11 @@
             }
         }
     </script>
+    
+    <!-- ====== Canvas Utils + Figures ====== -->
+    <script src="../../../../../assets/js/canvas-utils.js"></script>
+    <script src="figures.js"></script>
+    
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

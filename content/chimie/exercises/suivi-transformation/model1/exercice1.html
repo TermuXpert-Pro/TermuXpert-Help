@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 1 - Concentration et solutions électrolytiques | Xpert</title>
+    <title>Exercice 1 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,6 +229,8 @@
             color: var(--text-secondary);
             font-size: 11px;
         }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -248,7 +250,6 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
-            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -462,90 +463,106 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-cube" style="color:#F4D03F;"></i> Exercice 1</h1>
+            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:#F4D03F;"></i> Exercice 1</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Sulfate d'aluminium - Dissolution et concentrations ioniques</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Conductivité d'une solution - QCM et calculs</span>
                 <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
-                
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une masse \(m = 17,1\text{ g}\) de sulfate d'aluminium solide est dissoute dans \(V = 250\text{ mL}\) d'eau.
-                </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
                     <strong>Données :</strong> 
-                    \(M_{Al} = 27\text{ g/mol}\), 
-                    \(M_S = 32\text{ g/mol}\), 
-                    \(M_O = 16\text{ g/mol}\)
+                    \(\lambda_{\text{Na}^+} = 5,01 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{Cl}^-} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{K}^+} = 7,35 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{NO}_3^-} = 7,14 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)
                 </div>
-
+                
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la masse molaire du sulfate d'aluminium ?</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Choisir la (ou les) bonne(s) réponse(s) :
+                    </p>
+                    <ul style="font-size:11px; padding-right:18px; margin:4px 0;">
+                        <li><strong>a.</strong> La conductivité d'une solution ionique s'exprime en S.m².mol⁻¹</li>
+                        <li><strong>b.</strong> La conductivité d'une solution ionique est proportionnelle à la concentration des ions</li>
+                        <li><strong>c.</strong> La conductivité molaire ionique d'un ion dépend de sa charge</li>
+                        <li><strong>d.</strong> L'unité de la conductivité molaire ionique est S.m².mol⁻¹</li>
+                    </ul>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Formule du sulfate d'aluminium : \(\text{Al}_2(\text{SO}_4)_3\)
+                                Analyse des affirmations :
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 2M_{Al} + 3(M_S + 4M_O) = 2 \times 27 + 3(32 + 4 \times 16)$$
-                                </div>
+                                <span class="step-num">a.</span> 
+                                <span style="color:#FF6B6B;">❌ Faux.</span> La conductivité s'exprime en S/m (ou S.cm⁻¹).
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 54 + 3(32 + 64) = 54 + 3 \times 96 = 54 + 288 = 342\text{ g/mol}$$
-                                </div>
+                                <span class="step-num">b.</span> 
+                                <span style="color:#4ECDC4;">✅ Vrai.</span> \(\sigma = \sum \lambda_i \times [X_i]\)
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(M = 342\text{ g/mol}\)</p>
+                            <div class="step">
+                                <span class="step-num">c.</span> 
+                                <span style="color:#4ECDC4;">✅ Vrai.</span> La conductivité molaire ionique dépend de la charge et de la mobilité de l'ion.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">d.</span> 
+                                <span style="color:#4ECDC4;">✅ Vrai.</span> L'unité de \(\lambda\) est S.m².mol⁻¹.
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Réponses correctes</span>
+                                <p><strong>b, c et d</strong> sont correctes.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quels sont la concentration massique (titre) et la concentration en soluté apporté du sulfate d'aluminium ?</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Calculer la conductivité d'une solution de chlorure de sodium \(\text{NaCl}\) de concentration \(C = 0,010\text{ mol/L}\).
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">a) Concentration massique (titre)</p>
-
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                \(V = 250\text{ mL} = 0,250\text{ L}\)
+                                \(\text{NaCl} \longrightarrow \text{Na}^+ + \text{Cl}^-\)
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$[\text{Na}^+] = [\text{Cl}^-] = C = 0,010\text{ mol/L} = 10\text{ mol/m}^3$$
+                                </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_m = \frac{m}{V} = \frac{17,1}{0,250} = 68,4\text{ g/L}$$
+                                    $$\sigma = \lambda_{\text{Na}^+} \times [\text{Na}^+] + \lambda_{\text{Cl}^-} \times [\text{Cl}^-]$$
                                 </div>
                             </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">b) Concentration en soluté apporté</p>
-
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{C_m}{M} = \frac{68,4}{342} = 0,20\text{ mol/L}$$
+                                    $$\sigma = (5,01 + 7,63) \times 10^{-3} \times 10$$
+                                    $$= 12,64 \times 10^{-3} \times 10 = 0,126\text{ S/m}$$
                                 </div>
                             </div>
-
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Résultats</span>
-                                <ul style="font-size:12px;">
-                                    <li>\(C_m = 68,4\text{ g/L}\)</li>
-                                    <li>\(C = 0,20\text{ mol/L}\)</li>
-                                </ul>
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\sigma = 0,126\text{ S/m}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Formule à retenir</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma = \sum_i \lambda_i \times [X_i]$$
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -553,69 +570,46 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Quelles sont les concentrations effectives des ions \(\text{Al}^{3+}\) et \(\text{SO}_4^{2-}\) ?</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Une solution de nitrate de potassium \(\text{KNO}_3\) a la même conductivité que la solution précédente. Quelle est sa concentration ?
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Équation de dissolution :
+                                \(\text{KNO}_3 \longrightarrow \text{K}^+ + \text{NO}_3^-\)
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{Al}_2(\text{SO}_4)_3 \longrightarrow 2\text{Al}^{3+} + 3\text{SO}_4^{2-}$$
+                                    $$[\text{K}^+] = [\text{NO}_3^-] = C'$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
-                                Concentration des ions \(\text{Al}^{3+}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Al}^{3+}] = 2 \times C = 2 \times 0,20 = 0,40\text{ mol/L}$$
+                                    $$\sigma = (\lambda_{\text{K}^+} + \lambda_{\text{NO}_3^-}) \times C'$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                Concentration des ions \(\text{SO}_4^{2-}\) :
+                                \(C' = \dfrac{\sigma}{\lambda_{\text{K}^+} + \lambda_{\text{NO}_3^-}}\)
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{SO}_4^{2-}] = 3 \times C = 3 \times 0,20 = 0,60\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
-                            <ul style="font-size:12px;">
-                                <li>\([\text{Al}^{3+}] = 0,40\text{ mol/L}\)</li>
-                                <li>\([\text{SO}_4^{2-}] = 0,60\text{ mol/L}\)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">4)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Vérifier que la solution est électriquement neutre.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
-                    <div id="sol4" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Calcul de la charge totale positive :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$3 \times [\text{Al}^{3+}] = 3 \times 0,40 = 1,20\text{ mol/L}$$
+                                    $$C' = \frac{0,126}{(7,35 + 7,14) \times 10^{-3}} = \frac{0,126}{14,49 \times 10^{-3}} = 8,70\text{ mol/m}^3$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Calcul de la charge totale négative :
+                                <span class="step-num">Étape 4 :</span> 
+                                Conversion en mol/L :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$2 \times [\text{SO}_4^{2-}] = 2 \times 0,60 = 1,20\text{ mol/L}$$
+                                    $$C' = 8,70 \times 10^{-3}\text{ mol/L}$$
                                 </div>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$3[\text{Al}^{3+}] = 2[\text{SO}_4^{2-}] = 1,20\text{ mol/L}$$
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$C' = 8,70 \times 10^{-3}\text{ mol/L}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La solution est électriquement neutre ✅</p>
                         </div>
                     </div>
                 </div>

@@ -33,8 +33,10 @@ function drawGraphAvancementCasvg() {
     SvgUtils.drawLine(s, xMax, 0, xMax, 4.3, { color: '#BB8FCE', lineWidth: 1.5, dashed: true, dashPattern: [5, 3] });
     SvgUtils.drawNote(s, 'x_max = 1', xMax + 0.05, 4.3, { color: '#BB8FCE', fontSize: s.fontSize * 0.85 });
 
-    // Ca2+ : n = 3 - 3x  (rouge)
-    drawSpeciesLine(s, 3, -3, 2.6 / 3 > 1 ? 1 : 2.6 / 3, { color: '#FF6B6B', lineWidth: 2 });
+    // Ca2+ : n = 3 - 3x  (rouge) — الخط كيوصل بالضبط لـ x=1 (وين كيبان n=0،
+    // هو اللي كيحدد xmax لأن Ca2+ هو المتفاعل المحد). كانت فيها bug قبل
+    // (كانت كتوقف عند 0.867 عوض 1) واللي كان خالي الخط ماكيوصلش لنقطة الصفر.
+    drawSpeciesLine(s, 3, -3, 1, { color: '#FF6B6B', lineWidth: 2 });
     SvgUtils.drawNote(s, 'n(Ca²⁺) = 3 - 3x', 0.15, 3.3, { color: '#FF6B6B', fontSize: s.fontSize * 0.85 });
 
     // PO4^3- : n = 4 - 2x (bleu)

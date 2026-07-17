@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 6 - Concentration et solutions électrolytiques | Xpert</title>
+    <title>Exercice 6 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
     
     <style>
-        /* ====== Mêmes styles que exercice1.html ====== */
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
         .nav-logo-text { font-size: 14px; }
@@ -197,11 +196,39 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-        .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .prev-btn:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -221,6 +248,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -434,73 +462,163 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-code-branch" style="color:#F4D03F;"></i> Exercice 6</h1>
+            <h1 class="lesson-title"><i class="fas fa-atom" style="color:#F4D03F;"></i> Exercice 6</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Mélange de solutions - Concentrations ioniques</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Solutions électrolytiques - Conductivité et concentration</span>
                 <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On dispose de trois solutions :
+                </p>
+                <ul style="font-size:11px; padding-right:18px;">
+                    <li><strong>Solution 1 :</strong> \(\text{NaCl}\) de concentration \(C_1\)</li>
+                    <li><strong>Solution 2 :</strong> \(\text{KCl}\) de concentration \(C_2\)</li>
+                    <li><strong>Solution 3 :</strong> \(\text{NaNO}_3\) de concentration \(C_3\)</li>
+                </ul>
+                <p style="color:var(--text-muted); font-size:11px; margin:8px 0;">
+                    On mesure les conductivités suivantes :
+                </p>
+                <div class="table-wrap">
+                    <table>
+                        <tr>
+                            <th>Solution</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                        </tr>
+                        <tr>
+                            <td>\(\sigma\) (mS/m)</td>
+                            <td>1,54</td>
+                            <td>1,87</td>
+                            <td>1,52</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin:8px 0;">
+                    <strong>Données (\(\times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)) :</strong> 
+                    \(\lambda(\text{Na}^+) = 5,01\), 
+                    \(\lambda(\text{K}^+) = 7,35\), 
+                    \(\lambda(\text{Cl}^-) = 7,63\), 
+                    \(\lambda(\text{NO}_3^-) = 7,14\)
+                </div>
 
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Donner les formules des ions suivants : sulfate, carbonate, phosphate, nitrate.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Sachant que les trois solutions ont la même concentration, déterminer cette concentration.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <ul style="font-size:12px;">
-                                <li>Sulfate : \(\text{SO}_4^{2-}\)</li>
-                                <li>Carbonate : \(\text{CO}_3^{2-}\)</li>
-                                <li>Phosphate : \(\text{PO}_4^{3-}\)</li>
-                                <li>Nitrate : \(\text{NO}_3^-\)</li>
-                            </ul>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Pour \(\text{NaCl}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma_1 = (\lambda_{\text{Na}^+} + \lambda_{\text{Cl}^-}) \times C$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                \(\sigma_1 = (5,01 + 7,63) \times 10^{-3} \times C = 12,64 \times 10^{-3} \times C\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C = \frac{1,54 \times 10^{-3}}{12,64 \times 10^{-3}} = 0,122\text{ mol/m}^3$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Conversion en mol/L :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C = 1,22 \times 10^{-4}\text{ mol/L}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$C \approx 1,2 \times 10^{-4}\text{ mol/L}$$
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Donner les formules statistiques des composés suivants :</p>
-                    <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                        <li>a) Chlorure d'Aluminium</li>
-                        <li>b) Nitrate de fer II</li>
-                        <li>c) Sulfate de potassium</li>
-                        <li>d) Hydroxyde de sodium</li>
-                    </ul>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Vérifier la cohérence des mesures de la solution 2.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <ul style="font-size:12px;">
-                                <li>a) Chlorure d'Aluminium : \(\text{AlCl}_3\)</li>
-                                <li>b) Nitrate de fer II : \(\text{Fe(NO}_3\text{)}_2\)</li>
-                                <li>c) Sulfate de potassium : \(\text{K}_2\text{SO}_4\)</li>
-                                <li>d) Hydroxyde de sodium : \(\text{NaOH}\)</li>
-                            </ul>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Pour \(\text{KCl}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma_{2,th} = (\lambda_{\text{K}^+} + \lambda_{\text{Cl}^-}) \times C$$
+                                    $$= (7,35 + 7,63) \times 10^{-3} \times 0,122$$
+                                    $$= 14,98 \times 10^{-3} \times 0,122 = 1,83 \times 10^{-3}\text{ S/m} = 1,83\text{ mS/m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Comparaison :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma_{2,exp} = 1,87\text{ mS/m} \quad ; \quad \sigma_{2,th} = 1,83\text{ mS/m}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>Les deux valeurs sont très proches. La mesure est cohérente.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire les réactions de dissolution des composés ioniques suivants : \(\text{Na}_2\text{SO}_4\) et \(\text{Cu(NO}_3\text{)}_2\).</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        En déduire la conductivité théorique de la solution 3.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">\(\text{Na}_2\text{SO}_4\) :</span> 
+                                <span class="step-num">Étape 1 :</span> 
+                                Pour \(\text{NaNO}_3\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{Na}_2\text{SO}_4 \xrightarrow{eau} 2\text{Na}^+ + \text{SO}_4^{2-}$$
+                                    $$\sigma_{3,th} = (\lambda_{\text{Na}^+} + \lambda_{\text{NO}_3^-}) \times C$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">\(\text{Cu(NO}_3\text{)}_2\) :</span> 
+                                <span class="step-num">Étape 2 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{Cu(NO}_3\text{)}_2 \xrightarrow{eau} \text{Cu}^{2+} + 2\text{NO}_3^-$$
+                                    $$\sigma_{3,th} = (5,01 + 7,14) \times 10^{-3} \times 0,122$$
+                                    $$= 12,15 \times 10^{-3} \times 0,122 = 1,48 \times 10^{-3}\text{ S/m} = 1,48\text{ mS/m}$$
                                 </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Comparaison avec la valeur expérimentale :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma_{3,exp} = 1,52\text{ mS/m} \quad ; \quad \sigma_{3,th} = 1,48\text{ mS/m}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\sigma_{3,th} = 1,48\text{ mS/m}$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">La valeur expérimentale (1,52 mS/m) est proche de la valeur théorique.</p>
                             </div>
                         </div>
                     </div>
@@ -509,101 +627,26 @@
                 <div class="sub-question">
                     <div class="letter">4)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        On mélange \(V_1 = 50\text{ mL}\) d'une solution de \(\text{Na}_2\text{SO}_4\) à concentration \(C_1 = 0,1\text{ mol/L}\) avec un volume \(V_2 = 100\text{ mL}\) d'une solution \(\text{CuSO}_4\) à concentration \(C_2 = 5 \times 10^{-2}\text{ mol/L}\). Déterminer la concentration des différents ions présents dans le mélange.
+                        Proposer une explication à la différence entre les valeurs théoriques et expérimentales de la solution 3.
                     </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
                     <div id="sol4" class="solution-box">
-                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#F4D03F; margin-bottom:6px;">1) Équations de dissolution</p>
-
-                            <div class="step">
-                                <span class="step-num">\(\text{Na}_2\text{SO}_4\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{Na}_2\text{SO}_4 \longrightarrow 2\text{Na}^+ + \text{SO}_4^{2-}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">\(\text{CuSO}_4\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\text{CuSO}_4 \longrightarrow \text{Cu}^{2+} + \text{SO}_4^{2-}$$
-                                </div>
-                            </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">2) Calcul des quantités de matière</p>
-
-                            <div class="step">
-                                <span class="step-num">Ions \(\text{Na}^+\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n(\text{Na}^+) = 2 \times C_1 \times V_1 = 2 \times 0,1 \times 50 \times 10^{-3} = 1,0 \times 10^{-2}\text{ mol}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Ions \(\text{SO}_4^{2-}\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n(\text{SO}_4^{2-}) = C_1 \times V_1 + C_2 \times V_2$$
-                                </div>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$= 0,1 \times 50 \times 10^{-3} + 5 \times 10^{-2} \times 100 \times 10^{-3} = 5 \times 10^{-3} + 5 \times 10^{-3} = 1,0 \times 10^{-2}\text{ mol}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Ions \(\text{Cu}^{2+}\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n(\text{Cu}^{2+}) = C_2 \times V_2 = 5 \times 10^{-2} \times 100 \times 10^{-3} = 5,0 \times 10^{-3}\text{ mol}$$
-                                </div>
-                            </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">3) Volume total</p>
-
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$V_{\text{total}} = V_1 + V_2 = 50 + 100 = 150\text{ mL} = 0,150\text{ L}$$
-                                </div>
-                            </div>
-
-                            <p style="font-weight:600; color:#F4D03F; margin-top:10px; margin-bottom:6px;">4) Concentrations finales</p>
-
-                            <div class="step">
-                                <span class="step-num">\([\text{Na}^+]\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Na}^+] = \frac{1,0 \times 10^{-2}}{0,150} = 6,7 \times 10^{-2}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">\([\text{SO}_4^{2-}]\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{SO}_4^{2-}] = \frac{1,0 \times 10^{-2}}{0,150} = 6,7 \times 10^{-2}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">\([\text{Cu}^{2+}]\) :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Cu}^{2+}] = \frac{5,0 \times 10^{-3}}{0,150} = 3,3 \times 10^{-2}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="highlight-box green" style="margin-top:8px;">
-                                <span class="label resume">Résultats</span>
-                                <ul style="font-size:12px;">
-                                    <li>\([\text{Na}^+] = 6,7 \times 10^{-2}\text{ mol/L}\)</li>
-                                    <li>\([\text{SO}_4^{2-}] = 6,7 \times 10^{-2}\text{ mol/L}\)</li>
-                                    <li>\([\text{Cu}^{2+}] = 3,3 \times 10^{-2}\text{ mol/L}\)</li>
+                                Analyse des écarts :
+                                <ul style="font-size:11px; padding-right:18px;">
+                                    <li>Les conductivités molaires ioniques varient légèrement avec la concentration</li>
+                                    <li>Les ions \(\text{NO}_3^-\) peuvent interagir avec les ions \(\text{Na}^+\)</li>
+                                    <li>Erreurs expérimentales</li>
+                                    <li>La température peut influencer les mesures</li>
+                                    <li>Présence d'impuretés</li>
                                 </ul>
                             </div>
-
-                            <div class="highlight-box yellow" style="margin-top:8px;">
-                                <span class="label rappel">Méthode</span>
-                                <p style="font-size:11px;">
-                                    Pour un mélange de solutions, on calcule d'abord les quantités de matière de chaque ion provenant de chaque solution, puis on divise par le volume total.
-                                </p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>La différence est faible et peut être attribuée aux conditions expérimentales et aux approximations.</p>
                             </div>
                         </div>
                     </div>
