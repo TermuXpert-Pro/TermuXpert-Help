@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 1 - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
+    <title>Exercice 1 - Conductivité d'une solution de KCl | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -210,7 +210,7 @@
             background: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
-            max-width: 350px;
+            max-width: 500px;
             margin: 0 auto;
         }
         .table-wrap th {
@@ -229,8 +229,6 @@
             color: var(--text-secondary);
             font-size: 11px;
         }
-        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
-        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -250,6 +248,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -297,167 +296,144 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-    <!-- الشعار -->
-    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
-        <div class="nav-logo-icon">X</div>
-        <div class="nav-logo-text"><span>X</span>pert</div>
-    </a>
+        <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+            <div class="nav-logo-icon">X</div>
+            <div class="nav-logo-text"><span>X</span>pert</div>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </nav>
 
-    <!-- أيقونة القائمة الجانبية -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="menu-icon">
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-            <span class="menu-line"></span>
-        </span>
-    </button>
-</nav>
-
-<!-- ====== القائمة الجانبية (Sidebar) ====== -->
-<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
-    
-    <!-- ====== خلفية زليج مبسطة ====== -->
-    <div class="sidebar-bg-pattern" aria-hidden="true">
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-                    <rect width="80" height="80" fill="none"/>
-                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
-                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
-                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
-                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
-                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
-                </pattern>
-            </defs>
-            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
-        </svg>
-    </div>
-    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
-    <div class="sidebar-math-bg" aria-hidden="true">
-        <span class="math-symbol">∫</span>
-        <span class="math-symbol">π</span>
-        <span class="math-symbol">√</span>
-        <span class="math-symbol">∑</span>
-        <span class="math-symbol">Δ</span>
-        <span class="math-symbol">∞</span>
-        <span class="math-symbol">x²</span>
-        <span class="math-symbol">sinθ</span>
-    </div>
-
-    <div class="sidebar-glow sidebar-glow-1"></div>
-    <div class="sidebar-glow sidebar-glow-2"></div>
-
-    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
-    <div class="sidebar-scroll">
-
-    <!-- ====== القسم 1: Profil (بسيط) ====== -->
-    <div class="sidebar-section sidebar-section-profile">
-        <div class="profile-simple">
-            <img src="../../../../../assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
+    <!-- ====== القائمة الجانبية (Sidebar) ====== -->
+    <div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+        <div class="sidebar-bg-pattern" aria-hidden="true">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                        <rect width="80" height="80" fill="none"/>
+                        <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                        <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                        <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                        <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                        <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                        <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                        <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                        <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                        <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+            </svg>
         </div>
-    </div>
+        <div class="sidebar-math-bg" aria-hidden="true">
+            <span class="math-symbol">∫</span>
+            <span class="math-symbol">π</span>
+            <span class="math-symbol">√</span>
+            <span class="math-symbol">∑</span>
+            <span class="math-symbol">Δ</span>
+            <span class="math-symbol">∞</span>
+            <span class="math-symbol">x²</span>
+            <span class="math-symbol">sinθ</span>
+        </div>
+        <div class="sidebar-glow sidebar-glow-1"></div>
+        <div class="sidebar-glow sidebar-glow-2"></div>
 
-    <!-- ====== القسم 2: Navigation principale ====== -->
-    <div class="sidebar-section sidebar-section-nav">
-        <nav class="sidebar-nav">
-            <ul class="sidebar-menu">
-                <li>
-                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
-                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
-                        <span class="sidebar-link-text">Accueil</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+        <div class="sidebar-scroll">
+            <div class="sidebar-section sidebar-section-profile">
+                <div class="profile-simple">
+                    <img src="../../../../../assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
+                </div>
+            </div>
+
+            <div class="sidebar-section sidebar-section-nav">
+                <nav class="sidebar-nav">
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                                <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                                <span class="sidebar-link-text">Accueil</span>
+                                <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                                <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                                <span class="sidebar-link-text">Matières</span>
+                                <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                                <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                                <span class="sidebar-link-text">Calendrier</span>
+                                <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                                <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                                <span class="sidebar-link-text">À propos</span>
+                                <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="sidebar-section sidebar-section-subjects">
+                <div class="sidebar-subjects-header">
+                    <span class="sidebar-subjects-label">📚 Mes matières</span>
+                    <span class="sidebar-subjects-count">3</span>
+                </div>
+                <div class="sidebar-subjects-grid">
+                    <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                        <div class="subject-card-icon"><i class="fas fa-calculator"></i></div>
+                        <div class="subject-card-info">
+                            <span class="subject-card-name">Mathématiques</span>
+                            <span class="subject-card-count">11 cours</span>
+                        </div>
                     </a>
-                </li>
-                <li>
-                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
-                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
-                        <span class="sidebar-link-text">Matières</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                        <div class="subject-card-icon"><i class="fas fa-atom"></i></div>
+                        <div class="subject-card-info">
+                            <span class="subject-card-name">Physique</span>
+                            <span class="subject-card-count">13 cours</span>
+                        </div>
                     </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                        <div class="subject-card-icon"><i class="fas fa-flask"></i></div>
+                        <div class="subject-card-info">
+                            <span class="subject-card-name">Chimie</span>
+                            <span class="subject-card-count">12 cours</span>
+                        </div>
                     </a>
-                </li>
-                <li>
-                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
-                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
-                        <span class="sidebar-link-text">À propos</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- ====== القسم 3: Matières ====== -->
-    <div class="sidebar-section sidebar-section-subjects">
-        <div class="sidebar-subjects-header">
-            <span class="sidebar-subjects-label">📚 Mes matières</span>
-            <span class="sidebar-subjects-count">3</span>
+                </div>
+            </div>
         </div>
-        <div class="sidebar-subjects-grid">
-            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
-                <div class="subject-card-icon">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <div class="subject-card-info">
-                    <span class="subject-card-name">Mathématiques</span>
-                    <span class="subject-card-count">11 cours</span>
-                </div>
-            </a>
-            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
-                <div class="subject-card-icon">
-                    <i class="fas fa-atom"></i>
-                </div>
-                <div class="subject-card-info">
-                    <span class="subject-card-name">Physique</span>
-                    <span class="subject-card-count">13 cours</span>
-                </div>
-            </a>
-            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
-                <div class="subject-card-icon">
-                    <i class="fas fa-flask"></i>
-                </div>
-                <div class="subject-card-info">
-                    <span class="subject-card-name">Chimie</span>
-                    <span class="subject-card-count">12 cours</span>
-                </div>
-            </a>
+
+        <div class="sidebar-section sidebar-section-legal">
+            <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+                <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+                <span style="color:var(--text-muted);opacity:0.4;">•</span>
+                <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+                <span style="color:var(--text-muted);opacity:0.4;">•</span>
+                <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-footer-content">
+                <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+            </div>
         </div>
     </div>
 
-    </div>
-    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
-
-    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
-    <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-        </div>
-    </div>
-
-    <!-- ====== Footer ====== -->
-    <div class="sidebar-footer">
-        <div class="sidebar-footer-content">
-            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
-        </div>
-    </div>
-</div>
-
-<!-- ====== Overlay ====== -->
-<div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
@@ -465,103 +441,51 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-bolt" style="color:#F4D03F;"></i> Exercice 1</h1>
             <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Conductivité d'une solution - QCM et calculs</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Conductivité d'une solution de KCl</span>
                 <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
             </p>
 
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
 
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    La mesure de la conductivité d'une solution de chlorure de potassium \(\text{KCl}\) de concentration \(C\) donne \(\sigma = 1,224\text{ mS.cm}^{-1}\) à 21°C.
+                </p>
+
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
                     <strong>Données :</strong> 
-                    \(\lambda_{\text{Na}^+} = 5,01 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
-                    \(\lambda_{\text{Cl}^-} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
-                    \(\lambda_{\text{K}^+} = 7,35 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
-                    \(\lambda_{\text{NO}_3^-} = 7,14 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)
+                    \(\lambda_{\text{Cl}^-} = 7,63\text{ mS.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{K}^+} = 7,35\text{ mS.m}^2.\text{mol}^{-1}\)
                 </div>
-                
+
                 <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Choisir la (ou les) bonne(s) réponse(s) :
-                    </p>
-                    <ul style="font-size:11px; padding-right:18px; margin:4px 0;">
-                        <li><strong>a.</strong> La conductivité d'une solution ionique s'exprime en S.m².mol⁻¹</li>
-                        <li><strong>b.</strong> La conductivité d'une solution ionique est proportionnelle à la concentration des ions</li>
-                        <li><strong>c.</strong> La conductivité molaire ionique d'un ion dépend de sa charge</li>
-                        <li><strong>d.</strong> L'unité de la conductivité molaire ionique est S.m².mol⁻¹</li>
-                    </ul>
+                    <p style="font-size:11.5px; margin:4px 0;">Exprimer \(\sigma\) la conductivité en \(\text{S.m}^{-1}\).</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                Analyse des affirmations :
-                            </div>
-                            <div class="step">
-                                <span class="step-num">a.</span> 
-                                <span style="color:#FF6B6B;">❌ Faux.</span> La conductivité s'exprime en S/m (ou S.cm⁻¹).
-                            </div>
-                            <div class="step">
-                                <span class="step-num">b.</span> 
-                                <span style="color:#4ECDC4;">✅ Vrai.</span> \(\sigma = \sum \lambda_i \times [X_i]\)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">c.</span> 
-                                <span style="color:#4ECDC4;">✅ Vrai.</span> La conductivité molaire ionique dépend de la charge et de la mobilité de l'ion.
-                            </div>
-                            <div class="step">
-                                <span class="step-num">d.</span> 
-                                <span style="color:#4ECDC4;">✅ Vrai.</span> L'unité de \(\lambda\) est S.m².mol⁻¹.
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Réponses correctes</span>
-                                <p><strong>b, c et d</strong> sont correctes.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Calculer la conductivité d'une solution de chlorure de sodium \(\text{NaCl}\) de concentration \(C = 0,010\text{ mol/L}\).
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
-                    <div id="sol2" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                \(\text{NaCl} \longrightarrow \text{Na}^+ + \text{Cl}^-\)
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Na}^+] = [\text{Cl}^-] = C = 0,010\text{ mol/L} = 10\text{ mol/m}^3$$
-                                </div>
+                                \(\sigma = 1,224\text{ mS.cm}^{-1}\)
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
+                                Conversion des unités :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = \lambda_{\text{Na}^+} \times [\text{Na}^+] + \lambda_{\text{Cl}^-} \times [\text{Cl}^-]$$
+                                    $$1\text{ mS} = 10^{-3}\text{ S} \quad \text{et} \quad 1\text{ cm} = 10^{-2}\text{ m}$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = (5,01 + 7,63) \times 10^{-3} \times 10$$
-                                    $$= 12,64 \times 10^{-3} \times 10 = 0,126\text{ S/m}$$
+                                    $$\sigma = 1,224 \times 10^{-3} \times (10^{-2})^{-1} = 1,224 \times 10^{-1}\text{ S.m}^{-1}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Résultat</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$\sigma = 0,126\text{ S/m}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box yellow" style="margin-top:6px;">
-                                <span class="label rappel">Formule à retenir</span>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = \sum_i \lambda_i \times [X_i]$$
+                                    $$\sigma = 1,224 \times 10^{-1}\text{ S.m}^{-1}$$
                                 </div>
                             </div>
                         </div>
@@ -569,9 +493,30 @@
                 </div>
 
                 <div class="sub-question">
-                    <div class="letter">3)</div>
+                    <div class="letter">2.1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Que représente la lettre \(\lambda\) ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Réponse :</span> 
+                                La lettre \(\lambda\) représente la <strong>conductivité molaire ionique</strong> des ions.
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Définition</span>
+                                <p style="font-size:11px; color:var(--text-secondary);">
+                                    La conductivité molaire ionique \(\lambda_i\) est la contribution d'un ion \(i\) à la conductivité de la solution. Elle dépend de la nature de l'ion, de sa charge et de sa mobilité.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2.2)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        Une solution de nitrate de potassium \(\text{KNO}_3\) a la même conductivité que la solution précédente. Quelle est sa concentration ?
+                        Donner les valeurs de \(\lambda_{\text{Cl}^-}\) et \(\lambda_{\text{K}^+}\) en \(\text{S.m}^2.\text{mol}^{-1}\).
                     </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
                     <div id="sol3" class="solution-box">
@@ -579,36 +524,83 @@
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étape 1 :</span> 
-                                \(\text{KNO}_3 \longrightarrow \text{K}^+ + \text{NO}_3^-\)
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{K}^+] = [\text{NO}_3^-] = C'$$
+                                    $$\lambda_{\text{Cl}^-} = 7,63\text{ mS.m}^2.\text{mol}^{-1} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 2 :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = (\lambda_{\text{K}^+} + \lambda_{\text{NO}_3^-}) \times C'$$
+                                    $$\lambda_{\text{K}^+} = 7,35\text{ mS.m}^2.\text{mol}^{-1} = 7,35 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\lambda_{\text{Cl}^-} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                    $$\lambda_{\text{K}^+} = 7,35 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2.3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire la concentration \(C\) en \(\text{mol.L}^{-1}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Équation de dissolution :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\text{KCl} \xrightarrow{H_2O} \text{K}^+ + \text{Cl}^-$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                La dissolution est totale, donc :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$[\text{K}^+] = [\text{Cl}^-] = C$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 3 :</span> 
-                                \(C' = \dfrac{\sigma}{\lambda_{\text{K}^+} + \lambda_{\text{NO}_3^-}}\)
+                                Expression de la conductivité :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C' = \frac{0,126}{(7,35 + 7,14) \times 10^{-3}} = \frac{0,126}{14,49 \times 10^{-3}} = 8,70\text{ mol/m}^3$$
+                                    $$\sigma = \lambda_{\text{K}^+} \times [\text{K}^+] + \lambda_{\text{Cl}^-} \times [\text{Cl}^-]$$
+                                    $$\sigma = (\lambda_{\text{K}^+} + \lambda_{\text{Cl}^-}) \times C$$
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Étape 4 :</span> 
-                                Conversion en mol/L :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C' = 8,70 \times 10^{-3}\text{ mol/L}$$
+                                    $$C = \frac{\sigma}{\lambda_{\text{K}^+} + \lambda_{\text{Cl}^-}}$$
+                                    $$C = \frac{1,224 \times 10^{-1}}{(7,35 + 7,63) \times 10^{-3}}$$
+                                    $$C = \frac{1,224 \times 10^{-1}}{14,98 \times 10^{-3}} = 8,17\text{ mol.m}^{-3}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 5 :</span> 
+                                Conversion en \(\text{mol.L}^{-1}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$1\text{ m}^3 = 10^3\text{ L} \quad \Rightarrow \quad C = 8,17 \times 10^{-3}\text{ mol.L}^{-1}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Résultat</span>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
-                                    $$C' = 8,70 \times 10^{-3}\text{ mol/L}$$
+                                    $$C = 8,17 \times 10^{-3}\text{ mol.L}^{-1}$$
                                 </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Formule à retenir</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma = \sum_i \lambda_i \times [X_i]$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">La conductivité d'une solution est la somme des contributions de chaque ion.</p>
                             </div>
                         </div>
                     </div>
@@ -623,16 +615,16 @@
     </div>
 
     <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
+        <div class="divider"></div>
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+    </footer>
 
     <script>
         window.addEventListener('scroll', function() {

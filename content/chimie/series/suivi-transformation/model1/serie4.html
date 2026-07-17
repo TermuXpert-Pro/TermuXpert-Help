@@ -13,7 +13,7 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Série 4 - Concentration et solutions électrolytiques | Xpert</title>
+    <title>Série 4 - Suivi d'une transformation chimique | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,8 +167,8 @@
             background: rgba(244, 208, 63, 0.1);
         }
         .nav-buttons { margin-top: 14px; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; border: none; }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .prev-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; border: none; }
+        .prev-btn:hover { transform: translateX(-4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
         .serie-title {
             text-align: center;
             color: var(--text-muted);
@@ -431,154 +431,135 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-flask" style="color:#F4D03F;"></i> Série 4 - Concentration et solutions électrolytiques</h1>
-            <div class="serie-title">Exercices <span>10 à 13</span> : Conductimétrie - Dosage - Applications</div>
+            <h1 class="lesson-title"><i class="fas fa-industry" style="color:#F4D03F;"></i> Série 4 - Suivi d'une transformation chimique</h1>
+            <div class="serie-title">Exercices <span>11 à 14</span> : Applications industrielles - Synthèse</div>
 
             <!-- ============================================================ -->
-            <!-- EXERCICE 10 : Conductimétrie d'une solution -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">10</span> Conductimétrie d'une solution de chlorure de sodium</h2>
-                
-                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
-                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Conductimétrie</span>
-                    <span class="badge-difficulty badge-moyen">Moyen</span>
-                </div>
-                
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une solution de chlorure de sodium \(\text{NaCl}\) de concentration \(C = 0,010\text{ mol/L}\) a une conductivité \(\sigma = 0,120\text{ S/m}\) à \(25^\circ\text{C}\).
-                </p>
-
-                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
-                    <strong>Données :</strong> 
-                    \(\lambda_{\text{Na}^+} = 5,01 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
-                    \(\lambda_{\text{Cl}^-} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Rappeler l'expression de la conductivité d'une solution en fonction des concentrations et des conductivités molaires ioniques.
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_1')">Voir la solution</button>
-                    <div id="sol10_1" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = \sum_i \lambda_i \times [X_i]$$
-                                </div>
-                                <p style="font-size:11px; color:var(--text-muted);">
-                                    où \(\lambda_i\) est la conductivité molaire ionique de l'ion \(X_i\) et \([X_i]\) sa concentration.
-                                </p>
-                            </div>
-                            <div class="highlight-box yellow" style="margin-top:6px;">
-                                <span class="label rappel">Formule à retenir</span>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = \sum_i \lambda_i \times [X_i]$$
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Vérifier que la valeur de la conductivité mesurée est cohérente avec les données.
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10_2')">Voir la solution</button>
-                    <div id="sol10_2" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                \(\text{NaCl} \longrightarrow \text{Na}^+ + \text{Cl}^-\)
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Na}^+] = [\text{Cl}^-] = C = 0,010\text{ mol/L} = 10\text{ mol/m}^3$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = \lambda_{\text{Na}^+} \times [\text{Na}^+] + \lambda_{\text{Cl}^-} \times [\text{Cl}^-]$$
-                                    $$= (5,01 + 7,63) \times 10^{-3} \times 10$$
-                                    $$= 12,64 \times 10^{-3} \times 10 = 0,126\text{ S/m}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p style="font-size:11px;">
-                                    La valeur calculée \(\sigma = 0,126\text{ S/m}\) est très proche de la valeur mesurée \(0,120\text{ S/m}\). L'écart est dû aux approximations.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- EXERCICE 11 : Dosage conductimétrique -->
+            <!-- EXERCICE 11 : Pyrite de cuivre -->
             <!-- ============================================================ -->
             <div class="section">
-                <h2><span class="num">11</span> Dosage conductimétrique</h2>
+                <h2><span class="num">11</span> Traitement de la pyrite de cuivre</h2>
                 
                 <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
-                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Dosage</span>
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Industrie</span>
                     <span class="badge-difficulty badge-difficile">Difficile</span>
                 </div>
                 
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On dose un volume \(V_A = 20,0\text{ mL}\) d'une solution d'acide chlorhydrique \(\text{HCl}\) de concentration inconnue \(C_A\) par une solution d'hydroxyde de sodium \(\text{NaOH}\) de concentration \(C_B = 0,10\text{ mol/L}\). L'équivalence est atteinte pour un volume versé \(V_{BE} = 15,0\text{ mL}\).
+                    Le minerai de cuivre, une pyrite de formule CuS, est d'abord grillé dans un grand four rotatif :
+                </p>
+                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                    $$2\text{CuS} + 3\text{O}_2 \longrightarrow 2\text{CuO} + 2\text{SO}_2$$
+                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    L'oxyde de cuivre II récupéré est ensuite réduit par du carbone :
+                </p>
+                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                    $$2\text{CuO} + \text{C} \longrightarrow 2\text{Cu} + \text{CO}_2$$
+                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    L'étape intermédiaire a fourni \(50\text{ kg}\) d'oxyde de cuivre II.
                 </p>
 
                 <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
-                    <strong>Rappel :</strong> \(\text{HCl} + \text{NaOH} \longrightarrow \text{NaCl} + \text{H}_2\text{O}\)
+                    <strong>Données :</strong> 
+                    \(M_{Cu} = 63,5\text{ g/mol}\), \(M_O = 16\text{ g/mol}\), \(M_S = 32\text{ g/mol}\), \(V_m = 24,0\text{ L/mol}\)
                 </div>
 
-                <div class="sub-question">
+                <div class="sub-question" style="margin-top:6px;">
                     <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction de dosage.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Établir le tableau d'avancement de la réaction de réduction (\(2\text{CuO} + \text{C} \rightarrow 2\text{Cu} + \text{CO}_2\)). Le carbone est en excès. Déterminer l'avancement maximal.
+                    </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_1')">Voir la solution</button>
                     <div id="sol11_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$\text{HCl} + \text{NaOH} \longrightarrow \text{NaCl} + \text{H}_2\text{O}$$
+                            <div class="step">
+                                <span class="step-num">Masse molaire de CuO :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{CuO}) = 63,5 + 16 = 79,5\text{ g/mol}$$
+                                </div>
                             </div>
-                            <p style="color:var(--text-muted); font-size:11px;">
-                                Il s'agit d'une réaction acido-basique.
-                            </p>
+                            <div class="step">
+                                <span class="step-num">Quantité de CuO :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{CuO}) = \frac{50 \times 10^3}{79,5} = 629\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Tableau d'avancement :</span>
+                                <div class="table-wrap">
+                                    <table>
+                                        <tr>
+                                            <th>Équation</th>
+                                            <th>\(2\text{CuO}\)</th>
+                                            <th>+</th>
+                                            <th>\(\text{C}\)</th>
+                                            <th>→</th>
+                                            <th>\(2\text{Cu}\)</th>
+                                            <th>+</th>
+                                            <th>\(\text{CO}_2\)</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État initial</strong></td>
+                                            <td>629</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>0</td>
+                                            <td></td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État final</strong></td>
+                                            <td>\(629 - 2x_f\)</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>\(2x_f\)</td>
+                                            <td></td>
+                                            <td>\(x_f\)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">
+                                    \(x_f = \frac{629}{2} = 314,5\text{ mol}\)
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$x_{max} = 314,5\text{ mol}$$
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="sub-question">
                     <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la concentration \(C_A\) de la solution d'acide chlorhydrique.</p>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle masse de cuivre peut-on théoriquement obtenir ?</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_2')">Voir la solution</button>
                     <div id="sol11_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                À l'équivalence, les quantités de matière des réactifs sont égales :
+                                <span class="step-num">Quantité de Cu :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n_A = n_B \quad \Rightarrow \quad C_A \times V_A = C_B \times V_{BE}$$
+                                    $$n(\text{Cu}) = 2x_f = 2 \times 314,5 = 629\text{ mol}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">Masse de Cu :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_A = \frac{C_B \times V_{BE}}{V_A} = \frac{0,10 \times 15,0}{20,0} = 0,075\text{ mol/L}$$
+                                    $$m(\text{Cu}) = 629 \times 63,5 = 39,9 \times 10^3\text{ g} = 39,9\text{ kg}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(C_A = 7,5 \times 10^{-2}\text{ mol/L}\)</p>
-                            <div class="highlight-box yellow" style="margin-top:6px;">
-                                <span class="label rappel">À l'équivalence</span>
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_A \times V_A = C_B \times V_{BE}$$
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{Cu}) = 39,9\text{ kg}$$
                                 </div>
                             </div>
                         </div>
@@ -587,260 +568,29 @@
 
                 <div class="sub-question">
                     <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Quelle est la concentration des ions \(\text{Na}^+\) et \(\text{Cl}^-\) dans le bécher à l'équivalence ? (On considère que le volume total est \(V_T = V_A + V_{BE}\))
-                    </p>
+                    <p style="font-size:11.5px; margin:4px 0;">Quel volume de dioxyde de carbone obtient-on ?</p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_3')">Voir la solution</button>
                     <div id="sol11_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                \(V_T = V_A + V_{BE} = 20,0 + 15,0 = 35,0\text{ mL} = 0,0350\text{ L}\)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Quantité de matière de \(\text{Na}^+\) :
+                                <span class="step-num">Quantité de CO₂ :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n(\text{Na}^+) = C_B \times V_{BE} = 0,10 \times 0,0150 = 1,50 \times 10^{-3}\text{ mol}$$
+                                    $$n(\text{CO}_2) = x_f = 314,5\text{ mol}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Quantité de matière de \(\text{Cl}^-\) :
+                                <span class="step-num">Volume de CO₂ :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n(\text{Cl}^-) = C_A \times V_A = 0,075 \times 0,0200 = 1,50 \times 10^{-3}\text{ mol}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Na}^+] = [\text{Cl}^-] = \frac{1,50 \times 10^{-3}}{0,0350} = 4,29 \times 10^{-2}\text{ mol/L}$$
+                                    $$V(\text{CO}_2) = 314,5 \times 24,0 = 7,55 \times 10^3\text{ L}$$
                                 </div>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <ul style="font-size:12px;">
-                                    <li>\([\text{Na}^+] = 4,29 \times 10^{-2}\text{ mol/L}\)</li>
-                                    <li>\([\text{Cl}^-] = 4,29 \times 10^{-2}\text{ mol/L}\)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- EXERCICE 12 : Eau minérale -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">12</span> Analyse d'une eau minérale</h2>
-                
-                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
-                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Analyse d'eau</span>
-                    <span class="badge-difficulty badge-moyen">Moyen</span>
-                </div>
-                
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Une eau minérale contient les ions suivants :
-                </p>
-                
-                <div class="table-wrap">
-                    <table>
-                        <tr>
-                            <th>Ion</th>
-                            <th>\(\text{Ca}^{2+}\)</th>
-                            <th>\(\text{Mg}^{2+}\)</th>
-                            <th>\(\text{Na}^+\)</th>
-                            <th>\(\text{HCO}_3^-\)</th>
-                            <th>\(\text{SO}_4^{2-}\)</th>
-                            <th>\(\text{Cl}^-\)</th>
-                        </tr>
-                        <tr>
-                            <td>Concentration (mmol/L)</td>
-                            <td>2,0</td>
-                            <td>1,5</td>
-                            <td>0,5</td>
-                            <td>5,0</td>
-                            <td>1,0</td>
-                            <td>0,5</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Vérifier que la solution est électriquement neutre (les charges positives sont égales aux charges négatives).
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_1')">Voir la solution</button>
-                    <div id="sol12_1" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Calcul des charges positives (en mmol/L) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$Q_+ = 2 \times [\text{Ca}^{2+}] + 2 \times [\text{Mg}^{2+}] + 1 \times [\text{Na}^+]$$
-                                    $$= 2 \times 2,0 + 2 \times 1,5 + 1 \times 0,5 = 4,0 + 3,0 + 0,5 = 7,5$$
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$V(\text{CO}_2) = 7,55 \times 10^3\text{ L}$$
                                 </div>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Calcul des charges négatives (en mmol/L) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$Q_- = 1 \times [\text{HCO}_3^-] + 2 \times [\text{SO}_4^{2-}] + 1 \times [\text{Cl}^-]$$
-                                    $$= 1 \times 5,0 + 2 \times 1,0 + 1 \times 0,5 = 5,0 + 2,0 + 0,5 = 7,5$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <p style="font-size:11px; color:#4ECDC4; font-weight:700;">
-                                    \(Q_+ = Q_- = 7,5\) → La solution est électriquement neutre.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Calculer la conductivité de cette eau à partir des conductivités molaires ioniques.
-                    </p>
-                    <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:4px 8px; border-radius:4px; margin:4px 0;">
-                        <strong>Données (\(\times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)) :</strong> 
-                        \(\lambda(\text{Ca}^{2+}) = 11,90\), 
-                        \(\lambda(\text{Mg}^{2+}) = 10,60\), 
-                        \(\lambda(\text{Na}^+) = 5,01\), 
-                        \(\lambda(\text{HCO}_3^-) = 4,46\), 
-                        \(\lambda(\text{SO}_4^{2-}) = 16,00\), 
-                        \(\lambda(\text{Cl}^-) = 7,63\)
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_2')">Voir la solution</button>
-                    <div id="sol12_2" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Convertir les concentrations en mol/m³ :
-                                <div style="font-size:11px; color:var(--text-muted);">
-                                    1 mmol/L = 1 mol/m³
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\sigma = \sum_i \lambda_i \times [X_i]$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Calcul :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0; text-align:left; padding:4px 8px;">
-                                    \(\sigma = (11,90 \times 2,0 + 10,60 \times 1,5 + 5,01 \times 0,5 + 4,46 \times 5,0 + 16,00 \times 1,0 + 7,63 \times 0,5) \times 10^{-3}\)
-                                    <br>
-                                    \(= (23,80 + 15,90 + 2,505 + 22,30 + 16,00 + 3,815) \times 10^{-3}\)
-                                    <br>
-                                    \(= 84,32 \times 10^{-3} = 8,43 \times 10^{-2}\text{ S/m}\)
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(\sigma \approx 8,4 \times 10^{-2}\text{ S/m}\)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- EXERCICE 13 : Synthèse -->
-            <!-- ============================================================ -->
-            <div class="section">
-                <h2><span class="num">13</span> Synthèse - Concentration et solutions électrolytiques</h2>
-                
-                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
-                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Synthèse</span>
-                    <span class="badge-difficulty badge-difficile">Difficile</span>
-                </div>
-                
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On dispose d'une solution \(S_0\) d'acide sulfurique \(\text{H}_2\text{SO}_4\) de concentration \(C_0 = 0,50\text{ mol/L}\).
-                </p>
-
-                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
-                    <strong>Rappels :</strong> 
-                    \(\text{H}_2\text{SO}_4 \longrightarrow 2\text{H}^+ + \text{SO}_4^{2-}\),
-                    \(M_H = 1\text{ g/mol}\), \(M_S = 32\text{ g/mol}\), \(M_O = 16\text{ g/mol}\)
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">1)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Calculer la concentration des ions \(\text{H}^+\) et \(\text{SO}_4^{2-}\) dans \(S_0\).</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_1')">Voir la solution</button>
-                    <div id="sol13_1" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                D'après l'équation de dissolution, 1 mole de \(\text{H}_2\text{SO}_4\) donne 2 moles de \(\text{H}^+\) et 1 mole de \(\text{SO}_4^{2-}\).
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{H}^+] = 2 \times C_0 = 2 \times 0,50 = 1,0\text{ mol/L}$$
-                                    $$[\text{SO}_4^{2-}] = C_0 = 0,50\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <div class="highlight-box green" style="margin-top:6px;">
-                                <span class="label resume">Conclusion</span>
-                                <ul style="font-size:12px;">
-                                    <li>\([\text{H}^+] = 1,0\text{ mol/L}\)</li>
-                                    <li>\([\text{SO}_4^{2-}] = 0,50\text{ mol/L}\)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">2)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        On dilue la solution \(S_0\) pour obtenir 500 mL d'une solution \(S_1\) de concentration \(C_1 = 0,10\text{ mol/L}\). Calculer le volume \(V_0\) de \(S_0\) à prélever.
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_2')">Voir la solution</button>
-                    <div id="sol13_2" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$V_0 = \frac{C_1 \times V_1}{C_0} = \frac{0,10 \times 500}{0,50} = 100\text{ mL}$$
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_0 = 100\text{ mL}\)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sub-question">
-                    <div class="letter">3)</div>
-                    <p style="font-size:11.5px; margin:4px 0;">
-                        Quelle est la concentration des ions \(\text{H}^+\) dans la solution diluée \(S_1\) ?
-                    </p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_3')">Voir la solution</button>
-                    <div id="sol13_3" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                La concentration des ions est également diluée.
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{H}^+]_1 = 2 \times C_1 = 2 \times 0,10 = 0,20\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \([\text{H}^+]_1 = 0,20\text{ mol/L}\)</p>
                         </div>
                     </div>
                 </div>
@@ -848,33 +598,475 @@
                 <div class="sub-question">
                     <div class="letter">4)</div>
                     <p style="font-size:11.5px; margin:4px 0;">
-                        On prélève \(V = 100\text{ mL}\) de la solution \(S_1\). Quelle est la masse d'acide sulfurique correspondante ?
+                        Établir le tableau d'avancement de la réaction de grillage (\(2\text{CuS} + 3\text{O}_2 \rightarrow 2\text{CuO} + 2\text{SO}_2\)). Le dioxygène est en excès. Déterminer la masse de pyrite CuS mise en jeu.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_4')">Voir la solution</button>
+                    <div id="sol11_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Tableau d'avancement :</span>
+                                <div class="table-wrap">
+                                    <table>
+                                        <tr>
+                                            <th>Équation</th>
+                                            <th>\(2\text{CuS}\)</th>
+                                            <th>+</th>
+                                            <th>\(3\text{O}_2\)</th>
+                                            <th>→</th>
+                                            <th>\(2\text{CuO}\)</th>
+                                            <th>+</th>
+                                            <th>\(2\text{SO}_2\)</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État initial</strong></td>
+                                            <td>\(n_i\)</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>0</td>
+                                            <td></td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État final</strong></td>
+                                            <td>\(n_i - 2x_f\)</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>\(2x_f\)</td>
+                                            <td></td>
+                                            <td>\(2x_f\)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">CuO formé = 629 mol :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{CuO}) = 2x_f = 629 \Rightarrow x_f = 314,5\text{ mol}$$
+                                    $$n_i(\text{CuS}) = 2x_f = 629\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse de CuS :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{CuS}) = 63,5 + 32 = 95,5\text{ g/mol}$$
+                                    $$m(\text{CuS}) = 629 \times 95,5 = 60,1 \times 10^3\text{ g} = 60,1\text{ kg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{CuS}) = 60,1\text{ kg}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Sachant que le grillage s'est effectué avec un rendement de \(70\%\), quelle masse de pyrite CuS a été mise en jeu ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_5')">Voir la solution</button>
+                    <div id="sol11_5" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Rendement :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\eta = 70\% = 0,70 = \frac{m_{\text{théorique}}}{m_{\text{réelle}}}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse réelle de CuS :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m_{\text{réelle}} = \frac{m_{\text{théorique}}}{\eta} = \frac{60,1}{0,70} = 85,9\text{ kg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m_{\text{CuS}} = 85,9\text{ kg}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 12 : Fluorure d'aluminium -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">12</span> Synthèse du fluorure d'aluminium</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Synthèse</span>
+                    <span class="badge-difficulty badge-difficile">Difficile</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Le fluorure d'aluminium \(\text{AlF}_3\) est obtenu par action du fluorure d'hydrogène HF sur l'alumine \(\text{Al}_2\text{O}_3\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Al} = 27\text{ g/mol}\), \(M_F = 19\text{ g/mol}\), \(M_O = 16\text{ g/mol}\), \(M_H = 1\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_1')">Voir la solution</button>
+                    <div id="sol12_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\text{Al}_2\text{O}_3 + 6\text{HF} \longrightarrow 2\text{AlF}_3 + 3\text{H}_2\text{O}$$
+                                </div>
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted);">Vérification : Al (2 à gauche, 2 à droite), O (3 à gauche, 3 à droite), H (6 à gauche, 6 à droite), F (6 à gauche, 6 à droite).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        On souhaite obtenir \(1,00\text{ kg}\) de \(\text{AlF}_3\). Déterminer les masses de réactifs nécessaires.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_2')">Voir la solution</button>
+                    <div id="sol12_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Masses molaires :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{AlF}_3) = 27 + 3 \times 19 = 84\text{ g/mol}$$
+                                    $$M(\text{Al}_2\text{O}_3) = 2 \times 27 + 3 \times 16 = 102\text{ g/mol}$$
+                                    $$M(\text{HF}) = 1 + 19 = 20\text{ g/mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Quantité de AlF₃ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{AlF}_3) = \frac{1000}{84} = 11,90\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Quantités nécessaires :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Al}_2\text{O}_3) = \frac{11,90}{2} = 5,95\text{ mol}$$
+                                    $$n(\text{HF}) = 3 \times 11,90 = 35,7\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masses :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m(\text{Al}_2\text{O}_3) = 5,95 \times 102 = 607\text{ g} = 0,607\text{ kg}$$
+                                    $$m(\text{HF}) = 35,7 \times 20 = 714\text{ g} = 0,714\text{ kg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(m(\text{Al}_2\text{O}_3) = 0,607\text{ kg}\)</li>
+                                    <li>\(m(\text{HF}) = 0,714\text{ kg}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 13 : Propulsion des missiles -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">13</span> Propulsion des missiles</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Propulsion</span>
+                    <span class="badge-difficulty badge-difficile">Difficile</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Le perchlorate d'ammonium \(\text{NH}_4\text{ClO}_4\) se décompose en diazote, chlorure d'hydrogène, eau et dioxygène. Le dioxygène formé se combine à l'aluminium pour donner l'alumine \(\text{Al}_2\text{O}_3\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Al} = 27\text{ g/mol}\), \(M_{Cl} = 35,5\text{ g/mol}\), \(M_N = 14\text{ g/mol}\), \(M_H = 1\text{ g/mol}\), \(M_O = 16\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation bilan de la décomposition du perchlorate d'ammonium.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_1')">Voir la solution</button>
+                    <div id="sol13_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$2\text{NH}_4\text{ClO}_4 \longrightarrow \text{N}_2 + 2\text{HCl} + 3\text{H}_2\text{O} + \text{O}_2$$
+                                </div>
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted);">Vérification : N (2 à gauche, 2 à droite), H (8 à gauche, 2+6=8 à droite), Cl (2 à gauche, 2 à droite), O (8 à gauche, 3+1=4? non)</p>
+                            <p style="font-size:11px; color:#FF6B6B;">Correction :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$2\text{NH}_4\text{ClO}_4 \longrightarrow \text{N}_2 + 2\text{HCl} + 3\text{H}_2\text{O} + \frac{5}{2}\text{O}_2$$
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted);">Ou multipliée par 2 : \(4\text{NH}_4\text{ClO}_4 \rightarrow 2\text{N}_2 + 4\text{HCl} + 6\text{H}_2\text{O} + 5\text{O}_2\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction entre l'aluminium et le dioxygène.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_2')">Voir la solution</button>
+                    <div id="sol13_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$4\text{Al} + 3\text{O}_2 \longrightarrow 2\text{Al}_2\text{O}_3$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Montrer que ces deux réactions peuvent être traduites par l'équation bilan suivante :
+                        $$6\text{NH}_4\text{ClO}_4 + 10\text{Al} \longrightarrow 3\text{N}_2 + 6\text{HCl} + 9\text{H}_2\text{O} + 5\text{Al}_2\text{O}_3$$
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_3')">Voir la solution</button>
+                    <div id="sol13_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Décomposition du perchlorate (multipliée par 3) :</span>
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$6\text{NH}_4\text{ClO}_4 \longrightarrow 3\text{N}_2 + 6\text{HCl} + 9\text{H}_2\text{O} + \frac{15}{2}\text{O}_2$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Combustion de l'aluminium (multipliée par 5/2) :</span>
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$10\text{Al} + \frac{15}{2}\text{O}_2 \longrightarrow 5\text{Al}_2\text{O}_3$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Somme des deux équations :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$6\text{NH}_4\text{ClO}_4 + 10\text{Al} \longrightarrow 3\text{N}_2 + 6\text{HCl} + 9\text{H}_2\text{O} + 5\text{Al}_2\text{O}_3$$
+                                </div>
+                            </div>
+                            <p style="font-size:11px; color:#4ECDC4;">✅ L'équation globale est bien équilibrée.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Un petit missile contient \(54,0\text{ g}\) d'aluminium. Quelle masse minimale de perchlorate d'ammonium doit-il contenir ?
                     </p>
                     <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_4')">Voir la solution</button>
                     <div id="sol13_4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                \(M(\text{H}_2\text{SO}_4) = 2 \times 1 + 32 + 4 \times 16 = 2 + 32 + 64 = 98\text{ g/mol}\)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                \(V = 100\text{ mL} = 0,100\text{ L}\)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
+                                <span class="step-num">Quantité d'aluminium :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n = C_1 \times V = 0,10 \times 0,100 = 0,010\text{ mol}$$
+                                    $$n(\text{Al}) = \frac{54,0}{27} = 2,00\text{ mol}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
+                                <span class="step-num">D'après l'équation, 10 Al réagissent avec 6 NH₄ClO₄ :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$m = n \times M = 0,010 \times 98 = 0,98\text{ g}$$
+                                    $$n(\text{NH}_4\text{ClO}_4) = \frac{6}{10} \times n(\text{Al}) = 0,6 \times 2,00 = 1,20\text{ mol}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(m = 0,98\text{ g}\)</p>
+                            <div class="step">
+                                <span class="step-num">Masse molaire de NH₄ClO₄ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{NH}_4\text{ClO}_4) = 14 + 4 \times 1 + 35,5 + 4 \times 16 = 117,5\text{ g/mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m(\text{NH}_4\text{ClO}_4) = 1,20 \times 117,5 = 141\text{ g}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{NH}_4\text{ClO}_4) = 141\text{ g}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 14 : Précipitation du chlorure d'argent -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">14</span> Précipitation du chlorure d'argent</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Précipitation</span>
+                    <span class="badge-difficulty badge-moyen">Moyen</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On mélange \(100\text{ mL}\) d'une solution de chlorure de calcium \(\text{CaCl}_2\) et \(100\text{ mL}\) d'une solution de nitrate d'argent \(\text{AgNO}_3\). Les deux solutions ont même concentration molaire \(C = 1,0 \times 10^{-2}\text{ mol/L}\). Les ions \(\text{Ag}^+\) et \(\text{Cl}^-\) précipitent pour donner du chlorure d'argent \(\text{AgCl}\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Ag} = 108\text{ g/mol}\), \(M_{Cl} = 35,5\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de précipitation.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_1')">Voir la solution</button>
+                    <div id="sol14_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\text{Ag}^+(aq) + \text{Cl}^-(aq) \longrightarrow \text{AgCl}(s)$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer les quantités initiales des ions \(\text{Ag}^+\) et \(\text{Cl}^-\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_2')">Voir la solution</button>
+                    <div id="sol14_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Dans CaCl₂ : 1 mole donne 2 moles de Cl⁻</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Cl}^-) = 2 \times C \times V = 2 \times 1,0 \times 10^{-2} \times 0,100 = 2,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Dans AgNO₃ : 1 mole donne 1 mole de Ag⁺</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Ag}^+) = C \times V = 1,0 \times 10^{-2} \times 0,100 = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(n(\text{Cl}^-) = 2,0 \times 10^{-3}\text{ mol}\)</li>
+                                    <li>\(n(\text{Ag}^+) = 1,0 \times 10^{-3}\text{ mol}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer le réactif limitant et la masse de précipité obtenue.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_3')">Voir la solution</button>
+                    <div id="sol14_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Avancement maximal :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$x_{max} = \min(n(\text{Ag}^+), n(\text{Cl}^-)) = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Réactif limitant :</span>
+                                <p style="color:#F4D03F; font-weight:700;">Ag⁺ est le réactif limitant.</p>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Quantité de AgCl :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{AgCl}) = x_{max} = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse de AgCl :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{AgCl}) = 108 + 35,5 = 143,5\text{ g/mol}$$
+                                    $$m(\text{AgCl}) = 1,0 \times 10^{-3} \times 143,5 = 0,144\text{ g}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{AgCl}) = 0,144\text{ g}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelles sont les concentrations finales des ions en solution ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_4')">Voir la solution</button>
+                    <div id="sol14_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Volume total :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_T = 100 + 100 = 200\text{ mL} = 0,200\text{ L}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Ions restants :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(\text{Ag}^+) = 0\text{ mol}$$
+                                    $$n_f(\text{Cl}^-) = 2,0 \times 10^{-3} - 1,0 \times 10^{-3} = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Concentrations :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$[\text{Ag}^+] = 0\text{ mol/L}$$
+                                    $$[\text{Cl}^-] = \frac{1,0 \times 10^{-3}}{0,200} = 5,0 \times 10^{-3}\text{ mol/L}$$
+                                </div>
+                                <div style="font-size:11px; color:var(--text-muted);">
+                                    Ions spectateurs : Ca²⁺ et NO₃⁻ restent inchangés.
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\([\text{Ag}^+] = 0\text{ mol/L}\)</li>
+                                    <li>\([\text{Cl}^-] = 5,0 \times 10^{-3}\text{ mol/L}\)</li>
+                                    <li>\([\text{Ca}^{2+}] = 5,0 \times 10^{-3}\text{ mol/L}\)</li>
+                                    <li>\([\text{NO}_3^-] = 5,0 \times 10^{-3}\text{ mol/L}\)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -884,8 +1076,8 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="serie3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Série 3</a>
-                <a href="index.html" class="next-btn">Retour <i class="fas fa-arrow-left"></i></a>
+                <a href="serie3.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série 3</a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
             </div>
 
         </div>
