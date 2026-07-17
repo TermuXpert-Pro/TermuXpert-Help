@@ -6,6 +6,13 @@
 // الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
 const CACHE_NAME = 'xpert-58191037';
 
+// ====== App Shell فقط ======
+// هادي غير الصفحات/الملفات الأساسية اللي خاصها تكون جاهزة من أول
+// تشغيل للموقع (بلا نت). صفحات الدروس/السلاسل/التمارين ماشي هنا -
+// كيتخزنو تلقائياً (runtime caching) أول ما الزائر يفتح كل وحدة،
+// باش ما يتحملش مئات الصفحات دفعة وحدة عند أول زيارة (شوف fetch
+// handler تحت). هاد التغيير كيخلي الموقع يبقى خفيف فأول تحميل حتى
+// ولو عدد الصفحات زاد لـ500+ صفحة.
 const urlsToCache = [
     './',
     './index.html',
@@ -21,201 +28,6 @@ const urlsToCache = [
     './manifest.json',
     './assets/images/icon-192.png',
     './assets/images/icon-512.png',
-
-    // ====== دروس الكيمياء ======
-    './content/chimie/lessons/chimie-organique/index.html',
-    './content/chimie/lessons/concentration-solutions/index.html',
-    './content/chimie/lessons/concentration-solutions/model1/index.html',
-    './content/chimie/lessons/concentration-solutions/model1/part1.html',
-    './content/chimie/lessons/concentration-solutions/model1/part2.html',
-    './content/chimie/lessons/concentration-solutions/model1/part3.html',
-    './content/chimie/lessons/conductimetrie/index.html',
-    './content/chimie/lessons/dosages-directs/index.html',
-    './content/chimie/lessons/groupes-caracteristiques/index.html',
-    './content/chimie/lessons/mesure-chimie/index.html',
-    './content/chimie/lessons/mesure-chimie/model1/index.html',
-    './content/chimie/lessons/mesure-chimie/model1/part1.html',
-    './content/chimie/lessons/mesure-chimie/model1/part2.html',
-    './content/chimie/lessons/mesure-chimie/model1/part3.html',
-    './content/chimie/lessons/modification-squelette/index.html',
-    './content/chimie/lessons/molecules-organiques/index.html',
-    './content/chimie/lessons/quantite-matiere/index.html',
-    './content/chimie/lessons/quantite-matiere/model1/index.html',
-    './content/chimie/lessons/quantite-matiere/model1/part1.html',
-    './content/chimie/lessons/quantite-matiere/model1/part2.html',
-    './content/chimie/lessons/quantite-matiere/model1/part3.html',
-    './content/chimie/lessons/quantite-matiere/model1/part4.html',
-    './content/chimie/lessons/reactions-acido-basiques/index.html',
-    './content/chimie/lessons/reactions-oxydoreduction/index.html',
-    './content/chimie/lessons/suivi-transformation/index.html',
-
-    // ====== دروس الرياضيات ======
-    './content/math/lessons/barycentre/index.html',
-    './content/math/lessons/barycentre/model1/index.html',
-    './content/math/lessons/barycentre/model1/part1.html',
-    './content/math/lessons/barycentre/model1/part2.html',
-    './content/math/lessons/barycentre/model1/part3.html',
-    './content/math/lessons/barycentre/model1/part4.html',
-    './content/math/lessons/calcul-trigonometrique/index.html',
-    './content/math/lessons/derivation/index.html',
-    './content/math/lessons/etude-fonctions/index.html',
-    './content/math/lessons/fonctions/index.html',
-    './content/math/lessons/fonctions/model1/index.html',
-    './content/math/lessons/fonctions/model1/part1.html',
-    './content/math/lessons/fonctions/model1/part2.html',
-    './content/math/lessons/fonctions/model1/part3.html',
-    './content/math/lessons/fonctions/model1/part4.html',
-    './content/math/lessons/fonctions/model1/part5.html',
-    './content/math/lessons/fonctions/model1/part6.html',
-    './content/math/lessons/geometrie-espace/index.html',
-    './content/math/lessons/limites-fonctions/index.html',
-    './content/math/lessons/logique/index.html',
-    './content/math/lessons/logique/model1/index.html',
-    './content/math/lessons/logique/model1/part1.html',
-    './content/math/lessons/logique/model1/part2.html',
-    './content/math/lessons/logique/model1/part3.html',
-    './content/math/lessons/logique/model1/part4.html',
-    './content/math/lessons/logique/model1/part5.html',
-    './content/math/lessons/produit-scalaire/index.html',
-    './content/math/lessons/rotation-plan/index.html',
-    './content/math/lessons/suites-numeriques/index.html',
-
-    // ====== سلاسل الرياضيات ======
-    './content/math/series/barycentre/index.html',
-    './content/math/series/barycentre/model1/index.html',
-    './content/math/series/barycentre/model1/serie1.html',
-    './content/math/series/barycentre/model1/serie2.html',
-    './content/math/series/barycentre/model1/serie3.html',
-    './content/math/series/barycentre/model1/serie4.html',
-    './content/math/series/barycentre/model1/serie5.html',
-    './content/math/series/barycentre/model1/serie6.html',
-    './content/math/series/fonctions/index.html',
-    './content/math/series/fonctions/model1/index.html',
-    './content/math/series/fonctions/model1/serie1.html',
-    './content/math/series/fonctions/model1/serie2.html',
-    './content/math/series/fonctions/model1/serie3.html',
-    './content/math/series/fonctions/model1/serie4.html',
-    './content/math/series/fonctions/model1/serie5.html',
-    './content/math/series/fonctions/model1/serie6.html',
-    './content/math/series/fonctions/model1/serie7.html',
-    './content/math/series/logique/index.html',
-    './content/math/series/logique/model1/index.html',
-    './content/math/series/logique/model1/serie1.html',
-    './content/math/series/logique/model1/serie2.html',
-    './content/math/series/logique/model1/serie3.html',
-    './content/math/series/logique/model1/serie4.html',
-    './content/math/series/logique/model1/serie5.html',
-
-    // ====== تمارين الرياضيات ======
-    './content/math/exercises/barycentre/index.html',
-    './content/math/exercises/barycentre/model1/exercice1.html',
-    './content/math/exercises/barycentre/model1/exercice2.html',
-    './content/math/exercises/barycentre/model1/exercice3.html',
-    './content/math/exercises/barycentre/model1/exercice4.html',
-    './content/math/exercises/barycentre/model1/exercice5.html',
-    './content/math/exercises/barycentre/model1/exercice6.html',
-    './content/math/exercises/barycentre/model1/exercice7.html',
-    './content/math/exercises/barycentre/model1/exercice8.html',
-    './content/math/exercises/barycentre/model1/index.html',
-    './content/math/exercises/fonctions/index.html',
-    './content/math/exercises/fonctions/model1/exercice1.html',
-    './content/math/exercises/fonctions/model1/exercice10.html',
-    './content/math/exercises/fonctions/model1/exercice2.html',
-    './content/math/exercises/fonctions/model1/exercice3.html',
-    './content/math/exercises/fonctions/model1/exercice4.html',
-    './content/math/exercises/fonctions/model1/exercice5.html',
-    './content/math/exercises/fonctions/model1/exercice6.html',
-    './content/math/exercises/fonctions/model1/exercice7.html',
-    './content/math/exercises/fonctions/model1/exercice8.html',
-    './content/math/exercises/fonctions/model1/exercice9.html',
-    './content/math/exercises/fonctions/model1/index.html',
-    './content/math/exercises/logique/index.html',
-    './content/math/exercises/logique/model1/exercice1.html',
-    './content/math/exercises/logique/model1/exercice2.html',
-    './content/math/exercises/logique/model1/exercice3.html',
-    './content/math/exercises/logique/model1/exercice4.html',
-    './content/math/exercises/logique/model1/exercice5.html',
-    './content/math/exercises/logique/model1/exercice6.html',
-    './content/math/exercises/logique/model1/exercice7.html',
-    './content/math/exercises/logique/model1/exercice8.html',
-    './content/math/exercises/logique/model1/index.html',
-
-    // ====== دروس الفيزياء ======
-    './content/physique/lessons/champ-magnetique-courant/index.html',
-    './content/physique/lessons/champ-magnetique/index.html',
-    './content/physique/lessons/circuit-electrique/index.html',
-    './content/physique/lessons/energie-potentielle-mecanique/index.html',
-    './content/physique/lessons/forces-laplace/index.html',
-    './content/physique/lessons/instruments-optiques/index.html',
-    './content/physique/lessons/lentille-convergente/index.html',
-    './content/physique/lessons/miroir-plan/index.html',
-    './content/physique/lessons/rotation-solide/index.html',
-    './content/physique/lessons/rotation-solide/model1/index.html',
-    './content/physique/lessons/rotation-solide/model1/part1.html',
-    './content/physique/lessons/rotation-solide/model1/part2.html',
-    './content/physique/lessons/rotation-solide/model1/part3.html',
-    './content/physique/lessons/rotation-solide/model1/part4.html',
-    './content/physique/lessons/rotation-solide/model1/part5.html',
-    './content/physique/lessons/rotation-solide/model1/part6.html',
-    './content/physique/lessons/travail-energie-cinetique/index.html',
-    './content/physique/lessons/travail-energie-cinetique/model1/index.html',
-    './content/physique/lessons/travail-energie-cinetique/model1/part1.html',
-    './content/physique/lessons/travail-energie-cinetique/model1/part2.html',
-    './content/physique/lessons/travail-energie-cinetique/model1/part3.html',
-    './content/physique/lessons/travail-energie-cinetique/model1/part4.html',
-    './content/physique/lessons/travail-energie-cinetique/model1/part5.html',
-    './content/physique/lessons/travail-energie-cinetique/model1/part6.html',
-    './content/physique/lessons/travail-energie-interne/index.html',
-    './content/physique/lessons/travail-puissance/index.html',
-    './content/physique/lessons/travail-puissance/model1/index.html',
-    './content/physique/lessons/travail-puissance/model1/part1.html',
-    './content/physique/lessons/travail-puissance/model1/part2.html',
-    './content/physique/lessons/travail-puissance/model1/part3.html',
-    './content/physique/lessons/travail-puissance/model1/part4.html',
-    './content/physique/lessons/travail-puissance/model1/part5.html',
-    './content/physique/lessons/visibilite-objet/index.html',
-
-    // ====== سلاسل الفيزياء ======
-    './content/physique/series/rotation-solide/index.html',
-    './content/physique/series/rotation-solide/model1/index.html',
-    './content/physique/series/rotation-solide/model1/serie1.html',
-    './content/physique/series/travail-energie-cinetique/index.html',
-    './content/physique/series/travail-energie-cinetique/model1/index.html',
-    './content/physique/series/travail-energie-cinetique/model1/serie1.html',
-    './content/physique/series/travail-puissance/index.html',
-    './content/physique/series/travail-puissance/model1/index.html',
-    './content/physique/series/travail-puissance/model1/serie1.html',
-
-    // ====== تمارين الفيزياء ======
-    './content/physique/exercises/rotation-solide/index.html',
-    './content/physique/exercises/rotation-solide/model1/exercice1.html',
-    './content/physique/exercises/rotation-solide/model1/exercice2.html',
-    './content/physique/exercises/rotation-solide/model1/exercice3.html',
-    './content/physique/exercises/rotation-solide/model1/exercice4.html',
-    './content/physique/exercises/rotation-solide/model1/exercice5.html',
-    './content/physique/exercises/rotation-solide/model1/exercice6.html',
-    './content/physique/exercises/rotation-solide/model1/index.html',
-    './content/physique/exercises/travail-energie-cinetique/index.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice1.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice2.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice3.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice4.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice5.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice6.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice7.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice8.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/exercice9.html',
-    './content/physique/exercises/travail-energie-cinetique/model1/index.html',
-    './content/physique/exercises/travail-puissance/index.html',
-    './content/physique/exercises/travail-puissance/model1/exercice1.html',
-    './content/physique/exercises/travail-puissance/model1/exercice2.html',
-    './content/physique/exercises/travail-puissance/model1/exercice3.html',
-    './content/physique/exercises/travail-puissance/model1/exercice4.html',
-    './content/physique/exercises/travail-puissance/model1/exercice5.html',
-    './content/physique/exercises/travail-puissance/model1/exercice6.html',
-    './content/physique/exercises/travail-puissance/model1/exercice7.html',
-    './content/physique/exercises/travail-puissance/model1/exercice8.html',
-    './content/physique/exercises/travail-puissance/model1/index.html',
 ];
 
 // صفحة بسيطة كتبان إلا كانت الصفحة المطلوبة ماشي مخزنة وما كاينش نت
@@ -247,7 +59,7 @@ self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                console.log('✅ Service Worker - التخزين المؤقت');
+                console.log('✅ Service Worker - التخزين المؤقت (App Shell)');
                 return cache.addAll(urlsToCache);
             })
     );
@@ -255,11 +67,16 @@ self.addEventListener('install', function(event) {
 
 // اعتراض الطلبات
 self.addEventListener('fetch', function(event) {
+    // غير طلبات GET كيتخزنو فالكاش (POST وغيرها كيمشيو للشبكة مباشرة)
+    if (event.request.method !== 'GET') return;
+
     const isHTML = event.request.mode === 'navigate' ||
                    (event.request.headers.get('accept') || '').includes('text/html');
 
     if (isHTML) {
-        // Network-First + تخزين تلقائي لكل صفحة تتزار (بما فيها صفحات الدروس)
+        // Network-First + تخزين تلقائي لكل صفحة تتزار (بما فيها صفحات
+        // الدروس/السلاسل/التمارين) - هادي اللي كتعوض precache الشامل:
+        // الصفحة كتتخزن غير أول ما الزائر يفتحها فعليا.
         event.respondWith(
             fetch(event.request)
                 .then(function(response) {
@@ -278,11 +95,23 @@ self.addEventListener('fetch', function(event) {
                 })
         );
     } else {
-        // ملفات CSS/JS/صور: كاش أولاً
+        // ملفات CSS/JS/صور: كاش أولاً، وإلا ماكانتش مخزنة كنجيبوها
+        // من الشبكة ونخزنوها للمرة الجاية (stale-while-revalidate خفيف)
         event.respondWith(
             caches.match(event.request)
-                .then(function(response) {
-                    return response || fetch(event.request);
+                .then(function(cached) {
+                    if (cached) return cached;
+                    return fetch(event.request).then(function(response) {
+                        // كنخزنو غير الردود الصحيحة (تفادي تخزين أخطاء الشبكة)
+                        if (response && response.status === 200) {
+                            const clone = response.clone();
+                            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                        }
+                        return response;
+                    }).catch(function() {
+                        // ملف صورة/CSS/JS ماشي مخزن وما كاينش نت - نخليو الطلب يفشل عادي
+                        return new Response('', { status: 408, statusText: 'Offline' });
+                    });
                 })
         );
     }
@@ -303,4 +132,3 @@ self.addEventListener('activate', function(event) {
         }).then(() => self.clients.claim())
     );
 });
-

@@ -4,7 +4,7 @@
     <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="دليل تثبيت Xpert كتطبيق (PWA) فالهاتف أو الحاسوب - خطوة بخطوة.">
+    <meta name="description" content="دليل تثبيت Xpert كتطبيق (PWA) على الهاتف أو الحاسوب - خطوة بخطوة.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +43,7 @@
         .legal-hero{text-align:center; margin-bottom:34px;}
         .legal-hero .legal-eyebrow{
             display:inline-flex; align-items:center; gap:8px;
-            color:var(--legal-gold); font-size:13px; font-weight:700;
+            color:var(--gold-text); font-size:13px; font-weight:700;
             letter-spacing:0.5px; background:rgba(244,208,63,0.08);
             padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
             margin-bottom:16px;
@@ -52,7 +52,7 @@
             font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
             margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
         }
-        .legal-hero h1 span{color:var(--legal-gold);}
+        .legal-hero h1 span{color:var(--gold-text);}
         .legal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
 
         .legal-section{
@@ -71,7 +71,7 @@
         }
         .legal-section h2{
             display:flex; align-items:center; gap:10px;
-            font-size:17px; font-weight:700; color:var(--legal-gold);
+            font-size:17px; font-weight:700; color:var(--gold-text);
             margin-bottom:12px; font-family:'Cairo','Tajawal',sans-serif;
         }
         .legal-section h2 i{font-size:15px;}
@@ -136,17 +136,33 @@
         .install-step-text strong{color:var(--text-primary);}
         .install-step-text code{
             background:rgba(var(--overlay-rgb), 0.06); padding:2px 8px; border-radius:6px;
-            color:var(--legal-gold); font-size:13px; direction:ltr; display:inline-block;
+            color:var(--gold-text); font-size:13px; direction:ltr; display:inline-block;
         }
 
         /* ====== تبويبات الجهاز ====== */
         .install-device-tag{
             display:inline-flex; align-items:center; gap:6px;
             background:rgba(244,208,63,0.1); border:1px solid rgba(244,208,63,0.3);
-            color:var(--legal-gold); font-size:12px; font-weight:700;
+            color:var(--gold-text); font-size:12px; font-weight:700;
             padding:4px 12px; border-radius:16px; margin-bottom:10px;
             font-family:'Cairo','Tajawal',sans-serif;
         }
+
+        /* ====== زر تثبيت PWA ====== */
+        .pwa-install-btn{
+            display:none;
+            align-items:center; justify-content:center;
+            width:36px; height:36px;
+            border-radius:50%;
+            border:1px solid var(--border);
+            background:var(--bg-card);
+            color:var(--gold-text);
+            font-size:15px;
+            cursor:pointer;
+            transition:transform 0.2s ease, background 0.2s ease;
+        }
+        .pwa-install-btn:hover{ transform:scale(1.08); background:rgba(244,208,63,0.1); }
+        .pwa-install-btn.show{ display:inline-flex; }
     </style>
 </head>
 <body>
@@ -204,6 +220,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -369,13 +390,13 @@
         <div class="legal-hero">
             <div class="legal-eyebrow"><i class="fas fa-download"></i> Xpert</div>
             <h1>دليل <span>التثبيت</span></h1>
-            <p>ثبّت Xpert كتطبيق فهاتفك أو حاسوبك فبضع خطوات بسيطة</p>
+            <p>ثبّت Xpert كتطبيق على هاتفك أو حاسوبك في بضع خطوات بسيطة</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-question"></i> شنو معنى PWA؟</h2>
-            <p><strong>PWA</strong> معناها <strong>Progressive Web App</strong>، أي تطبيق ويب متطوّر. بمعنى آخر، Xpert هو موقع ويب، ولكن مبني بطريقة تخليك تقدر <strong>تثبتو</strong> فهاتفك أو حاسوبك بحال أي تطبيق عادي، بلا ما تدخل لـ Play Store ولا App Store.</p>
-            <p>من بعد التثبيت، غادي تلقى أيقونة Xpert فالشاشة الرئيسية ديالك، وكيفتح فنافذة خاصة بيه (بلا شريط عنوان المتصفح)، وبعض الصفحات كتخدم حتى بلا انترنت.</p>
+            <h2><i class="fas fa-circle-question"></i> ما معنى PWA؟</h2>
+            <p><strong>PWA</strong> تعني <strong>Progressive Web App</strong>، أي تطبيق ويب متطوّر. بمعنى آخر، Xpert هو موقع ويب، لكنه مبني بطريقة تتيح لك <strong>تثبيته</strong> على هاتفك أو حاسوبك مثل أي تطبيق عادي، دون الحاجة إلى الدخول إلى Play Store أو App Store.</p>
+            <p>بعد التثبيت، ستجد أيقونة Xpert على شاشتك الرئيسية، ويُفتح في نافذة خاصة به (دون شريط عنوان المتصفح)، وتعمل بعض الصفحات حتى دون اتصال بالإنترنت.</p>
         </div>
 
         <div class="legal-section">
@@ -384,29 +405,29 @@
                 <div class="install-benefit-card">
                     <i class="fas fa-bolt"></i>
                     <div>
-                        <div class="install-benefit-title">أسرع فالفتح</div>
-                        <div class="install-benefit-desc">كيفتح مباشرة من الأيقونة، بلا ما تبحث عليه فالمتصفح.</div>
+                        <div class="install-benefit-title">أسرع في الفتح</div>
+                        <div class="install-benefit-desc">يُفتح مباشرة من الأيقونة، دون الحاجة للبحث عنه في المتصفح.</div>
                     </div>
                 </div>
                 <div class="install-benefit-card">
                     <i class="fas fa-wifi"></i>
                     <div>
-                        <div class="install-benefit-title">يخدم بلا انترنت</div>
-                        <div class="install-benefit-desc">الصفحات اللي زرتيها من قبل كتبقى محفوظة وتقدر تفتحها بلا واي فاي.</div>
+                        <div class="install-benefit-title">يعمل دون إنترنت</div>
+                        <div class="install-benefit-desc">الصفحات التي زرتها من قبل تبقى محفوظة، ويمكنك فتحها دون واي فاي.</div>
                     </div>
                 </div>
                 <div class="install-benefit-card">
                     <i class="fas fa-window-maximize"></i>
                     <div>
                         <div class="install-benefit-title">واجهة نظيفة</div>
-                        <div class="install-benefit-desc">كيخدم فنافذة خاصة بيه بلا شريط عنوان المتصفح، بحال تطبيق حقيقي.</div>
+                        <div class="install-benefit-desc">يعمل في نافذة خاصة به دون شريط عنوان المتصفح، مثل تطبيق حقيقي.</div>
                     </div>
                 </div>
                 <div class="install-benefit-card">
                     <i class="fas fa-hard-drive"></i>
                     <div>
-                        <div class="install-benefit-title">ما كيخديش حيز</div>
-                        <div class="install-benefit-desc">ماشي بحال تطبيقات الـ Play Store، ما كيتزّلش وزنو على الذاكرة ديال الهاتف.</div>
+                        <div class="install-benefit-title">لا يشغل حيّزاً كبيراً</div>
+                        <div class="install-benefit-desc">على عكس تطبيقات Play Store، فهو لا يُثقل ذاكرة الهاتف.</div>
                     </div>
                 </div>
             </div>
@@ -414,46 +435,46 @@
 
         <div class="legal-section">
             <span class="install-device-tag"><i class="fas fa-mobile-screen-button"></i> Android / Google Chrome</span>
-            <h2><i class="fas fa-mobile"></i> كيفاش تثبت من الهاتف</h2>
+            <h2><i class="fas fa-mobile"></i> كيف تُثبّت من الهاتف</h2>
             <ol class="install-steps">
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">افتح متصفح <strong>Google Chrome</strong> ودخل لموقع Xpert.</span>
+                    <span class="install-step-text">افتح متصفح <strong>Google Chrome</strong> وادخل إلى موقع Xpert.</span>
                 </li>
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">اضغط على أيقونة القائمة <code>⋮</code> (ثلاث نقط) فالزاوية العليا يمين.</span>
+                    <span class="install-step-text">اضغط على أيقونة القائمة <code>⋮</code> (ثلاث نقط) في الزاوية العلوية اليمنى.</span>
                 </li>
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">اختار من اللائحة <strong>"تثبيت وإنشاء اختصار"</strong> (بالإنجليزية: <code>Install and create shortcut</code>).</span>
+                    <span class="install-step-text">اختر من القائمة <strong>"تثبيت وإنشاء اختصار"</strong> (بالإنجليزية: <code>Install and create shortcut</code>).</span>
                 </li>
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">فالنافذة اللي غتبان، اضغط على زر <strong>"تثبيت"</strong> (<code>Install</code>).</span>
+                    <span class="install-step-text">في النافذة التي ستظهر، اضغط على زر <strong>"تثبيت"</strong> (<code>Install</code>).</span>
                 </li>
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">تسالا! غادي يتخلق تطبيق Xpert فهاتفك، وتقدر تفتحو من الشاشة الرئيسية بحال أي تطبيق آخر.</span>
+                    <span class="install-step-text">وهذا كل ما في الأمر! سيُنشأ تطبيق Xpert على هاتفك، ويمكنك فتحه من الشاشة الرئيسية مثل أي تطبيق آخر.</span>
                 </li>
             </ol>
         </div>
 
         <div class="legal-section">
             <span class="install-device-tag"><i class="fas fa-desktop"></i> Windows / macOS - Chrome أو Edge</span>
-            <h2><i class="fas fa-computer"></i> كيفاش تثبت من الحاسوب</h2>
+            <h2><i class="fas fa-computer"></i> كيف تُثبّت من الحاسوب</h2>
             <ol class="install-steps">
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">افتح Xpert من متصفح <strong>Google Chrome</strong> (ولا Edge).</span>
+                    <span class="install-step-text">افتح Xpert من متصفح <strong>Google Chrome</strong> (أو Edge).</span>
                 </li>
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">اضغط على أيقونة القائمة <code>⋮</code> فالزاوية العليا يمين ديال المتصفح.</span>
+                    <span class="install-step-text">اضغط على أيقونة القائمة <code>⋮</code> في الزاوية العلوية اليمنى للمتصفح.</span>
                 </li>
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">اختار <strong>"تثبيت وإنشاء اختصار"</strong> (<code>Install and create shortcut</code>).</span>
+                    <span class="install-step-text">اختر <strong>"تثبيت وإنشاء اختصار"</strong> (<code>Install and create shortcut</code>).</span>
                 </li>
                 <li>
                     <span class="install-step-num"></span>
@@ -461,14 +482,14 @@
                 </li>
                 <li>
                     <span class="install-step-num"></span>
-                    <span class="install-step-text">تطبيق Xpert غادي يتزاد فحاسوبك، وتقدر تفتحو من مكتب العمل (Bureau) ولا من قائمة البرامج.</span>
+                    <span class="install-step-text">سيُضاف تطبيق Xpert إلى حاسوبك، ويمكنك فتحه من سطح المكتب (Bureau) أو من قائمة البرامج.</span>
                 </li>
             </ol>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-lightbulb"></i> ملاحظة</h2>
-            <p>الخطوات فوق خاصة بمتصفح Chrome (وباقي المتصفحات المبنية عليه بحال Edge). إلا كنتي كتخدم بمتصفح آخر ولا بجهاز iPhone/iPad، اسم الخيار قد يختلف شوية، ولكن المبدأ هو نفسو: قائمة المتصفح ← خيار "تثبيت" ولا "إضافة للشاشة الرئيسية".</p>
+            <p>الخطوات أعلاه خاصة بمتصفح Chrome (وبقية المتصفحات المبنية عليه مثل Edge). أما إذا كنت تستخدم متصفحاً آخر أو جهاز iPhone/iPad، فقد يختلف اسم الخيار قليلاً، لكن المبدأ هو نفسه: قائمة المتصفح ← خيار "تثبيت" أو "إضافة إلى الشاشة الرئيسية".</p>
         </div>
 
         <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
@@ -490,6 +511,50 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
+
+    <!-- ====== زر تثبيت PWA ====== -->
+    <script>
+    (function () {
+        const installBtn = document.getElementById('pwaInstallBtn');
+        if (!installBtn) return;
+
+        let deferredPrompt = null;
+        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+            || navigator.standalone === true;
+
+        if (isStandalone) return; // التطبيق مثبّت ديجا، ما نعرضوش الزر
+
+        // Android / Chrome / Edge : بينستولبرومبت
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.add('show');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.remove('show');
+            deferredPrompt = null;
+        });
+
+        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو تعليمات يدوية
+        if (isIOS) {
+            installBtn.classList.add('show');
+        }
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`PWA install: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.classList.remove('show');
+            } else if (isIOS) {
+                alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
+            }
+        });
+    })();
+    </script>
 
   <!-- ====== GSAP Animation (نفس أنميشن support.html/terms.html/about.html) ====== -->
 <script>

@@ -43,7 +43,7 @@
         .legal-hero{text-align:center; margin-bottom:34px;}
         .legal-hero .legal-eyebrow{
             display:inline-flex; align-items:center; gap:8px;
-            color:var(--legal-gold); font-size:13px; font-weight:700;
+            color:var(--gold-text); font-size:13px; font-weight:700;
             letter-spacing:0.5px; background:rgba(244,208,63,0.08);
             padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
             margin-bottom:16px;
@@ -52,7 +52,7 @@
             font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
             margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
         }
-        .legal-hero h1 span{color:var(--legal-gold);}
+        .legal-hero h1 span{color:var(--gold-text);}
         .legal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
 
         .legal-section{
@@ -71,7 +71,7 @@
         }
         .legal-section h2{
             display:flex; align-items:center; gap:10px;
-            font-size:17px; font-weight:700; color:var(--legal-gold);
+            font-size:17px; font-weight:700; color:var(--gold-text);
             margin-bottom:12px; font-family:'Cairo','Tajawal',sans-serif;
         }
         .legal-section h2 i{font-size:15px;}
@@ -112,7 +112,7 @@
             font-family:'Cairo','Tajawal',sans-serif;
         }
         .about-dev-role{
-            font-size:13px; color:var(--legal-gold); font-weight:700;
+            font-size:13px; color:var(--gold-text); font-weight:700;
             font-family:'Cairo','Tajawal',sans-serif;
         }
         .about-badge-row{
@@ -166,6 +166,22 @@
             font-size:13px; color:var(--text-secondary); line-height:1.7;
             font-family:'Cairo','Tajawal',sans-serif;
         }
+
+        /* ====== زر تثبيت PWA ====== */
+        .pwa-install-btn{
+            display:none;
+            align-items:center; justify-content:center;
+            width:36px; height:36px;
+            border-radius:50%;
+            border:1px solid var(--border);
+            background:var(--bg-card);
+            color:var(--gold-text);
+            font-size:15px;
+            cursor:pointer;
+            transition:transform 0.2s ease, background 0.2s ease;
+        }
+        .pwa-install-btn:hover{ transform:scale(1.08); background:rgba(244,208,63,0.1); }
+        .pwa-install-btn.show{ display:inline-flex; }
     </style>
 </head>
 <body>
@@ -223,6 +239,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -388,7 +409,7 @@
         <div class="legal-hero">
             <div class="legal-eyebrow"><i class="fas fa-circle-info"></i> Xpert</div>
             <h1>من <span>نحن</span></h1>
-            <p>تعرف على منصة Xpert وعلى الشخص اللي كايطورها</p>
+            <p>تعرّف على منصة Xpert وعلى الشخص الذي يطوّرها</p>
         </div>
 
         <!-- ====== بطاقة المطور ====== -->
@@ -415,12 +436,12 @@
 
         <div class="legal-section">
             <h2><i class="fas fa-user-pen"></i> نبذة عني</h2>
-            <p>سلام، أنا تلميذ مغربي كنقرا فالثانوي التأهيلي، وفنفس الوقت كنبرمج مواقع الويب من الهاتف الذكي ديالي (Termux). عندي شغف كبير بالمعلوميات والتعليم، وهاد المزيج هو اللي دفعني نبني <strong>Xpert</strong> بيدي، بلا فريق ولا ميزانية، غير بالإرادة والوقت الفاضي.</p>
+            <p>مرحباً، أنا تلميذ مغربي أدرس في الثانوي التأهيلي، وفي الوقت نفسه أبرمج مواقع الويب من هاتفي الذكي (Termux). لدي شغف كبير بالمعلوميات والتعليم، وهذا المزيج هو ما دفعني إلى بناء <strong>Xpert</strong> بمفردي، دون فريق أو ميزانية، فقط بالإرادة والوقت الفارغ.</p>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-graduation-cap"></i> عن منصة Xpert</h2>
-            <p>Xpert هو موقع تعليمي مجاني موجّه لتلاميذ <strong>الأولى باكالوريا شعبة العلوم التجريبية</strong> بالمغرب. الهدف ديالو بسيط: نجمع فمكان واحد الدروس والتمارين والسلاسل ديال الرياضيات، الفيزياء، والكيمياء، بطريقة واضحة ومنظمة حسب المنهاج الرسمي.</p>
+            <p>Xpert هو موقع تعليمي مجاني موجّه لتلاميذ <strong>السنة الأولى من سلك البكالوريا، شعبة العلوم التجريبية</strong> بالمغرب. هدفه بسيط: جمع الدروس والتمارين والسلاسل الخاصة بالرياضيات والفيزياء والكيمياء في مكان واحد، بطريقة واضحة ومنظمة حسب المنهاج الرسمي.</p>
             <div class="about-feature-grid">
                 <div class="about-feature-card">
                     <i class="fas fa-calculator"></i>
@@ -447,20 +468,20 @@
                     <i class="fas fa-mobile-screen"></i>
                     <div>
                         <div class="about-feature-title">مجاني ومتاح للكل</div>
-                        <div class="about-feature-desc">كيخدم على الهاتف والحاسوب بلا تسجيل ولا أداء.</div>
+                        <div class="about-feature-desc">يعمل على الهاتف والحاسوب دون تسجيل أو دفع.</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-heart"></i> ليماذا Xpert؟</h2>
-            <p>كتلميذ، عشت بنفسي صعوبة اللقاء بموارد ديال المراجعة منظمة ومطابقة للمنهاج المغربي. فقررت نبني الحل اللي كنت كنبحث عليه، ونشاركو مع تلاميذ آخرين كايعيشو نفس الوضعية.</p>
+            <h2><i class="fas fa-heart"></i> لماذا Xpert؟</h2>
+            <p>بصفتي تلميذاً، عانيت بنفسي من صعوبة إيجاد موارد مراجعة منظمة ومطابقة للمنهاج المغربي. فقررت أن أبني الحل الذي كنت أبحث عنه، وأشاركه مع تلاميذ آخرين يعيشون الوضعية نفسها.</p>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-comment-dots"></i> كلمة أخيرة</h2>
-            <p>كنتمنى بصح أن يفيدكم هاد الموقع فالمراجعة ديالكم. استمتعت بزاف وأنا كنبنيه، وحاولت جهدي نخلي استعمالو سهل وبسيط قدر الإمكان. بالتوفيق للجميع! 🍀</p>
+            <p>أتمنى حقاً أن يفيدكم هذا الموقع في مراجعتكم. استمتعت كثيراً وأنا أبنيه، وبذلت جهدي لأجعل استخدامه سهلاً وبسيطاً قدر الإمكان. بالتوفيق للجميع! 🍀</p>
         </div>
 
         <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
@@ -482,6 +503,50 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
+
+    <!-- ====== زر تثبيت PWA ====== -->
+    <script>
+    (function () {
+        const installBtn = document.getElementById('pwaInstallBtn');
+        if (!installBtn) return;
+
+        let deferredPrompt = null;
+        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+            || navigator.standalone === true;
+
+        if (isStandalone) return; // التطبيق مثبّت ديجا، ما نعرضوش الزر
+
+        // Android / Chrome / Edge : بينستولبرومبت
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.add('show');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.remove('show');
+            deferredPrompt = null;
+        });
+
+        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو تعليمات يدوية
+        if (isIOS) {
+            installBtn.classList.add('show');
+        }
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`PWA install: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.classList.remove('show');
+            } else if (isIOS) {
+                alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
+            }
+        });
+    })();
+    </script>
 
   <!-- ====== GSAP Animation (نفس أنميشن support.html/terms.html) ====== -->
 <script>

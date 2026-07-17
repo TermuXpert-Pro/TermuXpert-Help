@@ -36,7 +36,7 @@
         .cal-hero{text-align:center; margin-bottom:34px;}
         .cal-hero .cal-eyebrow{
             display:inline-flex; align-items:center; gap:8px;
-            color:var(--cal-gold); font-size:13px; font-weight:700;
+            color:var(--gold-text); font-size:13px; font-weight:700;
             letter-spacing:0.5px; background:rgba(244,208,63,0.08);
             padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
             margin-bottom:16px;
@@ -45,7 +45,7 @@
             font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
             margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
         }
-        .cal-hero h1 span{color:var(--cal-gold);}
+        .cal-hero h1 span{color:var(--gold-text);}
         .cal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
 
         .cal-section{
@@ -64,7 +64,7 @@
         }
         .cal-section h2{
             display:flex; align-items:center; gap:10px;
-            font-size:17px; font-weight:700; color:var(--cal-gold);
+            font-size:17px; font-weight:700; color:var(--gold-text);
             margin-bottom:14px; font-family:'Cairo','Tajawal',sans-serif;
         }
         .cal-section h2 i{font-size:15px;}
@@ -80,7 +80,7 @@
         .cal-date-row:last-child{margin-bottom:0;}
         .cal-date-badge{
             flex-shrink:0; min-width:74px; text-align:center;
-            background:rgba(244,208,63,0.12); color:var(--cal-gold);
+            background:rgba(244,208,63,0.12); color:var(--gold-text);
             font-weight:700; font-size:13px; padding:8px 6px; border-radius:8px;
             font-family:'Cairo','Tajawal',sans-serif;
         }
@@ -91,7 +91,7 @@
         .cal-table-wrap{overflow-x:auto; border-radius:10px; border:1px solid var(--border);}
         .cal-table-wrap table{width:100%; border-collapse:collapse; font-size:13px; background:var(--bg-primary); font-family:'Cairo','Tajawal',sans-serif;}
         .cal-table-wrap th{
-            background:rgba(244,208,63,0.08); color:var(--cal-gold);
+            background:rgba(244,208,63,0.08); color:var(--gold-text);
             padding:9px 8px; font-weight:700; text-align:center;
             border-bottom:1px solid var(--border);
         }
@@ -118,6 +118,22 @@
             .cal-date-row{flex-direction:column; align-items:flex-start; gap:6px;}
             .cal-date-badge{min-width:unset;}
         }
+
+        /* ====== زر تثبيت PWA ====== */
+        .pwa-install-btn{
+            display:none;
+            align-items:center; justify-content:center;
+            width:36px; height:36px;
+            border-radius:50%;
+            border:1px solid var(--border);
+            background:var(--bg-card);
+            color:var(--gold-text);
+            font-size:15px;
+            cursor:pointer;
+            transition:transform 0.2s ease, background 0.2s ease;
+        }
+        .pwa-install-btn:hover{ transform:scale(1.08); background:rgba(244,208,63,0.1); }
+        .pwa-install-btn.show{ display:inline-flex; }
     </style>
 </head>
 <body>
@@ -175,6 +191,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -421,6 +442,50 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
+
+    <!-- ====== زر تثبيت PWA ====== -->
+    <script>
+    (function () {
+        const installBtn = document.getElementById('pwaInstallBtn');
+        if (!installBtn) return;
+
+        let deferredPrompt = null;
+        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+            || navigator.standalone === true;
+
+        if (isStandalone) return; // التطبيق مثبّت ديجا، ما نعرضوش الزر
+
+        // Android / Chrome / Edge : بينستولبرومبت
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.add('show');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.remove('show');
+            deferredPrompt = null;
+        });
+
+        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو تعليمات يدوية
+        if (isIOS) {
+            installBtn.classList.add('show');
+        }
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`PWA install: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.classList.remove('show');
+            } else if (isIOS) {
+                alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
+            }
+        });
+    })();
+    </script>
 
   <!-- ====== GSAP Animation pour calendrier (toujours active) ====== -->
 <script>

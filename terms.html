@@ -43,7 +43,7 @@
         .legal-hero{text-align:center; margin-bottom:34px;}
         .legal-hero .legal-eyebrow{
             display:inline-flex; align-items:center; gap:8px;
-            color:var(--legal-gold); font-size:13px; font-weight:700;
+            color:var(--gold-text); font-size:13px; font-weight:700;
             letter-spacing:0.5px; background:rgba(244,208,63,0.08);
             padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
             margin-bottom:16px;
@@ -52,7 +52,7 @@
             font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
             margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
         }
-        .legal-hero h1 span{color:var(--legal-gold);}
+        .legal-hero h1 span{color:var(--gold-text);}
         .legal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
 
         .legal-section{
@@ -71,7 +71,7 @@
         }
         .legal-section h2{
             display:flex; align-items:center; gap:10px;
-            font-size:17px; font-weight:700; color:var(--legal-gold);
+            font-size:17px; font-weight:700; color:var(--gold-text);
             margin-bottom:12px; font-family:'Cairo','Tajawal',sans-serif;
         }
         .legal-section h2 i{font-size:15px;}
@@ -86,6 +86,22 @@
             text-align:center; color:var(--text-muted); font-size:12px; margin-top:24px;
             font-family:'Cairo','Tajawal',sans-serif;
         }
+
+        /* ====== زر تثبيت PWA ====== */
+        .pwa-install-btn{
+            display:none;
+            align-items:center; justify-content:center;
+            width:36px; height:36px;
+            border-radius:50%;
+            border:1px solid var(--border);
+            background:var(--bg-card);
+            color:var(--gold-text);
+            font-size:15px;
+            cursor:pointer;
+            transition:transform 0.2s ease, background 0.2s ease;
+        }
+        .pwa-install-btn:hover{ transform:scale(1.08); background:rgba(244,208,63,0.1); }
+        .pwa-install-btn.show{ display:inline-flex; }
     </style>
 </head>
 <body>
@@ -143,6 +159,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -313,41 +334,41 @@
 
         <div class="legal-section">
             <h2><i class="fas fa-circle-info"></i> قبول الشروط</h2>
-            <p>باستخدامك لموقع Xpert، فإنك توافق على الشروط المذكورة فهاذي الصفحة. إلا ما وافقتش على شي بند، نرجو منك التوقف عن استعمال الموقع.</p>
+            <p>باستخدامك لموقع Xpert، فإنك توافق على الشروط المذكورة في هذه الصفحة. وإذا لم توافق على أي بند منها، نرجو منك التوقف عن استخدام الموقع.</p>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-graduation-cap"></i> طبيعة الخدمة</h2>
-            <p>Xpert منصة تعليمية <strong>مجانية</strong> موجهة لتلاميذ السنة الأولى بكالوريا علوم تجريبية بالمغرب. المحتوى (دروس، تمارين، سلاسل) معد لأغراض تعليمية ومساعدة فقط، وما كيعوضش المقرر الرسمي ولا المدرس.</p>
+            <p>Xpert منصة تعليمية <strong>مجانية</strong> موجهة لتلاميذ السنة الأولى من سلك البكالوريا، شعبة العلوم التجريبية، بالمغرب. المحتوى (دروس، تمارين، سلاسل) مُعدّ لأغراض تعليمية ومساعدة فقط، ولا يُغني عن المقرر الرسمي أو المدرّس.</p>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-triangle-exclamation"></i> إخلاء المسؤولية</h2>
             <ul>
-                <li>نبذلو مجهود باش يكون المحتوى دقيق، ولكن ما نضمنوش خلوه التام من الأخطاء.</li>
-                <li>الموقع "كما هو" (as-is) بلا أي ضمان، وما نتحملوش مسؤولية أي ضرر ناتج عن استعمال المعلومات المقدمة.</li>
-                <li>يُنصح دائماً بالرجوع للمقرر الرسمي والمدرس فأي حالة شك.</li>
+                <li>نبذل جهدنا لضمان دقة المحتوى، لكننا لا نضمن خلوّه التام من الأخطاء.</li>
+                <li>يُقدَّم الموقع "كما هو" (as-is) بلا أي ضمان، ولا نتحمل مسؤولية أي ضرر ناتج عن استخدام المعلومات المقدَّمة.</li>
+                <li>يُنصح دائماً بالرجوع إلى المقرر الرسمي والمدرّس في حال الشك.</li>
             </ul>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-copyright"></i> حقوق الملكية</h2>
-            <p>جميع المحتويات (نصوص، تصاميم، شعار Xpert) محمية بحقوق الملكية. يُسمح باستخدام المحتوى للأغراض الشخصية والتعليمية، لكن يُمنع إعادة نشره أو بيعه أو استخدامه تجارياً بلا إذن مسبق.</p>
+            <p>جميع المحتويات (نصوص، تصاميم، شعار Xpert) محمية بحقوق الملكية. يُسمح باستخدام المحتوى للأغراض الشخصية والتعليمية، لكن يُمنع إعادة نشره أو بيعه أو استخدامه تجارياً بدون إذن مسبق.</p>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-link"></i> روابط خارجية</h2>
-            <p>الموقع قد يحتوي على روابط لمواقع خارجية (مثلاً المقرر الرسمي). ما نتحملوش مسؤولية محتوى ولا سياسات هاذي المواقع الخارجية.</p>
+            <p>قد يحتوي الموقع على روابط لمواقع خارجية (مثل المقرر الرسمي). لا نتحمل مسؤولية محتوى أو سياسات هذه المواقع الخارجية.</p>
         </div>
 
         <div class="legal-section">
             <h2><i class="fas fa-arrows-rotate"></i> تعديل الشروط</h2>
-            <p>نحتفظ بالحق فـ تعديل هاذي الشروط فأي وقت. الاستمرار فـ استخدام الموقع بعد أي تعديل يعتبر موافقة على الشروط الجديدة.</p>
+            <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. ويُعدّ استمرارك في استخدام الموقع بعد أي تعديل موافقةً على الشروط الجديدة.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-envelope"></i> التواصل معانا</h2>
-            <p>لأي سؤال أو استفسار حول هاذي الشروط: <strong><a href="mailto:jdelkhayaty@gmail.com" style="color:var(--legal-teal);text-decoration:none;">jdelkhayaty@gmail.com</a></strong></p>
+            <h2><i class="fas fa-envelope"></i> التواصل معنا</h2>
+            <p>لأي سؤال أو استفسار حول هذه الشروط: <strong><a href="mailto:jdelkhayaty@gmail.com" style="color:var(--legal-teal);text-decoration:none;">jdelkhayaty@gmail.com</a></strong></p>
         </div>
 
         <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
@@ -369,6 +390,50 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
+
+    <!-- ====== زر تثبيت PWA ====== -->
+    <script>
+    (function () {
+        const installBtn = document.getElementById('pwaInstallBtn');
+        if (!installBtn) return;
+
+        let deferredPrompt = null;
+        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+            || navigator.standalone === true;
+
+        if (isStandalone) return; // التطبيق مثبّت ديجا، ما نعرضوش الزر
+
+        // Android / Chrome / Edge : بينستولبرومبت
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.add('show');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.remove('show');
+            deferredPrompt = null;
+        });
+
+        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو تعليمات يدوية
+        if (isIOS) {
+            installBtn.classList.add('show');
+        }
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`PWA install: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.classList.remove('show');
+            } else if (isIOS) {
+                alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
+            }
+        });
+    })();
+    </script>
 
   <!-- ====== GSAP Animation (نفس أنميشن calendrier.html) ====== -->
 <script>

@@ -4,7 +4,7 @@
     <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="صفحة الدعم لموقع Xpert - بلّغ عن أي مشكل تقني أو خطأ فالمحتوى وحنا نعاونوك.">
+    <meta name="description" content="صفحة الدعم لموقع Xpert - أبلغ عن أي مشكلة تقنية أو خطأ في المحتوى وسنساعدك.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +43,7 @@
         .legal-hero{text-align:center; margin-bottom:34px;}
         .legal-hero .legal-eyebrow{
             display:inline-flex; align-items:center; gap:8px;
-            color:var(--legal-gold); font-size:13px; font-weight:700;
+            color:var(--gold-text); font-size:13px; font-weight:700;
             letter-spacing:0.5px; background:rgba(244,208,63,0.08);
             padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
             margin-bottom:16px;
@@ -52,7 +52,7 @@
             font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
             margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
         }
-        .legal-hero h1 span{color:var(--legal-gold);}
+        .legal-hero h1 span{color:var(--gold-text);}
         .legal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
 
         .legal-section{
@@ -71,7 +71,7 @@
         }
         .legal-section h2{
             display:flex; align-items:center; gap:10px;
-            font-size:17px; font-weight:700; color:var(--legal-gold);
+            font-size:17px; font-weight:700; color:var(--gold-text);
             margin-bottom:12px; font-family:'Cairo','Tajawal',sans-serif;
         }
         .legal-section h2 i{font-size:15px;}
@@ -121,6 +121,22 @@
         .support-email-box a{
             color:var(--legal-teal); text-decoration:none; font-weight:700; font-size:15px;
         }
+
+        /* ====== زر تثبيت PWA ====== */
+        .pwa-install-btn{
+            display:none;
+            align-items:center; justify-content:center;
+            width:36px; height:36px;
+            border-radius:50%;
+            border:1px solid var(--border);
+            background:var(--bg-card);
+            color:var(--gold-text);
+            font-size:15px;
+            cursor:pointer;
+            transition:transform 0.2s ease, background 0.2s ease;
+        }
+        .pwa-install-btn:hover{ transform:scale(1.08); background:rgba(244,208,63,0.1); }
+        .pwa-install-btn.show{ display:inline-flex; }
     </style>
 </head>
 <body>
@@ -178,6 +194,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -343,12 +364,12 @@
         <div class="legal-hero">
             <div class="legal-eyebrow"><i class="fas fa-headset"></i> Xpert</div>
             <h1>مركز <span>الدعم</span></h1>
-            <p>واجهتك مشكل فالموقع؟ حنا هنا باش نعاونوك</p>
+            <p>هل واجهتك مشكلة في الموقع؟ نحن هنا لمساعدتك</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-info"></i> مرحبا بيك</h2>
-            <p>إلا صادفتك أي مشكل فمحتوى ولا فتقنية الموقع، قبل ما تتواصل معانا، عيّط شنو نوع المشكل من اللائحة تحت. هاد الشي غادي يعاوننا نفهمو المشكل بسرعة ونحلوه فأقرب وقت.</p>
+            <h2><i class="fas fa-circle-info"></i> مرحباً بك</h2>
+            <p>إذا صادفتك أي مشكلة في محتوى الموقع أو في جانبه التقني، يرجى قبل التواصل معنا أن تحدد نوع المشكلة من القائمة أدناه. سيساعدنا هذا على فهم المشكلة بسرعة وحلها في أقرب وقت ممكن.</p>
         </div>
 
         <div class="legal-section">
@@ -358,46 +379,46 @@
                     <i class="fas fa-chart-line"></i>
                     <div>
                         <div class="support-issue-title">رسم أو بيان مشوّه</div>
-                        <div class="support-issue-desc">شكل، منحنى، أو بيان بان ماشي واضح ولا غير دقيق.</div>
+                        <div class="support-issue-desc">شكل أو منحنى أو رسم بياني يبدو غير واضح أو غير دقيق.</div>
                     </div>
                 </div>
                 <div class="support-issue-card">
                     <i class="fas fa-circle-exclamation"></i>
                     <div>
                         <div class="support-issue-title">معلومة خاطئة</div>
-                        <div class="support-issue-desc">نتيجة، قانون، أو معطى غلط فدرس ولا فتمرين معيّن.</div>
+                        <div class="support-issue-desc">نتيجة أو قانون أو معطى خاطئ في درس أو تمرين معيّن.</div>
                     </div>
                 </div>
                 <div class="support-issue-card">
                     <i class="fas fa-book-open"></i>
                     <div>
-                        <div class="support-issue-title">نقص تمرين</div>
-                        <div class="support-issue-desc">درس معيّن ناقصو تمرين ولا كاين تمرين ما كيفتحش.</div>
+                        <div class="support-issue-title">نقص في تمرين</div>
+                        <div class="support-issue-desc">درس معيّن ينقصه تمرين، أو تمرين لا يمكن فتحه.</div>
                     </div>
                 </div>
                 <div class="support-issue-card">
                     <i class="fas fa-gears"></i>
                     <div>
-                        <div class="support-issue-title">مشكل تقني</div>
-                        <div class="support-issue-desc">صفحة ما كتفتحش، الموقع بطيء، ولا مشكل فالعرض بشكل عام.</div>
+                        <div class="support-issue-title">مشكلة تقنية</div>
+                        <div class="support-issue-desc">صفحة لا يمكن فتحها، أو بطء في الموقع، أو مشكلة عامة في العرض.</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-paper-plane"></i> كيفاش تبلغ عن مشكل</h2>
-            <p>باش نحلو المشكل بسرعة، حاول تعطينا:</p>
+            <h2><i class="fas fa-paper-plane"></i> كيف تُبلغ عن مشكلة</h2>
+            <p>لحل المشكلة بسرعة، يرجى تزويدنا بما يلي:</p>
             <ul>
-                <li>اسم الصفحة ولا الدرس ولا التمرين اللي فيه المشكل.</li>
-                <li>وصف قصير للمشكل اللي واجهتك.</li>
-                <li>صورة للشاشة (screenshot) إلا كان ممكن.</li>
+                <li>اسم الصفحة أو الدرس أو التمرين الذي تحتوي عليه المشكلة.</li>
+                <li>وصف موجز للمشكلة التي واجهتها.</li>
+                <li>لقطة شاشة (screenshot) إن أمكن.</li>
             </ul>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-envelope"></i> تواصل معانا</h2>
-            <p>بعث لينا المشكل اللي واجهتك عبر الإيميل:</p>
+            <h2><i class="fas fa-envelope"></i> تواصل معنا</h2>
+            <p>أرسل لنا المشكلة التي واجهتها عبر البريد الإلكتروني:</p>
             <div class="support-email-box">
                 <i class="fas fa-envelope" style="color:var(--legal-teal);"></i>
                 <a href="mailto:jdelkhayaty@gmail.com">jdelkhayaty@gmail.com</a>
@@ -423,6 +444,50 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
+
+    <!-- ====== زر تثبيت PWA ====== -->
+    <script>
+    (function () {
+        const installBtn = document.getElementById('pwaInstallBtn');
+        if (!installBtn) return;
+
+        let deferredPrompt = null;
+        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+            || navigator.standalone === true;
+
+        if (isStandalone) return; // التطبيق مثبّت ديجا، ما نعرضوش الزر
+
+        // Android / Chrome / Edge : بينستولبرومبت
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.add('show');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.classList.remove('show');
+            deferredPrompt = null;
+        });
+
+        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو تعليمات يدوية
+        if (isIOS) {
+            installBtn.classList.add('show');
+        }
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`PWA install: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.classList.remove('show');
+            } else if (isIOS) {
+                alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
+            }
+        });
+    })();
+    </script>
 
   <!-- ====== GSAP Animation (نفس أنميشن privacy.html/calendrier.html) ====== -->
 <script>
