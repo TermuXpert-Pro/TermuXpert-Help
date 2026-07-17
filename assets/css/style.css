@@ -1359,5 +1359,42 @@ html[data-theme="light"] .btn-primary:hover { box-shadow: 0 6px 30px rgba(47, 14
 .sidebar-math-bg .math-symbol:nth-child(8) { top: 15%; left: 45%; font-size: 20px; --mx: -8px; --my: 16px; --mr: -8deg; animation-duration: 7s; animation-delay: 1.05s; }
 
 
+/* ============================================================
+   THEME: LIGHT MODE — تصحيح وضوح الزليج المغربي والرموز الرياضية
+   الألوان الأصلية (باستيل شفافة) مبنية على خلفية غامقة؛ فـ light mode
+   كنغمقو ونزيدو فالشفافية باش الزخرفة تبقى بانة بلا ما "توسخ" القراءة.
+   ============================================================ */
 
+/* --- الزليج الرئيسي: index/subjects/subject + دروس/تمارين/سلاسل --- */
+html[data-theme="light"] .moroccan-bg svg {
+    filter: brightness(0.4) saturate(1.8) contrast(1.6);
+}
+html[data-theme="light"] .moroccan-bg svg [opacity="0.3"]  { opacity: 0.55; }
+html[data-theme="light"] .moroccan-bg svg [opacity="0.2"]  { opacity: 0.4; }
+html[data-theme="light"] .moroccan-bg svg [opacity="0.15"] { opacity: 0.32; }
+html[data-theme="light"] .moroccan-bg svg [opacity="0.1"]  { opacity: 0.22; }
+html[data-theme="light"] .moroccan-bg svg [opacity="0.05"] { opacity: 0.14; }
+
+/* .moroccan-bg (الحاوية) كتحكم فيها GSAP عبر style.opacity inline فالصفحات
+   الجذرية - خاصنا !important باش نربحو عليها. الباقي (shadow/star/geo)
+   كيفهم، مثبتين مرة وحدة من GSAP بلا أنيميشن مستمرة. */
+html[data-theme="light"] .moroccan-shadow { opacity: 0.16 !important; }
+html[data-theme="light"] .moroccan-star   { color: #157F78; opacity: 0.08 !important; }
+html[data-theme="light"] .geo-pattern     { color: #B8860B; opacity: 0.09 !important; }
+
+/* --- خلفية الزليج المبسطة فالـ Sidebar --- */
+html[data-theme="light"] .sidebar-bg-pattern {
+    opacity: 0.9;
+}
+html[data-theme="light"] .sidebar-bg-pattern svg {
+    filter: brightness(0.4) saturate(2.2) contrast(1.8);
+}
+
+/* --- الرموز الرياضية المتحركة فالـ Sidebar --- */
+html[data-theme="light"] .sidebar-math-bg .math-symbol {
+    color: rgba(47, 143, 137, 0.4);
+}
+html[data-theme="light"] .sidebar.open .sidebar-math-bg .math-symbol {
+    opacity: 0.32;
+}
 
