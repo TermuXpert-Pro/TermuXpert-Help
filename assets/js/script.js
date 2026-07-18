@@ -110,6 +110,61 @@ console.log('✅ Xpert - Scripts chargés avec succès !');
 })();
 
 // ============================================================
+// PWA INSTALL BUTTON (مركزي - كيخدم فكل الصفحات، بلا تكرار)
+// window.XpertPWAInstall() معروضة عالمياً باش أي زر آخر (بحال
+// الزر الكبير فـ installation.html) يقدر يستدعيها.
+// ============================================================
+(function () {
+    var installBtn = document.getElementById('pwaInstallBtn');
+    var deferredPrompt = null;
+    var isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+        || navigator.standalone === true;
+
+    function showBtn() { if (installBtn) installBtn.classList.add('show'); }
+    function hideBtn() { if (installBtn) installBtn.classList.remove('show'); }
+
+    if (!isStandalone) {
+        window.addEventListener('beforeinstallprompt', function (e) {
+            e.preventDefault();
+            deferredPrompt = e;
+            showBtn();
+        });
+
+        window.addEventListener('appinstalled', function () {
+            hideBtn();
+            deferredPrompt = null;
+        });
+
+        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو الزر ديما
+        if (isIOS) showBtn();
+    }
+
+    async function triggerInstall() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            var choice = await deferredPrompt.userChoice;
+            console.log('PWA install: ' + choice.outcome);
+            deferredPrompt = null;
+            hideBtn();
+            return choice.outcome;
+        } else if (isIOS) {
+            alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
+            return 'ios-instructions';
+        } else if (isStandalone) {
+            alert('التطبيق مثبّت ديجا! ✅');
+            return 'already-installed';
+        } else {
+            alert('التثبيت غير متاح حالياً فهاد المتصفح. جرّب من قائمة المتصفح (⋮) واختر "تثبيت التطبيق".');
+            return 'unavailable';
+        }
+    }
+
+    window.XpertPWAInstall = triggerInstall;
+    if (installBtn) installBtn.addEventListener('click', triggerInstall);
+})();
+
+// ============================================================
 // SIDEBAR - تصميم مبتكر
 // ============================================================
 
@@ -134,6 +189,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
 
     // ====== Fonctions ======
+    // ملاحظة: الرموز الرياضية المتحركة (.sidebar-math-bg) كانت كتبدا
+    // فنفس اللحظة ديال فتح السايدبار، وكانت كتتنافس مع أنيميشن الانزلاق
+    // (backdrop-filter + blur + box-shadow) على نفس الـframes، وهذا كان
+    // كيدي إحساس بالثقل خصوصا فالقسم السفلي. دابا كنستناو transitionend
+    // ديال الانزلاق قبل ما نشغلو الديكور عبر كلاس decor-ready.
     function openSidebar() {
         sidebar.classList.add('open');
         overlay.classList.add('active');
@@ -141,10 +201,25 @@ document.addEventListener('DOMContentLoaded', function () {
         menuToggle.classList.add('active');
         menuToggle.setAttribute('aria-expanded', 'true');
         document.dispatchEvent(new CustomEvent('sidebar:opened'));
+
+        var decorStarted = false;
+        function startDecor() {
+            if (decorStarted) return;
+            decorStarted = true;
+            sidebar.classList.add('decor-ready');
+        }
+        sidebar.addEventListener('transitionend', function onEnd(e) {
+            if (e.target !== sidebar || e.propertyName !== 'transform') return;
+            sidebar.removeEventListener('transitionend', onEnd);
+            startDecor();
+        });
+        // fallback (WebViews قديمة اللي ممكن ما تطلقش transitionend بشكل موثوق)
+        setTimeout(startDecor, 400);
     }
 
     function closeSidebar() {
         sidebar.classList.remove('open');
+        sidebar.classList.remove('decor-ready');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
         menuToggle.classList.remove('active');
@@ -241,18 +316,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ====== Activation de la matière ======
+    // كنجيبو المادة الحالية إما من ?subject=... (فـsubject.html) أو من
+    // المسار نفسو /content/<matiere>/... (دروس/سلاسل/تمارين) - قبل هاد
+    // الإصلاح، البطاقة الملونة كانت كتبان غير فـsubject.html وكتختفي
+    // بمجرد ما تدخل لدرس، لأن صفحات الدروس ماعندهاش ?subject= فالـURL.
+    let currentSubject = null;
+    if (currentSearch.includes('subject=')) {
+        currentSubject = new URLSearchParams(currentSearch).get('subject');
+    } else {
+        const subjectMatch = currentPath.match(/\/content\/(math|physique|chimie)\//);
+        if (subjectMatch) currentSubject = subjectMatch[1];
+    }
+
     document.querySelectorAll('.subject-card').forEach(function (card) {
         const href = card.getAttribute('href');
-        if (href && currentSearch.includes('subject=')) {
-            const subject = new URLSearchParams(currentSearch).get('subject');
-            if (href.includes('subject=' + subject)) {
-                card.style.borderColor = 'rgba(78,205,196,0.3)';
-                card.style.background = 'rgba(78,205,196,0.05)';
-            }
+        if (href && currentSubject && href.includes('subject=' + currentSubject)) {
+            card.style.borderColor = 'rgba(78,205,196,0.3)';
+            card.style.background = 'rgba(78,205,196,0.05)';
         }
     });
 
     console.log('✅ Sidebar v3.0 initialisée');
 });
+
+
 
 

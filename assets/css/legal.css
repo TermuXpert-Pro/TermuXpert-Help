@@ -1,0 +1,68 @@
+/* ============================================================
+   legal.css - تصميم مشترك لصفحات المعلومات القانونية/الثابتة
+   (terms.html / installation.html / support.html / about.html)
+
+   مستخرج من الـ<style> المكرر بالحرف فـ4 صفحات (~59 سطر × 4).
+   أي تعديل هنا كيتطبق أوتوماتيكياً على الصفحات الأربعة.
+   ============================================================ */
+
+/* ====== حالة البداية قبل أنيميشن GSAP (لتفادي فلاش الظهور) ======
+   هاد القيم خاصها تطابق gsap.set() الموجودة فـ XpertAnimateLegalPage()
+   فـ script.js تماماً */
+#legalWrap{opacity:0; transform:translateY(40px);}
+.legal-hero{opacity:0; transform:translateY(30px);}
+.legal-section{opacity:0; transform:translateY(30px);}
+
+/* ====== تصميم صفحات قانونية (terms/installation/support/about) ====== */
+.legal-wrap{
+    --legal-gold:#F4D03F;
+    --legal-teal:#4ECDC4;
+    position:relative; z-index:1; max-width:820px; margin:0 auto; padding:60px 16px 40px;
+    direction:rtl;
+}
+.legal-hero{text-align:center; margin-bottom:34px;}
+.legal-hero .legal-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--gold-text); font-size:13px; font-weight:700;
+    letter-spacing:0.5px; background:rgba(244,208,63,0.08);
+    padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
+    margin-bottom:16px;
+}
+.legal-hero h1{
+    font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
+    margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
+}
+.legal-hero h1 span{color:var(--gold-text);}
+.legal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
+
+.legal-section{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    position:relative;
+    overflow:hidden;
+}
+.legal-section::before{
+    content:"";
+    position:absolute; top:0; right:0; width:4px; height:100%;
+    background:linear-gradient(180deg, var(--legal-gold), transparent);
+}
+.legal-section h2{
+    display:flex; align-items:center; gap:10px;
+    font-size:17px; font-weight:700; color:var(--gold-text);
+    margin-bottom:12px; font-family:'Cairo','Tajawal',sans-serif;
+}
+.legal-section h2 i{font-size:15px;}
+.legal-section p, .legal-section li{
+    font-size:14px; line-height:1.9; color:var(--text-secondary);
+    font-family:'Cairo','Tajawal',sans-serif;
+}
+.legal-section ul{padding-right:20px; margin-top:6px;}
+.legal-section li{margin-bottom:6px;}
+.legal-section strong{color:var(--text-primary);}
+.legal-updated{
+    text-align:center; color:var(--text-muted); font-size:12px; margin-top:24px;
+    font-family:'Cairo','Tajawal',sans-serif;
+}

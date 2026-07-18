@@ -5,7 +5,7 @@
     <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>التقويم الدراسي 2026/2027 | السنة الأولى بكالوريا</title>
 
     <!-- ====== Preconnect CDN ====== -->
@@ -24,6 +24,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <style>
+        /* ====== حالة البداية قبل أنيميشن GSAP (لتفادي فلاش الظهور) ======
+           هاد القيم خاصها تطابق gsap.set() الموجودة فآخر الصفحة تماماً */
+        #calWrap{opacity:0; transform:translateY(40px);}
+        .cal-hero{opacity:0; transform:translateY(30px);}
+        .cal-section{opacity:0; transform:translateY(30px);}
+        .cal-cta-wrap{opacity:0; transform:translateY(30px);}
+
         /* ====== تصميم صفحة التقويم (بطاقات/جداول) - محافظ عليه كما هو ====== */
         .cal-wrap{
             --cal-gold:#F4D03F;
@@ -118,23 +125,7 @@
             .cal-date-row{flex-direction:column; align-items:flex-start; gap:6px;}
             .cal-date-badge{min-width:unset;}
         }
-
-        /* ====== زر تثبيت PWA ====== */
-        .pwa-install-btn{
-            display:none;
-            align-items:center; justify-content:center;
-            width:36px; height:36px;
-            border-radius:50%;
-            border:1px solid var(--border);
-            background:var(--bg-card);
-            color:var(--gold-text);
-            font-size:15px;
-            cursor:pointer;
-            transition:transform 0.2s ease, background 0.2s ease;
-        }
-        .pwa-install-btn:hover{ transform:scale(1.08); background:rgba(244,208,63,0.1); }
-        .pwa-install-btn.show{ display:inline-flex; }
-    </style>
+</style>
 </head>
 <body>
 
@@ -442,52 +433,7 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
-
-    <!-- ====== زر تثبيت PWA ====== -->
-    <script>
-    (function () {
-        const installBtn = document.getElementById('pwaInstallBtn');
-        if (!installBtn) return;
-
-        let deferredPrompt = null;
-        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-            || navigator.standalone === true;
-
-        if (isStandalone) return; // التطبيق مثبّت ديجا، ما نعرضوش الزر
-
-        // Android / Chrome / Edge : بينستولبرومبت
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.classList.add('show');
-        });
-
-        window.addEventListener('appinstalled', () => {
-            installBtn.classList.remove('show');
-            deferredPrompt = null;
-        });
-
-        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو تعليمات يدوية
-        if (isIOS) {
-            installBtn.classList.add('show');
-        }
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log(`PWA install: ${outcome}`);
-                deferredPrompt = null;
-                installBtn.classList.remove('show');
-            } else if (isIOS) {
-                alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
-            }
-        });
-    })();
-    </script>
-
-  <!-- ====== GSAP Animation pour calendrier (toujours active) ====== -->
+<!-- ====== GSAP Animation pour calendrier (toujours active) ====== -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // إذا لم يتم تحميل GSAP → عرض مباشر

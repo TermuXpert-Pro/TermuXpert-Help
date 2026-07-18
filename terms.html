@@ -7,7 +7,7 @@
     <meta name="description" content="شروط الاستخدام لموقع Xpert - منصة تعليمية للسنة الأولى بكالوريا علوم تجريبية.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شروط الاستخدام | Xpert</title>
 
     <link rel="manifest" href="manifest.json">
@@ -28,81 +28,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/root-decor.css">
+    <link rel="stylesheet" href="assets/css/legal.css">
 
     <!-- ====== GSAP ====== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-    <style>
-        /* ====== تصميم صفحات قانونية (privacy/terms) ====== */
-        .legal-wrap{
-            --legal-gold:#F4D03F;
-            --legal-teal:#4ECDC4;
-            position:relative; z-index:1; max-width:820px; margin:0 auto; padding:60px 16px 40px;
-            direction:rtl;
-        }
-        .legal-hero{text-align:center; margin-bottom:34px;}
-        .legal-hero .legal-eyebrow{
-            display:inline-flex; align-items:center; gap:8px;
-            color:var(--gold-text); font-size:13px; font-weight:700;
-            letter-spacing:0.5px; background:rgba(244,208,63,0.08);
-            padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
-            margin-bottom:16px;
-        }
-        .legal-hero h1{
-            font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
-            margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
-        }
-        .legal-hero h1 span{color:var(--gold-text);}
-        .legal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
-
-        .legal-section{
-            background:var(--bg-card);
-            border:1px solid var(--border);
-            border-radius:16px;
-            padding:22px 20px;
-            margin-bottom:18px;
-            position:relative;
-            overflow:hidden;
-        }
-        .legal-section::before{
-            content:"";
-            position:absolute; top:0; right:0; width:4px; height:100%;
-            background:linear-gradient(180deg, var(--legal-gold), transparent);
-        }
-        .legal-section h2{
-            display:flex; align-items:center; gap:10px;
-            font-size:17px; font-weight:700; color:var(--gold-text);
-            margin-bottom:12px; font-family:'Cairo','Tajawal',sans-serif;
-        }
-        .legal-section h2 i{font-size:15px;}
-        .legal-section p, .legal-section li{
-            font-size:14px; line-height:1.9; color:var(--text-secondary);
-            font-family:'Cairo','Tajawal',sans-serif;
-        }
-        .legal-section ul{padding-right:20px; margin-top:6px;}
-        .legal-section li{margin-bottom:6px;}
-        .legal-section strong{color:var(--text-primary);}
-        .legal-updated{
-            text-align:center; color:var(--text-muted); font-size:12px; margin-top:24px;
-            font-family:'Cairo','Tajawal',sans-serif;
-        }
-
-        /* ====== زر تثبيت PWA ====== */
-        .pwa-install-btn{
-            display:none;
-            align-items:center; justify-content:center;
-            width:36px; height:36px;
-            border-radius:50%;
-            border:1px solid var(--border);
-            background:var(--bg-card);
-            color:var(--gold-text);
-            font-size:15px;
-            cursor:pointer;
-            transition:transform 0.2s ease, background 0.2s ease;
-        }
-        .pwa-install-btn:hover{ transform:scale(1.08); background:rgba(244,208,63,0.1); }
-        .pwa-install-btn.show{ display:inline-flex; }
-    </style>
 </head>
 <body>
 
@@ -116,18 +45,10 @@
             <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <rect width="200" height="200" fill="none"/>
                 <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
                 <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
                 <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
                 <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
                 <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
             </pattern>
         </defs>
         <rect width="800" height="800" fill="url(#zellij)"/>
@@ -163,7 +84,7 @@
 
         <!-- زر تثبيت PWA -->
         <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download"></i>
+            <i class="fas fa-download" aria-hidden="true"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -390,120 +311,12 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
-
-    <!-- ====== زر تثبيت PWA ====== -->
-    <script>
-    (function () {
-        const installBtn = document.getElementById('pwaInstallBtn');
-        if (!installBtn) return;
-
-        let deferredPrompt = null;
-        const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-            || navigator.standalone === true;
-
-        if (isStandalone) return; // التطبيق مثبّت ديجا، ما نعرضوش الزر
-
-        // Android / Chrome / Edge : بينستولبرومبت
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.classList.add('show');
-        });
-
-        window.addEventListener('appinstalled', () => {
-            installBtn.classList.remove('show');
-            deferredPrompt = null;
-        });
-
-        // iOS Safari : ماكاينش beforeinstallprompt → نعرضو تعليمات يدوية
-        if (isIOS) {
-            installBtn.classList.add('show');
-        }
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log(`PWA install: ${outcome}`);
-                deferredPrompt = null;
-                installBtn.classList.remove('show');
-            } else if (isIOS) {
-                alert('لتثبيت التطبيق على iPhone/iPad:\n1. اضغط على أيقونة المشاركة (Share) بالأسفل\n2. اختر "إضافة إلى الشاشة الرئيسية"');
-            }
-        });
-    })();
-    </script>
-
-  <!-- ====== GSAP Animation (نفس أنميشن calendrier.html) ====== -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // إذا لم يتم تحميل GSAP → عرض مباشر
-        if (typeof gsap === 'undefined') {
-            console.warn('⚠️ GSAP non chargé - Affichage direct');
-            document.querySelector('.moroccan-bg').style.opacity = '0.6';
-            document.querySelector('.moroccan-shadow').style.opacity = '0.08';
-            document.querySelector('.moroccan-star').style.opacity = '0.04';
-            document.querySelectorAll('.geo-pattern').forEach(el => el.style.opacity = '0.03');
-            document.getElementById('legalWrap').style.opacity = '1';
-            document.getElementById('legalWrap').style.transform = 'none';
-            document.getElementById('overlayProtection').classList.add('hidden');
-            return;
-        }
-
-        const overlay = document.getElementById('overlayProtection');
-
-        // ====== إعداد العناصر (كلها مخفية) ======
-        gsap.set('.moroccan-bg', { opacity: 0 });
-        gsap.set('.moroccan-shadow', { opacity: 0 });
-        gsap.set('.moroccan-star', { opacity: 0 });
-        gsap.set('.geo-pattern', { opacity: 0 });
-        gsap.set('#legalWrap', { opacity: 0, y: 40 });
-        gsap.set('.legal-hero', { opacity: 0, y: 30 });
-        gsap.set('.legal-section', { opacity: 0, y: 30 });
-
-        // تفعيل طبقة الحماية (تمنع التفاعل أثناء الأنميشن)
-        overlay.classList.add('active');
-
-        // ====== تشغيل الأنميشن ======
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-        tl
-            // 1. ظهور الخلفيات
-            .to('.moroccan-bg', { opacity: 0.6, duration: 1.8, ease: 'power1.out' })
-            .to('.moroccan-shadow', { opacity: 0.08, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-            .to('.moroccan-star', { opacity: 0.04, duration: 1.8, ease: 'power1.out' }, '-=1.2')
-            .to('.geo-pattern', { opacity: 0.03, duration: 1.8, stagger: 0.08, ease: 'power1.out' }, '-=1.4')
-
-            // 2. ظهور المحتوى الرئيسي
-            .to('#legalWrap', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-            .to('.legal-hero', { opacity: 1, y: 0, duration: 0.7, ease: 'back.out(1.7)' }, '-=0.4')
-            .to('.legal-section', {
-                opacity: 1,
-                y: 0,
-                duration: 0.7,
-                stagger: 0.12,
-                ease: 'back.out(1.7)'
-            }, '-=0.3')
-
-            // 3. إخفاء طبقة الحماية بعد الأنميشن
-            .call(() => {
-                overlay.classList.remove('active');
-                overlay.classList.add('hidden');
-                overlay.style.display = 'none';
-                overlay.style.pointerEvents = 'none';
-                console.log('✅ terms.html - Animation jouée');
-            });
-
-        // ====== حركات مستمرة للخلفيات ======
-        gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-        gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
-        gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-        gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
-    });
-</script>
+<!-- ====== GSAP Animation (دالة مشتركة فـ script.js) ====== -->
+<script>XpertAnimateLegalPage('terms.html');</script>
 
 </body>
 </html>
+
+
 
 

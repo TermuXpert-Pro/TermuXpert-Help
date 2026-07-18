@@ -32,7 +32,7 @@
     }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/root-decor.css">
@@ -40,220 +40,7 @@
     <!-- ====== GSAP ====== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     
-    <style>
-        /* ====== طبقة الحماية غير المرئية ====== */
-        .hero {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: clamp(80px, 15vh, 120px) var(--container-padding) clamp(40px, 6vh, 60px);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-        }
-
-        .profile-outer {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 0px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .profile-outer .profile-ring {
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            width: 164px;
-            height: 164px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            background: linear-gradient(135deg, #4ECDC4, #F4D03F, #FF6B6B) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.4;
-            animation: ringSpin 12s linear infinite;
-        }
-        @keyframes ringSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .profile-outer .profile-image {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(78, 205, 196, 0.25);
-            box-shadow: 0 0 50px rgba(78, 205, 196, 0.12);
-            transition: all 0.4s ease;
-            background: rgba(var(--overlay-rgb), 0.05);
-            display: block;
-            pointer-events: none !important;
-            -webkit-user-drag: none !important;
-            -moz-user-drag: none !important;
-            -ms-user-drag: none !important;
-            user-drag: none !important;
-            -webkit-touch-callout: none !important;
-            touch-callout: none !important;
-        }
-
-        .hero-card {
-            position: relative;
-            background: rgba(var(--overlay-rgb), 0.02);
-            border: 1px solid rgba(78, 205, 196, 0.1);
-            border-radius: 30px;
-            padding: 50px 50px 50px;
-            max-width: 700px;
-            width: 100%;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            margin-top: 10px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .hero-logo .name-center {
-            font-family: 'Playfair Display', serif;
-            font-size: 52px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #4ECDC4 0%, #66FCF1 25%, #F4D03F 50%, #FF6B6B 75%, #A8FF78 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 300% 300%;
-            animation: gradientShift 6s ease-in-out infinite;
-            letter-spacing: 14px;
-            padding: 0 8px;
-            text-transform: uppercase;
-            filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.15));
-            position: relative;
-        }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(69, 162, 158, 0.1);
-            border: 1px solid rgba(69, 162, 158, 0.2);
-            color: #66FCF1;
-            padding: 4px 16px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 14px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .hero-label .dot {
-            width: 6px;
-            height: 6px;
-            background: #06D6A0;
-            border-radius: 50%;
-            animation: dotPulse 2s ease-in-out infinite;
-        }
-        @keyframes dotPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
-        }
-
-        .hero h1 {
-            font-size: clamp(28px, 5vw, 40px);
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, #4ECDC4, #66FCF1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .description {
-            color: var(--text-muted);
-            font-size: clamp(12px, 1.5vw, 15px);
-            max-width: 500px;
-            margin: 0 auto 16px;
-            line-height: 1.8;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        @media (max-width: 768px) {
-            .hero-card { padding: 30px 20px 40px; }
-            .hero-logo .name-center { font-size: 32px; letter-spacing: 8px; }
-            .profile-outer .profile-image { width: 100px; height: 100px; }
-            .profile-outer .profile-ring { width: 124px; height: 124px; top: -12px; left: -12px; }
-            .hero-card { margin-top: 15px; }
-        }
-        @media (max-width: 480px) {
-            .hero-card { padding: 20px 12px 30px; }
-            .hero-logo .name-center { font-size: 22px; letter-spacing: 4px; }
-            .profile-outer .profile-image { width: 80px; height: 80px; }
-            .profile-outer .profile-ring { width: 104px; height: 104px; top: -12px; left: -12px; }
-            .hero { padding: 70px 12px 30px; }
-            .hero-card { margin-top: 10px; }
-        }
-
-        /* ====== تحسينات ARIA ====== */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid #4ECDC4;
-            outline-offset: 2px;
-        }
-        .btn:focus-visible {
-            outline: 2px solid #4ECDC4;
-            outline-offset: 2px;
-        }
-
-        /* ====== حماية الصور فقط (النصوص قابلة للتحديد والنسخ) ====== */
-        img {
-            -webkit-user-drag: none !important;
-            -moz-user-drag: none !important;
-            -ms-user-drag: none !important;
-            user-drag: none !important;
-        }
-    </style>
-    <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/images/icon-192.png">
     <meta name="theme-color" content="#45A29E">
@@ -272,18 +59,10 @@
             <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <rect width="200" height="200" fill="none"/>
                 <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
                 <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
                 <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
                 <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
                 <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
             </pattern>
         </defs>
         <rect width="800" height="800" fill="url(#zellij)"/>
@@ -315,6 +94,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -710,5 +494,6 @@
     </script>
 </body>
 </html>
+
 
 

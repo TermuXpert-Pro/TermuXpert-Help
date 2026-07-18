@@ -36,284 +36,7 @@
     <!-- ====== GSAP ====== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     
-    <style>
-        /* ====== طبقة الحماية غير المرئية ====== */
-        .hero-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            pointer-events: none;
-            opacity: 0;
-        }
-        .hero-wrapper h1 {
-            font-size: clamp(40px, 7vw, 64px);
-            font-weight: 900;
-            line-height: 1.2;
-            text-align: center;
-            padding: 0 20px;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        .hero-wrapper h1 .gradient-text {
-            background: linear-gradient(135deg, #4ECDC4, #66FCF1, #F4D03F, #FF6B6B);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 300% 300%;
-            animation: gradientShift 4s ease-in-out infinite;
-        }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .hero-wrapper .subtitle {
-            color: var(--text-muted);
-            font-size: clamp(16px, 2vw, 22px);
-            max-width: 550px;
-            margin: 10px auto 0;
-            line-height: 1.8;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px 20px 60px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-        }
-
-        .tabs-wrapper {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(30px);
-            position: sticky;
-            top: 70px;
-            z-index: 10;
-            background: rgba(var(--bg-primary-rgb), 0.7);
-            backdrop-filter: blur(20px);
-            padding: 10px 15px;
-            border-radius: 16px;
-            border: 1px solid rgba(var(--overlay-rgb), 0.04);
-        }
-
-        .tab-btn {
-            padding: 10px 22px;
-            border: 1px solid rgba(var(--overlay-rgb), 0.06);
-            border-radius: 14px;
-            background: rgba(var(--overlay-rgb), 0.03);
-            backdrop-filter: blur(10px);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-family: var(--font-main);
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            overflow: hidden;
-            user-select: none;
-        }
-        .tab-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 14px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), transparent 40%, transparent 60%, rgba(255, 107, 107, 0.2));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .tab-btn:hover::before { opacity: 1; }
-        .tab-btn:hover {
-            border-color: rgba(78, 205, 196, 0.15);
-            transform: translateY(-2px);
-            color: var(--text-primary);
-        }
-        .tab-btn:active { transform: scale(0.95); }
-        .tab-btn.active {
-            background: rgba(78, 205, 196, 0.08);
-            border-color: rgba(78, 205, 196, 0.15);
-            color: #4ECDC4;
-        }
-        .tab-btn i { font-size: 14px; }
-        .tab-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            width: 100%;
-            min-height: 200px;
-        }
-
-        .command-card {
-            background: rgba(var(--overlay-rgb), 0.02);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(var(--overlay-rgb), 0.04);
-            border-radius: 18px;
-            padding: 18px 22px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-        }
-        .command-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.03), rgba(255, 107, 107, 0.03));
-            border-radius: 18px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .command-card:hover::before { opacity: 1; }
-        .command-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            border-color: rgba(78, 205, 196, 0.1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        }
-        .command-card:active { transform: scale(0.97); }
-
-        .command-card .command-title {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .command-card .command-title .num {
-            color: #4ECDC4;
-            font-weight: 900;
-            font-size: 14px;
-            background: rgba(78, 205, 196, 0.08);
-            padding: 2px 10px;
-            border-radius: 8px;
-        }
-        .command-card p {
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-            opacity: 0.8;
-        }
-        .command-card .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 3px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            background: rgba(78, 205, 196, 0.06);
-            border: 1px solid rgba(78, 205, 196, 0.06);
-            margin-top: 8px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .no-data {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-muted);
-            font-size: 16px;
-        }
-
-        /* ====== حماية الصور فقط (النصوص قابلة للتحديد والنسخ) ====== */
-        img {
-            -webkit-user-drag: none !important;
-            -moz-user-drag: none !important;
-            -ms-user-drag: none !important;
-            user-drag: none !important;
-        }
-
-        @media (max-width: 768px) {
-            .hero-wrapper h1 { font-size: 32px; }
-            .hero-wrapper .subtitle { font-size: 14px; }
-            .tabs-wrapper { gap: 6px; padding: 8px 10px; top: 60px; }
-            .tab-btn { padding: 8px 14px; font-size: 12px; }
-            .command-card { padding: 14px 16px; }
-            .command-card .command-title { font-size: 15px; }
-        }
-        @media (max-width: 480px) {
-            .hero-wrapper h1 { font-size: 24px; }
-            .hero-wrapper .subtitle { font-size: 13px; }
-            .tabs-wrapper { padding: 6px 8px; top: 50px; }
-            .tab-btn { padding: 6px 10px; font-size: 11px; }
-            .tab-btn i { font-size: 11px; }
-            .command-card { padding: 12px 12px; }
-            .command-card .command-title { font-size: 13px; }
-            .command-card p { font-size: 12px; }
-        }
-        .semester-divider {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 22px 0 14px;
-        }
-        .semester-divider:first-child { margin-top: 4px; }
-        .semester-divider-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border) 30%, var(--border) 70%, transparent);
-        }
-        .semester-divider-label {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            white-space: nowrap;
-            font-family: var(--font-main);
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--accent);
-            background: var(--bg-card);
-            border: 1px solid var(--accent);
-            padding: 6px 16px;
-            border-radius: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
-        @media (max-width: 480px) {
-            .semester-divider-label { font-size: 12px; padding: 5px 12px; }
-        }
-    </style>
-    <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/images/icon-192.png">
     <meta name="theme-color" content="#45A29E">
@@ -332,18 +55,10 @@
             <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <rect width="200" height="200" fill="none"/>
                 <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
                 <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
                 <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
                 <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
                 <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
             </pattern>
         </defs>
         <rect width="800" height="800" fill="url(#zellij)"/>
@@ -373,6 +88,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -941,6 +661,7 @@
     </script>
 </body>
 </html>
+
 
 
 

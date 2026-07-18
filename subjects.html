@@ -38,206 +38,7 @@
     <!-- ====== GSAP ====== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     
-    <style>
-        /* ====== طبقة الحماية غير المرئية ====== */
-        .hero-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            pointer-events: none;
-            opacity: 0;
-        }
-
-        .hero-wrapper h1 {
-            font-size: clamp(36px, 6vw, 56px);
-            font-weight: 900;
-            line-height: 1.2;
-            text-align: center;
-            padding: 0 20px;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        .hero-wrapper h1 .gradient-text {
-            background: linear-gradient(135deg, #4ECDC4, #66FCF1, #F4D03F, #FF6B6B);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 300% 300%;
-            animation: gradientShift 4s ease-in-out infinite;
-        }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-wrapper .subtitle {
-            color: var(--text-muted);
-            font-size: clamp(16px, 2vw, 22px);
-            max-width: 550px;
-            margin: 10px auto 0;
-            line-height: 1.8;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .cards-wrapper {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px 50px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-            gap: clamp(20px, 2.5vw, 30px);
-            width: 100%;
-            padding: 30px 0;
-        }
-
-        .card {
-            background: rgba(var(--overlay-rgb), 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(var(--overlay-rgb), 0.06);
-            border-radius: 24px;
-            padding: clamp(24px, 3vw, 36px) clamp(18px, 2vw, 28px);
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(60px) scale(0.9);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(78, 205, 196, 0.05), transparent 60%),
-                        radial-gradient(circle at 70% 70%, rgba(255, 107, 107, 0.05), transparent 60%);
-            border-radius: 24px;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-        .card:hover::before { opacity: 1; }
-
-        .card::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 24px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), transparent 40%, transparent 60%, rgba(255, 107, 107, 0.2));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .card:hover::after { opacity: 1; }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(78, 205, 196, 0.15);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-        }
-        .card:active { transform: scale(0.97); }
-
-        .card .card-icon {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 14px;
-            font-size: 32px;
-            transition: all 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-        .card:hover .card-icon { transform: scale(1.1) rotate(-5deg); }
-
-        .card h3 {
-            font-size: clamp(20px, 2.2vw, 26px);
-            margin-bottom: 8px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-        .card p {
-            color: var(--text-secondary);
-            font-size: clamp(13px, 1.2vw, 15px);
-            line-height: 1.7;
-            margin-bottom: 14px;
-            opacity: 0.8;
-            position: relative;
-            z-index: 1;
-        }
-        .card .card-badges {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-        .card .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 16px;
-            border-radius: 20px;
-            font-size: clamp(11px, 1.1vw, 13px);
-            font-weight: 600;
-            background: rgba(var(--overlay-rgb), 0.03);
-            border: 1px solid rgba(var(--overlay-rgb), 0.06);
-            backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
-        }
-        .card:hover .badge { transform: translateY(-2px); }
-
-        /* ====== حماية الصور فقط (النصوص قابلة للتحديد والنسخ) ====== */
-        img {
-            -webkit-user-drag: none !important;
-            -moz-user-drag: none !important;
-            -ms-user-drag: none !important;
-            user-drag: none !important;
-        }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-            .card { padding: 20px 16px; }
-            .card .card-icon { width: 56px; height: 56px; font-size: 24px; }
-        }
-        @media (max-width: 480px) {
-            .hero-wrapper h1 { font-size: 28px; }
-            .hero-wrapper .subtitle { font-size: 14px; }
-            .card { padding: 16px 12px; }
-            .card .card-icon { width: 48px; height: 48px; font-size: 20px; }
-            .card h3 { font-size: 18px; }
-        }
-    </style>
-    <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/images/icon-192.png">
     <meta name="theme-color" content="#45A29E">
@@ -256,18 +57,10 @@
             <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <rect width="200" height="200" fill="none"/>
                 <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
                 <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
                 <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
                 <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
                 <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
             </pattern>
         </defs>
         <rect width="800" height="800" fill="url(#zellij)"/>
@@ -297,6 +90,11 @@
         <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
             <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
             <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
         </button>
 
         <!-- أيقونة القائمة الجانبية -->
@@ -532,7 +330,8 @@
             const grid = document.getElementById('subjectsGrid');
             grid.innerHTML = subjects.map((s, index) => `
                 <div class="card" role="listitem" tabindex="0" data-index="${index}" onclick="sessionStorage.setItem('animation_allowed', 'true'); location.href='subject.html?subject=${s.id}'" style="border-color: ${s.color}33;">
-                    <div class="card-icon" style="background:${s.bgColor}; color:${s.color}; box-shadow: 0 0 60px ${s.glow};">
+                    <div class="card-icon" style="background:${s.bgColor}; color:${s.color};">
+                        <span class="icon-glow" style="box-shadow: 0 0 80px ${s.glow};"></span>
                         <i class="fas ${s.icon}"></i>
                     </div>
                     <h3 style="color:${s.color};">${s.title}</h3>
@@ -598,9 +397,10 @@
                 console.log('✅ subjects.html - Affichage direct (sans animation)');
                 
                 document.querySelectorAll('.card').forEach((card, i) => {
-                    const icon = card.querySelector('.card-icon');
-                    gsap.to(icon, {
-                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                    const glow = card.querySelector('.icon-glow');
+                    gsap.set(glow, { opacity: 0.5 });
+                    gsap.to(glow, {
+                        opacity: 1,
                         duration: 2,
                         repeat: -1,
                         yoyo: true,
@@ -676,9 +476,10 @@
                     });
 
                 document.querySelectorAll('.card').forEach((card, i) => {
-                    const icon = card.querySelector('.card-icon');
-                    gsap.to(icon, {
-                        boxShadow: `0 0 80px ${subjects[i].glow}`,
+                    const glow = card.querySelector('.icon-glow');
+                    gsap.set(glow, { opacity: 0.5 });
+                    gsap.to(glow, {
+                        opacity: 1,
                         duration: 2,
                         repeat: -1,
                         yoyo: true,
@@ -728,4 +529,3 @@
     </script>
 </body>
 </html>
-
