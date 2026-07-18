@@ -339,6 +339,29 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('✅ Sidebar v3.0 initialisée');
 });
 
+// ============================================================
+// XpertAnimateLegalPage() - أنيميشن دخول مشتركة لصفحات المعلومات
+// القانونية/الثابتة (terms.html / installation.html / support.html /
+// about.html). القيم الابتدائية (opacity:0) معرّفة فـ legal.css،
+// وهاد الدالة هي اللي كتكشفها. سريعة عمدا (~0.7s إجمالي) باش ماتأثرش
+// على LCP.
+// ============================================================
+function XpertAnimateLegalPage(pageName) {
+    if (typeof gsap === 'undefined') {
+        document.querySelectorAll('#legalWrap, .legal-hero, .legal-section').forEach(function (el) {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+        console.warn('⚠️ GSAP غير محمل - عرض مباشر لـ ' + pageName);
+        return;
+    }
 
-
-
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.to('#legalWrap', { opacity: 1, y: 0, duration: 0.4 })
+      .to('.legal-hero', { opacity: 1, y: 0, duration: 0.35 }, '-=0.2')
+      .to('.legal-section', { opacity: 1, y: 0, duration: 0.3, stagger: 0.08 }, '-=0.15')
+      .call(function () {
+          console.log('✅ ' + pageName + ' - Animation jouée');
+      });
+}
+window.XpertAnimateLegalPage = XpertAnimateLegalPage;
