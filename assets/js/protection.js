@@ -1,8 +1,9 @@
 /**
  * ============================================================
- * protection.js - حماية الصور فقط (نسخة محسّنة)
+ * protection.js - حماية الصور + منع الزوم
  * التحديث: النصوص والصيغ الرياضية بقات قابلة للتحديد والنسخ
  * الحماية بقات غير على: سحب/حفظ الصور، القائمة المختصرة عليها
+ * + منع تكبير/تصغير الشاشة (pinch-zoom, gesture, dblclick, ctrl+wheel)
  * ============================================================
  */
 
@@ -71,6 +72,29 @@
         }, { passive: true });
     });
 
-    console.log('✅ Protection.js - حماية الصور فقط (النصوص قابلة للنسخ)');
+    // ============================================================
+    // 4. منع تكبير/تصغير الشاشة (pinch-zoom, gesture, dblclick, ctrl+wheel)
+    // ============================================================
+
+    document.addEventListener('touchmove', function(e) {
+        if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(e) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) e.preventDefault();
+        lastTouchEnd = now;
+    }, { passive: false });
+
+    document.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+
+    console.log('✅ Protection.js - حماية الصور + منع الزوم (النصوص قابلة للنسخ)');
 
 })();
