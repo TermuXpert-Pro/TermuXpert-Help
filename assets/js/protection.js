@@ -1,8 +1,9 @@
 /**
  * ============================================================
- * protection.js - حماية الصور فقط (نسخة محسّنة)
+ * protection.js - حماية الصور + منع التكبير (زووم) فـ جميع الأجهزة
  * التحديث: النصوص والصيغ الرياضية بقات قابلة للتحديد والنسخ
  * الحماية بقات غير على: سحب/حفظ الصور، القائمة المختصرة عليها
+ * + منع الزووم بجميع الطرق (لمس، فأرة، كيبورد) فـ كل الأجهزة
  * ============================================================
  */
 
@@ -30,6 +31,9 @@
         /* تحسين مظهر التحديد للنصوص بدل منعه */
         ::selection {
             background: rgba(78, 205, 196, 0.3);
+        }
+        html {
+            touch-action: pan-x pan-y !important;
         }
     `;
     document.head.appendChild(style);
@@ -71,6 +75,52 @@
         }, { passive: true });
     });
 
-    console.log('✅ Protection.js - حماية الصور فقط (النصوص قابلة للنسخ)');
+    // ============================================================
+    // 4. منع التكبير (زووم) - الهاتف: pinch + double-tap
+    // ============================================================
+
+    // منع pinch-zoom بإصبعين (touchmove بأكثر من نقطة لمس واحدة)
+    document.addEventListener('touchmove', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // منع double-tap zoom
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(e) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            e.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, { passive: false });
+
+    // ============================================================
+    // 5. منع التكبير (زووم) - الكمبيوتر: Ctrl+Scroll / Ctrl+/-/0 / trackpad pinch
+    // ============================================================
+
+    // منع Ctrl + عجلة الفأرة (Windows/Linux/Chrome zoom)
+    window.addEventListener('wheel', function(e) {
+        if (e.ctrlKey) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // منع Ctrl+ / Ctrl- / Ctrl0 / Ctrl+= من الكيبورد
+    window.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && ['+', '-', '=', '0'].indexOf(e.key) !== -1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // منع pinch-zoom بـ trackpad فـ Safari (macOS)
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach(function(evt) {
+        document.addEventListener(evt, function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    });
+
+    console.log('✅ Protection.js - حماية الصور + منع الزووم فـ جميع الأجهزة');
 
 })();
