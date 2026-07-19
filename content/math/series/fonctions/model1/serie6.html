@@ -67,10 +67,11 @@
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .table-wrap { overflow-x: auto; margin: 6px 0; -webkit-overflow-scrolling: touch; }
+        .table-wrap table { width: auto; min-width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; margin: 0 auto; }
+        .table-wrap th, .table-wrap td { padding: 4px 10px; border: 1px solid var(--border); text-align: center; white-space: nowrap; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); font-weight: 700; font-size: 11px; min-width: 40px; }
+        .table-wrap td { color: var(--text-secondary); font-size: 11px; min-width: 40px; }
         .table-wrap .true { color: #4ECDC4; font-weight: 700; }
         .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
@@ -535,7 +536,7 @@
                         <div class="sol-content">
                             <p>La fonction est périodique de période 2, donc la courbe se répète tous les 2 unités.</p>
                             <div class="graph-container">
-                                <canvas id="graph42" width="400" height="150"></canvas>
+                                <svg id="graph42" class="graph-svg" width="400" height="150" viewBox="0 0 400 150"></svg>
                                 <p>Périodicité de $f(x) = 2x - x^2$ sur $[0;2]$</p>
                             </div>
                         </div>
@@ -724,9 +725,9 @@
                             </div>
                             <div class="table-wrap">
                                 <table>
-                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-2$</th><th>$8$</th><th>$+\infty$</th></tr>
-                                    <tr><td>$x+2$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td></tr>
-                                    <tr><td>$x-8$</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-2$</th><th></th><th>$8$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$x+2$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td><td class="true">+</td></tr>
+                                    <tr><td>$x-8$</td><td class="false">−</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
                                     <tr><td>Produit</td><td class="true">+</td><td>0</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
                                 </table>
                             </div>
@@ -862,7 +863,7 @@
                                 <span class="step-num">Étape 4 :</span> Après développement : $-x^3 - 4x^2 - x + 7 = 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> $x = 1$ est une racine : $-1 - 4 - 1 + 7 = 1$ ❌
+                                <span class="step-num">Étape 5 :</span> $x = 1$ n'est pas une racine : $-1 - 4 - 1 + 7 = 1 \ne 0$ ❌
                             </div>
                             <p style="color:#FF6B6B;">Les calculs sont complexes, la résolution graphique est plus simple.</p>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Graphiquement :</strong> Les points d'intersection sont environ $x \approx -2.7$ et $x \approx 1.2$</p>
@@ -1011,9 +1012,9 @@
                             </div>
                             <div class="table-wrap">
                                 <table>
-                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-\frac{3}{2}$</th><th>$1$</th><th>$+\infty$</th></tr>
-                                    <tr><td>$2x+3$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td></tr>
-                                    <tr><td>$x-1$</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-\frac{3}{2}$</th><th></th><th>$1$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$2x+3$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td><td class="true">+</td></tr>
+                                    <tr><td>$x-1$</td><td class="false">−</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
                                     <tr><td>$g(x)$</td><td class="true">+</td><td>0</td><td class="false">−</td><td>||</td><td class="true">+</td></tr>
                                 </table>
                             </div>
@@ -1099,6 +1100,8 @@
 
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="../../../../../assets/js/figuresvt.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -1119,73 +1122,6 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraph42() {
-            var canvas = document.getElementById('graph42');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-            
-            var ox = 40, oy = h - 20;
-            var scale = 40;
-            
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 10, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 10);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-            
-            // Courbe sur [0,2]
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var px = 0; px <= 2 * scale; px += 0.5) {
-                var x = px / scale;
-                var y = 2*x - x*x;
-                var screenX = ox + px;
-                var screenY = oy - y * 30;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            
-            // Périodicité
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            for (var k = -2; k <= 8; k += 2) {
-                var xPos = ox + k * scale;
-                ctx.beginPath();
-                ctx.moveTo(xPos, 10);
-                ctx.lineTo(xPos, oy);
-                ctx.stroke();
-            }
-            ctx.setLineDash([]);
-            
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Période T = 2', 10, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph42();
-            }, 300);
-        });
     </script>
 </body>
 </html>

@@ -67,10 +67,11 @@
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .table-wrap { overflow-x: auto; margin: 6px 0; -webkit-overflow-scrolling: touch; }
+        .table-wrap table { width: auto; min-width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; margin: 0 auto; }
+        .table-wrap th, .table-wrap td { padding: 4px 10px; border: 1px solid var(--border); text-align: center; white-space: nowrap; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); font-weight: 700; font-size: 11px; min-width: 40px; }
+        .table-wrap td { color: var(--text-secondary); font-size: 11px; min-width: 40px; }
         .table-wrap .true { color: #4ECDC4; font-weight: 700; }
         .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
@@ -579,7 +580,7 @@
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>strictement décroissante</strong> sur $]-\infty,0[$ et sur $]0,+\infty[$.</p>
                             <div class="graph-container">
-                                <canvas id="graphHyperbole" width="350" height="150"></canvas>
+                                <svg id="graphHyperbole" class="graph-svg" width="350" height="150" viewBox="0 0 350 150"></svg>
                                 <p>$g(x) = \dfrac{2}{x}$</p>
                             </div>
                         </div>
@@ -618,7 +619,7 @@
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>décroissante</strong> sur $]-\infty,0]$ et <strong>croissante</strong> sur $[0,+\infty[$.</p>
                             <div class="graph-container">
-                                <canvas id="graphParabole" width="350" height="150"></canvas>
+                                <svg id="graphParabole" class="graph-svg" width="350" height="150" viewBox="0 0 350 150"></svg>
                                 <p>$f(x) = 3x^2 + 2$</p>
                             </div>
                         </div>
@@ -647,7 +648,7 @@
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>strictement croissante</strong> sur $]-\infty,-1[$ et sur $]-1,+\infty[$.</p>
                             <div class="graph-container">
-                                <canvas id="graphHomographique" width="350" height="150"></canvas>
+                                <svg id="graphHomographique" class="graph-svg" width="350" height="150" viewBox="0 0 350 150"></svg>
                                 <p>$g(x) = \dfrac{x}{x+1}$</p>
                             </div>
                         </div>
@@ -733,7 +734,7 @@
                             <div class="table-wrap">
                                 <table>
                                     <tr><th>$x$</th><th>$-\infty$</th><th>$+\infty$</th></tr>
-                                    <tr><td>$f(x)$</td><td>$\nearrow$</td><td></td></tr>
+                                    <tr><td>$f(x)$</td><td colspan="2">$\nearrow$</td></tr>
                                 </table>
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est croissante sur $\mathbb{R}$.</p>
@@ -847,9 +848,9 @@
                             </div>
                             <div class="table-wrap">
                                 <table>
-                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-3$</th><th>$1$</th><th>$+\infty$</th></tr>
-                                    <tr><td>$x-1$</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
-                                    <tr><td>$x+3$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td></tr>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-3$</th><th></th><th>$1$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$x-1$</td><td class="false">−</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
+                                    <tr><td>$x+3$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td><td class="true">+</td></tr>
                                     <tr><td>Quotient</td><td class="true">+</td><td>||</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
                                 </table>
                             </div>
@@ -887,6 +888,8 @@
 
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="../../../../../assets/js/figuresvt.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -907,186 +910,6 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawHyperbole() {
-            var canvas = document.getElementById('graphHyperbole');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-            
-            var ox = w/2, oy = h/2;
-            var scale = 25;
-            
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(0, oy);
-            ctx.lineTo(w, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 0);
-            ctx.lineTo(ox, h);
-            ctx.stroke();
-            
-            // Courbe g(x) = 2/x
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var px = -100; px < 0; px += 0.5) {
-                var x = px / scale;
-                var y = 2 / x;
-                var screenX = ox + px;
-                var screenY = oy - y * 20;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === -100) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            ctx.beginPath();
-            for (var px = 0.5; px <= 100; px += 0.5) {
-                var x = px / scale;
-                var y = 2 / x;
-                var screenX = ox + px;
-                var screenY = oy - y * 20;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === 0.5) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('g(x) = 2/x', 10, 20);
-        }
-
-        function drawParabole() {
-            var canvas = document.getElementById('graphParabole');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-            
-            var ox = w/2, oy = h - 20;
-            var scale = 15;
-            
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(0, oy);
-            ctx.lineTo(w, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 0);
-            ctx.lineTo(ox, h);
-            ctx.stroke();
-            
-            // Courbe f(x) = 3x² + 2
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var px = -100; px <= 100; px += 0.5) {
-                var x = px / scale;
-                var y = 3*x*x + 2;
-                var screenX = ox + px;
-                var screenY = oy - y * 5;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === -100) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('f(x) = 3x² + 2', 10, 20);
-        }
-
-        function drawHomographique() {
-            var canvas = document.getElementById('graphHomographique');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-            
-            var ox = w/2, oy = h/2;
-            var scale = 25;
-            
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(0, oy);
-            ctx.lineTo(w, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 0);
-            ctx.lineTo(ox, h);
-            ctx.stroke();
-            
-            // Asymptote x = -1
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox - 1 * scale, 0);
-            ctx.lineTo(ox - 1 * scale, h);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            
-            // Courbe g(x) = x/(x+1)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var px = -120; px < -1 * scale; px += 0.5) {
-                var x = px / scale;
-                var y = x / (x + 1);
-                var screenX = ox + px;
-                var screenY = oy - y * 40;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === -120) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            ctx.beginPath();
-            for (var px = -1 * scale + 0.5; px <= 120; px += 0.5) {
-                var x = px / scale;
-                var y = x / (x + 1);
-                var screenX = ox + px;
-                var screenY = oy - y * 40;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === -1 * scale + 0.5) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('g(x) = x/(x+1)', 10, 20);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillText('x = -1', ox - 1 * scale - 20, 15);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawHyperbole();
-                drawParabole();
-                drawHomographique();
-            }, 300);
-        });
     </script>
 </body>
 </html>

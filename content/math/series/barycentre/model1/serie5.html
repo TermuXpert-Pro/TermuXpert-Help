@@ -196,10 +196,13 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas,
+        .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
+            display: block;
+            margin: 0 auto;
         }
         .graph-container p {
             color: var(--text-muted);
@@ -532,7 +535,7 @@
                                 <p>Les points \(I\), \(J\), \(K\) sont alignés.</p>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graph16" width="450" height="280"></canvas>
+                                <svg id="graph16" width="450" height="280"></svg>
                                 <p>I, J, K sont alignés</p>
                             </div>
                         </div>
@@ -595,7 +598,7 @@
                                 <p>Les droites \((MJ)\), \((NI)\), \((AC)\) sont concourantes en \(G\).</p>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graph17" width="450" height="280"></canvas>
+                                <svg id="graph17" width="450" height="280"></svg>
                                 <p>Concourance des droites (MJ), (NI), (AC)</p>
                             </div>
                         </div>
@@ -656,7 +659,7 @@
                                 <p style="font-size:12px; color:var(--text-muted);">On a : \(AG = \frac{3}{4}AB = 3\text{ cm}\), \(AK = \frac{-3}{-2}AB = 6\text{ cm}\)</p>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graph18" width="450" height="280"></canvas>
+                                <svg id="graph18" width="450" height="280"></svg>
                                 <p>Cercle de diamètre [GK]</p>
                             </div>
                         </div>
@@ -708,238 +711,16 @@
         }
 
         // ============================================================
-        // GRAPHIQUES
+        // GRAPHIQUES (SVG عبر FigureSVG - انظر figuresvg.js فنفس المجلد)
         // ============================================================
-
-        function drawGraph16() {
-            var canvas = document.getElementById('graph16');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 45;
-
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
-            var C = {x: 0, y: 1, color: '#BB8FCE', label: 'C'};
-            var I = {x: 2/3, y: 0, color: '#A8FF78', label: 'I'};
-            var J = {x: 0.5, y: 0.5, color: '#4D9DE0', label: 'J'};
-            var K = {x: -1, y: 2, color: '#F4D03F', label: 'K'};
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('AB', w - 30, oy + 18);
-            ctx.fillText('AC', ox + 10, 16);
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
-            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
-            ctx.closePath();
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox + I.x * scale, oy - I.y * scale);
-            ctx.lineTo(ox + K.x * scale, oy - K.y * scale);
-            ctx.stroke();
-
-            var pts = [A, B, C, I, J, K];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '10px Arial';
-                ctx.fillText(pts[i].label, px + 6, py - 4);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('I, J, K sont alignés', 250, 20);
-        }
-
-        function drawGraph17() {
-            var canvas = document.getElementById('graph17');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scale = 40;
-
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 4, y: 0, color: '#FF6B6B', label: 'B'};
-            var C = {x: 4, y: 4, color: '#BB8FCE', label: 'C'};
-            var D = {x: 0, y: 4, color: '#A8FF78', label: 'D'};
-
-            var M = {x: 1, y: 0, color: '#4D9DE0', label: 'M'};
-            var N = {x: 0, y: 1, color: '#4D9DE0', label: 'N'};
-            var I = {x: 4, y: 2, color: '#F4D03F', label: 'I'};
-            var J = {x: 2, y: 4, color: '#F4D03F', label: 'J'};
-            var G = {x: (3*A.x + B.x + C.x + D.x)/6, y: (3*A.y + B.y + C.y + D.y)/6, color: '#F4D03F', label: 'G'};
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Carré
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(ox + A.x * scale, oy - A.y * scale - 4 * scale, 4 * scale, 4 * scale);
-
-            // Droites
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox + M.x * scale, oy - M.y * scale);
-            ctx.lineTo(ox + J.x * scale, oy - J.y * scale);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + N.x * scale, oy - N.y * scale);
-            ctx.lineTo(ox + I.x * scale, oy - I.y * scale);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            var pts = [A, B, C, D, M, N, I, J, G];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '9px Arial';
-                ctx.fillText(pts[i].label, px + 6, py - 4);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('(MJ), (NI), (AC) concourantes en G', 180, 20);
-        }
-
-        function drawGraph18() {
-            var canvas = document.getElementById('graph18');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 30;
-
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 4, y: 0, color: '#FF6B6B', label: 'B'};
-            var G = {x: (1*A.x + 3*B.x)/4, y: (1*A.y + 3*B.y)/4, color: '#F4D03F', label: 'G'};
-            var K = {x: (1*A.x - 3*B.x)/(-2), y: (1*A.y - 3*B.y)/(-2), color: '#F4D03F', label: 'K'};
-
-            var cx = (G.x + K.x)/2;
-            var cy = (G.y + K.y)/2;
-            var r = Math.sqrt(Math.pow(G.x - K.x, 2) + Math.pow(G.y - K.y, 2)) / 2;
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 10, 16);
-
-            // Cercle
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 2.5;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.arc(ox + cx * scale, oy - cy * scale, r * scale, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Diamètre GK
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox + G.x * scale, oy - G.y * scale);
-            ctx.lineTo(ox + K.x * scale, oy - K.y * scale);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            var pts = [A, B, G, K];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '11px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Cercle de diamètre [GK]', 200, 20);
-            ctx.fillText('AG = 3 cm, AK = 6 cm', 200, 35);
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
-                drawGraph16();
-                drawGraph17();
-                drawGraph18();
+                FigureSVG.initAll();
             }, 500);
         });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvg.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

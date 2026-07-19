@@ -67,10 +67,11 @@
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .table-wrap { overflow-x: auto; margin: 6px 0; -webkit-overflow-scrolling: touch; }
+        .table-wrap table { width: auto; min-width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; margin: 0 auto; }
+        .table-wrap th, .table-wrap td { padding: 4px 10px; border: 1px solid var(--border); text-align: center; white-space: nowrap; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); font-weight: 700; font-size: 11px; min-width: 40px; }
+        .table-wrap td { color: var(--text-secondary); font-size: 11px; min-width: 40px; }
         .table-wrap .true { color: #4ECDC4; font-weight: 700; }
         .table-wrap .false { color: #FF6B6B; font-weight: 700; }
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
@@ -564,9 +565,9 @@
                             </div>
                             <div class="table-wrap">
                                 <table>
-                                    <tr><th>$x$</th><th>$-\infty$</th><th>$1$</th><th>$2$</th><th>$+\infty$</th></tr>
-                                    <tr><td>$(x-1)$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td></tr>
-                                    <tr><td>$(x-2)$</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$1$</th><th></th><th>$2$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$(x-1)$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td><td class="true">+</td></tr>
+                                    <tr><td>$(x-2)$</td><td class="false">−</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
                                     <tr><td>Produit</td><td class="true">+</td><td>0</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
                                 </table>
                             </div>
@@ -591,9 +592,9 @@
                             </div>
                             <div class="table-wrap">
                                 <table>
-                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-1$</th><th>$3$</th><th>$+\infty$</th></tr>
-                                    <tr><td>$-3x+9$</td><td class="true">+</td><td class="true">+</td><td>0</td><td class="false">−</td></tr>
-                                    <tr><td>$x+1$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td></tr>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-1$</th><th></th><th>$3$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$-3x+9$</td><td class="true">+</td><td class="true">+</td><td class="true">+</td><td>0</td><td class="false">−</td></tr>
+                                    <tr><td>$x+1$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td><td class="true">+</td></tr>
                                     <tr><td>Quotient</td><td class="false">−</td><td>||</td><td class="true">+</td><td>0</td><td class="false">−</td></tr>
                                 </table>
                             </div>

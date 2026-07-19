@@ -152,6 +152,58 @@ const SvgUtils = (function () {
         s.svg.appendChild(t);
     }
 
+    // خط مقارب (asymptote) عمودي و/أو أفقي، بمدى العرض الكامل + تسمية اختيارية
+    function drawAsymptote(s, opts) {
+        opts = opts || {};
+        const color = opts.color || '#FF6B6B';
+        if (opts.x !== undefined) {
+            drawLine(s, opts.x, s.yMin, opts.x, s.yMax, { color, dashed: true, dashPattern: opts.dashPattern || [6, 4] });
+        }
+        if (opts.y !== undefined) {
+            drawLine(s, s.xMin, opts.y, s.xMax, opts.y, { color, dashed: true, dashPattern: opts.dashPattern || [6, 4] });
+        }
+        if (opts.label) {
+            const lx = opts.x !== undefined ? opts.x + s.fontSize * 0.3 : s.xMax - s.fontSize * 3.5;
+            const ly = opts.y !== undefined ? -opts.y - s.fontSize * 0.3 : -s.yMax + s.fontSize * 1.1;
+            drawNote(s, opts.label, lx, ly, { color, fontSize: opts.fontSize });
+        }
+    }
+
+    // كيرسم منحنى دالة func(x) بدقة على [xStart, xEnd]. كيقطع القطعة
+    // تلقائياً كل مرة القيمة تخرج بره المدى المرئي (نفس المنطق لي كيوقع
+    // عند asymptote) باش ما توليش خطوط شاذة كتربط بين الفروع.
+    function drawCurve(s, func, xStart, xEnd, opts) {
+        opts = opts || {};
+        const steps = opts.steps || 300;
+        const step = (xEnd - xStart) / steps;
+        const color = opts.color || COLORS.arrow;
+        const lw = (opts.lineWidth || 2) * 0.025;
+        const margin = (s.yMax - s.yMin) * (opts.marginFactor ?? 0.6);
+        const lo = s.yMin - margin, hi = s.yMax + margin;
+
+        let d = '';
+        let drawing = false;
+        for (let i = 0; i <= steps; i++) {
+            const x = xStart + i * step;
+            let y;
+            try { y = func(x); } catch (e) { y = NaN; }
+            const valid = typeof y === 'number' && isFinite(y) && y >= lo && y <= hi;
+            if (!valid) { drawing = false; continue; }
+            const cy = -y;
+            d += (drawing ? 'L ' : 'M ') + x + ' ' + cy + ' ';
+            drawing = true;
+        }
+        if (!d) return;
+        s.svg.appendChild(el('path', {
+            d: d.trim(),
+            fill: 'none',
+            stroke: color,
+            'stroke-width': lw,
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round'
+        }));
+    }
+
     return {
         COLORS,
         setupSVG,
@@ -161,6 +213,8 @@ const SvgUtils = (function () {
         drawPoints,
         drawLine,
         drawCircle,
+        drawAsymptote,
+        drawCurve,
         drawNote
     };
 })();
