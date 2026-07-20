@@ -49,8 +49,11 @@ function getBase(filePath) {
 
 function buildPwaTags(base) {
     return `    <link rel="manifest" href="${base}manifest.json">
-    <link rel="icon" href="${base}assets/images/icon-192.png" type="image/png">
-    <link rel="apple-touch-icon" href="${base}assets/images/icon-192.png">
+    <link rel="icon" href="${base}favicon.ico" sizes="any">
+    <link rel="icon" href="${base}assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="${base}assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="${base}assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="${base}assets/images/apple-touch-icon.png">
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">`;
