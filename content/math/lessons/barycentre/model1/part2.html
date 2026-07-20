@@ -190,7 +190,14 @@
         @media (max-width: 600px) {
             .function-grid { grid-template-columns: 1fr; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -420,10 +427,21 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-balance-scale" style="color:#4ECDC4;"></i> Partie 2 : Barycentre de trois points pondérés</h1>
 
-            <!-- ============================================================ -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Définition et théorème</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Propriétés du barycentre de trois points</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Centre de gravité d'un triangle</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Coordonnées du barycentre</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
             <!-- SECTION 1: DÉFINITION -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Définition et théorème</h2>
 
                 <div class="highlight-box green">
@@ -502,7 +520,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: PROPRIÉTÉS -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Propriétés du barycentre de trois points</h2>
 
                 <h3>2-1 Invariance</h3>
@@ -591,7 +609,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: CENTRE DE GRAVITÉ D'UN TRIANGLE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Centre de gravité d'un triangle</h2>
 
                 <div class="highlight-box green">
@@ -669,7 +687,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 4: COORDONNÉES -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec4">
                 <h2><span class="num">4</span> Coordonnées du barycentre</h2>
 
                 <div class="highlight-box green">

@@ -63,7 +63,14 @@
             .lesson-title { font-size: 15px; }
             .back-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #FF6B6B; }
+        .toc ul li a .num { color: #FF6B6B; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -221,10 +228,20 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-battery-full" style="color:#FF6B6B;"></i> Partie 3 : Le générateur électrique</h1>
 
-            <!-- ============================================================ -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Définition</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Convention générateur</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Énergie et puissance fournies par un générateur</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
             <!-- SECTION 1: DÉFINITION -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Définition</h2>
 
                 <div class="highlight-box red">
@@ -250,7 +267,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: CONVENTION -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Convention générateur</h2>
 
                 <div class="highlight-box red">
@@ -272,7 +289,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: ÉNERGIE ET PUISSANCE FOURNIES -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Énergie et puissance fournies par un générateur</h2>
 
                 <div class="highlight-box red">

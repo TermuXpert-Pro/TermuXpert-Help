@@ -329,7 +329,14 @@
             .nav-buttons { flex-direction: column; align-items: stretch; }
             .next-btn { float: none; justify-content: center; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
@@ -560,10 +567,20 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-cubes" style="color:#4ECDC4;"></i> Partie 3 : Comparaison de fonctions - Composée</h1>
 
-            <!-- ============================================================ -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Égalité de deux fonctions</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Comparaison de deux fonctions</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Composée de deux fonctions</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
             <!-- SECTION 1: ÉGALITÉ DE DEUX FONCTIONS -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Égalité de deux fonctions</h2>
 
                 <div class="highlight-box green">
@@ -591,7 +608,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: COMPARAISON DE DEUX FONCTIONS -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Comparaison de deux fonctions</h2>
 
                 <div class="highlight-box green">
@@ -659,7 +676,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: COMPOSÉE DE DEUX FONCTIONS -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Composée de deux fonctions</h2>
 
                 <div class="highlight-box green">

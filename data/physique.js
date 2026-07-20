@@ -30,10 +30,11 @@ window.subjectsData.physique = {
             semester: 1,
             title: "Travail et énergie potentielle de pesanteur - Énergie mécanique",
             file: "content/physique/lessons/energie-potentielle-mecanique/index.html",
-            desc: "قيد الإعداد 🔧"
+            desc: "Énergie potentielle de pesanteur, énergie mécanique, conservation et non-conservation, travail du poids"
         },
-        { semester: 1, title: "Transfert d'énergie dans un circuit électrique", file: "content/physique/lessons/circuit-electrique/index.html", desc: "قيد الإعداد 🔧" },
-        { semester: 1, title: "Comportement global d'un circuit électrique", file: "content/physique/lessons/comportement-global-circuit/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Travail et énergie interne", file: "content/physique/lessons/travail-energie-interne/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Transfert d'énergie dans un circuit électrique", file: "content/physique/lessons/circuit-electrique/index.html", desc: "Effet Joule, énergie et puissance électriques, générateur et récepteur, bilan énergétique" },
+        { semester: 1, title: "Comportement global d'un circuit électrique", file: "content/physique/lessons/comportement-global-circuit/index.html", desc: "Loi de Pouillet, loi d'Ohm du générateur et du récepteur, rendement, bilan de puissance" },
         { semester: 2, title: "Le champ magnétique", file: "content/physique/lessons/champ-magnetique/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 2, title: "Le champ magnétique créé par un courant électrique", file: "content/physique/lessons/champ-magnetique-courant/index.html", desc: "قيد الإعداد 🔧" },
         { semester: 2, title: "Les forces électromagnétiques - La loi de Laplace", file: "content/physique/lessons/forces-laplace/index.html", desc: "قيد الإعداد 🔧" },

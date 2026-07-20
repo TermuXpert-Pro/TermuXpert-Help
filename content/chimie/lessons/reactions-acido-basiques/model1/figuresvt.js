@@ -251,9 +251,58 @@ function drawSchemaIndicateurs() {
     });
 }
 
+// ============================================================
+// 5) schemaReactionGenerale : combinaison des deux demi-équations
+//    acide1/base1 et acide2/base2 pour obtenir l'équation globale
+// ============================================================
+function drawSchemaReactionGenerale() {
+    const svg = document.getElementById('schemaReactionGenerale');
+    if (!svg) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    const W = 360, H = 210;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+    // Ligne 1 : demi-équation du couple 1 (acide1 -> base1 + H+)
+    svg.appendChild(svtEl('rect', { x: 10, y: 10, width: 340, height: 30, rx: 6, fill: '#0D1117', stroke: '#4ECDC4', 'stroke-width': 1.5 }));
+    const l1 = svtEl('text', { x: 180, y: 30, 'text-anchor': 'middle', 'font-size': 12, fill: '#4ECDC4', 'font-family': 'Arial, sans-serif', 'font-weight': 'bold' });
+    l1.textContent = 'acide 1  →  base 1  +  H⁺';
+    svg.appendChild(l1);
+
+    // signe +
+    const plusSign = svtEl('text', { x: 180, y: 58, 'text-anchor': 'middle', 'font-size': 16, fill: 'var(--text-muted)', 'font-family': 'Arial, sans-serif', 'font-weight': 'bold' });
+    plusSign.textContent = '+';
+    svg.appendChild(plusSign);
+
+    // Ligne 2 : demi-équation du couple 2 (base2 + H+ -> acide2)
+    svg.appendChild(svtEl('rect', { x: 10, y: 66, width: 340, height: 30, rx: 6, fill: '#0D1117', stroke: '#F4A63C', 'stroke-width': 1.5 }));
+    const l2 = svtEl('text', { x: 180, y: 86, 'text-anchor': 'middle', 'font-size': 12, fill: '#F4A63C', 'font-family': 'Arial, sans-serif', 'font-weight': 'bold' });
+    l2.textContent = 'base 2  +  H⁺  →  acide 2';
+    svg.appendChild(l2);
+
+    // ligne de somme
+    svg.appendChild(svtEl('line', { x1: 10, y1: 108, x2: 350, y2: 108, stroke: 'var(--text-muted)', 'stroke-width': 1.5 }));
+
+    // flèche vers le bas
+    svg.appendChild(svtEl('line', { x1: 180, y1: 108, x2: 180, y2: 130, stroke: 'var(--text-muted)', 'stroke-width': 1.5 }));
+    svg.appendChild(svtEl('polygon', { points: '180,138 175,128 185,128', fill: 'var(--text-muted)' }));
+
+    // Résultat : équation globale
+    svg.appendChild(svtEl('rect', { x: 10, y: 148, width: 340, height: 34, rx: 6, fill: '#F4D03F11', stroke: '#F4D03F', 'stroke-width': 2 }));
+    const l3 = svtEl('text', { x: 180, y: 170, 'text-anchor': 'middle', 'font-size': 12, fill: '#F4D03F', 'font-family': 'Arial, sans-serif', 'font-weight': 'bold' });
+    l3.textContent = 'acide 1  +  base 2  →  base 1  +  acide 2';
+    svg.appendChild(l3);
+
+    const note = svtEl('text', { x: 180, y: 200, 'text-anchor': 'middle', 'font-size': 9, fill: 'var(--text-muted)', 'font-family': 'Arial, sans-serif' });
+    note.textContent = 'Les H⁺ se simplifient : ils ne sont ni réactif ni produit final';
+    svg.appendChild(note);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(drawSchemaActivite1, 400);
     setTimeout(drawSchemaActivite2, 400);
     setTimeout(drawSchemaAmpholyteEau, 400);
     setTimeout(drawSchemaIndicateurs, 400);
+    setTimeout(drawSchemaReactionGenerale, 400);
 });

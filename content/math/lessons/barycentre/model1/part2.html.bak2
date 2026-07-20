@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Partie 2 - Barycentre dans le plan | Xpert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <style>
+        .graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 8px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 6px;
+        }
+        .sub-section {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+        .function-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 10px 0;
+        }
+        .function-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            text-align: center;
+        }
+        .function-card h4 {
+            color: #4ECDC4;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        .function-card p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 4px 12px;
+            margin: 4px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .solution-box .sol-content .formula-block .math {
+            color: var(--accent-light);
+            font-family: var(--font-mono);
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .solution-box .sol-content .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .exercice-box {
+            background: var(--exercice-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .exercice-box .ex-title {
+            color: var(--exercice-title);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .exercice-box .ex-question {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        @media (max-width: 600px) {
+            .function-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-balance-scale" style="color:#4ECDC4;"></i> Partie 2 : Barycentre de trois points pondérés</h1>
+
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc red">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Définition et théorème</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Propriétés du barycentre de trois points</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Centre de gravité d'un triangle</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Coordonnées du barycentre</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
+            <!-- SECTION 1: DÉFINITION -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Définition et théorème</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Soient $(A,a)$, $(B,b)$, $(C,c)$ trois points pondérés du plan $(P)$.</p>
+                    <p>Si $a+b+c \neq 0$, il existe un point unique $G$ de $(P)$ tel que :</p>
+                    <div class="formula-block">
+                        $$a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} = \overrightarrow{0}$$
+                    </div>
+                    <p>Le point $G$ s'appelle le <strong>barycentre</strong> du système pondéré $S = \{(A,a), (B,b), (C,c)\}$.</p>
+                </div>
+
+                <!-- Graphique Barycentre de trois points -->
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Barycentre de trois points</p>
+                    <canvas id="bary3Graph" width="500" height="280"></canvas>
+                    <p>$G$ barycentre de $\{(A,1), (B,2), (C,3)\}$</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Démonstration :</strong></p>
+                    <div class="formula-block">
+                        $$a\overrightarrow{GA} + b\overrightarrow{GB} + c\overrightarrow{GC} = \overrightarrow{0}$$
+                        $$\iff (a+b+c)\overrightarrow{AG} = b\overrightarrow{AB} + c\overrightarrow{AC}$$
+                        $$\iff \overrightarrow{AG} = \frac{b\overrightarrow{AB} + c\overrightarrow{AC}}{a+b+c}$$
+                    </div>
+                    <p>Le point $G$ est unique car $A$, $B$, $C$ sont fixes.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Pour $a+b+c \neq 0$, $G$ est <strong>unique</strong>.</li>
+                        <li>$\overrightarrow{AG} = \dfrac{b\overrightarrow{AB} + c\overrightarrow{AC}}{a+b+c}$.</li>
+                        <li>Si $a+b+c = 0$, le barycentre n'existe pas.</li>
+                    </ul>
+                </div>
+
+                <!-- Exercice 1 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 1</div>
+                        <div class="ex-question">
+                            <p>Soit $G$ barycentre de $\{(A, 1), (B, 2), (C, 3)\}$. Exprimer $\overrightarrow{AG}$ en fonction de $\overrightarrow{AB}$ et $\overrightarrow{AC}$.</p>
+                        </div>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                        <div id="sol1" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> On identifie les poids : $a = 1$, $b = 2$, $c = 3$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> On calcule $a+b+c = 1+2+3 = 6 \neq 0$. Donc le barycentre existe.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> On utilise la formule : $\overrightarrow{AG} = \dfrac{b\overrightarrow{AB} + c\overrightarrow{AC}}{a+b+c}$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 4 :</span> $\overrightarrow{AG} = \dfrac{2\overrightarrow{AB} + 3\overrightarrow{AC}}{6}$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 5 :</span> On peut simplifier : $\overrightarrow{AG} = \dfrac{1}{3}\overrightarrow{AB} + \dfrac{1}{2}\overrightarrow{AC}$.
+                                </div>
+                                <div class="highlight-box green" style="margin-top:6px;">
+                                    <span class="label resume">Conclusion</span>
+                                    <p>$\overrightarrow{AG} = \dfrac{2\overrightarrow{AB} + 3\overrightarrow{AC}}{6}$</p>
+                                    <p style="font-size:11px; color:var(--text-muted);">(Le point $G$ est plus proche de $C$ car son poids $c=3$ est le plus grand)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: PROPRIÉTÉS -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Propriétés du barycentre de trois points</h2>
+
+                <h3>2-1 Invariance</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Théorème</span>
+                    <p>Si $G$ est barycentre de $S = \{(A,a), (B,b), (C,c)\}$, alors pour tout $k \in \mathbb{R}^*$, $G$ est aussi barycentre de $\{(A,ka), (B,kb), (C,kc)\}$.</p>
+                    <p>Le barycentre ne change pas si on multiplie les poids par un même réel <strong>non nul</strong>.</p>
+                </div>
+
+                <h3>2-2 Propriété caractéristique</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Théorème</span>
+                    <p>$G$ est barycentre de $\{(A,a), (B,b), (C,c)\}$ ssi :</p>
+                    <div class="formula-block">
+                        $$a+b+c \neq 0 \quad \text{et} \quad \forall M \in (P) : a\overrightarrow{MA} + b\overrightarrow{MB} + c\overrightarrow{MC} = (a+b+c)\overrightarrow{MG}$$
+                    </div>
+                </div>
+
+                <!-- Graphique Propriété caractéristique -->
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Propriété caractéristique</p>
+                    <canvas id="caract3Graph" width="500" height="220"></canvas>
+                    <p>$a\overrightarrow{MA} + b\overrightarrow{MB} + c\overrightarrow{MC} = (a+b+c)\overrightarrow{MG}$</p>
+                </div>
+
+                <h3>2-3 Associativité</h3>
+                <div class="highlight-box green">
+                    <span class="label def">Théorème</span>
+                    <p>On peut remplacer deux points par leur barycentre.</p>
+                    <p>Si $G_2$ est barycentre de $\{(A,a), (B,b)\}$, alors $G$ est barycentre de $\{(G_2, a+b), (C,c)\}$.</p>
+                </div>
+
+                <!-- Graphique Associativité -->
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Associativité du barycentre</p>
+                    <canvas id="assocGraph" width="500" height="250"></canvas>
+                    <p>$G_2$ barycentre de $\{(A,a), (B,b)\}$, $G$ barycentre de $\{(G_2, a+b), (C,c)\}$</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li><strong>Invariance :</strong> multiplier les poids par $k \neq 0$.</li>
+                        <li><strong>Caractéristique :</strong> $a\overrightarrow{MA} + b\overrightarrow{MB} + c\overrightarrow{MC} = (a+b+c)\overrightarrow{MG}$.</li>
+                        <li><strong>Associativité :</strong> on peut remplacer deux points par leur barycentre.</li>
+                    </ul>
+                </div>
+
+                <!-- Exercice 2 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 2</div>
+                        <div class="ex-question">
+                            <p>Soit $G$ barycentre de $\{(A, 2), (B, -1), (C, 3)\}$. Vérifier que $G$ est aussi barycentre de $\{(A, -4), (B, 2), (C, -6)\}$.</p>
+                        </div>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                        <div id="sol2" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> On identifie les poids du premier système : $(2, -1, 3)$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> On identifie les poids du second système : $(-4, 2, -6)$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> On cherche $k$ tel que $(-4, 2, -6) = k(2, -1, 3)$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 4 :</span> $k = -2$ car $(-2) \times 2 = -4$, $(-2) \times (-1) = 2$, $(-2) \times 3 = -6$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 5 :</span> D'après la propriété d'<strong>invariance</strong>, multiplier les poids par $k = -2 \neq 0$ ne change pas le barycentre.
+                                </div>
+                                <div class="highlight-box green" style="margin-top:6px;">
+                                    <span class="label resume">Conclusion</span>
+                                    <p>$G$ est aussi barycentre de $\{(A, -4), (B, 2), (C, -6)\}$.</p>
+                                    <p style="font-size:11px; color:var(--text-muted);">(Les deux systèmes ont le même barycentre $G$)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: CENTRE DE GRAVITÉ D'UN TRIANGLE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Centre de gravité d'un triangle</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>Le centre de gravité $G$ d'un triangle $ABC$ est le barycentre de $\{(A,1), (B,1), (C,1)\}$.</p>
+                    <div class="formula-block">
+                        $$\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}$$
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Propriétés :</strong></p>
+                    <div class="formula-block">
+                        $$\overrightarrow{AG} = \frac{2}{3}\overrightarrow{AA'} \quad \text{où } A' \text{ est le milieu de } [BC]$$
+                    </div>
+                    <p>Et de même :</p>
+                    <div class="formula-block">
+                        $$\overrightarrow{BG} = \frac{2}{3}\overrightarrow{BB'} \quad \text{et} \quad \overrightarrow{CG} = \frac{2}{3}\overrightarrow{CC'}$$
+                    </div>
+                </div>
+
+                <!-- Graphique Centre de gravité -->
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Centre de gravité du triangle ABC</p>
+                    <canvas id="gravityGraph" width="500" height="280"></canvas>
+                    <p>$G$ est le centre de gravité : $\overrightarrow{AG} = \frac{2}{3}\overrightarrow{AA'}$</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>G est le barycentre de $\{(A,1), (B,1), (C,1)\}$.</li>
+                        <li>$\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}$.</li>
+                        <li>$\overrightarrow{AG} = \frac{2}{3}\overrightarrow{AA'}$.</li>
+                    </ul>
+                </div>
+
+                <!-- Exercice 3 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 3</div>
+                        <div class="ex-question">
+                            <p>Soit $ABC$ un triangle et $G$ son centre de gravité. Montrer que $\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}$.</p>
+                        </div>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                        <div id="sol3" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> Par définition, le centre de gravité $G$ du triangle $ABC$ est le barycentre de $\{(A,1), (B,1), (C,1)\}$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> D'après la définition du barycentre, on a :
+                                    <div class="formula-block" style="margin:4px 0;">
+                                        $1 \times \overrightarrow{GA} + 1 \times \overrightarrow{GB} + 1 \times \overrightarrow{GC} = \overrightarrow{0}$
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> On simplifie :
+                                    <div class="formula-block" style="margin:4px 0;">
+                                        $\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}$
+                                    </div>
+                                </div>
+                                <div class="highlight-box green" style="margin-top:6px;">
+                                    <span class="label resume">Conclusion</span>
+                                    <p>$\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}$</p>
+                                    <p style="font-size:11px; color:var(--text-muted);">(Cette propriété caractérise le centre de gravité)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: COORDONNÉES -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Coordonnées du barycentre</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Propriété</span>
+                    <p>Soit $G$ barycentre de $\{(A,a), (B,b), (C,c)\}$.</p>
+                    <p>Dans un repère $(O, \vec{i}, \vec{j})$, les coordonnées de $G$ sont :</p>
+                    <div class="formula-block">
+                        $$x_G = \frac{ax_A + bx_B + cx_C}{a+b+c} \quad \text{et} \quad y_G = \frac{ay_A + by_B + cy_C}{a+b+c}$$
+                    </div>
+                </div>
+
+                <!-- Graphique Coordonnées -->
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Coordonnées du barycentre</p>
+                    <canvas id="coordGraph" width="500" height="250"></canvas>
+                    <p>$G\left(\frac{6}{5}, \frac{7}{5}\right)$ barycentre de $\{(A,3), (B,1), (C,1)\}$</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Les coordonnées du barycentre sont les <strong>moyennes pondérées</strong> des coordonnées des points.</li>
+                        <li>Généralisation à $n$ points.</li>
+                    </ul>
+                </div>
+
+                <!-- Exercice 4 -->
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">📝 Exercice 4</div>
+                        <div class="ex-question">
+                            <p>Dans un repère, $A(1,1)$, $B(4,1)$, $C(-1,3)$. Déterminer les coordonnées du barycentre de $\{(A,3), (B,1), (C,1)\}$.</p>
+                        </div>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                        <div id="sol4" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> On identifie les poids : $a = 3$, $b = 1$, $c = 1$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> On calcule $a+b+c = 3+1+1 = 5 \neq 0$.
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> On calcule l'abscisse $x_G$ :
+                                    <div class="formula-block" style="margin:4px 0;">
+                                        $x_G = \dfrac{3 \times 1 + 1 \times 4 + 1 \times (-1)}{5} = \dfrac{3 + 4 - 1}{5} = \dfrac{6}{5}$
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 4 :</span> On calcule l'ordonnée $y_G$ :
+                                    <div class="formula-block" style="margin:4px 0;">
+                                        $y_G = \dfrac{3 \times 1 + 1 \times 1 + 1 \times 3}{5} = \dfrac{3 + 1 + 3}{5} = \dfrac{7}{5}$
+                                    </div>
+                                </div>
+                                <div class="highlight-box green" style="margin-top:6px;">
+                                    <span class="label resume">Conclusion</span>
+                                    <p>$G\left(\dfrac{6}{5}, \dfrac{7}{5}\right)$</p>
+                                    <p style="font-size:11px; color:var(--text-muted);">(Le point $A$ a un poids plus grand, donc $G$ est plus proche de $A$)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part1.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 1</a>
+                <a href="part3.html" class="next-btn">Partie 3 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawBary3() {
+            var canvas = document.getElementById('bary3Graph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ax = 180, ay = 50;
+            var bx = 70, by = 230;
+            var cx = 430, cy = 230;
+            var gx = (1*ax + 2*bx + 3*cx) / 6;
+            var gy = (1*ay + 2*by + 3*cy) / 6;
+
+            // Triangle
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
+            ctx.lineTo(cx, cy);
+            ctx.closePath();
+            ctx.stroke();
+
+            // Points
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('A', ax - 16, ay - 10);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('B', bx - 16, by + 20);
+
+            ctx.fillStyle = '#BB8FCE';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('C', cx + 8, cy + 20);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(gx, gy, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '14px Arial';
+            ctx.fillText('G', gx + 10, gy - 10);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('S = {(A,1), (B,2), (C,3)}', 300, 30);
+        }
+
+        function drawCaract3() {
+            var canvas = document.getElementById('caract3Graph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ax = 60, ay = 80;
+            var bx = 440, by = 100;
+            var cx = 250, cy = 180;
+            var gx = (ax + bx + cx) / 3;
+            var gy = (ay + by + cy) / 3;
+            var mx = 180, my = 30;
+
+            // Triangle
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
+            ctx.lineTo(cx, cy);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Points
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(ax, ay, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('A', ax - 14, ay - 6);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(bx, by, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('B', bx + 6, by - 6);
+
+            ctx.fillStyle = '#BB8FCE';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('C', cx + 6, cy - 6);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(gx, gy, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('G', gx + 8, gy - 6);
+
+            ctx.fillStyle = '#A8FF78';
+            ctx.beginPath();
+            ctx.arc(mx, my, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('M', mx + 6, my - 6);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('a MA + b MB + c MC = (a+b+c) MG', 250, 30);
+        }
+
+        function drawAssoc() {
+            var canvas = document.getElementById('assocGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ax = 70, ay = 180;
+            var bx = 430, by = 180;
+            var g2x = (ax + bx) / 2;
+            var g2y = (ay + by) / 2;
+            var cx = 250, cy = 40;
+            var gx = (2*g2x + 1*cx) / 3;
+            var gy = (2*g2y + 1*cy) / 3;
+
+            // Droite AB
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
+            ctx.stroke();
+
+            // Point G2
+            ctx.fillStyle = '#A8FF78';
+            ctx.beginPath();
+            ctx.arc(g2x, g2y, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('G2', g2x + 8, g2y - 6);
+
+            // Triangle G2-C
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(g2x, g2y);
+            ctx.lineTo(cx, cy);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Points
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('A', ax - 16, ay + 20);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('B', bx + 8, ay + 20);
+
+            ctx.fillStyle = '#BB8FCE';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('C', cx + 8, cy - 8);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(gx, gy, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '14px Arial';
+            ctx.fillText('G', gx + 10, gy - 10);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('G2 barycentre de {(A,2),(B,2)}', 280, 30);
+            ctx.fillText('G barycentre de {(G2,4),(C,1)}', 280, 45);
+        }
+
+        function drawGravity() {
+            var canvas = document.getElementById('gravityGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ax = 250, ay = 40;
+            var bx = 70, by = 250;
+            var cx = 430, cy = 250;
+            var gx = (ax + bx + cx) / 3;
+            var gy = (ay + by + cy) / 3;
+            var a1x = (bx + cx) / 2;
+            var a1y = (by + cy) / 2;
+
+            // Triangle
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
+            ctx.lineTo(cx, cy);
+            ctx.closePath();
+            ctx.stroke();
+
+            // Médiane AA'
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 6]);
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(a1x, a1y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Points
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('A', ax - 16, ay - 10);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('B', bx - 16, by + 20);
+
+            ctx.fillStyle = '#BB8FCE';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText('C', cx + 8, cy + 20);
+
+            ctx.fillStyle = '#A8FF78';
+            ctx.beginPath();
+            ctx.arc(a1x, a1y, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px Arial';
+            ctx.fillText("A'", a1x + 8, a1y - 8);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(gx, gy, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '14px Arial';
+            ctx.fillText('G', gx + 10, gy - 10);
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('AG = 2/3 AA\'', 300, 30);
+        }
+
+        function drawCoord() {
+            var canvas = document.getElementById('coordGraph');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = 220;
+            var scale = 30;
+
+            // Axes
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(w - 20, oy);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(ox, 20);
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('x', w - 20, oy + 18);
+            ctx.fillText('y', ox + 8, 16);
+
+            // Points
+            var pts = [
+                {x: 1, y: 1, color: '#4ECDC4', label: 'A'},
+                {x: 4, y: 1, color: '#FF6B6B', label: 'B'},
+                {x: -1, y: 3, color: '#BB8FCE', label: 'C'},
+                {x: 6/5, y: 7/5, color: '#F4D03F', label: 'G'}
+            ];
+
+            for (var i = 0; i < pts.length; i++) {
+                var px = ox + pts[i].x * scale;
+                var py = oy - pts[i].y * scale;
+                ctx.fillStyle = pts[i].color;
+                ctx.beginPath();
+                ctx.arc(px, py, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = '12px Arial';
+                ctx.fillText(pts[i].label, px + 8, py - 6);
+            }
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('A(1,1), B(4,1), C(-1,3)', 300, 30);
+            ctx.fillText('G(6/5, 7/5)', 300, 45);
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                drawBary3();
+                drawCaract3();
+                drawAssoc();
+                drawGravity();
+                drawCoord();
+            }, 500);
+        };
+    </script>
+</body>
+</html>

@@ -125,7 +125,14 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -355,10 +362,19 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-arrows-up-down" style="color:#4ECDC4;"></i> Partie 2 : Suites majorées, minorées, bornées - Monotonie</h1>
 
-            <!-- ============================================================ -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Suite majorée - minorée - bornée</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Monotonie d'une suite</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
             <!-- SECTION 1: SUITE MAJORÉE - MINORÉE - BORNÉE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Suite majorée - minorée - bornée</h2>
 
                 <div class="highlight-box green">
@@ -433,7 +449,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: MONOTONIE D'UNE SUITE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Monotonie d'une suite</h2>
 
                 <div class="highlight-box green">

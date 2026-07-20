@@ -124,7 +124,14 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: var(--gold-text); }
+        .toc ul li a .num { color: var(--gold-text); font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -358,7 +365,18 @@
                 Le vinaigre, le coca-cola, la levure, les déboucheurs... tous ces produits de la vie courante contiennent des acides ou des bases. Mais qu'est-ce qui définit vraiment un acide ou une base au niveau microscopique ? C'est ce que nous allons découvrir.
             </p>
 
-            <div class="section">
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Mise en évidence d'un transfert de proton H⁺</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Acides et bases selon Brønsted</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Le couple acide/base conjugué</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Exercices d'application</a></li>
+                </ul>
+            </div>
+<div class="section" id="sec1">
                 <h2><span class="num">1</span> Mise en évidence d'un transfert de proton H⁺</h2>
 
                 <h3>a) Activité 1 : chlorure d'ammonium et solution de soude</h3>
@@ -400,7 +418,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Acides et bases selon Brønsted</h2>
 
                 <div class="highlight-box red">
@@ -449,7 +467,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Le couple acide/base conjugué</h2>
 
                 <div class="highlight-box red">
@@ -492,7 +510,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="sec4">
                 <h2><span class="num">4</span> Exercices d'application</h2>
 
                 <div class="exemple-box">

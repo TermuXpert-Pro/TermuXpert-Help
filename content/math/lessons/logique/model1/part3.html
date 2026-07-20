@@ -121,7 +121,14 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -351,10 +358,22 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-scale-balanced" style="color:#4ECDC4;"></i> Partie 3 : Lois logiques - Raisonnements (1-4)</h1>
 
-            <!-- ============================================================ -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Lois logiques</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Raisonnement par contre-exemple</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Raisonnement par équivalences successives</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Raisonnement déductif</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Raisonnement par contraposée</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
             <!-- SECTION 1: LOIS LOGIQUES -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Lois logiques</h2>
 
                 <div class="highlight-box green">
@@ -429,7 +448,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: RAISONNEMENT PAR CONTRE-EXEMPLE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Raisonnement par contre-exemple</h2>
 
                 <div class="highlight-box green">
@@ -462,7 +481,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: RAISONNEMENT PAR ÉQUIVALENCES SUCCESSIVES -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Raisonnement par équivalences successives</h2>
 
                 <div class="highlight-box green">
@@ -508,7 +527,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 4: RAISONNEMENT DÉDUCTIF -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec4">
                 <h2><span class="num">4</span> Raisonnement déductif</h2>
 
                 <div class="highlight-box green">
@@ -552,7 +571,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 5: RAISONNEMENT PAR CONTRAPOSÉE -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec5">
                 <h2><span class="num">5</span> Raisonnement par contraposée</h2>
 
                 <div class="highlight-box green">

@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Partie 5 - Travail et énergie cinétique | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.simple { background: rgba(78, 205, 196, 0.12); color: #66FCF1; }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 450px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .exemple-box {
+            background: var(--exercice-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .exemple-box .ex-title {
+            color:var(--gold-text);
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .exemple-box .ex-subtitle {
+            color: var(--solution-title);
+            font-weight: 600;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        .exercice-box {
+            background: var(--exercice-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .exercice-box .ex-title {
+            color: var(--exercice-title);
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .exercice-box .ex-difficulty {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 1px 10px;
+            border-radius: 12px;
+            margin-left: 6px;
+        }
+        .ex-difficulty.facile { background: #4ECDC422; color: #4ECDC4; }
+        .ex-difficulty.moyen { background: #F4D03F22; color:var(--gold-text); }
+        .ex-difficulty.difficile { background: #FF6B6B22; color: #FF6B6B; }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 10px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .sub-section {
+            border-top: 1px solid var(--border);
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+        .result-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+        }
+        .result-box .res-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+        .life-example {
+            background: #1A1A2E;
+            border: 1px solid #4ECDC444;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 4px 0;
+        }
+        .life-example .life-title {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Partie 5 : Exercices d'application</h1>
+
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc red">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Exercice 1 Facile</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Exercice 2 Facile</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Exercice 3 Moyen</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Exercice 4 Moyen</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Exercice 5 Difficile</a></li>
+                </ul>
+            </div>
+<!-- ====== Introduction ====== -->
+            <div class="highlight-box blue" style="border-color:#4D9DE0; background:rgba(77,157,224,0.08);">
+                <span class="label simple">💡 Conseils avant de commencer</span>
+                <p style="font-size:12px; color:var(--text-secondary);">
+                    Pour résoudre un exercice avec le théorème de l'énergie cinétique :
+                </p>
+                <ol style="font-size:11.5px; padding-right:18px; color:var(--text-secondary);">
+                    <li>📌 Faire le <strong>bilan des forces extérieures</strong> appliquées au solide.</li>
+                    <li>📐 Calculer le <strong>travail</strong> de chaque force.</li>
+                    <li>📝 Appliquer le théorème : \(\Delta E_C = \sum W(\vec{F}_{ext})\).</li>
+                    <li>✅ Résoudre l'équation pour trouver l'inconnue.</li>
+                </ol>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 1 -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Exercice 1 <span class="ex-difficulty facile">Facile</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un solide (S), de masse \(m = 60\text{ kg}\), glisse sur un plan incliné d'angle \(\alpha = 15^\circ\) par rapport au plan horizontal (voir figure).
+                    </p>
+                    <p style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+                        Le solide (S) est lâché du point A sans vitesse initiale, après un parcours de \(AB = 100\text{ m}\) sa vitesse devient \(V_B = 45\text{ km/h}\).
+                        <br>On donne \(g = 10\text{ N/kg}\).
+                    </p>
+                    <div class="graph-container">
+                        <canvas id="graphExercice1" width="400" height="180"></canvas>
+                        <p>Solide glissant sur un plan incliné</p>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer la force de frottement \(f\) sachant que son intensité reste constante.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_1')">Voir la solution</button>
+                        <div id="sol1_1" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <p><strong>Système étudié :</strong> le solide S</p>
+                                <p><strong>Bilan des forces :</strong> \(\vec{P}\), \(\vec{R}_N\), \(\vec{f}\)</p>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> On applique le théorème de l'énergie cinétique sur le solide (S) entre A et B :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta E_C = E_{CB} - E_{CA} = W_{A \to B}(\vec{P}) + W_{A \to B}(\vec{R}_N) + W_{A \to B}(\vec{f})$$
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Calcul des travaux :
+                                    <div style="font-size:12px; color:var(--text-secondary);">
+                                        \(W(\vec{R}_N) = 0\) (car \(\vec{R}_N \perp \overrightarrow{AB}\))
+                                        <br>
+                                        \(W(\vec{P}) = m \cdot g \cdot AB \cdot \sin \alpha\)
+                                        <br>
+                                        \(W(\vec{f}) = -f \cdot AB\) (travail résistant)
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> Conversion de la vitesse :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V_B = 45\text{ km/h} = \frac{45}{3,6} = 12,5\text{ m/s}$$
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 4 :</span> Application numérique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\frac{1}{2} m \cdot V_B^2 - 0 = m \cdot g \cdot AB \cdot \sin \alpha - f \cdot AB$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$f \cdot AB = m \cdot g \cdot AB \cdot \sin \alpha - \frac{1}{2} m \cdot V_B^2$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$f = m \cdot g \cdot \sin \alpha - \frac{m \cdot V_B^2}{2 \cdot AB}$$
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 5 :</span> Calcul :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$f = 60 \times 10 \times \sin(15^\circ) - \frac{60 \times (12,5)^2}{2 \times 100}$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$f = 600 \times 0,259 - \frac{60 \times 156,25}{200} = 155,4 - 46,875 = 108,5\text{ N}$$
+                                    </div>
+                                </div>
+
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$f \approx 108,5\text{ N}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Le solide (S) poursuit son mouvement sur le plan horizontal BC. Calculer la distance parcourue par le solide sur le plan horizontal avant de s'arrêter.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1_2')">Voir la solution</button>
+                        <div id="sol1_2" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> On applique le théorème de l'énergie cinétique entre B et C :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta E_C = E_{CC} - E_{CB} = W_{B \to C}(\vec{P}) + W_{B \to C}(\vec{R}_N) + W_{B \to C}(\vec{f})$$
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> À l'arrêt en C, \(V_C = 0\), donc \(E_{CC} = 0\).
+                                    <br>Les travaux de \(\vec{P}\) et \(\vec{R}_N\) sont nuls (forces verticales, déplacement horizontal).
+                                    <br>\(W_{B \to C}(\vec{f}) = -f \cdot L\)
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> On applique le théorème :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$0 - \frac{1}{2} m \cdot V_B^2 = -f \cdot L$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$L = \frac{m \cdot V_B^2}{2 \cdot f}$$
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 4 :</span> Application numérique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$L = \frac{60 \times (12,5)^2}{2 \times 108,5} = \frac{60 \times 156,25}{217} = \frac{9375}{217} \approx 43,2\text{ m}$$
+                                    </div>
+                                </div>
+
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$L \approx 43,2\text{ m}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 2 -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Exercice 2 <span class="ex-difficulty facile">Facile</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un solide de masse \(m = 2\text{ kg}\) est lancé verticalement vers le haut avec une vitesse initiale \(V_0 = 10\text{ m/s}\).
+                        <br>On néglige les frottements de l'air. \(g = 10\text{ m/s}^2\).
+                    </p>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer l'énergie cinétique initiale du solide.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_1')">Voir la solution</button>
+                        <div id="sol2_1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(E_{C0} = \frac{1}{2} m \cdot V_0^2\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(E_{C0} = \frac{1}{2} \times 2 \times 10^2 = 1 \times 100 = 100\text{ J}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$E_{C0} = 100\text{ J}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            En utilisant le théorème de l'énergie cinétique, calculer la hauteur maximale atteinte par le solide.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2_2')">Voir la solution</button>
+                        <div id="sol2_2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> Au point le plus haut, la vitesse est nulle : \(V = 0\), donc \(E_C = 0\).
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Bilan des forces : seule le poids \(\vec{P}\) travaille.
+                                    <br>\(W(\vec{P}) = -m \cdot g \cdot h\) (travail résistant car le solide monte)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> Théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta E_C = E_C - E_{C0} = W(\vec{P})$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$0 - 100 = -m \cdot g \cdot h$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$h = \frac{100}{m \cdot g} = \frac{100}{2 \times 10} = 5\text{ m}$$
+                                    </div>
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$h_{max} = 5\text{ m}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 3 (NOUVEAU) -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Exercice 3 <span class="ex-difficulty moyen">Moyen</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un solide de masse \(m = 500\text{ g}\) glisse sur un plan incliné d'angle \(\alpha = 30^\circ\).
+                        <br>Il part du repos du point A situé à une hauteur \(h = 2\text{ m}\).
+                        <br>Les frottements sont négligeables. \(g = 10\text{ m/s}^2\).
+                    </p>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer le travail du poids entre A et B.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_1')">Voir la solution</button>
+                        <div id="sol3_1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(m = 500\text{ g} = 0,5\text{ kg}\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(W(\vec{P}) = m \cdot g \cdot h = 0,5 \times 10 \times 2 = 10\text{ J}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$W(\vec{P}) = 10\text{ J}$$
+                                    </div>
+                                    <p style="font-size:11px; color:var(--text-muted);">Le travail est moteur (le solide descend).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer la vitesse du solide en B en utilisant le théorème de l'énergie cinétique.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3_2')">Voir la solution</button>
+                        <div id="sol3_2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> Le solide part du repos : \(V_A = 0\), donc \(E_{CA} = 0\).
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta E_C = E_{CB} - E_{CA} = W(\vec{P})$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\frac{1}{2} m \cdot V_B^2 - 0 = 10$$
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> 
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V_B^2 = \frac{2 \times 10}{0,5} = 40$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V_B = \sqrt{40} \approx 6,32\text{ m/s}$$
+                                    </div>
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$V_B \approx 6,32\text{ m/s}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 4 (NOUVEAU) -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Exercice 4 <span class="ex-difficulty moyen">Moyen</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un moteur exerce une puissance constante sur un cylindre \(\mathcal{P} = 10\text{ W}\).
+                    </p>
+                    <p style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+                        Le cylindre de masse \(m = 2\text{ kg}\) et de rayon \(r = 20\text{ cm}\), tourne autour d'un axe fixe \((\Delta)\) qui passe par son centre d'inertie.
+                        <br>On donne le moment d'inertie du cylindre : \(J_{\Delta} = \frac{1}{2} m \cdot r^2\).
+                    </p>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer la durée du temps \(\Delta t\) nécessaire pour que la fréquence du cylindre devienne \(N = 10\text{ tr/s}\), on considère que les frottements sont négligeables.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
+                        <div id="sol4_1" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <p><strong>Système étudié :</strong> le cylindre</p>
+                                <p><strong>Bilan des forces :</strong> \(\vec{P}\), \(\vec{R}\), Action du couple moteur \(M_c\)</p>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> On applique le théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta E_C = \frac{1}{2} J_{\Delta} \cdot \omega_f^2 = \mathcal{P} \cdot \Delta t$$
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(J_{\Delta} = \frac{1}{2} m \cdot r^2\) et \(\omega_f = 2\pi N\)
+                                </div>
+
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> Calcul :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta t = \frac{\pi^2 \cdot m \cdot r^2 \cdot N^2}{\mathcal{P}}$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\Delta t = \frac{\pi^2 \times 2 \times (0,2)^2 \times 10^2}{10} = 7,90\text{ s}$$
+                                    </div>
+                                </div>
+
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$\Delta t \approx 7,90\text{ s}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            À la fréquence \(N = 10\text{ tr/s}\), on applique tangentiellement à la circonférence du cylindre une force \(\vec{F}\) constante, pour que le mouvement devient uniforme. Calculer la valeur de la force \(F\).
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
+                        <div id="sol4_2" class="solution-box">
+                            <div class="sol-title">✅ Solution détaillée</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> Mouvement uniforme \(\Rightarrow \omega = \text{constante} \Rightarrow \Delta E_C = 0\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$0 = W(C) + W(\vec{F})$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$M_c = F \cdot r$$
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> \(M_c \cdot \omega = \mathcal{P} \Rightarrow M_c = \frac{\mathcal{P}}{\omega}\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 4 :</span> 
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$F = \frac{\mathcal{P}}{2\pi \cdot N \cdot r} = \frac{10}{2\pi \times 10 \times 0,2} = 0,795\text{ N}$$
+                                    </div>
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$F \approx 0,80\text{ N}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 5 (NOUVEAU) -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec5">
+                <h2><span class="num">5</span> Exercice 5 <span class="ex-difficulty difficile">Difficile</span></h2>
+
+                <div class="exercice-box">
+                    <div class="ex-title">📝 Énoncé</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un pendule simple est constitué d'une bille de masse \(m = 200\text{ g}\) suspendue à un fil inextensible de longueur \(L = 1\text{ m}\).
+                        <br>On écarte le pendule d'un angle \(\theta_0 = 60^\circ\) par rapport à la verticale et on le lâche sans vitesse initiale.
+                        <br>On néglige les frottements. \(g = 10\text{ m/s}^2\).
+                    </p>
+                    <div class="graph-container">
+                        <canvas id="graphPendule" width="300" height="180"></canvas>
+                        <p>Pendule simple</p>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <div class="exercice-box">
+                        <div class="ex-title">Question 1</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer la hauteur \(h\) dont descend la bille entre sa position initiale et la position verticale.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_1')">Voir la solution</button>
+                        <div id="sol5_1" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> La hauteur est donnée par :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$h = L - L \cdot \cos \theta_0 = L(1 - \cos \theta_0)$$
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(\cos(60^\circ) = 0,5\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 3 :</span> \(h = 1 \times (1 - 0,5) = 0,5\text{ m}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$h = 0,5\text{ m}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 2</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            En utilisant le théorème de l'énergie cinétique, calculer la vitesse de la bille lorsqu'elle passe par la position verticale.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_2')">Voir la solution</button>
+                        <div id="sol5_2" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(m = 200\text{ g} = 0,2\text{ kg}\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> Théorème de l'énergie cinétique :
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\frac{1}{2} m \cdot V^2 - 0 = m \cdot g \cdot h$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$\frac{1}{2} V^2 = g \cdot h$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V^2 = 2 \cdot g \cdot h = 2 \times 10 \times 0,5 = 10$$
+                                    </div>
+                                    <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                        $$V = \sqrt{10} \approx 3,16\text{ m/s}$$
+                                    </div>
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$V \approx 3,16\text{ m/s}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercice-box" style="margin-top:8px;">
+                        <div class="ex-title">Question 3</div>
+                        <p style="font-size:11.5px; color:var(--text-secondary);">
+                            Calculer l'énergie cinétique de la bille à la position verticale.
+                        </p>
+                        <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_3')">Voir la solution</button>
+                        <div id="sol5_3" class="solution-box">
+                            <div class="sol-title">✅ Solution</div>
+                            <div class="sol-content">
+                                <div class="step">
+                                    <span class="step-num">Étape 1 :</span> \(E_C = \frac{1}{2} m \cdot V^2\)
+                                </div>
+                                <div class="step">
+                                    <span class="step-num">Étape 2 :</span> \(E_C = \frac{1}{2} \times 0,2 \times 10 = 1\text{ J}\)
+                                </div>
+                                <div class="result-box" style="margin-top:6px;">
+                                    <div class="res-title">✅ Résultat</div>
+                                    <div class="formula-block" style="font-size:16px;">
+                                        $$E_C = 1\text{ J}$$
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part4.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 4</a>
+                <a href="part6.html" class="next-btn">Résumé <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // GRAPHIQUES
+        // ============================================================
+
+        function drawGraphExercice1() {
+            var canvas = document.getElementById('graphExercice1');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var ox = 60, oy = h - 20;
+            var angle = 15 * Math.PI / 180;
+
+            // Plan incliné
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(ox, oy);
+            ctx.lineTo(ox + 280, oy - 280 * Math.tan(angle));
+            ctx.stroke();
+
+            // Plan horizontal
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(ox + 280, oy - 280 * Math.tan(angle));
+            ctx.lineTo(ox + 380, oy - 280 * Math.tan(angle));
+            ctx.stroke();
+
+            // Solide (carré)
+            var sx = ox + 80, sy = oy - 80 * Math.tan(angle) - 15;
+            ctx.fillStyle = '#4ECDC4';
+            ctx.fillRect(sx, sy, 20, 20);
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(sx, sy, 20, 20);
+
+            // Points A et B
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(ox + 20, oy - 20 * Math.tan(angle), 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('A', ox + 10, oy - 20 * Math.tan(angle) - 8);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(ox + 280, oy - 280 * Math.tan(angle), 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('B', ox + 280 + 6, oy - 280 * Math.tan(angle) - 8);
+
+            // Point C
+            ctx.fillStyle = '#BB8FCE';
+            ctx.beginPath();
+            ctx.arc(ox + 380, oy - 280 * Math.tan(angle), 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('C', ox + 380 + 6, oy - 280 * Math.tan(angle) - 8);
+
+            // Angle
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(ox, oy, 25, Math.PI/2 - angle, Math.PI/2);
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '11px Arial';
+            ctx.fillText('α', ox + 10, oy - 18);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Plan incliné α = 15°', 160, 20);
+            ctx.fillText('AB = 100 m', 160, 35);
+        }
+
+        function drawGraphPendule() {
+            var canvas = document.getElementById('graphPendule');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = 40;
+            var L = 120;
+            var angle = 60 * Math.PI / 180;
+
+            // Fil
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            var x1 = cx + L * Math.sin(angle);
+            var y1 = cy + L * Math.cos(angle);
+            ctx.lineTo(x1, y1);
+            ctx.stroke();
+
+            // Fil vertical (position d'équilibre)
+            ctx.strokeStyle = '#2A2A3E';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(cx, cy + L);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Bille
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(x1, y1, 12, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Centre
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('O', cx + 8, cy + 4);
+
+            // Angle
+            ctx.strokeStyle = '#BB8FCE';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(cx, cy + 10, 25, 0, angle);
+            ctx.stroke();
+            ctx.fillStyle = '#BB8FCE';
+            ctx.font = '11px Arial';
+            ctx.fillText('θ₀', cx + 15, cy + 18);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '10px Arial';
+            ctx.fillText('Pendule simple θ₀ = 60°', 160, 20);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                drawGraphExercice1();
+                drawGraphPendule();
+            }, 500);
+        });
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    
+</body>
+</html>

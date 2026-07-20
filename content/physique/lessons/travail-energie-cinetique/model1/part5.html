@@ -251,7 +251,14 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #FF6B6B; }
+        .toc ul li a .num { color: #FF6B6B; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -481,7 +488,19 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#FF6B6B;"></i> Partie 5 : Exercices d'application</h1>
 
-            <!-- ====== Introduction ====== -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Exercice 1 Facile</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Exercice 2 Facile</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Exercice 3 Moyen</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Exercice 4 Moyen</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Exercice 5 Difficile</a></li>
+                </ul>
+            </div>
+<!-- ====== Introduction ====== -->
             <div class="highlight-box blue" style="border-color:#4D9DE0; background:rgba(77,157,224,0.08);">
                 <span class="label simple">💡 Conseils avant de commencer</span>
                 <p style="font-size:12px; color:var(--text-secondary);">
@@ -498,7 +517,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 1 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Exercice 1 <span class="ex-difficulty facile">Facile</span></h2>
 
                 <div class="exercice-box">
@@ -641,7 +660,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 2 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Exercice 2 <span class="ex-difficulty facile">Facile</span></h2>
 
                 <div class="exercice-box">
@@ -721,7 +740,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 3 (NOUVEAU) -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Exercice 3 <span class="ex-difficulty moyen">Moyen</span></h2>
 
                 <div class="exercice-box">
@@ -805,7 +824,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 4 (NOUVEAU) -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec4">
                 <h2><span class="num">4</span> Exercice 4 <span class="ex-difficulty moyen">Moyen</span></h2>
 
                 <div class="exercice-box">
@@ -908,7 +927,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 5 (NOUVEAU) -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec5">
                 <h2><span class="num">5</span> Exercice 5 <span class="ex-difficulty difficile">Difficile</span></h2>
 
                 <div class="exercice-box">

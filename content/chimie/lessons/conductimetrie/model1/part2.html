@@ -125,7 +125,14 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: var(--gold-text); }
+        .toc ul li a .num { color: var(--gold-text); font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -359,7 +366,17 @@
                 La conductance $G$ dépend de la géométrie de la cellule utilisée : elle ne caractérise pas la solution elle-même. On introduit une nouvelle grandeur, propre à la solution, qui traduit sa capacité à conduire le courant.
             </p>
 
-            <div class="section">
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Définition de la conductivité</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Conductivité et concentration d'une solution diluée</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Conductivité molaire ionique</a></li>
+                </ul>
+            </div>
+<div class="section" id="sec1">
                 <h2><span class="num">1</span> Définition de la conductivité</h2>
 
                 <p>La conductance $G$ d'une portion de solution électrolytique est proportionnelle à la surface immergée $S$ des électrodes et inversement proportionnelle à la distance $L$ qui les sépare :</p>
@@ -380,7 +397,7 @@
                 <p>Contrairement à la conductance $G$ (qui dépend de la portion de solution entre les deux plaques), la <strong>conductivité $\sigma$</strong> est une <strong>propriété de la solution elle-même</strong>, directement mesurable par un appareil appelé <strong>conductimètre</strong>.</p>
             </div>
 
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Conductivité et concentration d'une solution diluée</h2>
 
                 <p>Pour une solution suffisamment diluée, on a établi que $G = \alpha . C$ (partie 1). Or $G = \sigma . \dfrac{S}{L}$. En combinant les deux relations :</p>
@@ -399,7 +416,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Conductivité molaire ionique</h2>
 
                 <div class="highlight-box purple">

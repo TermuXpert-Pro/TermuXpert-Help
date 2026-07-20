@@ -131,7 +131,14 @@
             .greek-table td { font-size: 10px; }
             .greek-table .greek { font-size: 13px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -361,10 +368,23 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-book-open" style="color:var(--gold-text);"></i> Résumé général : Logique mathématique</h1>
 
-            <!-- ============================================================ -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Propositions et Quantificateurs</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Opérations logiques</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Lois logiques</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Types de raisonnements</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Tableau récapitulatif</a></li>
+                    <li><a href="#sec6"><span class="num">6.</span> Lettres grecques</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
             <!-- SECTION 1: PROPOSITIONS ET QUANTIFICATEURS -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Propositions et Quantificateurs</h2>
 
                 <div class="summary-card">
@@ -405,7 +425,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: OPÉRATIONS LOGIQUES -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Opérations logiques</h2>
 
                 <div class="summary-card">
@@ -481,7 +501,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: LOIS LOGIQUES -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Lois logiques</h2>
 
                 <div class="highlight-box red">
@@ -518,7 +538,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 4: TYPES DE RAISONNEMENTS -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec4">
                 <h2><span class="num">4</span> Types de raisonnements</h2>
 
                 <div class="summary-card">
@@ -574,7 +594,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 5: TABLEAU RÉCAPITULATIF -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec5">
                 <h2><span class="num">5</span> Tableau récapitulatif</h2>
 
                 <div class="table-wrap">
@@ -592,7 +612,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 6: LETTRES GRECQUES -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec6">
                 <h2><span class="num">6</span> Lettres grecques</h2>
 
                 <div class="table-wrap greek-table">

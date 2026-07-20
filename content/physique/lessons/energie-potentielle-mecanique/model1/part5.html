@@ -209,7 +209,14 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #FF6B6B; }
+        .toc ul li a .num { color: #FF6B6B; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -444,10 +451,23 @@
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> 6 exercices</span>
             </p>
 
-            <!-- ============================================================ -->
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Énergie potentielle de pesanteur</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Relation $\Delta E_{pp}$ et travail du poids</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Conservation de l'énergie mécanique</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Non conservation - Frottements</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Attraction - Boucle circulaire</a></li>
+                    <li><a href="#sec6"><span class="num">6.</span> Énergie thermique Q</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
             <!-- EXERCICE 1 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec1">
                 <h2><span class="num">1</span> Énergie potentielle de pesanteur</h2>
 
                 <div class="exemple-box">
@@ -483,7 +503,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 2 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> Relation $\Delta E_{pp}$ et travail du poids</h2>
 
                 <div class="exemple-box">
@@ -517,7 +537,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 3 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Conservation de l'énergie mécanique</h2>
 
                 <div class="exemple-box">
@@ -557,7 +577,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 4 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec4">
                 <h2><span class="num">4</span> Non conservation - Frottements</h2>
 
                 <div class="exemple-box">
@@ -596,7 +616,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 5 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec5">
                 <h2><span class="num">5</span> Attraction - Boucle circulaire</h2>
 
                 <div class="exemple-box">
@@ -637,7 +657,7 @@
             <!-- ============================================================ -->
             <!-- EXERCICE 6 -->
             <!-- ============================================================ -->
-            <div class="section">
+            <div class="section" id="sec6">
                 <h2><span class="num">6</span> Énergie thermique Q</h2>
 
                 <div class="exemple-box">

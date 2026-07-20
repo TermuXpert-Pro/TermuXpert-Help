@@ -125,7 +125,14 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-    </style>
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: var(--gold-text); }
+        .toc ul li a .num { color: var(--gold-text); font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
@@ -359,7 +366,17 @@
                 Une solution qui contient des ions peut conduire le courant électrique : on l'appelle une <strong>solution électrolytique</strong> (ou électrolyte). Comment ce courant circule-t-il dans la solution, et comment le mesurer ?
             </p>
 
-            <div class="section">
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Nature du courant électrique dans les électrolytes</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> La loi d'Ohm dans les solutions électrolytiques</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Facteurs influençant la conductance d'une solution</a></li>
+                </ul>
+            </div>
+<div class="section" id="sec1">
                 <h2><span class="num">1</span> Nature du courant électrique dans les électrolytes</h2>
 
                 <div class="highlight-box purple">
@@ -395,7 +412,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="sec2">
                 <h2><span class="num">2</span> La loi d'Ohm dans les solutions électrolytiques</h2>
 
                 <div class="highlight-box purple">
@@ -443,7 +460,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="sec3">
                 <h2><span class="num">3</span> Facteurs influençant la conductance d'une solution</h2>
 
                 <h3>a) Facteurs liés à la cellule conductimétrique</h3>
