@@ -252,9 +252,11 @@
             margin: 12px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 8px;
+            display: block;
+            margin: 0 auto;
             background: #0D1117;
         }
         .exercice-box {
@@ -592,14 +594,14 @@
                         <h4 style="color:#4ECDC4;">Cas $a > 0$</h4>
                         <p>$f$ est <strong>strictement croissante</strong> sur $\mathbb{R}$.</p>
                         <div class="graph-container" style="margin-top:8px; padding:8px;">
-                            <canvas id="cubeUpGraph" width="400" height="180"></canvas>
+                            <svg id="cubeUpGraph" width="400" height="180"></svg>
                         </div>
                     </div>
                     <div class="function-card" style="border-color:#FF6B6B;">
                         <h4 style="color:#FF6B6B;">Cas $a < 0$</h4>
                         <p>$f$ est <strong>strictement décroissante</strong> sur $\mathbb{R}$.</p>
                         <div class="graph-container" style="margin-top:8px; padding:8px;">
-                            <canvas id="cubeDownGraph" width="400" height="180"></canvas>
+                            <svg id="cubeDownGraph" width="400" height="180"></svg>
                         </div>
                     </div>
                 </div>
@@ -641,7 +643,7 @@
 
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:8px;">📈 $f(x) = \sqrt{x} + a$</p>
-                    <canvas id="sqrtGraph" width="500" height="250"></canvas>
+                    <svg id="sqrtGraph" width="500" height="250"></svg>
                     <p style="color:#888888; font-size:13px; margin-top:8px;">$f(x) = \sqrt{x}$ (a=0)</p>
                 </div>
 
@@ -681,206 +683,9 @@
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawCubeUp() {
-            var canvas = document.getElementById('cubeUpGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            // Domaine affiché : x ∈ [-2,2], y = x³ ∈ [-8,8]
-            var scaleX = (w/2 - 20) / 2;
-            var scaleY = (h/2 - 12) / 8;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var gx = -2; gx <= 2; gx += 0.5) {
-                var sx = cx + gx * scaleX;
-                ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx, h); ctx.stroke();
-            }
-            for (var gy = -8; gy <= 8; gy += 2) {
-                var sy = cy - gy * scaleY;
-                ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
-            }
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            ctx.fillStyle = '#666666';
-            ctx.font = '9px Arial';
-            [-2,-1,1,2].forEach(function(gx){
-                var sx = cx + gx*scaleX;
-                ctx.fillText(gx, sx-3, cy+12);
-            });
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial';
-            ctx.fillText('x', w-14, cy-6);
-            ctx.fillText('y', cx+8, 12);
-
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            var first = true;
-            for (var x = -2; x <= 2.001; x += 0.02) {
-                var y = x * x * x;
-                var screenX = cx + x * scaleX;
-                var screenY = cy - y * scaleY;
-                if (first) { ctx.moveTo(screenX, screenY); first = false; }
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(cx, cy, 3, 0, 2*Math.PI); ctx.fill();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial';
-            ctx.fillText('f(x) = x³', w-70, 16);
-        }
-
-        function drawCubeDown() {
-            var canvas = document.getElementById('cubeDownGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var scaleX = (w/2 - 20) / 2;
-            var scaleY = (h/2 - 12) / 8;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var gx2 = -2; gx2 <= 2; gx2 += 0.5) {
-                var sx2 = cx + gx2 * scaleX;
-                ctx.beginPath(); ctx.moveTo(sx2, 0); ctx.lineTo(sx2, h); ctx.stroke();
-            }
-            for (var gy2 = -8; gy2 <= 8; gy2 += 2) {
-                var sy2 = cy - gy2 * scaleY;
-                ctx.beginPath(); ctx.moveTo(0, sy2); ctx.lineTo(w, sy2); ctx.stroke();
-            }
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            ctx.fillStyle = '#666666';
-            ctx.font = '9px Arial';
-            [-2,-1,1,2].forEach(function(gx){
-                var sx = cx + gx*scaleX;
-                ctx.fillText(gx, sx-3, cy+12);
-            });
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('x', w-14, cy-6);
-            ctx.fillText('y', cx+8, 12);
-
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            var first2 = true;
-            for (var x2 = -2; x2 <= 2.001; x2 += 0.02) {
-                var y2 = -x2 * x2 * x2;
-                var screenX2 = cx + x2 * scaleX;
-                var screenY2 = cy - y2 * scaleY;
-                if (first2) { ctx.moveTo(screenX2, screenY2); first2 = false; }
-                else ctx.lineTo(screenX2, screenY2);
-            }
-            ctx.stroke();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(cx, cy, 3, 0, 2*Math.PI); ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('f(x) = -x³', w-78, 16);
-        }
-
-        function drawSqrt() {
-            var canvas = document.getElementById('sqrtGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = 40, cy = h - 40;
-            var scale = 35;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = 0; i <= 10; i++) {
-                if (i === 0) continue;
-                ctx.beginPath();
-                ctx.moveTo(cx + i * scale, 0);
-                ctx.lineTo(cx + i * scale, h);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, cy - i * scale);
-                ctx.lineTo(w, cy - i * scale);
-                ctx.stroke();
-            }
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-5); ctx.lineTo(w, cy); ctx.lineTo(w-12, cy+5); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-5, 12); ctx.lineTo(cx, 0); ctx.lineTo(cx+5, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('x', w-16, cy+18);
-            ctx.fillText('y', cx+10, 16);
-
-            // Courbe f(x) = √x
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (var px = cx; px <= w; px += 0.5) {
-                var x = (px - cx) / scale;
-                if (x < 0) continue;
-                var y = Math.sqrt(x);
-                var screenX = cx + x * scale;
-                var screenY = cy - y * scale;
-                if (screenY < -50 || screenY > h + 50) { continue; }
-                if (px === cx) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('f(x) = √x', w - 100, 20);
-        }
-
-        window.onload = function() {
-            setTimeout(function() {
-                drawCubeUp();
-                drawCubeDown();
-                drawSqrt();
-            }, 500);
-        };
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <!-- ====== زر العودة للأعلى ====== --> 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

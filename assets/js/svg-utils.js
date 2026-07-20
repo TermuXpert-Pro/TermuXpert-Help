@@ -194,14 +194,19 @@ const SvgUtils = (function () {
             drawing = true;
         }
         if (!d) return;
-        s.svg.appendChild(el('path', {
+        const attrs = {
             d: d.trim(),
             fill: 'none',
             stroke: color,
             'stroke-width': lw,
             'stroke-linecap': 'round',
             'stroke-linejoin': 'round'
-        }));
+        };
+        if (opts.dashed) {
+            const [a, b] = opts.dashPattern || [6, 4];
+            attrs['stroke-dasharray'] = `${a * 0.025} ${b * 0.025}`;
+        }
+        s.svg.appendChild(el('path', attrs));
     }
 
     return {

@@ -10,13 +10,12 @@
         "description": "Cours de 1 Bac Sciences Expérimentales"
     }
     </script>
-    
+
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Partie 1 - Rotation d'un solide | Xpert</title>
-    
-    <!-- ====== Preconnect CDN ====== -->
+    <title>Partie 2 - Les réactions acido-basiques | Xpert</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -30,7 +29,7 @@
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
-    
+
     <script>
         MathJax = {
             tex: {
@@ -41,7 +40,7 @@
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
-    
+
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -58,10 +57,10 @@
         .section ul li { margin-bottom: 1px; }
         .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
         .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
-        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.ex { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
-        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
         .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
         .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
         .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
@@ -69,17 +68,17 @@
         .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
         .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 460px; margin: 0 auto; }
         .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
         .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
         .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
         .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
-        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
-        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color:var(--gold-text); font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
-        .nav-buttons { margin-top: 14px; padding-top: 10px; }
-        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; border-top: 1px solid var(--border); }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(244, 208, 63, 0.3); }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
         .bg-grid { opacity: 0.3; }
@@ -87,23 +86,12 @@
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
         .graph-container {
-            background: #0D1117;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px;
-            margin: 4px 0;
-            text-align: center;
-        }
-        .graph-container canvas {
-            max-width: 100%;
-            border-radius: 4px;
-            background: #0D1117;
-        }
-        .graph-container p {
-            color: var(--text-muted);
-            font-size: 11px;
-            margin-top: 4px;
-        }
+            background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
+        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container svg { max-width: 100%; height: auto; border-radius: 4px; background: #0D1117; }
+        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
+        .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
+        .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -136,19 +124,6 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .next-btn { font-size: 13px; padding: 3px 10px; }
         }
-        .highlight-box .label.summary { background: #F4D03F44; color:var(--gold-text); font-size: 14px; }
-        .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
-        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
-        .summary-card .s-title { color: #FF6B6B; font-weight: 700; font-size: 13px; margin-bottom: 2px; }
-        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
-        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
-        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-        .toc ul { list-style: none; padding: 0; }
-        .toc ul li { margin-bottom: 2px; }
-        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
-        .toc ul li a:hover { color: #FF6B6B; }
-        .toc ul li a .num { color: #FF6B6B; font-weight: 700; font-size: 11px; min-width: 20px; }
-        .formula-card { background: rgba(255, 107, 107, 0.05); border: 1px solid #FF6B6B22; border-radius: 6px; padding: 6px 10px; margin: 3px 0; }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
@@ -168,19 +143,19 @@
         <defs>
             <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <rect width="200" height="200" fill="none"/>
-                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
-                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
                 <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
                 <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
-                <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
-                <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
-                <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
             </pattern>
         </defs>
         <rect width="800" height="800" fill="url(#zellij)"/>
@@ -229,7 +204,7 @@
 
 <!-- ====== القائمة الجانبية (Sidebar) ====== -->
 <div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
-    
+
     <!-- ====== خلفية زليج مبسطة ====== -->
     <div class="sidebar-bg-pattern" aria-hidden="true">
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
@@ -342,7 +317,7 @@
                 </div>
                 <div class="subject-card-info">
                     <span class="subject-card-name">Chimie</span>
-                    <span class="subject-card-count">12 cours</span>
+                    <span class="subject-card-count">13 cours</span>
                 </div>
             </a>
         </div>
@@ -377,188 +352,107 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-book-open" style="color:var(--gold-text);"></i> Résumé complet : Comportement global d'un circuit électrique</h1>
+            <h1 class="lesson-title"><i class="fas fa-droplet" style="color:var(--gold-text);"></i> Partie 2 : Les couples de l'eau, l'ampholyte et les indicateurs colorés</h1>
 
-            <!-- ====== Table des matières ====== -->
-            <div class="toc">
-                <h3><i class="fas fa-list"></i> Table des matières</h3>
-                <ul>
-                    <li><a href="#sec1"><span class="num">1.</span> Récepteur électrique</a></li>
-                    <li><a href="#sec2"><span class="num">2.</span> Générateur électrique</a></li>
-                    <li><a href="#sec3"><span class="num">3.</span> Circuit simple - Loi de Pouillet</a></li>
-                    <li><a href="#sec4"><span class="num">4.</span> Facteurs influençant l'énergie - Limites</a></li>
-                    <li><a href="#sec5"><span class="num">5.</span> Tableau récapitulatif</a></li>
-                </ul>
-            </div>
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                Nous avons vu dans la partie 1 que $H_2O$ peut se comporter tantôt comme un acide, tantôt comme une base. Comment expliquer ce double comportement, et comment repérer visuellement qu'une réaction acido-basique a lieu ?
+            </p>
 
-            <!-- ============================================================ -->
-            <!-- SECTION 1: RECEPTEUR -->
-            <!-- ============================================================ -->
-            <div class="section" id="sec1">
-                <h2><span class="num">1</span> Récepteur électrique</h2>
+            <div class="section">
+                <h2><span class="num">1</span> Le double comportement acido-basique de l'eau</h2>
 
-                <div class="summary-card">
-                    <div class="s-title">📌 Loi d'Ohm</div>
-                    <div class="s-content">
-                        <p>Courant entrant par la borne + : $U_{AB} = E' + r'.I$</p>
-                        <p><strong>E'</strong> : f.c.é.m (V) ; <strong>r'</strong> : résistance interne (Ω)</p>
-                    </div>
+                <h3>a) L'eau se comporte comme une base</h3>
+                <p>L'eau peut <strong>capter un proton $H^+$</strong> pour donner l'ion oxonium :</p>
+                <div class="formula-block" style="font-size:16px;">
+                    $$H_3O^+ \;\rightleftharpoons\; H_2O + H^+$$
+                </div>
+                <p>Dans ce sens (de droite à gauche), $H_2O$ joue le rôle de la <strong>base</strong> du couple $H_3O^+/H_2O$.</p>
+
+                <h3>b) L'eau se comporte comme un acide</h3>
+                <p>L'eau peut aussi <strong>céder un proton $H^+$</strong> pour donner l'ion hydroxyde :</p>
+                <div class="formula-block" style="font-size:16px;">
+                    $$H_2O \;\rightleftharpoons\; HO^- + H^+$$
+                </div>
+                <p>Dans ce sens, $H_2O$ joue le rôle de l'<strong>acide</strong> du couple $H_2O/HO^-$.</p>
+
+                <div class="graph-container">
+                    <svg id="schemaAmpholyteEau" width="360" height="220"></svg>
+                    <p>La molécule d'eau appartient à deux couples acide/base différents</p>
                 </div>
 
-                <div class="summary-card">
-                    <div class="s-title">📌 Bilans énergétique et de puissance</div>
-                    <div class="s-content">
-                        <p>$W_r = W_u + W_{th}$ avec $W_u = E'.I.\Delta t$ et $W_{th} = r'.I^2.\Delta t$</p>
-                        <p>$P_r = P_u + P_{th}$</p>
-                    </div>
+                <div class="highlight-box red">
+                    <span class="label def">Définition — Ampholyte</span>
+                    <p>Une espèce chimique qui appartient à la fois à un couple où elle est l'<strong>acide</strong> et à un couple où elle est la <strong>base</strong> est appelée <strong>espèce amphotère</strong> ou <strong>ampholyte</strong>.</p>
+                    <p>L'eau est un ampholyte : elle est la base du couple $H_3O^+/H_2O$ et l'acide du couple $H_2O/HO^-$.</p>
                 </div>
 
-                <div class="summary-card">
-                    <div class="s-title">📌 Rendement</div>
-                    <div class="s-content">
-                        <p>$$\rho = \frac{W_u}{W_r} = \frac{E'}{E'+r'.I} < 1$$</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 2: GENERATEUR -->
-            <!-- ============================================================ -->
-            <div class="section" id="sec2">
-                <h2><span class="num">2</span> Générateur électrique</h2>
-
-                <div class="summary-card">
-                    <div class="s-title">📌 Loi d'Ohm</div>
-                    <div class="s-content">
-                        <p>Courant sortant par la borne + : $U_{PN} = E - r.I$</p>
-                        <p><strong>E</strong> : f.é.m ou tension à vide (V) ; <strong>r</strong> : résistance interne (Ω)</p>
-                    </div>
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Autre exemple d'ampholyte</span>
+                    <p>L'ion hydrogénocarbonate $HCO_3^-$ est également amphotère : il est la base du couple $CO_2,H_2O/HCO_3^-$, et l'acide du couple $HCO_3^-/CO_3^{2-}$.</p>
                 </div>
 
-                <div class="summary-card">
-                    <div class="s-title">📌 Bilans énergétique et de puissance</div>
-                    <div class="s-content">
-                        <p>$W_g = W_{ex} + W_{th}$ avec $W_{ex} = U_{PN}.I.\Delta t$ et $W_{th} = r.I^2.\Delta t$</p>
-                        <p>$P_g = P_{ex} + P_{th}$</p>
-                    </div>
-                </div>
-
-                <div class="summary-card">
-                    <div class="s-title">📌 Rendement</div>
-                    <div class="s-content">
-                        <p>$$\rho = \frac{W_{ex}}{W_g} = 1 - \frac{r.I}{E} < 1$$</p>
-                    </div>
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exercice 1</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">Justifier que l'ion hydrogénocarbonate $HCO_3^-$ est un ampholyte, en écrivant les deux demi-équations correspondantes.</p>
+                    <div class="step"><span class="step-num">Étape 1 :</span> En tant qu'acide : $HCO_3^- \rightleftharpoons CO_3^{2-} + H^+$</div>
+                    <div class="step"><span class="step-num">Étape 2 :</span> En tant que base : $CO_2,H_2O \rightleftharpoons HCO_3^- + H^+$ (lu dans le sens où $HCO_3^-$ capte $H^+$)</div>
+                    <div class="step"><span class="step-num">Conclusion :</span> $HCO_3^-$ appartient à deux couples différents (acide dans l'un, base dans l'autre) → c'est bien un <strong>ampholyte</strong>.</div>
                 </div>
             </div>
 
-            <!-- ============================================================ -->
-            <!-- SECTION 3: CIRCUIT SIMPLE -->
-            <!-- ============================================================ -->
-            <div class="section" id="sec3">
-                <h2><span class="num">3</span> Circuit simple - Loi de Pouillet</h2>
+            <div class="section">
+                <h2><span class="num">2</span> Les indicateurs colorés acido-basiques</h2>
 
-                <div class="summary-card">
-                    <div class="s-title">📌 Loi de Pouillet</div>
-                    <div class="s-content">
-                        <p>$$I = \frac{E - E'}{R + r + r'} \quad \text{(généralisation : } I = \frac{\sum E - \sum E'}{\sum R}\text{)}$$</p>
-                    </div>
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Un <strong>indicateur coloré acido-basique</strong> est un couple acide/base noté $HIn/In^-$ dont la forme acide $HIn$ et la forme basique $In^-$ n'ont pas la même couleur.</p>
+                </div>
+
+                <p>La demi-équation de ce couple s'écrit :</p>
+                <div class="formula-block" style="font-size:16px;">
+                    $$HIn \;\rightleftharpoons\; In^- + H^+$$
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rappel">Règle de couleur</span>
+                    <ul>
+                        <li>Si $HIn$ est majoritaire dans la solution → celle-ci prend la <strong>teinte de la forme acide</strong>.</li>
+                        <li>Si $In^-$ est majoritaire dans la solution → celle-ci prend la <strong>teinte de la forme basique</strong>.</li>
+                        <li>Entre les deux, il existe une <strong>zone de virage</strong> (intervalle de pH) où la teinte change progressivement.</li>
+                    </ul>
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphResume" width="380" height="200"></canvas>
-                    <p>Circuit série : générateur - moteur - conducteur ohmique</p>
+                    <svg id="schemaIndicateurs" width="360" height="200"></svg>
+                    <p>Couleurs des formes acide et basique des trois indicateurs usuels, avec leur zone de virage</p>
                 </div>
-
-                <div class="summary-card">
-                    <div class="s-title">📌 Bilan et rendement global</div>
-                    <div class="s-content">
-                        <p>$W_g = W_u + W_{th}$ (Énergie totale = Énergie utile + Énergie Joule)</p>
-                        <p>$$\rho = \frac{E'}{E} = \rho_{générateur} \times \rho_{récepteur}$$</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 4: FACTEURS ET LIMITES -->
-            <!-- ============================================================ -->
-            <div class="section" id="sec4">
-                <h2><span class="num">4</span> Facteurs influençant l'énergie - Limites de fonctionnement</h2>
-
-                <div class="summary-card">
-                    <div class="s-title">📌 Influence de E et R</div>
-                    <div class="s-content">
-                        <p>$W_{ex} \propto E^2$ (proportionnelle au carré de la f.é.m)</p>
-                        <p>Puissance maximale transférée : $P_{e\,max} = \dfrac{E^2}{4r}$, obtenue pour $R = r$</p>
-                    </div>
-                </div>
-
-                <div class="summary-card">
-                    <div class="s-title">📌 Mode d'association</div>
-                    <div class="s-content">
-                        <p>Association en parallèle : puissance fournie <strong>supérieure</strong> à celle en série ($P' > P$)</p>
-                    </div>
-                </div>
-
-                <div class="summary-card">
-                    <div class="s-title">📌 Limites de fonctionnement</div>
-                    <div class="s-content">
-                        <p>Générateur : $P_{max} = E.I_\ell$</p>
-                        <p>Conducteur ohmique : $I_{max} = \sqrt{\dfrac{P_{max}}{R}}$ ; $U_{max} = \sqrt{R.P_{max}}$</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- SECTION 5: TABLEAU RECAPITULATIF -->
-            <!-- ============================================================ -->
-            <div class="section" id="sec5">
-                <h2><span class="num">5</span> Tableau récapitulatif</h2>
 
                 <div class="table-wrap">
                     <table>
-                        <tr><th>Dipôle</th><th>Loi d'Ohm</th><th>Bilan énergétique</th><th>Rendement</th></tr>
-                        <tr><td>Récepteur</td><td>$U_{AB}=E'+r'.I$</td><td>$W_r=W_u+W_{th}$</td><td>$\rho=\dfrac{E'}{E'+r'.I}$</td></tr>
-                        <tr><td>Générateur</td><td>$U_{PN}=E-r.I$</td><td>$W_g=W_{ex}+W_{th}$</td><td>$\rho=1-\dfrac{r.I}{E}$</td></tr>
-                        <tr><td>Circuit simple</td><td>$I=\dfrac{E-E'}{R+r+r'}$</td><td>$W_g=W_u+W_{th}$</td><td>$\rho=\dfrac{E'}{E}$</td></tr>
+                        <tr><th>Indicateur coloré</th><th>Teinte forme acide</th><th>Zone de virage</th><th>Teinte forme basique</th></tr>
+                        <tr><td>Hélianthine</td><td>Rouge</td><td>3,1 &lt; pH &lt; 4,4</td><td>Jaune</td></tr>
+                        <tr><td>Bleu de bromothymol (BBT)</td><td>Jaune</td><td>6,0 &lt; pH &lt; 7,6</td><td>Bleu</td></tr>
+                        <tr><td>Phénolphtaléine</td><td>Incolore</td><td>8,2 &lt; pH &lt; 10</td><td>Rose-violacé</td></tr>
                     </table>
                 </div>
 
-                <div class="table-wrap" style="margin-top:8px;">
-                    <table>
-                        <tr><th>Grandeur</th><th>Formule</th><th>Unité</th></tr>
-                        <tr><td>Énergie utile récepteur</td><td>$W_u = E'.I.\Delta t$</td><td>J</td></tr>
-                        <tr><td>Énergie Joule</td><td>$W_{th} = r.I^2.\Delta t$</td><td>J</td></tr>
-                        <tr><td>Puissance max. transférée</td><td>$P_{e\,max} = E^2/4r$ (pour R = r)</td><td>W</td></tr>
-                        <tr><td>Limite générateur</td><td>$P_{max} = E.I_\ell$</td><td>W</td></tr>
-                        <tr><td>Limite conducteur ohmique</td><td>$I_{max}=\sqrt{P_{max}/R}$</td><td>A</td></tr>
-                    </table>
-                </div>
-
-                <div class="highlight-box gold" style="margin-top:8px;">
-                    <span class="label summary">À retenir</span>
-                    <ul style="font-size:12px;">
-                        <li>Le courant entre par la borne + d'un <strong>récepteur</strong>, et sort par la borne + d'un <strong>générateur</strong>.</li>
-                        <li>Dans tout circuit : <strong>Énergie totale = Énergie utile + Énergie Joule dissipée</strong>.</li>
-                        <li>Le rendement est toujours <strong>&lt; 1</strong> (sans unité, exprimé en %).</li>
-                        <li>Le rendement global d'un circuit simple est le <strong>produit</strong> des rendements de chaque dipôle.</li>
-                        <li>La puissance fournie par un générateur est maximale quand $R = r$ ; elle est <strong>plus grande en parallèle qu'en série</strong>.</li>
-                        <li>Ne jamais dépasser $I_{max}$ et $U_{max}$ d'un composant pour éviter de le détériorer.</li>
-                    </ul>
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Exercice 2</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">Une solution a un pH = 5. On y ajoute quelques gouttes de BBT, puis, dans un autre prélèvement, quelques gouttes d'hélianthine. Quelle couleur observe-t-on dans chaque cas ?</p>
+                    <div class="step"><span class="step-num">Étape 1 :</span> pH = 5 est en dessous de la zone de virage du BBT (6,0 – 7,6) → la forme acide domine → couleur <strong>jaune</strong>.</div>
+                    <div class="step"><span class="step-num">Étape 2 :</span> pH = 5 est au-dessus de la zone de virage de l'hélianthine (3,1 – 4,4) → la forme basique domine → couleur <strong>jaune</strong> également.</div>
                 </div>
             </div>
 
-            <!-- ============================================================ -->
-            <!-- Navigation -->
-            <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part4.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 4</a>
-                <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
+                <a href="index.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="part3.html" class="next-btn">Partie 3 <i class="fas fa-arrow-left"></i></a>
             </div>
-
         </div>
     </div>
 
-    <footer class="footer">
+
+<footer class="footer">
     <div class="divider"></div>
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
         <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
@@ -575,95 +469,10 @@
             var navbar = document.getElementById('navbar');
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
-
-        // ============================================================
-        // FIGURE : Schéma récapitulatif du circuit série
-        // ============================================================
-        function drawGraphResume() {
-            var canvas = document.getElementById('graphResume');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var top = 45, bottom = h - 45;
-            var left = 60, right = w - 60;
-            var midTop = (left + right) / 2;
-
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(left, top); ctx.lineTo(midTop - 20, top);
-            ctx.moveTo(midTop + 20, top); ctx.lineTo(right, top);
-            ctx.lineTo(right, bottom);
-            ctx.lineTo(left, bottom);
-            ctx.lineTo(left, top);
-            ctx.stroke();
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(midTop - 8, top - 12); ctx.lineTo(midTop - 8, top + 12);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(midTop + 8, top - 7); ctx.lineTo(midTop + 8, top + 7);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('(E, r)', midTop, top - 18);
-
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(right, (top + bottom)/2, 22, 0, 2*Math.PI);
-            ctx.stroke();
-            ctx.fillStyle = '#BB8FCE';
-            ctx.font = 'bold 14px Arial';
-            ctx.fillText('M', right, (top+bottom)/2 + 5);
-            ctx.font = '11px Arial';
-            ctx.fillText("(E', r')", right + 5, (top+bottom)/2 - 30);
-
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(midTop - 25, bottom - 10, 50, 20);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '13px Arial';
-            ctx.fillText('R', midTop, bottom + 25);
-
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(left + 15, top);
-            ctx.lineTo(left + 35, top);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(left + 35, top);
-            ctx.lineTo(left + 27, top - 5);
-            ctx.moveTo(left + 35, top);
-            ctx.lineTo(left + 27, top + 5);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.fillText('I', left + 25, top - 10);
-
-            ctx.textAlign = 'left';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.MathJax) {
-                MathJax.startup.promise.then(function() {
-                    drawGraphResume();
-                });
-            } else {
-                setTimeout(drawGraphResume, 500);
-            }
-        });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
-
 </body>
 </html>

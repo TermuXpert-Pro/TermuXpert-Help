@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <!-- ====== Même structure que les parties précédentes ====== -->
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Résumé - Les réactions d'oxydo-réduction | Xpert</title>
+
+    <!-- ====== Liens et styles (comme avant) ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+
+    <style>
+        /* ... (style identique aux parties précédentes) ... */
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.ex { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.summary { background: #F4D03F44; color:var(--gold-text); font-size: 14px; }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.gold { border-color: #F4D03F; background: rgba(244, 208, 63, 0.12); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 450px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 14px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color:var(--gold-text); font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .nav-buttons { margin-top: 14px; padding-top: 10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; border-top: 1px solid var(--border); }
+        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; }
+        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(244, 208, 63, 0.3); }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .graph-container {
+            background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
+        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
+        .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
+        .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+        .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color:var(--gold-text); }
+        .toc ul li a .num { color:var(--gold-text); font-weight: 700; font-size: 11px; min-width: 20px; }
+        .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
+        .summary-card .s-title { color:var(--gold-text); font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .next-btn { font-size: 13px; padding: 3px 10px; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+
+    <!-- ====== Protections, Zellij, Navbar, Sidebar (comme avant) ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">...</div>
+    <!-- ====== Les autres éléments décoratifs ====== -->
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">...</nav>
+    <div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">...</div>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-book-open" style="color:#FF6B6B;"></i> Résumé complet : Les réactions d'oxydo-réduction</h1>
+
+            <p style="text-align:center; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                Fiche de révision : toutes les notions essentielles en un coup d'œil.
+            </p>
+
+            <!-- ====== TABLE DES MATIÈRES ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Définitions : oxydation, réduction, oxydant, réducteur</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Couple oxydant/réducteur et demi-équation</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Équation d'une réaction d'oxydoréduction</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Tableau récapitulatif des couples usuels</a></li>
+                    <li><a href="#sec5"><span class="num">5.</span> Méthodologie de résolution</a></li>
+                    <li><a href="#sec6"><span class="num">6.</span> À retenir</a></li>
+                </ul>
+            </div>
+
+            <!-- SECTION 1: DEFINITIONS -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Définitions : oxydation, réduction, oxydant, réducteur</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Réaction d'oxydo-réduction</div>
+                    <div class="s-content">
+                        <p>Réaction caractérisée par un <strong>transfert d'électrons</strong> entre un oxydant et un réducteur.</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Oxydation et Réduction</div>
+                    <div class="s-content">
+                        <ul>
+                            <li><strong>Oxydation</strong> : perte d'électrons.</li>
+                            <li><strong>Réduction</strong> : gain d'électrons.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Oxydant et Réducteur</div>
+                    <div class="s-content">
+                        <ul>
+                            <li><strong>Oxydant</strong> : espèce qui capte des électrons.</li>
+                            <li><strong>Réducteur</strong> : espèce qui cède des électrons.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Règle mnémotechnique</span>
+                    <p><strong>"Oxydant = capte des électrons"</strong> et <strong>"Réducteur = cède des électrons"</strong>.</p>
+                </div>
+            </div>
+
+            <!-- SECTION 2: COUPLE ET DEMI-EQUATION -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Couple oxydant/réducteur et demi-équation</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Couple oxydant/réducteur</div>
+                    <div class="s-content">
+                        <p>Noté \(Ox/Red\). L'oxydant et le réducteur sont <strong>conjugués</strong>.</p>
+                        <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                            $$\text{oxydant} + n\,e^{-} \rightleftharpoons \text{réducteur}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Méthode d'écriture d'une demi-équation</span>
+                    <ol>
+                        <li>Écrire l'oxydant et le réducteur.</li>
+                        <li>Équilibrer les atomes (autres que O et H).</li>
+                        <li>Équilibrer O avec \(H_2O\).</li>
+                        <li>Équilibrer H avec \(H^+\) (milieu acide).</li>
+                        <li>Équilibrer les charges avec des électrons \(e^{-}\).</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- SECTION 3: EQUATION REDOX -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Équation d'une réaction d'oxydoréduction</h2>
+
+                <div class="summary-card">
+                    <div class="s-title">📌 Principe</div>
+                    <div class="s-content">
+                        <p>On combine deux demi-équations pour annuler les électrons.</p>
+                        <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                            $$\text{réducteur}_1 + \text{oxydant}_2 \longrightarrow \text{oxydant}_1 + \text{réducteur}_2$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box red">
+                    <span class="label def">Méthode</span>
+                    <ol>
+                        <li>Écrire les deux demi-équations.</li>
+                        <li>Multiplier pour que le nombre d'électrons soit égal.</li>
+                        <li>Additionner et simplifier.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- SECTION 4: TABLEAU DES COUPLES -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Tableau récapitulatif des couples usuels</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr><th>Couple</th><th>Demi-équation</th></tr>
+                        <tr><td>\(H^+/H_2\)</td><td>\(2H^+ + 2e^- \rightleftharpoons H_2\)</td></tr>
+                        <tr><td>\(Cu^{2+}/Cu\)</td><td>\(Cu^{2+} + 2e^- \rightleftharpoons Cu\)</td></tr>
+                        <tr><td>\(Zn^{2+}/Zn\)</td><td>\(Zn^{2+} + 2e^- \rightleftharpoons Zn\)</td></tr>
+                        <tr><td>\(Fe^{3+}/Fe^{2+}\)</td><td>\(Fe^{3+} + e^- \rightleftharpoons Fe^{2+}\)</td></tr>
+                        <tr><td>\(I_2/I^-\)</td><td>\(I_2 + 2e^- \rightleftharpoons 2I^-\)</td></tr>
+                        <tr><td>\(MnO_4^-/Mn^{2+}\)</td><td>\(MnO_4^- + 8H^+ + 5e^- \rightleftharpoons Mn^{2+} + 4H_2O\)</td></tr>
+                        <tr><td>\(Cr_2O_7^{2-}/Cr^{3+}\)</td><td>\(Cr_2O_7^{2-} + 14H^+ + 6e^- \rightleftharpoons 2Cr^{3+} + 7H_2O\)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECTION 5: METHODOLOGIE -->
+            <div class="section" id="sec5">
+                <h2><span class="num">5</span> Méthodologie de résolution</h2>
+
+                <div class="step"><span class="step-num">1.</span> Identifier les <strong>couples</strong> mis en jeu.</div>
+                <div class="step"><span class="step-num">2.</span> Écrire les <strong>demi-équations</strong> correspondantes.</div>
+                <div class="step"><span class="step-num">3.</span> Équilibrer le <strong>nombre d'électrons</strong> échangés.</div>
+                <div class="step"><span class="step-num">4.</span> Additionner les demi-équations pour obtenir l'<strong>équation bilan</strong>.</div>
+                <div class="step"><span class="step-num">5.</span> <strong>Vérifier</strong> l'équilibre des atomes et des charges.</div>
+            </div>
+
+            <!-- SECTION 6: A RETENIR -->
+            <div class="section" id="sec6">
+                <h2><span class="num">6</span> À retenir</h2>
+
+                <div class="highlight-box gold">
+                    <span class="label summary">Points clés</span>
+                    <ul>
+                        <li>Une réaction redox est un <strong>transfert d'électrons</strong>.</li>
+                        <li><strong>Oxydation</strong> = perte d'électrons ; <strong>Réduction</strong> = gain d'électrons.</li>
+                        <li>Un <strong>couple</strong> est noté \(Ox/Red\).</li>
+                        <li>Les demi-équations s'écrivent \(Ox + n e^- \rightleftharpoons Red\).</li>
+                        <li>Les électrons sont échangés entre les couples, ils <strong>disparaissent</strong> de l'équation bilan.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <a href="part4.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 4</a>
+                <a href="index.html" class="next-btn">Retour au sommaire <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">...</footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
+        });
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+</body>
+</html>

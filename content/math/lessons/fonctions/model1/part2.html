@@ -316,7 +316,7 @@
         }
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin: 10px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 6px; background: #0D1117; }
+        .graph-container canvas, .graph-container svg { max-width: 100%; border-radius: 6px; background: #0D1117; display: block; margin: 0 auto; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 6px; }
         .graph-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
     </style>
@@ -589,7 +589,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="borneeGraph" width="300" height="180"></canvas>
+                    <svg id="borneeGraph" width="300" height="180"></svg>
                     <p>$f(x) = 2 + \sin x$ : majorée par $M=3$, minorée par $m=1$, donc bornée</p>
                 </div>
 
@@ -641,11 +641,11 @@
                 <div class="graph-container">
                     <div class="graph-row">
                         <div>
-                            <canvas id="maxGraph" width="150" height="150"></canvas>
+                            <svg id="maxGraph" width="150" height="150"></svg>
                             <p>Maximum absolu en $x_0=2$</p>
                         </div>
                         <div>
-                            <canvas id="minGraph" width="150" height="150"></canvas>
+                            <svg id="minGraph" width="150" height="150"></svg>
                             <p>Minimum absolu en $x_0=2$</p>
                         </div>
                     </div>
@@ -693,7 +693,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="periodiqueGraph" width="300" height="170"></canvas>
+                    <svg id="periodiqueGraph" width="300" height="170"></svg>
                     <p>Courbe périodique de période $T$ : translation de vecteur $T\vec{i}$</p>
                 </div>
 
@@ -736,165 +736,8 @@
         });
     </script>
     <!-- ====== زر العودة للأعلى ====== --> 
-    <script>
-        function drawBornee() {
-            var canvas = document.getElementById('borneeGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            // f(x) = 2 + sin(x), domaine x ∈ [0, 4π], y ∈ [0,4]
-            var xMax = 4*Math.PI;
-            var scaleX = (w-30) / xMax;
-            var scaleY = (h-40) / 4;
-            var ox = 15, oy = h - 25;
-
-            ctx.clearRect(0,0,w,h);
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
-
-            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(ox,10); ctx.lineTo(ox,h-10); ctx.stroke();
-
-            // Lignes M=3 et m=1
-            ctx.strokeStyle = '#4ECDC4'; ctx.setLineDash([4,4]); ctx.lineWidth = 1.2;
-            ctx.beginPath(); ctx.moveTo(0, oy-3*scaleY); ctx.lineTo(w, oy-3*scaleY); ctx.stroke();
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.beginPath(); ctx.moveTo(0, oy-1*scaleY); ctx.lineTo(w, oy-1*scaleY); ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#4ECDC4'; ctx.font='10px Arial'; ctx.fillText('M = 3', w-40, oy-3*scaleY-4);
-            ctx.fillStyle = '#FF6B6B'; ctx.fillText('m = 1', w-40, oy-1*scaleY+12);
-
-            // Courbe
-            ctx.strokeStyle = '#F4D03F'; ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            var first = true;
-            for (var x=0; x<=xMax; x+=0.05) {
-                var y = 2+Math.sin(x);
-                var sx = ox+x*scaleX, sy = oy-y*scaleY;
-                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
-            }
-            ctx.stroke();
-        }
-
-        function drawMax() {
-            var canvas = document.getElementById('maxGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            // f(x) = -(x-2)² + 4, domaine x ∈ [-1,5], y ∈ [-5,4]
-            var scaleX = (w-20)/6, scaleY = (h-25)/9;
-            var ox = 10 + 1*scaleX, oy = 10 + 4*scaleY;
-
-            ctx.clearRect(0,0,w,h);
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
-            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.2;
-            ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,h); ctx.stroke();
-
-            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2.2;
-            ctx.beginPath();
-            var first = true;
-            for (var x=-1; x<=5.001; x+=0.05) {
-                var y = -(x-2)*(x-2)+4;
-                var sx = ox+x*scaleX, sy = oy-y*scaleY;
-                if (sy < -10 || sy > h+10) continue;
-                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
-            }
-            ctx.stroke();
-
-            ctx.strokeStyle = '#F4D03F'; ctx.setLineDash([3,3]); ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(ox+2*scaleX, oy-4*scaleY); ctx.lineTo(ox+2*scaleX, oy); ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(ox+2*scaleX, oy-4*scaleY, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.fillStyle = '#CCCCCC'; ctx.font='9px Arial';
-            ctx.fillText('f(x₀)', ox+2*scaleX+6, oy-4*scaleY);
-        }
-
-        function drawMin() {
-            var canvas = document.getElementById('minGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            // f(x) = (x-2)², domaine x ∈ [-1,5], y ∈ [0,9]
-            var scaleX = (w-20)/6, scaleY = (h-25)/9;
-            var ox = 10 + 1*scaleX, oy = h - 15;
-
-            ctx.clearRect(0,0,w,h);
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
-            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.2;
-            ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,h); ctx.stroke();
-
-            ctx.strokeStyle = '#FF6B6B'; ctx.lineWidth = 2.2;
-            ctx.beginPath();
-            var first = true;
-            for (var x=-1; x<=5.001; x+=0.05) {
-                var y = (x-2)*(x-2);
-                var sx = ox+x*scaleX, sy = oy-y*scaleY;
-                if (sy < -10 || sy > h+10) continue;
-                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
-            }
-            ctx.stroke();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(ox+2*scaleX, oy, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.fillStyle = '#CCCCCC'; ctx.font='9px Arial';
-            ctx.fillText('f(x₀)', ox+2*scaleX+6, oy+12);
-        }
-
-        function drawPeriodique() {
-            var canvas = document.getElementById('periodiqueGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            // Onde triangulaire de période T=2, domaine x ∈ [-1,7]
-            var T = 2;
-            var scaleX = (w-30)/8, scaleY = (h-50)/2;
-            var ox = 15 + 1*scaleX, oy = h - 25;
-
-            function f(x) {
-                var xm = ((x % T) + T) % T;
-                return xm <= T/2 ? xm : T - xm;
-            }
-
-            ctx.clearRect(0,0,w,h);
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0,0,w,h);
-            ctx.strokeStyle = '#2A2A3E'; ctx.lineWidth = 1.2;
-            ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(ox,10); ctx.lineTo(ox,h-10); ctx.stroke();
-
-            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2.2;
-            ctx.beginPath();
-            var first = true;
-            for (var x=-1; x<=7.001; x+=0.02) {
-                var y = f(x);
-                var sx = ox+x*scaleX, sy = oy-y*scaleY;
-                if (first){ctx.moveTo(sx,sy); first=false;} else ctx.lineTo(sx,sy);
-            }
-            ctx.stroke();
-
-            // Flèche de translation T·i entre deux points homologues (x=0 et x=T)
-            var y0 = oy - f(0)*scaleY - 14;
-            ctx.strokeStyle = '#F4D03F'; ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.moveTo(ox, y0); ctx.lineTo(ox+T*scaleX, y0); ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox+T*scaleX, y0); ctx.lineTo(ox+T*scaleX-6, y0-4);
-            ctx.moveTo(ox+T*scaleX, y0); ctx.lineTo(ox+T*scaleX-6, y0+4);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F'; ctx.font='10px Arial';
-            ctx.fillText('T', ox+(T*scaleX)/2-3, y0-6);
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                drawBornee();
-                drawMax();
-                drawMin();
-                drawPeriodique();
-            }, 300);
-        });
-    </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     <!-- ====== Service Worker (PWA) ====== -->

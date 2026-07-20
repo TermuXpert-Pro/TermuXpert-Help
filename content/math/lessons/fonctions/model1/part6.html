@@ -104,7 +104,7 @@
         .formula-card { background: rgba(78, 205, 196, 0.05); border: 1px solid #4ECDC422; border-radius: 6px; padding: 6px 10px; margin: 3px 0; }
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container canvas, .graph-container svg { max-width: 100%; border-radius: 4px; background: #0D1117; display: block; margin: 0 auto; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
@@ -573,7 +573,7 @@
                             <li>$x < x' \Rightarrow \sqrt{x} < \sqrt{x'} \Rightarrow f(x) < f(x')$</li>
                         </ul>
                         <div class="graph-container">
-                            <canvas id="graphSqrt" width="300" height="150"></canvas>
+                            <svg id="graphSqrt" width="300" height="150"></svg>
                             <p>$f(x) = \sqrt{x}$</p>
                         </div>
                     </div>
@@ -654,61 +654,8 @@
                 navbar.classList.toggle('scrolled', window.scrollY > 30);
             }
         });
-
-        // ============================================================
-        // GRAPHIQUE
-        // ============================================================
-
-        function drawSqrt() {
-            var canvas = document.getElementById('graphSqrt');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-            
-            var ox = 40, oy = h - 20;
-            var scale = 30;
-            
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 10, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 10);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-            
-            // Courbe √x
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var px = 0; px <= 250; px += 0.5) {
-                var x = px / scale;
-                var y = Math.sqrt(x);
-                var screenX = ox + px;
-                var screenY = oy - y * scale;
-                if (screenY < 0 || screenY > h) continue;
-                if (px === 0) ctx.moveTo(screenX, screenY);
-                else ctx.lineTo(screenX, screenY);
-            }
-            ctx.stroke();
-            
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('f(x) = √x', w - 100, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawSqrt();
-            }, 300);
-        });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

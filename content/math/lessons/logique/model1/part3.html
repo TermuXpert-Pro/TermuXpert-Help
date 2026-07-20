@@ -517,6 +517,11 @@
                     <p style="margin-top:4px;">Ce mode de raisonnement s'appelle <strong>raisonnement par déduction</strong>.</p>
                 </div>
 
+                <div class="graph-container">
+                    <svg id="figDeductif" style="width:100%;max-width:320px;height:auto;"></svg>
+                    <p>Modus ponens : de P et P⇒Q on déduit Q</p>
+                </div>
+
                 <div class="highlight-box yellow">
                     <span class="label ex">Exemple</span>
                     <div class="step">
@@ -554,6 +559,11 @@
                     <span class="label def">Définition</span>
                     <p>Pour démontrer l'implication <strong>$P \Rightarrow Q$</strong>, il suffit de démontrer l'implication <strong>$\overline{Q} \Rightarrow \overline{P}$</strong>.</p>
                     <p style="margin-top:4px;">Ce mode de raisonnement s'appelle <strong>raisonnement par contraposée</strong>.</p>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="figContraposee" style="width:100%;max-width:320px;height:auto;"></svg>
+                    <p>P ⇒ Q et sa contraposée ¬Q ⇒ ¬P sont équivalentes</p>
                 </div>
 
                 <div class="highlight-box yellow">
@@ -614,6 +624,8 @@
 
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     
 <script>
         window.addEventListener('scroll', function() {
