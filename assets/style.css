@@ -112,13 +112,9 @@ a:active, button:active {
  opacity: 0.7;
  transform: scale(0.95);
 }
-* {
- scrollbar-width: none;
- -ms-overflow-style: none;
-}
-*::-webkit-scrollbar {
- display: none;
-}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg-primary)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(69,162,158,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(69,162,158,0.03) 1px,transparent 1px);background-size:clamp(30px,5vw,60px) clamp(30px,5vw,60px)}
 .glow-orb{position:fixed;border-radius:50%;filter:blur(40px);z-index:0;pointer-events:none;opacity:0.08}
 .glow-orb-1{width:clamp(150px,30vw,300px);height:clamp(150px,30vw,300px);background:var(--accent);top:-10%;right:-10%;animation:orbFloat 8s ease-in-out infinite}
@@ -395,6 +391,24 @@ details div {
 @keyframes fadeSlide {
  from { opacity: 0; transform: translateY(12px); }
  to { opacity: 1; transform: translateY(0); }
+}
+* {
+ scrollbar-width: thin;
+ scrollbar-color: var(--accent) var(--bg-primary);
+}
+::-webkit-scrollbar {
+ width: 4px;
+ height: 4px;
+}
+::-webkit-scrollbar-track {
+ background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+ background: var(--accent);
+ border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+ background: var(--accent-light);
 }
 /* ============================================================
  حماية الصور فقط - النصوص والصيغ بقات قابلة للتحديد والنسخ
