@@ -214,116 +214,180 @@
 
     <div class="bg-grid"></div>
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
-        <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
-            <div class="nav-logo-icon">X</div>
-            <div class="nav-logo-text"><span>X</span>pert</div>
-        </a>
-        <div style="display:flex;align-items:center;gap:6px;">
-            <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-                <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-                <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-            </button>
-            <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-                <i class="fas fa-download" aria-hidden="true"></i>
-            </button>
-            <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-                <span class="menu-icon">
-                    <span class="menu-line"></span>
-                    <span class="menu-line"></span>
-                    <span class="menu-line"></span>
-                </span>
-            </button>
-        </div>
-    </nav>
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
 
-    <div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
-        <div class="sidebar-bg-pattern" aria-hidden="true">
-            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-                        <rect width="80" height="80" fill="none"/>
-                        <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
-                        <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
-                        <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
-                        <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                        <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                        <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                        <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
-                        <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
-                        <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
-                    </pattern>
-                </defs>
-                <rect width="400" height="400" fill="url(#sidebarZellij)"/>
-            </svg>
-        </div>
-        <div class="sidebar-math-bg" aria-hidden="true">
-            <span class="math-symbol">∫</span>
-            <span class="math-symbol">π</span>
-            <span class="math-symbol">√</span>
-            <span class="math-symbol">∑</span>
-            <span class="math-symbol">Δ</span>
-            <span class="math-symbol">∞</span>
-            <span class="math-symbol">x²</span>
-            <span class="math-symbol">sinθ</span>
-        </div>
-        <div class="sidebar-glow sidebar-glow-1"></div>
-        <div class="sidebar-glow sidebar-glow-2"></div>
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
 
-        <div class="sidebar-scroll">
-            <div class="sidebar-section sidebar-section-profile">
-                <div class="profile-simple">
-                    <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
-                </div>
-            </div>
-            <div class="sidebar-section sidebar-section-nav">
-                <nav class="sidebar-nav">
-                    <ul class="sidebar-menu">
-                        <li><a href="../../../../../index.html" class="sidebar-link" data-page="home"><span class="sidebar-link-icon"><i class="fas fa-house"></i></span><span class="sidebar-link-text">Accueil</span><span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span></a></li>
-                        <li><a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects"><span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span><span class="sidebar-link-text">Matières</span><span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span></a></li>
-                        <li><a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier"><span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span><span class="sidebar-link-text">Calendrier</span><span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span></a></li>
-                        <li><a href="../../../../../about.html" class="sidebar-link" data-page="about"><span class="sidebar-link-icon"><i class="fas fa-user"></i></span><span class="sidebar-link-text">À propos</span><span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="sidebar-section sidebar-section-subjects">
-                <div class="sidebar-subjects-header">
-                    <span class="sidebar-subjects-label">📚 Mes matières</span>
-                    <span class="sidebar-subjects-count">3</span>
-                </div>
-                <div class="sidebar-subjects-grid">
-                    <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
-                        <div class="subject-card-icon"><i class="fas fa-calculator"></i></div>
-                        <div class="subject-card-info"><span class="subject-card-name">Mathématiques</span><span class="subject-card-count">11 cours</span></div>
-                    </a>
-                    <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
-                        <div class="subject-card-icon"><i class="fas fa-atom"></i></div>
-                        <div class="subject-card-info"><span class="subject-card-name">Physique</span><span class="subject-card-count">13 cours</span></div>
-                    </a>
-                    <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
-                        <div class="subject-card-icon"><i class="fas fa-flask"></i></div>
-                        <div class="subject-card-info"><span class="subject-card-name">Chimie</span><span class="subject-card-count">12 cours</span></div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
 
-        <div class="sidebar-section sidebar-section-legal">
-            <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-                <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-                <span style="color:var(--text-muted);opacity:0.4;">•</span>
-                <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-                <span style="color:var(--text-muted);opacity:0.4;">•</span>
-                <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-            </div>
-        </div>
-        <div class="sidebar-footer">
-            <div class="sidebar-footer-content">
-                <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
-            </div>
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
     </div>
 
-    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
@@ -474,16 +538,16 @@
     </div>
 
     <footer class="footer">
-        <div class="divider"></div>
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-        </div>
-        <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-    </footer>
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
 
     <script>
         window.addEventListener('scroll', function() {
