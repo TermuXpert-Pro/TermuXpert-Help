@@ -58,7 +58,14 @@ window.subjectsData.physique = {
             title: "Travail et énergie cinétique",
             file: "content/physique/exercises/travail-energie-cinetique/index.html",
             desc: "9 exercices avec solutions détaillées"
-        }
+        },
+        {
+            title: "Travail et énergie potentielle de pesanteur - Énergie mécanique",
+            file: "content/physique/exercises/energie-potentielle-mecanique/index.html",
+            desc: "Énergie potentielle de pesanteur, énergie mécanique, conservation et non-conservation, travail du poids"
+        },
+        { semester: 1, title: "Transfert d'énergie dans un circuit électrique", file: "content/physique/exercises/circuit-electrique/index.html", desc: "Effet Joule, énergie et puissance électriques, générateur et récepteur, bilan énergétique" }
+        
     ],
     series: [
         {

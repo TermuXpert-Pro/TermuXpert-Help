@@ -18,16 +18,8 @@
     <title>Partie 5 - Rotation d'un solide | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -41,7 +33,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -95,7 +87,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -454,7 +446,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphHoraire" width="400" height="200"></canvas>
+                    <svg id="graphHoraire" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>θ = f(t) : droite affine</p>
                 </div>
 
@@ -496,7 +488,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphActivite" width="400" height="200"></canvas>
+                    <svg id="graphActivite" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>Enregistrement du mouvement de rotation</p>
                 </div>
 
@@ -590,7 +582,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphEquations" width="400" height="200"></canvas>
+                    <svg id="graphEquations" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>θ = 13.09·t + π/3</p>
                 </div>
             </div>
@@ -653,225 +645,9 @@
                 navbar.classList.toggle('scrolled', window.scrollY > 30);
             }
         });
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphHoraire() {
-            var canvas = document.getElementById('graphHoraire');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scaleX = 50, scaleY = 15;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('t (s)', w - 30, oy + 18);
-            ctx.fillText('θ (rad)', ox + 8, 18);
-
-            // Droite θ = 1.5·t + 0.5
-            var omega = 1.5;
-            var theta0 = 0.5;
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var t = 0; t <= 6; t += 0.05) {
-                var x = ox + t * scaleX;
-                var y = oy - (omega * t + theta0) * scaleY;
-                if (t === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var t = 0; t <= 6; t += 1) {
-                var x = ox + t * scaleX;
-                var y = oy - (omega * t + theta0) * scaleY;
-                ctx.fillStyle = '#4ECDC4';
-                ctx.beginPath();
-                ctx.arc(x, y, 4, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText(t + 's', x - 8, y + 16);
-            }
-
-            // θ₀
-            var y0 = oy - theta0 * scaleY;
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox, y0);
-            ctx.lineTo(ox + 30, y0);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('θ₀', ox + 32, y0 + 4);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '11px Arial';
-            ctx.fillText('θ = ω·t + θ₀', 200, 20);
-        }
-
-        function drawGraphActivite() {
-            var canvas = document.getElementById('graphActivite');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 10;
-            var rayon = 90;
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('(Δ)', cx + 10, 22);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Points
-            var n = 7;
-            var angles = [];
-            for (var i = 0; i < n; i++) {
-                angles.push(i * Math.PI/6);
-            }
-
-            for (var i = 0; i < n; i++) {
-                var x = cx + rayon * Math.cos(angles[i] - Math.PI/3);
-                var y = cy + rayon * Math.sin(angles[i] - Math.PI/3);
-                var color = (i === 0) ? '#F4D03F' : (i === 2) ? '#FF6B6B' : '#A8FF78';
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                ctx.arc(x, y, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText('M' + i, x - 10, y + 16);
-            }
-
-            // Flèche
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon * 0.7, -Math.PI/3, 0);
-            ctx.stroke();
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Enregistrement du mouvement de rotation', 130, 20);
-        }
-
-        function drawGraphEquations() {
-            var canvas = document.getElementById('graphEquations');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scaleX = 800, scaleY = 18;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('t (s)', w - 30, oy + 18);
-            ctx.fillText('θ (rad)', ox + 8, 18);
-
-            // Droite θ = 13.09·t + π/3
-            var omega = 13.09;
-            var theta0 = Math.PI/3;
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            for (var t = 0; t <= 0.4; t += 0.005) {
-                var x = ox + t * scaleX;
-                var y = oy - (omega * t + theta0) * scaleY;
-                if (t === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // θ₀
-            var y0 = oy - theta0 * scaleY;
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox, y0);
-            ctx.lineTo(ox + 30, y0);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('θ₀ = π/3', ox + 32, y0 + 4);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '11px Arial';
-            ctx.fillText('θ = 13.09·t + π/3', 180, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphHoraire();
-                drawGraphActivite();
-                drawGraphEquations();
-            }, 500);
-        });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

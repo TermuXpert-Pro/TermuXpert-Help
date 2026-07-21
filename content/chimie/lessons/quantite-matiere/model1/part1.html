@@ -15,17 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Partie 1 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -39,7 +30,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
 
     <style>
         body { font-size: 14px; }
@@ -89,7 +80,7 @@
         .scroll-top-btn { display: none; }
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container canvas, .graph-container svg { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
@@ -411,7 +402,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphMole" width="420" height="160"></canvas>
+                    <svg id="graphMole" width="700" height="300" viewBox="0 0 28 12" style="width:100%; max-width:640px; height:auto; display:block; margin:0 auto;"></svg>
                     <p>Une mole contient \(6,02 \times 10^{23}\) entités (nombre d'Avogadro)</p>
                 </div>
 
@@ -528,7 +519,7 @@
 
                 <!-- ====== GRAPHIQUE ====== -->
                 <div class="graph-container">
-                    <canvas id="graphRelation" width="400" height="150"></canvas>
+                    <svg id="graphRelation" width="792" height="260" viewBox="0 0 25.2 8.4" style="width:100%; max-width:720px; height:auto; display:block; margin:0 auto;"></svg>
                     <p>Relation entre la masse et la quantité de matière (exemple : l'eau)</p>
                 </div>
 
@@ -563,6 +554,11 @@
                             <span class="label resume">Réponse</span>
                             <p>L'échantillon d'eau contient <strong>5,56 mol</strong> et l'échantillon de fer contient <strong>1,78 mol</strong>.</p>
                             <p style="font-size:11px; color:var(--text-muted);">Deux échantillons de même masse ne contiennent pas la même quantité de matière.</p>
+                        </div>
+
+                        <div class="graph-container">
+                            <svg id="graphCompareMoles" width="427" height="320" viewBox="0 0 12 9" style="width:100%; max-width:340px; height:auto; display:block; margin:0 auto;"></svg>
+                            <p>Comparaison visuelle : même masse, quantités de matière différentes</p>
                         </div>
                     </div>
                 </div>
@@ -614,97 +610,9 @@
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
 
-        function drawGraphMole() {
-            var c = document.getElementById('graphMole'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            ctx.fillStyle = '#ccc'; ctx.font = '12px Arial'; ctx.textAlign = 'center';
-            ctx.fillText('1 mole = 6,02 × 10²³ entités', w/2, 22);
-
-            var colors = ['#F4D03F', '#4ECDC4', '#FF6B6B', '#BB8FCE', '#FFA500'];
-            var positions = [];
-            var nSpheres = 60;
-            for (var i = 0; i < nSpheres; i++) {
-                var x = 20 + Math.random() * (w - 40);
-                var y = 40 + Math.random() * (h - 65);
-                var overlap = false;
-                for (var j = 0; j < positions.length; j++) {
-                    var dx = x - positions[j].x;
-                    var dy = y - positions[j].y;
-                    if (dx*dx + dy*dy < 100) { overlap = true; break; }
-                }
-                if (!overlap) {
-                    positions.push({x: x, y: y, color: colors[Math.floor(Math.random() * colors.length)]});
-                }
-            }
-
-            for (var i = 0; i < positions.length; i++) {
-                ctx.fillStyle = positions[i].color;
-                ctx.beginPath();
-                ctx.arc(positions[i].x, positions[i].y, 4, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.strokeStyle = '#1A1A2E';
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
-            }
-
-            ctx.fillStyle = '#888'; ctx.font = '10px Arial'; ctx.textAlign = 'center';
-            ctx.fillText('... et beaucoup d\'autres !', w/2, h - 8);
-            ctx.fillStyle = '#F4D03F'; ctx.font = '9px Arial';
-            ctx.fillText('N_A = 6,02 × 10²³ mol⁻¹', w/2, 34);
-        }
-
-        function drawGraphRelation() {
-            var c = document.getElementById('graphRelation'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            var ox = 50, oy = h - 30, graphW = w - 80, graphH = h - 50;
-            ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(ox, 10); ctx.lineTo(ox, oy); ctx.lineTo(ox + graphW, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#888'; ctx.font = '10px Arial'; ctx.textAlign = 'center';
-            ctx.fillText('m (g) →', ox + graphW/2, h - 4);
-            ctx.save(); ctx.translate(16, h/2); ctx.rotate(-Math.PI/2);
-            ctx.fillText('n (mol) ↑', 0, 0); ctx.restore();
-
-            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var m = 0; m <= 100; m += 0.5) {
-                var n = m / 18;
-                var x = ox + (m / 100) * graphW;
-                var y = oy - (n / 6) * graphH;
-                if (m === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            var m0 = 100, n0 = m0 / 18;
-            var x0 = ox + (m0 / 100) * graphW;
-            var y0 = oy - (n0 / 6) * graphH;
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(x0, y0, 5, 0, 2 * Math.PI); ctx.fill();
-            ctx.fillStyle = '#ccc'; ctx.font = '10px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('m = 100g', x0, y0 - 12);
-            ctx.fillText('n = 5,56 mol', x0, y0 + 20);
-
-            ctx.fillStyle = '#4ECDC4'; ctx.textAlign = 'left';
-            ctx.fillText('n = m / M(H₂O)', ox + 10, 22);
-            ctx.fillStyle = '#888';
-            ctx.fillText('M(H₂O) = 18 g/mol', ox + 10, 38);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphMole();
-                drawGraphRelation();
-            }, 400);
-        });
-
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

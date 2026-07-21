@@ -185,8 +185,11 @@
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
-    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
-    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
@@ -413,22 +416,10 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-plus-circle" style="color:#4ECDC4;"></i> Partie 2 : Formules d'addition - Angle double - Demi-angle</h1>
 
-            
-            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
-            <div class="toc red">
-                <h3><i class="fas fa-list"></i> Table des matières</h3>
-                <ul>
-                    <li><a href="#sec1"><span class="num">1.</span> Formules d'addition</a></li>
-                    <li><a href="#sec2"><span class="num">2.</span> Formules d'angle double</a></li>
-                    <li><a href="#sec3"><span class="num">3.</span> Formules du demi-angle</a></li>
-                    <li><a href="#sec4"><span class="num">4.</span> Formules de la tangente</a></li>
-                    <li><a href="#sec5"><span class="num">5.</span> Formules avec $t = \tan\left(\dfrac{x}{2}\right)$</a></li>
-                </ul>
-            </div>
-<!-- ============================================================ -->
+            <!-- ============================================================ -->
             <!-- SECTION 1: FORMULES D'ADDITION -->
             <!-- ============================================================ -->
-            <div class="section" id="sec1">
+            <div class="section">
                 <h2><span class="num">1</span> Formules d'addition</h2>
 
                 <div class="highlight-box green">
@@ -445,7 +436,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="additionGraph" width="300" height="200"></canvas>
+                    <svg id="additionGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Illustration des formules d'addition sur le cercle trigonométrique</p>
                 </div>
 
@@ -483,7 +474,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: FORMULES D'ANGLE DOUBLE -->
             <!-- ============================================================ -->
-            <div class="section" id="sec2">
+            <div class="section">
                 <h2><span class="num">2</span> Formules d'angle double</h2>
 
                 <div class="highlight-box green">
@@ -523,7 +514,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: FORMULES DU DEMI-ANGLE -->
             <!-- ============================================================ -->
-            <div class="section" id="sec3">
+            <div class="section">
                 <h2><span class="num">3</span> Formules du demi-angle</h2>
 
                 <div class="highlight-box green">
@@ -549,7 +540,7 @@
                     <div class="step"><span class="step-num">6 :</span> $\sin\left(\dfrac{\pi}{8}\right) = \sqrt{\dfrac{2 - \sqrt{2}}{4}} = \dfrac{\sqrt{2 - \sqrt{2}}}{2}$</div>
                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Résultat :</strong> $\cos\left(\dfrac{\pi}{8}\right) = \dfrac{\sqrt{2+\sqrt{2}}}{2}$, $\sin\left(\dfrac{\pi}{8}\right) = \dfrac{\sqrt{2-\sqrt{2}}}{2}$</p>
                     <div class="graph-container">
-                        <canvas id="demiAngleGraph" width="300" height="150"></canvas>
+                        <svg id="demiAngleGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                         <p>$\cos\left(\dfrac{\pi}{8}\right) \approx 0.924$ ; $\sin\left(\dfrac{\pi}{8}\right) \approx 0.383$</p>
                     </div>
                 </div>
@@ -567,7 +558,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 4: FORMULES DE LA TANGENTE -->
             <!-- ============================================================ -->
-            <div class="section" id="sec4">
+            <div class="section">
                 <h2><span class="num">4</span> Formules de la tangente</h2>
 
                 <div class="highlight-box green">
@@ -621,7 +612,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 5: FORMULES AVEC t = tan(x/2) -->
             <!-- ============================================================ -->
-            <div class="section" id="sec5">
+            <div class="section">
                 <h2><span class="num">5</span> Formules avec $t = \tan\left(\dfrac{x}{2}\right)$</h2>
 
                 <div class="highlight-box green">
@@ -705,155 +696,9 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawAdditionGraph() {
-            var canvas = document.getElementById('additionGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 70;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            var angles = [
-                {label: 'a', val: Math.PI/6, color: '#F4D03F'},
-                {label: 'b', val: Math.PI/4, color: '#FF6B6B'},
-                {label: 'a+b', val: Math.PI/6 + Math.PI/4, color: '#A8FF78'}
-            ];
-
-            for (var i = 0; i < angles.length; i++) {
-                var a = angles[i];
-                var px = cx + R*Math.cos(a.val);
-                var py = cy - R*Math.sin(a.val);
-                ctx.fillStyle = a.color;
-                ctx.beginPath();
-                ctx.arc(px, py, 4, 0, 2*Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '9px Arial';
-                ctx.fillText(a.label, px+4, py-4);
-                // Ligne OM
-                ctx.strokeStyle = a.color;
-                ctx.lineWidth = 1;
-                ctx.setLineDash([2,2]);
-                ctx.beginPath();
-                ctx.moveTo(cx, cy);
-                ctx.lineTo(px, py);
-                ctx.stroke();
-                ctx.setLineDash([]);
-            }
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('Illustration des formules d\'addition', 30, 16);
-        }
-
-        function drawDemiAngleGraph() {
-            var canvas = document.getElementById('demiAngleGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 60;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // Point π/8
-            var val = Math.PI/8;
-            var px = cx + R*Math.cos(val);
-            var py = cy - R*Math.sin(val);
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(px, py, 4, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '9px Arial';
-            ctx.fillText('π/8', px+4, py-4);
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([2,2]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(px, py);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Point π/4
-            var val2 = Math.PI/4;
-            var px2 = cx + R*Math.cos(val2);
-            var py2 = cy - R*Math.sin(val2);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(px2, py2, 4, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '9px Arial';
-            ctx.fillText('π/4', px2+4, py2-4);
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([2,2]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(px2, py2);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Arc entre π/8 et π/4
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 20, -val2, -val);
-            ctx.stroke();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.font = '8px Arial';
-            ctx.fillText('π/8', cx+20, cy-20);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '8px Arial';
-            ctx.fillText('cos(π/8) ≈ 0.924', 10, 12);
-            ctx.fillText('sin(π/8) ≈ 0.383', 10, 24);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawAdditionGraph();
-                drawDemiAngleGraph();
-            }, 300);
-        });
     </script>
+
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

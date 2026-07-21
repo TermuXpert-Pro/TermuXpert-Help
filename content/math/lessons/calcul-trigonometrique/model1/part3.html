@@ -17,16 +17,8 @@
     <title>Partie 3 - Transformations | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -40,7 +32,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -483,7 +475,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="transformationGraph" width="300" height="150"></canvas>
+                    <svg id="transformationGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Graphique de $y = \cos x - \sin x$</p>
                 </div>
 
@@ -537,7 +529,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="sommeProduitGraph" width="300" height="150"></canvas>
+                    <svg id="sommeProduitGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Illustration de $\cos p + \cos q = 2\cos\left(\dfrac{p+q}{2}\right)\cos\left(\dfrac{p-q}{2}\right)$</p>
                 </div>
 
@@ -697,102 +689,9 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawTransformationGraph() {
-            var canvas = document.getElementById('transformationGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = 40, cy = h/2;
-            var scaleX = (w-60) / (2*Math.PI);
-            var scaleY = (h-30) / 2;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-
-            // Courbe cos x - sin x = √2 cos(x + π/4)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            var first = true;
-            for (var x = -Math.PI; x <= 3*Math.PI; x += 0.05) {
-                var y = Math.cos(x) - Math.sin(x);
-                var sx = cx + (x + Math.PI) * scaleX;
-                var sy = cy - y * scaleY;
-                if (first) { ctx.moveTo(sx, sy); first = false; }
-                else ctx.lineTo(sx, sy);
-            }
-            ctx.stroke();
-
-            // Ligne y = 0
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3,3]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(w-10, cy);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('y = cos x - sin x', 10, 14);
-        }
-
-        function drawSommeProduitGraph() {
-            var canvas = document.getElementById('sommeProduitGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = 40, cy = h/2;
-            var scaleX = (w-60) / (2*Math.PI);
-            var scaleY = (h-30) / 2;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-
-            // Courbe cos x + cos 3x = 2 cos(2x) cos(x)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            var first = true;
-            for (var x = -Math.PI; x <= 3*Math.PI; x += 0.05) {
-                var y = Math.cos(x) + Math.cos(3*x);
-                var sx = cx + (x + Math.PI) * scaleX;
-                var sy = cy - y * scaleY;
-                if (first) { ctx.moveTo(sx, sy); first = false; }
-                else ctx.lineTo(sx, sy);
-            }
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('cos x + cos 3x', 10, 14);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawTransformationGraph();
-                drawSommeProduitGraph();
-            }, 300);
-        });
     </script>
+
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

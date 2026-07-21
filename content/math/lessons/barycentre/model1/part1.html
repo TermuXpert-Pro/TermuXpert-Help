@@ -15,10 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Partie 1 - Barycentre dans le plan | Xpert</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -31,7 +29,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         .graph-container {
             background: #0D1117;
@@ -41,7 +39,7 @@
             margin: 12px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container svg {
             max-width: 100%;
             border-radius: 8px;
             background: #0D1117;
@@ -433,7 +431,7 @@
                 <!-- Graphique Activité -->
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Activité - Barycentre de deux points</p>
-                    <canvas id="activiteGraph" width="500" height="250"></canvas>
+                    <svg id="activiteGraph"></svg>
                     <p>Point G tel que $\overrightarrow{GA} + \overrightarrow{GB} = \overrightarrow{0}$ (milieu de [AB])</p>
                 </div>
 
@@ -595,7 +593,7 @@
                 <!-- Graphique Propriété caractéristique -->
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Propriété caractéristique</p>
-                    <canvas id="caractGraph" width="500" height="200"></canvas>
+                    <svg id="caractGraph"></svg>
                     <p>$a\overrightarrow{MA} + b\overrightarrow{MB} = (a+b)\overrightarrow{MG}$</p>
                 </div>
 
@@ -660,7 +658,7 @@
                 <!-- Graphique Cercle -->
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Ensemble des points M (cercle)</p>
-                    <canvas id="cercleGraph" width="500" height="250"></canvas>
+                    <svg id="cercleGraph"></svg>
                     <p>Cercle $\mathcal{C}(G, 2)$</p>
                 </div>
 
@@ -688,6 +686,13 @@
                         <p>L'ensemble des points $M$ est la <strong>médiatrice</strong> du segment $[GG']$.</p>
                         <p style="font-size:11px; color:var(--text-muted);">(C'est la droite perpendiculaire à $(GG')$ passant par son milieu)</p>
                     </div>
+                </div>
+
+                <!-- Graphique Médiatrice -->
+                <div class="graph-container">
+                    <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Ensemble des points M (médiatrice)</p>
+                    <svg id="mediatriceGraph"></svg>
+                    <p>Médiatrice de $[GG']$</p>
                 </div>
             </div>
 
@@ -735,203 +740,8 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawActivite() {
-            var canvas = document.getElementById('activiteGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ax = 100, ay = 125;
-            var bx = 400, by = 125;
-            var gx = (ax + bx) / 2;
-            var gy = (ay + by) / 2;
-
-            // Segment
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(bx, by);
-            ctx.stroke();
-
-            // Points
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(ax, ay, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '14px Arial';
-            ctx.fillText('A', ax - 20, ay - 14);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(bx, by, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '14px Arial';
-            ctx.fillText('B', bx + 10, by - 14);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(gx, gy, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '14px Arial';
-            ctx.fillText('G', gx + 10, gy - 14);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '12px Arial';
-            ctx.fillText('G est le milieu de [AB]', w/2 - 80, 220);
-        }
-
-        function drawCaract() {
-            var canvas = document.getElementById('caractGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ax = 80, ay = 80;
-            var bx = 420, by = 120;
-            var gx = ax + (bx - ax) * 0.6;
-            var gy = ay + (by - ay) * 0.6;
-            var mx = 250, my = 30;
-
-            // Points
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('A', ax - 16, ay - 8);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('B', bx + 8, by - 8);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(gx, gy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('G', gx + 8, gy - 8);
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(mx, my, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('M', mx + 8, my - 8);
-
-            // Vecteurs
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(mx, my);
-            ctx.lineTo(ax, ay);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('a MA', (mx+ax)/2 - 20, (my+ay)/2 - 8);
-
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(mx, my);
-            ctx.lineTo(bx, by);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('b MB', (mx+bx)/2 - 20, (my+by)/2 - 8);
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(mx, my);
-            ctx.lineTo(gx, gy);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '10px Arial';
-            ctx.fillText('(a+b) MG', (mx+gx)/2 - 20, (my+gy)/2 - 8);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('a MA + b MB = (a+b) MG', 300, 30);
-        }
-
-        function drawCercle() {
-            var canvas = document.getElementById('cercleGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = 250, cy = 125;
-            var r = 80;
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.arc(cx, cy, r, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Centre
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '14px Arial';
-            ctx.fillText('G', cx + 10, cy - 10);
-
-            // Rayon
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(cx + r, cy);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '12px Arial';
-            ctx.fillText('r = 2', cx + r/2 - 15, cy - 8);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '12px Arial';
-            ctx.fillText('Cercle C(G, 2)', 350, 30);
-        }
-
-        window.onload = function() {
-            setTimeout(function() {
-                drawActivite();
-                drawCaract();
-                drawCercle();
-            }, 500);
-        };
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

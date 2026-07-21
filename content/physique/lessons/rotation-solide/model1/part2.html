@@ -17,16 +17,8 @@
     <title>Partie 2 - Rotation d'un solide | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -40,7 +32,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -94,7 +86,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -414,7 +406,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphAngulaire" width="400" height="220"></canvas>
+                    <svg id="graphAngulaire" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>Abscisse angulaire θ = angle (OM₀, OM)</p>
                 </div>
 
@@ -455,7 +447,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphCurviligne" width="400" height="220"></canvas>
+                    <svg id="graphCurviligne" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>Abscisse curviligne s = arc M₀M</p>
                 </div>
             </div>
@@ -547,204 +539,9 @@
                 navbar.classList.toggle('scrolled', window.scrollY > 30);
             }
         });
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphAngulaire() {
-            var canvas = document.getElementById('graphAngulaire');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 5;
-            var rayon = 90;
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('(Δ)', cx + 10, 25);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Points
-            var angle0 = -Math.PI/4;
-            var angle = Math.PI/2.5;
-            var M0x = cx + rayon * Math.cos(angle0);
-            var M0y = cy + rayon * Math.sin(angle0);
-            var Mx = cx + rayon * Math.cos(angle);
-            var My = cy + rayon * Math.sin(angle);
-
-            // Rayon OM
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(Mx, My);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Rayon OM0
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(M0x, M0y);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Arc
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon * 0.65, angle0, angle);
-            ctx.stroke();
-
-            // Points
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(M0x, M0y, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M₀', M0x - 22, M0y - 10);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(Mx, My, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M', Mx + 8, My - 6);
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
-
-            ctx.fillStyle = '#FFD93D';
-            ctx.font = '12px Arial';
-            ctx.fillText('θ', cx + 25, cy - 30);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('θ = abscisse angulaire (rad)', 200, 20);
-        }
-
-        function drawGraphCurviligne() {
-            var canvas = document.getElementById('graphCurviligne');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 5;
-            var rayon = 90;
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('(Δ)', cx + 10, 25);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Points
-            var angle0 = -Math.PI/4;
-            var angle = Math.PI/2.5;
-            var M0x = cx + rayon * Math.cos(angle0);
-            var M0y = cy + rayon * Math.sin(angle0);
-            var Mx = cx + rayon * Math.cos(angle);
-            var My = cy + rayon * Math.sin(angle);
-
-            // Arc M0M (surligné)
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, angle0, angle);
-            ctx.stroke();
-
-            // Points
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(M0x, M0y, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M₀', M0x - 22, M0y - 10);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(Mx, My, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M', Mx + 8, My - 6);
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '12px Arial';
-            ctx.fillText('s = M₀M', cx + 30, cy - 35);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('s = abscisse curviligne (m)', 200, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphAngulaire();
-                drawGraphCurviligne();
-            }, 500);
-        });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

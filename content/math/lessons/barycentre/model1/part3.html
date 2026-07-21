@@ -16,19 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    
     <title>Partie 3 - Barycentre dans le plan | Xpert</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -41,8 +31,8 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/gsap.min.js"></script>
     
     <style>
         .graph-container {
@@ -53,7 +43,7 @@
             margin: 12px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container svg {
             max-width: 100%;
             border-radius: 8px;
             background: #0D1117;
@@ -472,7 +462,7 @@
                 <!-- Graphique Parallélogramme -->
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Parallélogramme ABCD</p>
-                    <canvas id="parallelogramGraph" width="500" height="250"></canvas>
+                    <svg id="parallelogramGraph"></svg>
                     <p>$O$ est le centre du parallélogramme (isobarycentre de A, B, C, D)</p>
                 </div>
 
@@ -544,7 +534,7 @@
                 <!-- Graphique Barycentre de 4 points -->
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Barycentre de quatre points</p>
-                    <canvas id="bary4Graph" width="500" height="250"></canvas>
+                    <svg id="bary4Graph"></svg>
                     <p>$G$ barycentre de $\{(A,1), (B,1), (C,1), (D,1)\}$</p>
                 </div>
 
@@ -640,7 +630,7 @@
                 <!-- Graphique Associativité -->
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Associativité du barycentre</p>
-                    <canvas id="assoc4Graph" width="500" height="220"></canvas>
+                    <svg id="assoc4Graph"></svg>
                     <p>$G$ barycentre de $\{(G_1, a+b), (G_2, c+d)\}$</p>
                 </div>
 
@@ -708,7 +698,7 @@
                 <!-- Graphique Coordonnées -->
                 <div class="graph-container">
                     <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Coordonnées du barycentre</p>
-                    <canvas id="coord4Graph" width="500" height="250"></canvas>
+                    <svg id="coord4Graph"></svg>
                     <p>$G$ barycentre de $\{(A,1), (B,2), (C,3), (D,4)\}$</p>
                 </div>
 
@@ -835,354 +825,8 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawParallelogram() {
-            var canvas = document.getElementById('parallelogramGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ax = 100, ay = 180;
-            var bx = 400, by = 180;
-            var cx = 450, cy = 60;
-            var dx = 150, dy = 60;
-            var ox = (ax + cx) / 2;
-            var oy = (ay + cy) / 2;
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(bx, by);
-            ctx.lineTo(cx, cy);
-            ctx.lineTo(dx, dy);
-            ctx.closePath();
-            ctx.stroke();
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([6, 6]);
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(cx, cy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(bx, by);
-            ctx.lineTo(dx, dy);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('A', ax - 16, ay + 20);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('B', bx + 8, ay + 20);
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('C', cx + 8, cy - 8);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.arc(dx, dy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('D', dx - 16, dy - 8);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(ox, oy, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '14px Arial';
-            ctx.fillText('O', ox + 10, oy - 10);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('O est l\'isobarycentre de A, B, C, D', 250, 30);
-        }
-
-        function drawBary4() {
-            var canvas = document.getElementById('bary4Graph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ax = 80, ay = 200;
-            var bx = 420, by = 200;
-            var cx = 420, cy = 50;
-            var dx = 80, dy = 50;
-            var gx = (ax + bx + cx + dx) / 4;
-            var gy = (ay + by + cy + dy) / 4;
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(bx, by);
-            ctx.lineTo(cx, cy);
-            ctx.lineTo(dx, dy);
-            ctx.closePath();
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(ax, ay, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('A', ax - 16, ay + 20);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(bx, by, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('B', bx + 8, ay + 20);
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('C', cx + 8, cy - 8);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.arc(dx, dy, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('D', dx - 16, dy - 8);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(gx, gy, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '14px Arial';
-            ctx.fillText('G', gx + 10, gy - 10);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('G barycentre de {(A,1),(B,1),(C,1),(D,1)}', 230, 30);
-        }
-
-        function drawAssoc4() {
-            var canvas = document.getElementById('assoc4Graph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ax = 60, ay = 180;
-            var bx = 200, by = 40;
-            var cx = 300, cy = 180;
-            var dx = 440, dy = 40;
-
-            var g1x = (ax + bx) / 2;
-            var g1y = (ay + by) / 2;
-            var g2x = (cx + dx) / 2;
-            var g2y = (cy + dy) / 2;
-            var gx = (g1x + g2x) / 2;
-            var gy = (g1y + g2y) / 2;
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(bx, by);
-            ctx.stroke();
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(dx, dy);
-            ctx.stroke();
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([6, 6]);
-            ctx.beginPath();
-            ctx.moveTo(g1x, g1y);
-            ctx.lineTo(g2x, g2y);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(ax, ay, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('A', ax - 12, ay + 16);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(bx, by, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('B', bx + 4, by - 6);
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('C', cx - 12, cy + 16);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.arc(dx, dy, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('D', dx + 4, dy - 6);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(g1x, g1y, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('G1', g1x + 6, g1y - 6);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(g2x, g2y, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('G2', g2x + 6, g2y - 6);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(gx, gy, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('G', gx + 10, gy - 8);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('G barycentre de {(G1, a+b), (G2, c+d)}', 250, 30);
-        }
-
-        function drawCoord4() {
-            var canvas = document.getElementById('coord4Graph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = 220;
-            var scale = 35;
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(ox, 20);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 8, 16);
-
-            var pts = [
-                {x: 0, y: 0, color: '#4ECDC4', label: 'A(1)'},
-                {x: 4, y: 0, color: '#FF6B6B', label: 'B(2)'},
-                {x: 4, y: 4, color: '#BB8FCE', label: 'C(3)'},
-                {x: 0, y: 4, color: '#A8FF78', label: 'D(4)'}
-            ];
-
-            var sx = 0, sy = 0;
-            var total = 1+2+3+4;
-            for (var i = 0; i < pts.length; i++) {
-                var wgt = i+1;
-                sx += pts[i].x * wgt;
-                sy += pts[i].y * wgt;
-            }
-            var gx = sx / total;
-            var gy = sy / total;
-
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                var radius = 4 + (i+1) * 0.5;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, radius, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '10px Arial';
-                ctx.fillText(pts[i].label, px + 6, py - 4);
-            }
-
-            ctx.fillStyle = '#F4D03F';
-            var pxg = ox + gx * scale;
-            var pyg = oy - gy * scale;
-            ctx.beginPath();
-            ctx.arc(pxg, pyg, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '14px Arial';
-            ctx.fillText('G', pxg + 10, pyg - 10);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('G barycentre de {(A,1),(B,2),(C,3),(D,4)}', 230, 30);
-        }
-
-        window.onload = function() {
-            setTimeout(function() {
-                drawParallelogram();
-                drawBary4();
-                drawAssoc4();
-                drawCoord4();
-            }, 500);
-        };
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

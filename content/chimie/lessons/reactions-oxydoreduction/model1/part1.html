@@ -15,17 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Partie 1 - Les réactions d'oxydo-réduction | Xpert</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -39,7 +30,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
 
     <style>
         body { font-size: 14px; }
@@ -90,6 +81,7 @@
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
         .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container svg { width: 100%; height: auto; max-height: 280px; display: block; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
@@ -409,6 +401,12 @@
                     <div class="step"><span class="step-num">Étape 2 :</span> On ajoute quelques gouttes d'hydroxyde de sodium (\(NaOH\)) à la solution incolore obtenue. Il se forme un <strong>précipité blanc</strong> qui se redissout dans un excès de soude, caractéristique des ions <strong>zinc II</strong> (\(Zn^{2+}\)).</div>
                 </div>
 
+                <!-- ====== SCHEMA ====== -->
+                <div class="graph-container">
+                    <svg id="figExperienceZnCu"></svg>
+                    <p>Schéma de l'expérience : la lame de zinc avant et après immersion dans la solution de CuSO₄</p>
+                </div>
+
                 <div class="highlight-box yellow">
                     <span class="label ex">Conclusion de l'expérience</span>
                     <p>Les réactifs sont le zinc (\(Zn\)) et les ions cuivre II (\(Cu^{2+}\)). Les produits sont les ions zinc II (\(Zn^{2+}\)) et le cuivre métallique (\(Cu\)).</p>
@@ -455,7 +453,7 @@
 
                 <!-- ====== SCHEMA ====== -->
                 <div class="graph-container">
-                    <canvas id="graphRedoxZnCu" width="420" height="150"></canvas>
+                    <svg id="figRedoxZnCu"></svg>
                     <p>Transfert d'électrons entre le zinc et l'ion cuivre II</p>
                 </div>
             </div>
@@ -487,6 +485,12 @@
                     </div>
                 </div>
 
+                <!-- ====== SCHEMA CONCEPT (générique, ajouté) ====== -->
+                <div class="graph-container">
+                    <svg id="figConceptOxRed"></svg>
+                    <p>Schéma général du transfert d'électrons entre un réducteur et un oxydant</p>
+                </div>
+
                 <div class="exemple-box">
                     <div class="ex-title">📝 Application : Identifier l'oxydant et le réducteur</div>
                     <p style="font-size:11.5px; color:var(--text-secondary);">
@@ -508,7 +512,7 @@
 
                 <!-- ====== SCHEMA ====== -->
                 <div class="graph-container">
-                    <canvas id="graphRedoxCuAg" width="420" height="150"></canvas>
+                    <svg id="figRedoxCuAg"></svg>
                     <p>Réaction du cuivre avec les ions argent</p>
                 </div>
 
@@ -561,121 +565,9 @@
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
 
-        function drawGraphRedoxZnCu() {
-            var c = document.getElementById('graphRedoxZnCu'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            // Zinc (Réducteur)
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Zn', 60, 40);
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Réducteur', 60, 60);
-            ctx.fillText('(cède 2e⁻)', 60, 75);
-
-            // Flèche
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(100, 50);
-            ctx.lineTo(240, 50);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(235, 44);
-            ctx.lineTo(245, 50);
-            ctx.lineTo(235, 56);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.textBaseline = 'bottom';
-            ctx.fillText('2 e⁻', 170, 44);
-
-            // Cuivre (Oxydant)
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Cu²⁺', 290, 40);
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Oxydant', 290, 60);
-            ctx.fillText('(capte 2e⁻)', 290, 75);
-
-            // Résultat
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial';
-            ctx.textBaseline = 'top';
-            ctx.fillText('Zn(s) → Zn²⁺(aq) + 2e⁻  (Oxydation)', w/2, 110);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillText('Cu²⁺(aq) + 2e⁻ → Cu(s)  (Réduction)', w/2, 130);
-        }
-
-        function drawGraphRedoxCuAg() {
-            var c = document.getElementById('graphRedoxCuAg'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            // Cuivre (Réducteur)
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Cu', 50, 40);
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Réducteur', 50, 60);
-            ctx.fillText('(cède 2e⁻)', 50, 75);
-
-            // Flèche
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(90, 50);
-            ctx.lineTo(190, 50);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(185, 44);
-            ctx.lineTo(195, 50);
-            ctx.lineTo(185, 56);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.textBaseline = 'bottom';
-            ctx.fillText('2 e⁻', 140, 44);
-
-            // Argent (Oxydant)
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Ag⁺', 230, 40);
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Oxydant', 230, 60);
-            ctx.fillText('(capte 1e⁻)', 230, 75);
-
-            // Résultat
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial';
-            ctx.textBaseline = 'top';
-            ctx.fillText('Cu(s) → Cu²⁺(aq) + 2e⁻  (Oxydation)', w/2, 110);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillText('2Ag⁺(aq) + 2e⁻ → 2Ag(s)  (Réduction)', w/2, 130);
-            ctx.fillStyle = '#F4D03F';
-            ctx.fillText('Cu(s) + 2Ag⁺(aq) → Cu²⁺(aq) + 2Ag(s)', w/2, 150);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphRedoxZnCu();
-                drawGraphRedoxCuAg();
-            }, 400);
-        });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

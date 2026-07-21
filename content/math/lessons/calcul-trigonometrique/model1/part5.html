@@ -17,16 +17,8 @@
     <title>Résumé complet - Calcul trigonométrique | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -40,7 +32,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -400,7 +392,7 @@
                             <li>Origine : point $I(1,0)$.</li>
                         </ul>
                         <div class="graph-container">
-                            <canvas id="cercleResume" width="300" height="200"></canvas>
+                            <svg id="cercleResume" style="width:100%;max-width:340px;height:auto;"></svg>
                             <p>Cercle trigonométrique</p>
                         </div>
                     </div>
@@ -623,7 +615,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="ineqResumeGraph" width="300" height="150"></canvas>
+                    <svg id="ineqResumeGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Solutions de $\cos x \ge \dfrac{1}{2}$ et $\sin x \ge \dfrac{1}{2}$</p>
                 </div>
             </div>
@@ -676,7 +668,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="valeursRemarquablesGraph" width="300" height="200"></canvas>
+                    <svg id="valeursRemarquablesGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Valeurs remarquables sur le cercle trigonométrique</p>
                 </div>
             </div>
@@ -750,162 +742,9 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawCercleResume() {
-            var canvas = document.getElementById('cercleResume');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 70;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // Points
-            var points = [
-                {label: 'I', val: 0, color: '#F4D03F'},
-                {label: 'J', val: Math.PI/2, color: '#FF6B6B'},
-                {label: 'I\'', val: Math.PI, color: '#A8FF78'},
-                {label: 'J\'', val: -Math.PI/2, color: '#4D9DE0'}
-            ];
-
-            for (var i = 0; i < points.length; i++) {
-                var p = points[i];
-                var px = cx + R*Math.cos(p.val);
-                var py = cy - R*Math.sin(p.val);
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(px, py, 4, 0, 2*Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText(p.label, px+4, py-4);
-            }
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '8px Arial';
-            ctx.fillText('O', cx+4, cy+12);
-        }
-
-        function drawIneqResumeGraph() {
-            var canvas = document.getElementById('ineqResumeGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 60;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.6;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // cos x ≥ 1/2
-            var val = Math.PI/3;
-            ctx.fillStyle = 'rgba(78, 205, 196, 0.15)';
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.arc(cx, cy, R, -val, val);
-            ctx.closePath();
-            ctx.fill();
-
-            // sin x ≥ 1/2
-            var val2 = Math.PI/6;
-            ctx.fillStyle = 'rgba(255, 107, 107, 0.15)';
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.arc(cx, cy, R, val2, Math.PI - val2);
-            ctx.closePath();
-            ctx.fill();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '7px Arial';
-            ctx.fillText('cos ≥ 1/2', 10, 12);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillText('sin ≥ 1/2', 10, 22);
-        }
-
-        function drawValeursRemarquablesGraph() {
-            var canvas = document.getElementById('valeursRemarquablesGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 70;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.6;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            var angles = [
-                {label: 'π/6', val: Math.PI/6, color: '#F4D03F'},
-                {label: 'π/4', val: Math.PI/4, color: '#FF6B6B'},
-                {label: 'π/3', val: Math.PI/3, color: '#A8FF78'},
-                {label: 'π/2', val: Math.PI/2, color: '#4D9DE0'}
-            ];
-
-            for (var i = 0; i < angles.length; i++) {
-                var a = angles[i];
-                var px = cx + R*Math.cos(a.val);
-                var py = cy - R*Math.sin(a.val);
-                ctx.fillStyle = a.color;
-                ctx.beginPath();
-                ctx.arc(px, py, 4, 0, 2*Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '7px Arial';
-                ctx.fillText(a.label, px+4, py-4);
-            }
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '7px Arial';
-            ctx.fillText('Valeurs remarquables', 10, 12);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawCercleResume();
-                drawIneqResumeGraph();
-                drawValeursRemarquablesGraph();
-            }, 300);
-        });
     </script>
+
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

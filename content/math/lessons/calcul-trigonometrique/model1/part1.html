@@ -17,16 +17,8 @@
     <title>Partie 1 - Cercle trigonométrique | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -40,7 +32,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -395,7 +387,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="cercleTrigo" width="300" height="300"></canvas>
+                    <svg id="cercleTrigo" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Cercle trigonométrique $(C)$ d'origine $I$</p>
                 </div>
 
@@ -424,7 +416,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="abscissePrincipale" width="300" height="250"></canvas>
+                    <svg id="abscissePrincipale" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Abscisse curviligne principale $\alpha$ du point $M$ sur le cercle $(C)$</p>
                 </div>
 
@@ -464,7 +456,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="abscissesCurvilignes" width="300" height="250"></canvas>
+                    <svg id="abscissesCurvilignes" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Infinité d'abscisses curvilignes pour un même point $M$</p>
                 </div>
 
@@ -531,7 +523,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="tableauValeurs" width="300" height="250"></canvas>
+                    <svg id="tableauValeurs" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Représentation des angles remarquables sur le cercle trigonométrique</p>
                 </div>
 
@@ -597,7 +589,7 @@
                     <div id="sol2" class="solution-box" style="display:none;background:var(--solution-bg);border:1px solid var(--solution-border);border-radius:6px;padding:6px 10px;margin:4px 0;">
                         <div class="sol-content" style="font-size:12px;color:var(--text-secondary);line-height:1.6;">
                             <div class="graph-container">
-                                <canvas id="exercice2" width="300" height="250"></canvas>
+                                <svg id="exercice2" style="width:100%;max-width:340px;height:auto;"></svg>
                                 <p>Points d'abscisses $\dfrac{\pi}{4}$, $\dfrac{3\pi}{4}$, $-\dfrac{5\pi}{6}$, $\dfrac{7\pi}{4}$</p>
                             </div>
                         </div>
@@ -653,315 +645,9 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawCercleTrigo() {
-            var canvas = document.getElementById('cercleTrigo');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 100;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // Flèches
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath(); ctx.moveTo(w-12, cy-4); ctx.lineTo(w-4, cy); ctx.lineTo(w-12, cy+4); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(cx-4, 12); ctx.lineTo(cx, 4); ctx.lineTo(cx+4, 12); ctx.fill();
-
-            // Labels
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('O', cx+4, cy-4);
-            ctx.fillText('I', cx+R+4, cy+4);
-            ctx.fillText('I\'', cx-R-20, cy+4);
-            ctx.fillText('J', cx-12, cy-R-4);
-            ctx.fillText('J\'', cx-14, cy+R+14);
-
-            // Point I
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(cx+R, cy, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.beginPath(); ctx.arc(cx-R, cy, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.beginPath(); ctx.arc(cx, cy-R, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.beginPath(); ctx.arc(cx, cy+R, 4, 0, 2*Math.PI); ctx.fill();
-
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('(C)', cx+R-12, cy-R+12);
-        }
-
-        function drawAbscissePrincipale() {
-            var canvas = document.getElementById('abscissePrincipale');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 90;
-            var alpha = Math.PI/4;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // Point M
-            var mx = cx + R*Math.cos(alpha);
-            var my = cy - R*Math.sin(alpha);
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(mx, my, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M', mx+6, my-6);
-
-            // Arc et angle alpha
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 25, -alpha, 0);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '11px Arial';
-            ctx.fillText('α', cx+30, cy-8);
-
-            // Ligne OM
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3,3]);
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(mx, my); ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx+4, cy+12);
-        }
-
-        function drawAbscissesCurvilignes() {
-            var canvas = document.getElementById('abscissesCurvilignes');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 80;
-            var alpha = Math.PI/3;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // Point M
-            var mx = cx + R*Math.cos(alpha);
-            var my = cy - R*Math.sin(alpha);
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(mx, my, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M', mx+6, my-6);
-
-            // Points sur la droite (Δ)
-            var x0 = 40;
-            var y0 = cy + R + 20;
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(10, y0);
-            ctx.lineTo(w-10, y0);
-            ctx.stroke();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.font = '9px Arial';
-            ctx.fillText('(Δ)', w-30, y0-4);
-
-            // Points Nk sur la droite
-            var positions = [-3, -2, -1, 0, 1, 2, 3];
-            var scale = 18;
-            for (var i = 0; i < positions.length; i++) {
-                var k = positions[i];
-                var x = cx + (alpha + 2*k*Math.PI) * scale;
-                if (x < 10 || x > w-10) continue;
-                ctx.fillStyle = '#FF6B6B';
-                ctx.beginPath();
-                ctx.arc(x, y0, 3, 0, 2*Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#888888';
-                ctx.font = '8px Arial';
-                ctx.fillText('α+'+2*k+'π', x-10, y0+14);
-            }
-
-            // Ligne verticale entre M et (Δ)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 0.8;
-            ctx.setLineDash([2,2]);
-            ctx.beginPath();
-            ctx.moveTo(mx, my);
-            ctx.lineTo(mx, y0);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('Droite (Δ) enroulée autour du cercle', 40, 20);
-        }
-
-        function drawTableauValeurs() {
-            var canvas = document.getElementById('tableauValeurs');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 90;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // Points remarquables
-            var angles = [
-                {label: 'π/6', val: Math.PI/6, color: '#F4D03F'},
-                {label: 'π/4', val: Math.PI/4, color: '#FF6B6B'},
-                {label: 'π/3', val: Math.PI/3, color: '#A8FF78'},
-                {label: 'π/2', val: Math.PI/2, color: '#4D9DE0'}
-            ];
-
-            for (var i = 0; i < angles.length; i++) {
-                var a = angles[i];
-                var px = cx + R*Math.cos(a.val);
-                var py = cy - R*Math.sin(a.val);
-                ctx.fillStyle = a.color;
-                ctx.beginPath();
-                ctx.arc(px, py, 4, 0, 2*Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '9px Arial';
-                ctx.fillText(a.label, px+4, py-4);
-            }
-
-            // Point I
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath(); ctx.arc(cx+R, cy, 4, 0, 2*Math.PI); ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '9px Arial';
-            ctx.fillText('0', cx+R+4, cy+12);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('Angles remarquables', 20, 20);
-        }
-
-        function drawExercice2() {
-            var canvas = document.getElementById('exercice2');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = w/2, cy = h/2;
-            var R = 80;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, R, 0, 2*Math.PI);
-            ctx.stroke();
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.8;
-            ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-
-            // Points
-            var points = [
-                {label: 'π/4', val: Math.PI/4, color: '#F4D03F'},
-                {label: '3π/4', val: 3*Math.PI/4, color: '#FF6B6B'},
-                {label: '-5π/6', val: -5*Math.PI/6, color: '#A8FF78'},
-                {label: '7π/4', val: 7*Math.PI/4, color: '#4D9DE0'}
-            ];
-
-            for (var i = 0; i < points.length; i++) {
-                var p = points[i];
-                var px = cx + R*Math.cos(p.val);
-                var py = cy - R*Math.sin(p.val);
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2*Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '9px Arial';
-                ctx.fillText(p.label, px+6, py-6);
-            }
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('Points d\'abscisses données', 20, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawCercleTrigo();
-                drawAbscissePrincipale();
-                drawAbscissesCurvilignes();
-                drawTableauValeurs();
-                drawExercice2();
-            }, 300);
-        });
     </script>
+
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

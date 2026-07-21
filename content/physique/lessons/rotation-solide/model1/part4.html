@@ -18,16 +18,8 @@
     <title>Partie 4 - Rotation d'un solide | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -41,7 +33,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -95,7 +87,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -444,7 +436,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphPeriode" width="400" height="200"></canvas>
+                    <svg id="graphPeriode" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>Période T : durée d'un tour complet</p>
                 </div>
             </div>
@@ -544,7 +536,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphUniforme" width="400" height="200"></canvas>
+                    <svg id="graphUniforme" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>θ = f(t) pour un mouvement de rotation uniforme</p>
                 </div>
 
@@ -609,182 +601,9 @@
                 navbar.classList.toggle('scrolled', window.scrollY > 30);
             }
         });
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphPeriode() {
-            var canvas = document.getElementById('graphPeriode');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 5;
-            var rayon = 80;
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('(Δ)', cx + 10, 22);
-
-            // Points sur le cercle (positions successives)
-            var angles = [];
-            var n = 6;
-            for (var i = 0; i < n; i++) {
-                angles.push(i * Math.PI/3);
-            }
-
-            // Trajectoire complète
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            for (var i = 0; i <= 360; i++) {
-                var a = i * Math.PI / 180;
-                var x = cx + rayon * Math.cos(a);
-                var y = cy + rayon * Math.sin(a);
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var i = 0; i < n; i++) {
-                var x = cx + rayon * Math.cos(angles[i]);
-                var y = cy + rayon * Math.sin(angles[i]);
-                ctx.fillStyle = i === 0 ? '#F4D03F' : '#A8FF78';
-                ctx.beginPath();
-                ctx.arc(x, y, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText('M' + i, x - 10, y + 14);
-            }
-
-            // Flèche circulaire
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon * 0.7, 0, Math.PI/4);
-            ctx.stroke();
-
-            ctx.fillStyle = '#FFD93D';
-            ctx.font = '12px Arial';
-            ctx.fillText('T', cx + 30, cy - 30);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Période T = durée d\'un tour', 170, 20);
-        }
-
-        function drawGraphUniforme() {
-            var canvas = document.getElementById('graphUniforme');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scaleX = 50, scaleY = 15;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('t (s)', w - 30, oy + 18);
-            ctx.fillText('θ (rad)', ox + 8, 18);
-
-            // Droite θ = ω·t + θ₀
-            var omega = 1.5;
-            var theta0 = 0.5;
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var t = 0; t <= 6; t += 0.05) {
-                var x = ox + t * scaleX;
-                var y = oy - (omega * t + theta0) * scaleY;
-                if (t === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var t = 0; t <= 6; t += 1) {
-                var x = ox + t * scaleX;
-                var y = oy - (omega * t + theta0) * scaleY;
-                ctx.fillStyle = '#4ECDC4';
-                ctx.beginPath();
-                ctx.arc(x, y, 4, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText(t + 's', x - 8, y + 16);
-            }
-
-            // θ₀
-            var y0 = oy - theta0 * scaleY;
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox, y0);
-            ctx.lineTo(ox + 30, y0);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('θ₀', ox + 32, y0 + 4);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '11px Arial';
-            ctx.fillText('θ = ω·t + θ₀', 200, 20);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('(droite affine)', 200, 35);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphPeriode();
-                drawGraphUniforme();
-            }, 500);
-        });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

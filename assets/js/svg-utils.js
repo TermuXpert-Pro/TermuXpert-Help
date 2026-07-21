@@ -128,10 +128,11 @@ const SvgUtils = (function () {
         opts = opts || {};
         const attrs = {
             cx, cy: -cy, r,
-            fill: 'none',
+            fill: opts.fill || 'none',
             stroke: opts.color || COLORS.axis,
             'stroke-width': (opts.lineWidth || 1) * 0.025
         };
+        if (opts.opacity !== undefined) attrs['fill-opacity'] = opts.opacity;
         if (opts.dashed) {
             const [a, b] = opts.dashPattern || [6, 4];
             attrs['stroke-dasharray'] = `${a * 0.025} ${b * 0.025}`;
@@ -139,15 +140,39 @@ const SvgUtils = (function () {
         s.svg.appendChild(el('circle', attrs));
     }
 
+    // مستطيل (لِلحاويات، الأعمدة البيانية bar-chart...) - جديدة.
+    // (x, yTop) هي الزاوية العليا اليسرى بالإحداثيات الرياضية (yTop
+    // هو أعلى قيمة y ديال المستطيل)، وكيتمدد بعرض w ويهبط بارتفاع h.
+    function drawRect(s, x, yTop, w, h, opts) {
+        opts = opts || {};
+        const attrs = {
+            x, y: -yTop, width: w, height: h,
+            fill: opts.fill || 'none',
+            stroke: opts.color || COLORS.axis,
+            'stroke-width': (opts.lineWidth || 1) * 0.025
+        };
+        if (opts.rx) attrs.rx = opts.rx;
+        if (opts.opacity !== undefined) attrs['fill-opacity'] = opts.opacity;
+        if (opts.dashed) {
+            const [a, b] = opts.dashPattern || [6, 4];
+            attrs['stroke-dasharray'] = `${a * 0.025} ${b * 0.025}`;
+        }
+        s.svg.appendChild(el('rect', attrs));
+    }
+
     // تعليق نصي حر (بإحداثيات رياضية مباشرة)
     function drawNote(s, text, x, y, opts) {
         opts = opts || {};
-        const t = el('text', {
+        const attrs = {
             x, y,
             fill: opts.color || COLORS.muted,
             'font-size': opts.fontSize || s.fontSize,
-            'font-family': 'Arial, sans-serif'
-        });
+            'font-family': opts.fontFamily || 'Arial, sans-serif'
+        };
+        if (opts.anchor) attrs['text-anchor'] = opts.anchor; // 'start' | 'middle' | 'end'
+        if (opts.weight) attrs['font-weight'] = opts.weight;
+        if (opts.italic) attrs['font-style'] = 'italic';
+        const t = el('text', attrs);
         t.textContent = text;
         s.svg.appendChild(t);
     }
@@ -209,6 +234,75 @@ const SvgUtils = (function () {
         s.svg.appendChild(el('path', attrs));
     }
 
+    // سهم كامل بين نقطتين (بداية → نهاية) مع رأس مثلث حقيقي، بخلاف
+    // drawLine اللي عندو غير الخط بلا رأس. مفيد للمتجهات (vecteurs)
+    // كيفما MA, MB, MG فدروس البرycentre. كيدعم label فالوسط.
+    function drawVector(s, x1, y1, x2, y2, opts) {
+        opts = opts || {};
+        const color = opts.color || COLORS.arrow;
+        const lw = (opts.lineWidth || 1.5) * 0.025;
+        const dx = x2 - x1, dy = y2 - y1;
+        const len = Math.sqrt(dx * dx + dy * dy) || 0.0001;
+        const ux = dx / len, uy = dy / len;
+        const ah = opts.arrowSize || s.fontSize * 0.35;
+
+        // كنقصو الخط شوية قبل الرأس باش السهم يبان واضح ومنسجم
+        const endX = x2 - ux * ah * 0.6;
+        const endY = y2 - uy * ah * 0.6;
+
+        const attrs = {
+            x1, y1: -y1, x2: endX, y2: -endY,
+            stroke: color, 'stroke-width': lw, 'stroke-linecap': 'round'
+        };
+        if (opts.dashed) {
+            const [a, b] = opts.dashPattern || [5, 4];
+            attrs['stroke-dasharray'] = `${a * 0.025} ${b * 0.025}`;
+        }
+        s.svg.appendChild(el('line', attrs));
+
+        // رأس السهم (مثلث صغير عمودي على اتجاه المتجه)
+        const backX = x2 - ux * ah;
+        const backY = y2 - uy * ah;
+        const px = -uy, py = ux;
+        const leftX = backX + px * ah * 0.4;
+        const leftY = backY + py * ah * 0.4;
+        const rightX = backX - px * ah * 0.4;
+        const rightY = backY - py * ah * 0.4;
+
+        s.svg.appendChild(el('polygon', {
+            points: `${x2},${-y2} ${leftX},${-leftY} ${rightX},${-rightY}`,
+            fill: color
+        }));
+
+        if (opts.label) {
+            const lx = (x1 + x2) / 2 + (opts.labelOffsetX ?? px * ah * 0.9);
+            const ly = (y1 + y2) / 2 + (opts.labelOffsetY ?? py * ah * 0.9);
+            drawNote(s, opts.label, lx, -ly, {
+                color: opts.labelColor || color,
+                fontSize: opts.fontSize || s.fontSize * 0.85
+            });
+        }
+    }
+
+    // مضلع مغلق (مثلث، رباعي...) من مصفوفة نقط {x,y} بالإحداثيات
+    // الرياضية. جديدة، ماكانتش موجودة قبل — محتاجينها لأشكال المثلث
+    // والرباعي والمتوازي أضلاع فدروس البارycentre.
+    function drawPolygon(s, points, opts) {
+        opts = opts || {};
+        const ptStr = points.map(p => `${p.x},${-p.y}`).join(' ');
+        const attrs = {
+            points: ptStr,
+            fill: opts.fill || 'none',
+            stroke: opts.color || COLORS.axis,
+            'stroke-width': (opts.lineWidth || 1.5) * 0.025
+        };
+        if (opts.dashed) {
+            const [a, b] = opts.dashPattern || [6, 4];
+            attrs['stroke-dasharray'] = `${a * 0.025} ${b * 0.025}`;
+        }
+        s.svg.appendChild(el('polygon', attrs));
+    }
+
     return {
         COLORS,
         setupSVG,
@@ -218,8 +312,11 @@ const SvgUtils = (function () {
         drawPoints,
         drawLine,
         drawCircle,
+        drawRect,
         drawAsymptote,
         drawCurve,
-        drawNote
+        drawNote,
+        drawVector,
+        drawPolygon
     };
 })();

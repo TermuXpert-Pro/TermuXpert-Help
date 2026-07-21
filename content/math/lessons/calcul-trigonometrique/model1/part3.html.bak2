@@ -185,8 +185,11 @@
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
-    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
-    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
@@ -413,21 +416,10 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-exchange-alt" style="color:#4ECDC4;"></i> Partie 3 : Transformations trigonométriques</h1>
 
-            
-            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
-            <div class="toc red">
-                <h3><i class="fas fa-list"></i> Table des matières</h3>
-                <ul>
-                    <li><a href="#sec1"><span class="num">1.</span> Transformation de $a\cos x + b\sin x$</a></li>
-                    <li><a href="#sec2"><span class="num">2.</span> Transformation : Somme en produit</a></li>
-                    <li><a href="#sec3"><span class="num">3.</span> Transformation : Produit en somme (Linéarisation)</a></li>
-                    <li><a href="#sec4"><span class="num">4.</span> Exercices d'application</a></li>
-                </ul>
-            </div>
-<!-- ============================================================ -->
+            <!-- ============================================================ -->
             <!-- SECTION 1: TRANSFORMATION DE a cos x + b sin x -->
             <!-- ============================================================ -->
-            <div class="section" id="sec1">
+            <div class="section">
                 <h2><span class="num">1</span> Transformation de $a\cos x + b\sin x$</h2>
 
                 <div class="highlight-box green">
@@ -473,7 +465,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="transformationGraph" width="300" height="150"></canvas>
+                    <svg id="transformationGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Graphique de $y = \cos x - \sin x$</p>
                 </div>
 
@@ -489,7 +481,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 2: SOMME EN PRODUIT -->
             <!-- ============================================================ -->
-            <div class="section" id="sec2">
+            <div class="section">
                 <h2><span class="num">2</span> Transformation : Somme en produit</h2>
 
                 <div class="highlight-box green">
@@ -527,7 +519,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="sommeProduitGraph" width="300" height="150"></canvas>
+                    <svg id="sommeProduitGraph" style="width:100%;max-width:340px;height:auto;"></svg>
                     <p>Illustration de $\cos p + \cos q = 2\cos\left(\dfrac{p+q}{2}\right)\cos\left(\dfrac{p-q}{2}\right)$</p>
                 </div>
 
@@ -543,7 +535,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 3: PRODUIT EN SOMME -->
             <!-- ============================================================ -->
-            <div class="section" id="sec3">
+            <div class="section">
                 <h2><span class="num">3</span> Transformation : Produit en somme (Linéarisation)</h2>
 
                 <div class="highlight-box green">
@@ -601,7 +593,7 @@
             <!-- ============================================================ -->
             <!-- SECTION 4: EXERCICES D'APPLICATION -->
             <!-- ============================================================ -->
-            <div class="section" id="sec4">
+            <div class="section">
                 <h2><span class="num">4</span> Exercices d'application</h2>
 
                 <div class="highlight-box yellow">
@@ -687,102 +679,9 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawTransformationGraph() {
-            var canvas = document.getElementById('transformationGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = 40, cy = h/2;
-            var scaleX = (w-60) / (2*Math.PI);
-            var scaleY = (h-30) / 2;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-
-            // Courbe cos x - sin x = √2 cos(x + π/4)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            var first = true;
-            for (var x = -Math.PI; x <= 3*Math.PI; x += 0.05) {
-                var y = Math.cos(x) - Math.sin(x);
-                var sx = cx + (x + Math.PI) * scaleX;
-                var sy = cy - y * scaleY;
-                if (first) { ctx.moveTo(sx, sy); first = false; }
-                else ctx.lineTo(sx, sy);
-            }
-            ctx.stroke();
-
-            // Ligne y = 0
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3,3]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(w-10, cy);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('y = cos x - sin x', 10, 14);
-        }
-
-        function drawSommeProduitGraph() {
-            var canvas = document.getElementById('sommeProduitGraph');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            var cx = 40, cy = h/2;
-            var scaleX = (w-60) / (2*Math.PI);
-            var scaleY = (h-30) / 2;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, h-10); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(w-10, cy); ctx.stroke();
-
-            // Courbe cos x + cos 3x = 2 cos(2x) cos(x)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            var first = true;
-            for (var x = -Math.PI; x <= 3*Math.PI; x += 0.05) {
-                var y = Math.cos(x) + Math.cos(3*x);
-                var sx = cx + (x + Math.PI) * scaleX;
-                var sy = cy - y * scaleY;
-                if (first) { ctx.moveTo(sx, sy); first = false; }
-                else ctx.lineTo(sx, sy);
-            }
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('cos x + cos 3x', 10, 14);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawTransformationGraph();
-                drawSommeProduitGraph();
-            }, 300);
-        });
     </script>
+
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

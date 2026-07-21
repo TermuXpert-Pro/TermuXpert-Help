@@ -17,16 +17,8 @@
     <title>Partie 1 - Rotation d'un solide | Xpert</title>
     
     <!-- ====== Preconnect CDN ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -40,7 +32,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -94,7 +86,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -398,7 +390,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphRotation" width="400" height="250"></canvas>
+                    <svg id="graphRotation" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>Rotation d'un solide autour d'un axe fixe $(\Delta)$</p>
                 </div>
 
@@ -447,7 +439,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graphReperage" width="400" height="250"></canvas>
+                    <svg id="graphReperage" style="width:100%;max-width:400px;height:260px;"></svg>
                     <p>Repérage du point M sur sa trajectoire circulaire</p>
                 </div>
 
@@ -520,183 +512,9 @@
                 navbar.classList.toggle('scrolled', window.scrollY > 30);
             }
         });
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphRotation() {
-            var canvas = document.getElementById('graphRotation');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 - 10;
-            var rayon = 100;
-            var rayon2 = 60;
-
-            // Axe de rotation (Δ)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 20);
-            ctx.lineTo(cx, h - 20);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.fillText('(Δ)', cx + 10, 30);
-
-            // Cercles (trajectoires)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon2, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Points
-            var pts = [
-                {x: cx + rayon * Math.cos(-Math.PI/4), y: cy + rayon * Math.sin(-Math.PI/4), color: '#4ECDC4', label: 'A'},
-                {x: cx + rayon * Math.cos(2*Math.PI/3), y: cy + rayon * Math.sin(2*Math.PI/3), color: '#FFD93D', label: 'B'},
-                {x: cx + rayon2 * Math.cos(Math.PI/2), y: cy + rayon2 * Math.sin(Math.PI/2), color: '#BB8FCE', label: 'M'},
-                {x: cx + rayon2 * Math.cos(-Math.PI/3), y: cy + rayon2 * Math.sin(-Math.PI/3), color: '#A8FF78', label: 'N'}
-            ];
-
-            for (var i = 0; i < pts.length; i++) {
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(pts[i].x, pts[i].y, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, pts[i].x + 8, pts[i].y - 6);
-            }
-
-            // Titre
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Solide en rotation autour de (Δ)', 130, 20);
-        }
-
-        function drawGraphReperage() {
-            var canvas = document.getElementById('graphReperage');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 10;
-            var rayon = 100;
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 20);
-            ctx.lineTo(cx, h - 20);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '12px Arial';
-            ctx.fillText('(Δ)', cx + 10, 30);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Points M0 et M
-            var angle0 = -Math.PI/4;
-            var angle = Math.PI/3;
-            var M0x = cx + rayon * Math.cos(angle0);
-            var M0y = cy + rayon * Math.sin(angle0);
-            var Mx = cx + rayon * Math.cos(angle);
-            var My = cy + rayon * Math.sin(angle);
-
-            // Rayon OM
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(Mx, My);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Arc M0M
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon * 0.7, angle0, angle);
-            ctx.stroke();
-
-            // Points
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(M0x, M0y, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('M₀', M0x - 20, M0y - 10);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(Mx, My, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('M', Mx + 8, My - 6);
-
-            // Centre O
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
-
-            // Angle
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '12px Arial';
-            ctx.fillText('θ = (OM₀, OM)', 280, 30);
-
-            // s = M₀M
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '11px Arial';
-            ctx.fillText('s = M₀M', 280, 45);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('θ = abscisse angulaire (rad)', 280, 60);
-            ctx.fillText('s = abscisse curviligne (m)', 280, 75);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphRotation();
-                drawGraphReperage();
-            }, 500);
-        });
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     
