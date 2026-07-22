@@ -365,3 +365,45 @@ function XpertAnimateLegalPage(pageName) {
       });
 }
 window.XpertAnimateLegalPage = XpertAnimateLegalPage;
+
+// ====== XPERT LOADER START (add-xpert-loader.js) ======
+(function () {
+    'use strict';
+
+    var loader = document.getElementById('xpertLoader');
+    if (!loader) return; // الصفحة ماعندهاش لودر
+
+    // مدة دنيا (بالميلي ثانية): اللودر خاصو يبان دائما بيها حتى لو
+    // الصفحة تحملت بزربة زيادة - باش ما يكونش تشوه بصري (ظهور
+    // واختفاء فبرقة العين).
+    // ⚠️ TEST: مزيدة لـ 10 ثواني دابا باش تقدر تشوف الشكل والحركة
+    // مزيان. رجعها لـ 500 (نصف ثانية) ملي تسالي من التجربة.
+    var MIN_DISPLAY = 500;
+    var start = performance.now();
+    var hidden = false;
+
+    function reallyHide() {
+        loader.classList.add('xpert-loader-hide');
+        document.body.classList.add('xpert-loaded');
+    }
+
+    function hideLoader() {
+        if (hidden) return;
+        hidden = true;
+        var elapsed = performance.now() - start;
+        var wait = Math.max(0, MIN_DISPLAY - elapsed);
+        setTimeout(reallyHide, wait);
+    }
+
+    // كنعتمدو على DOMContentLoaded (الـ DOM جاهز) بلا ما نتسناو
+    // 'load' اللي كيتسنى الصور والموارد كاملين.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideLoader);
+    } else {
+        hideLoader();
+    }
+
+    // حماية: إيلا لسبب ما DOMContentLoaded ماجاش، نخبيو بالقوة
+    setTimeout(hideLoader, 3000);
+})();
+// ====== XPERT LOADER END ======
