@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE = 'https://termuxpert-pro.github.io/TermuXpert-WEB/';
+const SITE = 'https://jdxpert.pages.dev/';
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content');
 
