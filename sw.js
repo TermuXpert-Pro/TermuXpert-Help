@@ -2,19 +2,11 @@
 // Service Worker - Xpert PWA
 // ============================================================
 
-// ⚠️ رقم النسخة كيتجدد تلقائياً من utils/build.js (hash ديال محتوى
-// الملفات الأساسية) - ما خاصكش تبدلها يدوياً، غير شغل: node utils/build.js
-const CACHE_NAME = 'xpert-f9692fad';
+const CACHE_NAME = 'xpert-v2-cf';
 
 // ====== App Shell فقط ======
-// هادي غير الصفحات/الملفات الأساسية اللي خاصها تكون جاهزة من أول
-// تشغيل للموقع (بلا نت). صفحات الدروس/السلاسل/التمارين ماشي هنا -
-// كيتخزنو تلقائياً (runtime caching) أول ما الزائر يفتح كل وحدة،
-// باش ما يتحملش مئات الصفحات دفعة وحدة عند أول زيارة (شوف fetch
-// handler تحت). هاد التغيير كيخلي الموقع يبقى خفيف فأول تحميل حتى
-// ولو عدد الصفحات زاد لـ500+ صفحة.
 const urlsToCache = [
-    './',
+    '/',
     './index.html',
     './subjects.html',
     './subject.html',
@@ -27,7 +19,7 @@ const urlsToCache = [
     './assets/images/profile.png',
     './manifest.json',
     './assets/images/icon-192.png',
-    './assets/images/icon-512.png',
+    './assets/images/icon-512.png'
 ];
 
 // صفحة بسيطة كتبان إلا كانت الصفحة المطلوبة ماشي مخزنة وما كاينش نت
@@ -48,7 +40,7 @@ const OFFLINE_FALLBACK = `
 <body>
     <div>
         <h1>📡 لا يوجد اتصال بالإنترنت</h1>
-        <p>هاذ الصفحة ماشي محفوظة عندك للقراءة بدون نت. زرها مرة وحدة ومنت متصل باش تقدر تفتحها لاحقاً بدون نت.</p>
+        <p>هاذ الصفحة ماشي محفوظة عندك للقراءة بدون نت. زرها مرة وحدة وانت متصل باش تقدر تفتحها لاحقاً بدون نت.</p>
     </div>
 </body>
 </html>`;
@@ -74,20 +66,19 @@ self.addEventListener('fetch', function(event) {
                    (event.request.headers.get('accept') || '').includes('text/html');
 
     if (isHTML) {
-        // Network-First + تخزين تلقائي لكل صفحة تتزار (بما فيها صفحات
-        // الدروس/السلاسل/التمارين) - هادي اللي كتعوض precache الشامل:
-        // الصفحة كتتخزن غير أول ما الزائر يفتحها فعليا.
+        // Network-First + تخزين تلقائي لكل صفحة تتزار
         event.respondWith(
             fetch(event.request)
                 .then(function(response) {
-                    const clone = response.clone();
-                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                    if (response && response.status === 200) {
+                        const clone = response.clone();
+                        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                    }
                     return response;
                 })
                 .catch(function() {
                     return caches.match(event.request).then(function(cached) {
                         if (cached) return cached;
-                        // الصفحة ماشي مخزنة وما كاينش نت
                         return new Response(OFFLINE_FALLBACK, {
                             headers: { 'Content-Type': 'text/html; charset=UTF-8' }
                         });
@@ -95,23 +86,21 @@ self.addEventListener('fetch', function(event) {
                 })
         );
     } else {
-        // ملفات CSS/JS/صور: كاش أولاً، وإلا ماكانتش مخزنة كنجيبوها
-        // من الشبكة ونخزنوها للمرة الجاية (stale-while-revalidate خفيف)
+        // Stale-While-Revalidate بالنسبة لملفات CSS/JS والأسيتس
         event.respondWith(
             caches.match(event.request)
                 .then(function(cached) {
-                    if (cached) return cached;
-                    return fetch(event.request).then(function(response) {
-                        // كنخزنو غير الردود الصحيحة (تفادي تخزين أخطاء الشبكة)
-                        if (response && response.status === 200) {
-                            const clone = response.clone();
+                    const fetchPromise = fetch(event.request).then(function(networkResponse) {
+                        if (networkResponse && networkResponse.status === 200) {
+                            const clone = networkResponse.clone();
                             caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
                         }
-                        return response;
+                        return networkResponse;
                     }).catch(function() {
-                        // ملف صورة/CSS/JS ماشي مخزن وما كاينش نت - نخليو الطلب يفشل عادي
-                        return new Response('', { status: 408, statusText: 'Offline' });
+                        return cached;
                     });
+
+                    return cached || fetchPromise;
                 })
         );
     }
@@ -125,6 +114,7 @@ self.addEventListener('activate', function(event) {
             return Promise.all(
                 cacheNames.map(function(cacheName) {
                     if (cacheWhitelist.indexOf(cacheName) === -1) {
+                        console.log('🗑️ حذف كاش قديم:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
