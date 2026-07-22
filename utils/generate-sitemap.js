@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 /**
  * generate-sitemap.js
- * يمسح مجلد content/ + الصفحات الجذرية الثابتة ويولّد sitemap.xml محدّث تلقائياً
+ * يمسح مجلد content/ + الصفحات الجذرية الثابتة ويولّد بنية sitemap مقسّمة
+ * بحال أكبر المواقع (WordPress/Yoast): index + page-sitemap + post-sitemap
  *
  * الاستخدام: node utils/generate-sitemap.js
  * شغّلها كل مرة تزيد درس/تمرين/سلسلة جديدة، أو تزيد صفحة ثابتة جديدة
  *
- * التعديلات على النسخة الأصلية:
- *   1) زيد مسح الصفحات الجذرية الثابتة (about.html, support.html, terms.html...)
- *      اللي كانت ناقصة لأن السكريبت كان كيمسح غير content/
- *   2) طباعة لائحة الصفحات المستثناة (noindex) بالاسم، ماشي غير العدد،
- *      باش تقدر تتأكد بسرعة واش كاين درس كمّلتيه ونسيتي تحيد الـ noindex منو
+ * البنية الجديدة (عوض ملف sitemap.xml واحد فيه كولشي):
+ *   sitemap_index.xml   ← الفهرس الرئيسي، فيه غير روابط للـ 2 ملفات التحت
+ *   page-sitemap.xml    ← الصفحات الثابتة/التنقلية (index, subjects, about...)
+ *   post-sitemap.xml    ← المحتوى التعليمي (دروس + تمارين + سلاسل من content/)
+ *
+ * ملاحظة: خاصك تبدل السطر ديال Sitemap: فـ robots.txt باش يشير
+ * لـ sitemap_index.xml عوض sitemap.xml (مذكور فآخر الملف كتوجيه).
  */
 
 const fs = require('fs');
@@ -19,6 +22,11 @@ const path = require('path');
 const SITE = 'https://jdxpert.pages.dev/';
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content');
+
+const SITEMAP_INDEX_PATH = path.join(ROOT, 'sitemap_index.xml');
+const PAGE_SITEMAP_PATH = path.join(ROOT, 'page-sitemap.xml');
+const POST_SITEMAP_PATH = path.join(ROOT, 'post-sitemap.xml');
+const OLD_SITEMAP_PATH = path.join(ROOT, 'sitemap.xml'); // القديم، كنحيدوه إلا كان موجود
 
 // ====== الصفحات الجذرية الثابتة ======
 // زيد هنا أي صفحة جذرية جديدة كتضيفها فالمستقبل (بحال privacy.html، faq.html...)
@@ -62,6 +70,10 @@ function toUrl(relPath) {
     return relPath.split('/').map(encodeURIComponent).join('/');
 }
 
+function today() {
+    return new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+}
+
 // ====== جمع صفحات content/ (بلا الصفحات noindex) ======
 const allContentFiles = walk(CONTENT_DIR);
 const excludedFiles = allContentFiles.filter(f => isNoIndex(f));
@@ -84,6 +96,11 @@ const existingStaticPages = STATIC_PAGES.filter(
     p => fs.existsSync(path.join(ROOT, p.file))
 );
 
+// المواد: نكتشفها تلقائياً من أسماء مجلدات content/*
+const subjects = fs.readdirSync(CONTENT_DIR, { withFileTypes: true })
+    .filter(d => d.isDirectory())
+    .map(d => d.name);
+
 // ====== تجميع صفحات content/ حسب المجلد (لتعليقات منظمة) ======
 const grouped = {};
 for (const rel of relFiles) {
@@ -93,43 +110,66 @@ for (const rel of relFiles) {
     grouped[key].push(rel);
 }
 
-// ====== بناء XML ======
-let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-xml += `    <!-- ====== الصفحات الرئيسية ====== -->\n`;
-xml += `    <url><loc>${SITE}index.html</loc><priority>1.0</priority></url>\n`;
-xml += `    <url><loc>${SITE}subjects.html</loc><priority>0.9</priority></url>\n`;
-xml += `    <url><loc>${SITE}calendrier.html</loc><priority>0.6</priority></url>\n`;
+// ====== 1) page-sitemap.xml: الصفحات الثابتة/التنقلية ======
+let pageXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+pageXml += `    <!-- ====== الصفحات الرئيسية ====== -->\n`;
+pageXml += `    <url><loc>${SITE}index.html</loc><priority>1.0</priority></url>\n`;
+pageXml += `    <url><loc>${SITE}subjects.html</loc><priority>0.9</priority></url>\n`;
+pageXml += `    <url><loc>${SITE}calendrier.html</loc><priority>0.6</priority></url>\n`;
 
-// المواد: نكتشفها تلقائياً من أسماء مجلدات content/*
-const subjects = fs.readdirSync(CONTENT_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .map(d => d.name);
 for (const s of subjects) {
-    xml += `    <url><loc>${SITE}subject.html?subject=${s}</loc><priority>0.8</priority></url>\n`;
+    pageXml += `    <url><loc>${SITE}subject.html?subject=${s}</loc><priority>0.8</priority></url>\n`;
 }
 
-// ====== الصفحات الجذرية الثابتة ======
 if (existingStaticPages.length > 0) {
-    xml += `\n    <!-- ====== الصفحات الثابتة ====== -->\n`;
+    pageXml += `\n    <!-- ====== الصفحات الثابتة ====== -->\n`;
     for (const p of existingStaticPages) {
-        xml += `    <url><loc>${SITE}${p.file}</loc><priority>${p.priority}</priority></url>\n`;
+        pageXml += `    <url><loc>${SITE}${p.file}</loc><priority>${p.priority}</priority></url>\n`;
     }
 }
+pageXml += `</urlset>\n`;
 
-// ====== صفحات content/ (دروس/تمارين/سلاسل) ======
+// ====== 2) post-sitemap.xml: المحتوى التعليمي (دروس/تمارين/سلاسل) ======
+let postXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 for (const key of Object.keys(grouped).sort()) {
-    xml += `\n    <!-- ====== ${key} ====== -->\n`;
+    postXml += `\n    <!-- ====== ${key} ====== -->\n`;
     for (const rel of grouped[key].sort()) {
-        xml += `    <url><loc>${SITE}${toUrl(rel)}</loc><priority>${getPriority(rel)}</priority></url>\n`;
+        postXml += `    <url><loc>${SITE}${toUrl(rel)}</loc><priority>${getPriority(rel)}</priority></url>\n`;
     }
 }
+postXml += `</urlset>\n`;
 
-xml += `</urlset>\n`;
+// ====== 3) sitemap_index.xml: الفهرس الرئيسي ======
+const lastmod = today();
+const indexXml = `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `    <sitemap>\n` +
+    `        <loc>${SITE}page-sitemap.xml</loc>\n` +
+    `        <lastmod>${lastmod}</lastmod>\n` +
+    `    </sitemap>\n` +
+    `    <sitemap>\n` +
+    `        <loc>${SITE}post-sitemap.xml</loc>\n` +
+    `        <lastmod>${lastmod}</lastmod>\n` +
+    `    </sitemap>\n` +
+    `</sitemapindex>\n`;
 
-fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
+// ====== الكتابة على القرص ======
+fs.writeFileSync(PAGE_SITEMAP_PATH, pageXml);
+fs.writeFileSync(POST_SITEMAP_PATH, postXml);
+fs.writeFileSync(SITEMAP_INDEX_PATH, indexXml);
 
-const totalUrls = relFiles.length + 3 + subjects.length + existingStaticPages.length;
-console.log(`✅ sitemap.xml محدّث بنجاح: ${totalUrls} رابط`);
+// كنحيدو sitemap.xml القديم باش ما يبقاش ملف زايد مضارب مع البنية الجديدة
+if (fs.existsSync(OLD_SITEMAP_PATH)) {
+    fs.unlinkSync(OLD_SITEMAP_PATH);
+    console.log('🗑️  تحيد sitemap.xml القديم (بدّلناه بالبنية الجداد)');
+}
+
+const pageUrls = 3 + subjects.length + existingStaticPages.length;
+const postUrls = relFiles.length;
+
+console.log(`✅ page-sitemap.xml: ${pageUrls} رابط`);
+console.log(`✅ post-sitemap.xml: ${postUrls} رابط`);
+console.log(`✅ sitemap_index.xml: يشير لـ 2 ملفات فوق`);
 
 if (excludedFiles.length > 0) {
     const excludedRel = excludedFiles
@@ -138,3 +178,8 @@ if (excludedFiles.length > 0) {
     console.log(`\n⚠️  ${excludedFiles.length} صفحة مستثناة (noindex) - تأكد واش راهم فعلا "قيد الإعداد":`);
     excludedRel.forEach(rel => console.log(`   - ${rel}`));
 }
+
+console.log(`\n📋 لا تنسى: بدّل السطر فـ robots.txt من`);
+console.log(`   Sitemap: ${SITE}sitemap.xml`);
+console.log(`   لـ`);
+console.log(`   Sitemap: ${SITE}sitemap_index.xml`);
