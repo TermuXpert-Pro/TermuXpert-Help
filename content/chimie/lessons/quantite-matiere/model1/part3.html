@@ -15,8 +15,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Partie 3 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
-    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
-    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -30,7 +39,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
 
     <style>
         body { font-size: 14px; }
@@ -80,12 +89,12 @@
         .scroll-top-btn { display: none; }
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container canvas, .graph-container svg { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
         .schema-box { background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin: 4px 0; text-align: center; }
-        .schema-box canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .schema-box canvas, .schema-box svg { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
         .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
         .toc ul { list-style: none; padding: 0; }
@@ -130,25 +139,13 @@
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
-    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
-    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
-    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
 </head>
 <body>
-    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
-        <div class="xpert-shape-wrap">
-            <div class="xpert-ring"></div>
-            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
-            <div class="xpert-shape-glow"></div>
-            <div class="xpert-shape"></div>
-        </div>
-    </div>
-
 
     <!-- ====== طبقة الحماية غير المرئية ====== -->
 <div class="overlay-protection" id="overlayProtection"></div>
@@ -262,7 +259,7 @@
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
         <div class="profile-simple">
-            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+            <img src="../../../../../assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
         </div>
     </div>
 
@@ -401,7 +398,7 @@
 
                 <!-- ====== SCHÉMA ====== -->
                 <div class="schema-box">
-                    <canvas id="schemaBoyle" width="420" height="140"></canvas>
+                    <svg id="schemaBoyle" width="720" height="317" viewBox="0 0 20 8.8" style="width:100%; max-width:640px; height:auto; display:block; margin:0 auto;"></svg>
                     <p style="color:var(--text-muted); font-size:10px; margin-top:2px;">Lorsqu'on diminue le volume, la pression augmente (\(P \times V = \text{constante}\))</p>
                 </div>
 
@@ -418,7 +415,7 @@
 
                 <!-- ====== GRAPHIQUE ====== -->
                 <div class="graph-container">
-                    <canvas id="graphBoyle" width="400" height="200"></canvas>
+                    <svg id="graphBoyle" width="700" height="335" viewBox="0 0 14.2 6.8" style="width:100%; max-width:600px; height:auto; display:block; margin:0 auto;"></svg>
                     <p>Courbe \(P = f(V)\) pour un gaz parfait à température constante</p>
                 </div>
 
@@ -577,6 +574,11 @@
                     <p style="font-size:11px; color:var(--text-muted);">Une mole de dioxygène \(O_2\) et une mole de diazote \(N_2\) occupent le même volume dans les mêmes conditions.</p>
                 </div>
 
+                <div class="graph-container">
+                    <svg id="graphAvogadro" width="700" height="389" viewBox="0 0 18 10" style="width:100%; max-width:600px; height:auto; display:block; margin:0 auto;"></svg>
+                    <p>Loi d'Avogadro-Ampère : même V_m pour tous les gaz, quelle que soit leur masse molaire M</p>
+                </div>
+
                 <!-- ====== EXEMPLE ====== -->
                 <div class="exemple-box">
                     <div class="ex-title">📝 Exemple</div>
@@ -699,121 +701,9 @@
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
 
-        function drawSchemaBoyle() {
-            var c = document.getElementById('schemaBoyle'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            // Seringue - état initial
-            var x1 = 80, y1 = 30, w1 = 80, h1 = 70;
-            ctx.strokeStyle = '#666'; ctx.lineWidth = 2;
-            ctx.strokeRect(x1, y1, w1, h1);
-            ctx.fillStyle = 'rgba(244, 208, 63, 0.15)';
-            ctx.fillRect(x1, y1, w1, h1);
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '9px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('P = 1 bar', x1 + w1/2, y1 + 15);
-            ctx.fillText('V = 10 L', x1 + w1/2, y1 + 30);
-            ctx.fillStyle = '#888';
-            ctx.fillText('État initial', x1 + w1/2, y1 + h1 + 16);
-
-            // Flèche
-            ctx.strokeStyle = '#F4D03F'; ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(180, 65);
-            ctx.lineTo(210, 65);
-            ctx.lineTo(205, 60);
-            ctx.moveTo(210, 65);
-            ctx.lineTo(205, 70);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F'; ctx.font = '9px Arial';
-            ctx.fillText('Compression', 195, 55);
-
-            // Seringue - état final
-            var x2 = 230, y2 = 30, w2 = 40, h2 = 70;
-            ctx.strokeStyle = '#666'; ctx.lineWidth = 2;
-            ctx.strokeRect(x2, y2, w2, h2);
-            ctx.fillStyle = 'rgba(255, 107, 107, 0.15)';
-            ctx.fillRect(x2, y2, w2, h2);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '9px Arial';
-            ctx.fillText('P = 4 bar', x2 + w2/2, y2 + 15);
-            ctx.fillText('V = 2,5 L', x2 + w2/2, y2 + 30);
-            ctx.fillStyle = '#888';
-            ctx.fillText('État final', x2 + w2/2, y2 + h2 + 16);
-
-            // Résultat
-            ctx.fillStyle = '#4ECDC4'; ctx.font = '11px Arial';
-            ctx.fillText('P × V = constante', 320, 65);
-            ctx.fillStyle = '#888'; ctx.font = '9px Arial';
-            ctx.fillText('1 × 10 = 4 × 2,5', 320, 80);
-        }
-
-        function drawGraphBoyle() {
-            var c = document.getElementById('graphBoyle'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            var ox = 50, oy = h - 30, graphW = w - 70, graphH = h - 50;
-
-            // Axes
-            ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(ox, 10); ctx.lineTo(ox, oy); ctx.lineTo(ox + graphW, oy);
-            ctx.stroke();
-
-            // Labels
-            ctx.fillStyle = '#888'; ctx.font = '10px Arial'; ctx.textAlign = 'center';
-            ctx.fillText('V (L) →', ox + graphW/2, h - 2);
-            ctx.save(); ctx.translate(16, h/2); ctx.rotate(-Math.PI/2);
-            ctx.fillText('P (bar) ↑', 0, 0); ctx.restore();
-
-            // Données Boyle-Mariotte
-            var data = [
-                {V: 10, P: 1},
-                {V: 5, P: 2},
-                {V: 3.33, P: 3},
-                {V: 2.5, P: 4}
-            ];
-            var maxV = 12, maxP = 5;
-
-            ctx.strokeStyle = '#4ECDC4'; ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + (data[i].V / maxV) * graphW;
-                var y = oy - (data[i].P / maxP) * graphH;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + (data[i].V / maxV) * graphW;
-                var y = oy - (data[i].P / maxP) * graphH;
-                ctx.fillStyle = '#F4D03F';
-                ctx.beginPath(); ctx.arc(x, y, 4, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#ccc'; ctx.font = '9px Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText('(' + data[i].V + ',' + data[i].P + ')', x, y - 10);
-            }
-
-            // Courbe d'hyperbole
-            ctx.fillStyle = '#888'; ctx.font = '9px Arial'; ctx.textAlign = 'left';
-            ctx.fillText('P = constante / V', ox + 10, 22);
-            ctx.fillStyle = '#4ECDC4';
-            ctx.fillText('(T = constante)', ox + 10, 36);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawSchemaBoyle();
-                drawGraphBoyle();
-            }, 400);
-        });
-
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

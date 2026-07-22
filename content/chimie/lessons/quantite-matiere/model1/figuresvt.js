@@ -164,11 +164,201 @@
         U.drawNote(s, 'M = 56 g/mol', 8.1, -1.4, { color: MUTED, fontSize: s.fontSize * 0.48 });
     }
 
+    // ============================================================
+    // PARTIE 2 — Section 1 : "Masse volumique" (ρ = m/V)
+    // (schema-box #schemaMasseeVolumique)
+    // كيبيّن بأن ρ خاصية ذاتية ديال المادة (intrinsèque) : جوج
+    // عينات ديال نفس السائل بحجمين مختلفين عندهم نفس ρ = m/V.
+    // ============================================================
+    function drawContainer(s, x, yTop, w, h, fillRatio, fillColor) {
+        // الحاوية (الإطار الخارجي)
+        U.drawRect(s, x, yTop, w, h, { color: '#666666', lineWidth: 1.3, rx: 0.12 });
+        // السائل بالداخل
+        const liquidH = h * fillRatio;
+        const bottom = yTop - h;
+        U.drawRect(s, x, bottom + liquidH, w, liquidH, {
+            color: 'none', fill: fillColor, opacity: 0.55
+        });
+        return bottom;
+    }
+
+    function drawSchemaMasseeVolumique() {
+        const s = U.setupSVG('schemaMasseeVolumique', { xMin: 0, xMax: 18, yMin: -1.6, yMax: 8.2 });
+        if (!s) return;
+
+        U.drawNote(s, 'La masse volumique ρ = m/V : une propriété intrinsèque du liquide', 9, 7.75, {
+            color: '#DDDDDD', fontSize: s.fontSize * 0.5, anchor: 'middle'
+        });
+
+        // عينة صغيرة
+        const bottomA = drawContainer(s, 1.5, 6.3, 2.5, 5.1, 0.62, TEAL);
+        U.drawNote(s, 'm₁ , V₁', 2.75, bottomA - 0.55, { color: '#DDDDDD', fontSize: s.fontSize * 0.65, anchor: 'middle' });
+
+        // إشارة التساوي
+        U.drawNote(s, '=', 7, 3.7, { color: GOLD, fontSize: s.fontSize * 1.4, anchor: 'middle', weight: 'bold' });
+
+        // عينة كبيرة (نفس السائل)
+        const bottomB = drawContainer(s, 10, 7.0, 4, 6.5, 0.62, TEAL);
+        U.drawNote(s, 'm₂ , V₂', 12, bottomB - 0.55, { color: '#DDDDDD', fontSize: s.fontSize * 0.65, anchor: 'middle' });
+
+        // الخلاصة أسفل الرسم
+        U.drawNote(s, 'ρ = m₁ / V₁ = m₂ / V₂  (même liquide)', 9, -1.15, {
+            color: TEAL, fontSize: s.fontSize * 0.62, anchor: 'middle', weight: 'bold'
+        });
+    }
+
+    // ============================================================
+    // PARTIE 2 — Section 3 : "La densité" (d = m / m_eau)
+    // (schema-box #schemaDensite)
+    // كيبيّن المفهوم الأساسي: نفس الحجم V ديال جوج سوائل مختلفين
+    // (Liquide S و الماء) عندهم كتلتين مختلفتين → d = m / m_eau.
+    // ============================================================
+    function drawSchemaDensite() {
+        const s = U.setupSVG('schemaDensite', { xMin: 0, xMax: 15.5, yMin: -1.6, yMax: 8.2 });
+        if (!s) return;
+
+        U.drawNote(s, 'La densité : comparaison à volume égal', 7.75, 7.75, {
+            color: '#DDDDDD', fontSize: s.fontSize * 0.55, anchor: 'middle'
+        });
+
+        // نفس الحجم V ونفس مستوى الامتلاء للجوج
+        const bottomA = drawContainer(s, 1.5, 6.3, 3, 5.1, 0.63, GOLD);
+        U.drawNote(s, 'Liquide S', 3, bottomA - 0.5, { color: GOLD, fontSize: s.fontSize * 0.65, anchor: 'middle' });
+        U.drawNote(s, 'masse m', 3, bottomA - 1.05, { color: MUTED, fontSize: s.fontSize * 0.55, anchor: 'middle' });
+
+        U.drawNote(s, 'd =', 6.5, 4.0, { color: GOLD, fontSize: s.fontSize * 0.85, anchor: 'middle', weight: 'bold' });
+        U.drawNote(s, 'm', 8.6, 4.55, { color: '#DDDDDD', fontSize: s.fontSize * 0.6, anchor: 'middle' });
+        U.drawLine(s, 7.9, 4.25, 9.3, 4.25, { color: '#DDDDDD', lineWidth: 1 });
+        U.drawNote(s, 'm_eau', 8.6, 3.85, { color: '#DDDDDD', fontSize: s.fontSize * 0.5, anchor: 'middle' });
+
+        const bottomB = drawContainer(s, 11, 6.3, 3, 5.1, 0.63, TEAL);
+        U.drawNote(s, 'Eau (référence)', 12.5, bottomB - 0.5, { color: TEAL, fontSize: s.fontSize * 0.6, anchor: 'middle' });
+        U.drawNote(s, 'masse m_eau', 12.5, bottomB - 1.05, { color: MUTED, fontSize: s.fontSize * 0.55, anchor: 'middle' });
+
+        U.drawNote(s, 'Même volume V pour les deux liquides  →  d = m / m_eau', 7.75, -1.15, {
+            color: TEAL, fontSize: s.fontSize * 0.55, anchor: 'middle', weight: 'bold'
+        });
+    }
+
+    // ============================================================
+    // PARTIE 3 — Section 1 : Loi de Boyle-Mariotte (schéma seringue)
+    // (schema-box #schemaBoyle)
+    // العمود الأول: الحالة الأولية (بارول كامل بالغاز). العمود
+    // الثاني: نفس البارول (contour منقط = نفس الحجم الأصلي) + خط
+    // صلب كيبين فين وصل المكبس بعد الضغط (الحجم تقلص فعلا، ماشي
+    // غير العرض تصغر بطريقة تحكيمية).
+    // ============================================================
+    function drawSchemaBoyle() {
+        const s = U.setupSVG('schemaBoyle', { xMin: 0, xMax: 20, yMin: -2.3, yMax: 6.5 });
+        if (!s) return;
+
+        const baseline = 0.7;
+        const barrelH = 4.6, barrelW = 3.2;
+
+        // --- الحالة الأولية ---
+        const x1 = 1.5;
+        U.drawRect(s, x1, baseline + barrelH, barrelW, barrelH, { color: '#666666', lineWidth: 1.4 });
+        U.drawRect(s, x1, baseline + barrelH, barrelW, barrelH, { color: 'none', fill: GOLD, opacity: 0.18 });
+        const cx1 = x1 + barrelW / 2;
+        U.drawNote(s, 'État initial', cx1, 0.15, { color: '#DDDDDD', fontSize: s.fontSize * 0.62, anchor: 'middle', weight: 'bold' });
+        U.drawNote(s, 'P = 1 bar', cx1, -0.55, { color: GOLD, fontSize: s.fontSize * 0.6, anchor: 'middle' });
+        U.drawNote(s, 'V = 10 L', cx1, -1.15, { color: GOLD, fontSize: s.fontSize * 0.6, anchor: 'middle' });
+
+        // --- سهم الضغط ---
+        U.drawLine(s, x1 + barrelW + 0.6, 3, x1 + barrelW + 5.5, 3, { color: GOLD, lineWidth: 1.5 });
+        s.svg.appendChild((function () {
+            const p = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            const tipX = x1 + barrelW + 5.5;
+            p.setAttribute('points', `${tipX},${-3} ${tipX - 0.5},${-3.35} ${tipX - 0.5},${-2.65}`);
+            p.setAttribute('fill', GOLD);
+            return p;
+        })());
+        U.drawNote(s, 'Compression', x1 + barrelW + 3.05, 3.65, { color: GOLD, fontSize: s.fontSize * 0.55, anchor: 'middle' });
+
+        // --- الحالة النهائية ---
+        const x2 = 12.2;
+        const compressedH = barrelH * (2.5 / 10);
+        // contour الأصلي (منقط) باش يبان أن البارول ماتبدلش
+        U.drawRect(s, x2, baseline + barrelH, barrelW, barrelH, { color: '#444444', lineWidth: 1, dashed: true, dashPattern: [4, 3] });
+        // المكبس فموضعه الجديد
+        U.drawLine(s, x2, baseline + compressedH, x2 + barrelW, baseline + compressedH, { color: '#EEEEEE', lineWidth: 1.8 });
+        U.drawRect(s, x2, baseline + compressedH, barrelW, compressedH, { color: 'none', fill: RED, opacity: 0.4 });
+        const cx2 = x2 + barrelW / 2;
+        U.drawNote(s, 'État final', cx2, 0.15, { color: '#DDDDDD', fontSize: s.fontSize * 0.62, anchor: 'middle', weight: 'bold' });
+        U.drawNote(s, 'P = 4 bar', cx2, -0.55, { color: RED, fontSize: s.fontSize * 0.6, anchor: 'middle' });
+        U.drawNote(s, 'V = 2,5 L', cx2, -1.15, { color: RED, fontSize: s.fontSize * 0.6, anchor: 'middle' });
+
+        // --- النتيجة ---
+        U.drawNote(s, 'P × V = constante', cx1 + 8.6, 5.9, { color: TEAL, fontSize: s.fontSize * 0.62, anchor: 'middle', weight: 'bold' });
+        U.drawNote(s, '1 × 10 = 4 × 2,5', cx1 + 8.6, 5.2, { color: MUTED, fontSize: s.fontSize * 0.55, anchor: 'middle' });
+    }
+
+    // ============================================================
+    // PARTIE 3 — Section 1 : Courbe P = f(V) (graph-container #graphBoyle)
+    // مدى المحورين V(0-12L) وP(0-5bar) قريبين من بعضياتهم، فما
+    // كاينش تشويه، وM(1) uniforme تلقائيا.
+    // ============================================================
+    function drawGraphBoyle() {
+        const s = U.setupSVG('graphBoyle', { xMin: -1.6, xMax: 12.6, yMin: -1.2, yMax: 5.6 });
+        if (!s) return;
+
+        U.drawAxesWithArrows(s, { xLabel: 'V (L)', yLabel: 'P (bar)', labelColor: TEAL });
+        U.drawGrid(s);
+
+        // المنحنى P = 10/V
+        U.drawCurve(s, v => 10 / v, 1.9, 12.3, { color: TEAL, lineWidth: 2.2, steps: 200 });
+
+        const data = [{ V: 10, P: 1 }, { V: 5, P: 2 }, { V: 3.33, P: 3 }, { V: 2.5, P: 4 }];
+        data.forEach(pt => {
+            U.drawPoint(s, { x: pt.V, y: pt.P, radius: 0.16, color: GOLD, showCoords: false });
+            const label = '(' + pt.V.toString().replace('.', ',') + ' ; ' + pt.P + ')';
+            U.drawNote(s, label, pt.V + 0.25, pt.P + 0.45, { color: '#DDDDDD', fontSize: s.fontSize * 0.55 });
+        });
+
+        U.drawNote(s, 'P = constante / V', -1.3, 5.15, { color: MUTED, fontSize: s.fontSize * 0.58 });
+        U.drawNote(s, '(T = constante)', -1.3, 4.6, { color: TEAL, fontSize: s.fontSize * 0.58 });
+    }
+
+    // ============================================================
+    // PARTIE 3 — Section 4 : Loi d'Avogadro-Ampère (جديدة)
+    // (ماكانتش موجودة فالأصل) — كتبيّن بصريا أن ثلاث غازات مختلفة
+    // (O₂, N₂, CO₂)، بنفس T وP، عندهم نفس V_m = 22,4 L رغم اختلاف
+    // الكتلة المولية M ديالهم — هاذشي جوهر السؤال ديال هاد الجزء.
+    // ============================================================
+    function drawAvogadroAmpere() {
+        const s = U.setupSVG('graphAvogadro', { xMin: 0, xMax: 18, yMin: -2, yMax: 8 });
+        if (!s) return;
+
+        U.drawNote(s, "Même T, même P → même volume molaire V_m pour tous les gaz", 9, 7.5, {
+            color: '#DDDDDD', fontSize: s.fontSize * 0.52, anchor: 'middle'
+        });
+
+        const gases = [
+            { x: 1.5, name: 'O₂', M: '32 g/mol', color: TEAL },
+            { x: 7, name: 'N₂', M: '28 g/mol', color: GOLD },
+            { x: 12.5, name: 'CO₂', M: '44 g/mol', color: RED }
+        ];
+        const w = 4.5, h = 5.4, yTop = 6.3;
+        gases.forEach(g => {
+            const bottom = drawContainer(s, g.x, yTop, w, h, 0.8, g.color);
+            const cx = g.x + w / 2;
+            U.drawNote(s, g.name, cx, yTop + 0.5, { color: g.color, fontSize: s.fontSize * 0.7, anchor: 'middle', weight: 'bold' });
+            U.drawNote(s, '1 mol', cx, bottom - 0.5, { color: '#DDDDDD', fontSize: s.fontSize * 0.58, anchor: 'middle' });
+            U.drawNote(s, 'V_m = 22,4 L', cx, bottom - 1.05, { color: '#DDDDDD', fontSize: s.fontSize * 0.55, anchor: 'middle' });
+            U.drawNote(s, 'M = ' + g.M, cx, bottom - 1.55, { color: MUTED, fontSize: s.fontSize * 0.48, anchor: 'middle' });
+        });
+    }
+
     // ------------------------------------------------------------
     function initFigures() {
         drawMoleContainer();
         drawMassMoleRelation();
         drawCompareMoles();
+        drawSchemaMasseeVolumique();
+        drawSchemaDensite();
+        drawSchemaBoyle();
+        drawGraphBoyle();
+        drawAvogadroAmpere();
     }
 
     window.XpertFigures = { initFigures };

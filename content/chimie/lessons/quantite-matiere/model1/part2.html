@@ -15,8 +15,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Partie 2 - Grandeurs physiques liées à la quantité de matière | Xpert</title>
-    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
-    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
@@ -30,7 +39,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
 
     <style>
         body { font-size: 14px; }
@@ -80,12 +89,12 @@
         .scroll-top-btn { display: none; }
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container canvas, .graph-container svg { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
         .schema-box { background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin: 4px 0; text-align: center; }
-        .schema-box canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .schema-box canvas, .schema-box svg { max-width: 100%; border-radius: 4px; background: #0D1117; }
         .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
         .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
         .toc ul { list-style: none; padding: 0; }
@@ -130,25 +139,13 @@
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
-    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
-    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
-    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
 </head>
 <body>
-    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
-        <div class="xpert-shape-wrap">
-            <div class="xpert-ring"></div>
-            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
-            <div class="xpert-shape-glow"></div>
-            <div class="xpert-shape"></div>
-        </div>
-    </div>
-
 
     <!-- ====== طبقة الحماية غير المرئية ====== -->
 <div class="overlay-protection" id="overlayProtection"></div>
@@ -262,7 +259,7 @@
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
         <div class="profile-simple">
-            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+            <img src="../../../../../assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
         </div>
     </div>
 
@@ -417,7 +414,7 @@
 
                 <!-- ====== SCHÉMA ====== -->
                 <div class="schema-box">
-                    <canvas id="schemaMasseeVolumique" width="420" height="140"></canvas>
+                    <svg id="schemaMasseeVolumique" width="720" height="392" viewBox="0 0 18 9.8" style="width:100%; max-width:600px; height:auto; display:block; margin:0 auto;"></svg>
                     <p style="color:var(--text-muted); font-size:10px; margin-top:2px;">La masse volumique = masse / volume</p>
                 </div>
 
@@ -503,7 +500,7 @@
 
                 <!-- ====== SCHÉMA ====== -->
                 <div class="schema-box">
-                    <canvas id="schemaDensite" width="420" height="140"></canvas>
+                    <svg id="schemaDensite" width="620" height="392" viewBox="0 0 15.5 9.8" style="width:100%; max-width:520px; height:auto; display:block; margin:0 auto;"></svg>
                     <p style="color:var(--text-muted); font-size:10px; margin-top:2px;">Même volume V, masses différentes → densité \(d = m / m_{eau}\)</p>
                 </div>
 
@@ -610,108 +607,9 @@
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
 
-        function drawSchemaMasseeVolumique() {
-            var c = document.getElementById('schemaMasseeVolumique'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            // Premier récipient
-            var x1 = 80, y1 = 25, w1 = 60, h1 = 80;
-            ctx.strokeStyle = '#666'; ctx.lineWidth = 2;
-            ctx.strokeRect(x1, y1, w1, h1);
-            ctx.fillStyle = 'rgba(78, 205, 196, 0.3)';
-            ctx.fillRect(x1, y1, w1, h1 * 0.7);
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial'; ctx.textAlign = 'center';
-            ctx.fillText('masse = m', x1 + w1/2, y1 + h1 + 18);
-            ctx.fillText('volume = V', x1 + w1/2, y1 + h1 + 34);
-
-            // Symbole =
-            ctx.fillStyle = '#F4D03F'; ctx.font = '20px Arial';
-            ctx.fillText('=', 170, 75);
-
-            // Deuxième récipient
-            var x2 = 210, y2 = 25, w2 = 60, h2 = 80;
-            ctx.strokeStyle = '#666'; ctx.lineWidth = 2;
-            ctx.strokeRect(x2, y2, w2, h2);
-            ctx.fillStyle = 'rgba(244, 208, 63, 0.3)';
-            ctx.fillRect(x2, y2, w2, h2 * 0.5);
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '11px Arial';
-            ctx.fillText('ρ = m / V', x2 + w2/2, y2 + h2 + 18);
-
-            // Flèche
-            ctx.strokeStyle = '#888'; ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(300, 55);
-            ctx.lineTo(330, 55);
-            ctx.lineTo(325, 50);
-            ctx.moveTo(330, 55);
-            ctx.lineTo(325, 60);
-            ctx.stroke();
-
-            // Récipient d'eau
-            var x3 = 340, y3 = 25, w3 = 60, h3 = 80;
-            ctx.strokeStyle = '#666'; ctx.lineWidth = 2;
-            ctx.strokeRect(x3, y3, w3, h3);
-            ctx.fillStyle = 'rgba(78, 205, 196, 0.2)';
-            ctx.fillRect(x3, y3, w3, h3 * 0.6);
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Référence', x3 + w3/2, y3 + h3 + 18);
-            ctx.fillText('(eau)', x3 + w3/2, y3 + h3 + 32);
-        }
-
-        function drawSchemaDensite() {
-            var c = document.getElementById('schemaDensite'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            // Liquide S
-            var x1 = 80, y1 = 25, w1 = 60, h1 = 80;
-            ctx.strokeStyle = '#666'; ctx.lineWidth = 2;
-            ctx.strokeRect(x1, y1, w1, h1);
-            ctx.fillStyle = 'rgba(244, 208, 63, 0.3)';
-            ctx.fillRect(x1, y1, w1, h1 * 0.65);
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '11px Arial'; ctx.textAlign = 'center';
-            ctx.fillText('Liquide S', x1 + w1/2, y1 + h1 + 18);
-            ctx.fillText('masse = m', x1 + w1/2, y1 + h1 + 34);
-            ctx.fillStyle = '#888'; ctx.font = '9px Arial';
-            ctx.fillText('volume V', x1 + w1/2, y1 + h1 + 48);
-
-            // Symbole =
-            ctx.fillStyle = '#F4D03F'; ctx.font = '20px Arial';
-            ctx.fillText('d =', 170, 75);
-
-            // Eau
-            var x2 = 220, y2 = 25, w2 = 60, h2 = 80;
-            ctx.strokeStyle = '#666'; ctx.lineWidth = 2;
-            ctx.strokeRect(x2, y2, w2, h2);
-            ctx.fillStyle = 'rgba(78, 205, 196, 0.25)';
-            ctx.fillRect(x2, y2, w2, h2 * 0.65);
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial';
-            ctx.fillText('Eau', x2 + w2/2, y2 + h2 + 18);
-            ctx.fillText('masse = m₀', x2 + w2/2, y2 + h2 + 34);
-            ctx.fillStyle = '#888'; ctx.font = '9px Arial';
-            ctx.fillText('volume V', x2 + w2/2, y2 + h2 + 48);
-
-            // Résultat
-            ctx.fillStyle = '#F4D03F'; ctx.font = '14px Arial';
-            ctx.fillText('d = m / m₀', 350, 65);
-            ctx.fillStyle = '#888'; ctx.font = '10px Arial';
-            ctx.fillText('(même volume V)', 350, 85);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawSchemaMasseeVolumique();
-                drawSchemaDensite();
-            }, 400);
-        });
-
     </script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
