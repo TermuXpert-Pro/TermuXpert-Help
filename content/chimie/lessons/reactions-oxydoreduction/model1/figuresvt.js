@@ -1,195 +1,257 @@
 // ============================================================
-// figuresvt.js — Partie 1 : Transfert d'électrons (Oxydo-réduction)
-// يستعمل SvgUtils (لازم يتحمل قبل هاذ الملف). كل رسم مبني على
-// نظام إحداثيات رياضي عبر setupSVG، حتى إلى ماكانش "منحنى" رياضي
-// كلاسيكي، باش نستافدو من الدقة و التموضع الدقيق للنصوص والأشكال.
+// figuresvt.js
+// رسومات SVG الخاصة بدرس "Les réactions d'oxydo-réduction"
+// (Partie 1 → Partie 5), مبنية فوق SvgUtils (assets/js/svg-utils.js).
+// كل دالة كتستهدف <svg id="..."> معين، وكتخرج بهدوء إذا ماكانش
+// موجود فالصفحة الحالية (كل صفحة فيها غير السفج ديالها).
+//
+// ملاحظة مهمة: دالة SvgUtils.drawNote كتاخد الإحداثية y مباشرة
+// كيفما غادي تنكتب فـ SVG (يعني مقلوبة بالفعل)، بخلاف باقي الدوال
+// (drawCircle, drawLine, drawVector...) اللي كتقلب y بحالها. لهذا
+// درنا دالة صغيرة note() هنا كتقلب y قبل ما تعيّط drawNote الحقيقية،
+// باش نخدمو بمنطق رياضي واحد "y كيزيد لفوق" فكل الإحداثيات.
+//
+// الاستعمال فكل صفحة:
+//   <script src="../../../../../assets/js/svg-utils.js"></script>
+//   <script src="figuresvt.js"></script>
 // ============================================================
 
 (function () {
     if (typeof SvgUtils === 'undefined') return;
 
-    // ------------------------------------------------------------
-    // Helper: نص مركّز (centré) بخط عريض اختياري — كيستافد من
-    // opts.anchor اللي زدنا فـ drawNote
-    // ------------------------------------------------------------
-    function label(s, text, x, y, opts) {
-        SvgUtils.drawNote(s, text, x, y, Object.assign({ anchor: 'middle' }, opts));
+    const RED = '#FF6B6B';    // Oxydant / électrons
+    const TEAL = '#4ECDC4';   // Réducteur
+    const GOLD = '#F4D03F';   // Résultat / bilan
+    const MUTED = '#888888';
+
+    function note(s, text, x, y, opts) {
+        SvgUtils.drawNote(s, text, x, -y, opts);
     }
 
-    // ============================================================
-    // FIGURE 1 — Schéma de l'expérience : lame de Zn dans CuSO4(aq)
-    // (Section 1 — n'existait pas dans la version canvas, ajoutée
-    // car le protocole + observations méritent un visuel "avant/après")
-    // ============================================================
-    function drawTubeExperiment(svgId) {
-        const s = SvgUtils.setupSVG(svgId, { xMin: 0, xMax: 24, yMin: 0, yMax: 13 });
+    // ------------------------------------------------------------
+    // Partie 1 · Section 2 : Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)
+    // ------------------------------------------------------------
+    function drawRedoxZnCu() {
+        const s = SvgUtils.setupSVG('svgRedoxZnCu', { xMin: 0, xMax: 22, yMin: 0, yMax: 8 });
         if (!s) return;
 
-        function tube(cx, liquidColor, liquidOpacity, showRust) {
-            const width = 4.2, x = cx - width / 2;
-            const yTop = 10.4, height = 7.2;
-            const yBottom = yTop - height;
+        SvgUtils.drawCircle(s, 4, 5.6, 1.4, { fill: '#4ECDC422', color: TEAL, lineWidth: 2 });
+        note(s, 'Zn', 4, 5.25, { color: TEAL, fontSize: 1.15, anchor: 'middle', weight: 'bold' });
+        note(s, 'Réducteur', 4, 3.65, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(cède 2e⁻)', 4, 2.95, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
 
-            // ---- Corps du tube (forme "pilule" = tube à essai simplifié)
-            SvgUtils.drawRect(s, x, yTop, width, height, {
-                rx: width / 2,
-                color: '#5A6B7A',
-                lineWidth: 1.4
-            });
-            // ---- Liquide à l'intérieur (légèrement plus petit que le tube)
-            const pad = 0.22;
-            SvgUtils.drawRect(s, x + pad, yTop - pad, width - 2 * pad, height - 2 * pad - 0.3, {
-                rx: (width - 2 * pad) / 2,
-                fill: liquidColor,
-                opacity: liquidOpacity,
-                color: 'none'
-            });
-            // ---- Ligne de surface du liquide
-            SvgUtils.drawLine(s, x + pad, yTop - 1.3, x + width - pad, yTop - 1.3, {
-                color: liquidColor, lineWidth: 1
-            });
+        SvgUtils.drawVector(s, 6.2, 5.6, 15.8, 5.6, {
+            color: RED, lineWidth: 2.5, arrowSize: 0.6,
+            label: '2 e⁻', labelColor: RED, labelOffsetY: 0.9, fontSize: 0.85
+        });
 
-            // ---- Lame de zinc (dépasse du liquide)
-            const stripX = cx - 0.32, stripW = 0.64;
-            SvgUtils.drawRect(s, stripX, yTop + 0.9, stripW, height - 1.6, {
-                fill: '#B9C2C9',
-                color: '#7C8892',
-                lineWidth: 1
-            });
-            label(s, 'Zn', cx, yTop + 1.35, { color: '#2A2A3E', fontSize: 0.62, weight: 'bold' });
+        SvgUtils.drawCircle(s, 18, 5.6, 1.4, { fill: '#FF6B6B22', color: RED, lineWidth: 2 });
+        note(s, 'Cu²⁺', 18, 5.25, { color: RED, fontSize: 1.05, anchor: 'middle', weight: 'bold' });
+        note(s, 'Oxydant', 18, 3.65, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(capte 2e⁻)', 18, 2.95, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
 
-            // ---- Dépôt rouge-brun sur la lame (seulement "après")
-            if (showRust) {
-                const dots = [
-                    [-0.05, yBottom + 2.3], [0.18, yBottom + 1.9], [-0.2, yBottom + 1.6],
-                    [0.05, yBottom + 1.3], [-0.15, yBottom + 1.0], [0.15, yBottom + 0.7]
-                ];
-                dots.forEach(([dx, dy]) => {
-                    SvgUtils.drawCircle(s, cx + dx, dy, 0.16, { fill: '#B5651D', color: 'none' });
-                });
-            }
-            return { x, yTop, yBottom, width };
-        }
-
-        // ---- Tube "Avant"
-        const t1 = tube(6, '#3B82C4', 0.85, false);
-        label(s, 'Avant réaction', 6, 12.1, { color: '#F4D03F', fontSize: 0.78, weight: 'bold' });
-        label(s, 'CuSO₄(aq) bleue', 6, t1.yBottom - 0.7, { color: '#3B82C4', fontSize: 0.55 });
-        label(s, '+ lame de Zn', 6, t1.yBottom - 1.4, { color: '#888', fontSize: 0.5 });
-
-        // ---- Flèche de transformation
-        SvgUtils.drawVector(s, 9.3, 7.2, 14.7, 7.2, { color: '#F4D03F', arrowSize: 0.55, lineWidth: 2 });
-        label(s, 'réaction', 12, 7.9, { color: '#F4D03F', fontSize: 0.55, italic: true });
-
-        // ---- Tube "Après"
-        const t2 = tube(18, '#3B82C4', 0.12, true);
-        label(s, 'Après réaction', 18, 12.1, { color: '#F4D03F', fontSize: 0.78, weight: 'bold' });
-        label(s, 'Solution incolore', 18, t2.yBottom - 0.7, { color: '#888', fontSize: 0.55 });
-        label(s, 'Dépôt rouge-brun (Cu)', 18, t2.yBottom - 1.4, { color: '#B5651D', fontSize: 0.5, weight: 'bold' });
-
-        // ---- petit trait pointant vers le dépôt
-        SvgUtils.drawLine(s, 18, t2.yBottom - 1.1, 18.35, t2.yBottom + 1.0, { color: '#B5651D', lineWidth: 1, dashed: true, dashPattern: [3, 2] });
+        note(s, 'Zn(s) → Zn²⁺(aq) + 2e⁻   (Oxydation)', 11, 1.5, { color: TEAL, fontSize: 0.78, anchor: 'middle', weight: 'bold' });
+        note(s, 'Cu²⁺(aq) + 2e⁻ → Cu(s)   (Réduction)', 11, 0.55, { color: RED, fontSize: 0.78, anchor: 'middle', weight: 'bold' });
     }
 
-    // ============================================================
-    // FIGURE générique — schéma de transfert d'électrons entre
-    // un réducteur (cède des e⁻) et un oxydant (capte des e⁻)
-    // Réutilisée pour Zn/Cu²⁺, Cu/Ag⁺ et le schéma "concept"
-    // ============================================================
-    function drawElectronTransfer(svgId, cfg) {
-        const nEq = cfg.equations.length;
-        const yMax = nEq >= 3 ? 10.5 : 9.2;
-        const s = SvgUtils.setupSVG(svgId, { xMin: 0, xMax: 22, yMin: 0, yMax });
+    // ------------------------------------------------------------
+    // Partie 1 · Section 3 : Cu(s) + 2Ag⁺(aq) → Cu²⁺(aq) + 2Ag(s)
+    // ------------------------------------------------------------
+    function drawRedoxCuAg() {
+        const s = SvgUtils.setupSVG('svgRedoxCuAg', { xMin: 0, xMax: 22, yMin: 0, yMax: 9.5 });
         if (!s) return;
 
-        const cy = yMax - 2.7;
-        const r = 1.55;
+        SvgUtils.drawCircle(s, 4, 7.1, 1.4, { fill: '#4ECDC422', color: TEAL, lineWidth: 2 });
+        note(s, 'Cu', 4, 6.75, { color: TEAL, fontSize: 1.15, anchor: 'middle', weight: 'bold' });
+        note(s, 'Réducteur', 4, 5.15, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(cède 2e⁻)', 4, 4.45, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
 
-        // ---- Espèce réductrice (gauche)
-        SvgUtils.drawCircle(s, 4.3, cy, r, {
-            fill: cfg.leftColor || '#4ECDC4', opacity: 0.18, color: cfg.leftColor || '#4ECDC4', lineWidth: 2
+        SvgUtils.drawVector(s, 6.2, 7.1, 15.8, 7.1, {
+            color: RED, lineWidth: 2.5, arrowSize: 0.6,
+            label: '2 e⁻', labelColor: RED, labelOffsetY: 0.9, fontSize: 0.85
         });
-        label(s, cfg.leftFormula, 4.3, cy + 0.18, { color: cfg.leftColor || '#4ECDC4', fontSize: 0.95, weight: 'bold' });
-        label(s, 'Réducteur', 4.3, cy - r - 0.85, { color: '#AAAAAA', fontSize: 0.58, weight: 'bold' });
-        label(s, cfg.leftSub || 'cède des e⁻', 4.3, cy - r - 1.5, { color: '#888888', fontSize: 0.5 });
 
-        // ---- Espèce oxydante (droite)
-        SvgUtils.drawCircle(s, 17.7, cy, r, {
-            fill: cfg.rightColor || '#FF6B6B', opacity: 0.18, color: cfg.rightColor || '#FF6B6B', lineWidth: 2
-        });
-        label(s, cfg.rightFormula, 17.7, cy + 0.18, { color: cfg.rightColor || '#FF6B6B', fontSize: 0.95, weight: 'bold' });
-        label(s, 'Oxydant', 17.7, cy - r - 0.85, { color: '#AAAAAA', fontSize: 0.58, weight: 'bold' });
-        label(s, cfg.rightSub || 'capte des e⁻', 17.7, cy - r - 1.5, { color: '#888888', fontSize: 0.5 });
+        SvgUtils.drawCircle(s, 18, 7.1, 1.4, { fill: '#FF6B6B22', color: RED, lineWidth: 2 });
+        note(s, 'Ag⁺', 18, 6.75, { color: RED, fontSize: 1.05, anchor: 'middle', weight: 'bold' });
+        note(s, 'Oxydant', 18, 5.15, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(capte 1e⁻)', 18, 4.45, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
 
-        // ---- Flèche de transfert d'électrons
-        SvgUtils.drawVector(s, 6.1, cy, 15.9, cy, {
-            color: '#F4D03F', arrowSize: 0.6, lineWidth: 2.2
-        });
-        label(s, cfg.electronLabel || 'e⁻', 11, cy + 0.75, { color: '#F4D03F', fontSize: 0.68, weight: 'bold' });
-
-        // ---- Ligne de séparation
-        SvgUtils.drawLine(s, 1.2, cy - r - 2.05, 20.8, cy - r - 2.05, { color: '#2A2A3E', lineWidth: 1 });
-
-        // ---- Équations (demi-équations + bilan éventuel)
-        let ey = cy - r - 2.75;
-        cfg.equations.forEach(eq => {
-            label(s, eq.text, 11, ey, { color: eq.color || '#DDDDDD', fontSize: 0.62 });
-            ey -= 0.85;
-        });
+        note(s, 'Cu(s) → Cu²⁺(aq) + 2e⁻   (Oxydation)', 11, 2.9, { color: TEAL, fontSize: 0.75, anchor: 'middle', weight: 'bold' });
+        note(s, '2Ag⁺(aq) + 2e⁻ → 2Ag(s)   (Réduction)', 11, 1.9, { color: RED, fontSize: 0.75, anchor: 'middle', weight: 'bold' });
+        note(s, 'Cu(s) + 2Ag⁺(aq) → Cu²⁺(aq) + 2Ag(s)', 11, 0.75, { color: GOLD, fontSize: 0.8, anchor: 'middle', weight: 'bold' });
     }
 
-    function drawZnCuScheme(svgId) {
-        drawElectronTransfer(svgId, {
-            leftFormula: 'Zn', leftColor: '#4ECDC4', leftSub: '(cède 2 e⁻)',
-            rightFormula: 'Cu²⁺', rightColor: '#FF6B6B', rightSub: '(capte 2 e⁻)',
-            electronLabel: '2 e⁻',
-            equations: [
-                { text: 'Zn(s) → Zn²⁺(aq) + 2 e⁻   (oxydation)', color: '#4ECDC4' },
-                { text: 'Cu²⁺(aq) + 2 e⁻ → Cu(s)   (réduction)', color: '#FF6B6B' }
-            ]
+    // ------------------------------------------------------------
+    // Partie 2 · Section 2 : schéma général d'un couple Ox/Red
+    // ------------------------------------------------------------
+    function drawCoupleGeneral() {
+        const s = SvgUtils.setupSVG('svgCouple', { xMin: 0, xMax: 22, yMin: 0, yMax: 7 });
+        if (!s) return;
+
+        note(s, 'Oxydant', 4.5, 5, { color: RED, fontSize: 1.05, anchor: 'middle', weight: 'bold' });
+        note(s, '(capte e⁻)', 4.5, 4, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
+
+        SvgUtils.drawVector(s, 7.3, 5, 14.7, 5, {
+            color: RED, lineWidth: 2.2, arrowSize: 0.55,
+            label: '+ n e⁻', labelColor: RED, labelOffsetY: 0.85, fontSize: 0.8
         });
+
+        note(s, 'Réducteur', 17.5, 5, { color: TEAL, fontSize: 1.05, anchor: 'middle', weight: 'bold' });
+        note(s, '(cède e⁻)', 17.5, 4, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
+
+        note(s, 'Oxydant + n e⁻ ⇌ Réducteur', 11, 1.7, { color: GOLD, fontSize: 0.95, anchor: 'middle', weight: 'bold' });
     }
 
-    function drawCuAgScheme(svgId) {
-        drawElectronTransfer(svgId, {
-            leftFormula: 'Cu', leftColor: '#4ECDC4', leftSub: '(cède 2 e⁻)',
-            rightFormula: 'Ag⁺', rightColor: '#FF6B6B', rightSub: '(capte 1 e⁻)',
-            electronLabel: '2 e⁻',
-            equations: [
-                { text: 'Cu(s) → Cu²⁺(aq) + 2 e⁻   (oxydation)', color: '#4ECDC4' },
-                { text: '2 Ag⁺(aq) + 2 e⁻ → 2 Ag(s)   (réduction)', color: '#FF6B6B' },
-                { text: 'Bilan : Cu(s) + 2 Ag⁺(aq) → Cu²⁺(aq) + 2 Ag(s)', color: '#F4D03F' }
-            ]
+    // ------------------------------------------------------------
+    // Partie 2 · Section 3 (NOUVEAU) : classification qualitative
+    // des couples usuels — échelle du pouvoir oxydant/réducteur
+    // ------------------------------------------------------------
+    function drawEchelleCouples() {
+        const s = SvgUtils.setupSVG('svgEchelleCouples', { xMin: 0, xMax: 14, yMin: -1, yMax: 16 });
+        if (!s) return;
+
+        const rows = [
+            ['MnO₄⁻', 'Mn²⁺'],
+            ['Cr₂O₇²⁻', 'Cr³⁺'],
+            ['Fe³⁺', 'Fe²⁺'],
+            ['I₂', 'I⁻'],
+            ['H⁺', 'H₂'],
+            ['Cu²⁺', 'Cu'],
+            ['Zn²⁺', 'Zn']
+        ];
+
+        note(s, 'Classification qualitative des couples', 7, 15.2, { color: GOLD, fontSize: 0.68, anchor: 'middle', weight: 'bold' });
+
+        const yTop = 13.3, yBot = 2, n = rows.length;
+        const step = (yTop - yBot) / (n - 1);
+        rows.forEach((r, i) => {
+            const y = yTop - i * step;
+            SvgUtils.drawLine(s, 3, y, 11, y, { color: '#2A2A3E', lineWidth: 0.6 });
+            note(s, r[0], 5.6, y + 0.35, { color: RED, fontSize: 0.82, anchor: 'end', weight: 'bold' });
+            note(s, '/', 7, y + 0.35, { color: MUTED, fontSize: 0.82, anchor: 'middle' });
+            note(s, r[1], 8.4, y + 0.35, { color: TEAL, fontSize: 0.82, anchor: 'start', weight: 'bold' });
         });
+
+        SvgUtils.drawVector(s, 1.1, yBot - 0.4, 1.1, yTop + 0.4, { color: RED, lineWidth: 2, arrowSize: 0.45 });
+        note(s, 'Pouvoir', 0.5, yTop + 1.5, { color: RED, fontSize: 0.6, anchor: 'middle' });
+        note(s, 'oxydant ↑', 0.5, yTop + 0.75, { color: RED, fontSize: 0.6, anchor: 'middle' });
+
+        SvgUtils.drawVector(s, 12.9, yTop + 0.4, 12.9, yBot - 0.4, { color: TEAL, lineWidth: 2, arrowSize: 0.45 });
+        note(s, 'Pouvoir', 13.5, yBot - 1.15, { color: TEAL, fontSize: 0.6, anchor: 'middle' });
+        note(s, 'réducteur ↑', 13.5, yBot - 1.9, { color: TEAL, fontSize: 0.6, anchor: 'middle' });
     }
 
-    // ============================================================
-    // FIGURE — Schéma conceptuel générique Oxydant / Réducteur
-    // (Section 3 — ajoutée pour illustrer la définition abstraite
-    // avant les exemples chiffrés)
-    // ============================================================
-    function drawConceptScheme(svgId) {
-        drawElectronTransfer(svgId, {
-            leftFormula: 'Réd', leftColor: '#4ECDC4', leftSub: 'perd des e⁻ → oxydé',
-            rightFormula: 'Ox', rightColor: '#FF6B6B', rightSub: 'gagne des e⁻ → réduit',
-            electronLabel: 'n e⁻',
-            equations: [
-                { text: 'Réd → Ox′ + n e⁻   (le réducteur est oxydé)', color: '#4ECDC4' },
-                { text: 'Ox + n e⁻ → Réd′   (l\'oxydant est réduit)', color: '#FF6B6B' }
-            ]
-        });
+    // ------------------------------------------------------------
+    // Partie 3 · Section 2 : méthode d'écriture de l'équation bilan
+    // ------------------------------------------------------------
+    function drawMethodeRedox() {
+        const s = SvgUtils.setupSVG('svgMethodeRedox', { xMin: 0, xMax: 22, yMin: 0, yMax: 9 });
+        if (!s) return;
+
+        note(s, 'Couple 1', 5, 7.7, { color: RED, fontSize: 0.85, anchor: 'middle', weight: 'bold' });
+        note(s, 'Red₁ ⇌ Ox₁ + n₁ e⁻', 5, 6.6, { color: TEAL, fontSize: 0.75, anchor: 'middle' });
+
+        note(s, 'Couple 2', 17, 7.7, { color: RED, fontSize: 0.85, anchor: 'middle', weight: 'bold' });
+        note(s, 'Ox₂ + n₂ e⁻ ⇌ Red₂', 17, 6.6, { color: TEAL, fontSize: 0.75, anchor: 'middle' });
+
+        SvgUtils.drawLine(s, 8.5, 5.6, 13.5, 5.6, { color: GOLD, dashed: true, dashPattern: [4, 4] });
+        note(s, 'n₁ = n₂', 11, 5.1, { color: MUTED, fontSize: 0.62, anchor: 'middle' });
+
+        note(s, 'n₂ Ox₂ + n₁ Red₁ → n₂ Red₂ + n₁ Ox₁', 11, 3.3, { color: GOLD, fontSize: 0.85, anchor: 'middle', weight: 'bold' });
+        note(s, '(après multiplication et addition)', 11, 2.3, { color: MUTED, fontSize: 0.62, anchor: 'middle' });
     }
 
-    // ============================================================
-    // Initialisation — كل دالة كتفحص وجود العنصر بنفسها فـ SvgUtils
-    // (setupSVG كترجع null إلى ماكانش، فالدوال كتوقف بأمان)
-    // ============================================================
+    // ------------------------------------------------------------
+    // Partie 4 · Exercice 1 (NOUVEAU) : Zn(s) + 2H⁺(aq) → Zn²⁺(aq) + H₂(g)
+    // ------------------------------------------------------------
+    function drawExerciceZnHCl() {
+        const s = SvgUtils.setupSVG('svgExerciceZnHCl', { xMin: 0, xMax: 22, yMin: 0, yMax: 8 });
+        if (!s) return;
+
+        SvgUtils.drawCircle(s, 4, 5.6, 1.4, { fill: '#4ECDC422', color: TEAL, lineWidth: 2 });
+        note(s, 'Zn', 4, 5.25, { color: TEAL, fontSize: 1.15, anchor: 'middle', weight: 'bold' });
+        note(s, 'Réducteur', 4, 3.65, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(cède 2e⁻)', 4, 2.95, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
+
+        SvgUtils.drawVector(s, 6.2, 5.6, 15.8, 5.6, {
+            color: RED, lineWidth: 2.5, arrowSize: 0.6,
+            label: '2 e⁻', labelColor: RED, labelOffsetY: 0.9, fontSize: 0.85
+        });
+
+        SvgUtils.drawCircle(s, 18, 5.6, 1.4, { fill: '#FF6B6B22', color: RED, lineWidth: 2 });
+        note(s, '2H⁺', 18, 5.25, { color: RED, fontSize: 1.05, anchor: 'middle', weight: 'bold' });
+        note(s, 'Oxydant', 18, 3.65, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(capte 2e⁻)', 18, 2.95, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
+
+        note(s, 'Zn(s) → Zn²⁺(aq) + 2e⁻   (Oxydation)', 11, 1.5, { color: TEAL, fontSize: 0.78, anchor: 'middle', weight: 'bold' });
+        note(s, '2H⁺(aq) + 2e⁻ → H₂(g) ↑   (Réduction)', 11, 0.55, { color: RED, fontSize: 0.78, anchor: 'middle', weight: 'bold' });
+    }
+
+    // ------------------------------------------------------------
+    // Partie 4 · Exercice 2 (NOUVEAU) : Fe(s) + Cu²⁺(aq) → Fe²⁺(aq) + Cu(s)
+    // ------------------------------------------------------------
+    function drawExerciceFeCu() {
+        const s = SvgUtils.setupSVG('svgExerciceFeCu', { xMin: 0, xMax: 22, yMin: 0, yMax: 8 });
+        if (!s) return;
+
+        SvgUtils.drawCircle(s, 4, 5.6, 1.4, { fill: '#4ECDC422', color: TEAL, lineWidth: 2 });
+        note(s, 'Fe', 4, 5.25, { color: TEAL, fontSize: 1.15, anchor: 'middle', weight: 'bold' });
+        note(s, 'Réducteur', 4, 3.65, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(cède 2e⁻)', 4, 2.95, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
+
+        SvgUtils.drawVector(s, 6.2, 5.6, 15.8, 5.6, {
+            color: RED, lineWidth: 2.5, arrowSize: 0.6,
+            label: '2 e⁻', labelColor: RED, labelOffsetY: 0.9, fontSize: 0.85
+        });
+
+        SvgUtils.drawCircle(s, 18, 5.6, 1.4, { fill: '#FF6B6B22', color: RED, lineWidth: 2 });
+        note(s, 'Cu²⁺', 18, 5.25, { color: RED, fontSize: 1.05, anchor: 'middle', weight: 'bold' });
+        note(s, 'Oxydant', 18, 3.65, { color: MUTED, fontSize: 0.72, anchor: 'middle' });
+        note(s, '(capte 2e⁻)', 18, 2.95, { color: MUTED, fontSize: 0.68, anchor: 'middle' });
+
+        note(s, 'Fe(s) → Fe²⁺(aq) + 2e⁻   (Oxydation)', 11, 1.5, { color: TEAL, fontSize: 0.78, anchor: 'middle', weight: 'bold' });
+        note(s, 'Cu²⁺(aq) + 2e⁻ → Cu(s)   (Réduction)', 11, 0.55, { color: RED, fontSize: 0.78, anchor: 'middle', weight: 'bold' });
+    }
+
+    // ------------------------------------------------------------
+    // Partie 5 · Section 1 (NOUVEAU) : synthèse du transfert d'électrons
+    // ------------------------------------------------------------
+    function drawSyntheseRedox() {
+        const s = SvgUtils.setupSVG('svgSyntheseRedox', { xMin: 0, xMax: 20, yMin: 0, yMax: 9 });
+        if (!s) return;
+
+        note(s, "Synthèse : transfert d'électrons", 10, 8.3, { color: GOLD, fontSize: 0.85, anchor: 'middle', weight: 'bold' });
+
+        SvgUtils.drawCircle(s, 5, 5.6, 1.6, { fill: '#4ECDC422', color: TEAL, lineWidth: 2 });
+        note(s, 'Réducteur', 5, 5.25, { color: TEAL, fontSize: 0.9, anchor: 'middle', weight: 'bold' });
+
+        SvgUtils.drawVector(s, 6.9, 5.6, 13.1, 5.6, {
+            color: RED, lineWidth: 2.2, arrowSize: 0.55,
+            label: 'n e⁻', labelColor: RED, labelOffsetY: 0.85, fontSize: 0.8
+        });
+
+        SvgUtils.drawCircle(s, 15, 5.6, 1.6, { fill: '#FF6B6B22', color: RED, lineWidth: 2 });
+        note(s, 'Oxydant', 15, 5.25, { color: RED, fontSize: 0.9, anchor: 'middle', weight: 'bold' });
+
+        note(s, 'Oxydation', 5, 3.3, { color: TEAL, fontSize: 0.75, anchor: 'middle', weight: 'bold' });
+        note(s, "(perte d'électrons)", 5, 2.6, { color: MUTED, fontSize: 0.6, anchor: 'middle' });
+
+        note(s, 'Réduction', 15, 3.3, { color: RED, fontSize: 0.75, anchor: 'middle', weight: 'bold' });
+        note(s, "(gain d'électrons)", 15, 2.6, { color: MUTED, fontSize: 0.6, anchor: 'middle' });
+
+        note(s, 'Oxydant + n e⁻ ⇌ Réducteur', 10, 1.1, { color: GOLD, fontSize: 0.85, anchor: 'middle', weight: 'bold' });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
-            drawTubeExperiment('figExperienceZnCu');
-            drawZnCuScheme('figRedoxZnCu');
-            drawConceptScheme('figConceptOxRed');
-            drawCuAgScheme('figRedoxCuAg');
-        }, 250);
+            drawRedoxZnCu();
+            drawRedoxCuAg();
+            drawCoupleGeneral();
+            drawEchelleCouples();
+            drawMethodeRedox();
+            drawExerciceZnHCl();
+            drawExerciceFeCu();
+            drawSyntheseRedox();
+        }, 300);
     });
 })();

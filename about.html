@@ -112,6 +112,16 @@
             font-size:13px; color:var(--text-secondary); line-height:1.7;
             font-family:'Cairo','Tajawal',sans-serif;
         }
+
+        /* ====== حالة البداية قبل أنيميشن الدخول الخاصة بـ about.html ======
+           كتفعّل مع aboutHeroIntro() فآخر الصفحة، بعد أنيميشن
+           XpertAnimateLegalPage() المشتركة - نفس روح أنيميشن الصفحة
+           الرئيسية (index.html) لكن مبسّطة وخاصة بعناصر "من نحن" فقط. */
+        .about-avatar-wrap{opacity:0; transform:scale(0.8);}
+        .about-dev-name, .about-dev-role{opacity:0; transform:translateY(14px);}
+        .about-badge-row .about-badge{opacity:0; transform:translateY(10px);}
+        .about-social-row .about-social-link{opacity:0; transform:scale(0.9);}
+        .about-feature-card{opacity:0; transform:translateY(16px);}
 </style>
 </head>
 <body>
@@ -434,12 +444,40 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
-<!-- ====== GSAP Animation (دالة مشتركة فـ script.js) ====== -->
-<script>XpertAnimateLegalPage('about.html');</script>
+<!-- ====== GSAP Animation (دالة مشتركة فـ script.js) ======
+     تأخير 500ms عشان الأنيميشن تبدا بعد اختفاء اللودر (xpertLoader
+     كياخد 500ms كحد أدنى قبل ما يختفي - MIN_DISPLAY فـ script.js). -->
+<script>
+setTimeout(function () {
+    XpertAnimateLegalPage('about.html');
+}, 500);
+</script>
+
+<!-- ====== أنيميشن دخول خاصة ببطاقة "من نحن" (بسيطة، أنيقة، سلسة) ======
+     كتكمل أنيميشن XpertAnimateLegalPage المشتركة، وكتعطي لبطاقة
+     المطور وشبكة المميزات نفس روح ظهور الصفحة الرئيسية (فيد + حركة
+     خفيفة للأعلى + bounce بسيط للصورة) بلا ما تأثر على سرعة التحميل. -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap === 'undefined') {
+        document.querySelectorAll('.about-avatar-wrap, .about-dev-name, .about-dev-role, .about-badge, .about-social-link, .about-feature-card').forEach(function (el) {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+        return;
+    }
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 1.05 });
+
+    tl.to('.about-avatar-wrap', { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.7)' })
+      .to('.about-dev-name', { opacity: 1, y: 0, duration: 0.3 }, '-=0.2')
+      .to('.about-dev-role', { opacity: 1, y: 0, duration: 0.3 }, '-=0.2')
+      .to('.about-badge-row .about-badge', { opacity: 1, y: 0, duration: 0.3, stagger: 0.07 }, '-=0.15')
+      .to('.about-social-row .about-social-link', { opacity: 1, scale: 1, duration: 0.3, ease: 'back.out(2)' }, '-=0.1')
+      .to('.about-feature-card', { opacity: 1, y: 0, duration: 0.3, stagger: 0.08 }, '-=0.1');
+});
+</script>
 
 </body>
 </html>
-
-
-
 

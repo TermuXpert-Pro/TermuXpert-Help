@@ -18,7 +18,15 @@
     <title>Partie 4 - Les réactions d'oxydo-réduction | Xpert</title>
 
     <!-- ====== Liens et styles (comme avant) ====== -->
-    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
@@ -33,7 +41,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
 
     <style>
         /* ... (style identique aux parties 1, 2 et 3) ... */
@@ -84,7 +92,7 @@
         .scroll-top-btn { display: none; }
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container svg, .graph-container canvas { display: block; width: 100%; height: auto; max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
@@ -132,11 +140,8 @@
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
-    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
-    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
-    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
@@ -149,6 +154,7 @@
             <div class="xpert-shape-glow"></div>
             <div class="xpert-shape"></div>
         </div>
+        <div class="xpert-loader-brand"><span>X</span>pert</div>
     </div>
 
 
@@ -420,6 +426,11 @@
                         <p>\(V(H_2) = 0,765\text{ L}\). Le zinc est le réducteur, l'ion \(H^+\) est l'oxydant.</p>
                     </div>
                 </div>
+
+                <div class="graph-container">
+                    <svg id="svgExerciceZnHCl" width="420" height="153" role="img" aria-label="Transfert d'électrons entre le zinc et les ions H+"></svg>
+                    <p>Transfert d'électrons : \(Zn_{(s)} + 2H^+_{(aq)} \rightarrow Zn^{2+}_{(aq)} + H_{2(g)}\)</p>
+                </div>
             </div>
 
             <!-- SECTION 2: EXERCICE 2 -->
@@ -451,6 +462,11 @@
                         <span class="label resume">Réponse</span>
                         <p>\(Fe\) est le réducteur, \(Cu^{2+}\) est l'oxydant.</p>
                     </div>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="svgExerciceFeCu" width="420" height="153" role="img" aria-label="Transfert d'électrons entre le fer et l'ion cuivre II"></svg>
+                    <p>Transfert d'électrons : \(Fe_{(s)} + Cu^{2+}_{(aq)} \rightarrow Fe^{2+}_{(aq)} + Cu_{(s)}\)</p>
                 </div>
             </div>
 
@@ -497,5 +513,7 @@
     </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

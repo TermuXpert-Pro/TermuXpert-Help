@@ -375,8 +375,14 @@
     <!-- ====== Scripts ====== -->
     <script src="assets/js/protection.js"></script>
     <script src="assets/js/script.js"></script>
-<!-- ====== GSAP Animation (دالة مشتركة فـ script.js) ====== -->
-<script>XpertAnimateLegalPage('support.html');</script>
+<!-- ====== GSAP Animation (دالة مشتركة فـ script.js) ======
+     تأخير 500ms عشان الأنيميشن تبدا بعد اختفاء اللودر (xpertLoader
+     كياخد 500ms كحد أدنى قبل ما يختفي - MIN_DISPLAY فـ script.js). -->
+<script>
+setTimeout(function () {
+    XpertAnimateLegalPage('support.html');
+}, 500);
+</script>
 
 </body>
 </html>

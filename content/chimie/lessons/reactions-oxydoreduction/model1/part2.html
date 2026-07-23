@@ -15,7 +15,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Partie 2 - Les réactions d'oxydo-réduction | Xpert</title>
-    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
@@ -30,7 +39,7 @@
             svg: { fontCache: 'global' }
         };
     </script>
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
 
     <!-- ====== Même style que part1, on le garde ====== -->
     <style>
@@ -81,7 +90,7 @@
         .scroll-top-btn { display: none; }
         .graph-container {
             background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
-        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container svg, .graph-container canvas { display: block; width: 100%; height: auto; max-width: 100%; border-radius: 4px; background: #0D1117; }
         .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
         .exemple-box { background: var(--exercice-bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 4px 0; }
         .exemple-box .ex-title { color:var(--gold-text); font-weight: 700; font-size: 12px; margin-bottom: 4px; }
@@ -129,11 +138,8 @@
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
-    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
-    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
-    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/icon-192.png">
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
@@ -146,6 +152,7 @@
             <div class="xpert-shape-glow"></div>
             <div class="xpert-shape"></div>
         </div>
+        <div class="xpert-loader-brand"><span>X</span>pert</div>
     </div>
 
 
@@ -448,7 +455,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphCouple" width="420" height="120"></canvas>
+                    <svg id="svgCouple" width="420" height="134" role="img" aria-label="Schéma d'un couple oxydant/réducteur"></svg>
                     <p>Schéma d'un couple oxydant/réducteur</p>
                 </div>
             </div>
@@ -479,6 +486,11 @@
                         <li>Les <strong>non-métaux</strong> (O₂, Cl₂, F₂...) sont généralement des <strong>oxydants</strong>.</li>
                         <li>Un élément peut être oxydant ou réducteur selon son degré d'oxydation.</li>
                     </ul>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="svgEchelleCouples" width="260" height="316" role="img" aria-label="Classification qualitative des couples oxydant/réducteur"></svg>
+                    <p>Classification qualitative des couples usuels (pouvoir oxydant/réducteur)</p>
                 </div>
             </div>
 
@@ -549,56 +561,10 @@
             if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
         });
 
-        function drawGraphCouple() {
-            var c = document.getElementById('graphCouple'); if (!c) return;
-            var ctx = c.getContext('2d'), w = c.width, h = c.height;
-            ctx.fillStyle = '#0D1117'; ctx.fillRect(0, 0, w, h);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Oxydant', 80, 40);
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.fillText('(capte e⁻)', 80, 60);
-
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(120, 50);
-            ctx.lineTo(200, 50);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(195, 44);
-            ctx.lineTo(205, 50);
-            ctx.lineTo(195, 56);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.textBaseline = 'bottom';
-            ctx.fillText('+ n e⁻', 160, 44);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Réducteur', 250, 40);
-            ctx.fillStyle = '#888';
-            ctx.font = '10px Arial';
-            ctx.fillText('(cède e⁻)', 250, 60);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '13px Arial';
-            ctx.textBaseline = 'top';
-            ctx.fillText('Oxydant + n e⁻ ⇌ Réducteur', w/2, 90);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() { drawGraphCouple(); }, 400);
-        });
     </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
 </body>
 </html>

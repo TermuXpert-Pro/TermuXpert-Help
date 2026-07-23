@@ -5,12 +5,9 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Cours - Importance de la mesure en chimie | Xpert</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Cours - Transfert d'énergie dans un circuit électrique | Xpert</title>
+    <link rel="stylesheet" href="../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../assets/css/global-control.css">
@@ -25,6 +22,15 @@
     <meta name="apple-mobile-web-app-title" content="Xpert">
 </head>
 <body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
 
     <!-- ====== طبقة الحماية غير المرئية ====== -->
 <div class="overlay-protection" id="overlayProtection"></div>
@@ -35,19 +41,19 @@
         <defs>
             <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                 <rect width="200" height="200" fill="none"/>
-                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
-                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
                 <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
                 <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
-                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
-                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
-                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
-                <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
-                <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
-                <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
             </pattern>
         </defs>
         <rect width="800" height="800" fill="url(#zellij)"/>
@@ -138,7 +144,7 @@
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
         <div class="profile-simple">
-            <img src="../../../../assets/images/profile.png" alt="Logo Xpert" class="profile-simple-img">
+            <img src="../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
     </div>
 
@@ -241,10 +247,10 @@
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
-        <a href="../../../../subject.html?subject=chimie" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        <a href="../../../../subject.html?subject=physique" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
 
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-book" style="color:#4ECDC4;"></i> Cours - Importance de la mesure en chimie</h1>
+            <h1 class="lesson-title"><i class="fas fa-book" style="color:#4ECDC4;"></i> Cours - Transfert d'énergie dans un circuit électrique</h1>
             <div style="text-align:center; margin-bottom:18px;">
                 <span style="display:inline-block; background:#4ECDC422; color:#4ECDC4; padding:5px 18px; border-radius:14px; font-size:13px; font-weight:700;">
                     <i class="fas fa-cubes" style="margin-left:5px;"></i> 1 modèle disponible
