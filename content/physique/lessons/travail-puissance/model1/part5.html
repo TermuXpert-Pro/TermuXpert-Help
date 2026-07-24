@@ -71,10 +71,7 @@
         .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
         .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
-        .nav-buttons { margin-top: 14px; padding-top: 10px; }
-        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .lesson-container { padding: 8px; }
+.lesson-container { padding: 8px; }
         .glow-orb { display: none; }
         .bg-grid { opacity: 0.3; }
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
@@ -151,8 +148,7 @@
             .back-btn { font-size: 13px; padding: 3px 8px; }
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
-            .next-btn { font-size: 13px; padding: 3px 10px; }
-        }
+}
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../favicon.ico" sizes="any">
@@ -423,7 +419,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphCouple" width="400" height="220"></canvas>
+                    <svg id="graphCouple" viewBox="0 0 440 260" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;background:#0D1117;border-radius:4px;"></svg>
                     <p>Couple de forces : deux forces opposées et parallèles</p>
                 </div>
 
@@ -461,7 +457,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphMoment" width="400" height="200"></canvas>
+                    <svg id="graphMoment" viewBox="0 0 440 240" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;background:#0D1117;border-radius:4px;"></svg>
                     <p>Moment d'un couple : M<sub>c</sub> = F · d</p>
                 </div>
 
@@ -559,7 +555,7 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part4.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 4</a>
+                <a href="part4.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Partie 4</a>
                 <a href="index.html" class="next-btn">Accueil <i class="fas fa-arrow-left"></i></a>
             </div>
 
@@ -586,174 +582,8 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphCouple() {
-            var canvas = document.getElementById('graphCouple');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2;
-
-            // Cercle (volant)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 80, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Centre
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-
-            // Deux forces opposées
-            var r = 80;
-            var angle1 = -Math.PI/3;
-            var angle2 = Math.PI - Math.PI/3;
-
-            // Force 1
-            var x1 = cx + r * Math.cos(angle1);
-            var y1 = cy + r * Math.sin(angle1);
-            var fx1 = x1 + 50 * Math.cos(angle1 + Math.PI/2);
-            var fy1 = y1 + 50 * Math.sin(angle1 + Math.PI/2);
-
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(fx1, fy1);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(fx1 - 6, fy1 + 6);
-            ctx.lineTo(fx1, fy1);
-            ctx.lineTo(fx1 + 6, fy1 + 6);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.fillText('F₁', fx1 + 10, fy1);
-
-            // Force 2
-            var x2 = cx + r * Math.cos(angle2);
-            var y2 = cy + r * Math.sin(angle2);
-            var fx2 = x2 + 50 * Math.cos(angle2 - Math.PI/2);
-            var fy2 = y2 + 50 * Math.sin(angle2 - Math.PI/2);
-
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(x2, y2);
-            ctx.lineTo(fx2, fy2);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(fx2 - 6, fy2 - 6);
-            ctx.lineTo(fx2, fy2);
-            ctx.lineTo(fx2 + 6, fy2 - 6);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.fillText('F₂', fx2 - 30, fy2);
-
-            // Distance d
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '12px Arial';
-            ctx.fillText('d', (x1+x2)/2 - 10, (y1+y2)/2 - 8);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Couple de forces : F₁ = F₂ = F', 200, 20);
-        }
-
-        function drawGraphMoment() {
-            var canvas = document.getElementById('graphMoment');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2;
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 70, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Rayon
-            var angle = Math.PI/4;
-            var r = 70;
-            var x = cx + r * Math.cos(angle);
-            var y = cy + r * Math.sin(angle);
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Force tangentielle
-            var fx = x + 50 * Math.cos(angle + Math.PI/2);
-            var fy = y + 50 * Math.sin(angle + Math.PI/2);
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(fx, fy);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo(fx - 6, fy + 6);
-            ctx.lineTo(fx, fy);
-            ctx.lineTo(fx + 6, fy + 6);
-            ctx.fill();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '14px Arial';
-            ctx.fillText('F', fx + 10, fy);
-
-            // Moment
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '12px Arial';
-            ctx.fillText('M = F · d', 200, 20);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('d = distance à l\'axe', 200, 35);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphCouple();
-                drawGraphMoment();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p5.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

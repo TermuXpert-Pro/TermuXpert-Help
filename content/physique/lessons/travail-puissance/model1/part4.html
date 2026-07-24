@@ -69,10 +69,7 @@
         .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
         .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
-        .nav-buttons { margin-top: 14px; padding-top: 10px; }
-        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .lesson-container { padding: 8px; }
+.lesson-container { padding: 8px; }
         .glow-orb { display: none; }
         .bg-grid { opacity: 0.3; }
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
@@ -139,8 +136,7 @@
             .back-btn { font-size: 13px; padding: 3px 8px; }
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
-            .next-btn { font-size: 13px; padding: 3px 10px; }
-        }
+}
             .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
         .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
         .toc ul { list-style: none; padding: 0; }
@@ -463,7 +459,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphPuissance" width="400" height="200"></canvas>
+                    <svg id="graphPuissance" viewBox="0 0 440 240" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;background:#0D1117;border-radius:4px;"></svg>
                     <p>Puissance instantanée : P = F · v · cos α</p>
                 </div>
 
@@ -510,7 +506,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graphRotationPuissance" width="400" height="220"></canvas>
+                    <svg id="graphRotationPuissance" viewBox="0 0 440 260" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;background:#0D1117;border-radius:4px;"></svg>
                     <p>Puissance d'une force en rotation : P = M<sub>Δ</sub>(F) · ω</p>
                 </div>
 
@@ -571,7 +567,7 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part3.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 3</a>
+                <a href="part3.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Partie 3</a>
                 <a href="part5.html" class="next-btn">Résumé <i class="fas fa-arrow-left"></i></a>
             </div>
 
@@ -598,200 +594,8 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphPuissance() {
-            var canvas = document.getElementById('graphPuissance');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 30;
-
-            // Vecteur vitesse (horizontal)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy - 50);
-            ctx.lineTo(ox + 150, oy - 50);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.moveTo(ox + 142, oy - 56);
-            ctx.lineTo(ox + 155, oy - 50);
-            ctx.lineTo(ox + 142, oy - 44);
-            ctx.fill();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '14px Arial';
-            ctx.fillText('v', ox + 140, oy - 58);
-
-            // Vecteur force (angle 60°)
-            var angle = 60 * Math.PI / 180;
-            var fx = ox + 100 + 80 * Math.cos(angle);
-            var fy = oy - 50 - 80 * Math.sin(angle);
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox + 100, oy - 50);
-            ctx.lineTo(fx, fy);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo(fx - 8 * Math.cos(angle - 0.3), fy + 8 * Math.sin(angle - 0.3));
-            ctx.lineTo(fx, fy);
-            ctx.lineTo(fx - 8 * Math.cos(angle + 0.3), fy + 8 * Math.sin(angle + 0.3));
-            ctx.fill();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '14px Arial';
-            ctx.fillText('F', fx - 30, fy - 10);
-
-            // Angle α
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(ox + 100, oy - 50, 30, -angle, 0);
-            ctx.stroke();
-
-            ctx.fillStyle = '#BB8FCE';
-            ctx.font = '13px Arial';
-            ctx.fillText('α', ox + 90, oy - 65);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('P = F · v · cos α', 200, 20);
-        }
-
-        function drawGraphRotationPuissance() {
-            var canvas = document.getElementById('graphRotationPuissance');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 10;
-            var rayon = 80;
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('(Δ)', cx + 10, 25);
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Point M
-            var angle = Math.PI/3;
-            var Mx = cx + rayon * Math.cos(angle);
-            var My = cy + rayon * Math.sin(angle);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(Mx, My, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('M', Mx + 8, My - 6);
-
-            // Rayon OM
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(Mx, My);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Force tangentielle
-            var fx = Mx + 50 * Math.cos(angle + Math.PI/2);
-            var fy = My + 50 * Math.sin(angle + Math.PI/2);
-
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(Mx, My);
-            ctx.lineTo(fx, fy);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo(fx - 6, fy + 6);
-            ctx.lineTo(fx, fy);
-            ctx.lineTo(fx + 6, fy + 6);
-            ctx.fill();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '14px Arial';
-            ctx.fillText('F', fx + 10, fy);
-
-            // Vitesse
-            var vx = Mx + 40 * Math.cos(angle + Math.PI/2);
-            var vy = My + 40 * Math.sin(angle + Math.PI/2);
-
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(Mx, My);
-            ctx.lineTo(vx, vy);
-            ctx.stroke();
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.moveTo(vx - 6, vy + 6);
-            ctx.lineTo(vx, vy);
-            ctx.lineTo(vx + 6, vy + 6);
-            ctx.fill();
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '12px Arial';
-            ctx.fillText('v', vx + 10, vy);
-
-            // Centre O
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('P = MΔ(F) · ω', 250, 20);
-            ctx.fillText('MΔ(F) = F · d', 250, 35);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphPuissance();
-                drawGraphRotationPuissance();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p4.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

@@ -69,10 +69,7 @@
         .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
         .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
         .footer p { font-size: 13px; }
-        .nav-buttons { margin-top: 14px; padding-top: 10px; }
-        .next-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--bg-primary); background: var(--gradient); text-decoration: none; font-weight: 700; padding: 4px 12px; border-radius: 6px; transition: all 0.3s ease; font-size: 13px; float: right; border: none; }
-        .next-btn:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(69, 162, 158, 0.3); }
-        .lesson-container { padding: 8px; }
+.lesson-container { padding: 8px; }
         .glow-orb { display: none; }
         .bg-grid { opacity: 0.3; }
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
@@ -139,8 +136,7 @@
             .back-btn { font-size: 13px; padding: 3px 8px; }
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
-            .next-btn { font-size: 13px; padding: 3px 10px; }
-        }
+}
             .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
         .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
         .toc ul { list-style: none; padding: 0; }
@@ -410,7 +406,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graphPoids" width="400" height="220"></canvas>
+                    <svg id="graphPoids" viewBox="0 0 440 260" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;background:#0D1117;border-radius:4px;"></svg>
                     <p>Travail du poids : W = m·g·(z<sub>A</sub> - z<sub>B</sub>)</p>
                 </div>
 
@@ -483,7 +479,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graphForces" width="400" height="200"></canvas>
+                    <svg id="graphForces" viewBox="0 0 440 240" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;background:#0D1117;border-radius:4px;"></svg>
                     <p>Forces appliquées sur un solide en translation</p>
                 </div>
 
@@ -534,7 +530,7 @@
             <!-- Navigation -->
             <!-- ============================================================ -->
             <div class="nav-buttons">
-                <a href="part2.html" class="back-btn" style="margin-bottom:0;"><i class="fas fa-arrow-right"></i> Partie 2</a>
+                <a href="part2.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Partie 2</a>
                 <a href="part4.html" class="next-btn">Partie 4 <i class="fas fa-arrow-left"></i></a>
             </div>
 
@@ -561,228 +557,8 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphPoids() {
-            var canvas = document.getElementById('graphPoids');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = 200;
-            var scale = 40;
-
-            // Axe vertical (z)
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('z', ox + 10, 22);
-
-            // Lignes d'altitude
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 0.5;
-            ctx.setLineDash([3, 3]);
-            var zA = 4, zB = 1;
-            for (var i = 0; i <= 5; i++) {
-                var y = oy - i * scale;
-                ctx.beginPath();
-                ctx.moveTo(ox - 15, y);
-                ctx.lineTo(ox + 15, y);
-                ctx.stroke();
-                ctx.fillStyle = '#888888';
-                ctx.font = '8px Arial';
-                ctx.fillText(i, ox - 25, y + 3);
-            }
-            ctx.setLineDash([]);
-
-            // Points A et B
-            var xA = ox + 50;
-            var yA = oy - zA * scale;
-            var xB = ox + 80;
-            var yB = oy - zB * scale;
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(xA, yA, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('A', xA - 15, yA - 10);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(xB, yB, 6, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('B', xB + 8, yB - 10);
-
-            // Flèche de descente
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(xA, yA);
-            ctx.lineTo(xA, yB);
-            ctx.stroke();
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.moveTo(xA - 6, yB + 8);
-            ctx.lineTo(xA, yB);
-            ctx.lineTo(xA + 6, yB + 8);
-            ctx.fill();
-
-            // Flèche poids
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo((xA+xB)/2, yA - 10);
-            ctx.lineTo((xA+xB)/2, yB + 30);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo((xA+xB)/2 - 6, yB + 22);
-            ctx.lineTo((xA+xB)/2, yB + 35);
-            ctx.lineTo((xA+xB)/2 + 6, yB + 22);
-            ctx.fill();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '14px Arial';
-            ctx.fillText('P', (xA+xB)/2 + 10, (yA + yB)/2);
-
-            // zA et zB
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '10px Arial';
-            ctx.fillText('zA', xA + 20, yA + 4);
-            ctx.fillText('zB', xB + 20, yB + 4);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('W(P) = mg(zA - zB)', 200, 20);
-            ctx.fillText('(indépendant du chemin)', 200, 35);
-        }
-
-        function drawGraphForces() {
-            var canvas = document.getElementById('graphForces');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scale = 30;
-
-            // Sol horizontal
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-
-            // Bloc
-            var bx = 150, by = oy - 50;
-            ctx.fillStyle = '#4ECDC4';
-            ctx.fillRect(bx, by, 60, 50);
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(bx, by, 60, 50);
-
-            // Poids (vers le bas)
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(bx + 30, by + 50);
-            ctx.lineTo(bx + 30, by + 90);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo(bx + 24, by + 82);
-            ctx.lineTo(bx + 30, by + 95);
-            ctx.lineTo(bx + 36, by + 82);
-            ctx.fill();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '12px Arial';
-            ctx.fillText('P', bx + 35, by + 75);
-
-            // Réaction normale (vers le haut)
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(bx + 30, by);
-            ctx.lineTo(bx + 30, by - 40);
-            ctx.stroke();
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.moveTo(bx + 24, by - 32);
-            ctx.lineTo(bx + 30, by - 45);
-            ctx.lineTo(bx + 36, by - 32);
-            ctx.fill();
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '12px Arial';
-            ctx.fillText('RN', bx + 35, by - 25);
-
-            // Frottement (vers la gauche)
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(bx, by + 25);
-            ctx.lineTo(bx - 50, by + 25);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.moveTo(bx - 42, by + 19);
-            ctx.lineTo(bx - 55, by + 25);
-            ctx.lineTo(bx - 42, by + 31);
-            ctx.fill();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '12px Arial';
-            ctx.fillText('f', bx - 35, by + 40);
-
-            // Force motrice (vers la droite)
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(bx + 60, by + 25);
-            ctx.lineTo(bx + 110, by + 25);
-            ctx.stroke();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.beginPath();
-            ctx.moveTo(bx + 102, by + 19);
-            ctx.lineTo(bx + 115, by + 25);
-            ctx.lineTo(bx + 102, by + 31);
-            ctx.fill();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.font = '12px Arial';
-            ctx.fillText('F', bx + 115, by + 40);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('∑W = W(P) + W(f) + W(RN) = (P + f + RN)·AB', 130, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphPoids();
-                drawGraphForces();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p3.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     
