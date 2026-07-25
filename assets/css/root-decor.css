@@ -1,3 +1,4 @@
+
 /* ============================================================
    ROOT-DECOR.CSS  (نسخة مصححة - إصلاح مشكلة البطء)
    ديكور الزليج المغربي متعدد الألوان (multicolore) الخاص بالصفحات
@@ -490,6 +491,7 @@ img {
         .cards-grid {
             display: grid;
             grid-template-columns: 1fr;
+            align-items: start;
             gap: 16px;
             width: 100%;
             min-height: 200px;
@@ -568,6 +570,61 @@ img {
             margin-top: 8px;
             position: relative;
             z-index: 1;
+        }
+
+        /* ====== بطاقة الفروض والامتحانات (devoirs) ====== */
+        .devoir-card { position: relative; padding-top: 34px; }
+
+        .devoir-semester-badge {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(var(--overlay-rgb), 0.04);
+            border: 1px solid var(--accent);
+            z-index: 2;
+        }
+
+        .devoir-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 6px 0 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .devoir-meta-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .devoir-meta-subject { font-weight: 700; }
+        .devoir-meta-sep { opacity: 0.4; }
+
+        .devoir-lessons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+        .devoir-lesson-chip {
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 12.5px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            .devoir-semester-badge { font-size: 10px; padding: 2px 10px; top: 12px; right: 12px; }
+            .devoir-lesson-chip { font-size: 11.5px; padding: 5px 11px; }
         }
 
         .no-data {
@@ -816,3 +873,5 @@ img {
             .card .card-icon { width: 48px; height: 48px; font-size: 20px; }
             .card h3 { font-size: 18px; }
         }
+
+

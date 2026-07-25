@@ -1,0 +1,120 @@
+/* ============================================================
+   devoir.css
+   ستايل خاص بقسم الفروض: FAB لعرض/إخفاء الحلول + أنيميشن ظهور الحلول
+   ============================================================ */
+
+/* ====== حالة الحل: مخفي افتراضياً، يُبنى بشكل تدريجي عبر JS ======
+   .solution-box       -> مخفي بالكامل (display:none)
+   .solution-box.show  -> ظاهر في الـ DOM (display:block) لكن بداية بشفافية 0
+   .solution-box.visible -> يضاف بتأخير من JS ليشغّل الانتقال (fade + slide)
+   هذا الفصل بين show/visible هو ما يتيح تأثير "الظهور المتتالي السلس"
+   بدل ظهور كل الحلول دفعة واحدة.
+*/
+.solution-box {
+    display: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+.solution-box.show {
+    display: block;
+}
+.solution-box.show.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ====== FAB: زر عائم خفيف واحترافي لعرض/إخفاء التصحيح ======
+   مستوحى من نفس لغة أزرار الموقع (.theme-toggle / .pwa-install-btn):
+   خلفية زجاجية شفافة رقيقة + حدود ناعمة + تأثير هوفر بلون مميز،
+   بدون تدرّجات صاخبة وبدون نبض دائم.
+*/
+.devoir-fab {
+    position: fixed;
+    bottom: 20px;
+    left: 16px;
+    height: 48px;
+    min-width: 48px;
+    padding: 0 8px;
+    border-radius: 24px;
+    background: rgba(var(--overlay-rgb), 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(187, 143, 206, 0.28);
+    color: var(--text-primary);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+    z-index: 950;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.25s ease, border-color 0.25s ease,
+                box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.devoir-fab:hover {
+    background: rgba(187, 143, 206, 0.12);
+    border-color: rgba(187, 143, 206, 0.5);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.devoir-fab:active {
+    transform: scale(0.94);
+}
+
+.devoir-fab .devoir-fab-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+    color: #BB8FCE;
+    transition: color 0.25s ease;
+}
+
+.devoir-fab .devoir-fab-label {
+    font-family: var(--font-main);
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding-inline-end: 6px;
+    color: var(--text-secondary);
+}
+
+/* حالة "التصحيح ظاهر": لمسة لونية تركوازية هادئة للتفريق بصرياً */
+body.devoir-show-corrections .devoir-fab {
+    border-color: rgba(78, 205, 196, 0.45);
+}
+body.devoir-show-corrections .devoir-fab .devoir-fab-icon {
+    color: #4ECDC4;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 480px) {
+    .devoir-fab {
+        bottom: 14px;
+        left: 12px;
+        height: 44px;
+    }
+    .devoir-fab .devoir-fab-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    .devoir-fab .devoir-fab-label {
+        font-size: 11.5px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .solution-box,
+    .devoir-fab {
+        transition: none !important;
+    }
+}

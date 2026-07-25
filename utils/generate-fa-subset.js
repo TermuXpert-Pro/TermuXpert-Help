@@ -39,7 +39,7 @@ function walk(dir, fileList = []) {
         const full = path.join(dir, entry.name);
         if (entry.isDirectory()) {
             walk(full, fileList);
-        } else if (entry.name.endsWith('.html')) {
+        } else if (entry.name.endsWith('.html') || entry.name.endsWith('.js')) {
             fileList.push(full);
         }
     }
@@ -50,22 +50,23 @@ function walk(dir, fileList = []) {
 // 1) فحص كل ملفات HTML واستخراج الأيقونات المستعملة فعليا
 //    (مع التمييز بين solid=fas و brands=fab)
 // ============================================================
-const CLASS_ATTR_RE = /class="([^"]*\bfa-[a-z0-9-]+[^"]*)"/g;
+// كنقبطو أي نص بين علامتي اقتباس (مزدوجة أو مفردة) فيه fa-xxx —
+// هادشي كيغطي class="...", className = '...', تعابير ternary (?:),
+// innerHTML strings... بلا ما نتقيدو بصيغة كتابة معينة
+const QUOTED_ICON_RE = /(['"])([^'"]*\bfa-[a-z0-9-]+[^'"]*)\1/g;
 const ICON_NAME_RE = /\bfa-([a-z0-9-]+)\b/g;
 
 const solidIcons = new Set();
 const brandIcons = new Set();
 
-console.log('🔍 فحص ملفات HTML لاستخراج الأيقونات المستعملة...\n');
+console.log('🔍 فحص ملفات HTML/JS لاستخراج الأيقونات المستعملة...\n');
 
 const htmlFiles = walk(ROOT);
 for (const file of htmlFiles) {
     const content = fs.readFileSync(file, 'utf-8');
-    let m;
-    while ((m = CLASS_ATTR_RE.exec(content)) !== null) {
-        const classStr = m[1];
+
+    function collectFrom(classStr) {
         const isBrand = /\bfab\b/.test(classStr);
-        const isSolid = /\bfas\b/.test(classStr);
         let im;
         ICON_NAME_RE.lastIndex = 0;
         while ((im = ICON_NAME_RE.exec(classStr)) !== null) {
@@ -74,13 +75,21 @@ for (const file of htmlFiles) {
             if (['solid', 'regular', 'brands', 'light', 'thin', 'duotone', 'sharp',
                  'fw', 'spin', 'pulse', 'border', 'pull-left', 'pull-right',
                  'inverse', 'stack', 'stack-1x', 'stack-2x', 'li', 'ul',
-                 'xs', 'sm', 'lg', 'xl', '2xs', '2xl'].includes(name)) continue;
-            if (/^\d+x$/.test(name) || /^rotate-/.test(name) || /^flip-/.test(name)) continue;
+                 'xs', 'sm', 'lg', 'xl', '2xs', '2xl'].includes(name)) return;
+            // كنستثنيو غير modifiers ديال الدوران/القلب الحقيقيين (fa-rotate-90/180/270/by،
+            // fa-flip-horizontal/vertical/both) - ماشي أي أيقونة اسمها كيبدا بـ "rotate-"
+            // أو "flip-" (بحال fa-rotate-right اللي هي أيقونة حقيقية، ماشي modifier)
+            if (/^\d+x$/.test(name)) return;
+            if (/^rotate-(90|180|270|by)$/.test(name)) return;
+            if (/^flip-(horizontal|vertical|both)$/.test(name)) return;
 
             if (isBrand) brandIcons.add(name);
             else solidIcons.add(name); // fas هو الافتراضي (ماكاينش far فالموقع)
         }
     }
+
+    let m;
+    while ((m = QUOTED_ICON_RE.exec(content)) !== null) collectFrom(m[2]);
 }
 
 const solidList = [...solidIcons].sort();
@@ -249,3 +258,5 @@ ${brandRules.length ? '\n' + brandRules.join('\n') : ''}
     console.log('   node utils/replace-fontawesome-cdn.js --apply');
     console.log('   باش يتبدل رابط CDN بالنسخة المحلية فكل صفحات الموقع.');
 }
+
+

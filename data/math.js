@@ -1,4 +1,5 @@
 
+
 // ============================================================
 // بيانات مادة الرياضيات
 // لإضافة درس/تمرين/سلسلة جديدة: زيد سطر جديد فـ المصفوفة المناسبة
@@ -32,6 +33,31 @@ window.subjectsData.math = {
         { title: "Généralités sur les fonctions", file: "content/math/series/fonctions/index.html", desc: "7 séries" },
         { title: "Barycentre dans le plan", file: "content/math/series/barycentre/index.html", desc: "6 séries" }
     ],
-    exams: []
+    // ============================================================
+    // بيانات الفروض والامتحانات
+    // لإضافة فرض جديد: زيد عنصر جديد بنفس الهيكل (id, type, number,
+    // semester, title, desc, lessons, duration, hub, models)
+    //
+    // ملاحظة: بطاقة الفرض فـ subject.html كتستعمل هاد الحقول:
+    //   - semester -> بادج "Semestre 1/2" فالركن الأيمن الأعلى
+    //   - models   -> "X modèle(s)" فسطر المعلومات
+    //   - duration -> "X min" فسطر المعلومات
+    //   - lessons  -> شيبس (chips) تحت سطر المعلومات
+    // ============================================================
+    exams: [
+        {
+            id: "ds1-logique-fonctions",
+            type: "Devoir",
+            number: 1,
+            semester: 1,
+            title: "Devoir Surveillé N°1",
+            desc: "Logique mathématique et Généralités sur les fonctions",
+            lessons: ["Logique mathématique", "Généralités sur les fonctions"],
+            duration: 120,
+            hub: "content/math/devoirs/ds1-logique-fonctions/index.html",
+            models: 1
+        }
+    ]
 };
+
 

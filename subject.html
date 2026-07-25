@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -300,8 +301,12 @@
         // ============================================================
 
         let currentSubject = null;
+        let currentSubjectId = null;
         let currentTab = 'lessons';
         let isAnimating = false;
+
+        // ألوان كل مادة (نفس الألوان المستعملة فـ باقي المشروع)
+        const SUBJECT_ACCENT = { math: '#4ECDC4', physique: '#FF6B6B', chimie: '#F4D03F' };
 
         // ============================================================
         // حفظ واستعادة التبويب الحالي
@@ -365,6 +370,8 @@
                 showNotFound();
                 return;
             }
+
+            currentSubjectId = id;
 
             // إذا كانت البيانات محملة من قبل (نادر، لكن للأمان)
             if (window.subjectsData && window.subjectsData[id]) {
@@ -504,15 +511,32 @@
                         </div>
                     `;
                 } else {
-                    html = currentSubject.exams.map((e, i) => `
-                        <div class="command-card">
+                    const accent = SUBJECT_ACCENT[currentSubjectId] || '#4ECDC4';
+                    html = currentSubject.exams.map((e, i) => {
+                        const semesterLabel = e.semester === 2 ? 'Semestre 2' : 'Semestre 1';
+                        const modelsLabel = `${e.models} modèle${e.models > 1 ? 's' : ''}`;
+                        const lessonsChips = (e.lessons || []).map(l =>
+                            `<span class="devoir-lesson-chip" style="color:${accent}; background:${accent}14; border:1px solid ${accent}30;">${l}</span>`
+                        ).join('');
+                        return `
+                        <div class="command-card devoir-card" onclick="saveCurrentTab('${tab}'); location.href='${e.hub}'">
+                            <span class="devoir-semester-badge"><i class="fas fa-bookmark"></i> ${semesterLabel}</span>
                             <div class="command-title">
                                 <span class="num">${i+1}</span> ${e.title}
                             </div>
-                            <p><span class="badge" style="background:${e.type === 'Devoir' ? '#FF6B6B22' : '#BB8FCE22'}; color:${e.type === 'Devoir' ? '#FF6B6B' : '#BB8FCE'}; border-color:${e.type === 'Devoir' ? '#FF6B6B22' : '#BB8FCE22'};">${e.type}</span></p>
-                            <span class="badge" style="background:#4ECDC422; color:#4ECDC4; border-color:#4ECDC422;"><i class="fas fa-download"></i> Télécharger</span>
+                            <div class="devoir-meta">
+                                <span class="devoir-meta-dot" style="background:${accent};"></span>
+                                <span class="devoir-meta-subject" style="color:${accent};">${currentSubjectId}</span>
+                                <span class="devoir-meta-sep">·</span>
+                                <span>${modelsLabel}</span>
+                                <span class="devoir-meta-sep">·</span>
+                                <span>${e.duration} min</span>
+                            </div>
+                            <div class="devoir-lessons">${lessonsChips}</div>
+                            <span class="badge" style="background:#BB8FCE22; color:#BB8FCE; border-color:#BB8FCE22;"><i class="fas fa-folder-open"></i> Voir le devoir</span>
                         </div>
-                    `).join('');
+                    `;
+                    }).join('');
                 }
             }
             
@@ -665,6 +689,10 @@
     </script>
 </body>
 </html>
+
+
+
+
 
 
 

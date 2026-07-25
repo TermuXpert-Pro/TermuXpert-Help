@@ -2,7 +2,7 @@
 // Service Worker - Xpert PWA
 // ============================================================
 
-const CACHE_NAME = 'xpert-11d3cef1';
+const CACHE_NAME = 'xpert-86ed5f14';
 
 // ====== App Shell فقط ======
 const urlsToCache = [
