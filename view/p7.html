@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Xpert — استعراض محاكي الفروض والتصحيح التفاعلي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<!-- MathJax CDN لعرض المعادلات والرموز الرياضية بشكل أصلي واحترافي -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+  :root {
+    --bg-0: #081312;
+    --bg-1: #0c1f1d;
+    --bg-2: #0f2624;
+    --teal: #4ECDC4;
+    --teal-dim: #2c7a72;
+    --gold: #F4D03F;
+    --purple: #BB8FCE;
+    --red: #FF6B6B;
+    --text: #eaf6f4;
+    --muted: #8fb2ad;
+    --line: rgba(78, 205, 196, 0.18);
+    --card-bg: rgba(31, 40, 51, 0.75);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg-0); overflow: hidden; }
+  body { font-family: 'Tajawal', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- Stage Container ---------- */
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(78, 205, 196, 0.12), transparent 50%),
+      linear-gradient(160deg, var(--bg-0), var(--bg-1) 55%, var(--bg-2));
+  }
+
+  .zellij-bg {
+    position: absolute; inset: 0;
+    opacity: 0; pointer-events: none;
+  }
+
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; padding: 2vh 4vw; text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Cairo', sans-serif; font-weight: 700;
+    color: var(--teal); font-size: clamp(12px, 1.4vw, 15px);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px; opacity: 0;
+  }
+  .eyebrow::before, .eyebrow::after { content: ""; width: 24px; height: 1px; background: var(--teal-dim); }
+
+  h1.headline {
+    font-family: 'Cairo', sans-serif; font-weight: 900;
+    font-size: clamp(18px, 3.2vw, 32px); line-height: 1.1; margin: 0 0 10px;
+    opacity: 0; transform: translateY(16px);
+  }
+  h1.headline .x { color: var(--purple); }
+
+  .scene-caption {
+    font-family: 'Tajawal', sans-serif; font-weight: 500;
+    font-size: clamp(11.5px, 1.3vw, 13.5px); line-height: 1.7;
+    color: var(--muted); max-width: min(640px, 90vw);
+    margin: 16px auto 0; opacity: 0;
+  }
+  .scene-caption strong { color: var(--purple); font-weight: 700; }
+
+  /* ---------- Browser Frame Mockup ---------- */
+  .browser-frame {
+    width: min(780px, 94vw);
+    height: 76vh;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+    text-align: left; opacity: 0; transform: translateY(24px) scale(0.97);
+    position: relative;
+    display: flex; flex-direction: column;
+    transition: background 0.4s ease, border-color 0.4s ease;
+  }
+
+  .browser-bar {
+    height: 32px; background: #0a1917; display: flex; align-items: center; gap: 6px; padding: 0 12px;
+    border-bottom: 1px solid var(--line); flex-shrink: 0;
+  }
+  .browser-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .browser-url {
+    flex: 1; margin-left: 8px; background: rgba(255,255,255,0.04); border-radius: 6px; height: 18px;
+    display: flex; align-items: center; padding: 0 10px; font-size: 9.5px; color: var(--muted);
+    direction: ltr; font-family: monospace;
+  }
+
+  .browser-body {
+    padding: 16px 20px 20px; flex: 1; overflow-y: auto; position: relative; direction: ltr;
+    scroll-behavior: smooth;
+  }
+
+  /* Mock Toolbar */
+  .mock-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 12px;
+    opacity: 0;
+  }
+  .mock-logo { font-family: 'Cairo', sans-serif; font-weight: 900; font-size: 15px; color: var(--teal); }
+  .mock-logo span { color: var(--gold); }
+  .mock-nav-actions { display: flex; gap: 8px; font-size: 11px; color: var(--muted); }
+  .nav-btn {
+    width: 26px; height: 26px; border-radius: 6px; background: rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: center; border: 1px solid var(--line);
+    cursor: pointer;
+  }
+
+  /* Devoir Header */
+  .devoir-header { text-align: center; margin-bottom: 14px; opacity: 0; }
+  .devoir-header h2 {
+    font-family: 'Cairo', sans-serif; font-size: 18px; margin: 0 0 4px; color: var(--text);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .devoir-badges { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .badge-item {
+    font-size: 9.5px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+    background: rgba(187, 143, 206, 0.15); color: var(--purple); border: 1px solid rgba(187, 143, 206, 0.3);
+  }
+
+  /* Exercises Content */
+  .devoir-exo-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 14px 0 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(187, 143, 206, 0.25);
+  }
+  .devoir-exo-header h3 { color: var(--purple); font-size: 13px; margin: 0; font-family: 'Cairo', sans-serif; }
+
+  .sub-question {
+    background: rgba(0, 0, 0, 0.2); border: 1px solid var(--line);
+    border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; position: relative;
+  }
+  .sub-question .letter { color: var(--purple); font-weight: 800; font-size: 11.5px; margin-bottom: 3px; }
+  .question-text { font-size: 12px; color: var(--text); margin-bottom: 6px; line-height: 1.6; }
+
+  /* MathJax SVG styling inside solutions and questions */
+  .mjx-chtml, .mjx-container {
+    color: var(--gold) !important;
+    outline: none !important;
+  }
+
+  /* Solution Box Animation */
+  .solution-box {
+    background: rgba(12, 31, 29, 0.95); border: 1px solid var(--teal-dim);
+    border-radius: 6px; padding: 8px 10px; margin-top: 6px;
+    display: none; opacity: 0; transform: translateY(-6px);
+  }
+  .sol-title { color: var(--teal); font-size: 10.5px; font-weight: 700; margin-bottom: 4px; }
+  .sol-content { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .step { background: rgba(255,255,255,0.03); padding: 4px 8px; border-radius: 4px; margin: 4px 0; border-left: 2px solid var(--teal); }
+
+  /* Simulated Floating Elements inside browser */
+  .mock-fab-container {
+    position: absolute; bottom: 16px; left: 16px; z-index: 50;
+  }
+  .mock-fab-btn {
+    height: 38px; padding: 0 12px; border-radius: 19px; background: rgba(31, 40, 51, 0.95);
+    border: 1px solid var(--purple); color: var(--text); font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;
+  }
+  .mock-fab-btn i { color: var(--purple); font-size: 13px; }
+
+  /* Mock Fab Popup Menu */
+  .mock-fab-menu {
+    position: absolute; bottom: 46px; left: 0; width: 195px;
+    background: #131b2e; border: 1px solid rgba(187,143,206,0.3); border-radius: 12px;
+    padding: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    display: flex; flex-direction: column; gap: 4px; opacity: 0; transform: translateY(6px); pointer-events: none;
+    transition: all 0.25s ease;
+  }
+  .mock-fab-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .mock-fab-menu-item {
+    display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px;
+    font-size: 11px; font-weight: 600; color: var(--text); cursor: pointer; background: transparent; border: none;
+    text-align: left; width: 100%; font-family: 'Tajawal', sans-serif;
+  }
+  .mock-fab-menu-item:hover { background: rgba(187,143,206,0.12); }
+  .mock-fab-menu-item i { width: 16px; text-align: center; }
+
+  /* Mock Timer Card (Exam mode header) */
+  .mock-timer-card {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%) translateY(-10px);
+    height: 36px; padding: 0 12px; border-radius: 18px; background: #131b2e;
+    border: 1px solid rgba(78,205,196,0.5); box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: flex; align-items: center; gap: 8px; opacity: 0; visibility: hidden; z-index: 60;
+    transition: all 0.3s ease; direction: ltr;
+  }
+  .mock-timer-card.visible { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .mock-timer-icon { width: 22px; height: 22px; border-radius: 50%; background: rgba(78,205,196,0.15); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .mock-timer-text { font-family: monospace; font-size: 12px; font-weight: 700; color: var(--teal); }
+
+  /* Mock Break Game Modal Popup */
+  .mock-break-modal {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+    z-index: 100; display: flex; align-items: center; justify-content: center; padding: 16px;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+  }
+  .mock-break-modal.open { opacity: 1; visibility: visible; }
+  .mock-break-card {
+    background: #131b2e; border: 1px solid rgba(187,143,206,0.3); border-radius: 12px;
+    padding: 16px; text-align: center; width: 100%; max-width: 290px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .mock-break-card i { font-size: 24px; color: var(--purple); margin-bottom: 8px; }
+  .mock-break-card h4 { font-family: 'Cairo', sans-serif; font-size: 13.5px; margin-bottom: 4px; color: #fff; }
+  .mock-break-card p { font-size: 11px; color: var(--muted); margin-bottom: 12px; line-height: 1.4; }
+
+  /* Virtual Cursor Pointer */
+  .virtual-cursor {
+    position: absolute; top: 0; left: 0; width: 22px; height: 22px; margin-left: -11px; margin-top: -11px;
+    background: radial-gradient(circle, var(--gold) 35%, rgba(244,208,63,0.4) 70%, transparent 100%);
+    border: 2px solid #ffffff; border-radius: 50%; pointer-events: none;
+    z-index: 999; opacity: 0; transform: scale(0.5); box-shadow: 0 0 15px var(--gold);
+  }
+.replay-btn {
+    position: absolute; top: 16px; left: 16px; z-index: 20; font-size: 11px; color: var(--muted);
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line); padding: 6px 14px; border-radius: 20px; cursor: pointer;
+    opacity: 0;
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="zellij-bg" id="zellijBg">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.22;">
+      <pattern id="zellij" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
+        <polygon points="80,0 160,80 80,160 0,80" fill="none" stroke="#4ECDC4" stroke-width="0.6"/>
+        <polygon points="80,30 130,80 80,130 30,80" fill="none" stroke="#F4D03F" stroke-width="0.5"/>
+      </pattern>
+      <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+  </div>
+
+  <button class="replay-btn" id="replayBtn">إعادة العرض 🔄</button>
+
+  <section class="scene">
+    <div class="eyebrow" id="eyebrow">استعراض نظام الفروض والمحاكي</div>
+    <h1 class="headline" id="headline">محاكاة <span class="x">Devoir Surveillé N°1</span></h1>
+
+    <div class="browser-frame" id="browserFrame">
+      <div class="virtual-cursor" id="virtualCursor"></div>
+
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <div class="browser-url">https://jdxpert.pages.dev/</div>
+      </div>
+
+      <div class="browser-body" id="browserBody">
+        
+        <!-- Mock Timer Card (Floating Header inside browser) -->
+        <div class="mock-timer-card" id="mockTimerCard">
+          <div class="mock-timer-icon"><i class="fas fa-hourglass-half"></i></div>
+          <div class="mock-timer-text">01:59:45</div>
+        </div>
+
+        <!-- Mock Nav -->
+        <div class="mock-nav" id="mockNav">
+          <div class="mock-logo"><span>X</span>pert</div>
+          <div class="mock-nav-actions">
+            <div class="nav-btn" id="btnTheme"><i class="fas fa-moon"></i></div>
+            <div class="nav-btn"><i class="fas fa-download"></i></div>
+            <div class="nav-btn"><i class="fas fa-bars"></i></div>
+          </div>
+        </div>
+
+        <!-- Mock Break Game Modal inside Browser (In French) -->
+        <div class="mock-break-modal" id="mockBreakModal">
+          <div class="mock-break-card">
+            <i class="fas fa-puzzle-piece"></i>
+            <h4>Pause Récréative ☕</h4>
+            <p>Résolvez ce mini-jeu pour vous détendre pendant la pause !</p>
+            <div style="font-size:11px; background:rgba(78,205,196,0.1); color:var(--teal); padding:6px; border-radius:6px; font-weight:700;">Jeu de mémoire actif</div>
+          </div>
+        </div>
+
+        <!-- Devoir Title Header (In French) -->
+        <div class="devoir-header" id="devoirHeader">
+          <h2><i class="fas fa-pen-to-square" style="color:var(--purple);"></i> Devoir Surveillé N°1</h2>
+          <div class="devoir-badges">
+            <span class="badge-item"><i class="fas fa-layer-group"></i> Semestre 1</span>
+            <span class="badge-item" style="color:var(--teal); border-color:rgba(78,205,196,0.3); background:rgba(78,205,196,0.1);"><i class="fas fa-clock"></i> Durée : 2 heures</span>
+          </div>
+        </div>
+
+        <!-- Exercise 1 Header -->
+        <div class="devoir-exo-header">
+          <h3><i class="fas fa-list-ol"></i> Exercice 1 : Logique Mathématique (9 pts)</h3>
+        </div>
+
+        <!-- Question 1 with LaTeX -->
+        <div class="sub-question" id="q1">
+          <div class="letter">1)</div>
+          <div class="question-text">Déterminer la valeur de vérité de la proposition suivante :<br> $P_1 : (\forall x \in \mathbb{R}^{*+}) \; ; \; x + \dfrac{16}{x} > 8$</div>
+          <div class="solution-box" id="sol1">
+            <div class="sol-title">✅ Solution Détaillée</div>
+            <div class="sol-content">
+              <p style="font-weight:700; color:var(--purple);">$P_1$ est une proposition <b>fausse</b>.</p>
+              <div class="step"><span class="step-num">Contre-exemple :</span> Pour $x=4 \in \mathbb{R}^{*+}$, on a : $4 + \dfrac{16}{4} = 4 + 4 = 8 \ngtr 8$.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 with LaTeX -->
+        <div class="sub-question" id="q2">
+          <div class="letter">2)</div>
+          <div class="question-text">Montrer la proposition suivante par le raisonnement par l'absurde :<br> $P_2 : (\forall n \in \mathbb{N}) \; : \; \dfrac{n+5}{n+4} \neq 1$</div>
+          <div class="solution-box" id="sol2">
+            <div class="sol-title">✅ Solution Détaillée</div>
+            <div class="sol-content">
+              <p style="font-weight:700; color:var(--purple);">$P_2$ est une proposition <b>vraie</b>.</p>
+              <div class="step"><span class="step-num">Démonstration :</span> Supposons que $\exists n \in \mathbb{N}$ tel que $\dfrac{n+5}{n+4} = 1$.<br>Alors $n+5 = n+4 \implies 5 = 4$, ce qui est absurde !</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating FAB Button with French Menu -->
+        <div class="mock-fab-container">
+          <div class="mock-fab-menu" id="mockFabMenu">
+            <button class="mock-fab-menu-item" id="menuExamBtn"><i class="fas fa-graduation-cap" style="color:var(--teal);"></i> Passer le devoir</button>
+            <button class="mock-fab-menu-item" id="menuSolBtn"><i class="fas fa-eye" style="color:var(--purple);"></i> Voir la correction</button>
+          </div>
+          <div class="mock-fab-btn" id="mockFab">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Options du devoir</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="scene-caption" id="sceneCaption">محاكاة كاملة لصفحة <strong>فرض محروس</strong> تتضمن مؤقتاً للوقت، أسئلة مع حلول مفصلة، ولعبة استراحة قصيرة بين التمارين.</p>
+  </section>
+</div>
+
+<script>
+  function getElementCenter(selector) {
+    const frame = document.getElementById('browserFrame').getBoundingClientRect();
+    const target = document.querySelector(selector).getBoundingClientRect();
+    return {
+      x: (target.left + target.width / 2) - frame.left,
+      y: (target.top + target.height / 2) - frame.top
+    };
+  }
+
+  function renderMath() {
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise();
+    }
+  }
+
+  function revealSolutions() {
+    document.querySelectorAll('.solution-box').forEach(box => {
+      box.style.display = 'block';
+      gsap.to(box, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+    });
+    renderMath();
+  }
+
+  function resetPage() {
+    document.getElementById('mockFabMenu').classList.remove('open');
+    document.getElementById('mockTimerCard').classList.remove('visible');
+    document.getElementById('mockBreakModal').classList.remove('open');
+    document.querySelectorAll('.solution-box').forEach(box => {
+      box.style.display = 'none';
+      box.style.opacity = '0';
+      box.style.transform = 'translateY(-6px)';
+    });
+    document.getElementById('browserBody').scrollTop = 0;
+  }
+
+  // GSAP Timeline Execution (22.0 Seconds)
+  const tl = gsap.timeline({ paused: false });
+
+  tl.to("#zellijBg", { opacity: 1, duration: 1.0 }, 0);
+  tl.to("#eyebrow", { opacity: 1, duration: 0.5 }, 0.5);
+  tl.to("#headline", { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.4)" }, 0.8);
+
+  tl.to("#browserFrame", { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 1.4);
+  tl.to("#sceneCaption", { opacity: 1, duration: 0.6 }, 1.9);
+  tl.to("#mockNav, #devoirHeader", { opacity: 1, duration: 0.5, stagger: 0.2 }, 2.0);
+
+  // Render MathJax equations on load
+  tl.call(() => { renderMath(); }, null, 2.2);
+
+  /* 1. Moves cursor to FAB button & opens menu */
+  tl.to("#virtualCursor", {
+    opacity: 1, scale: 1,
+    left: () => getElementCenter('#mockFab').x,
+    top: () => getElementCenter('#mockFab').y,
+    duration: 0.8, ease: "power2.out"
+  }, 3.0);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 3.9);
+  tl.call(() => {
+    document.getElementById('mockFabMenu').classList.toggle('open');
+  }, null, 4.0);
+
+  /* 2. Moves cursor to "Passer le devoir" option */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#menuExamBtn').x,
+    top: () => getElementCenter('#menuExamBtn').y,
+    duration: 0.7, ease: "power2.out"
+  }, 4.8);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 5.6);
+  tl.call(() => {
+    document.getElementById('mockFabMenu').classList.remove('open');
+    document.getElementById('mockTimerCard').classList.add('visible');
+  }, null, 5.7);
+
+  /* 3. Simulates scroll and break timer modal */
+  tl.to("#browserBody", { scrollTop: 120, duration: 1.0, ease: "power2.inOut" }, 7.5);
+  tl.call(() => {
+    document.getElementById('mockBreakModal').classList.add('open');
+  }, null, 9.2);
+
+  /* 4. Closes break modal */
+  tl.call(() => {
+    document.getElementById('mockBreakModal').classList.remove('open');
+  }, null, 11.5);
+
+  /* 5. Moves back to FAB menu to open correction */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#mockFab').x,
+    top: () => getElementCenter('#mockFab').y,
+    duration: 1.0, ease: "power2.out"
+  }, 13.0);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 14.1);
+  tl.call(() => {
+    document.getElementById('mockFabMenu').classList.toggle('open');
+  }, null, 14.2);
+
+  /* 6. Clicks "Voir la correction" to display full detailed solution */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#menuSolBtn').x,
+    top: () => getElementCenter('#menuSolBtn').y,
+    duration: 0.7, ease: "power2.out"
+  }, 15.0);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 15.8);
+  tl.call(() => {
+    document.getElementById('mockFabMenu').classList.remove('open');
+    document.getElementById('mockTimerCard').classList.remove('visible');
+    revealSolutions();
+  }, null, 15.9);
+
+  /* 7. Scrolls down to clearly review solution & hides cursor */
+  tl.to("#browserBody", { scrollTop: 220, duration: 1.2, ease: "power2.inOut" }, 17.5);
+  tl.to("#virtualCursor", { opacity: 0, duration: 0.5 }, 20.0);
+
+  document.getElementById("replayBtn").addEventListener("click", () => {
+    resetPage();
+    tl.restart();
+  });
+</script>
+
+</body>
+</html>
+

@@ -482,7 +482,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphInertieLife" width="400" height="180"></canvas>
+                    <svg id="graphInertieLife" role="img" aria-label="Moment d'inertie : masse proche et masse éloignée de l'axe"></svg>
                     <p>Moment d'inertie : plus la masse est éloignée de l'axe, plus J est grand</p>
                 </div>
             </div>
@@ -498,7 +498,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graphRotation" width="400" height="220"></canvas>
+                    <svg id="graphRotation" role="img" aria-label="Solide en rotation autour d'un axe fixe"></svg>
                     <p>Solide en rotation autour d'un axe fixe (Δ)</p>
                 </div>
 
@@ -623,7 +623,7 @@
                 <h2><span class="num">3</span> Moments d'inertie de quelques solides homogènes</h2>
 
                 <div class="graph-container">
-                    <canvas id="graphInertie" width="400" height="200"></canvas>
+                    <svg id="graphInertie" role="img" aria-label="Moments d'inertie de solides homogènes"></svg>
                     <p>Moments d'inertie de solides homogènes</p>
                 </div>
 
@@ -710,6 +710,10 @@
                     <p style="font-size:11.5px; color:var(--text-secondary); margin-top:6px;">
                         <strong>Déterminer l'énergie cinétique du disque.</strong>
                     </p>
+                    <div class="graph-container" style="margin-top:6px;">
+                        <svg id="graphAppliDisque" role="img" aria-label="Disque en rotation - application numérique"></svg>
+                        <p>Disque de masse m = 800 g et de rayon r = 30 cm, tournant à N = 100 tr/min</p>
+                    </div>
                     <div style="margin-top:6px;">
                         <div class="step">
                             <span class="step-num">Étape 1 :</span> Conversion des unités
@@ -808,247 +812,8 @@
                 navbar.classList.toggle('scrolled', window.scrollY > 30);
             }
         });
-
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphInertieLife() {
-            var canvas = document.getElementById('graphInertieLife');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 10;
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('(Δ)', cx + 12, 30);
-
-            // Cercle intérieur (masse proche)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 30, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '9px Arial';
-            ctx.fillText('m', cx + 12, cy + 4);
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '8px Arial';
-            ctx.fillText('r petit → J petit', cx - 30, cy + 45);
-
-            // Cercle extérieur (masse éloignée)
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 70, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.fillStyle = '#FFD93D';
-            ctx.beginPath();
-            ctx.arc(cx + 70, cy, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '9px Arial';
-            ctx.fillText('m', cx + 80, cy + 4);
-            ctx.fillStyle = '#FFD93D';
-            ctx.font = '8px Arial';
-            ctx.fillText('r grand → J grand', cx + 30, cy + 45);
-
-            // Flèche
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(cx + 70, cy);
-            ctx.stroke();
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '10px Arial';
-            ctx.fillText('r', (cx + cx + 70)/2 - 5, cy - 8);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Plus la masse est éloignée de l\'axe, plus J est grand', 100, 20);
-        }
-
-        function drawGraphRotation() {
-            var canvas = document.getElementById('graphRotation');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 10;
-            var rayon = 80;
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '12px Arial';
-            ctx.fillText('(Δ)', cx + 12, 30);
-
-            // Cercle (trajectoire)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Points sur le cercle
-            var points = [
-                {angle: 0, label: 'A₁'},
-                {angle: Math.PI/3, label: 'A₂'},
-                {angle: 2*Math.PI/3, label: 'A₃'}
-            ];
-
-            for (var i = 0; i < points.length; i++) {
-                var x = cx + rayon * Math.cos(points[i].angle);
-                var y = cy + rayon * Math.sin(points[i].angle);
-                var colors = ['#4ECDC4', '#F4D03F', '#A8FF78'];
-                ctx.fillStyle = colors[i];
-                ctx.beginPath();
-                ctx.arc(x, y, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '11px Arial';
-                ctx.fillText(points[i].label, x + 8, y - 6);
-
-                // Rayon
-                ctx.strokeStyle = '#2A2A3E';
-                ctx.lineWidth = 1;
-                ctx.setLineDash([3, 3]);
-                ctx.beginPath();
-                ctx.moveTo(cx, cy);
-                ctx.lineTo(x, y);
-                ctx.stroke();
-                ctx.setLineDash([]);
-            }
-
-            // Centre O
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Solide en rotation autour de (Δ)', 160, 20);
-        }
-
-        function drawGraphInertie() {
-            var canvas = document.getElementById('graphInertie');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 40, oy = h - 20;
-
-            // Disque
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(ox + 50, oy - 60, 40, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC422';
-            ctx.fill();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('Disque', ox + 30, oy - 100);
-            ctx.fillText('J = 1/2·m·R²', ox + 20, oy - 88);
-
-            // Anneau
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.arc(ox + 160, oy - 60, 35, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(ox + 160, oy - 60, 25, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('Anneau', ox + 140, oy - 100);
-            ctx.fillText('J = m·R²', ox + 145, oy - 88);
-
-            // Sphère
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(ox + 270, oy - 60, 35, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F22';
-            ctx.fill();
-
-            // Cercle intérieur (effet 3D)
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(ox + 285, oy - 70, 12, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(ox + 275, oy - 75, 8, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '10px Arial';
-            ctx.fillText('Sphère', ox + 250, oy - 100);
-            ctx.fillText('J = 2/5·m·R²', ox + 240, oy - 88);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Moments d\'inertie de quelques solides', 120, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphInertieLife();
-                drawGraphRotation();
-                drawGraphInertie();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p2.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

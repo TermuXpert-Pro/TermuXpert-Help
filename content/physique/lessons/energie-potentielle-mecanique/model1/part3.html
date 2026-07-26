@@ -84,8 +84,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas,
+        .graph-container svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            max-height: 220px;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -428,7 +432,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphEm" width="400" height="200"></canvas>
+                    <svg id="graphEm" role="img" aria-label="Schéma Em"></svg>
                     <p>Énergie mécanique = Énergie cinétique + Énergie potentielle de pesanteur</p>
                 </div>
 
@@ -495,7 +499,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphConservation" width="400" height="200"></canvas>
+                    <svg id="graphConservation" role="img" aria-label="Schéma Conservation"></svg>
                     <p>Conservation de l'énergie mécanique : Em = constante</p>
                 </div>
 
@@ -552,7 +556,7 @@
                 <h2><span class="num">3</span> Activité expérimentale : Table à coussin d'air inclinée</h2>
 
                 <div class="graph-container">
-                    <canvas id="graphExperience" width="400" height="180"></canvas>
+                    <svg id="graphExperience" role="img" aria-label="Schéma Experience"></svg>
                     <p>Autoporteur sur une table à coussin d'air inclinée</p>
                 </div>
 
@@ -607,6 +611,7 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
+    <script src="figuresvt_p3.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -615,248 +620,6 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphEm() {
-            var canvas = document.getElementById('graphEm');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scaleX = 50, scaleY = 20;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('t (s)', w - 30, oy + 18);
-            ctx.fillText('E (J)', ox + 8, 18);
-
-            // Données simulées (conversion)
-            var data = [
-                {t: 0, Ec: 0, Epp: 174.4},
-                {t: 60, Ec: 4.29, Epp: 164.43},
-                {t: 120, Ec: 13.45, Epp: 145.75},
-                {t: 180, Ec: 31.14, Epp: 120.83},
-                {t: 240, Ec: 53.78, Epp: 88.44}
-            ];
-
-            // Courbe Ec
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].t * scaleX / 1000;
-                var y = oy - data[i].Ec * scaleY / 1000;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Courbe Epp
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].t * scaleX / 1000;
-                var y = oy - data[i].Epp * scaleY / 1000;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Courbe Em (somme)
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 3;
-            ctx.setLineDash([6,4]);
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].t * scaleX / 1000;
-                var y = oy - (data[i].Ec + data[i].Epp) * scaleY / 1000;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Légende
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('Ec', w-60, 30);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillText('Epp', w-60, 45);
-            ctx.fillStyle = '#F4D03F';
-            ctx.fillText('Em = Ec + Epp', w-60, 60);
-        }
-
-        function drawGraphConservation() {
-            var canvas = document.getElementById('graphConservation');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2 + 10;
-
-            // Axe vertical
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx, 20);
-            ctx.lineTo(cx, h-20);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('z', cx+10, 30);
-
-            // Sol
-            ctx.fillStyle = '#2A2A3E';
-            ctx.fillRect(0, h-25, w, 5);
-            ctx.fillStyle = '#888888';
-            ctx.font = '9px Arial';
-            ctx.fillText('Sol', 20, h-10);
-
-            // Point A (en haut)
-            var zA = cy - 100;
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(cx-40, zA, 5, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('A', cx-55, zA-10);
-
-            // Point B (en bas)
-            var zB = cy - 40;
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(cx-40, zB, 5, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('B', cx-55, zB-10);
-
-            // Flèche de descente
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx+20, zA);
-            ctx.lineTo(cx+20, zB);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(cx+20, zB);
-            ctx.lineTo(cx+16, zB+4);
-            ctx.moveTo(cx+20, zB);
-            ctx.lineTo(cx+24, zB+4);
-            ctx.stroke();
-
-            // Énergies
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('Epp(A) > Epp(B)', 20, 30);
-            ctx.fillStyle = '#FFD93D';
-            ctx.fillText('Ec(A) < Ec(B)', 20, 45);
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '11px Arial';
-            ctx.fillText('Em(A) = Em(B)', 20, 62);
-
-            // Lignes
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4,4]);
-            ctx.beginPath();
-            ctx.moveTo(cx-60, zA+30);
-            ctx.lineTo(cx+60, zA+30);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '9px Arial';
-            ctx.fillText('Em = constante', cx+65, zA+34);
-            ctx.setLineDash([]);
-        }
-
-        function drawGraphExperience() {
-            var canvas = document.getElementById('graphExperience');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Plan incliné
-            ctx.strokeStyle = '#4A4A5A';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(40, h-30);
-            ctx.lineTo(w-40, 40);
-            ctx.stroke();
-
-            // Table
-            ctx.fillStyle = '#1A1A2E';
-            ctx.fillRect(30, h-35, w-60, 10);
-            ctx.fillRect(30, h-25, 5, 15);
-            ctx.fillRect(w-35, h-25, 5, 15);
-
-            // Autoporteur
-            var x0 = 80, y0 = h-30 - (x0-40)*(h-30-40)/(w-80);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(x0, y0-6, 12, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '8px Arial';
-            ctx.fillText('S', x0-4, y0-3);
-
-            // Flèche de déplacement
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(x0+20, y0-10);
-            ctx.lineTo(x0+50, y0-25);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(x0+50, y0-25);
-            ctx.lineTo(x0+45, y0-28);
-            ctx.moveTo(x0+50, y0-25);
-            ctx.lineTo(x0+48, y0-21);
-            ctx.stroke();
-
-            // Angle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(40, h-30, 25, -Math.PI/2, -Math.PI/2 + 0.17);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('α', 50, h-12);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '9px Arial';
-            ctx.fillText('Table à coussin d\'air inclinée', 120, 20);
-        }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {

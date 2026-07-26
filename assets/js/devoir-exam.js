@@ -258,7 +258,14 @@
 
     function handleExamMenuClick() {
         if (state === 'running' || state === 'break') {
-            stopExam('manual');
+            askConfirm({
+                icon: 'fas fa-circle-pause',
+                title: 'Arrêter le devoir ?',
+                text: 'Si tu arrêtes maintenant, le chronomètre s\'arrêtera et les solutions s\'afficheront immédiatement. Es-tu sûr(e) ?',
+                cancelLabel: 'Continuer le devoir',
+                confirmLabel: 'Oui, arrêter',
+                onConfirm: function () { stopExam('manual'); }
+            });
         } else if (state === 'finished') {
             resetExam();
             openAdviceModal();

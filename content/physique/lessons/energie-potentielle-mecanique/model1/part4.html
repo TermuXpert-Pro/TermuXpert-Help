@@ -84,8 +84,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas,
+        .graph-container svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            max-height: 220px;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -502,7 +506,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphNonConservation" width="400" height="200"></canvas>
+                    <svg id="graphNonConservation" role="img" aria-label="Schéma Non Conservation"></svg>
                     <p>L'énergie mécanique diminue en présence de frottements</p>
                 </div>
 
@@ -523,7 +527,7 @@
                 <h2><span class="num">2</span> Cas d'un corps sur un plan incliné avec frottement</h2>
 
                 <div class="graph-container">
-                    <canvas id="graphPlanIncline" width="400" height="200"></canvas>
+                    <svg id="graphPlanIncline" role="img" aria-label="Schéma Plan Incline"></svg>
                     <p>Corps glissant sur un plan incliné avec frottement</p>
                 </div>
 
@@ -609,7 +613,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphQ" width="400" height="200"></canvas>
+                    <svg id="graphQ" role="img" aria-label="Schéma Q"></svg>
                     <p>Conversion de l'énergie mécanique en énergie thermique</p>
                 </div>
 
@@ -682,7 +686,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphExercice" width="400" height="200"></canvas>
+                    <svg id="graphExercice" role="img" aria-label="Schéma Exercice"></svg>
                     <p>Schéma de l'exercice</p>
                 </div>
             </div>
@@ -710,6 +714,7 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
+    <script src="figuresvt_p4.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -718,369 +723,6 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphNonConservation() {
-            var canvas = document.getElementById('graphNonConservation');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scaleX = 50, scaleY = 20;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('t (s)', w - 30, oy + 18);
-            ctx.fillText('E (J)', ox + 8, 18);
-
-            // Données simulées avec frottements
-            var data = [
-                {t: 0, Ec: 0, Epp: 174.4},
-                {t: 60, Ec: 3.8, Epp: 164.43},
-                {t: 120, Ec: 11.2, Epp: 145.75},
-                {t: 180, Ec: 25.0, Epp: 120.83},
-                {t: 240, Ec: 41.0, Epp: 88.44}
-            ];
-
-            // Courbe Ec
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].t * scaleX / 1000;
-                var y = oy - data[i].Ec * scaleY / 1000;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Courbe Epp
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].t * scaleX / 1000;
-                var y = oy - data[i].Epp * scaleY / 1000;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Courbe Em (somme - diminue)
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 3;
-            ctx.setLineDash([6,4]);
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].t * scaleX / 1000;
-                var y = oy - (data[i].Ec + data[i].Epp) * scaleY / 1000;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Légende
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('Ec', w-60, 30);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.fillText('Epp', w-60, 45);
-            ctx.fillStyle = '#FFD93D';
-            ctx.fillText('Em = Ec + Epp (diminue)', w-60, 60);
-        }
-
-        function drawGraphPlanIncline() {
-            var canvas = document.getElementById('graphPlanIncline');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Plan incliné
-            ctx.strokeStyle = '#4A4A5A';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(40, h-30);
-            ctx.lineTo(w-40, 40);
-            ctx.stroke();
-
-            // Sol
-            ctx.fillStyle = '#2A2A3E';
-            ctx.fillRect(0, h-25, w, 5);
-            ctx.fillStyle = '#888888';
-            ctx.font = '9px Arial';
-            ctx.fillText('Sol', 20, h-10);
-
-            // Points A et B
-            var xA = 80, yA = h-30 - (xA-40)*(h-30-40)/(w-80);
-            var xB = w-80, yB = h-30 - (xB-40)*(h-30-40)/(w-80);
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(xA, yA-6, 5, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('A', xA-8, yA-12);
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(xB, yB-6, 5, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('B', xB-8, yB-12);
-
-            // Flèche de déplacement
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(xA+20, yA-10);
-            ctx.lineTo(xB-20, yB-10);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(xB-20, yB-10);
-            ctx.lineTo(xB-25, yB-14);
-            ctx.moveTo(xB-20, yB-10);
-            ctx.lineTo(xB-25, yB-6);
-            ctx.stroke();
-
-            // Forces
-            // Poids
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            var pcx = (xA+xB)/2, pcy = (yA+yB)/2 - 6;
-            ctx.beginPath();
-            ctx.moveTo(pcx, pcy);
-            ctx.lineTo(pcx, pcy+30);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(pcx, pcy+30);
-            ctx.lineTo(pcx-5, pcy+24);
-            ctx.moveTo(pcx, pcy+30);
-            ctx.lineTo(pcx+5, pcy+24);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('P', pcx+6, pcy+20);
-
-            // Frottement
-            ctx.strokeStyle = '#FF8A5C';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(pcx, pcy);
-            ctx.lineTo(pcx+30, pcy-10);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(pcx+30, pcy-10);
-            ctx.lineTo(pcx+24, pcy-12);
-            ctx.moveTo(pcx+30, pcy-10);
-            ctx.lineTo(pcx+28, pcy-6);
-            ctx.stroke();
-            ctx.fillStyle = '#FF8A5C';
-            ctx.font = '11px Arial';
-            ctx.fillText('f', pcx+32, pcy-10);
-
-            // Angle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(40, h-30, 25, -Math.PI/2, -Math.PI/2 + 0.35);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('α', 48, h-12);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '9px Arial';
-            ctx.fillText('L = AB', (xA+xB)/2 - 10, (yA+yB)/2 - 25);
-
-            // Flèche verticale
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4,4]);
-            ctx.beginPath();
-            ctx.moveTo(xB+20, yB-6);
-            ctx.lineTo(xB+20, h-30);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('h', xB+22, (yB+h-30)/2);
-        }
-
-        function drawGraphQ() {
-            var canvas = document.getElementById('graphQ');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Flèche de conversion
-            var cx = w/2, cy = h/2;
-
-            // Em
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '16px Arial';
-            ctx.fillText('E_m (mécanique)', cx-80, cy-50);
-
-            // Flèche
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy-30);
-            ctx.lineTo(cx, cy+30);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(cx, cy+30);
-            ctx.lineTo(cx-8, cy+20);
-            ctx.moveTo(cx, cy+30);
-            ctx.lineTo(cx+8, cy+20);
-            ctx.stroke();
-
-            // Q
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '16px Arial';
-            ctx.fillText('Q (thermique)', cx-80, cy+60);
-
-            // Frottement
-            ctx.fillStyle = '#FF8A5C';
-            ctx.font = '12px Arial';
-            ctx.fillText('frottements', cx-50, cy-10);
-
-            // Équation
-            ctx.fillStyle = '#888888';
-            ctx.font = '11px Arial';
-            ctx.fillText('ΔE_m = -Q', cx-40, cy+90);
-            ctx.fillText('Q = f · AB', cx-40, cy+110);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '9px Arial';
-            ctx.fillText('Échauffement', cx+30, cy+60);
-        }
-
-        function drawGraphExercice() {
-            var canvas = document.getElementById('graphExercice');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Piste horizontale
-            ctx.strokeStyle = '#4A4A5A';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(30, h-30);
-            ctx.lineTo(170, h-30);
-            ctx.stroke();
-
-            // Plan incliné
-            ctx.strokeStyle = '#4A4A5A';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(170, h-30);
-            ctx.lineTo(w-40, 60);
-            ctx.stroke();
-
-            // Sol
-            ctx.fillStyle = '#2A2A3E';
-            ctx.fillRect(0, h-25, w, 5);
-            ctx.fillStyle = '#888888';
-            ctx.font = '9px Arial';
-            ctx.fillText('Sol', 20, h-10);
-
-            // Points
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(170, h-30-6, 5, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('A', 175, h-20);
-
-            var xB = w-60, yB = 60-6;
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(xB, yB, 5, 0, 2*Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('B', xB-10, yB-8);
-
-            // L = AB
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4,4]);
-            ctx.beginPath();
-            ctx.moveTo(175, h-25);
-            ctx.lineTo(xB, yB+6);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#FFD93D';
-            ctx.font = '10px Arial';
-            ctx.fillText('L = AB', (175+xB)/2-15, (h-25+yB+6)/2);
-
-            // h
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4,4]);
-            ctx.beginPath();
-            ctx.moveTo(xB+20, yB);
-            ctx.lineTo(xB+20, h-30);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('h', xB+22, (yB+h-30)/2);
-
-            // Angle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(170, h-30, 20, -Math.PI/2, -Math.PI/2 + 0.35);
-            ctx.stroke();
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '10px Arial';
-            ctx.fillText('α', 178, h-12);
-
-            // Point H
-            ctx.fillStyle = '#888888';
-            ctx.font = '9px Arial';
-            ctx.fillText('H', xB+20, h-20);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '9px Arial';
-            ctx.fillText('vA', 155, h-25);
-        }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {

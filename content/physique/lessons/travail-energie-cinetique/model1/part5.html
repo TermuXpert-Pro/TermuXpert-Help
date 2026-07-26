@@ -537,7 +537,7 @@
                         <br>On donne \(g = 10\text{ N/kg}\).
                     </p>
                     <div class="graph-container">
-                        <canvas id="graphExercice1" width="400" height="180"></canvas>
+                        <svg id="graphExercice1" role="img" aria-label="Solide glissant sur un plan incliné"></svg>
                         <p>Solide glissant sur un plan incliné</p>
                     </div>
                 </div>
@@ -676,6 +676,10 @@
                         Un solide de masse \(m = 2\text{ kg}\) est lancé verticalement vers le haut avec une vitesse initiale \(V_0 = 10\text{ m/s}\).
                         <br>On néglige les frottements de l'air. \(g = 10\text{ m/s}^2\).
                     </p>
+                    <div class="graph-container">
+                        <svg id="graphExercice2" role="img" aria-label="Lancer vertical d'un solide vers le haut"></svg>
+                        <p>Solide lancé verticalement vers le haut</p>
+                    </div>
                 </div>
 
                 <div class="sub-section">
@@ -757,6 +761,10 @@
                         <br>Il part du repos du point A situé à une hauteur \(h = 2\text{ m}\).
                         <br>Les frottements sont négligeables. \(g = 10\text{ m/s}^2\).
                     </p>
+                    <div class="graph-container">
+                        <svg id="graphExercice3" role="img" aria-label="Solide sur un plan incliné sans frottement"></svg>
+                        <p>Solide sur un plan incliné, du point A au point B</p>
+                    </div>
                 </div>
 
                 <div class="sub-section">
@@ -843,6 +851,10 @@
                         Le cylindre de masse \(m = 2\text{ kg}\) et de rayon \(r = 20\text{ cm}\), tourne autour d'un axe fixe \((\Delta)\) qui passe par son centre d'inertie.
                         <br>On donne le moment d'inertie du cylindre : \(J_{\Delta} = \frac{1}{2} m \cdot r^2\).
                     </p>
+                    <div class="graph-container">
+                        <svg id="graphExercice4" role="img" aria-label="Cylindre en rotation autour d'un axe fixe"></svg>
+                        <p>Cylindre en rotation entraîné par un couple moteur</p>
+                    </div>
                 </div>
 
                 <div class="sub-section">
@@ -945,7 +957,7 @@
                         <br>On néglige les frottements. \(g = 10\text{ m/s}^2\).
                     </p>
                     <div class="graph-container">
-                        <canvas id="graphPendule" width="300" height="180"></canvas>
+                        <svg id="graphPendule" role="img" aria-label="Pendule simple écarté de la verticale"></svg>
                         <p>Pendule simple</p>
                     </div>
                 </div>
@@ -1089,162 +1101,8 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphExercice1() {
-            var canvas = document.getElementById('graphExercice1');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 20;
-            var angle = 15 * Math.PI / 180;
-
-            // Plan incliné
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(ox + 280, oy - 280 * Math.tan(angle));
-            ctx.stroke();
-
-            // Plan horizontal
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(ox + 280, oy - 280 * Math.tan(angle));
-            ctx.lineTo(ox + 380, oy - 280 * Math.tan(angle));
-            ctx.stroke();
-
-            // Solide (carré)
-            var sx = ox + 80, sy = oy - 80 * Math.tan(angle) - 15;
-            ctx.fillStyle = '#4ECDC4';
-            ctx.fillRect(sx, sy, 20, 20);
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(sx, sy, 20, 20);
-
-            // Points A et B
-            ctx.fillStyle = '#4ECDC4';
-            ctx.beginPath();
-            ctx.arc(ox + 20, oy - 20 * Math.tan(angle), 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('A', ox + 10, oy - 20 * Math.tan(angle) - 8);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(ox + 280, oy - 280 * Math.tan(angle), 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('B', ox + 280 + 6, oy - 280 * Math.tan(angle) - 8);
-
-            // Point C
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(ox + 380, oy - 280 * Math.tan(angle), 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('C', ox + 380 + 6, oy - 280 * Math.tan(angle) - 8);
-
-            // Angle
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(ox, oy, 25, Math.PI/2 - angle, Math.PI/2);
-            ctx.stroke();
-            ctx.fillStyle = '#BB8FCE';
-            ctx.font = '11px Arial';
-            ctx.fillText('α', ox + 10, oy - 18);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Plan incliné α = 15°', 160, 20);
-            ctx.fillText('AB = 100 m', 160, 35);
-        }
-
-        function drawGraphPendule() {
-            var canvas = document.getElementById('graphPendule');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = 40;
-            var L = 120;
-            var angle = 60 * Math.PI / 180;
-
-            // Fil
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            var x1 = cx + L * Math.sin(angle);
-            var y1 = cy + L * Math.cos(angle);
-            ctx.lineTo(x1, y1);
-            ctx.stroke();
-
-            // Fil vertical (position d'équilibre)
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(cx, cy + L);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Bille
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(x1, y1, 12, 0, 2 * Math.PI);
-            ctx.fill();
-
-            // Centre
-            ctx.fillStyle = '#FF6B6B';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
-
-            // Angle
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(cx, cy + 10, 25, 0, angle);
-            ctx.stroke();
-            ctx.fillStyle = '#BB8FCE';
-            ctx.font = '11px Arial';
-            ctx.fillText('θ₀', cx + 15, cy + 18);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Pendule simple θ₀ = 60°', 160, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphExercice1();
-                drawGraphPendule();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p5.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

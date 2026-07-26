@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Xpert — العرض الترويجي التفاعلي الشامل (Full Showcase)</title>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+  :root {
+    --bg-0: #040a09;
+    --bg-1: #081514;
+    --bg-2: #0d2220;
+    --teal: #4ECDC4;
+    --teal-glow: rgba(78, 205, 196, 0.5);
+    --gold: #F4D03F;
+    --gold-glow: rgba(244, 208, 63, 0.5);
+    --orange: #E8873A;
+    --purple: #BB8FCE;
+    --red: #FF6B6B;
+    --text: #ffffff;
+    --muted: #a3ccc4;
+    --line: rgba(78, 205, 196, 0.25);
+    --card-bg: rgba(12, 28, 26, 0.88);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg-0); overflow: hidden; }
+  body { font-family: 'Tajawal', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- Stage Container ---------- */
+  .master-stage {
+    position: relative; width: 100vw; height: 100vh; height: 100dvh;
+    overflow: hidden; background: var(--bg-0);
+  }
+
+  /* ---------- Scene Viewports Container ---------- */
+  .scene-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 65px);
+    overflow: hidden;
+  }
+
+  .scene-frame {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border: none; opacity: 0; visibility: hidden;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: scale(0.98); pointer-events: none;
+  }
+  .scene-frame.active {
+    opacity: 1; visibility: visible; transform: scale(1); pointer-events: auto;
+  }
+
+  /* ---------- Master Bottom Controller Bar ---------- */
+  .master-controller {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 65px;
+    background: rgba(4, 10, 9, 0.95); border-top: 1px solid var(--line);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 16px; z-index: 9999; direction: rtl;
+  }
+
+  /* Global Progress Line */
+  .global-progress-bar {
+    position: absolute; top: -2px; left: 0; right: 0; height: 3px;
+    background: rgba(255,255,255,0.1); overflow: hidden;
+  }
+  .global-progress-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    transition: width 0.3s linear;
+  }
+
+  /* Player Controls */
+  .ctrl-buttons { display: flex; align-items: center; gap: 8px; }
+  .ctrl-btn {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line);
+    color: var(--text); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.25s ease; font-size: 14px;
+  }
+  .ctrl-btn:hover { background: rgba(78, 205, 196, 0.2); border-color: var(--teal); color: var(--teal); }
+  .ctrl-btn.primary { background: var(--teal); color: #040a09; border-color: var(--teal); }
+  .ctrl-btn.primary:hover { background: #3dbab1; }
+
+  /* Current Scene Info */
+  .scene-info { display: flex; flex-direction: column; text-align: right; }
+  .scene-title { font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 13px; color: var(--gold); }
+  .scene-counter { font-size: 10.5px; color: var(--muted); }
+
+  /* Chapter Navigation Toggle */
+  .chapters-menu-btn {
+    font-family: 'Cairo', sans-serif; font-size: 11.5px; font-weight: 700;
+    padding: 6px 14px; border-radius: 8px; background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--line); color: var(--teal); cursor: pointer;
+    display: flex; align-items: center; gap: 8px; transition: all 0.3s;
+  }
+  .chapters-menu-btn:hover { background: rgba(78, 205, 196, 0.15); border-color: var(--teal); }
+
+  /* ---------- Chapter Drawer / Menu Overlay ---------- */
+  .chapter-drawer {
+    position: absolute; bottom: 65px; right: 16px; width: 320px; max-height: 420px;
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: 14px 14px 0 0;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.8); backdrop-filter: blur(16px);
+    overflow-y: auto; display: none; opacity: 0; transform: translateY(15px);
+    transition: all 0.3s ease; z-index: 9998; direction: rtl;
+  }
+  .chapter-drawer.visible { display: block; opacity: 1; transform: translateY(0); }
+
+  .drawer-header {
+    padding: 12px 16px; border-bottom: 1px solid var(--line);
+    font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 12.5px;
+    color: var(--teal); display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .chapter-list { list-style: none; padding: 6px; margin: 0; }
+  .chapter-item {
+    padding: 8px 12px; border-radius: 8px; font-size: 11.5px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; transition: all 0.2s ease; margin-bottom: 3px; color: var(--muted);
+  }
+  .chapter-item:hover { background: rgba(255, 255, 255, 0.05); color: var(--text); }
+  .chapter-item.active { background: rgba(78, 205, 196, 0.15); color: var(--teal); font-weight: 700; }
+  .chapter-item .ch-num { font-family: monospace; font-size: 10px; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="master-stage">
+
+  <!-- ==================== SCENE VIEWPORTS (IFRAMES) ==================== -->
+  <div class="scene-container" id="sceneContainer">
+    <!-- 1. Intro -->
+    <iframe class="scene-frame active" id="frame1" src="intro.html"></iframe>
+    <!-- 2. Platform Overview & Comparison -->
+    <iframe class="scene-frame" id="frame2" src="p11.html"></iframe>
+    <!-- 3. Google Search Access -->
+    <iframe class="scene-frame" id="frame3" src="p10.html"></iframe>
+    <!-- 4. Home Page & Share Banner -->
+    <iframe class="scene-frame" id="frame4" src="p9.html"></iframe>
+    <!-- 5. Internal Search Simulation -->
+    <iframe class="scene-frame" id="frame5" src="p8.html"></iframe>
+    <!-- 6. Subject Tabs Structure -->
+    <iframe class="scene-frame" id="frame6" src="p1.html"></iframe>
+    <!-- 7. Logic Lesson Sections -->
+    <iframe class="scene-frame" id="frame7" src="p2.html"></iframe>
+    <!-- 8. Exercise List View -->
+    <iframe class="scene-frame" id="frame8" src="p3.html"></iframe>
+    <!-- 9. Interactive Exercise Solution -->
+    <iframe class="scene-frame" id="frame9" src="p4.html"></iframe>
+    <!-- 10. Study Functions & Graphs -->
+    <iframe class="scene-frame" id="frame10" src="p5.html"></iframe>
+    <!-- 11. Exam Simulator & Rest Mode -->
+    <iframe class="scene-frame" id="frame11" src="p7.html"></iframe>
+    <!-- 12. Ending CTA -->
+    <iframe class="scene-frame" id="frame12" src="ending.html"></iframe>
+  </div>
+
+  <!-- ==================== CHAPTER DRAWER MENU ==================== -->
+  <div class="chapter-drawer" id="chapterDrawer">
+    <div class="drawer-header">
+      <span><i class="fas fa-list-ol"></i> فهرس مشاهد العرض الكامل</span>
+      <i class="fas fa-xmark" style="cursor:pointer;" id="closeDrawerBtn"></i>
+    </div>
+    <ul class="chapter-list" id="chapterList">
+      <li class="chapter-item active" data-index="0"><span class="ch-num">01</span> المقدمة الترويجية <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="1"><span class="ch-num">02</span> التعريف بالمنصة والمقارنة <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="2"><span class="ch-num">03</span> محاكاة الوصول عبر Google <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="3"><span class="ch-num">04</span> الصفحة الرئيسية <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="4"><span class="ch-num">05</span> محرك البحث الداخلي <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="5"><span class="ch-num">06</span> استعراض التبويبات والمواد <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="6"><span class="ch-num">07</span> أجزاء درس المنطق الرياضي <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="7"><span class="ch-num">08</span> استعراض قائمة التمارين <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="8"><span class="ch-num">09</span> تجربة حل تمرين وتصحيحه <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="9"><span class="ch-num">10</span> دراسة الدوال والأشكال البيانية <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="10"><span class="ch-num">11</span> محاكي الفروض واستراحة العقول <i class="fas fa-play"></i></li>
+      <li class="chapter-item" data-index="11"><span class="ch-num">12</span> الخاتمة والدعوة للمشاركة <i class="fas fa-play"></i></li>
+    </ul>
+  </div>
+
+  <!-- ==================== MASTER CONTROLLER BAR ==================== -->
+  <div class="master-controller">
+    <div class="global-progress-bar">
+      <div class="global-progress-fill" id="globalProgressFill"></div>
+    </div>
+
+    <!-- Right: Scene Info -->
+    <div class="scene-info">
+      <span class="scene-title" id="currentSceneTitle">1. المقدمة الترويجية والافتتاحية</span>
+      <span class="scene-counter" id="sceneCounter">المشهد 1 من 12</span>
+    </div>
+
+    <!-- Center: Control Buttons -->
+    <div class="ctrl-buttons">
+      <button class="ctrl-btn" id="btnPrevScene" title="المشهد السابق"><i class="fas fa-backward-step"></i></button>
+      <button class="ctrl-btn primary" id="btnPlayPause" title="تشغيل / إيقاف مؤقت"><i class="fas fa-pause"></i></button>
+      <button class="ctrl-btn" id="btnNextScene" title="المشهد التالي"><i class="fas fa-forward-step"></i></button>
+      <button class="ctrl-btn" id="btnReplay" title="إعادة العرض كاملاً"><i class="fas fa-rotate-right"></i></button>
+    </div>
+
+    <!-- Left: Chapter Menu Button -->
+    <button class="chapters-menu-btn" id="btnChaptersToggle">
+      <i class="fas fa-layer-group"></i> الفصول والتنقل
+    </button>
+  </div>
+
+</div>
+
+<script>
+  /* ========================================================
+     SHOWCASE CONFIGURATION & TIMINGS (IN SECONDS)
+     ======================================================== */
+  const scenesConfig = [
+    { title: "1. المقدمة الترويجية والافتتاحية", duration: 16.0 },
+    { title: "2. التعريف بالمنصة والمقارنة مع PDF", duration: 22.0 },
+    { title: "3. محاكاة الوصول عبر Google", duration: 22.0 },
+    { title: "4. الصفحة الرئيسية وبانر المشاركة", duration: 18.0 },
+    { title: "5. محرك البحث الداخلي للتصنيفات", duration: 18.0 },
+    { title: "6. استعراض التبويبات والمواد (p1)", duration: 20.0 },
+    { title: "7. أجزاء درس المنطق الرياضي (p2)", duration: 18.0 },
+    { title: "8. استعراض قائمة التمارين (p3)", duration: 18.0 },
+    { title: "9. تجربة حل تمرين وتصحيحه (p4)", duration: 20.0 },
+    { title: "10. دراسة الدوال والأشكال البيانية (p5/p6)", duration: 22.0 },
+    { title: "11. محاكي الفروض واستراحة العقول (p7)", duration: 22.0 },
+    { title: "12. الخاتمة والدعوة للمشاركة والاشتراك", duration: 16.0 }
+  ];
+
+  let currentSceneIndex = 0;
+  let isPlaying = true;
+  let sceneTimer = null;
+  let sceneStartTime = 0;
+  let sceneElapsedTime = 0;
+
+  // DOM Elements
+  const frames = document.querySelectorAll('.scene-frame');
+  const titleEl = document.getElementById('currentSceneTitle');
+  const counterEl = document.getElementById('sceneCounter');
+  const playPauseBtn = document.getElementById('btnPlayPause');
+  const progressFill = document.getElementById('globalProgressFill');
+  const chapterDrawer = document.getElementById('chapterDrawer');
+  const chapterItems = document.querySelectorAll('.chapter-item');
+
+  /* ========================================================
+     SCENE SWITCHING & TIMING LOGIC
+     ======================================================== */
+  function loadScene(index) {
+    if (index < 0 || index >= scenesConfig.length) return;
+
+    // Reset current active frame
+    frames.forEach((f, i) => {
+      if (i === index) {
+        f.classList.add('active');
+        // Reload iframe content to restart scene internal animation from start
+        const currentSrc = f.src;
+        f.src = currentSrc;
+      } else {
+        f.classList.remove('active');
+      }
+    });
+
+    currentSceneIndex = index;
+    sceneElapsedTime = 0;
+    sceneStartTime = Date.now();
+
+    // Update Controller Bar UI
+    titleEl.textContent = scenesConfig[index].title;
+    counterEl.textContent = `المشهد ${index + 1} من ${scenesConfig.length}`;
+
+    // Update Drawer Active Item
+    chapterItems.forEach((item, i) => {
+      if (i === index) item.classList.add('active');
+      else item.classList.remove('active');
+    });
+
+    if (isPlaying) {
+      startSceneTimer();
+    }
+  }
+
+  function startSceneTimer() {
+    clearTimeout(sceneTimer);
+    const duration = scenesConfig[currentSceneIndex].duration * 1000;
+    const remaining = duration - sceneElapsedTime;
+
+    sceneStartTime = Date.now() - sceneElapsedTime;
+
+    sceneTimer = setInterval(() => {
+      if (!isPlaying) return;
+      sceneElapsedTime = Date.now() - sceneStartTime;
+      const progressPercent = Math.min(100, (sceneElapsedTime / duration) * 100);
+      progressFill.style.width = `${progressPercent}%`;
+
+      if (sceneElapsedTime >= duration) {
+        clearInterval(sceneTimer);
+        nextScene();
+      }
+    }, 100);
+  }
+
+  function pauseShowcase() {
+    isPlaying = false;
+    clearInterval(sceneTimer);
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+  }
+
+  function playShowcase() {
+    isPlaying = true;
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    startSceneTimer();
+  }
+
+  function nextScene() {
+    if (currentSceneIndex < scenesConfig.length - 1) {
+      loadScene(currentSceneIndex + 1);
+    } else {
+      // End of full presentation -> Loop or pause at end
+      pauseShowcase();
+      progressFill.style.width = '100%';
+    }
+  }
+
+  function prevScene() {
+    if (currentSceneIndex > 0) {
+      loadScene(currentSceneIndex - 1);
+    }
+  }
+
+  /* ========================================================
+     EVENT LISTENERS
+     ======================================================== */
+  playPauseBtn.addEventListener('click', () => {
+    if (isPlaying) pauseShowcase();
+    else playShowcase();
+  });
+
+  document.getElementById('btnNextScene').addEventListener('click', () => {
+    nextScene();
+  });
+
+  document.getElementById('btnPrevScene').addEventListener('click', () => {
+    prevScene();
+  });
+
+  document.getElementById('btnReplay').addEventListener('click', () => {
+    isPlaying = true;
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    loadScene(0);
+  });
+
+  // Chapter Drawer Toggle
+  document.getElementById('btnChaptersToggle').addEventListener('click', () => {
+    chapterDrawer.classList.toggle('visible');
+  });
+
+  document.getElementById('closeDrawerBtn').addEventListener('click', () => {
+    chapterDrawer.classList.remove('visible');
+  });
+
+  chapterItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const idx = parseInt(item.getAttribute('data-index'));
+      chapterDrawer.classList.remove('visible');
+      isPlaying = true;
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      loadScene(idx);
+    });
+  });
+
+  // Initialize First Scene
+  loadScene(0);
+</script>
+
+</body>
+</html>

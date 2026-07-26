@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Xpert — استعراض درس Généralités sur les fonctions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+  :root {
+    --bg-0: #081312;
+    --bg-1: #0c1f1d;
+    --bg-2: #0f2624;
+    --teal: #4ECDC4;
+    --teal-dim: #2c7a72;
+    --gold: #F4D03F;
+    --text: #eaf6f4;
+    --muted: #8fb2ad;
+    --line: rgba(78, 205, 196, 0.18);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg-0); overflow: hidden; }
+  body { font-family: 'Tajawal', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- Stage Container ---------- */
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(78, 205, 196, 0.12), transparent 50%),
+      linear-gradient(160deg, var(--bg-0), var(--bg-1) 55%, var(--bg-2));
+  }
+
+  .zellij-bg {
+    position: absolute; inset: 0;
+    opacity: 0; pointer-events: none;
+  }
+
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; padding: 3vh 4vw; text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Cairo', sans-serif; font-weight: 700;
+    color: var(--teal); font-size: clamp(12px, 1.4vw, 15px);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 8px; opacity: 0;
+  }
+  .eyebrow::before, .eyebrow::after { content: ""; width: 24px; height: 1px; background: var(--teal-dim); }
+
+  h1.headline {
+    font-family: 'Cairo', sans-serif; font-weight: 900;
+    font-size: clamp(20px, 3.5vw, 36px); line-height: 1.1; margin: 0 0 12px;
+    opacity: 0; transform: translateY(16px);
+  }
+  h1.headline .x { color: var(--teal); transition: color 0.4s; }
+
+  .scene-caption {
+    font-family: 'Tajawal', sans-serif; font-weight: 500;
+    font-size: clamp(11.5px, 1.3vw, 13.5px); line-height: 1.7;
+    color: var(--muted); max-width: min(640px, 90vw);
+    margin: 16px auto 0; opacity: 0;
+  }
+  .scene-caption strong { color: var(--teal); font-weight: 700; }
+
+  /* ---------- Browser Frame Mockup ---------- */
+  .browser-frame {
+    width: min(740px, 92vw);
+    max-height: 76vh;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+    text-align: left; opacity: 0; transform: translateY(24px) scale(0.97);
+    position: relative;
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .browser-bar {
+    height: 32px; background: #0a1917; display: flex; align-items: center; gap: 6px; padding: 0 12px;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.4s ease, border-color 0.4s ease;
+  }
+  .browser-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .browser-url {
+    flex: 1; margin-left: 8px; background: rgba(255,255,255,0.04); border-radius: 6px; height: 18px;
+    display: flex; align-items: center; padding: 0 10px; font-size: 9.5px; color: var(--muted);
+    direction: ltr; font-family: monospace; transition: all 0.4s ease;
+  }
+
+  .browser-body {
+    padding: 16px 20px 20px; max-height: calc(76vh - 32px); overflow-y: auto; position: relative;
+  }
+
+  /* Mock Toolbar */
+  .mock-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 14px;
+    opacity: 0; transition: border-color 0.4s ease;
+    direction: ltr;
+  }
+  .mock-logo { font-family: 'Cairo', sans-serif; font-weight: 900; font-size: 15px; color: var(--teal); transition: color 0.4s; }
+  .mock-logo span { color: var(--gold); }
+  .mock-nav-actions {
+    display: flex; gap: 8px; font-size: 11px; color: var(--muted);
+    direction: ltr;
+  }
+  .nav-btn {
+    width: 28px; height: 28px; border-radius: 6px; background: rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: center; border: 1px solid var(--line);
+    cursor: pointer; transition: all 0.3s ease;
+  }
+
+  /* Mock Hero Section */
+  .mock-hero { text-align: center; margin-bottom: 16px; opacity: 0; }
+  .mock-hero h2 { font-family: 'Cairo', sans-serif; font-size: 18px; margin: 0; color: var(--teal); transition: color 0.4s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .mock-hero p { font-size: 11px; color: var(--muted); margin: 4px 0 0; transition: color 0.4s; }
+
+  /* Mock Cards Grid */
+  .mock-cards-grid {
+    display: flex; flex-direction: column; gap: 8px; direction: ltr; text-align: left;
+  }
+  .mock-card {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 12px; display: flex; align-items: center; justify-content: space-between;
+    opacity: 0; transform: translateY(12px); transition: all 0.3s ease; cursor: pointer;
+  }
+  .mock-card-left { display: flex; align-items: center; gap: 12px; }
+  .mock-card-icon { color: var(--teal); font-size: 16px; flex-shrink: 0; transition: color 0.3s; width: 20px; text-align: center; }
+  .mock-card-icon.gold-icon { color: var(--gold); }
+  .mock-card-info { display: flex; flex-direction: column; gap: 1px; }
+  .mock-card-title { font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 12.5px; color: var(--teal); transition: color 0.4s; }
+  .mock-card-title.gold-title { color: var(--gold); }
+  .mock-card-desc { font-size: 11px; color: var(--muted); transition: color 0.4s; }
+  .mock-card-arrow { color: var(--muted); font-size: 11px; flex-shrink: 0; transition: transform 0.3s, color 0.3s; }
+
+  /* Light Theme Overrides */
+  .browser-frame.light-theme {
+    background: #f4f9f8;
+    border-color: rgba(44, 122, 114, 0.25);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+  }
+  .browser-frame.light-theme .browser-bar {
+    background: #dcece9;
+    border-bottom-color: rgba(44, 122, 114, 0.2);
+  }
+  .browser-frame.light-theme .browser-url {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1e524c;
+  }
+  .browser-frame.light-theme .mock-nav { border-bottom-color: rgba(0, 0, 0, 0.08); }
+  .browser-frame.light-theme .mock-logo { color: #0d8076; }
+  .browser-frame.light-theme .nav-btn {
+    background: #ffffff;
+    border-color: rgba(44, 122, 114, 0.3);
+    color: #1a3c38;
+  }
+  .browser-frame.light-theme .mock-hero h2 { color: #0e2926; }
+  .browser-frame.light-theme .mock-hero p { color: #4f736f; }
+  .browser-frame.light-theme .mock-card {
+    background: #ffffff;
+    border-color: rgba(44, 122, 114, 0.18);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+  }
+  .browser-frame.light-theme .mock-card-desc { color: #52736f; }
+
+  /* Virtual Cursor Pointer */
+  .virtual-cursor {
+    position: absolute;
+    top: 0; left: 0;
+    width: 22px; height: 22px;
+    margin-left: -11px; margin-top: -11px;
+    background: radial-gradient(circle, var(--gold) 35%, rgba(244,208,63,0.4) 70%, transparent 100%);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transform: scale(0.5);
+    box-shadow: 0 0 15px var(--gold);
+  }
+.replay-btn {
+    position: absolute; top: 16px; left: 16px; z-index: 20; font-size: 11px; color: var(--muted);
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line); padding: 6px 14px; border-radius: 20px; cursor: pointer;
+    opacity: 0;
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="zellij-bg" id="zellijBg">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.22;">
+      <pattern id="zellij" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
+        <polygon points="80,0 160,80 80,160 0,80" fill="none" stroke="#4ECDC4" stroke-width="0.6"/>
+        <polygon points="80,30 130,80 80,130 30,80" fill="none" stroke="#F4D03F" stroke-width="0.5"/>
+      </pattern>
+      <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+  </div>
+
+  <button class="replay-btn" id="replayBtn">إعادة العرض 🔄</button>
+
+  <section class="scene">
+    <div class="eyebrow" id="eyebrow">استعراض تفاعلي مباشر</div>
+    <h1 class="headline" id="headline">صفحة <span class="x">Généralités sur les fonctions</span></h1>
+
+    <div class="browser-frame" id="browserFrame">
+      <div class="virtual-cursor" id="virtualCursor"></div>
+
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <div class="browser-url">https://jdxpert.pages.dev/</div>
+      </div>
+
+      <div class="browser-body">
+        <!-- Mock Nav -->
+        <div class="mock-nav" id="mockNav">
+          <div class="mock-logo"><span>X</span>pert</div>
+          <div class="mock-nav-actions">
+            <div class="nav-btn" id="btnTheme"><i class="fas fa-moon"></i></div>
+            <div class="nav-btn" id="btnInstall"><i class="fas fa-download"></i></div>
+            <div class="nav-btn"><i class="fas fa-bars"></i></div>
+          </div>
+        </div>
+
+        <div class="mock-hero" id="mockHero">
+          <h2><i class="fas fa-chart-line" style="color:#4ECDC4;"></i> Généralités sur les fonctions</h2>
+          <p>Choisissez une partie pour commencer</p>
+        </div>
+
+        <div class="mock-cards-grid" id="cardsContainer">
+          <!-- Partie 1 -->
+          <div class="mock-card card-item" id="partCard1">
+            <div class="mock-card-left">
+              <span class="mock-card-icon"><i class="fas fa-book"></i></span>
+              <div class="mock-card-info">
+                <div class="mock-card-title">Cours - Partie 1</div>
+                <div class="mock-card-desc">Rappels</div>
+              </div>
+            </div>
+            <div class="mock-card-arrow"><i class="fas fa-chevron-left"></i></div>
+          </div>
+
+          <!-- Partie 2 -->
+          <div class="mock-card card-item" id="partCard2">
+            <div class="mock-card-left">
+              <span class="mock-card-icon"><i class="fas fa-arrow-up"></i></span>
+              <div class="mock-card-info">
+                <div class="mock-card-title">Cours - Partie 2</div>
+                <div class="mock-card-desc">Fonction majorée - minorée - bornée - Extremums</div>
+              </div>
+            </div>
+            <div class="mock-card-arrow"><i class="fas fa-chevron-left"></i></div>
+          </div>
+
+          <!-- Partie 3 -->
+          <div class="mock-card card-item" id="partCard3">
+            <div class="mock-card-left">
+              <span class="mock-card-icon"><i class="fas fa-cubes"></i></span>
+              <div class="mock-card-info">
+                <div class="mock-card-title">Cours - Partie 3</div>
+                <div class="mock-card-desc">Comparaison de fonctions - Composée</div>
+              </div>
+            </div>
+            <div class="mock-card-arrow"><i class="fas fa-chevron-left"></i></div>
+          </div>
+
+          <!-- Partie 4 -->
+          <div class="mock-card card-item" id="partCard4">
+            <div class="mock-card-left">
+              <span class="mock-card-icon"><i class="fas fa-chart-simple"></i></span>
+              <div class="mock-card-info">
+                <div class="mock-card-title">Cours - Partie 4</div>
+                <div class="mock-card-desc">Étude des fonctions de référence</div>
+              </div>
+            </div>
+            <div class="mock-card-arrow"><i class="fas fa-chevron-left"></i></div>
+          </div>
+
+          <!-- Partie 5 -->
+          <div class="mock-card card-item" id="partCard5">
+            <div class="mock-card-left">
+              <span class="mock-card-icon"><i class="fas fa-pencil"></i></span>
+              <div class="mock-card-info">
+                <div class="mock-card-title">Cours - Partie 5</div>
+                <div class="mock-card-desc">Exercices</div>
+              </div>
+            </div>
+            <div class="mock-card-arrow"><i class="fas fa-chevron-left"></i></div>
+          </div>
+
+          <!-- Partie 6 (Résumé) -->
+          <div class="mock-card card-item" id="partCard6">
+            <div class="mock-card-left">
+              <span class="mock-card-icon gold-icon"><i class="fas fa-book-open"></i></span>
+              <div class="mock-card-info">
+                <div class="mock-card-title gold-title">Résumé du cours</div>
+                <div class="mock-card-desc">Résumé complet - Synthèse du cours</div>
+              </div>
+            </div>
+            <div class="mock-card-arrow"><i class="fas fa-chevron-left"></i></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <p class="scene-caption" id="sceneCaption">الأجزاء الستة لدرس <strong>Généralités sur les fonctions</strong> معروضة في بطاقات مرتبة، من الرسميات إلى التمارين والملخص.</p>
+  </section>
+</div>
+
+<script>
+  function toggleTheme() {
+    const frame = document.getElementById('browserFrame');
+    const icon = document.querySelector('#btnTheme i');
+    frame.classList.toggle('light-theme');
+    if (frame.classList.contains('light-theme')) {
+      icon.className = 'fas fa-sun';
+    } else {
+      icon.className = 'fas fa-moon';
+    }
+  }
+
+  function getElementCenter(selector) {
+    const frame = document.getElementById('browserFrame').getBoundingClientRect();
+    const target = document.querySelector(selector).getBoundingClientRect();
+    return {
+      x: (target.left + target.width / 2) - frame.left,
+      y: (target.top + target.height / 2) - frame.top
+    };
+  }
+
+  function resetPage() {
+    const frame = document.getElementById('browserFrame');
+    frame.classList.remove('light-theme');
+    const icon = document.querySelector('#btnTheme i');
+    if(icon) icon.className = 'fas fa-moon';
+
+    const card = document.getElementById('partCard1');
+    if(card) {
+      card.style.cssText = '';
+    }
+  }
+
+  document.getElementById('btnTheme').addEventListener('click', toggleTheme);
+
+  // GSAP Timeline
+  const tl = gsap.timeline({ paused: false });
+
+  tl.to("#zellijBg", { opacity: 1, duration: 1.0 }, 0);
+  tl.to("#eyebrow", { opacity: 1, duration: 0.5 }, 0.5);
+  tl.to("#headline", { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.4)" }, 0.8);
+
+  tl.to("#browserFrame", { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 1.4);
+  tl.to("#sceneCaption", { opacity: 1, duration: 0.6 }, 1.9);
+  tl.to("#mockNav, #mockHero", { opacity: 1, duration: 0.5, stagger: 0.2 }, 2.0);
+  tl.to(".card-item", { opacity: 1, y: 0, duration: 0.35, stagger: 0.08 }, 2.4);
+
+  /* 1. التحرك إلى زر الوضع (Theme) والضغط لتجربة الثيم الفاتح */
+  tl.to("#virtualCursor", {
+    opacity: 1, scale: 1,
+    left: () => getElementCenter('#btnTheme').x,
+    top: () => getElementCenter('#btnTheme').y,
+    duration: 0.8, ease: "power2.out"
+  }, 3.2);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 4.1);
+  tl.call(() => toggleTheme(), null, 4.2);
+
+  /* 2. العودة للوضع الداكن */
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 5.5);
+  tl.call(() => toggleTheme(), null, 5.6);
+
+  /* 3. التوجه إلى الجزء الأول Cours - Partie 1 والضغط عليه */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#partCard1').x,
+    top: () => getElementCenter('#partCard1').y,
+    duration: 0.8, ease: "power2.out"
+  }, 6.3);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 7.2);
+
+  /* تفاعل الزر عند الضغط */
+  tl.to("#partCard1", {
+    scale: 1.02,
+    borderColor: "var(--teal)",
+    boxShadow: "0 0 18px rgba(78, 205, 196, 0.4)",
+    duration: 0.25,
+    yoyo: true,
+    repeat: 1
+  }, 7.3);
+
+  tl.to("#partCard1 .mock-card-arrow", { x: -5, color: "var(--teal)", duration: 0.25, yoyo: true, repeat: 1 }, 7.3);
+
+  /* إخفاء المؤشر */
+  tl.to("#virtualCursor", { opacity: 0, duration: 0.5 }, 8.3);
+
+  document.getElementById("replayBtn").addEventListener("click", () => {
+    resetPage();
+    tl.restart();
+  });
+</script>
+
+</body>
+</html>

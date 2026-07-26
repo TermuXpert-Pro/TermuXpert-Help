@@ -473,7 +473,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphEnergie" width="400" height="200"></canvas>
+                    <svg id="graphEnergie" role="img" aria-label="Courbe de l'énergie cinétique en fonction de la vitesse"></svg>
                     <p>Énergie cinétique en fonction de la vitesse pour \(m = 1\text{ kg}\)</p>
                     <p style="font-size:10px; color:var(--text-muted);">La courbe est une parabole : \(E_C\) augmente avec le carré de la vitesse.</p>
                 </div>
@@ -692,108 +692,8 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUE - Énergie cinétique en fonction de la vitesse
-        // ============================================================
-
-        function drawGraphEnergie() {
-            var canvas = document.getElementById('graphEnergie');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 25;
-            var scaleX = 60, scaleY = 12;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 15);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Labels axes
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('V (m/s)', w - 40, oy + 20);
-            ctx.fillText('E_C (J)', ox + 8, 16);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-            for (var i = 1; i <= 5; i++) {
-                var x = ox + i * scaleX;
-                ctx.beginPath();
-                ctx.moveTo(x, 15);
-                ctx.lineTo(x, oy);
-                ctx.stroke();
-                ctx.fillStyle = '#888888';
-                ctx.font = '8px Arial';
-                ctx.fillText(i, x - 4, oy + 16);
-            }
-            for (var i = 1; i <= 6; i++) {
-                var y = oy - i * scaleY * 2;
-                ctx.beginPath();
-                ctx.moveTo(ox, y);
-                ctx.lineTo(w - 20, y);
-                ctx.stroke();
-                ctx.fillStyle = '#888888';
-                ctx.font = '8px Arial';
-                ctx.fillText(i * 2, ox - 20, y + 4);
-            }
-
-            // Courbe E_C = 1/2 * m * V² avec m = 1 kg
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var v = 0; v <= 5; v += 0.05) {
-                var x = ox + v * scaleX;
-                var y = oy - (0.5 * 1 * v * v) * scaleY;
-                if (y < 10) break;
-                if (v === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var v = 1; v <= 5; v++) {
-                var x = ox + v * scaleX;
-                var y = oy - (0.5 * 1 * v * v) * scaleY;
-                ctx.fillStyle = '#4ECDC4';
-                ctx.beginPath();
-                ctx.arc(x, y, 4, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '8px Arial';
-                ctx.fillText('(' + v + ',' + (0.5 * v * v).toFixed(1) + ')', x - 15, y - 8);
-            }
-
-            // Légende
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '11px Arial';
-            ctx.fillText('E_C = 1/2·m·V² (m = 1 kg)', 180, 25);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('La courbe est une parabole', 180, 40);
-            ctx.fillText('(l\'énergie augmente avec le carré de la vitesse)', 180, 55);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphEnergie();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p1.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

@@ -85,6 +85,8 @@
         .summary-card { background: rgba(244, 208, 63, 0.03); border: 1px solid #F4D03F22; border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
         .summary-card .s-title { color:var(--gold-text); font-weight: 700; font-size: 13px; margin-bottom: 2px; }
         .summary-card .s-content { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+        .schema-box { background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin: 4px 0; text-align: center; }
+        .schema-box svg { max-width: 100%; width: 100%; height: auto; border-radius: 4px; background: #0D1117; display: block; margin: 0 auto; }
         @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
@@ -407,6 +409,11 @@
                     <p>On dissout \(n = 0,2 \text{ mol}\) de NaCl dans \(V = 0,5 \text{ L}\) d'eau.</p>
                     <p>\(C = \frac{0,2}{0,5} = 0,4 \text{ mol.L}^{-1}\)</p>
                 </div>
+
+                <div class="schema-box">
+                    <svg id="schemaConcentration" aria-label="Représentation de la concentration molaire C = n/V"></svg>
+                    <p style="color:var(--text-muted); font-size:10px; margin-top:2px;">n mol de soluté dissous dans un volume V de solution</p>
+                </div>
             </div>
 
             <!-- ============================================================ -->
@@ -483,6 +490,11 @@
                     <p style="font-size:11px; color:var(--text-muted);">Donc : \([Cl^{-}] = 2[Cu^{2+}]\)</p>
                 </div>
 
+                <div class="schema-box">
+                    <svg id="schemaDissociationCuCl2" aria-label="Dissociation du chlorure de cuivre(II) CuCl2"></svg>
+                    <p style="color:var(--text-muted); font-size:10px; margin-top:2px;">Dissociation de CuCl₂ : 1 unité formulaire donne 1 Cu²⁺ et 2 Cl⁻</p>
+                </div>
+
                 <div class="highlight-box green">
                     <span class="label resume">À retenir</span>
                     <p>La concentration effective d'un ion est liée à la concentration du soluté apporté par le <strong>coefficient stœchiométrique</strong> de l'équation de dissolution.</p>
@@ -542,6 +554,11 @@
                         <span class="label resume">Réponse 2</span>
                         <p>\([Na^{+}] = 0,40 \text{ mol.L}^{-1}\) et \([SO_{4}^{2-}] = 0,20 \text{ mol.L}^{-1}\)</p>
                     </div>
+                </div>
+
+                <div class="schema-box">
+                    <svg id="schemaDissociationNa2SO4" aria-label="Dissociation du sulfate de sodium Na2SO4"></svg>
+                    <p style="color:var(--text-muted); font-size:10px; margin-top:2px;">Dissociation de Na₂SO₄ : 1 unité formulaire donne 2 Na⁺ et 1 SO₄²⁻</p>
                 </div>
 
                 <div class="highlight-box yellow">
@@ -628,6 +645,7 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
+    <script src="figuresvt_p2.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

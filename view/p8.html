@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Xpert — استعراض محرك البحث التفاعلي</title>
+
+<!-- Fonts & FontAwesome -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- GSAP Animation Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+  :root {
+    --bg-0: #081312;
+    --bg-1: #0c1f1d;
+    --bg-2: #0f2624;
+    --teal: #4ECDC4;
+    --teal-dim: #2c7a72;
+    --gold: #F4D03F;
+    --orange: #E8873A;
+    --purple: #BB8FCE;
+    --text: #eaf6f4;
+    --muted: #8fb2ad;
+    --line: rgba(78, 205, 196, 0.18);
+    --card-bg: rgba(31, 40, 51, 0.7);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg-0); overflow: hidden; }
+  body { font-family: 'Tajawal', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- Stage Container ---------- */
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(78, 205, 196, 0.12), transparent 50%),
+      linear-gradient(160deg, var(--bg-0), var(--bg-1) 55%, var(--bg-2));
+  }
+
+  .zellij-bg {
+    position: absolute; inset: 0;
+    opacity: 0; pointer-events: none;
+  }
+
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; padding: 2vh 4vw; text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Cairo', sans-serif; font-weight: 700;
+    color: var(--teal); font-size: clamp(12px, 1.4vw, 15px);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px; opacity: 0;
+  }
+  .eyebrow::before, .eyebrow::after { content: ""; width: 24px; height: 1px; background: var(--teal-dim); }
+
+  h1.headline {
+    font-family: 'Cairo', sans-serif; font-weight: 900;
+    font-size: clamp(18px, 3.2vw, 32px); line-height: 1.1; margin: 0 0 10px;
+    opacity: 0; transform: translateY(16px);
+  }
+  h1.headline .x { color: var(--teal); transition: color 0.4s; }
+
+  /* ---------- Browser Frame Mockup ---------- */
+  .browser-frame {
+    width: min(780px, 94vw);
+    height: 76vh;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+    text-align: left; opacity: 0; transform: translateY(24px) scale(0.97);
+    position: relative;
+    display: flex; flex-direction: column;
+    transition: background 0.4s ease, border-color 0.4s ease;
+  }
+
+  .browser-bar {
+    height: 32px; background: #0a1917; display: flex; align-items: center; gap: 6px; padding: 0 12px;
+    border-bottom: 1px solid var(--line); flex-shrink: 0;
+  }
+  .browser-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .browser-url {
+    flex: 1; margin-left: 8px; background: rgba(255,255,255,0.04); border-radius: 6px; height: 18px;
+    display: flex; align-items: center; padding: 0 10px; font-size: 9.5px; color: var(--muted);
+    direction: ltr; font-family: monospace; transition: all 0.3s;
+  }
+
+  .browser-body {
+    padding: 16px 20px 20px; flex: 1; overflow-y: auto; position: relative; direction: ltr;
+    scroll-behavior: smooth;
+  }
+
+  /* Mock Toolbar */
+  .mock-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 12px;
+    opacity: 0;
+  }
+  .mock-logo { font-family: 'Cairo', sans-serif; font-weight: 900; font-size: 15px; color: var(--teal); }
+  .mock-logo span { color: var(--gold); }
+  .mock-nav-actions { display: flex; gap: 8px; font-size: 11px; color: var(--muted); }
+  .nav-btn {
+    width: 26px; height: 26px; border-radius: 6px; background: rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: center; border: 1px solid var(--line);
+    cursor: pointer; transition: all 0.3s ease;
+  }
+
+  /* Hero Header Inside Browser */
+  .search-hero { text-align: center; margin-bottom: 14px; opacity: 0; }
+  .search-hero h2 {
+    font-family: 'Cairo', sans-serif; font-size: 20px; margin: 0 0 2px; color: var(--text);
+  }
+  .search-hero p { font-size: 11px; color: var(--muted); margin: 0; }
+
+  /* Back Button Mockup */
+  .back-btn-mock {
+    display: inline-flex; align-items: center; gap: 6px; color: var(--teal);
+    font-size: 11px; background: rgba(78, 205, 196, 0.1); padding: 4px 10px; border-radius: 6px;
+    border: 1px solid rgba(78, 205, 196, 0.2); text-decoration: none; margin-bottom: 12px;
+    opacity: 0;
+  }
+
+  /* ---------- Search Bar Sticky Component ---------- */
+  .search-bar-card {
+    background: #111a19;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 6px 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    margin-bottom: 16px;
+    position: relative;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .search-bar-row {
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* Trigger button for selecting category */
+  .search-type-trigger {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: var(--muted);
+    font-size: 11px;
+    font-family: 'Cairo', sans-serif;
+    display: flex; align-items: center; gap: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+  .search-type-trigger:hover { border-color: var(--teal); color: var(--teal); }
+
+  .search-type-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(78, 205, 196, 0.15);
+    color: var(--cat-color, var(--teal));
+    border: 1px solid var(--cat-color, var(--teal));
+    padding: 2px 8px; border-radius: 6px; font-weight: 700; font-size: 11px;
+  }
+  .search-type-chip-clear {
+    cursor: pointer; opacity: 0.7; margin-left: 2px;
+  }
+  .search-type-chip-clear:hover { opacity: 1; }
+
+  .search-input-wrap {
+    flex: 1; display: flex; align-items: center; gap: 8px;
+    background: rgba(0,0,0,0.25); border-radius: 8px; padding: 0 10px; height: 32px;
+    border: 1px solid transparent; transition: all 0.3s ease;
+  }
+  .search-input-wrap.focused {
+    border-color: var(--teal); box-shadow: 0 0 10px rgba(78, 205, 196, 0.2);
+  }
+  .search-input-icon { color: var(--muted); font-size: 11px; }
+  .search-input {
+    width: 100%; background: transparent; border: none; outline: none;
+    color: var(--text); font-size: 11.5px; font-family: 'Tajawal', sans-serif;
+  }
+  .search-input::placeholder { color: rgba(143, 178, 173, 0.5); }
+
+  /* Search Type Dropdown Menu */
+  .search-type-menu {
+    position: absolute; top: calc(100% + 6px); left: 8px;
+    width: 210px; background: #0c1f1d; border: 1px solid var(--line);
+    border-radius: 10px; padding: 6px; box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    display: flex; flex-direction: column; gap: 4px; z-index: 80;
+    opacity: 0; pointer-events: none; transform: translateY(-8px);
+    transition: all 0.25s ease;
+  }
+  .search-type-menu.open {
+    opacity: 1; pointer-events: auto; transform: translateY(0);
+  }
+
+  .search-type-option {
+    display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+    border-radius: 6px; background: transparent; border: none; color: var(--text);
+    font-size: 11px; font-family: 'Cairo', sans-serif; cursor: pointer; text-align: left;
+    transition: background 0.2s ease;
+  }
+  .search-type-option:hover { background: rgba(255,255,255,0.06); }
+  .search-type-option-icon {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); color: var(--cat-color);
+    display: flex; align-items: center; justify-content: center; font-size: 10px;
+  }
+
+  /* ---------- Results Grid & Command Cards ---------- */
+  .search-results-grid {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .search-empty {
+    text-align: center; padding: 30px 10px; color: var(--muted);
+  }
+  .search-empty i { font-size: 28px; color: var(--teal-dim); margin-bottom: 8px; display: block; }
+  .search-empty p { font-size: 11.5px; margin: 0; }
+
+  .command-card {
+    background: var(--card-bg); border: 1px solid var(--line);
+    border-radius: 10px; padding: 10px 14px; position: relative;
+    text-decoration: none; color: var(--text); display: flex;
+    flex-direction: column; gap: 4px; opacity: 0; transform: translateY(-30px);
+    transition: all 0.3s ease;
+  }
+  .command-card:hover {
+    border-color: var(--cat-color, var(--teal));
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .command-title {
+    font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 13px;
+    display: flex; align-items: center; gap: 8px; color: var(--text);
+  }
+  .command-title .num {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; font-size: 11px;
+  }
+
+  .search-subject-tag {
+    position: absolute; top: 10px; right: 12px;
+    font-size: 9.5px; font-weight: 700; padding: 2px 8px; border-radius: 6px;
+  }
+
+  .search-semester-badge {
+    position: absolute; top: 10px; right: 110px;
+    font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;
+    background: rgba(255,255,255,0.06); color: var(--gold); border: 1px solid rgba(244,208,63,0.2);
+  }
+
+  .command-card p {
+    font-size: 11px; color: var(--muted); margin: 2px 0 6px; line-height: 1.4;
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px; font-size: 10px;
+    font-weight: 700; padding: 3px 8px; border-radius: 6px; border: 1px solid;
+    width: fit-content;
+  }
+
+  /* Light Theme Overrides */
+  .browser-frame.light-theme {
+    background: #f4f9f8;
+    border-color: rgba(44, 122, 114, 0.25);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+  }
+  .browser-frame.light-theme .browser-bar { background: #dcece9; border-bottom-color: rgba(44, 122, 114, 0.2); }
+  .browser-frame.light-theme .browser-url { background: rgba(0, 0, 0, 0.05); color: #1e524c; }
+  .browser-frame.light-theme .mock-nav { border-bottom-color: rgba(0, 0, 0, 0.08); }
+  .browser-frame.light-theme .mock-logo { color: #0d8076; }
+  .browser-frame.light-theme .nav-btn { background: #ffffff; border-color: rgba(44, 122, 114, 0.3); color: #1a3c38; }
+  .browser-frame.light-theme .search-hero h2 { color: #0e2926; }
+  .browser-frame.light-theme .search-hero p { color: #4f736f; }
+  .browser-frame.light-theme .search-bar-card { background: #ffffff; border-color: rgba(44, 122, 114, 0.25); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+  .browser-frame.light-theme .search-input-wrap { background: #eef6f5; }
+  .browser-frame.light-theme .search-input { color: #0e2926; }
+  .browser-frame.light-theme .search-type-menu { background: #ffffff; border-color: rgba(44, 122, 114, 0.2); }
+  .browser-frame.light-theme .search-type-option { color: #0e2926; }
+  .browser-frame.light-theme .search-type-option:hover { background: #e6f3f1; }
+  .browser-frame.light-theme .command-card { background: #ffffff; border-color: rgba(44, 122, 114, 0.18); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+  .browser-frame.light-theme .command-title { color: #0e2926; }
+  .browser-frame.light-theme .command-card p { color: #52736f; }
+
+  /* Virtual Cursor Pointer */
+  .virtual-cursor {
+    position: absolute; top: 0; left: 0; width: 22px; height: 22px; margin-left: -11px; margin-top: -11px;
+    background: radial-gradient(circle, var(--gold) 35%, rgba(244,208,63,0.4) 70%, transparent 100%);
+    border: 2px solid #ffffff; border-radius: 50%; pointer-events: none;
+    z-index: 999; opacity: 0; transform: scale(0.5); box-shadow: 0 0 15px var(--gold);
+  }
+.replay-btn {
+    position: absolute; top: 16px; left: 16px; z-index: 20; font-size: 11px; color: var(--muted);
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line); padding: 6px 14px; border-radius: 20px; cursor: pointer;
+    opacity: 0;
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="zellij-bg" id="zellijBg">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.22;">
+      <pattern id="zellij" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
+        <polygon points="80,0 160,80 80,160 0,80" fill="none" stroke="#4ECDC4" stroke-width="0.6"/>
+        <polygon points="80,30 130,80 80,130 30,80" fill="none" stroke="#F4D03F" stroke-width="0.5"/>
+      </pattern>
+      <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+  </div>
+
+  <button class="replay-btn" id="replayBtn">إعادة العرض 🔄</button>
+
+  <section class="scene">
+    <div class="eyebrow" id="eyebrow">استعراض محرك البحث والتصفية السريعة</div>
+    <h1 class="headline" id="headline">صفحة <span class="x">Recherche — البحث الفوري</span></h1>
+
+    <div class="browser-frame" id="browserFrame">
+      <div class="virtual-cursor" id="virtualCursor"></div>
+
+      <div class="browser-bar">
+        <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        <div class="browser-url">https://jdxpert.pages.dev/</div>
+      </div>
+
+      <div class="browser-body" id="browserBody">
+        
+        <!-- Mock Nav -->
+        <div class="mock-nav" id="mockNav">
+          <div class="mock-logo"><span>X</span>pert</div>
+          <div class="mock-nav-actions">
+            <div class="nav-btn" id="btnTheme"><i class="fas fa-moon"></i></div>
+            <div class="nav-btn"><i class="fas fa-download"></i></div>
+            <div class="nav-btn"><i class="fas fa-bars"></i></div>
+          </div>
+        </div>
+
+        <a class="back-btn-mock" id="btnBack"><i class="fas fa-arrow-left"></i> Retour</a>
+
+        <div class="search-hero" id="searchHero">
+          <h2>Recherche</h2>
+          <p>Trouvez rapidement un cours, un exercice, une série ou un devoir</p>
+        </div>
+
+        <!-- Sticky Search Bar -->
+        <div class="search-bar-card" id="searchBarCard">
+          <div class="search-bar-row">
+            
+            <button class="search-type-trigger" id="searchTypeTrigger" type="button">
+              <span id="searchTypePlaceholder"><i class="fas fa-layer-group"></i> Choisir un type</span>
+              
+              <span class="search-type-chip" id="searchTypeChip" style="display:none;">
+                <i class="fas" id="searchTypeChipIcon"></i>
+                <span id="searchTypeChipLabel"></span>
+                <span class="search-type-chip-clear" id="searchTypeClear"><i class="fas fa-xmark"></i></span>
+              </span>
+
+              <i class="fas fa-chevron-down" id="searchTypeArrow"></i>
+            </button>
+
+            <div class="search-input-wrap" id="searchInputWrap">
+              <i class="fas fa-magnifying-glass search-input-icon"></i>
+              <input type="text" id="searchInput" class="search-input" placeholder="Choisissez d'abord un type..." disabled autocomplete="off">
+            </div>
+
+          </div>
+
+          <!-- Dropdown Category Menu -->
+          <div class="search-type-menu" id="searchTypeMenu">
+            <button class="search-type-option" id="optLessons" data-cat="lessons" style="--cat-color:#4ECDC4;">
+              <span class="search-type-option-icon"><i class="fas fa-book"></i></span>
+              <span>Cours</span>
+            </button>
+            <button class="search-type-option" id="optExercices" data-cat="exercices" style="--cat-color:#E8873A;">
+              <span class="search-type-option-icon"><i class="fas fa-pencil"></i></span>
+              <span>Exercices</span>
+            </button>
+            <button class="search-type-option" id="optSeries" data-cat="series" style="--cat-color:#F4D03F;">
+              <span class="search-type-option-icon"><i class="fas fa-list-check"></i></span>
+              <span>Séries</span>
+            </button>
+            <button class="search-type-option" id="optExams" data-cat="exams" style="--cat-color:#BB8FCE;">
+              <span class="search-type-option-icon"><i class="fas fa-pen-to-square"></i></span>
+              <span>Devoirs & Examens</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Grid -->
+        <div class="search-results-grid" id="searchResults">
+          <div class="search-empty" id="emptyState">
+            <i class="fas fa-layer-group"></i>
+            <p>Choisissez un type de contenu ci-dessus pour commencer</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  /* Mock Data for Results across subjects */
+  const MOCK_DATA = {
+    lessons: [
+      { title: "Logique et Raisonnements", desc: "Notions de base de la logique mathématique", subj: "Mathématiques", subjColor: "#4ECDC4", icon: "fa-book", color: "#4ECDC4", sem: "S1" },
+      { title: "Généralités sur les Fonctions", desc: "Domaine de définition, parité et variations", subj: "Mathématiques", subjColor: "#4ECDC4", icon: "fa-book", color: "#4ECDC4", sem: "S1" },
+      { title: "Travail et Puissance d'une force", desc: "Forces constantes et mouvements de rotation", subj: "Physique", subjColor: "#FF6B6B", icon: "fa-book", color: "#4ECDC4", sem: "S1" }
+    ],
+    exercices: [
+      { title: "Exercices - Logique mathématique", desc: "Série d'exercices corrigés (3 modèles)", subj: "Mathématiques", subjColor: "#4ECDC4", icon: "fa-pencil", color: "#E8873A", sem: "S1" },
+      { title: "Exercices - Fonctions numériques", desc: "Applications et études de variations", subj: "Mathématiques", subjColor: "#4ECDC4", icon: "fa-pencil", color: "#E8873A", sem: "S1" },
+      { title: "Exercices - Mesure de quantité de matière", desc: "Calculs de moles et concentrations", subj: "Chimie", subjColor: "#F4D03F", icon: "fa-pencil", color: "#E8873A", sem: "S1" }
+    ],
+    exams: [
+      { title: "Devoir Surveillé N°1", desc: "Semestre 1 - 3 modèles complets corrigés", subj: "Mathématiques", subjColor: "#4ECDC4", icon: "fa-pen-to-square", color: "#BB8FCE", sem: "S1" },
+      { title: "Devoir Surveillé N°2", desc: "Semestre 1 - 2 modèles corrigés", subj: "Mathématiques", subjColor: "#4ECDC4", icon: "fa-pen-to-square", color: "#BB8FCE", sem: "S1" },
+      { title: "Devoir Surveillé N°1 - Physique", desc: "Mécanique et chimie des solutions", subj: "Physique", subjColor: "#FF6B6B", icon: "fa-pen-to-square", color: "#BB8FCE", sem: "S1" }
+    ]
+  };
+
+  function getElementCenter(selector) {
+    const frame = document.getElementById('browserFrame').getBoundingClientRect();
+    const target = document.querySelector(selector).getBoundingClientRect();
+    return {
+      x: (target.left + target.width / 2) - frame.left,
+      y: (target.top + target.height / 2) - frame.top
+    };
+  }
+
+  function toggleTheme() {
+    const frame = document.getElementById('browserFrame');
+    const icon = document.querySelector('#btnTheme i');
+    frame.classList.toggle('light-theme');
+    if (frame.classList.contains('light-theme')) {
+      icon.className = 'fas fa-sun';
+    } else {
+      icon.className = 'fas fa-moon';
+    }
+  }
+
+  function selectCategoryUI(catKey, label, iconClass, colorHex) {
+    document.getElementById('searchTypePlaceholder').style.display = 'none';
+    const chip = document.getElementById('searchTypeChip');
+    chip.style.display = 'inline-flex';
+    chip.style.setProperty('--cat-color', colorHex);
+    document.getElementById('searchTypeChipIcon').className = 'fas ' + iconClass;
+    document.getElementById('searchTypeChipLabel').textContent = label;
+
+    const input = document.getElementById('searchInput');
+    input.disabled = false;
+    input.placeholder = `Rechercher dans ${label}...`;
+  }
+
+  function renderResultsCascade(catKey, filterText = '') {
+    const resultsContainer = document.getElementById('searchResults');
+    const items = MOCK_DATA[catKey] || [];
+    const filtered = items.filter(it => 
+      it.title.toLowerCase().includes(filterText.toLowerCase()) || 
+      it.desc.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    let html = '';
+    filtered.forEach(it => {
+      html += `
+        <a class="command-card" href="#" style="--cat-color:${it.color};">
+          <span class="search-semester-badge">${it.sem}</span>
+          <span class="search-subject-tag" style="color:${it.subjColor}; background:${it.subjColor}14; border:1px solid ${it.subjColor}30;">${it.subj}</span>
+          <div class="command-title">
+            <span class="num" style="color:${it.color}; background:${it.color}14;"><i class="fas ${it.icon}"></i></span>
+            ${it.title}
+          </div>
+          <p>${it.desc}</p>
+          <span class="badge" style="background:${it.color}1f; color:${it.color}; border-color:${it.color}30;">
+            <i class="fas fa-eye"></i> Voir le contenu
+          </span>
+        </a>
+      `;
+    });
+
+    resultsContainer.innerHTML = html;
+
+    /* GSAP Cascade Slide-Down Animation */
+    const cards = resultsContainer.querySelectorAll('.command-card');
+    gsap.fromTo(cards, 
+      { opacity: 0, y: -45, scale: 0.94 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.08, ease: "power3.out" }
+    );
+  }
+
+  function typeSearchText(text, callback) {
+    const input = document.getElementById('searchInput');
+    const wrap = document.getElementById('searchInputWrap');
+    wrap.classList.add('focused');
+    input.value = '';
+    
+    let index = 0;
+    const interval = setInterval(() => {
+      input.value += text[index];
+      index++;
+      renderResultsCascade('lessons', input.value);
+      if (index >= text.length) {
+        clearInterval(interval);
+        setTimeout(() => { wrap.classList.remove('focused'); }, 400);
+        if (callback) callback();
+      }
+    }, 120);
+  }
+
+  function resetPage() {
+    const frame = document.getElementById('browserFrame');
+    frame.classList.remove('light-theme');
+    document.querySelector('#btnTheme i').className = 'fas fa-moon';
+
+    document.getElementById('searchTypeMenu').classList.remove('open');
+    document.getElementById('searchTypeChip').style.display = 'none';
+    document.getElementById('searchTypePlaceholder').style.display = 'inline-flex';
+    
+    const input = document.getElementById('searchInput');
+    input.value = '';
+    input.disabled = true;
+    input.placeholder = "Choisissez d'abord un type...";
+
+    document.getElementById('searchResults').innerHTML = `
+      <div class="search-empty">
+        <i class="fas fa-layer-group"></i>
+        <p>Choisissez un type de contenu ci-dessus pour commencer</p>
+      </div>
+    `;
+    document.getElementById('browserBody').scrollTop = 0;
+  }
+
+  // GSAP Timeline Execution (20.0 Seconds)
+  const tl = gsap.timeline({ paused: false });
+
+  tl.to("#zellijBg", { opacity: 1, duration: 1.0 }, 0);
+  tl.to("#eyebrow", { opacity: 1, duration: 0.5 }, 0.4);
+  tl.to("#headline", { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.4)" }, 0.7);
+
+  tl.to("#browserFrame", { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 1.2);
+  tl.to("#mockNav, #btnBack, #searchHero", { opacity: 1, duration: 0.5, stagger: 0.15 }, 1.8);
+  tl.to("#searchBarCard", { opacity: 1, y: 0, duration: 0.5 }, 2.3);
+
+  /* 1. Toggle Theme (Dark -> Light -> Dark) */
+  tl.to("#virtualCursor", {
+    opacity: 1, scale: 1,
+    left: () => getElementCenter('#btnTheme').x,
+    top: () => getElementCenter('#btnTheme').y,
+    duration: 0.8, ease: "power2.out"
+  }, 3.0);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 3.9);
+  tl.call(() => toggleTheme(), null, 4.0);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 5.2);
+  tl.call(() => toggleTheme(), null, 5.3);
+
+  /* 2. Open Category Dropdown Menu */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#searchTypeTrigger').x,
+    top: () => getElementCenter('#searchTypeTrigger').y,
+    duration: 0.8, ease: "power2.out"
+  }, 6.2);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 7.1);
+  tl.call(() => {
+    document.getElementById('searchTypeMenu').classList.add('open');
+  }, null, 7.2);
+
+  /* 3. Choose "Cours" Option from Menu */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#optLessons').x,
+    top: () => getElementCenter('#optLessons').y,
+    duration: 0.6, ease: "power2.out"
+  }, 8.0);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 8.7);
+  tl.call(() => {
+    document.getElementById('searchTypeMenu').classList.remove('open');
+    selectCategoryUI('lessons', 'Cours', 'fa-book', '#4ECDC4');
+    renderResultsCascade('lessons');
+  }, null, 8.8);
+
+  /* 4. Click Input & Type Search Text "Logique" */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#searchInput').x,
+    top: () => getElementCenter('#searchInput').y,
+    duration: 0.7, ease: "power2.out"
+  }, 10.0);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 10.8);
+  tl.call(() => {
+    typeSearchText("Logique");
+  }, null, 11.0);
+
+  /* 5. Switch Category to "Devoirs & Examens" */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#searchTypeTrigger').x,
+    top: () => getElementCenter('#searchTypeTrigger').y,
+    duration: 0.8, ease: "power2.out"
+  }, 13.5);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 14.4);
+  tl.call(() => {
+    document.getElementById('searchTypeMenu').classList.add('open');
+  }, null, 14.5);
+
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#optExams').x,
+    top: () => getElementCenter('#optExams').y,
+    duration: 0.6, ease: "power2.out"
+  }, 15.3);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 16.0);
+  tl.call(() => {
+    document.getElementById('searchTypeMenu').classList.remove('open');
+    selectCategoryUI('exams', 'Devoirs & Examens', 'fa-pen-to-square', '#BB8FCE');
+    document.getElementById('searchInput').value = '';
+    renderResultsCascade('exams');
+  }, null, 16.1);
+
+  /* 6. Scroll Results & Hide Cursor */
+  tl.to("#browserBody", { scrollTop: 120, duration: 1.0, ease: "power2.inOut" }, 17.5);
+  tl.to("#virtualCursor", { opacity: 0, duration: 0.5 }, 18.8);
+
+  document.getElementById("replayBtn").addEventListener("click", () => {
+    resetPage();
+    tl.restart();
+  });
+</script>
+
+</body>
+</html>
+

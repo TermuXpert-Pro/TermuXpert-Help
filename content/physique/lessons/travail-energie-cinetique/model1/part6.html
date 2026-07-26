@@ -429,7 +429,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphResume1" width="350" height="160"></canvas>
+                    <svg id="graphResume1" role="img" aria-label="Résumé : parabole de l'énergie cinétique"></svg>
                     <p>$E_C = \frac{1}{2} m \cdot V^2$ (parabole)</p>
                 </div>
             </div>
@@ -534,7 +534,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphResume2" width="350" height="160"></canvas>
+                    <svg id="graphResume2" role="img" aria-label="Résumé : relation entre vitesse et hauteur"></svg>
                     <p>v² = 2g·h : relation entre vitesse et hauteur</p>
                 </div>
             </div>
@@ -661,112 +661,7 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphResume1() {
-            var canvas = document.getElementById('graphResume1');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 40, oy = h - 20;
-            var scaleX = 50, scaleY = 6.5;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 10, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 10);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('V', w - 15, oy + 14);
-            ctx.fillText('E_C', ox + 8, 12);
-
-            // Courbe
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var v = 0; v <= 6; v += 0.05) {
-                var x = ox + v * scaleX;
-                var y = oy - (0.5 * 1 * v * v) * scaleY;
-                if (y < 10) break;
-                if (v === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '8px Arial';
-            ctx.fillText('E_C = 1/2·m·V²', 180, 15);
-        }
-
-        function drawGraphResume2() {
-            var canvas = document.getElementById('graphResume2');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 40, oy = h - 20;
-            var scaleX = 200, scaleY = 65;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 10, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 10);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '9px Arial';
-            ctx.fillText('h', w - 15, oy + 14);
-            ctx.fillText('v²', ox + 8, 12);
-
-            // Droite v² = 2g·h
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (var h2 = 0; h2 <= 1.0; h2 += 0.005) {
-                var x = ox + h2 * scaleX;
-                var y = oy - (19.6 * h2) * scaleY / 10;
-                if (y < 10) break;
-                if (h2 === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '8px Arial';
-            ctx.fillText('v² = 2g·h', 180, 15);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphResume1();
-                drawGraphResume2();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p6.js" defer></script>
 </body>
 </html>

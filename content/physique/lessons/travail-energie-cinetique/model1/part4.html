@@ -445,6 +445,11 @@
                     </p>
                 </div>
 
+                <div class="graph-container">
+                    <svg id="graphChuteSetup" role="img" aria-label="Dispositif expérimental de chute libre de la bille"></svg>
+                    <p>Dispositif expérimental : bille en chute libre verticale sur une hauteur h</p>
+                </div>
+
                 <div class="table-wrap">
                     <table>
                         <tr>
@@ -510,7 +515,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphActivite2" width="450" height="280"></canvas>
+                    <svg id="graphActivite2" role="img" aria-label="Courbe v² en fonction de h"></svg>
                     <p>Courbe \(v^2 = f(h)\)</p>
                 </div>
             </div>
@@ -716,140 +721,8 @@
             }
         });
 
-        // ============================================================
-        // GRAPHIQUE - Courbe v² = f(h)
-        // ============================================================
-
-        function drawGraphActivite2() {
-            var canvas = document.getElementById('graphActivite2');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 70, oy = h - 30;
-            var scaleX = 300, scaleY = 110;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Labels axes
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('h (m)', w - 40, oy + 20);
-            ctx.fillText('v² (m²/s²)', ox + 8, 16);
-
-            // Grille
-            ctx.strokeStyle = '#1A1A2E';
-            ctx.lineWidth = 0.5;
-
-            for (var i = 0; i <= 10; i += 2) {
-                var x = ox + i * scaleX / 10;
-                ctx.beginPath();
-                ctx.moveTo(x, 20);
-                ctx.lineTo(x, oy);
-                ctx.stroke();
-                ctx.fillStyle = '#888888';
-                ctx.font = '8px Arial';
-                ctx.fillText((i/10).toFixed(1), x - 6, oy + 16);
-            }
-
-            for (var i = 0; i <= 20; i += 4) {
-                var y = oy - i * scaleY / 10;
-                ctx.beginPath();
-                ctx.moveTo(ox, y);
-                ctx.lineTo(w - 20, y);
-                ctx.stroke();
-                ctx.fillStyle = '#888888';
-                ctx.font = '8px Arial';
-                ctx.fillText(i, ox - 20, y + 4);
-            }
-
-            // Points de la courbe
-            var data = [
-                {h: 0, v2: 0},
-                {h: 0.10, v2: 1.96},
-                {h: 0.20, v2: 3.92},
-                {h: 0.40, v2: 7.84},
-                {h: 0.60, v2: 11.76},
-                {h: 0.80, v2: 15.68},
-                {h: 1.00, v2: 19.60}
-            ];
-
-            // Courbe
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].h * scaleX;
-                var y = oy - data[i].v2 * scaleY / 10;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-            ctx.stroke();
-
-            // Points
-            for (var i = 0; i < data.length; i++) {
-                var x = ox + data[i].h * scaleX;
-                var y = oy - data[i].v2 * scaleY / 10;
-                ctx.fillStyle = '#4ECDC4';
-                ctx.beginPath();
-                ctx.arc(x, y, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                
-                if (data[i].h > 0) {
-                    ctx.fillStyle = '#FFFFFF';
-                    ctx.font = '8px Arial';
-                    ctx.fillText('(' + data[i].h.toFixed(2) + ',' + data[i].v2.toFixed(2) + ')', x - 25, y - 10);
-                }
-            }
-
-            // Légende
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '11px Arial';
-            ctx.fillText('v² = 19,6·h', 200, 25);
-            
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('(droite passant par l\'origine)', 200, 40);
-
-            // Coefficient directeur
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            var x1 = ox + 0.10 * scaleX;
-            var y1 = oy - 1.96 * scaleY / 10;
-            var x2 = ox + 0.40 * scaleX;
-            var y2 = oy - 7.84 * scaleY / 10;
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('a = Δv²/Δh = 19,6 m/s²', 200, 55);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphActivite2();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p4.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

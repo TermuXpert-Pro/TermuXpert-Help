@@ -90,8 +90,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
-            max-width: 100%;
+        .graph-container svg {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -308,13 +312,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
-                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
-                        <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
                     <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
                         <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
                         <span class="sidebar-link-text">Calendrier</span>
@@ -417,7 +414,7 @@
                 <h2><span class="num">1</span> Mise en évidence de l'énergie potentielle de pesanteur</h2>
 
                 <div class="graph-container">
-                    <canvas id="graphBarrage" width="400" height="200"></canvas>
+                    <svg id="graphBarrage" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Barrage retenant l'eau en hauteur"></svg>
                     <p>L'eau d'un barrage emmagasine une énergie potentielle de pesanteur</p>
                 </div>
 
@@ -441,7 +438,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphGrue" width="400" height="200"></canvas>
+                    <svg id="graphGrue" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grue soulevant une charge de A vers B"></svg>
                     <p>Montée d'une charge par une grue</p>
                 </div>
             </div>
@@ -491,7 +488,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphAxe" width="400" height="200"></canvas>
+                    <svg id="graphAxe" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Axe Oz vertical orienté vers le haut avec points A et B"></svg>
                     <p>Axe $Oz$ vertical orienté vers le haut</p>
                 </div>
 
@@ -570,9 +567,9 @@
         });
 
         // ============================================================
-        // GRAPHIQUES
+        // GRAPHIQUES (ancien code canvas — désactivé, remplacé par figuresvt_p1.js)
         // ============================================================
-
+        /*
         function drawGraphBarrage() {
             var canvas = document.getElementById('graphBarrage');
             if (!canvas) return;
@@ -789,7 +786,9 @@
                 drawGraphAxe();
             }, 500);
         });
+        */
     </script>
+    <script src="figuresvt_p1.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     

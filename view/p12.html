@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Xpert — التعريف بالمنصة والفرق بينها وبين PDF</title>
+
+<!-- Fonts & FontAwesome -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- GSAP Animation Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+  :root {
+    --bg-0: #081312;
+    --bg-1: #0c1f1d;
+    --bg-2: #0f2624;
+    --teal: #4ECDC4;
+    --teal-dim: #2c7a72;
+    --gold: #F4D03F;
+    --orange: #E8873A;
+    --purple: #BB8FCE;
+    --red: #FF6B6B;
+    --text: #eaf6f4;
+    --muted: #8fb2ad;
+    --line: rgba(78, 205, 196, 0.18);
+    --card-bg: rgba(15, 38, 36, 0.85);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg-0); overflow: hidden; }
+  body { font-family: 'Tajawal', sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* ---------- Stage Container ---------- */
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(78, 205, 196, 0.14), transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(244, 208, 63, 0.08), transparent 50%),
+      linear-gradient(160deg, var(--bg-0), var(--bg-1) 55%, var(--bg-2));
+  }
+
+  .zellij-bg {
+    position: absolute; inset: 0;
+    opacity: 0; pointer-events: none;
+  }
+
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; padding: 2vh 3vw; text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Cairo', sans-serif; font-weight: 700;
+    color: var(--teal); font-size: clamp(12px, 1.4vw, 15px);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px; opacity: 0;
+  }
+  .eyebrow::before, .eyebrow::after { content: ""; width: 24px; height: 1px; background: var(--teal-dim); }
+
+  h1.headline {
+    font-family: 'Cairo', sans-serif; font-weight: 900;
+    font-size: clamp(18px, 3.2vw, 32px); line-height: 1.15; margin: 0 0 10px;
+    opacity: 0; transform: translateY(16px);
+  }
+  h1.headline .x { color: var(--teal); }
+  h1.headline .gold { color: var(--gold); }
+
+  /* ---------- Main Presentation Container ---------- */
+  .presentation-frame {
+    width: min(840px, 95vw);
+    height: 75vh;
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.65);
+    text-align: right; opacity: 0; transform: translateY(24px) scale(0.97);
+    position: relative; display: flex; flex-direction: column;
+  }
+
+  .pres-header {
+    height: 36px; background: #0a1917; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--line);
+  }
+  .pres-title {
+    font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 12px; color: var(--teal);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pres-dots { display: flex; gap: 6px; }
+  .pres-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+
+  .pres-body {
+    padding: 18px 22px; flex: 1; overflow-y: auto; position: relative;
+    scroll-behavior: smooth;
+  }
+
+  /* Slide Panels */
+  .slide-panel {
+    display: none; opacity: 0; flex-direction: column; gap: 16px;
+    transition: opacity 0.4s ease;
+  }
+  .slide-panel.active { display: flex; opacity: 1; }
+
+  /* Slide 1: Platform Overview */
+  .overview-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px;
+  }
+  @media(max-width: 600px) {
+    .overview-grid { grid-template-columns: 1fr; }
+  }
+
+  .feature-card {
+    background: var(--card-bg); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    transition: all 0.3s ease;
+  }
+  .feature-card.highlight {
+    border-color: var(--teal); box-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
+  }
+  .feature-icon {
+    width: 40px; height: 40px; border-radius: 50%; background: rgba(78, 205, 196, 0.12);
+    color: var(--teal); display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 4px;
+  }
+  .feature-card h3 {
+    font-family: 'Cairo', sans-serif; font-size: 13.5px; font-weight: 800;
+    margin: 0; color: var(--text);
+  }
+  .feature-card p {
+    font-size: 11px; color: var(--muted); margin: 0; line-height: 1.4;
+  }
+
+  /* Slide 2: PDF vs Xpert Comparison Table */
+  .comparison-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;
+  }
+  @media(max-width: 600px) {
+    .comparison-wrapper { grid-template-columns: 1fr; }
+  }
+
+  .comp-box {
+    background: var(--card-bg); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .comp-box.pdf-side { border-color: rgba(255, 107, 107, 0.4); }
+  .comp-box.xpert-side { border-color: var(--teal); box-shadow: 0 0 25px rgba(78, 205, 196, 0.15); }
+
+  .comp-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .comp-header h4 {
+    font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 800; margin: 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .pdf-side .comp-header h4 { color: var(--red); }
+  .xpert-side .comp-header h4 { color: var(--teal); }
+
+  .comp-list {
+    list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;
+  }
+  .comp-item {
+    font-size: 11px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
+  }
+  .comp-item i { font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .pdf-side .comp-item i { color: var(--red); }
+  .xpert-side .comp-item i { color: var(--teal); }
+
+  /* Interactive Graph / Visual Diagram Comparison */
+  .diagram-container {
+    background: #091716; border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px; text-align: center; margin-top: 10px;
+  }
+  .diagram-title {
+    font-family: 'Cairo', sans-serif; font-size: 12.5px; font-weight: 800; color: var(--gold);
+    margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .bars-wrapper {
+    display: flex; flex-direction: column; gap: 8px; text-align: right;
+  }
+  .bar-row {
+    display: flex; align-items: center; gap: 10px; font-size: 11px;
+  }
+  .bar-label { width: 90px; font-family: 'Cairo', sans-serif; font-weight: 700; flex-shrink: 0; }
+  .bar-track {
+    flex: 1; height: 12px; background: rgba(255,255,255,0.05); border-radius: 6px; overflow: hidden;
+  }
+  .bar-fill { height: 100%; width: 0%; border-radius: 6px; transition: width 1s ease; }
+  .bar-fill.pdf { background: var(--red); }
+  .bar-fill.xpert { background: linear-gradient(90deg, var(--teal), var(--gold)); }
+
+  /* Navigation Bar inside Browser */
+  .slide-nav-btns {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-step-btn {
+    background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line);
+    color: var(--text); padding: 6px 14px; border-radius: 8px; font-size: 11px;
+    font-family: 'Cairo', sans-serif; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;
+  }
+  .nav-step-btn.active {
+    background: var(--teal); color: #081312; border-color: var(--teal);
+  }
+
+  /* Virtual Cursor Pointer */
+  .virtual-cursor {
+    position: absolute; top: 0; left: 0; width: 22px; height: 22px; margin-left: -11px; margin-top: -11px;
+    background: radial-gradient(circle, var(--gold) 35%, rgba(244,208,63,0.4) 70%, transparent 100%);
+    border: 2px solid #ffffff; border-radius: 50%; pointer-events: none;
+    z-index: 999; opacity: 0; transform: scale(0.5); box-shadow: 0 0 15px var(--gold);
+  }
+.replay-btn {
+    position: absolute; top: 16px; left: 16px; z-index: 20; font-size: 11px; color: var(--muted);
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line); padding: 6px 14px; border-radius: 20px; cursor: pointer;
+    opacity: 0;
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="zellij-bg" id="zellijBg">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.22;">
+      <pattern id="zellij" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
+        <polygon points="80,0 160,80 80,160 0,80" fill="none" stroke="#4ECDC4" stroke-width="0.6"/>
+        <polygon points="80,30 130,80 80,130 30,80" fill="none" stroke="#F4D03F" stroke-width="0.5"/>
+      </pattern>
+      <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+  </div>
+
+  <button class="replay-btn" id="replayBtn">إعادة العرض 🔄</button>
+
+  <section class="scene">
+    <div class="eyebrow" id="eyebrow">التعريف المنظم بمنصة Xpert والتجربة الرقمية</div>
+    <h1 class="headline" id="headline">لماذا تختار منصة <span class="x">Xpert</span> بدلاً من <span class="gold">PDF</span>؟</h1>
+
+    <div class="presentation-frame" id="presFrame">
+      <div class="virtual-cursor" id="virtualCursor"></div>
+
+      <div class="pres-header">
+        <div class="pres-title"><i class="fas fa-cubes"></i> Xpert Platform Concept</div>
+        <div class="pres-dots">
+          <span class="pres-dot"></span><span class="pres-dot"></span><span class="pres-dot"></span>
+        </div>
+      </div>
+
+      <div class="pres-body" id="presBody">
+        
+        <!-- SLIDE 1: PLATFORM ALL IN ONE OVERVIEW -->
+        <div class="slide-panel active" id="slide1">
+          <div style="text-align:center;">
+            <h2 style="font-family:'Cairo',sans-serif; font-size:18px; margin:0 0 4px; color:var(--teal);">
+              منصة شاملة تجمع الدروس والتمارين والفروض في مكان واحد 🚀
+            </h2>
+            <p style="font-size:11.5px; color:var(--muted); margin:0;">تجربة تعليمية متكاملة لطلاب الأولى بكالوريا علوم تجريبية</p>
+          </div>
+
+          <div class="overview-grid">
+            <div class="feature-card" id="featCours">
+              <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+              <h3>دروس أنيقة ودقيقة</h3>
+              <p>شرح مبسط، مقسم لأجزاء، مع جداول توضيحية وقواعد رياضية مصممة بعناية.</p>
+            </div>
+
+            <div class="feature-card" id="featExo">
+              <div class="feature-icon" style="color:var(--orange); background:rgba(232,135,58,0.12);"><i class="fas fa-pencil"></i></div>
+              <h3>تمارين بحلول مفصلة</h3>
+              <p>خطوات واضحة مفسرة مع إمكانية عرض وإخفاء الحل بنقرة واحدة.</p>
+            </div>
+
+            <div class="feature-card" id="featDevoir">
+              <div class="feature-icon" style="color:var(--purple); background:rgba(187,143,206,0.12);"><i class="fas fa-clock"></i></div>
+              <h3>فروض ومحاكي الامتحان</h3>
+              <p>نظام توقيت حقيقي لتجربة الامتحان، مع وضع استراحة العقول التفاعلية.</p>
+            </div>
+          </div>
+
+          <div class="slide-nav-btns">
+            <span style="font-size:11px; color:var(--muted);">الخطوة 1 من 2</span>
+            <button class="nav-step-btn active" id="btnNextSlide">مقارنة مع PDF <i class="fas fa-arrow-left"></i></button>
+          </div>
+        </div>
+
+        <!-- SLIDE 2: PDF VS XPERT DETAILED COMPARISON -->
+        <div class="slide-panel" id="slide2">
+          <div style="text-align:center;">
+            <h2 style="font-family:'Cairo',sans-serif; font-size:18px; margin:0 0 4px; color:var(--gold);">
+              الفرق بين ملفات PDF التقليدية ومنصة Xpert ⚡
+            </h2>
+            <p style="font-size:11.5px; color:var(--muted); margin:0;">بنية متطورة صُممت لتسهيل المراجعة والفهم السريع</p>
+          </div>
+
+          <div class="comparison-wrapper">
+            <!-- PDF Side -->
+            <div class="comp-box pdf-side">
+              <div class="comp-header">
+                <h4><i class="fas fa-file-pdf"></i> ملفات PDF العادية</h4>
+              </div>
+              <ul class="comp-list">
+                <li class="comp-item"><i class="fas fa-circle-xmark"></i> ملفات جمود بلا تفاعل وبحجم خط ثابت يتطلب التكبير المستمر.</li>
+                <li class="comp-item"><i class="fas fa-circle-xmark"></i> صعوبة البحث والوصول للفقرة المطلوبة بسرعة.</li>
+                <li class="comp-item"><i class="fas fa-circle-xmark"></i> الحلول مكشوفة مباشرة مما يقلل من تركيز الطالب.</li>
+              </ul>
+            </div>
+
+            <!-- Xpert Side -->
+            <div class="comp-box xpert-side" id="xpertBoxHighlight">
+              <div class="comp-header">
+                <h4><i class="fas fa-laptop-code"></i> منصة Xpert التفاعلية</h4>
+              </div>
+              <ul class="comp-list">
+                <li class="comp-item"><i class="fas fa-circle-check"></i> واجهة تفاعلية تتكيف تماماً مع شاشة الهاتف والحاسوب.</li>
+                <li class="comp-item"><i class="fas fa-circle-check"></i> محرك بحث سريـع وقائمة فصول للوصول المباشر.</li>
+                <li class="comp-item"><i class="fas fa-circle-check"></i> إمكانية إخفاء وإظهار الحل للتمرين عند التفكير أولاً.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Interactive Diagram Comparison -->
+          <div class="diagram-container">
+            <div class="diagram-title"><i class="fas fa-chart-bar"></i> مستوى الفعالية والتفاعل للمراجعة</div>
+            <div class="bars-wrapper">
+              <div class="bar-row">
+                <div class="bar-label" style="color:var(--red);">ملفات PDF</div>
+                <div class="bar-track">
+                  <div class="bar-fill pdf" id="barPdf"></div>
+                </div>
+                <span style="font-weight:700; color:var(--red);">35%</span>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label" style="color:var(--teal);">منصة Xpert</div>
+                <div class="bar-track">
+                  <div class="bar-fill xpert" id="barXpert"></div>
+                </div>
+                <span style="font-weight:700; color:var(--gold);">98%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide-nav-btns">
+            <button class="nav-step-btn" id="btnPrevSlide"><i class="fas fa-arrow-right"></i> البنية والخدمات</button>
+            <span style="font-size:11px; color:var(--teal); font-weight:700;">Xpert — تجربة تعليمية فريدة</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  function getElementCenter(selector) {
+    const frame = document.getElementById('presFrame').getBoundingClientRect();
+    const target = document.querySelector(selector).getBoundingClientRect();
+    return {
+      x: (target.left + target.width / 2) - frame.left,
+      y: (target.top + target.height / 2) - frame.top
+    };
+  }
+
+  function switchToSlide2() {
+    document.getElementById('slide1').classList.remove('active');
+    const s2 = document.getElementById('slide2');
+    s2.classList.add('active');
+    
+    // Animate Diagram Bars
+    document.getElementById('barPdf').style.width = '35%';
+    document.getElementById('barXpert').style.width = '98%';
+  }
+
+  function switchToSlide1() {
+    document.getElementById('slide2').classList.remove('active');
+    document.getElementById('slide1').classList.add('active');
+    document.getElementById('barPdf').style.width = '0%';
+    document.getElementById('barXpert').style.width = '0%';
+  }
+
+  function resetPage() {
+    switchToSlide1();
+    document.querySelectorAll('.feature-card').forEach(c => c.classList.remove('highlight'));
+    document.getElementById('presBody').scrollTop = 0;
+  }
+
+  // GSAP Timeline Execution (22.0 Seconds)
+  const tl = gsap.timeline({ paused: false });
+
+  tl.to("#zellijBg", { opacity: 1, duration: 1.0 }, 0);
+  tl.to("#eyebrow", { opacity: 1, duration: 0.5 }, 0.4);
+  tl.to("#headline", { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.4)" }, 0.7);
+
+  tl.to("#presFrame", { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 1.2);
+
+  /* 1. Highlight Feature Cards sequentially */
+  tl.to("#virtualCursor", {
+    opacity: 1, scale: 1,
+    left: () => getElementCenter('#featCours').x,
+    top: () => getElementCenter('#featCours').y,
+    duration: 0.8, ease: "power2.out"
+  }, 2.5);
+
+  tl.to("#featCours", { scale: 1.03, borderColor: "var(--teal)", boxShadow: "0 0 20px rgba(78,205,196,0.3)", duration: 0.3 }, 3.3);
+
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#featExo').x,
+    top: () => getElementCenter('#featExo').y,
+    duration: 0.8, ease: "power2.out"
+  }, 4.5);
+
+  tl.to("#featExo", { scale: 1.03, borderColor: "var(--orange)", boxShadow: "0 0 20px rgba(232,135,58,0.3)", duration: 0.3 }, 5.3);
+
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#featDevoir').x,
+    top: () => getElementCenter('#featDevoir').y,
+    duration: 0.8, ease: "power2.out"
+  }, 6.5);
+
+  tl.to("#featDevoir", { scale: 1.03, borderColor: "var(--purple)", boxShadow: "0 0 20px rgba(187,143,206,0.3)", duration: 0.3 }, 7.3);
+
+  /* 2. Click "Next Slide" button to switch to PDF vs Xpert Slide */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#btnNextSlide').x,
+    top: () => getElementCenter('#btnNextSlide').y,
+    duration: 0.9, ease: "power2.out"
+  }, 8.8);
+
+  tl.to("#virtualCursor", { scale: 0.6, duration: 0.15, yoyo: true, repeat: 1 }, 9.7);
+  tl.call(() => {
+    switchToSlide2();
+  }, null, 9.8);
+
+  /* 3. Highlight Xpert Advantages and Diagram Bars */
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#xpertBoxHighlight').x,
+    top: () => getElementCenter('#xpertBoxHighlight').y,
+    duration: 0.9, ease: "power2.out"
+  }, 11.0);
+
+  tl.to("#xpertBoxHighlight", { scale: 1.02, duration: 0.4 }, 11.9);
+
+  /* 4. Scroll Down to Diagram and review bars */
+  tl.to("#presBody", { scrollTop: 140, duration: 1.0, ease: "power2.inOut" }, 13.5);
+
+  tl.to("#virtualCursor", {
+    left: () => getElementCenter('#barXpert').x + 100,
+    top: () => getElementCenter('#barXpert').y,
+    duration: 0.8, ease: "power2.out"
+  }, 14.8);
+
+  /* 5. Hide Cursor */
+  tl.to("#virtualCursor", { opacity: 0, duration: 0.5 }, 18.0);
+
+  /* Event Listeners */
+  document.getElementById("btnNextSlide").addEventListener("click", switchToSlide2);
+  document.getElementById("btnPrevSlide").addEventListener("click", switchToSlide1);
+
+  document.getElementById("replayBtn").addEventListener("click", () => {
+    resetPage();
+    tl.restart();
+  });
+</script>
+
+</body>
+</html>
+
