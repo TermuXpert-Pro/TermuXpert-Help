@@ -9,6 +9,7 @@
  * - partials/footer.html      → (بلا متغيرات)
  * - partials/decor.html       → {{BASE}}, {{ACCENT}}, {{ACCENT_LIGHT}}
  * - partials/decor-root.html  → (بلا متغيرات - décor multicolore ثابت)
+ * - Google Analytics 4        → كيتحقن فـ <head> كل صفحة (GA4_SNIPPET)
  *
  * الاستخدام: node utils/build.js
  * خاصك تشغلها من بعد أي تعديل فـ partials/ أو من بعد ما تزيد صفحة جديدة،
@@ -47,6 +48,18 @@ const navbarTpl = loadPartial('navbar.html');
 const footerTpl = loadPartial('footer.html');
 const decorTpl = loadPartial('decor.html');
 const decorRootTpl = loadPartial('decor-root.html');
+
+// ====== Google Analytics 4 - كيتحقن فـ <head> كل صفحة ======
+const GA4_SNIPPET = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>`;
+const HEAD_RE = /<head[^>]*>/;
 
 function render(tpl, vars) {
     let out = tpl;
@@ -156,6 +169,12 @@ for (const file of walk(ROOT)) {
     }
     if (isRoot && ROOT_DECOR_RE.test(content)) {
         content = content.replace(ROOT_DECOR_RE, decorRootTpl.trim());
+        changed = true;
+    }
+
+    // حقن GA4 فـ <head> - غير إلا ماكانش موجود ديجا (باش ما يتكررش)
+    if (HEAD_RE.test(content) && !content.includes('G-XVMNBPXC9D')) {
+        content = content.replace(HEAD_RE, (match) => `${match}\n${GA4_SNIPPET}`);
         changed = true;
     }
 
