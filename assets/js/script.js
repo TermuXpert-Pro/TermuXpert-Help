@@ -271,13 +271,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentPath = window.location.pathname;
     const currentSearch = window.location.search;
 
-    // كنشيلو "index.html" وأي "/" فالأخر باش نقارنو المسارات بشكل
-    // مستقل عن العمق - هكذا صفحة الجذر ("/" أو "/index.html") غادي
-    // تعطي نفس القيمة، وصفحة فرعية بحال "/content/math/serie1/index.html"
-    // (اللي هي واحدة من 108 صفحة اسمها index.html بالضبط) ماغاديش تلتبس
-    // بالصفحة الرئيسية.
+    // كنطبّعو المسار: كنشيلو "index.html"، وأي ".html" فالأخر، وأي "/"
+    // زايدة فالأخر - باش المقارنة تخدم سواء كان الرابط فيه ".html"
+    // (محلياً) أو بلاها (production فـ Cloudflare Pages كيحيدها
+    // أوتوماتيكياً بريدايركت 308: /subjects.html -> /subjects).
     function normalizePath(p) {
-        return p.replace(/index\.html$/, '').replace(/\/+$/, '') || '/';
+        return p
+            .replace(/\/index\.html$/, '/')
+            .replace(/\.html$/, '')
+            .replace(/\/+$/, '') || '/';
     }
     const currentNorm = normalizePath(currentPath);
 
@@ -285,19 +287,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const href = link.getAttribute('href');
         if (!href) return;
 
-        // Accueil (index) - كنقارنو المسار المطلق المحلول من طرف
-        // المتصفح لهاد الرابط (link.pathname) مع المسار الحالي، بعد
-        // التطبيع - ماشي endsWith('index.html') اللي كان كيطابق
-        // بالغلط أي واحدة من 108 صفحة اسمها index.html فالموقع.
-        if (href.includes('index.html') && normalizePath(link.pathname) === currentNorm) {
+        const linkNorm = normalizePath(link.pathname);
+
+        // Accueil (index) - كنقارنو المسار المطبّع ديال الرابط مع
+        // المسار الحالي المطبّع، باش يخدم بـ.html أو بلاها.
+        if (href.includes('index.html') && linkNorm === currentNorm) {
             link.classList.add('active');
         }
         // Matières
-        else if (href.includes('subjects.html') && currentPath.includes('subjects.html')) {
+        else if (href.includes('subjects.html') && linkNorm === currentNorm) {
             link.classList.add('active');
         }
         // Calendrier (AJOUT)
-        else if (href.includes('calendrier.html') && currentPath.includes('calendrier.html')) {
+        else if (href.includes('calendrier.html') && linkNorm === currentNorm) {
             link.classList.add('active');
         }
         // Matière spécifique (subject.html?subject=...)
@@ -308,10 +310,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
         // Pages générales via data-page (about, support, installation,
-        // terms, privacy...) - كيقارن اسم الصفحة الحالية مع data-page
-        // ديال الرابط، بلا ما نكرر else if خاصة بكل صفحة
-        else if (link.dataset.page && currentPath.endsWith('/' + link.dataset.page + '.html')) {
-            link.classList.add('active');
+        // terms, privacy...) - كيقارن آخر جزء من المسار المطبّع مع
+        // data-page ديال الرابط، بلا الاعتماد على ".html".
+        else if (link.dataset.page) {
+            const lastSegment = currentNorm.split('/').pop();
+            if (lastSegment === link.dataset.page) {
+                link.classList.add('active');
+            }
         }
     });
 
