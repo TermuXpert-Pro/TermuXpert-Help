@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "Recherche - Xpert",
+        "description": "Recherchez un cours, un exercice, une série ou un devoir en Mathématiques, Physique et Chimie",
+        "url": "https://termuxpert-pro.github.io/TermuXpert-WEB/recherche.html"
+    }
+    </script>
+
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Xpert - Recherche</title>
+
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="stylesheet" href="assets/css/google-fonts.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/root-decor.css">
+
+    <!-- ====== GSAP ====== -->
+    <script src="assets/js/vendor/gsap.min.js"></script>
+
+        <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection" aria-hidden="true"></div>
+
+<!-- ====== خلفية زليج (multicolore - خاصة بالصفحات الجذرية) ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+
+<div class="geo-pattern geo-pattern-1" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div class="hero-wrapper" id="heroWrapper">
+        <h1 id="mainTitle"><span class="gradient-text">Recherche</span></h1>
+        <p class="subtitle" id="subTitle">Trouvez rapidement un cours, un exercice, une série ou un devoir</p>
+    </div>
+
+    <div class="content-wrapper" id="contentWrapper">
+
+        <button class="back-btn" onclick="history.length > 1 ? history.back() : location.href='index.html'" type="button">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i> Retour
+        </button>
+
+        <!-- ====== بطاقة البحث الثابتة (Sticky، بشكل FAB) ====== -->
+        <div class="search-bar-card" id="searchBarCard">
+            <div class="search-bar-row">
+                <button class="search-type-trigger" id="searchTypeTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="search-type-placeholder" id="searchTypePlaceholder">
+                        <i class="fas fa-layer-group" aria-hidden="true"></i> Choisir un type
+                    </span>
+                    <span class="search-type-chip" id="searchTypeChip" style="display:none;">
+                        <i class="fas" id="searchTypeChipIcon" aria-hidden="true"></i>
+                        <span id="searchTypeChipLabel"></span>
+                        <span class="search-type-chip-clear" id="searchTypeClear" role="button" aria-label="تغيير النوع">
+                            <i class="fas fa-xmark" aria-hidden="true"></i>
+                        </span>
+                    </span>
+                    <i class="fas fa-chevron-down search-type-arrow" id="searchTypeArrow" aria-hidden="true"></i>
+                </button>
+
+                <div class="search-input-wrap">
+                    <i class="fas fa-magnifying-glass search-input-icon" aria-hidden="true"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Choisissez d'abord un type..." autocomplete="off" inputmode="search" disabled>
+                </div>
+            </div>
+
+            <div class="search-type-menu" id="searchTypeMenu" role="listbox">
+                <button class="search-type-option" data-category="lessons" style="--cat-color:#4ECDC4;" role="option">
+                    <span class="search-type-option-icon"><i class="fas fa-book"></i></span>
+                    <span class="search-type-option-name">Cours</span>
+                </button>
+                <button class="search-type-option" data-category="exercices" style="--cat-color:#E8873A;" role="option">
+                    <span class="search-type-option-icon"><i class="fas fa-pencil"></i></span>
+                    <span class="search-type-option-name">Exercices</span>
+                </button>
+                <button class="search-type-option" data-category="series" style="--cat-color:#F4D03F;" role="option">
+                    <span class="search-type-option-icon"><i class="fas fa-list-check"></i></span>
+                    <span class="search-type-option-name">Séries</span>
+                </button>
+                <button class="search-type-option" data-category="exams" style="--cat-color:#BB8FCE;" role="option">
+                    <span class="search-type-option-icon"><i class="fas fa-pen-to-square"></i></span>
+                    <span class="search-type-option-name">Devoirs & Examens</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ====== نتائج البحث (بتصميم الطبقات، نفس subject.html) ====== -->
+        <div id="searchResults" class="cards-grid search-results-grid">
+            <div class="search-empty">
+                <i class="fas fa-layer-group" aria-hidden="true"></i>
+                <p>Choisissez un type de contenu ci-dessus pour commencer</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ====== Service Worker (PWA) ====== -->
+<!-- ====== Scripts ====== -->
+    <script src="assets/js/protection.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        // ============================================================
+        // إعدادات البحث: المواد + التصنيفات
+        // ============================================================
+        const SEARCH_SUBJECTS = [
+            { id: 'math', name: 'Mathématiques', color: '#4ECDC4' },
+            { id: 'physique', name: 'Physique', color: '#FF6B6B' },
+            { id: 'chimie', name: 'Chimie', color: '#F4D03F' }
+        ];
+
+        const SEARCH_CATEGORIES = {
+            lessons:   { label: 'Cours',              icon: 'fa-book',           field: 'lessons',   linkKey: 'file', color: '#4ECDC4', viewLabel: 'Voir le cours' },
+            exercices: { label: 'Exercices',           icon: 'fa-pencil',         field: 'exercices', linkKey: 'file', color: '#E8873A', viewLabel: 'Voir les exercices' },
+            series:    { label: 'Séries',               icon: 'fa-list-check',     field: 'series',    linkKey: 'file', color: '#F4D03F', viewLabel: 'Voir les séries' },
+            exams:     { label: 'Devoirs & Examens',    icon: 'fa-pen-to-square',  field: 'exams',     linkKey: 'hub',  color: '#BB8FCE', viewLabel: 'Voir le devoir' }
+        };
+
+        let selectedCategory = null;
+        let subjectsLoaded = false;
+        let menuOpen = false;
+        let searchDebounceTimer = null;
+
+        const searchTypeTrigger    = document.getElementById('searchTypeTrigger');
+        const searchTypeMenu       = document.getElementById('searchTypeMenu');
+        const searchTypeArrow      = document.getElementById('searchTypeArrow');
+        const searchTypePlaceholder= document.getElementById('searchTypePlaceholder');
+        const searchTypeChip       = document.getElementById('searchTypeChip');
+        const searchTypeChipIcon   = document.getElementById('searchTypeChipIcon');
+        const searchTypeChipLabel  = document.getElementById('searchTypeChipLabel');
+        const searchTypeClear      = document.getElementById('searchTypeClear');
+        const searchInputEl        = document.getElementById('searchInput');
+        const searchResultsEl      = document.getElementById('searchResults');
+
+        // ============================================================
+        // تحميل بيانات المواد الثلاثة (data/math.js, data/physique.js, data/chimie.js)
+        // ============================================================
+        function loadAllSubjectsData(callback) {
+            if (window.subjectsData && SEARCH_SUBJECTS.every(s => window.subjectsData[s.id])) {
+                subjectsLoaded = true;
+                callback();
+                return;
+            }
+            let remaining = SEARCH_SUBJECTS.length;
+            SEARCH_SUBJECTS.forEach(function(s) {
+                const script = document.createElement('script');
+                script.src = `data/${s.id}.js`;
+                script.onload = script.onerror = function() {
+                    remaining--;
+                    if (remaining === 0) {
+                        subjectsLoaded = true;
+                        callback();
+                    }
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        // ============================================================
+        // دوال مساعدة
+        // ============================================================
+        function normalize(str) {
+            return (str || '').toString().toLowerCase();
+        }
+
+        function escapeHtml(str) {
+            return (str || '').toString()
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        // ============================================================
+        // تنفيذ البحث فـ تصنيف معين عبر المواد الثلاثة
+        // ============================================================
+        function runSearch(category, query) {
+            const conf = SEARCH_CATEGORIES[category];
+            if (!conf) return;
+
+            const q = normalize(query);
+            let results = [];
+
+            SEARCH_SUBJECTS.forEach(function(subj) {
+                const data = (window.subjectsData || {})[subj.id];
+                if (!data || !Array.isArray(data[conf.field])) return;
+
+                data[conf.field].forEach(function(item) {
+                    const matches = !q ||
+                        normalize(item.title).includes(q) ||
+                        normalize(item.desc).includes(q);
+                    if (matches) {
+                        results.push({ item: item, subject: subj });
+                    }
+                });
+            });
+
+            renderResultsCascade(results, category, query);
+        }
+
+        // ============================================================
+        // بناء بطاقة نتيجة واحدة (نفس تصميم "الطبقات" ديال command-card
+        // فـ subject.html، مع بادج جانبية للسمستر إلى كانت موجودة)
+        // ============================================================
+        function buildResultCard(r, category) {
+            const conf = SEARCH_CATEGORIES[category];
+            const item = r.item;
+            const subj = r.subject;
+            const link = item[conf.linkKey];
+            const hasSemester = !!item.semester;
+            const semesterLabel = item.semester === 1 ? 'S1' : (item.semester === 2 ? 'S2' : '');
+
+            let extraBadge = '';
+            if (category === 'exams' && item.models) {
+                extraBadge = `<span class="badge" style="background:#BB8FCE1f; color:#BB8FCE; border-color:#BB8FCE30;">
+                    <i class="fas fa-copy"></i> ${item.models} modèle${item.models > 1 ? 's' : ''}
+                </span>`;
+            } else if ((category === 'exercices' || category === 'series') && item.models) {
+                extraBadge = `<span class="badge" style="background:${conf.color}1f; color:${conf.color}; border-color:${conf.color}30;">
+                    <i class="fas fa-copy"></i> ${item.models} modèle${item.models > 1 ? 's' : ''}
+                </span>`;
+            }
+
+            return `
+            <a class="command-card search-card" href="${link}" style="--cat-color:${conf.color};">
+                ${hasSemester ? `<span class="search-semester-badge">${semesterLabel}</span>` : ''}
+                <span class="search-subject-tag" style="color:${subj.color}; background:${subj.color}14; border:1px solid ${subj.color}30;">${subj.name}</span>
+                <div class="command-title">
+                    <span class="num" style="color:${conf.color}; background:${conf.color}14;"><i class="fas ${conf.icon}"></i></span>
+                    ${escapeHtml(item.title)}
+                </div>
+                ${item.desc ? `<p>${escapeHtml(item.desc)}</p>` : ''}
+                <span class="badge" style="background:${conf.color}1f; color:${conf.color}; border-color:${conf.color}30;">
+                    <i class="fas fa-eye"></i> ${conf.viewLabel}
+                </span>
+                ${extraBadge}
+            </a>`;
+        }
+
+        // ============================================================
+        // عرض النتائج بأنيميشن "طبقات كتنزل من فوق واحدة تلو الأخرى"
+        // ============================================================
+        function renderResultsCascade(results, category, query) {
+            const container = searchResultsEl;
+            const oldCards = container.querySelectorAll('.command-card, .search-empty');
+
+            function paint() {
+                if (!selectedCategory) {
+                    container.innerHTML = `
+                        <div class="search-empty">
+                            <i class="fas fa-layer-group" aria-hidden="true"></i>
+                            <p>Choisissez un type de contenu ci-dessus pour commencer</p>
+                        </div>`;
+                    animateIn(container.querySelectorAll('.search-empty'));
+                    return;
+                }
+
+                if (!results || results.length === 0) {
+                    const q = normalize(query);
+                    container.innerHTML = `
+                        <div class="search-empty">
+                            <i class="fas fa-circle-question" aria-hidden="true"></i>
+                            <p>${q ? 'Aucun résultat pour « ' + escapeHtml(query) + ' »' : 'Aucun élément dans cette catégorie pour le moment'}</p>
+                        </div>`;
+                    animateIn(container.querySelectorAll('.search-empty'));
+                    return;
+                }
+
+                container.innerHTML = results.map(function(r) { return buildResultCard(r, category); }).join('');
+                animateIn(container.querySelectorAll('.command-card'));
+
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise().catch(function(err) {
+                        console.log('⚠️ MathJax typeset error:', err);
+                    });
+                }
+            }
+
+            function animateIn(nodes) {
+                if (!nodes.length) return;
+                if (window.gsap) {
+                    gsap.fromTo(nodes,
+                        { opacity: 0, y: -60, scale: 0.92 },
+                        { opacity: 1, y: 0, scale: 1, duration: 0.55, stagger: 0.09, ease: 'power3.out' }
+                    );
+                } else {
+                    nodes.forEach(function(n) { n.style.opacity = '1'; n.style.transform = 'none'; });
+                }
+            }
+
+            if (oldCards.length > 0 && window.gsap) {
+                gsap.to(oldCards, {
+                    opacity: 0, y: 16, scale: 0.96, duration: 0.18, stagger: 0.03, ease: 'power2.in',
+                    onComplete: paint
+                });
+            } else {
+                paint();
+            }
+        }
+
+        // ============================================================
+        // القائمة المنسدلة لاختيار النوع (Menu سلس)
+        // ============================================================
+        function openTypeMenu() {
+            if (menuOpen) return;
+            menuOpen = true;
+            searchTypeTrigger.setAttribute('aria-expanded', 'true');
+            searchTypeMenu.classList.add('open');
+
+            if (window.gsap) {
+                gsap.killTweensOf(searchTypeMenu);
+                gsap.killTweensOf('.search-type-option');
+                gsap.set(searchTypeArrow, { rotate: 180 });
+                gsap.fromTo(searchTypeMenu,
+                    { opacity: 0, y: -10, scale: 0.97 },
+                    { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: 'power3.out' }
+                );
+                gsap.fromTo('.search-type-option',
+                    { opacity: 0, y: -12 },
+                    { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, ease: 'back.out(1.7)', delay: 0.04 }
+                );
+            } else {
+                searchTypeArrow.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function closeTypeMenu() {
+            if (!menuOpen) return;
+            menuOpen = false;
+            searchTypeTrigger.setAttribute('aria-expanded', 'false');
+
+            if (window.gsap) {
+                gsap.killTweensOf(searchTypeMenu);
+                gsap.set(searchTypeArrow, { rotate: 0 });
+                gsap.to(searchTypeMenu, {
+                    opacity: 0, y: -8, scale: 0.97, duration: 0.2, ease: 'power2.in',
+                    onComplete: function() { searchTypeMenu.classList.remove('open'); }
+                });
+            } else {
+                searchTypeArrow.style.transform = 'rotate(0deg)';
+                searchTypeMenu.classList.remove('open');
+            }
+        }
+
+        function toggleTypeMenu() {
+            menuOpen ? closeTypeMenu() : openTypeMenu();
+        }
+
+        // النقر فوق الزر (المحدد) بأكمله كيفتح/كيسد القائمة، ماعدا زر X ديال الحذف
+        searchTypeTrigger.addEventListener('click', function(e) {
+            if (e.target.closest('#searchTypeClear')) return;
+            toggleTypeMenu();
+        });
+
+        // اختيار نوع من القائمة
+        searchTypeMenu.addEventListener('click', function(e) {
+            const opt = e.target.closest('.search-type-option');
+            if (opt) selectCategory(opt.dataset.category);
+        });
+
+        // زر X: تصفير النوع المختار
+        searchTypeClear.addEventListener('click', function(e) {
+            e.stopPropagation();
+            clearCategory();
+        });
+
+        // سد القائمة عند الضغط برا البطاقة
+        document.addEventListener('click', function(e) {
+            if (menuOpen && !e.target.closest('#searchBarCard')) closeTypeMenu();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menuOpen) closeTypeMenu();
+        });
+
+        // ============================================================
+        // اختيار / تصفير النوع
+        // ============================================================
+        function selectCategory(category) {
+            selectedCategory = category;
+            const conf = SEARCH_CATEGORIES[category];
+
+            searchTypePlaceholder.style.display = 'none';
+            searchTypeChip.style.display = 'inline-flex';
+            searchTypeChip.style.setProperty('--cat-color', conf.color);
+            searchTypeChipIcon.className = 'fas ' + conf.icon;
+            searchTypeChipLabel.textContent = conf.label;
+
+            closeTypeMenu();
+
+            searchInputEl.disabled = false;
+            searchInputEl.placeholder = 'Rechercher dans ' + conf.label + '...';
+            searchInputEl.value = '';
+            searchInputEl.focus();
+
+            triggerSearch();
+        }
+
+        function clearCategory() {
+            selectedCategory = null;
+            searchTypeChip.style.display = 'none';
+            searchTypePlaceholder.style.display = 'inline-flex';
+
+            searchInputEl.value = '';
+            searchInputEl.disabled = true;
+            searchInputEl.placeholder = "Choisissez d'abord un type...";
+
+            renderResultsCascade([], null, '');
+            openTypeMenu();
+        }
+
+        searchInputEl.addEventListener('input', function() {
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(triggerSearch, 220);
+        });
+
+        function triggerSearch() {
+            if (!selectedCategory) return;
+            if (subjectsLoaded) {
+                runSearch(selectedCategory, searchInputEl.value);
+            } else {
+                searchResultsEl.innerHTML =
+                    '<div class="search-empty"><i class="fas fa-spinner fa-spin"></i><p>Chargement...</p></div>';
+                loadAllSubjectsData(function() {
+                    runSearch(selectedCategory, searchInputEl.value);
+                });
+            }
+        }
+
+        // تحميل بيانات المواد فالخلفية من البداية باش يكون البحث سريع
+        loadAllSubjectsData(function() {});
+
+        // ============================================================
+        // GSAP - إدارة أنميشن الدخول (نفس منطق subjects.html)
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+
+            if (typeof gsap === 'undefined') {
+                console.error('❌ GSAP غير محمل في recherche.html!');
+                document.querySelector('.moroccan-bg').style.opacity = '0.6';
+                document.querySelector('.moroccan-shadow').style.opacity = '0.08';
+                document.querySelector('.moroccan-star').style.opacity = '0.04';
+                document.querySelectorAll('.geo-pattern').forEach(function(el) {
+                    el.style.opacity = '0.03';
+                });
+                document.getElementById('overlayProtection').classList.add('hidden');
+                document.getElementById('heroWrapper').style.display = 'none';
+                document.getElementById('contentWrapper').style.opacity = '1';
+                const fallbackBar = document.getElementById('searchBarCard');
+                if (fallbackBar) { fallbackBar.style.opacity = '1'; fallbackBar.style.transform = 'none'; }
+                return;
+            }
+
+            const overlay = document.getElementById('overlayProtection');
+            const navType = performance.navigation.type;
+            const animationAllowed = sessionStorage.getItem('animation_allowed');
+
+            function showDirect() {
+                gsap.set('#heroWrapper', { opacity: 0, display: 'none' });
+                gsap.set('.moroccan-bg', { opacity: 0.6 });
+                gsap.set('.moroccan-shadow', { opacity: 0.08 });
+                gsap.set('.moroccan-star', { opacity: 0.04 });
+                gsap.set('.geo-pattern', { opacity: 0.03 });
+                gsap.set('#contentWrapper', { opacity: 1 });
+                gsap.set('#searchBarCard', { opacity: 1, y: 0 });
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ recherche.html - Affichage direct');
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+            }
+
+            function runAnimation() {
+                overlay.classList.add('active');
+                gsap.set('#heroWrapper', { display: 'flex', opacity: 0 });
+                gsap.set('#mainTitle', { opacity: 0, scale: 0.8 });
+                gsap.set('#subTitle', { opacity: 0, y: 30 });
+                gsap.set('#searchBarCard', { opacity: 0, y: 20 });
+
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+                tl
+                    .to('.moroccan-bg', { opacity: 0.6, duration: 0.8, ease: 'power1.out' })
+                    .to('.moroccan-shadow', { opacity: 0.08, duration: 0.8, ease: 'power1.out' }, '-=0.55')
+                    .to('.moroccan-star', { opacity: 0.04, duration: 0.8, ease: 'power1.out' }, '-=0.55')
+                    .to('.geo-pattern', { opacity: 0.03, duration: 0.8, stagger: 0.03, ease: 'power1.out' }, '-=0.6')
+                    .to('#heroWrapper', { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.2')
+                    .to('#mainTitle', { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' }, '-=0.1')
+                    .to('#subTitle', { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.2')
+                    .to('#mainTitle', { opacity: 0, y: -60, scale: 0.8, duration: 0.6, ease: 'power3.inOut', delay: 0.5 })
+                    .to('#subTitle', { opacity: 0, y: -40, duration: 0.5, ease: 'power3.inOut', delay: 0.4 }, '-=0.3')
+                    .to('#heroWrapper', {
+                        opacity: 0,
+                        duration: 0.25,
+                        ease: 'power2.in',
+                        onComplete: function() {
+                            gsap.set('#heroWrapper', { display: 'none' });
+                        }
+                    }, '-=0.15')
+                    .to('#contentWrapper', { opacity: 1, duration: 0.25, ease: 'power2.out' }, '-=0.1')
+                    .to('#searchBarCard', { opacity: 1, y: 0, duration: 0.45, ease: 'back.out(1.3)' }, '-=0.1')
+                    .call(function() {
+                        sessionStorage.removeItem('animation_allowed');
+                        overlay.classList.remove('active');
+                        overlay.classList.add('hidden');
+                        overlay.style.display = 'none';
+                        overlay.style.pointerEvents = 'none';
+                        console.log('✅ recherche.html - Animation jouée');
+                    });
+
+                gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+                gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+            }
+
+            if (navType === 2) {
+                showDirect();
+                console.log('📌 recherche.html - Navigation Back/Forward → Affichage direct');
+                return;
+            }
+
+            if (animationAllowed !== 'true') {
+                showDirect();
+                console.log('📌 recherche.html - Animation non autorisée → Affichage direct');
+                return;
+            }
+
+            runAnimation();
+        });
+    </script>
+</body>
+</html>
+
+
+
+

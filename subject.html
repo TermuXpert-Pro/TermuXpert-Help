@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -174,6 +175,13 @@
                     <a href="subjects.html" class="sidebar-link" data-page="subjects">
                         <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
                         <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -480,25 +488,33 @@
                 `;
                 }).join('');
             } else if (tab === 'exercices') {
-                html = currentSubject.exercices.map((e, i) => `
+                html = currentSubject.exercices.map((e, i) => {
+                    const modelsLabel = e.models ? `${e.models} modèle${e.models > 1 ? 's' : ''}` : '';
+                    return `
                     <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${e.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${e.title}
                         </div>
                         <p>${e.desc}</p>
                         <span class="badge" style="background:#E8873A22; color: var(--exercice-title); border-color:#E8873A22;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
+                        ${modelsLabel ? `<span class="badge" style="background:#E8873A1f; color:#E8873A; border-color:#E8873A30;"><i class="fas fa-copy"></i> ${modelsLabel}</span>` : ''}
                     </div>
-                `).join('');
+                `;
+                }).join('');
             } else if (tab === 'series') {
-                html = currentSubject.series.map((s, i) => `
+                html = currentSubject.series.map((s, i) => {
+                    const modelsLabel = s.models ? `${s.models} modèle${s.models > 1 ? 's' : ''}` : '';
+                    return `
                     <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${s.file}'">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${s.title}
                         </div>
                         <p>${s.desc}</p>
                         <span class="badge" style="background:#F4D03F22; color:var(--gold-text); border-color:#F4D03F22;"><i class="fas fa-folder-open"></i> Voir les séries</span>
+                        ${modelsLabel ? `<span class="badge" style="background:#F4D03F1f; color:#F4D03F; border-color:#F4D03F30;"><i class="fas fa-copy"></i> ${modelsLabel}</span>` : ''}
                     </div>
-                `).join('');
+                `;
+                }).join('');
             } else if (tab === 'exams') {
                 if (currentSubject.exams.length === 0) {
                     html = `
@@ -512,25 +528,28 @@
                     `;
                 } else {
                     const accent = SUBJECT_ACCENT[currentSubjectId] || '#4ECDC4';
+                    let prevSemester = null;
                     html = currentSubject.exams.map((e, i) => {
-                        const semesterLabel = e.semester === 2 ? 'Semestre 2' : 'Semestre 1';
+                        let divider = '';
+                        if (e.semester && e.semester !== prevSemester) {
+                            prevSemester = e.semester;
+                            const frLabel = e.semester === 1 ? 'Semestre 1' : 'Semestre 2';
+                            divider = `
+                    <div class="semester-divider">
+                        <span class="semester-divider-line"></span>
+                        <span class="semester-divider-label"><i class="fas fa-bookmark"></i> ${frLabel}</span>
+                        <span class="semester-divider-line"></span>
+                    </div>`;
+                        }
                         const modelsLabel = `${e.models} modèle${e.models > 1 ? 's' : ''}`;
                         const lessonsChips = (e.lessons || []).map(l =>
                             `<span class="devoir-lesson-chip" style="color:${accent}; background:${accent}14; border:1px solid ${accent}30;">${l}</span>`
                         ).join('');
-                        return `
-                        <div class="command-card devoir-card" onclick="saveCurrentTab('${tab}'); location.href='${e.hub}'">
-                            <span class="devoir-semester-badge"><i class="fas fa-bookmark"></i> ${semesterLabel}</span>
+                        return `${divider}
+                    <div class="command-card devoir-card" onclick="saveCurrentTab('${tab}'); location.href='${e.hub}'">
+                            <span class="devoir-models-badge"><i class="fas fa-copy"></i> ${modelsLabel}</span>
                             <div class="command-title">
                                 <span class="num">${i+1}</span> ${e.title}
-                            </div>
-                            <div class="devoir-meta">
-                                <span class="devoir-meta-dot" style="background:${accent};"></span>
-                                <span class="devoir-meta-subject" style="color:${accent};">${currentSubjectId}</span>
-                                <span class="devoir-meta-sep">·</span>
-                                <span>${modelsLabel}</span>
-                                <span class="devoir-meta-sep">·</span>
-                                <span>${e.duration} min</span>
                             </div>
                             <div class="devoir-lessons">${lessonsChips}</div>
                             <span class="badge" style="background:#BB8FCE22; color:#BB8FCE; border-color:#BB8FCE22;"><i class="fas fa-folder-open"></i> Voir le devoir</span>
@@ -689,6 +708,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 

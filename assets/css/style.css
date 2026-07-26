@@ -1,3 +1,4 @@
+
 :root {
  --bg-primary: #0B0C10;
  --bg-secondary: #15171E;
@@ -169,7 +170,7 @@ a:active, button:active {
 .cta p{color:var(--text-secondary);font-size:clamp(12px,1.5vw,14px);margin-bottom:clamp(14px,2vw,20px)}
 .footer{position:relative;z-index:1;text-align:center;padding:clamp(16px,3vw,24px) var(--container-padding);color:var(--text-muted);font-size:clamp(10px,1.2vw,12px)}
 .footer .divider{width:40px;height:2px;background:var(--gradient);margin:10px auto;border-radius:1px}
-.back-btn{display:inline-flex;align-items:center;gap:4px;color:var(--accent-light);text-decoration:none;font-weight:600;padding:4px 12px;border-radius:6px;transition:all 0.2s ease;margin-bottom:12px;font-size:11px;border:none;background:transparent;cursor:pointer}
+.back-btn{display:inline-flex;align-items:center;gap:4px;align-self:flex-start;width:fit-content;color:var(--accent-light);text-decoration:none;font-weight:600;padding:4px 12px;border-radius:6px;transition:all 0.2s ease;margin-bottom:12px;font-size:11px;border:none;background:transparent;cursor:pointer}
 .back-btn:hover{background:rgba(69,162,158,0.08)}
 .back-btn:active{opacity:0.6;transform:scale(0.95)}
 .search-box{position:relative;margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto}
@@ -1144,6 +1145,62 @@ html[data-theme="light"] .theme-toggle .icon-sun { opacity: 1; transform: rotate
     .pwa-install-btn { width: 38px; height: 38px; border-radius: 10px; font-size: 14px; }
 }
 
+/* ====== زر البحث العائم (Search FAB) - نفس لغة .theme-toggle/.pwa-install-btn ====== */
+.search-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 16px;
+    height: 48px;
+    min-width: 48px;
+    padding: 0 8px;
+    border-radius: 24px;
+    background: rgba(var(--overlay-rgb), 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(69, 162, 158, 0.3);
+    color: var(--text-primary);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+    z-index: 950;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: background 0.25s ease, border-color 0.25s ease,
+                box-shadow 0.25s ease, transform 0.25s ease;
+}
+.search-fab:hover {
+    background: rgba(69, 162, 158, 0.12);
+    border-color: rgba(69, 162, 158, 0.55);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+.search-fab:active { transform: scale(0.94); }
+.search-fab .search-fab-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+    color: var(--accent-light);
+    transition: color 0.25s ease;
+}
+.search-fab .search-fab-label {
+    font-family: var(--font-main);
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding-inline-end: 6px;
+    color: var(--text-secondary);
+}
+@media (max-width: 480px) {
+    .search-fab .search-fab-label { display: none; }
+    .search-fab { padding: 0; }
+}
+
 /* فالـ light mode كنخففو الظلال السوداء باش ما تبانش ثقيلة فوق خلفية بيضة */
 html[data-theme="light"] .navbar.scrolled { box-shadow: 0 4px 20px rgba(20, 30, 40, 0.08); }
 html[data-theme="light"] .card:hover { box-shadow: 0 8px 30px rgba(20, 30, 40, 0.10); }
@@ -1404,3 +1461,5 @@ body.xpert-loaded{
     }
 }
 /* ====== XPERT LOADER END ====== */
+
+

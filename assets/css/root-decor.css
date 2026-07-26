@@ -1,8 +1,9 @@
 
+
 /* ============================================================
    ROOT-DECOR.CSS  (نسخة مصححة - إصلاح مشكلة البطء)
    ديكور الزليج المغربي متعدد الألوان (multicolore) الخاص بالصفحات
-   الجذرية الثلاث: index.html, subject.html, subjects.html.
+   الجذرية: index.html, subject.html, subjects.html, recherche.html.
 
    ====== التعديلات ديال هاد النسخة ======
    1) .moroccan-star: تحيدت خاصية animation (starSpin) من هنا،
@@ -24,11 +25,12 @@
 
 .overlay-protection {
     position: fixed;
-    top: 0;
+    top: var(--navbar-height);
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: 9999;
+    height: calc(100% - var(--navbar-height));
+    height: calc(100svh - var(--navbar-height));
+    z-index: 900;
     background: transparent;
     pointer-events: all;
     cursor: default;
@@ -575,7 +577,7 @@ img {
         /* ====== بطاقة الفروض والامتحانات (devoirs) ====== */
         .devoir-card { position: relative; padding-top: 34px; }
 
-        .devoir-semester-badge {
+        .devoir-models-badge {
             position: absolute;
             top: 14px;
             right: 16px;
@@ -586,31 +588,17 @@ img {
             border-radius: 12px;
             font-size: 11px;
             font-weight: 700;
-            color: var(--accent);
-            background: rgba(var(--overlay-rgb), 0.04);
-            border: 1px solid var(--accent);
+            color: #BB8FCE;
+            background: rgba(187, 143, 206, 0.1);
+            border: 1px solid rgba(187, 143, 206, 0.35);
             z-index: 2;
         }
-
-        .devoir-meta {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin: 6px 0 12px;
-            position: relative;
-            z-index: 1;
-        }
-        .devoir-meta-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-        .devoir-meta-subject { font-weight: 700; }
-        .devoir-meta-sep { opacity: 0.4; }
 
         .devoir-lessons {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-top: 8px;
             margin-bottom: 4px;
             position: relative;
             z-index: 1;
@@ -623,7 +611,7 @@ img {
         }
 
         @media (max-width: 480px) {
-            .devoir-semester-badge { font-size: 10px; padding: 2px 10px; top: 12px; right: 12px; }
+            .devoir-models-badge { font-size: 10px; padding: 2px 10px; top: 12px; right: 12px; }
             .devoir-lesson-chip { font-size: 11.5px; padding: 5px 11px; }
         }
 
@@ -873,5 +861,262 @@ img {
             .card .card-icon { width: 48px; height: 48px; font-size: 20px; }
             .card h3 { font-size: 18px; }
         }
+
+
+
+/* ====== صفحة البحث (recherche.html) ====== */
+
+/* --- بطاقة البحث الثابتة (Sticky، بشكل FAB) --- */
+/* content-wrapper كيستعمل justify-content:center باش يوسط hero-wrapper
+   فالصفحات الأخرى. فصفحة البحث هادشي كيخلي search-bar-card (اللي هو sticky)
+   يتزحزح كل مرة كتبدل حجم النتائج، لأن نقطة "الانطلاق" ديالو فالـ flex
+   كتتبدل. الحل: نثبتوها فالأعلى (flex-start) غير فهاد الصفحة. */
+#contentWrapper:has(#searchBarCard) {
+    justify-content: flex-start;
+    padding-top: 90px;
+}
+@media (max-width: 480px) {
+    #contentWrapper:has(#searchBarCard) { padding-top: 78px; }
+}
+
+.search-bar-card {
+    position: sticky;
+    top: 70px;
+    z-index: 20;
+    max-width: 640px;
+    margin: 0 auto 28px;
+    background: rgba(var(--bg-primary-rgb), 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(var(--overlay-rgb), 0.06);
+    border-radius: 20px;
+    padding: 20px 18px 22px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.search-bar-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* --- زر/محدد النوع --- */
+.search-type-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    min-width: 130px;
+    min-height: 46px;
+    padding: 0 15px;
+    background: rgba(var(--overlay-rgb), 0.03);
+    border: 1px solid rgba(var(--overlay-rgb), 0.07);
+    border-radius: 14px;
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.search-type-trigger:hover { border-color: var(--accent); color: var(--text-primary); }
+.search-type-trigger[aria-expanded="true"] { border-color: var(--accent); }
+
+/* منع التحديد الأزرق (text-selection) اللي كيبان كضل أزرق أو صندوق
+   متمدد عند الضغط السريع/المزدوج على الأزرار */
+.search-type-trigger,
+.search-type-option,
+.search-type-chip,
+.search-type-chip-clear {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.search-type-placeholder,
+.search-type-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.search-type-chip {
+    color: var(--cat-color, var(--accent));
+    background: color-mix(in srgb, var(--cat-color, var(--accent)) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cat-color, var(--accent)) 30%, transparent);
+    padding: 5px 6px 5px 10px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 700;
+}
+.search-type-chip-clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--cat-color, var(--accent)) 22%, transparent);
+    font-size: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.search-type-chip-clear:hover { transform: scale(1.12); background: color-mix(in srgb, var(--cat-color, var(--accent)) 34%, transparent); }
+.search-type-chip-clear:active { transform: scale(0.9); }
+
+.search-type-arrow {
+    margin-inline-start: auto;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* --- حقل البحث --- */
+.search-input-wrap {
+    position: relative;
+    flex: 1 1 220px;
+    margin: 0;
+}
+.search-input-icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 14px;
+    pointer-events: none;
+}
+.search-input {
+    width: 100%;
+    height: 50px;
+    padding: 0 44px 0 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(var(--overlay-rgb), 0.07);
+    background: rgba(var(--overlay-rgb), 0.03);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(69, 162, 158, 0.15); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* --- قائمة اختيار النوع (Dropdown سلس) --- */
+.search-type-menu {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(var(--overlay-rgb), 0.06);
+}
+.search-type-menu.open { display: grid; }
+
+.search-type-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(var(--overlay-rgb), 0.02);
+    border: 1px solid rgba(var(--overlay-rgb), 0.05);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.search-type-option:hover {
+    border-color: var(--cat-color, var(--accent));
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--cat-color, var(--accent)) 8%, transparent);
+    transform: translateY(-2px);
+}
+.search-type-option:active { transform: scale(0.97); }
+.search-type-option-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--cat-color, var(--accent));
+    background: color-mix(in srgb, var(--cat-color, var(--accent)) 16%, transparent);
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .search-type-menu { grid-template-columns: 1fr; }
+    .search-bar-card { padding: 16px 14px 18px; border-radius: 16px; top: 60px; }
+    .search-type-trigger { min-width: 108px; font-size: 12px; padding: 0 10px; }
+}
+
+/* --- نتائج البحث: بطاقات بتصميم الطبقات (نفس command-card ديال subject.html) --- */
+.search-results-grid { max-width: 640px; margin: 0 auto; }
+
+.search-card { position: relative; padding-top: 42px; }
+
+.search-subject-tag {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 11px;
+    border-radius: 14px;
+    font-size: 10.5px;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.search-semester-badge {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--accent-light);
+    background: rgba(69, 162, 158, 0.12);
+    border: 1px solid rgba(69, 162, 158, 0.3);
+    z-index: 2;
+}
+
+@media (max-width: 480px) {
+    .search-card { padding-top: 44px; }
+    .search-subject-tag, .search-semester-badge { font-size: 10px; padding: 2px 9px; }
+}
+
+.search-results-grid .search-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--text-muted);
+}
+.search-results-grid .search-empty i {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+    opacity: 0.5;
+}
+.search-results-grid .search-empty p { font-size: 13.5px; margin: 0; }
+
+
+
 
 

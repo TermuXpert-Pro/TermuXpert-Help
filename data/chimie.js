@@ -9,32 +9,45 @@ window.subjectsData.chimie = {
     title: "Chimie",
     desc: "Cours, exercices, séries, devoirs et examens régionaux",
     lessons: [
-        { semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/lessons/mesure-chimie/index.html", desc: "Mesurer pour informer, surveiller/protéger et agir : concentration massique, densité" },
-        { semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/lessons/quantite-matiere/index.html", desc: "Quantité de matière, masse molaire, volume molaire, concentration molaire" },
-        { semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/lessons/concentration-solutions/index.html", desc: "Dissolution, dilution, préparation des solutions électrolytiques" },
-        { semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/lessons/suivi-transformation/index.html", desc: "Système chimique, avancement, tableau d'avancement, réactif limitant, bilan de matière" },
-        { semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/lessons/conductimetrie/index.html", desc: "Conductance, loi d'Ohm dans les solutions, conductivité molaire ionique, courbe d'étalonnage, dosage" },
-        { semester: 1, title: "Les réactions acido-basiques", file: "content/chimie/lessons/reactions-acido-basiques/index.html", desc: "Transfert de proton H⁺, couple acide/base de Brønsted, indicateurs colorés acido-basiques" },
-        { semester: 1, title: "Les réactions d'oxydo-réduction", file: "content/chimie/lessons/reactions-oxydoreduction/index.html", desc: "Transfert d'électrons, couple oxydant/réducteur, demi-équations, équation bilan d'oxydoréduction" },
-        { semester: 1, title: "Les dosages (ou titrages) directs", file: "content/chimie/lessons/dosages-directs/index.html", desc: "قيد الإعداد 🔧" },
-        { semester: 2, title: "Expansion de la chimie organique", file: "content/chimie/lessons/chimie-organique/index.html", desc: "قيد الإعداد 🔧" },
-        { semester: 2, title: "Les molécules organiques et les squelettes carbonés", file: "content/chimie/lessons/molecules-organiques/index.html", desc: "قيد الإعداد 🔧" },
-        { semester: 2, title: "Modification du squelette carboné", file: "content/chimie/lessons/modification-squelette/index.html", desc: "قيد الإعداد 🔧" },
-        { semester: 2, title: "Les groupes caractéristiques en chimie organique - La réactivité des alcools", file: "content/chimie/lessons/groupes-caracteristiques/index.html", desc: "قيد الإعداد 🔧" }
+        { semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/lessons/mesure-chimie/model1/index.html", desc: "Mesurer pour informer, surveiller/protéger et agir : concentration massique, densité" },
+        { semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/lessons/quantite-matiere/model1/index.html", desc: "Quantité de matière, masse molaire, volume molaire, concentration molaire" },
+        { semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/lessons/concentration-solutions/model1/index.html", desc: "Dissolution, dilution, préparation des solutions électrolytiques" },
+        { semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/lessons/suivi-transformation/model1/index.html", desc: "Système chimique, avancement, tableau d'avancement, réactif limitant, bilan de matière" },
+        { semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/lessons/conductimetrie/model1/index.html", desc: "Conductance, loi d'Ohm dans les solutions, conductivité molaire ionique, courbe d'étalonnage, dosage" },
+        { semester: 1, title: "Les réactions acido-basiques", file: "content/chimie/lessons/reactions-acido-basiques/model1/index.html", desc: "Transfert de proton H⁺, couple acide/base de Brønsted, indicateurs colorés acido-basiques" },
+        { semester: 1, title: "Les réactions d'oxydo-réduction", file: "content/chimie/lessons/reactions-oxydoreduction/model1/index.html", desc: "Transfert d'électrons, couple oxydant/réducteur, demi-équations, équation bilan d'oxydoréduction" },
+        { semester: 1, title: "Les dosages (ou titrages) directs", file: "content/chimie/lessons/dosages-directs/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Expansion de la chimie organique", file: "content/chimie/lessons/chimie-organique/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Les molécules organiques et les squelettes carbonés", file: "content/chimie/lessons/molecules-organiques/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Modification du squelette carboné", file: "content/chimie/lessons/modification-squelette/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Les groupes caractéristiques en chimie organique - La réactivité des alcools", file: "content/chimie/lessons/groupes-caracteristiques/model1/index.html", desc: "قيد الإعداد 🔧" }
     ],
     exercices: [
-        { title: "Importance de la mesure en chimie", file: "content/chimie/exercises/mesure-chimie/index.html", desc: "2 exercices avec solutions détaillées" },
-        { title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/exercises/quantite-matiere/index.html", desc: "5 exercices avec solutions détaillées" },
-        { title: "La concentration et les solutions électrolytiques", file: "content/chimie/exercises/concentration-solutions/index.html", desc: "6 exercices avec solutions détaillées" },
-        { title: "Suivi d'une transformation chimique", file: "content/chimie/exercises/suivi-transformation/index.html", desc: "9 exercices avec solutions détaillées" },
-        { title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/exercises/conductimetrie/index.html", desc: "6 exercices avec solutions détaillées" }
+        { models: 1, semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/exercises/mesure-chimie/index.html", desc: "2 exercices avec solutions détaillées" },
+        { models: 1, semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/exercises/quantite-matiere/index.html", desc: "5 exercices avec solutions détaillées" },
+        { models: 1, semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/exercises/concentration-solutions/index.html", desc: "6 exercices avec solutions détaillées" },
+        { models: 1, semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/exercises/suivi-transformation/index.html", desc: "9 exercices avec solutions détaillées" },
+        { models: 1, semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/exercises/conductimetrie/index.html", desc: "6 exercices avec solutions détaillées" }
     ],
     series: [
-        { title: "Importance de la mesure en chimie", file: "content/chimie/series/mesure-chimie/index.html", desc: "1 séries" },
-        { title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/series/quantite-matiere/index.html", desc: "4 séries" },
-        { title: "La concentration et les solutions électrolytiques", file: "content/chimie/series/concentration-solutions/index.html", desc: "4 séries" },
-        { title: "Suivi d'une transformation chimique", file: "content/chimie/series/suivi-transformation/index.html", desc: "4 séries" },
-        { title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/series/conductimetrie/index.html", desc: "4 séries" }
+        { models: 1, semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/series/mesure-chimie/index.html", desc: "1 séries" },
+        { models: 1, semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/series/quantite-matiere/index.html", desc: "4 séries" },
+        { models: 1, semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/series/concentration-solutions/index.html", desc: "4 séries" },
+        { models: 1, semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/series/suivi-transformation/index.html", desc: "4 séries" },
+        { models: 1, semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/series/conductimetrie/index.html", desc: "4 séries" }
     ],
-    exams: []
+    exams: [
+    {
+        id: "ds1-rotation-travail-mesure",
+        type: "Devoir",
+        number: 1,
+        semester: 1,
+        title: "Devoir Surveillé N°1",
+        desc: "Importance de la mesure en chimie + Grandeurs physiques liées à la quantité de matière",
+        lessons: ["Importance de la mesure en chimie", "Grandeurs physiques liées à la quantité de matière"],
+        duration: 120,
+        hub: "content/physique/devoirs/ds1-rotation-travail-mesure/index.html",
+        models: 1
+    }
+]
 };
