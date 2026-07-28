@@ -1,183 +1,220 @@
-// ============================================================
-// figuresvt_p2.js — Figures SVG autonomes pour Partie 2
-// État de référence - Variation de Epp - Relation avec W(P)
-// Fichier 100% indépendant : aucune fonction partagée importée.
-// ============================================================
-
+/* ============================================================
+   figuresvt_p2.js
+   Figures SVG — Partie 2 : Variation de Epp - État de référence - Relation W(P)
+   Fichier autonome (aucune dépendance externe / aucune librairie partagée).
+   ============================================================ */
 (function () {
+    'use strict';
+
     var SVG_NS = 'http://www.w3.org/2000/svg';
 
-    function _el(tag, attrs) {
+    /* ---------- Helpers internes (propres à ce fichier) ---------- */
+
+    function el(tag, attrs) {
         var e = document.createElementNS(SVG_NS, tag);
-        if (attrs) {
-            for (var k in attrs) {
-                if (Object.prototype.hasOwnProperty.call(attrs, k)) {
-                    e.setAttribute(k, attrs[k]);
-                }
+        for (var k in attrs) {
+            if (Object.prototype.hasOwnProperty.call(attrs, k)) {
+                e.setAttribute(k, attrs[k]);
             }
         }
         return e;
     }
 
-    function _text(x, y, str, attrs) {
-        var t = _el('text', Object.assign({ x: x, y: y }, attrs || {}));
+    function text(x, y, str, attrs) {
+        var t = el('text', Object.assign({ x: x, y: y, 'font-family': 'Arial, sans-serif' }, attrs || {}));
         t.textContent = str;
         return t;
     }
 
-    function _arrow(svg, x1, y1, x2, y2, color, width) {
-        var g = _el('g');
-        g.appendChild(_el('line', { x1: x1, y1: y1, x2: x2, y2: y2, stroke: color, 'stroke-width': width || 2 }));
-        var angle = Math.atan2(y2 - y1, x2 - x1);
-        var ah = 6;
-        var p1x = x2 - ah * Math.cos(angle - Math.PI / 7);
-        var p1y = y2 - ah * Math.sin(angle - Math.PI / 7);
-        var p2x = x2 - ah * Math.cos(angle + Math.PI / 7);
-        var p2y = y2 - ah * Math.sin(angle + Math.PI / 7);
-        g.appendChild(_el('polygon', { points: x2 + ',' + y2 + ' ' + p1x + ',' + p1y + ' ' + p2x + ',' + p2y, fill: color }));
-        svg.appendChild(g);
+    function line(x1, y1, x2, y2, attrs) {
+        return el('line', Object.assign({ x1: x1, y1: y1, x2: x2, y2: y2 }, attrs || {}));
+    }
+
+    function arrowHead(x, y, dir, color, size) {
+        // dir: 'up' | 'down'
+        size = size || 6;
+        var g = el('g', {});
+        if (dir === 'up') {
+            g.appendChild(line(x, y, x - size * 0.7, y + size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+            g.appendChild(line(x, y, x + size * 0.7, y + size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+        } else {
+            g.appendChild(line(x, y, x - size * 0.7, y - size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+            g.appendChild(line(x, y, x + size * 0.7, y - size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+        }
         return g;
     }
 
-    function _prepare(id, vbW, vbH) {
-        var svg = document.getElementById(id);
-        if (!svg) return null;
+    function background(svg, w, h) {
+        svg.appendChild(el('rect', { x: 0, y: 0, width: w, height: h, fill: '#0D1117' }));
+    }
+
+    function clear(svg) {
         while (svg.firstChild) svg.removeChild(svg.firstChild);
-        svg.setAttribute('viewBox', '0 0 ' + vbW + ' ' + vbH);
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        svg.appendChild(_el('rect', { x: 0, y: 0, width: vbW, height: vbH, fill: '#0D1117' }));
-        return svg;
     }
 
-    // ------------------------------------------------------------
-    // Figure 1 : État de référence — zref et signe de Epp
-    // ------------------------------------------------------------
+    var COLORS = {
+        red: '#FF6B6B',
+        teal: '#4ECDC4',
+        gold: '#F4D03F',
+        purple: '#BB8FCE',
+        yellow: '#FFD93D',
+        green: '#A8FF78',
+        muted: '#888888',
+        line: '#2A2A3E',
+        white: '#FFFFFF'
+    };
+
+    /* ============================================================
+       Figure 1 : graphReference
+       État de référence : point M (altitude z) au-dessus du niveau
+       de référence zref (Epp = 0). h = z - zref.
+       ============================================================ */
     function drawGraphReference() {
-        var w = 400, h = 200;
-        var svg = _prepare('graphReference', w, h);
+        var svg = document.getElementById('graphReference');
         if (!svg) return;
+        var w = 400, h = 200;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var ox = 90, groundY = 175, topY = 20;
-        var zrefY = 110; // altitude choisie comme référence (arbitraire, ni en haut ni au sol)
+        var groundY = 175;
+        var cx = w / 2 - 40;
 
         // Sol
-        svg.appendChild(_el('rect', { x: 20, y: groundY, width: w - 40, height: 4, fill: '#2A2A3E' }));
-        svg.appendChild(_text(w - 60, groundY + 16, 'Sol', { 'font-size': 10, fill: '#888888', 'text-anchor': 'middle' }));
+        svg.appendChild(el('rect', { x: 0, y: groundY, width: w, height: h - groundY, fill: COLORS.line }));
+        svg.appendChild(text(15, groundY + 14, 'Sol', { fill: COLORS.muted, 'font-size': 10 }));
 
-        // Axe Oz
-        _arrow(svg, ox, groundY, ox, topY, '#4ECDC4', 2);
-        svg.appendChild(_text(ox + 12, topY + 8, 'z', { 'font-size': 13, fill: '#4ECDC4', 'font-style': 'italic' }));
+        // Axe vertical Oz
+        svg.appendChild(line(cx, groundY, cx, 20, { stroke: COLORS.teal, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(cx, 20, 'up', COLORS.teal, 6));
+        svg.appendChild(text(cx + 10, 26, 'z', { fill: COLORS.teal, 'font-size': 13, 'font-style': 'italic', 'font-weight': 'bold' }));
 
-        // Ligne de référence zref (en pointillé sur toute la largeur)
-        svg.appendChild(_el('line', { x1: ox, y1: zrefY, x2: w - 30, y2: zrefY, stroke: '#F4D03F', 'stroke-width': 1.4, 'stroke-dasharray': '5,3' }));
-        svg.appendChild(_text(ox - 14, zrefY - 6, 'zref', { 'font-size': 10, fill: '#F4D03F', 'text-anchor': 'end' }));
-        svg.appendChild(_text(w - 60, zrefY - 8, 'Epp = 0 (référence)', { 'font-size': 10, fill: '#F4D03F', 'text-anchor': 'middle' }));
+        // Ligne de référence zref (pointillé jaune) — état où Epp = 0
+        var yRef = groundY - 55;
+        svg.appendChild(line(cx - 45, yRef, cx + 95, yRef, { stroke: COLORS.gold, 'stroke-width': 2, 'stroke-dasharray': '6,4' }));
+        svg.appendChild(text(cx + 100, yRef + 4, 'z = z_réf', { fill: COLORS.gold, 'font-size': 11 }));
+        svg.appendChild(text(cx + 100, yRef + 18, '(Epp = 0)', { fill: COLORS.white, 'font-size': 10 }));
+        svg.appendChild(text(cx + 55, yRef - 6, 'Epp = 0', { fill: COLORS.green, 'font-size': 10 }));
 
-        // Point au-dessus de la référence : z > zref -> Epp > 0
-        var yAbove = 55;
-        svg.appendChild(_el('circle', { cx: ox + 90, cy: yAbove, r: 5, fill: '#4ECDC4' }));
-        svg.appendChild(_text(ox + 90, yAbove - 12, 'z > zref', { 'font-size': 10, fill: '#4ECDC4', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(ox + 90, yAbove + 22, 'Epp > 0', { 'font-size': 10, fill: '#4ECDC4', 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        // Point M au-dessus (altitude z)
+        var yM = groundY - 120;
+        svg.appendChild(el('circle', { cx: cx - 55, cy: yM, r: 5, fill: COLORS.red }));
+        svg.appendChild(text(cx - 100, yM - 10, 'M (z)', { fill: COLORS.white, 'font-size': 11, 'font-weight': 'bold' }));
+        svg.appendChild(text(cx - 30, yM - 6, 'Epp > 0', { fill: COLORS.red, 'font-size': 10 }));
 
-        // Point en dessous de la référence : z < zref -> Epp < 0
-        var yBelow = 150;
-        svg.appendChild(_el('circle', { cx: ox + 90, cy: yBelow, r: 5, fill: '#FF6B6B' }));
-        svg.appendChild(_text(ox + 90, yBelow + 16, 'z < zref', { 'font-size': 10, fill: '#FF6B6B', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(ox + 90, yBelow + 30, 'Epp < 0', { 'font-size': 10, fill: '#FF6B6B', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-
-        // Point sur la référence : z = zref -> Epp = 0
-        svg.appendChild(_el('circle', { cx: ox + 190, cy: zrefY, r: 5, fill: '#FFD93D' }));
-        svg.appendChild(_text(ox + 190, zrefY - 12, 'z = zref', { 'font-size': 10, fill: '#FFD93D', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(ox + 190, zrefY + 22, 'Epp = 0', { 'font-size': 10, fill: '#FFD93D', 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        // Flèche h = z - zref entre zref et M
+        var arrowX = cx - 30;
+        svg.appendChild(line(arrowX, yRef, arrowX, yM, { stroke: COLORS.yellow, 'stroke-width': 1.5 }));
+        svg.appendChild(arrowHead(arrowX, yM, 'up', COLORS.yellow, 5));
+        svg.appendChild(arrowHead(arrowX, yRef, 'down', COLORS.yellow, 5));
+        svg.appendChild(text(cx - 95, (yRef + yM) / 2 + 4, 'h = z - z_réf', { fill: COLORS.muted, 'font-size': 9.5 }));
     }
 
-    // ------------------------------------------------------------
-    // Figure 2 : Variation de Epp entre A (zA) et B (zB), zB > zA
-    // ------------------------------------------------------------
+    /* ============================================================
+       Figure 2 : graphVariation
+       Variation de Epp entre A (zA, bas) et B (zB, haut).
+       Δz = zB - zA > 0  ⇒  ΔEpp > 0
+       ============================================================ */
     function drawGraphVariation() {
-        var w = 400, h = 200;
-        var svg = _prepare('graphVariation', w, h);
+        var svg = document.getElementById('graphVariation');
         if (!svg) return;
+        var w = 400, h = 200;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var ox = 90, groundY = 175, topY = 20;
-        var yA = groundY - 45;
+        var groundY = 175;
+        var cx = w / 2 - 30;
+
+        // Sol
+        svg.appendChild(el('rect', { x: 0, y: groundY, width: w, height: h - groundY, fill: COLORS.line }));
+        svg.appendChild(text(15, groundY + 14, 'Sol', { fill: COLORS.muted, 'font-size': 10 }));
+
+        // Axe vertical Oz
+        svg.appendChild(line(cx, groundY, cx, 20, { stroke: COLORS.teal, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(cx, 20, 'up', COLORS.teal, 6));
+        svg.appendChild(text(cx + 10, 26, 'z', { fill: COLORS.teal, 'font-size': 13, 'font-style': 'italic', 'font-weight': 'bold' }));
+
+        // Point A (bas)
+        var yA = groundY - 55;
+        svg.appendChild(el('circle', { cx: cx - 55, cy: yA, r: 5, fill: COLORS.teal }));
+        svg.appendChild(text(cx - 100, yA - 10, 'A (z\u2090)', { fill: COLORS.white, 'font-size': 11, 'font-weight': 'bold' }));
+
+        // Point B (haut)
         var yB = groundY - 130;
+        svg.appendChild(el('circle', { cx: cx - 55, cy: yB, r: 5, fill: COLORS.gold }));
+        svg.appendChild(text(cx - 100, yB - 10, 'B (z\u1D66)', { fill: COLORS.white, 'font-size': 11, 'font-weight': 'bold' }));
 
-        // Sol
-        svg.appendChild(_el('rect', { x: 20, y: groundY, width: w - 40, height: 4, fill: '#2A2A3E' }));
-        svg.appendChild(_text(w - 60, groundY + 16, 'Sol', { 'font-size': 10, fill: '#888888', 'text-anchor': 'middle' }));
+        // Flèche de variation Δz (montée de A vers B)
+        var arrowX = cx - 25;
+        svg.appendChild(line(arrowX, yA, arrowX, yB, { stroke: COLORS.yellow, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(arrowX, yB, 'up', COLORS.yellow, 6));
+        svg.appendChild(text(cx - 20, (yA + yB) / 2, 'Δz = z\u1D66 - z\u2090 > 0', { fill: COLORS.yellow, 'font-size': 10 }));
 
-        // Axe Oz
-        _arrow(svg, ox, groundY, ox, topY, '#4ECDC4', 2);
-        svg.appendChild(_text(ox + 12, topY + 8, 'z', { 'font-size': 13, fill: '#4ECDC4', 'font-style': 'italic' }));
-
-        // Point A
-        svg.appendChild(_el('circle', { cx: ox, cy: yA, r: 5, fill: '#FF6B6B' }));
-        svg.appendChild(_el('line', { x1: ox, y1: yA, x2: ox + 250, y2: yA, stroke: '#FF6B6B', 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
-        svg.appendChild(_text(ox - 18, yA + 4, 'A', { 'font-size': 12, fill: '#FF6B6B', 'font-weight': 'bold', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(ox + 265, yA + 4, 'zA', { 'font-size': 11, fill: '#FF6B6B', 'text-anchor': 'middle' }));
-
-        // Point B
-        svg.appendChild(_el('circle', { cx: ox, cy: yB, r: 5, fill: '#F4D03F' }));
-        svg.appendChild(_el('line', { x1: ox, y1: yB, x2: ox + 250, y2: yB, stroke: '#F4D03F', 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
-        svg.appendChild(_text(ox - 18, yB + 4, 'B', { 'font-size': 12, fill: '#F4D03F', 'font-weight': 'bold', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(ox + 265, yB + 4, 'zB', { 'font-size': 11, fill: '#F4D03F', 'text-anchor': 'middle' }));
-
-        // Flèche montante A -> B (montre le sens de la variation positive)
-        _arrow(svg, ox + 40, yA - 4, ox + 40, yB + 8, '#4ECDC4', 2.2);
-        svg.appendChild(_text(ox + 56, (yA + yB) / 2, 'ΔEpp', { 'font-size': 12, fill: '#4ECDC4', 'font-weight': 'bold' }));
-        svg.appendChild(_text(ox + 56, (yA + yB) / 2 + 16, '= m·g·(zB−zA) > 0', { 'font-size': 9.5, fill: '#4ECDC4' }));
+        // Étiquette résultat
+        svg.appendChild(text(18, 25, 'ΔEpp = mg(z\u1D66 - z\u2090) > 0', { fill: COLORS.red, 'font-size': 12, 'font-weight': 'bold' }));
     }
 
-    // ------------------------------------------------------------
-    // Figure 3 : Relation ΔEpp = -W(P) — chute de A(10m) vers B(2m)
-    // ------------------------------------------------------------
+    /* ============================================================
+       Figure 3 : graphRelation
+       Relation ΔEpp = -W(P) : chute de A (haut) vers B (bas),
+       poids P orienté vers le bas.
+       ============================================================ */
     function drawGraphRelation() {
-        var w = 400, h = 200;
-        var svg = _prepare('graphRelation', w, h);
+        var svg = document.getElementById('graphRelation');
         if (!svg) return;
+        var w = 400, h = 200;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var ox = 90, groundY = 175, topY = 25;
-        var yA = 45;  // zA = 10 m -> position haute
-        var yB = 140; // zB = 2 m -> position basse
+        var groundY = 175;
+        var cx = w / 2 - 60;
 
         // Sol
-        svg.appendChild(_el('rect', { x: 20, y: groundY, width: w - 40, height: 4, fill: '#2A2A3E' }));
-        svg.appendChild(_text(w - 60, groundY + 16, 'Sol', { 'font-size': 10, fill: '#888888', 'text-anchor': 'middle' }));
+        svg.appendChild(el('rect', { x: 0, y: groundY, width: w, height: h - groundY, fill: COLORS.line }));
+        svg.appendChild(text(15, groundY + 14, 'Sol', { fill: COLORS.muted, 'font-size': 10 }));
 
-        // Axe Oz
-        _arrow(svg, ox, groundY, ox, topY, '#4ECDC4', 2);
-        svg.appendChild(_text(ox + 12, topY + 8, 'z', { 'font-size': 13, fill: '#4ECDC4', 'font-style': 'italic' }));
+        // Axe vertical Oz
+        svg.appendChild(line(cx, groundY, cx, 20, { stroke: COLORS.teal, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(cx, 20, 'up', COLORS.teal, 6));
+        svg.appendChild(text(cx + 10, 26, 'z', { fill: COLORS.teal, 'font-size': 13, 'font-style': 'italic', 'font-weight': 'bold' }));
 
-        // Point A en haut (zA = 10 m), objet qui va tomber
-        svg.appendChild(_el('circle', { cx: ox + 150, cy: yA, r: 7, fill: '#FF6B6B' }));
-        svg.appendChild(_text(ox + 150, yA - 14, 'A (zA = 10 m)', { 'font-size': 10, fill: '#FF6B6B', 'text-anchor': 'middle' }));
+        // Point A (en haut, avant la chute)
+        var yA = groundY - 125;
+        svg.appendChild(el('circle', { cx: cx - 35, cy: yA, r: 5, fill: COLORS.teal }));
+        svg.appendChild(text(cx - 55, yA - 10, 'A', { fill: COLORS.white, 'font-size': 12, 'font-weight': 'bold' }));
 
-        // Poids P vers le bas depuis A
-        _arrow(svg, ox + 150, yA + 10, ox + 150, yA + 45, '#BB8FCE', 2);
-        svg.appendChild(_text(ox + 163, yA + 32, 'P', { 'font-size': 11, fill: '#BB8FCE', 'font-style': 'italic' }));
+        // Point B (en bas, après la chute)
+        var yB = groundY - 45;
+        svg.appendChild(el('circle', { cx: cx - 35, cy: yB, r: 5, fill: COLORS.gold }));
+        svg.appendChild(text(cx - 55, yB + 18, 'B', { fill: COLORS.white, 'font-size': 12, 'font-weight': 'bold' }));
 
-        // Trajectoire de chute (pointillé courbe simple = ligne verticale)
-        svg.appendChild(_el('line', { x1: ox + 150, y1: yA + 8, x2: ox + 150, y2: yB - 8, stroke: '#888888', 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
+        // Flèche du poids P (verticale, orientée vers le bas, de A vers B)
+        var arrowX = cx + 30;
+        svg.appendChild(line(arrowX, yA, arrowX, yB, { stroke: COLORS.red, 'stroke-width': 2.5 }));
+        svg.appendChild(arrowHead(arrowX, yB, 'down', COLORS.red, 7));
+        svg.appendChild(text(arrowX + 10, (yA + yB) / 2, 'P', { fill: COLORS.red, 'font-size': 13, 'font-style': 'italic', 'font-weight': 'bold' }));
 
-        // Point B en bas (zB = 2 m)
-        svg.appendChild(_el('circle', { cx: ox + 150, cy: yB, r: 7, fill: '#F4D03F' }));
-        svg.appendChild(_text(ox + 150, yB + 22, 'B (zB = 2 m)', { 'font-size': 10, fill: '#F4D03F', 'text-anchor': 'middle' }));
+        // Trajectoire pointillée reliant A à B (chute)
+        svg.appendChild(line(cx - 35, yA + 6, cx - 35, yB - 6, { stroke: COLORS.muted, 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
 
-        // Repères d'altitude sur l'axe
-        svg.appendChild(_el('line', { x1: ox - 4, y1: yA, x2: ox + 4, y2: yA, stroke: '#FF6B6B', 'stroke-width': 1.5 }));
-        svg.appendChild(_el('line', { x1: ox - 4, y1: yB, x2: ox + 4, y2: yB, stroke: '#F4D03F', 'stroke-width': 1.5 }));
-
-        // Encadré des deux relations numériques
-        svg.appendChild(_text(w - 60, 55, 'W(P) > 0', { 'font-size': 11, fill: '#4ECDC4', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-        svg.appendChild(_text(w - 60, 72, '(la Terre fournit', { 'font-size': 9, fill: '#888888', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(w - 60, 84, 'de l\'énergie)', { 'font-size': 9, fill: '#888888', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(w - 60, 108, 'ΔEpp < 0', { 'font-size': 11, fill: '#FF6B6B', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-        svg.appendChild(_text(w - 60, 124, '(énergie stockée', { 'font-size': 9, fill: '#888888', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(w - 60, 136, 'diminue)', { 'font-size': 9, fill: '#888888', 'text-anchor': 'middle' }));
+        // Étiquettes de résultat (en haut à gauche, hors de la zone du dessin)
+        svg.appendChild(text(150, 25, 'Epp(A) > Epp(B)', { fill: COLORS.gold, 'font-size': 11, 'font-weight': 'bold' }));
+        svg.appendChild(text(150, 42, 'W(P) = Epp(A) - Epp(B) > 0', { fill: COLORS.red, 'font-size': 11, 'font-weight': 'bold' }));
+        svg.appendChild(text(150, 59, 'ΔEpp = -W(P)', { fill: COLORS.muted, 'font-size': 10 }));
     }
 
-    window.drawGraphReference = drawGraphReference;
-    window.drawGraphVariation = drawGraphVariation;
-    window.drawGraphRelation = drawGraphRelation;
+    /* ---------- Initialisation ---------- */
+    function initAll() {
+        drawGraphReference();
+        drawGraphVariation();
+        drawGraphRelation();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
 })();

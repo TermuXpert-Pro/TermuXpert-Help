@@ -1,194 +1,321 @@
-// ============================================================
-// figuresvt_p5.js — Figures SVG autonomes pour Partie 5 (Exercices)
-// Fichier 100% indépendant : aucune fonction partagée importée.
-// ============================================================
-
+/* ============================================================
+   figuresvt_p5.js
+   Figures SVG — Partie 5 : Exercices résolus (1 à 6)
+   Fichier autonome (aucune dépendance externe / aucune librairie partagée).
+   ============================================================ */
 (function () {
+    'use strict';
+
     var SVG_NS = 'http://www.w3.org/2000/svg';
 
-    function _el(tag, attrs) {
+    /* ---------- Helpers internes (propres à ce fichier) ---------- */
+
+    function el(tag, attrs) {
         var e = document.createElementNS(SVG_NS, tag);
-        if (attrs) {
-            for (var k in attrs) {
-                if (Object.prototype.hasOwnProperty.call(attrs, k)) {
-                    e.setAttribute(k, attrs[k]);
-                }
+        for (var k in attrs) {
+            if (Object.prototype.hasOwnProperty.call(attrs, k)) {
+                e.setAttribute(k, attrs[k]);
             }
         }
         return e;
     }
 
-    function _text(x, y, str, attrs) {
-        var t = _el('text', Object.assign({ x: x, y: y }, attrs || {}));
+    function text(x, y, str, attrs) {
+        var t = el('text', Object.assign({ x: x, y: y, 'font-family': 'Arial, sans-serif' }, attrs || {}));
         t.textContent = str;
         return t;
     }
 
-    function _arrow(svg, x1, y1, x2, y2, color, width) {
-        var g = _el('g');
-        g.appendChild(_el('line', { x1: x1, y1: y1, x2: x2, y2: y2, stroke: color, 'stroke-width': width || 2 }));
-        var angle = Math.atan2(y2 - y1, x2 - x1);
-        var ah = 5;
-        var p1x = x2 - ah * Math.cos(angle - Math.PI / 7);
-        var p1y = y2 - ah * Math.sin(angle - Math.PI / 7);
-        var p2x = x2 - ah * Math.cos(angle + Math.PI / 7);
-        var p2y = y2 - ah * Math.sin(angle + Math.PI / 7);
-        g.appendChild(_el('polygon', { points: x2 + ',' + y2 + ' ' + p1x + ',' + p1y + ' ' + p2x + ',' + p2y, fill: color }));
-        svg.appendChild(g);
-        return g;
+    function line(x1, y1, x2, y2, attrs) {
+        return el('line', Object.assign({ x1: x1, y1: y1, x2: x2, y2: y2 }, attrs || {}));
     }
 
-    function _prepare(id, vbW, vbH) {
-        var svg = document.getElementById(id);
-        if (!svg) return null;
+    function arrowHead(x, y, angleDeg, color, size) {
+        size = size || 6;
+        var rad = angleDeg * Math.PI / 180;
+        var back = rad + Math.PI;
+        var a1 = back - 0.4, a2 = back + 0.4;
+        var p1x = x + size * Math.cos(a1), p1y = y + size * Math.sin(a1);
+        var p2x = x + size * Math.cos(a2), p2y = y + size * Math.sin(a2);
+        return el('polygon', { points: x + ',' + y + ' ' + p1x + ',' + p1y + ' ' + p2x + ',' + p2y, fill: color });
+    }
+
+    function background(svg, w, h) {
+        svg.appendChild(el('rect', { x: 0, y: 0, width: w, height: h, fill: '#0D1117' }));
+    }
+
+    function clear(svg) {
         while (svg.firstChild) svg.removeChild(svg.firstChild);
-        svg.setAttribute('viewBox', '0 0 ' + vbW + ' ' + vbH);
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        svg.appendChild(_el('rect', { x: 0, y: 0, width: vbW, height: vbH, fill: '#0D1117' }));
-        return svg;
     }
 
-    // ------------------------------------------------------------
-    // Exercice 3 : lancer vertical, v0 = 10 m/s, hmax = 5 m
-    // ------------------------------------------------------------
+    var COLORS = {
+        red: '#FF6B6B',
+        teal: '#4ECDC4',
+        gold: '#F4D03F',
+        purple: '#BB8FCE',
+        yellow: '#FFD93D',
+        orange: '#FF8A5C',
+        muted: '#888888',
+        line: '#2A2A3E',
+        structure: '#4A4A5A',
+        white: '#FFFFFF'
+    };
+
+    /* ============================================================
+       Exercice 1 : graphExercice1
+       Parachutiste largué à z = 1500 m, chute jusqu'au sol z = 0.
+       ============================================================ */
+    function drawGraphExercice1() {
+        var svg = document.getElementById('graphExercice1');
+        if (!svg) return;
+        var w = 300, h = 150;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
+
+        var groundY = 130, topY = 25, cx = 110;
+
+        // Axe vertical
+        svg.appendChild(line(cx, groundY, cx, 12, { stroke: COLORS.teal, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(cx, 12, -90, COLORS.teal, 5));
+        svg.appendChild(text(cx + 8, 18, 'z', { fill: COLORS.teal, 'font-size': 11, 'font-style': 'italic' }));
+
+        // Avion / point de largage (z = 1500 m)
+        svg.appendChild(el('circle', { cx: cx, cy: topY, r: 5, fill: COLORS.gold }));
+        svg.appendChild(text(cx + 10, topY + 4, 'z = 1500 m', { fill: COLORS.gold, 'font-size': 9.5, 'font-weight': 'bold' }));
+
+        // Sol (z = 0)
+        svg.appendChild(line(15, groundY, w - 15, groundY, { stroke: COLORS.line, 'stroke-width': 2 }));
+        svg.appendChild(text(15, groundY + 14, 'Sol (z = 0)', { fill: COLORS.muted, 'font-size': 9 }));
+
+        // Trajectoire de chute (pointillé) + parachutiste
+        svg.appendChild(line(cx, topY + 8, cx, groundY - 10, { stroke: COLORS.red, 'stroke-width': 1.5, 'stroke-dasharray': '4,3' }));
+        svg.appendChild(arrowHead(cx, groundY - 8, 90, COLORS.red, 6));
+
+        var pY = 80;
+        svg.appendChild(el('circle', { cx: cx, cy: pY, r: 5, fill: COLORS.white }));
+        svg.appendChild(text(cx - 55, pY + 4, 'm = 70 kg', { fill: COLORS.white, 'font-size': 9 }));
+
+        svg.appendChild(text(w / 2, 145, "Chute du parachutiste vers le sol", { fill: COLORS.muted, 'font-size': 9, 'text-anchor': 'middle' }));
+    }
+
+    /* ============================================================
+       Exercice 2 : graphExercice2
+       Objet lâché d'une hauteur h = 8 m, chute libre jusqu'au sol.
+       ============================================================ */
+    function drawGraphExercice2() {
+        var svg = document.getElementById('graphExercice2');
+        if (!svg) return;
+        var w = 300, h = 150;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
+
+        var groundY = 130, cx = 110;
+        var yA = 25, yB = groundY;
+
+        // Axe vertical
+        svg.appendChild(line(cx, groundY, cx, 12, { stroke: COLORS.teal, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(cx, 12, -90, COLORS.teal, 5));
+        svg.appendChild(text(cx + 8, 18, 'z', { fill: COLORS.teal, 'font-size': 11, 'font-style': 'italic' }));
+
+        // Point A (départ, h = 8 m)
+        svg.appendChild(el('circle', { cx: cx, cy: yA, r: 5, fill: COLORS.red }));
+        svg.appendChild(text(cx + 10, yA + 4, 'A (h = 8 m)', { fill: COLORS.red, 'font-size': 9.5, 'font-weight': 'bold' }));
+
+        // Sol / point B
+        svg.appendChild(line(15, groundY, w - 15, groundY, { stroke: COLORS.line, 'stroke-width': 2 }));
+        svg.appendChild(text(cx + 10, groundY - 4, 'B (sol)', { fill: COLORS.muted, 'font-size': 9 }));
+
+        // Vecteur poids P le long de la chute
+        var px = cx - 30;
+        svg.appendChild(line(px, yA + 10, px, yB - 15, { stroke: COLORS.orange, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(px, yB - 15, 90, COLORS.orange, 6));
+        svg.appendChild(text(px - 20, (yA + yB) / 2, 'P', { fill: COLORS.orange, 'font-size': 11, 'font-style': 'italic', 'font-weight': 'bold' }));
+
+        svg.appendChild(text(w / 2, 145, "Chute libre d'une hauteur h", { fill: COLORS.muted, 'font-size': 9, 'text-anchor': 'middle' }));
+    }
+
+    /* ============================================================
+       Exercice 3 : graphExercice3
+       Lancer vertical vers le haut : v0 = 10 m/s, hmax = 5 m.
+       ============================================================ */
     function drawGraphExercice3() {
-        var w = 300, h = 150;
-        var svg = _prepare('graphExercice3', w, h);
+        var svg = document.getElementById('graphExercice3');
         if (!svg) return;
+        var w = 300, h = 150;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var groundY = 130, ox = 150;
+        var groundY = 130, cx = 130;
+        var yTop = 25;
 
-        svg.appendChild(_el('rect', { x: 20, y: groundY, width: w - 40, height: 3, fill: '#2A2A3E' }));
-        svg.appendChild(_text(60, groundY + 14, 'Sol (z0=0)', { 'font-size': 8.5, fill: '#888888', 'text-anchor': 'middle' }));
+        // Sol
+        svg.appendChild(line(15, groundY, w - 15, groundY, { stroke: COLORS.line, 'stroke-width': 2 }));
+        svg.appendChild(text(15, groundY + 14, 'Sol (z\u2080 = 0)', { fill: COLORS.muted, 'font-size': 9 }));
 
-        // Trajectoire verticale
-        svg.appendChild(_el('line', { x1: ox, y1: groundY, x2: ox, y2: 20, stroke: '#666666', 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
+        // Trajectoire verticale (pointillé)
+        svg.appendChild(line(cx, groundY - 8, cx, yTop + 6, { stroke: COLORS.muted, 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
 
-        // Position initiale (sol) avec v0 vers le haut
-        svg.appendChild(_el('circle', { cx: ox, cy: groundY - 4, r: 6, fill: '#FF6B6B' }));
-        _arrow(svg, ox, groundY - 12, ox, groundY - 45, '#4ECDC4', 2);
-        svg.appendChild(_text(ox + 14, groundY - 35, 'v0=10 m/s', { 'font-size': 8, fill: '#4ECDC4' }));
+        // Point de départ (v0 vers le haut)
+        svg.appendChild(el('circle', { cx: cx, cy: groundY - 6, r: 5, fill: COLORS.red }));
+        svg.appendChild(line(cx + 10, groundY - 6, cx + 10, groundY - 40, { stroke: COLORS.red, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(cx + 10, groundY - 40, -90, COLORS.red, 6));
+        svg.appendChild(text(cx + 16, groundY - 25, 'v\u2080 = 10 m/s', { fill: COLORS.red, 'font-size': 9, 'font-weight': 'bold' }));
 
-        // Point le plus haut (hmax), v = 0
-        var topY = 30;
-        svg.appendChild(_el('circle', { cx: ox, cy: topY, r: 6, fill: '#F4D03F' }));
-        svg.appendChild(_text(ox + 10, topY - 8, 'v = 0', { 'font-size': 8.5, fill: '#F4D03F' }));
+        // Point le plus haut (v = 0, hmax)
+        svg.appendChild(el('circle', { cx: cx, cy: yTop, r: 5, fill: COLORS.gold }));
+        svg.appendChild(text(cx + 10, yTop + 4, 'v = 0 (h_max)', { fill: COLORS.gold, 'font-size': 9, 'font-weight': 'bold' }));
 
-        // Cote hmax
-        svg.appendChild(_el('line', { x1: ox - 40, y1: groundY - 4, x2: ox - 40, y2: topY, stroke: '#888888', 'stroke-width': 1 }));
-        svg.appendChild(_el('line', { x1: ox - 45, y1: groundY - 4, x2: ox - 35, y2: groundY - 4, stroke: '#888888', 'stroke-width': 1 }));
-        svg.appendChild(_el('line', { x1: ox - 45, y1: topY, x2: ox - 35, y2: topY, stroke: '#888888', 'stroke-width': 1 }));
-        svg.appendChild(_text(ox - 50, (groundY + topY) / 2, 'hmax=5m', { 'font-size': 8, fill: '#888888', 'text-anchor': 'end' }));
+        // Repère hmax
+        svg.appendChild(line(cx - 25, groundY, cx - 25, yTop, { stroke: COLORS.teal, 'stroke-width': 1.5 }));
+        svg.appendChild(arrowHead(cx - 25, yTop, -90, COLORS.teal, 5));
+        svg.appendChild(arrowHead(cx - 25, groundY, 90, COLORS.teal, 5));
+        svg.appendChild(text(cx - 55, (groundY + yTop) / 2 + 4, 'h_max = 5 m', { fill: COLORS.teal, 'font-size': 8.5 }));
+
+        svg.appendChild(text(w / 2, 145, "Lancer vertical : conservation de Em", { fill: COLORS.muted, 'font-size': 9, 'text-anchor': 'middle' }));
     }
 
-    // ------------------------------------------------------------
-    // Exercice 4 : plan incliné avec frottement, L=1.2m, α=30°
-    // ------------------------------------------------------------
+    /* ============================================================
+       Exercice 4 : graphExercice4
+       Plan incliné AB, L = 1.2 m, α = 30°, vA = 2 m/s, vB = 1 m/s.
+       ============================================================ */
     function drawGraphExercice4() {
-        var w = 300, h = 150;
-        var svg = _prepare('graphExercice4', w, h);
+        var svg = document.getElementById('graphExercice4');
         if (!svg) return;
+        var w = 300, h = 150;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var Ax = 60, Ay = 25, Bx = 240, By = 118;
+        var baseX = 40, baseY = 125;
+        var topX = 230, topY = 35; // A en haut, B en bas (le solide descend de A vers B)
 
-        svg.appendChild(_el('line', { x1: Ax, y1: Ay, x2: Bx, y2: By, stroke: '#4A4A5A', 'stroke-width': 6, 'stroke-linecap': 'round' }));
-        svg.appendChild(_el('line', { x1: Bx - 15, y1: By, x2: 280, y2: By, stroke: '#2A2A3E', 'stroke-width': 3 }));
+        // Sol
+        svg.appendChild(line(15, baseY, baseX, baseY, { stroke: COLORS.line, 'stroke-width': 2 }));
 
-        svg.appendChild(_text(Ax - 10, Ay - 6, 'A', { 'font-size': 11, fill: '#FF6B6B', 'font-weight': 'bold' }));
-        svg.appendChild(_text(Bx + 10, By + 4, 'B', { 'font-size': 11, fill: '#F4D03F', 'font-weight': 'bold' }));
+        // Plan incliné (A en haut à droite, B en bas à gauche -> on dessine de baseX,baseY (B) à topX,topY (A))
+        svg.appendChild(line(baseX, baseY, topX, topY, { stroke: COLORS.structure, 'stroke-width': 4, 'stroke-linecap': 'round' }));
+        svg.appendChild(line(baseX, baseY, topX, baseY, { stroke: COLORS.muted, 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
 
-        svg.appendChild(_el('path', { d: 'M ' + (Bx - 28) + ' ' + By + ' A 28 28 0 0 0 ' + (Bx - 28 * Math.cos(Math.atan2(By - Ay, Bx - Ax))) + ' ' + (By - 28 * Math.sin(Math.abs(Math.atan2(By - Ay, Bx - Ax)))), stroke: '#F4D03F', fill: 'none', 'stroke-width': 1.2 }));
-        svg.appendChild(_text(Bx - 55, By - 10, 'α=30°', { 'font-size': 8.5, fill: '#F4D03F' }));
+        // Angle
+        svg.appendChild(el('path', { d: 'M ' + (baseX + 26) + ' ' + baseY + ' A 26 26 0 0 0 ' + (baseX + 26 * Math.cos(Math.atan2(baseY - topY, topX - baseX))) + ' ' + (baseY - 26 * Math.sin(Math.atan2(baseY - topY, topX - baseX))), stroke: COLORS.teal, 'stroke-width': 1.5, fill: 'none' }));
+        svg.appendChild(text(baseX + 32, baseY - 8, '30°', { fill: COLORS.teal, 'font-size': 9.5, 'font-weight': 'bold' }));
 
-        // Solide (S) à mi-plan
-        var sx = (Ax + Bx) / 2, sy = (Ay + By) / 2;
-        var dx = (Bx - Ax) / Math.hypot(Bx - Ax, By - Ay);
-        var dy = (By - Ay) / Math.hypot(Bx - Ax, By - Ay);
-        var nx = -dy, ny = dx;
+        // Point B (bas)
+        svg.appendChild(el('circle', { cx: baseX, cy: baseY, r: 5, fill: COLORS.gold }));
+        svg.appendChild(text(baseX - 6, baseY + 18, 'B (v\u1D66=1 m/s)', { fill: COLORS.gold, 'font-size': 8.5, 'font-weight': 'bold' }));
 
-        svg.appendChild(_el('circle', { cx: sx, cy: sy - 8, r: 8, fill: '#FF8A5C' }));
-        svg.appendChild(_text(sx, sy - 5, 'S', { 'font-size': 9, fill: '#0D1117', 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        // Point A (haut)
+        svg.appendChild(el('circle', { cx: topX, cy: topY, r: 5, fill: COLORS.red }));
+        svg.appendChild(text(topX - 55, topY - 8, 'A (v\u2090=2 m/s)', { fill: COLORS.red, 'font-size': 8.5, 'font-weight': 'bold' }));
 
-        // Vitesse (le long du plan, descendante)
-        _arrow(svg, sx + dx * 12, sy - 8 + dy * 12, sx + dx * 35, sy - 8 + dy * 35, '#4ECDC4', 1.8);
-        svg.appendChild(_text(sx + dx * 45, sy - 8 + dy * 45 - 4, 'v', { 'font-size': 9, fill: '#4ECDC4', 'font-style': 'italic' }));
+        // Longueur L le long de la pente
+        svg.appendChild(text((baseX + topX) / 2 - 10, (baseY + topY) / 2 - 8, 'L = 1.2 m', { fill: COLORS.white, 'font-size': 9, 'font-weight': 'bold' }));
 
-        // Frottement f (vers le haut du plan, opposé au mouvement)
-        _arrow(svg, sx, sy - 8, sx - dx * 30, sy - 8 - dy * 30, '#F4D03F', 1.8);
-        svg.appendChild(_text(sx - dx * 40, sy - 8 - dy * 40, 'f', { 'font-size': 9, fill: '#F4D03F', 'font-style': 'italic' }));
+        // Flèche du sens de glissement (de A vers B)
+        var midX = (baseX + topX) / 2, midY = (baseY + topY) / 2;
+        svg.appendChild(arrowHead(midX - 10, midY + 6, 210, COLORS.muted, 6));
 
-        svg.appendChild(_text(150, 12, 'vA=2 m/s → vB=1 m/s (L=1.2 m)', { 'font-size': 8.5, fill: '#AAAAAA', 'text-anchor': 'middle' }));
+        svg.appendChild(text(w / 2, 145, "Plan incliné avec frottement", { fill: COLORS.muted, 'font-size': 9, 'text-anchor': 'middle' }));
     }
 
-    // ------------------------------------------------------------
-    // Exercice 5 : boucle circulaire, R = 1 m
-    // ------------------------------------------------------------
+    /* ============================================================
+       Exercice 5 : graphExercice5
+       Boucle circulaire de rayon R = 1 m, vitesse minimale au sommet.
+       ============================================================ */
     function drawGraphExercice5() {
-        var w = 300, h = 150;
-        var svg = _prepare('graphExercice5', w, h);
+        var svg = document.getElementById('graphExercice5');
         if (!svg) return;
+        var w = 300, h = 150;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
         var groundY = 130;
-        svg.appendChild(_el('rect', { x: 15, y: groundY, width: w - 30, height: 3, fill: '#2A2A3E' }));
+        var loopCx = 160, loopCy = 90, R = 38;
 
-        var cx = 190, R = 45;
-        var cy = groundY - R;
+        // Piste horizontale d'approche
+        svg.appendChild(line(15, groundY, loopCx, loopCy + R, { stroke: COLORS.structure, 'stroke-width': 3.5 }));
 
-        // Boucle circulaire (rail)
-        svg.appendChild(_el('circle', { cx: cx, cy: cy, r: R, fill: 'none', stroke: '#4A4A5A', 'stroke-width': 5 }));
+        // Boucle circulaire
+        svg.appendChild(el('circle', { cx: loopCx, cy: loopCy, r: R, fill: 'none', stroke: COLORS.structure, 'stroke-width': 3.5 }));
 
-        // Portion horizontale menant à la boucle
-        svg.appendChild(_el('line', { x1: 20, y1: groundY - 2, x2: cx - R, y2: groundY - 2, stroke: '#4A4A5A', 'stroke-width': 5, 'stroke-linecap': 'round' }));
+        // Sommet de la boucle (z = 2R)
+        var topY = loopCy - R;
+        svg.appendChild(el('circle', { cx: loopCx, cy: topY, r: 4, fill: COLORS.gold }));
+        svg.appendChild(text(loopCx + 8, topY + 2, 'v_min = \u221A(Rg)', { fill: COLORS.gold, 'font-size': 8.5, 'font-weight': 'bold' }));
+        svg.appendChild(text(loopCx + 8, topY + 14, 'z = 2R', { fill: COLORS.gold, 'font-size': 8.5 }));
 
-        // Palet en bas (départ, v0)
-        svg.appendChild(_el('circle', { cx: 60, cy: groundY - 8, r: 6, fill: '#FF6B6B' }));
-        _arrow(svg, 68, groundY - 8, 95, groundY - 8, '#4ECDC4', 2);
-        svg.appendChild(_text(80, groundY - 16, 'v0', { 'font-size': 9, fill: '#4ECDC4', 'font-style': 'italic' }));
-
-        // Palet au sommet de la boucle (z = 2R)
-        svg.appendChild(_el('circle', { cx: cx, cy: cy - R, r: 6, fill: '#F4D03F' }));
-        svg.appendChild(_text(cx + 14, cy - R - 4, 'vmin', { 'font-size': 8.5, fill: '#F4D03F' }));
+        // Palet au départ (bas, v0)
+        var startX = 40, startY = groundY - 4;
+        svg.appendChild(el('circle', { cx: startX, cy: startY, r: 5, fill: COLORS.red }));
+        svg.appendChild(line(startX + 8, startY, startX + 30, startY, { stroke: COLORS.red, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(startX + 30, startY, 0, COLORS.red, 6));
+        svg.appendChild(text(startX - 5, startY + 16, 'v\u2080', { fill: COLORS.red, 'font-size': 10, 'font-style': 'italic', 'font-weight': 'bold' }));
 
         // Rayon R indiqué
-        svg.appendChild(_el('line', { x1: cx, y1: cy, x2: cx, y2: cy - R, stroke: '#888888', 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
-        svg.appendChild(_text(cx + 6, cy - R / 2, 'R', { 'font-size': 9, fill: '#888888', 'font-style': 'italic' }));
+        svg.appendChild(line(loopCx, loopCy, loopCx, loopCy - R, { stroke: COLORS.teal, 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
+        svg.appendChild(text(loopCx + 4, loopCy - R / 2, 'R', { fill: COLORS.teal, 'font-size': 9, 'font-style': 'italic' }));
 
-        svg.appendChild(_text(cx, 16, 'Sommet : z = 2R', { 'font-size': 8.5, fill: '#F4D03F', 'text-anchor': 'middle' }));
+        svg.appendChild(text(w / 2, 145, "Boucle circulaire (attraction foraine)", { fill: COLORS.muted, 'font-size': 9, 'text-anchor': 'middle' }));
     }
 
-    // ------------------------------------------------------------
-    // Exercice 6 : piste horizontale, frottement f=1.5N sur d=2m
-    // ------------------------------------------------------------
+    /* ============================================================
+       Exercice 6 : graphExercice6
+       Piste horizontale, d = 2 m, f = 1.5 N, conversion en chaleur Q.
+       ============================================================ */
     function drawGraphExercice6() {
-        var w = 300, h = 150;
-        var svg = _prepare('graphExercice6', w, h);
+        var svg = document.getElementById('graphExercice6');
         if (!svg) return;
+        var w = 300, h = 150;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var groundY = 110;
-        svg.appendChild(_el('rect', { x: 30, y: groundY, width: w - 60, height: 4, fill: '#2A2A3E' }));
+        var trackY = 100, x1 = 40, x2 = 240;
 
-        // Solide au départ
-        svg.appendChild(_el('rect', { x: 45, y: groundY - 18, width: 26, height: 18, fill: '#FF8A5C', rx: 3 }));
-        svg.appendChild(_text(58, groundY - 6, 'S', { 'font-size': 9, fill: '#0D1117', 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        // Piste horizontale
+        svg.appendChild(line(x1, trackY, x2, trackY, { stroke: COLORS.structure, 'stroke-width': 4, 'stroke-linecap': 'round' }));
 
-        // Flèche de déplacement sur distance d
-        _arrow(svg, 75, groundY - 30, 220, groundY - 30, '#4ECDC4', 1.8);
-        svg.appendChild(_text(150, groundY - 38, 'd = 2 m', { 'font-size': 9.5, fill: '#4ECDC4', 'text-anchor': 'middle' }));
+        // Bloc au départ
+        svg.appendChild(el('rect', { x: x1 - 10, y: trackY - 22, width: 24, height: 20, fill: COLORS.gold, rx: 2 }));
+        svg.appendChild(text(x1 + 2, trackY - 8, 'S', { fill: '#0D1117', 'font-size': 10, 'text-anchor': 'middle', 'font-weight': 'bold' }));
 
-        // Frottement f (opposé au mouvement)
-        _arrow(svg, 150, groundY - 9, 120, groundY - 9, '#F4D03F', 1.8);
-        svg.appendChild(_text(135, groundY + 12, 'f = 1.5 N', { 'font-size': 9, fill: '#F4D03F', 'text-anchor': 'middle' }));
+        // Flèche de déplacement + distance d
+        svg.appendChild(line(x1 + 20, trackY - 35, x2 - 20, trackY - 35, { stroke: COLORS.white, 'stroke-width': 1.5 }));
+        svg.appendChild(arrowHead(x2 - 20, trackY - 35, 0, COLORS.white, 6));
+        svg.appendChild(text((x1 + x2) / 2, trackY - 42, 'd = 2 m', { fill: COLORS.white, 'font-size': 9.5, 'text-anchor': 'middle' }));
 
-        // Position finale (silhouette pointillée)
-        svg.appendChild(_el('rect', { x: 220, y: groundY - 18, width: 26, height: 18, fill: 'none', stroke: '#888888', 'stroke-width': 1.3, 'stroke-dasharray': '3,3', rx: 3 }));
+        // Flèche de frottement f (opposée au mouvement)
+        svg.appendChild(line(x1 + 60, trackY - 10, x1 + 25, trackY - 10, { stroke: COLORS.orange, 'stroke-width': 2 }));
+        svg.appendChild(arrowHead(x1 + 25, trackY - 10, 180, COLORS.orange, 6));
+        svg.appendChild(text(x1 + 30, trackY + 6, 'f = 1.5 N', { fill: COLORS.orange, 'font-size': 8.5, 'font-weight': 'bold' }));
 
-        // Onde de chaleur produite
-        svg.appendChild(_el('path', { d: 'M 130 95 q 5 -7 10 0 q 5 7 10 0', stroke: '#F4D03F', fill: 'none', 'stroke-width': 1.4 }));
-        svg.appendChild(_text(150, 20, 'Q produite = 3 J', { 'font-size': 9, fill: '#F4D03F', 'text-anchor': 'middle' }));
+        // Vaguelettes de chaleur le long de la piste (échauffement)
+        for (var i = 0; i < 4; i++) {
+            var wx = x1 + 40 + i * 45;
+            svg.appendChild(el('path', { d: 'M ' + wx + ' ' + (trackY + 12) + ' q 5 6 10 0 q 5 -6 10 0', stroke: COLORS.orange, 'stroke-width': 1.2, fill: 'none', opacity: 0.7 }));
+        }
+        svg.appendChild(text((x1 + x2) / 2, trackY + 32, 'Q (chaleur produite)', { fill: COLORS.orange, 'font-size': 9, 'text-anchor': 'middle' }));
+
+        svg.appendChild(text(w / 2, 20, "Glissement avec frottement → Q", { fill: COLORS.muted, 'font-size': 9.5, 'text-anchor': 'middle' }));
     }
 
-    window.drawGraphExercice3 = drawGraphExercice3;
-    window.drawGraphExercice4 = drawGraphExercice4;
-    window.drawGraphExercice5 = drawGraphExercice5;
-    window.drawGraphExercice6 = drawGraphExercice6;
+    /* ---------- Initialisation ---------- */
+    function initAll() {
+        drawGraphExercice1();
+        drawGraphExercice2();
+        drawGraphExercice3();
+        drawGraphExercice4();
+        drawGraphExercice5();
+        drawGraphExercice6();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
 })();

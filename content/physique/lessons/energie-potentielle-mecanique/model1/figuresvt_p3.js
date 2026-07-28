@@ -1,188 +1,239 @@
-// ============================================================
-// figuresvt_p3.js — Figures SVG autonomes pour Partie 3
-// Énergie mécanique - Conservation - Table à coussin d'air
-// Fichier 100% indépendant : aucune fonction partagée importée.
-// ============================================================
-
+/* ============================================================
+   figuresvt_p3.js
+   Figures SVG — Partie 3 : Énergie mécanique - Conservation - Activité expérimentale
+   Fichier autonome (aucune dépendance externe / aucune librairie partagée).
+   ============================================================ */
 (function () {
+    'use strict';
+
     var SVG_NS = 'http://www.w3.org/2000/svg';
 
-    function _el(tag, attrs) {
+    /* ---------- Helpers internes (propres à ce fichier) ---------- */
+
+    function el(tag, attrs) {
         var e = document.createElementNS(SVG_NS, tag);
-        if (attrs) {
-            for (var k in attrs) {
-                if (Object.prototype.hasOwnProperty.call(attrs, k)) {
-                    e.setAttribute(k, attrs[k]);
-                }
+        for (var k in attrs) {
+            if (Object.prototype.hasOwnProperty.call(attrs, k)) {
+                e.setAttribute(k, attrs[k]);
             }
         }
         return e;
     }
 
-    function _text(x, y, str, attrs) {
-        var t = _el('text', Object.assign({ x: x, y: y }, attrs || {}));
+    function text(x, y, str, attrs) {
+        var t = el('text', Object.assign({ x: x, y: y, 'font-family': 'Arial, sans-serif' }, attrs || {}));
         t.textContent = str;
         return t;
     }
 
-    function _arrow(svg, x1, y1, x2, y2, color, width) {
-        var g = _el('g');
-        g.appendChild(_el('line', { x1: x1, y1: y1, x2: x2, y2: y2, stroke: color, 'stroke-width': width || 2 }));
-        var angle = Math.atan2(y2 - y1, x2 - x1);
-        var ah = 6;
-        var p1x = x2 - ah * Math.cos(angle - Math.PI / 7);
-        var p1y = y2 - ah * Math.sin(angle - Math.PI / 7);
-        var p2x = x2 - ah * Math.cos(angle + Math.PI / 7);
-        var p2y = y2 - ah * Math.sin(angle + Math.PI / 7);
-        g.appendChild(_el('polygon', { points: x2 + ',' + y2 + ' ' + p1x + ',' + p1y + ' ' + p2x + ',' + p2y, fill: color }));
-        svg.appendChild(g);
+    function line(x1, y1, x2, y2, attrs) {
+        return el('line', Object.assign({ x1: x1, y1: y1, x2: x2, y2: y2 }, attrs || {}));
+    }
+
+    function arrowHead(x, y, dir, color, size) {
+        size = size || 6;
+        var g = el('g', {});
+        if (dir === 'up') {
+            g.appendChild(line(x, y, x - size * 0.7, y + size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+            g.appendChild(line(x, y, x + size * 0.7, y + size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+        } else if (dir === 'down') {
+            g.appendChild(line(x, y, x - size * 0.7, y - size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+            g.appendChild(line(x, y, x + size * 0.7, y - size, { stroke: color, 'stroke-width': 2, 'stroke-linecap': 'round' }));
+        }
         return g;
     }
 
-    function _prepare(id, vbW, vbH) {
-        var svg = document.getElementById(id);
-        if (!svg) return null;
+    function background(svg, w, h) {
+        svg.appendChild(el('rect', { x: 0, y: 0, width: w, height: h, fill: '#0D1117' }));
+    }
+
+    function clear(svg) {
         while (svg.firstChild) svg.removeChild(svg.firstChild);
-        svg.setAttribute('viewBox', '0 0 ' + vbW + ' ' + vbH);
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        svg.appendChild(_el('rect', { x: 0, y: 0, width: vbW, height: vbH, fill: '#0D1117' }));
-        return svg;
     }
 
-    function _bar(svg, x, yBase, width, value, maxValue, maxHeight, color, label) {
-        var barH = Math.max(2, (value / maxValue) * maxHeight);
-        svg.appendChild(_el('rect', { x: x, y: yBase - barH, width: width, height: barH, fill: color, rx: 2 }));
-        svg.appendChild(_text(x + width / 2, yBase + 14, label, { 'font-size': 10, fill: color, 'text-anchor': 'middle', 'font-weight': 'bold' }));
-    }
+    var COLORS = {
+        red: '#FF6B6B',
+        teal: '#4ECDC4',
+        gold: '#F4D03F',
+        purple: '#BB8FCE',
+        yellow: '#FFD93D',
+        muted: '#888888',
+        line: '#2A2A3E',
+        structure: '#4A4A5A',
+        white: '#FFFFFF'
+    };
 
-    // ------------------------------------------------------------
-    // Figure 1 : Em = Ec + Epp — objet en mouvement à l'altitude z
-    // ------------------------------------------------------------
+    /* ============================================================
+       Figure 1 : graphEm
+       Em = Ec + Epp — un objet en mouvement à l'altitude z,
+       décomposé en une barre empilée Ec + Epp = Em.
+       ============================================================ */
     function drawGraphEm() {
-        var w = 400, h = 200;
-        var svg = _prepare('graphEm', w, h);
+        var svg = document.getElementById('graphEm');
         if (!svg) return;
+        var w = 400, h = 200;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var groundY = 172;
-        var ox = 70;
+        var groundY = 175;
 
-        // Sol
-        svg.appendChild(_el('rect', { x: 20, y: groundY, width: w - 40, height: 4, fill: '#2A2A3E' }));
-        svg.appendChild(_text(w - 60, groundY + 16, 'Sol', { 'font-size': 10, fill: '#888888', 'text-anchor': 'middle' }));
+        // --- Scène (gauche) : objet en mouvement à l'altitude z ---
+        svg.appendChild(line(20, groundY, 170, groundY, { stroke: COLORS.line, 'stroke-width': 2 }));
+        svg.appendChild(text(20, groundY + 14, 'Sol', { fill: COLORS.muted, 'font-size': 10 }));
 
-        // Axe altitude
-        _arrow(svg, ox, groundY, ox, 30, '#4ECDC4', 1.6);
-        svg.appendChild(_text(ox + 10, 38, 'z', { 'font-size': 11, fill: '#4ECDC4', 'font-style': 'italic' }));
+        var ballX = 90, ballY = 75;
+        svg.appendChild(line(ballX, groundY, ballX, ballY, { stroke: COLORS.muted, 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
+        svg.appendChild(text(ballX + 6, (groundY + ballY) / 2, 'z', { fill: COLORS.teal, 'font-size': 11, 'font-style': 'italic' }));
 
-        // Objet en mouvement à l'altitude z (mobile, avec vecteur vitesse)
-        var objX = 230, objY = 90;
-        svg.appendChild(_el('circle', { cx: objX, cy: objY, r: 9, fill: '#FF8A5C' }));
-        svg.appendChild(_text(objX, objY + 4, 'm', { 'font-size': 10, fill: '#0D1117', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-        _arrow(svg, objX + 12, objY, objX + 55, objY, '#F4D03F', 2);
-        svg.appendChild(_text(objX + 60, objY - 6, 'v', { 'font-size': 12, fill: '#F4D03F', 'font-style': 'italic' }));
+        svg.appendChild(el('circle', { cx: ballX, cy: ballY, r: 10, fill: COLORS.gold }));
+        svg.appendChild(text(ballX, ballY + 4, 'm', { fill: '#0D1117', 'font-size': 10, 'text-anchor': 'middle', 'font-weight': 'bold' }));
 
-        // Repère d'altitude z
-        svg.appendChild(_el('line', { x1: ox, y1: objY, x2: objX - 9, y2: objY, stroke: '#888888', 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
-        svg.appendChild(_text(ox - 12, objY + 4, 'z', { 'font-size': 10, fill: '#888888', 'text-anchor': 'middle' }));
+        // vecteur vitesse v
+        svg.appendChild(line(ballX + 12, ballY, ballX + 45, ballY, { stroke: COLORS.red, 'stroke-width': 2 }));
+        svg.appendChild(el('polygon', { points: (ballX + 45) + ',' + ballY + ' ' + (ballX + 38) + ',' + (ballY - 4) + ' ' + (ballX + 38) + ',' + (ballY + 4), fill: COLORS.red }));
+        svg.appendChild(text(ballX + 48, ballY + 4, 'v', { fill: COLORS.red, 'font-size': 12, 'font-style': 'italic', 'font-weight': 'bold' }));
 
-        // Décomposition Em = Ec + Epp (encadré à droite)
-        svg.appendChild(_text(330, 60, 'Em', { 'font-size': 14, fill: '#BB8FCE', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-        svg.appendChild(_text(330, 78, '=', { 'font-size': 12, fill: '#AAAAAA', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(330, 98, 'Ec', { 'font-size': 13, fill: '#F4D03F', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-        svg.appendChild(_text(330, 112, '(mouvement)', { 'font-size': 8.5, fill: '#888888', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(330, 130, '+', { 'font-size': 12, fill: '#AAAAAA', 'text-anchor': 'middle' }));
-        svg.appendChild(_text(330, 150, 'Epp', { 'font-size': 13, fill: '#4ECDC4', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-        svg.appendChild(_text(330, 164, '(position)', { 'font-size': 8.5, fill: '#888888', 'text-anchor': 'middle' }));
+        // --- Barre empilée (droite) : Ec + Epp = Em ---
+        var barX = 250, barW = 46;
+        var ecH = 40, eppH = 75;
+        var yEcTop = groundY - ecH;
+        var yEppTop = yEcTop - eppH;
+
+        svg.appendChild(el('rect', { x: barX, y: yEcTop, width: barW, height: ecH, fill: COLORS.teal }));
+        svg.appendChild(el('rect', { x: barX, y: yEppTop, width: barW, height: eppH, fill: COLORS.red }));
+        svg.appendChild(line(barX, groundY, barX + barW, groundY, { stroke: COLORS.line, 'stroke-width': 1 }));
+
+        svg.appendChild(text(barX + barW / 2, yEcTop + ecH / 2 + 4, 'Ec', { fill: '#0D1117', 'font-size': 11, 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        svg.appendChild(text(barX + barW / 2, yEppTop + eppH / 2 + 4, 'Epp', { fill: '#0D1117', 'font-size': 11, 'text-anchor': 'middle', 'font-weight': 'bold' }));
+
+        // accolade / repère Em à droite de la barre
+        var braceX = barX + barW + 12;
+        svg.appendChild(line(braceX, yEppTop, braceX, groundY, { stroke: COLORS.gold, 'stroke-width': 1.5 }));
+        svg.appendChild(line(braceX, yEppTop, braceX + 6, yEppTop, { stroke: COLORS.gold, 'stroke-width': 1.5 }));
+        svg.appendChild(line(braceX, groundY, braceX + 6, groundY, { stroke: COLORS.gold, 'stroke-width': 1.5 }));
+        svg.appendChild(text(braceX + 10, (yEppTop + groundY) / 2 + 4, 'Em', { fill: COLORS.gold, 'font-size': 13, 'font-weight': 'bold' }));
+
+        svg.appendChild(text(200, 22, 'Em = Ec + Epp', { fill: COLORS.white, 'font-size': 13, 'font-weight': 'bold', 'text-anchor': 'middle' }));
     }
 
-    // ------------------------------------------------------------
-    // Figure 2 : Conservation de Em — chute libre, transformation Epp <-> Ec
-    // ------------------------------------------------------------
+    /* ============================================================
+       Figure 2 : graphConservation
+       Conservation de l'énergie mécanique lors d'une chute libre :
+       comparaison des barres empilées à l'état A et à l'état B.
+       ============================================================ */
     function drawGraphConservation() {
-        var w = 400, h = 200;
-        var svg = _prepare('graphConservation', w, h);
+        var svg = document.getElementById('graphConservation');
         if (!svg) return;
+        var w = 400, h = 200;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        var groundY = 170;
+        var groundY = 175;
+        var totalH = 120; // hauteur totale = Em (identique en A et en B)
 
-        // Trajectoire de chute (verticale pointillée)
-        var trajX = 90;
-        svg.appendChild(_el('line', { x1: trajX, y1: 35, x2: trajX, y2: groundY - 10, stroke: '#666666', 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
+        svg.appendChild(text(w / 2, 20, 'Em(A) = Em(B) = constante', { fill: COLORS.gold, 'font-size': 12, 'font-weight': 'bold', 'text-anchor': 'middle' }));
 
-        // Position A (haut) : toute l'énergie en Epp
-        svg.appendChild(_el('circle', { cx: trajX, cy: 40, r: 7, fill: '#FF6B6B' }));
-        svg.appendChild(_text(trajX - 20, 44, 'A', { 'font-size': 11, fill: '#FF6B6B', 'font-weight': 'bold' }));
+        // Ligne de niveau commune (sommet des deux barres, même hauteur = Em)
+        var topY = groundY - totalH;
+        svg.appendChild(line(70, topY, 330, topY, { stroke: COLORS.gold, 'stroke-width': 1, 'stroke-dasharray': '4,3' }));
 
-        // Position B (bas) : toute l'énergie en Ec
-        svg.appendChild(_el('circle', { cx: trajX, cy: groundY - 15, r: 7, fill: '#F4D03F' }));
-        svg.appendChild(_text(trajX - 20, groundY - 11, 'B', { 'font-size': 11, fill: '#F4D03F', 'font-weight': 'bold' }));
+        // --- Barre A : en haut de la trajectoire → Epp grand, Ec petit ---
+        var barAx = 90, barW = 50;
+        var ecA = 24, eppA = totalH - ecA;
+        svg.appendChild(el('rect', { x: barAx, y: groundY - ecA, width: barW, height: ecA, fill: COLORS.teal }));
+        svg.appendChild(el('rect', { x: barAx, y: topY, width: barW, height: eppA, fill: COLORS.red }));
+        svg.appendChild(text(barAx + barW / 2, topY - 8, 'État A', { fill: COLORS.white, 'font-size': 11, 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        svg.appendChild(text(barAx + barW / 2, groundY - ecA / 2 + 4, 'Ec', { fill: '#0D1117', 'font-size': 10, 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        svg.appendChild(text(barAx + barW / 2, topY + eppA / 2 + 4, 'Epp', { fill: '#0D1117', 'font-size': 10, 'text-anchor': 'middle', 'font-weight': 'bold' }));
 
-        _arrow(svg, trajX + 20, 55, trajX + 20, groundY - 30, '#888888', 1.6);
+        // Flèche de chute entre les deux barres
+        var arrowX = (barAx + barW + 260) / 2;
+        svg.appendChild(line(arrowX, topY + 15, arrowX, groundY - 15, { stroke: COLORS.muted, 'stroke-width': 1.5, 'stroke-dasharray': '5,4' }));
+        svg.appendChild(arrowHead(arrowX, groundY - 15, 'down', COLORS.muted, 6));
+        svg.appendChild(text(arrowX, (topY + groundY) / 2, 'chute', { fill: COLORS.muted, 'font-size': 9.5, 'text-anchor': 'middle' }));
+
+        // --- Barre B : en bas de la trajectoire → Epp petit, Ec grand ---
+        var barBx = 260, eppB = 24, ecB = totalH - eppB;
+        svg.appendChild(el('rect', { x: barBx, y: groundY - ecB, width: barW, height: ecB, fill: COLORS.teal }));
+        svg.appendChild(el('rect', { x: barBx, y: topY, width: barW, height: eppB, fill: COLORS.red }));
+        svg.appendChild(text(barBx + barW / 2, topY - 8, 'État B', { fill: COLORS.white, 'font-size': 11, 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        svg.appendChild(text(barBx + barW / 2, groundY - ecB / 2 + 4, 'Ec', { fill: '#0D1117', 'font-size': 10, 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        svg.appendChild(text(barBx + barW / 2, topY + eppB / 2 + 4, 'Epp', { fill: '#0D1117', 'font-size': 10, 'text-anchor': 'middle', 'font-weight': 'bold' }));
 
         // Sol
-        svg.appendChild(_el('rect', { x: 20, y: groundY, width: w - 40, height: 4, fill: '#2A2A3E' }));
-        svg.appendChild(_text(60, groundY + 16, 'Sol', { 'font-size': 10, fill: '#888888', 'text-anchor': 'middle' }));
-
-        // Diagramme en barres : Epp / Ec / Em en A puis en B
-        var baseY = groundY - 5, maxH = 110, maxV = 100;
-        // En A : Epp = 100%, Ec = 0
-        _bar(svg, 170, baseY, 22, 100, maxV, maxH, '#4ECDC4', 'Epp');
-        _bar(svg, 196, baseY, 22, 0, maxV, maxH, '#F4D03F', 'Ec');
-        _bar(svg, 222, baseY, 22, 100, maxV, maxH, '#BB8FCE', 'Em');
-        svg.appendChild(_text(196, baseY - maxH - 10, 'En A', { 'font-size': 10, fill: '#FF6B6B', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-
-        // En B : Epp diminue, Ec augmente, Em constante
-        _bar(svg, 290, baseY, 22, 30, maxV, maxH, '#4ECDC4', 'Epp');
-        _bar(svg, 316, baseY, 22, 70, maxV, maxH, '#F4D03F', 'Ec');
-        _bar(svg, 342, baseY, 22, 100, maxV, maxH, '#BB8FCE', 'Em');
-        svg.appendChild(_text(316, baseY - maxH - 10, 'En B', { 'font-size': 10, fill: '#F4D03F', 'text-anchor': 'middle', 'font-weight': 'bold' }));
-
-        svg.appendChild(_text(255, 26, 'Em(A) = Em(B) : conservation', { 'font-size': 10.5, fill: '#BB8FCE', 'text-anchor': 'middle', 'font-weight': 'bold' }));
+        svg.appendChild(line(60, groundY, 340, groundY, { stroke: COLORS.line, 'stroke-width': 2 }));
     }
 
-    // ------------------------------------------------------------
-    // Figure 3 : Table à coussin d'air inclinée, autoporteur en descente
-    // ------------------------------------------------------------
+    /* ============================================================
+       Figure 3 : graphExperience
+       Activité expérimentale : table à coussin d'air inclinée,
+       autoporteur enregistré aux positions M1 à M5.
+       ============================================================ */
     function drawGraphExperience() {
-        var w = 400, h = 180;
-        var svg = _prepare('graphExperience', w, h);
+        var svg = document.getElementById('graphExperience');
         if (!svg) return;
+        var w = 400, h = 180;
+        clear(svg);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        background(svg, w, h);
 
-        // Table inclinée : segment allant du coin haut-gauche au coin bas-droit
-        var x1 = 60, y1 = 35, x2 = 340, y2 = 140;
-        svg.appendChild(_el('line', { x1: x1, y1: y1, x2: x2, y2: y2, stroke: '#4A4A5A', 'stroke-width': 6, 'stroke-linecap': 'round' }));
-        // Support (pied) sous le point haut
-        svg.appendChild(_el('line', { x1: x1, y1: y1, x2: x1, y2: y2, stroke: '#2A2A3E', 'stroke-width': 4 }));
-        // Sol horizontal
-        svg.appendChild(_el('line', { x1: 20, y1: y2, x2: 370, y2: y2, stroke: '#2A2A3E', 'stroke-width': 3 }));
+        // Table (support horizontal)
+        var tableY = 150, tableLeft = 30, tableRight = 370;
+        svg.appendChild(el('rect', { x: tableLeft, y: tableY, width: tableRight - tableLeft, height: 8, fill: COLORS.structure }));
+        svg.appendChild(el('rect', { x: tableLeft + 5, y: tableY + 8, width: 6, height: 16, fill: COLORS.structure }));
+        svg.appendChild(el('rect', { x: tableRight - 11, y: tableY + 8, width: 6, height: 16, fill: COLORS.structure }));
 
-        // Angle alpha
-        svg.appendChild(_el('path', { d: 'M ' + (x1 + 34) + ' ' + y2 + ' A 34 34 0 0 0 ' + (x1 + 34 * Math.cos(Math.atan2(y2 - y1, x2 - x1))) + ' ' + (y2 + 34 * Math.sin(Math.atan2(y2 - y1, x2 - x1))), stroke: '#F4D03F', fill: 'none', 'stroke-width': 1.3 }));
-        svg.appendChild(_text(x1 + 46, y2 - 10, 'α = 10°', { 'font-size': 10, fill: '#F4D03F' }));
+        // Plan incliné (rail) : de la base (bas-gauche) au sommet (haut-droite)
+        var baseX = 50, baseY = tableY;
+        var topX = 330, topY = 45;
+        svg.appendChild(line(baseX, baseY, topX, topY, { stroke: '#6B6B80', 'stroke-width': 5, 'stroke-linecap': 'round' }));
 
-        // Positions M1..M5 le long du plan (de haut en bas)
-        var labels = ['M1', 'M2', 'M3', 'M4', 'M5'];
-        for (var i = 0; i < 5; i++) {
-            var t = i / 4;
-            var px = x1 + (x2 - x1) * t * 0.85 + 15;
-            var py = y1 + (y2 - y1) * t * 0.85 + 6;
-            svg.appendChild(_el('circle', { cx: px, cy: py - 6, r: 5, fill: '#FF8A5C' }));
-            svg.appendChild(_text(px, py - 16, labels[i], { 'font-size': 8.5, fill: '#FF8A5C', 'text-anchor': 'middle' }));
+        // Support incliné sous le rail
+        svg.appendChild(el('polygon', {
+            points: baseX + ',' + baseY + ' ' + topX + ',' + topY + ' ' + topX + ',' + baseY + ' ' + baseX + ',' + baseY,
+            fill: 'none'
+        }));
+        svg.appendChild(line(topX, topY, topX, baseY, { stroke: COLORS.muted, 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
+        svg.appendChild(line(baseX, baseY, topX, baseY, { stroke: COLORS.muted, 'stroke-width': 1, 'stroke-dasharray': '3,3' }));
+
+        // Angle α à la base
+        svg.appendChild(el('path', {
+            d: 'M ' + (baseX + 30) + ' ' + baseY + ' A 30 30 0 0 0 ' + (baseX + 30 * Math.cos(Math.atan2(baseY - topY, topX - baseX))) + ' ' + (baseY - 30 * Math.sin(Math.atan2(baseY - topY, topX - baseX))),
+            stroke: COLORS.teal, 'stroke-width': 1.5, fill: 'none'
+        }));
+        svg.appendChild(text(baseX + 34, baseY - 8, '\u03B1', { fill: COLORS.teal, 'font-size': 13, 'font-style': 'italic', 'font-weight': 'bold' }));
+
+        // Positions M1..M5 le long du rail (espacement croissant : mouvement accéléré, d proportionnelle à t²)
+        var tRatios = [0, 0.0625, 0.25, 0.5625, 1]; // (60,120,180,240)/240 au carré
+        var labels = ['M\u2081', 'M\u2082', 'M\u2083', 'M\u2084', 'M\u2085'];
+        for (var i = 0; i < tRatios.length; i++) {
+            var px = baseX + tRatios[i] * (topX - baseX);
+            var py = baseY + tRatios[i] * (topY - baseY);
+            svg.appendChild(el('circle', { cx: px, cy: py - 6, r: 6, fill: COLORS.gold }));
+            var labelYOffset = (i % 2 === 0) ? -16 : -18;
+            svg.appendChild(text(px, py - 6 + labelYOffset, labels[i], { fill: COLORS.white, 'font-size': 10, 'text-anchor': 'middle' }));
         }
 
-        // Flèche indiquant le sens de la descente
-        var midT = 0.5;
-        var mx = x1 + (x2 - x1) * midT;
-        var my = y1 + (y2 - y1) * midT;
-        var dx = (x2 - x1) / Math.hypot(x2 - x1, y2 - y1);
-        var dy = (y2 - y1) / Math.hypot(x2 - x1, y2 - y1);
-        _arrow(svg, mx - dx * 40 - 10, my - dy * 40 - 25, mx + dx * 20 - 10, my + dy * 20 - 25, '#4ECDC4', 2);
-        svg.appendChild(_text(mx - 5, my - 55, 'glissement', { 'font-size': 9, fill: '#4ECDC4', 'text-anchor': 'middle' }));
+        // Flèche du sens de déplacement (descente)
+        svg.appendChild(line(topX - 40, topY + 22, baseX + 60, baseY - 22, { stroke: COLORS.red, 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.5 }));
 
-        svg.appendChild(_text(340, 158, 'Table à coussin d\'air', { 'font-size': 9.5, fill: '#888888', 'text-anchor': 'end' }));
+        // Titre
+        svg.appendChild(text(w / 2, 18, "Table à coussin d'air inclinée", { fill: COLORS.muted, 'font-size': 10.5, 'text-anchor': 'middle' }));
+        svg.appendChild(text(baseX - 10, baseY + 20, 'Sol', { fill: COLORS.muted, 'font-size': 9 }));
     }
 
-    window.drawGraphEm = drawGraphEm;
-    window.drawGraphConservation = drawGraphConservation;
-    window.drawGraphExperience = drawGraphExperience;
+    /* ---------- Initialisation ---------- */
+    function initAll() {
+        drawGraphEm();
+        drawGraphConservation();
+        drawGraphExperience();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
 })();

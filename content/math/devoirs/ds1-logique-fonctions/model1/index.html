@@ -515,17 +515,12 @@
                         <div class="step">
                             <span class="step-num">Raisonnement :</span> On raisonne par contre-exemple. Pour $x=4 \in \mathbb{R}^{*+}$, on a :
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$x+\dfrac{16}{x}=4+\dfrac{16}{4}=4+4=8$$
+                                $$x+\dfrac{16}{x}=4+\dfrac{16}{4}=8 \not> 8$$
                             </div>
-                            <p style="font-size:11px; color:var(--text-muted);">Ce qui n'est pas strictement supérieur à 8.</p>
                         </div>
                         <div class="graph-container">
                             <svg id="fig1_1" width="380" height="250"></svg>
-                            <p>Le minimum de $x+\frac{16}{x}$ vaut exactement 8, atteint en $x=4$.</p>
-                        </div>
-                        <div class="highlight-box green" style="margin-top:6px;">
-                            <span class="label resume">Conclusion</span>
-                            <p>$P_1$ est fausse car il existe $x=4$ tel que $x+\frac{16}{x}=8$.</p>
+                            <p>Minimum de $x+\frac{16}{x}$ égal à 8, atteint en $x=4$.</p>
                         </div>
                         <div class="highlight-box yellow" style="margin-top:6px;">
                             <span class="label rappel">Négation</span>
@@ -546,9 +541,8 @@
                         <div class="step">
                             <span class="step-num">Raisonnement par l'absurde :</span> Supposons qu'il existe $n \in \mathbb{N}$ tel que $\dfrac{n+5}{n+4}=1$. Alors :
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$n+5 = n+4 \iff 5=4$$
+                                $$n+5 = n+4 \iff 5=4 \quad \text{(absurde)}$$
                             </div>
-                            <p style="font-size:11px; color:var(--text-muted);">Ce qui est absurde. Donc notre supposition est fausse.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
@@ -573,9 +567,8 @@
                         <div class="step">
                             <span class="step-num">Raisonnement par contraposée :</span> Montrons que $\dfrac{x}{5+x}=\dfrac{y}{5+y} \Rightarrow x=y$.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$\dfrac{x}{5+x}=\dfrac{y}{5+y} \iff x(5+y)=y(5+x) \iff 5x+xy = 5y+xy \iff 5x=5y \iff x=y$$
+                                $$\dfrac{x}{5+x}=\dfrac{y}{5+y} \iff x(5+y)=y(5+x) \iff 5x=5y \iff x=y$$
                             </div>
-                            <p style="font-size:11px; color:var(--text-muted);">La contraposée étant vraie, l'implication initiale l'est aussi.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
@@ -624,15 +617,9 @@
                     <div class="sol-content">
                         <p style="font-weight:600; color:#BB8FCE;">$P_5$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement :</span> Développons les deux expressions :
+                            <span class="step-num">Développement :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$(x+3)(y-3) = xy - 3x + 3y - 9 \quad \text{et} \quad (x-3)(y+3) = xy + 3x - 3y - 9$$
-                            </div>
-                        </div>
-                        <div class="step">
-                            <span class="step-num">Égalité :</span> Si les deux expressions sont égales, alors :
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$-3x+3y = 3x-3y \iff 6y=6x \iff x=y$$
+                                $$(x+3)(y-3)=(x-3)(y+3) \iff -3x+3y=3x-3y \iff 6y=6x \iff x=y$$
                             </div>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
@@ -769,16 +756,15 @@
                         <div class="step">
                             <span class="step-num">Transformation :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$x^2-2x-1+\sqrt{x-1} < 0 \iff \sqrt{x-1} < -x^2+2x+1 \iff g(x) < f(x)$$
+                                $$x^2-2x-1+\sqrt{x-1} < 0 \iff g(x) < f(x)$$
                             </div>
-                            <p style="font-size:11px; color:var(--text-muted);">Il s'agit donc de trouver où $(C_g)$ est en dessous de $(C_f)$.</p>
                         </div>
                         <div class="step">
-                            <span class="step-num">Résolution :</span> En posant $t = x-1 \ge 0$, l'inéquation devient $\sqrt{t}+t^2 < 2$. La fonction $t \mapsto \sqrt{t} + t^2$ est strictement croissante et vaut 2 en $t=1$. Donc l'inégalité est vraie pour $t \in [0, 1[$, soit $x \in [1, 2[$.
+                            <span class="step-num">Lecture graphique :</span> $(C_g)$ est en dessous de $(C_f)$ sur $[1, 2[$.
                         </div>
                         <div class="graph-container">
                             <svg id="graphIneq" width="380" height="300"></svg>
-                            <p>Zone où $(C_g)$ est en dessous de $(C_f)$ : la solution est $S=[1,2[$.</p>
+                            <p>Zone où $(C_g)$ est en dessous de $(C_f)$.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Solution</span>
@@ -889,10 +875,6 @@
     </div>
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 

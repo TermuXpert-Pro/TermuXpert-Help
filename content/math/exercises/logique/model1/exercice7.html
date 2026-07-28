@@ -178,7 +178,6 @@
         </div>
     </div>
 
-
     <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
 
@@ -421,19 +420,12 @@
                     <div id="sol8a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Initialisation :</strong> $n=0$</p>
-                            <div class="step"><span class="step-num">Étape :</span> $3^{2} + 2^{4} = 9 + 16 = 25 = 5 \times 5$ ✅</div>
-                            <p><strong>Hérédité :</strong> Supposons que $3^{n+2} + 2^{n+4}$ est divisible par 5.</p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $3^{n+3} + 2^{n+5} = 3 \times 3^{n+2} + 2 \times 2^{n+4}$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 3(3^{n+2} + 2^{n+4}) - 2^{n+4}$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $= 3(5k) - 2^{n+4} = 15k - 2^{n+4}$</div>
-                            <p style="color:#FF6B6B;">Cette méthode ne fonctionne pas directement.</p>
-                            <p><strong>Méthode correcte :</strong></p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $3^{n+3} + 2^{n+5} = 3 \times 3^{n+2} + 2 \times 2^{n+4}$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 3(3^{n+2} + 2^{n+4}) - 2^{n+4}$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $= 3(5k) + 2^{n+4}(2-1)$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $= 15k + 2^{n+4}$</div>
-                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
+                            <p><strong>Vérification à $n=0$ :</strong></p>
+                            <div class="step"><span class="step-num">Étape :</span> $3^{2} + 2^{4} = 9 + 16 = 25 = 5 \times 5$ ✅ (divisible par 5)</div>
+                            <p><strong>Vérification à $n=1$ :</strong></p>
+                            <div class="step"><span class="step-num">Étape :</span> $3^{3} + 2^{5} = 27 + 32 = 59$ (59 n'est <strong>pas</strong> divisible par 5)</div>
+                            <p style="color:#FF6B6B;">La propriété est vraie pour $n=0$ mais fausse pour $n=1$ : elle n'est donc <strong>pas vraie pour tout</strong> $n \in \mathbb{N}$. La récurrence ne peut pas fonctionner ici, car l'hérédité échoue (essayer de la "forcer" mènerait à une étape fausse).</p>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est <span style="color:#FF6B6B;">fausse</span> ($n=1$ est un contre-exemple).</p>
                         </div>
                     </div>
                 </div>
@@ -451,8 +443,8 @@
                             <p><strong>Initialisation :</strong> $n=1$</p>
                             <div class="step"><span class="step-num">Étape :</span> $3^{3} + 2^{5} = 27 + 32 = 59$</div>
                             <p>59 n'est pas divisible par 5.</p>
-                            <p style="color:#FF6B6B;"><strong>Conclusion :</strong> La propriété est <span style="color:#FF6B6B;">fausse</span> pour $n=1$.</p>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">(La propriété est vraie pour $n=0$, mais pas pour $n=1$)</p>
+                            <p style="color:#FF6B6B;"><strong>Conclusion :</strong> La propriété est <span style="color:#FF6B6B;">fausse</span> pour $n=1$, donc fausse sur $\mathbb{N}^*$.</p>
+                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">(Comme en (a), la propriété n'est vraie qu'à $n=0$ ; c'est un cas isolé, pas une propriété valable pour tout $n$.)</p>
                         </div>
                     </div>
                 </div>
@@ -572,10 +564,6 @@
     </div>
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 

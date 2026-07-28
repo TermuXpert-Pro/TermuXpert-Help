@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XVMNBPXC9D');
-</script>
     <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
     <script type="application/ld+json">
     {
@@ -93,12 +84,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas,
-        .graph-container svg {
-            max-width: 100%;
+        .graph-container svg.xfig {
             width: 100%;
+            max-width: 400px;
             height: auto;
-            max-height: 220px;
+            display: block;
+            margin: 0 auto;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -315,13 +306,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
-                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
-                        <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
                     <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
                         <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
                         <span class="sidebar-link-text">Calendrier</span>
@@ -443,7 +427,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <svg id="graphReference" role="img" aria-label="Schéma Reference"></svg>
+                    <svg id="graphReference" class="xfig" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Etat de reference de l'energie potentielle de pesanteur"></svg>
                     <p>État de référence pour l'énergie potentielle de pesanteur</p>
                 </div>
 
@@ -507,7 +491,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <svg id="graphVariation" role="img" aria-label="Schéma Variation"></svg>
+                    <svg id="graphVariation" class="xfig" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Variation de Epp entre A et B"></svg>
                     <p>Variation de $E_{pp}$ entre A et B</p>
                 </div>
 
@@ -573,7 +557,7 @@
                 </div>
 
                 <div class="graph-container">
-                    <svg id="graphRelation" role="img" aria-label="Schéma Relation"></svg>
+                    <svg id="graphRelation" class="xfig" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Relation entre variation de Epp et travail du poids"></svg>
                     <p>Relation entre $\Delta E_{pp}$ et le travail du poids</p>
                 </div>
 
@@ -630,13 +614,6 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-    <script src="figuresvt_p2.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -645,6 +622,262 @@
             }
         });
 
+        // ============================================================
+        // GRAPHIQUES (ancien code canvas — désactivé, remplacé par figuresvt_p2.js)
+        // ============================================================
+        /*
+        function drawGraphReference() {
+            var canvas = document.getElementById('graphReference');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = h/2 + 10;
+
+            // Axe vertical
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx, 20);
+            ctx.lineTo(cx, h-20);
+            ctx.stroke();
+
+            // Flèche
+            ctx.beginPath();
+            ctx.moveTo(cx, 20);
+            ctx.lineTo(cx-6, 26);
+            ctx.moveTo(cx, 20);
+            ctx.lineTo(cx+6, 26);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('z', cx+10, 30);
+
+            // Sol
+            ctx.fillStyle = '#2A2A3E';
+            ctx.fillRect(0, h-25, w, 5);
+            ctx.fillStyle = '#888888';
+            ctx.font = '9px Arial';
+            ctx.fillText('Sol', 20, h-10);
+
+            // Point de référence
+            var zref = cy - 40;
+            ctx.strokeStyle = '#F4D03F';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6,4]);
+            ctx.beginPath();
+            ctx.moveTo(cx-40, zref);
+            ctx.lineTo(cx+40, zref);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '11px Arial';
+            ctx.fillText('z = zref', cx+45, zref+4);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '10px Arial';
+            ctx.fillText('(Epp = 0)', cx+45, zref+18);
+
+            // Point M
+            var zM = cy - 100;
+            ctx.fillStyle = '#FF6B6B';
+            ctx.beginPath();
+            ctx.arc(cx-50, zM, 5, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('M (z)', cx-65, zM-10);
+
+            // Flèche entre zref et zM
+            ctx.strokeStyle = '#FFD93D';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(cx-30, zref);
+            ctx.lineTo(cx-30, zM);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cx-30, zM);
+            ctx.lineTo(cx-34, zM+4);
+            ctx.moveTo(cx-30, zM);
+            ctx.lineTo(cx-26, zM+4);
+            ctx.stroke();
+
+            ctx.fillStyle = '#888888';
+            ctx.font = '9px Arial';
+            ctx.fillText('h = z - zref', cx-60, (zref+zM)/2);
+
+            // Epp = 0
+            ctx.fillStyle = '#A8FF78';
+            ctx.font = '9px Arial';
+            ctx.fillText('Epp = 0', cx+25, zref-4);
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '9px Arial';
+            ctx.fillText('Epp > 0', cx+25, zM-4);
+        }
+
+        function drawGraphVariation() {
+            var canvas = document.getElementById('graphVariation');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = h/2 + 20;
+
+            // Axe vertical
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx, 20);
+            ctx.lineTo(cx, h-20);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('z', cx+10, 30);
+
+            // Sol
+            ctx.fillStyle = '#2A2A3E';
+            ctx.fillRect(0, h-25, w, 5);
+            ctx.fillStyle = '#888888';
+            ctx.font = '9px Arial';
+            ctx.fillText('Sol', 20, h-10);
+
+            // Point A
+            var zA = cy - 40;
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(cx-50, zA, 5, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('A (zA)', cx-65, zA-10);
+
+            // Point B
+            var zB = cy - 100;
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(cx-50, zB, 5, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('B (zB)', cx-65, zB-10);
+
+            // Flèche de variation
+            ctx.strokeStyle = '#FFD93D';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx-30, zA);
+            ctx.lineTo(cx-30, zB);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cx-30, zB);
+            ctx.lineTo(cx-34, zB+4);
+            ctx.moveTo(cx-30, zB);
+            ctx.lineTo(cx-26, zB+4);
+            ctx.stroke();
+
+            ctx.fillStyle = '#FFD93D';
+            ctx.font = '10px Arial';
+            ctx.fillText('Δz = zB - zA > 0', cx-75, (zA+zB)/2-10);
+
+            // ΔEpp
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '10px Arial';
+            ctx.fillText('ΔEpp = mg(zB - zA) > 0', 20, 20);
+        }
+
+        function drawGraphRelation() {
+            var canvas = document.getElementById('graphRelation');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var w = canvas.width, h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#0D1117';
+            ctx.fillRect(0, 0, w, h);
+
+            var cx = w/2, cy = h/2 + 20;
+
+            // Axe vertical
+            ctx.strokeStyle = '#4ECDC4';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx, 20);
+            ctx.lineTo(cx, h-20);
+            ctx.stroke();
+
+            ctx.fillStyle = '#4ECDC4';
+            ctx.font = '12px Arial';
+            ctx.fillText('z', cx+10, 30);
+
+            // Sol
+            ctx.fillStyle = '#2A2A3E';
+            ctx.fillRect(0, h-25, w, 5);
+            ctx.fillStyle = '#888888';
+            ctx.font = '9px Arial';
+            ctx.fillText('Sol', 20, h-10);
+
+            // Point A (en haut)
+            var zA = cy - 100;
+            ctx.fillStyle = '#4ECDC4';
+            ctx.beginPath();
+            ctx.arc(cx-40, zA, 5, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('A', cx-55, zA-10);
+
+            // Point B (en bas)
+            var zB = cy - 40;
+            ctx.fillStyle = '#F4D03F';
+            ctx.beginPath();
+            ctx.arc(cx-40, zB, 5, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '11px Arial';
+            ctx.fillText('B', cx-55, zB-10);
+
+            // Flèche de descente (poids)
+            ctx.strokeStyle = '#FF6B6B';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(cx+20, zA);
+            ctx.lineTo(cx+20, zB);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cx+20, zB);
+            ctx.lineTo(cx+16, zB+4);
+            ctx.moveTo(cx+20, zB);
+            ctx.lineTo(cx+24, zB+4);
+            ctx.stroke();
+
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '11px Arial';
+            ctx.fillText('P', cx+24, (zA+zB)/2);
+
+            // Epp
+            ctx.fillStyle = '#F4D03F';
+            ctx.font = '10px Arial';
+            ctx.fillText('Epp(A) > Epp(B)', 20, 30);
+            ctx.fillStyle = '#FF6B6B';
+            ctx.font = '10px Arial';
+            ctx.fillText('W(P) = Epp(A) - Epp(B) > 0', 20, 45);
+
+            // Légende
+            ctx.fillStyle = '#888888';
+            ctx.font = '9px Arial';
+            ctx.fillText('ΔEpp = -W(P)', 20, 60);
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
@@ -653,7 +886,9 @@
                 drawGraphRelation();
             }, 500);
         });
+        */
     </script>
+    <script src="figuresvt_p2.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     
