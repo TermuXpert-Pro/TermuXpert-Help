@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Série 6 - Généralités sur les fonctions | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 6px 0; -webkit-overflow-scrolling: touch; }
+        .table-wrap table { width: auto; min-width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; margin: 0 auto; }
+        .table-wrap th, .table-wrap td { padding: 4px 10px; border: 1px solid var(--border); text-align: center; white-space: nowrap; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); font-weight: 700; font-size: 11px; min-width: 40px; }
+        .table-wrap td { color: var(--text-secondary); font-size: 11px; min-width: 40px; }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+.lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        .serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color: #4ECDC4;
+            font-weight: 700;
+        }
+        .badge-exo {
+            display: inline-block;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-list-check" style="color:#4ECDC4;"></i> Série 6 - Généralités sur les fonctions</h1>
+            <div class="serie-title">Exercices <span>41 à 48</span></div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 41 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">41</span> Périodicité</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">1) Quelle est la période des fonctions suivantes :</p>
+
+                <div class="sub-question">
+                    <div class="letter">a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$f(x) = \sin(4x-1)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol41a')">Voir la solution</button>
+                    <div id="sol41a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La période de $\sin(ax+b)$ est $T = \dfrac{2\pi}{|a|}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Ici $a = 4$, donc $T = \dfrac{2\pi}{4} = \dfrac{\pi}{2}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $T = \dfrac{\pi}{2}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$g(x) = \cos(5x)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol41b')">Voir la solution</button>
+                    <div id="sol41b" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> La période de $\cos(ax)$ est $T = \dfrac{2\pi}{|a|}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Ici $a = 5$, donc $T = \dfrac{2\pi}{5}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $T = \dfrac{2\pi}{5}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Trouver une fonction de période $T = \dfrac{3}{4}$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol41c')">Voir la solution</button>
+                    <div id="sol41c" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> On cherche $f(x) = \sin(ax)$ avec $T = \dfrac{2\pi}{a} = \dfrac{3}{4}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $a = \dfrac{2\pi}{3/4} = \dfrac{8\pi}{3}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f(x) = \sin\left(\dfrac{8\pi}{3}x\right)$ a pour période $T = \dfrac{3}{4}$.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 42 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">42</span> Fonction périodique</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit f une fonction périodique de période $T=2$ telle que $f(x)=2x-x^2$ pour $x \in [0;2]$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Tracer la représentation graphique sur $[-2;8]$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol42_1')">Voir la solution</button>
+                    <div id="sol42_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p>La fonction est périodique de période 2, donc la courbe se répète tous les 2 unités.</p>
+                            <div class="graph-container">
+                                <svg id="graph42" class="graph-svg" width="400" height="150" viewBox="0 0 400 150"></svg>
+                                <p>Périodicité de $f(x) = 2x - x^2$ sur $[0;2]$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer $f(4.1)$, $f(-3.5)$, $f(265.11)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol42_2')">Voir la solution</button>
+                    <div id="sol42_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(4.1) = f(4.1 - 4) = f(0.1)$ car $T=2$
+                                <br>$f(0.1) = 2(0.1) - (0.1)^2 = 0.2 - 0.01 = 0.19$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $f(-3.5) = f(-3.5 + 4) = f(0.5)$
+                                <br>$f(0.5) = 2(0.5) - (0.5)^2 = 1 - 0.25 = 0.75$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $f(265.11) = f(265.11 - 264) = f(1.11)$
+                                <br>$f(1.11) = 2(1.11) - (1.11)^2 = 2.22 - 1.2321 = 0.9879$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>$f(4.1) = 0.19$</li>
+                                <li>$f(-3.5) = 0.75$</li>
+                                <li>$f(265.11) = 0.9879$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Donner l'expression de f sur $I_k = [2k; 2(k+1)]$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol42_3')">Voir la solution</button>
+                    <div id="sol42_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Pour $x \in [2k; 2(k+1)]$, on a $x-2k \in [0;2]$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $f(x) = f(x-2k) = 2(x-2k) - (x-2k)^2$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f(x) = 2(x-2k) - (x-2k)^2$ pour $x \in [2k; 2(k+1)]$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 43 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">43</span> Résolutions graphiques</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = x^3 - 4x^2 + 3$ et la droite $(D): y = -x - 3$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Résoudre graphiquement $f(x) = 3$ puis $f(x) < 3$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol43_1')">Voir la solution</button>
+                    <div id="sol43_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(x) = 3 \iff x^3 - 4x^2 + 3 = 3 \iff x^3 - 4x^2 = 0 \iff x^2(x-4) = 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $x = 0$ ou $x = 4$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $f(x) < 3 \iff x^3 - 4x^2 < 0 \iff x^2(x-4) < 0 \iff x \in ]-\infty; 0[ \cup ]0; 4[$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>$f(x) = 3 \iff x \in \{0, 4\}$</li>
+                                <li>$f(x) < 3 \iff x \in ]-\infty; 0[ \cup ]0; 4[$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Résoudre graphiquement $f(x) = 0$ puis $f(x) \ge 0$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol43_2')">Voir la solution</button>
+                    <div id="sol43_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(x) = 0 \iff x^3 - 4x^2 + 3 = 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $x = 1$ est une racine : $1 - 4 + 3 = 0$ ✅
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $x^3 - 4x^2 + 3 = (x-1)(x^2 - 3x - 3)$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> $x^2 - 3x - 3 = 0 \iff x = \dfrac{3 \pm \sqrt{9+12}}{2} = \dfrac{3 \pm \sqrt{21}}{2}$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f(x) \ge 0 \iff x \in \left[\dfrac{3-\sqrt{21}}{2}; 1\right] \cup \left[\dfrac{3+\sqrt{21}}{2}; +\infty\right[$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Résoudre graphiquement $f(x) = -x-3$ puis $f(x) \le -x-3$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol43_3')">Voir la solution</button>
+                    <div id="sol43_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(x) = -x-3 \iff x^3 - 4x^2 + 3 = -x-3 \iff x^3 - 4x^2 + x + 6 = 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $x = 2$ est une racine : $8 - 16 + 2 + 6 = 0$ ✅
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $x^3 - 4x^2 + x + 6 = (x-2)(x^2 - 2x - 3) = (x-2)(x-3)(x+1)$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>$f(x) = -x-3 \iff x \in \{-1, 2, 3\}$</li>
+                                <li>$f(x) \le -x-3 \iff x \in [-1; 2] \cup [3; +\infty[$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 44 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">44</span> Résolutions graphiques et algébriques</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = x^2 - 3x - 4$ et $g(x) = 3x + 12$</p>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Résoudre algébriquement $f(x) = g(x)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol44_2')">Voir la solution</button>
+                    <div id="sol44_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $x^2 - 3x - 4 = 3x + 12$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $x^2 - 6x - 16 = 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $\Delta = 36 + 64 = 100$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> $x_1 = \dfrac{6-10}{2} = -2$, $x_2 = \dfrac{6+10}{2} = 8$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $S = \{-2, 8\}$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Résoudre algébriquement $f(x) \ge g(x)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol44_3')">Voir la solution</button>
+                    <div id="sol44_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $x^2 - 3x - 4 \ge 3x + 12$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $x^2 - 6x - 16 \ge 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $(x+2)(x-8) \ge 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> Tableau de signe :
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-2$</th><th></th><th>$8$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$x+2$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td><td class="true">+</td></tr>
+                                    <tr><td>$x-8$</td><td class="false">−</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
+                                    <tr><td>Produit</td><td class="true">+</td><td>0</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
+                                </table>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $S = ]-\infty, -2] \cup [8, +\infty[$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Trouver les points d'intersection de $(C_f)$ avec les axes</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol44_4')">Voir la solution</button>
+                    <div id="sol44_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Axe des abscisses (y = 0) :</span> $x^2 - 3x - 4 = 0 \iff (x-4)(x+1) = 0$
+                                <br>$x = 4$ ou $x = -1$
+                                <br>Points : $A(4,0)$ et $B(-1,0)$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Axe des ordonnées (x = 0) :</span> $f(0) = -4$
+                                <br>Point : $C(0,-4)$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>Axe des abscisses : $A(4,0)$, $B(-1,0)$</li>
+                                <li>Axe des ordonnées : $C(0,-4)$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 45 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">45</span> Tableaux de variations et intersections</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = -x^2 - 2x + 3$ et $g(x) = \dfrac{x-1}{x+2}$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Dresser le tableau de variations de f et g</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol45_1')">Voir la solution</button>
+                    <div id="sol45_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Pour f :</strong></p>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f'(x) = -2x - 2 = -2(x+1)$
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-1$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$f'(x)$</td><td class="true">+</td><td>$0$</td><td class="false">−</td></tr>
+                                    <tr><td>$f(x)$</td><td>$\nearrow$</td><td>$4$</td><td>$\searrow$</td></tr>
+                                </table>
+                            </div>
+                            <p style="margin-top:8px;"><strong>Pour g :</strong></p>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $D_g = \mathbb{R} \setminus \{-2\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $g'(x) = \dfrac{1(x+2) - (x-1)}{(x+2)^2} = \dfrac{x+2-x+1}{(x+2)^2} = \dfrac{3}{(x+2)^2} > 0$
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-2$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$g'(x)$</td><td class="true">+</td><td>||</td><td class="true">+</td></tr>
+                                    <tr><td>$g(x)$</td><td>$\nearrow$</td><td>||</td><td>$\nearrow$</td></tr>
+                                </table>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>f : croissante sur $]-\infty, -1]$, décroissante sur $[-1, +\infty[$</li>
+                                <li>g : strictement croissante sur $]-\infty, -2[$ et sur $]-2, +\infty[$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Trouver les points d'intersection de $(C_f)$ avec l'axe des abscisses</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol45_2a')">Voir la solution</button>
+                    <div id="sol45_2a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(x) = 0 \iff -x^2 - 2x + 3 = 0 \iff x^2 + 2x - 3 = 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $(x+3)(x-1) = 0 \iff x = -3$ ou $x = 1$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> Points : $A(-3,0)$ et $B(1,0)$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Trouver le point d'intersection de $(C_g)$ avec l'axe des abscisses</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol45_2b')">Voir la solution</button>
+                    <div id="sol45_2b" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $g(x) = 0 \iff \dfrac{x-1}{x+2} = 0 \iff x-1 = 0 \iff x = 1$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> Point : $C(1,0)$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Résoudre graphiquement $f(x) = g(x)$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol45_4a')">Voir la solution</button>
+                    <div id="sol45_4a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(x) = g(x) \iff -x^2 - 2x + 3 = \dfrac{x-1}{x+2}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $(-x^2 - 2x + 3)(x+2) = x-1$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $(-x^2 - 2x + 3)(x+2) - x + 1 = 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> Après développement : $-x^3 - 4x^2 - x + 7 = 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 5 :</span> $x = 1$ n'est pas une racine : $-1 - 4 - 1 + 7 = 1 \ne 0$ ❌
+                            </div>
+                            <p style="color:#FF6B6B;">Les calculs sont complexes, la résolution graphique est plus simple.</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Graphiquement :</strong> Les points d'intersection sont environ $x \approx -2.7$ et $x \approx 1.2$</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 46 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">46</span> Fonction minorée et majorée</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = \sqrt{x} + \sqrt{x} - \sqrt{x}$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer $D_f$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol46_1')">Voir la solution</button>
+                    <div id="sol46_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(x) = \sqrt{x} + \sqrt{x} - \sqrt{x} = \sqrt{x}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $\sqrt{x}$ est définie pour $x \ge 0$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_f = [0, +\infty[$</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que f est minorée</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol46_2')">Voir la solution</button>
+                    <div id="sol46_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $\sqrt{x} \ge 0$ pour tout $x \ge 0$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est minorée par $m = 0$.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que f est majorée par $\dfrac{1}{2}$ et conclure</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol46_3')">Voir la solution</button>
+                    <div id="sol46_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $\sqrt{x}$ n'est pas majorée par $\dfrac{1}{2}$ car pour $x = 1$, $\sqrt{1} = 1 > \dfrac{1}{2}$
+                            </div>
+                            <p style="color:#FF6B6B; margin-top:4px;"><strong>Conclusion :</strong> L'énoncé contient une erreur, $\sqrt{x}$ n'est pas majorée.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 47 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">47</span> Valeur minimale</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $f(x) = x^2 + 2x\sqrt{x} + x - 4$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que f admet une valeur minimale</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol47_1')">Voir la solution</button>
+                    <div id="sol47_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $f(x) = x^2 + 2x\sqrt{x} + x - 4 = (\sqrt{x})^4 + 2(\sqrt{x})^3 + (\sqrt{x})^2 - 4$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> Posons $t = \sqrt{x} \ge 0$, $f(t) = t^4 + 2t^3 + t^2 - 4 = t^2(t+1)^2 - 4$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $t^2(t+1)^2 \ge 0 \Rightarrow f(t) \ge -4$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> $f(0) = -4$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La valeur minimale est <strong>$m = -4$</strong> atteinte en $x = 0$.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer que f n'est pas majorée</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol47_2')">Voir la solution</button>
+                    <div id="sol47_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> Quand $x \to +\infty$, $f(x) \sim x^2 \to +\infty$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ n'est <strong>pas majorée</strong> sur $[0, +\infty[$.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 48 -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">48</span> Variations et composée</h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $g(x) = \dfrac{2x+3}{x-1}$ et $h(x) = x^2 + 2$</p>
+
+                <div class="sub-question">
+                    <div class="letter">1a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Étudier les variations de g</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol48_1a')">Voir la solution</button>
+                    <div id="sol48_1a" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $D_g = \mathbb{R} \setminus \{1\}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $g'(x) = \dfrac{2(x-1) - (2x+3)}{(x-1)^2} = \dfrac{2x-2-2x-3}{(x-1)^2} = \dfrac{-5}{(x-1)^2} < 0$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est strictement décroissante sur $]-\infty,1[$ et sur $]1,+\infty[$.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">1b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Étudier le signe de g</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol48_1b')">Voir la solution</button>
+                    <div id="sol48_1b" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $g(x) = 0 \iff 2x+3 = 0 \iff x = -\dfrac{3}{2}$
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <tr><th>$x$</th><th>$-\infty$</th><th>$-\frac{3}{2}$</th><th></th><th>$1$</th><th>$+\infty$</th></tr>
+                                    <tr><td>$2x+3$</td><td class="false">−</td><td>0</td><td class="true">+</td><td class="true">+</td><td class="true">+</td></tr>
+                                    <tr><td>$x-1$</td><td class="false">−</td><td class="false">−</td><td class="false">−</td><td>0</td><td class="true">+</td></tr>
+                                    <tr><td>$g(x)$</td><td class="true">+</td><td>0</td><td class="false">−</td><td>||</td><td class="true">+</td></tr>
+                                </table>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>$g(x) > 0$ sur $]-\infty, -\frac{3}{2}[ \cup ]1, +\infty[$</li>
+                                <li>$g(x) < 0$ sur $]-\frac{3}{2}, 1[$</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $f(x) = (h \circ g)(x)$ où $f(x) = \dfrac{6x^2+8x+11}{(x-1)^2}$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol48_2')">Voir la solution</button>
+                    <div id="sol48_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $(h \circ g)(x) = h(g(x)) = (g(x))^2 + 2 = \left(\dfrac{2x+3}{x-1}\right)^2 + 2$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $= \dfrac{(2x+3)^2}{(x-1)^2} + 2 = \dfrac{4x^2+12x+9}{(x-1)^2} + \dfrac{2(x-1)^2}{(x-1)^2}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $= \dfrac{4x^2+12x+9 + 2x^2 - 4x + 2}{(x-1)^2} = \dfrac{6x^2+8x+11}{(x-1)^2} = f(x)$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f = h \circ g$ ✅</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Étudier les variations de f sur $]1, +\infty[$, $[-\frac{3}{2}, 1[$ et $]-\infty, -\frac{3}{2}]$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol48_3')">Voir la solution</button>
+                    <div id="sol48_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> $g$ est décroissante sur chaque intervalle.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> $h(x) = x^2 + 2$ est croissante sur $[0, +\infty[$ et décroissante sur $]-\infty, 0]$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> $g(x) > 0$ sur $]-\infty, -\frac{3}{2}[$ et $]1, +\infty[$ ; $g(x) < 0$ sur $]-\frac{3}{2}, 1[$
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
+                            <ul style="font-size:12px;">
+                                <li>Sur $]1, +\infty[$ : $g$ décroissante, $g>0$, $h$ croissante → $f$ est <strong>décroissante</strong></li>
+                                <li>Sur $[-\frac{3}{2}, 1[$ : $g$ décroissante, $g<0$, $h$ décroissante → $f$ est <strong>croissante</strong></li>
+                                <li>Sur $]-\infty, -\frac{3}{2}]$ : $g$ décroissante, $g>0$, $h$ croissante → $f$ est <strong>décroissante</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie5.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série 5</a>
+                <a href="serie7.html" class="next-btn">Série 7 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="../../../../../assets/js/figuresvt.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+    </script>
+</body>
+</html>

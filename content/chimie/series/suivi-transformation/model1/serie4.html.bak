@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Série 4 - Suivi d'une transformation chimique | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 500px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color:var(--gold-text); font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(244, 208, 63, 0.15);
+            color:var(--gold-text);
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color:var(--gold-text);
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #F4D03F;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color:var(--gold-text);
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color:var(--gold-text);
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #F4D03F;
+            background: rgba(244, 208, 63, 0.1);
+        }
+.serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color:var(--gold-text);
+            font-weight: 700;
+        }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(244, 208, 63, 0.15);
+            color:var(--gold-text);
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-difficulty {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .badge-facile { background: #4ECDC422; color: #4ECDC4; }
+        .badge-moyen { background: #F4D03F22; color:var(--gold-text); }
+        .badge-difficile { background: #FF6B6B22; color: #FF6B6B; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#4ECDC4" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-industry" style="color:var(--gold-text);"></i> Série 4 - Suivi d'une transformation chimique</h1>
+            <div class="serie-title">Exercices <span>11 à 14</span> : Applications industrielles - Synthèse</div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 11 : Pyrite de cuivre -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">11</span> Traitement de la pyrite de cuivre</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Industrie</span>
+                    <span class="badge-difficulty badge-difficile">Difficile</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Le minerai de cuivre, une pyrite de formule CuS, est d'abord grillé dans un grand four rotatif :
+                </p>
+                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                    $$2\text{CuS} + 3\text{O}_2 \longrightarrow 2\text{CuO} + 2\text{SO}_2$$
+                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    L'oxyde de cuivre II récupéré est ensuite réduit par du carbone :
+                </p>
+                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                    $$2\text{CuO} + \text{C} \longrightarrow 2\text{Cu} + \text{CO}_2$$
+                </div>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    L'étape intermédiaire a fourni \(50\text{ kg}\) d'oxyde de cuivre II.
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Cu} = 63,5\text{ g/mol}\), \(M_O = 16\text{ g/mol}\), \(M_S = 32\text{ g/mol}\), \(V_m = 24,0\text{ L/mol}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Établir le tableau d'avancement de la réaction de réduction (\(2\text{CuO} + \text{C} \rightarrow 2\text{Cu} + \text{CO}_2\)). Le carbone est en excès. Déterminer l'avancement maximal.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_1')">Voir la solution</button>
+                    <div id="sol11_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Masse molaire de CuO :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{CuO}) = 63,5 + 16 = 79,5\text{ g/mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Quantité de CuO :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{CuO}) = \frac{50 \times 10^3}{79,5} = 629\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Tableau d'avancement :</span>
+                                <div class="table-wrap">
+                                    <table>
+                                        <tr>
+                                            <th>Équation</th>
+                                            <th>\(2\text{CuO}\)</th>
+                                            <th>+</th>
+                                            <th>\(\text{C}\)</th>
+                                            <th>→</th>
+                                            <th>\(2\text{Cu}\)</th>
+                                            <th>+</th>
+                                            <th>\(\text{CO}_2\)</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État initial</strong></td>
+                                            <td>629</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>0</td>
+                                            <td></td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État final</strong></td>
+                                            <td>\(629 - 2x_f\)</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>\(2x_f\)</td>
+                                            <td></td>
+                                            <td>\(x_f\)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">
+                                    \(x_f = \frac{629}{2} = 314,5\text{ mol}\)
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$x_{max} = 314,5\text{ mol}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle masse de cuivre peut-on théoriquement obtenir ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_2')">Voir la solution</button>
+                    <div id="sol11_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Quantité de Cu :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Cu}) = 2x_f = 2 \times 314,5 = 629\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse de Cu :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m(\text{Cu}) = 629 \times 63,5 = 39,9 \times 10^3\text{ g} = 39,9\text{ kg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{Cu}) = 39,9\text{ kg}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quel volume de dioxyde de carbone obtient-on ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_3')">Voir la solution</button>
+                    <div id="sol11_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Quantité de CO₂ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{CO}_2) = x_f = 314,5\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Volume de CO₂ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V(\text{CO}_2) = 314,5 \times 24,0 = 7,55 \times 10^3\text{ L}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$V(\text{CO}_2) = 7,55 \times 10^3\text{ L}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Établir le tableau d'avancement de la réaction de grillage (\(2\text{CuS} + 3\text{O}_2 \rightarrow 2\text{CuO} + 2\text{SO}_2\)). Le dioxygène est en excès. Déterminer la masse de pyrite CuS mise en jeu.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_4')">Voir la solution</button>
+                    <div id="sol11_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Tableau d'avancement :</span>
+                                <div class="table-wrap">
+                                    <table>
+                                        <tr>
+                                            <th>Équation</th>
+                                            <th>\(2\text{CuS}\)</th>
+                                            <th>+</th>
+                                            <th>\(3\text{O}_2\)</th>
+                                            <th>→</th>
+                                            <th>\(2\text{CuO}\)</th>
+                                            <th>+</th>
+                                            <th>\(2\text{SO}_2\)</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État initial</strong></td>
+                                            <td>\(n_i\)</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>0</td>
+                                            <td></td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>État final</strong></td>
+                                            <td>\(n_i - 2x_f\)</td>
+                                            <td></td>
+                                            <td>excès</td>
+                                            <td></td>
+                                            <td>\(2x_f\)</td>
+                                            <td></td>
+                                            <td>\(2x_f\)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">CuO formé = 629 mol :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{CuO}) = 2x_f = 629 \Rightarrow x_f = 314,5\text{ mol}$$
+                                    $$n_i(\text{CuS}) = 2x_f = 629\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse de CuS :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{CuS}) = 63,5 + 32 = 95,5\text{ g/mol}$$
+                                    $$m(\text{CuS}) = 629 \times 95,5 = 60,1 \times 10^3\text{ g} = 60,1\text{ kg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{CuS}) = 60,1\text{ kg}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Sachant que le grillage s'est effectué avec un rendement de \(70\%\), quelle masse de pyrite CuS a été mise en jeu ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11_5')">Voir la solution</button>
+                    <div id="sol11_5" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Rendement :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\eta = 70\% = 0,70 = \frac{m_{\text{théorique}}}{m_{\text{réelle}}}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse réelle de CuS :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m_{\text{réelle}} = \frac{m_{\text{théorique}}}{\eta} = \frac{60,1}{0,70} = 85,9\text{ kg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m_{\text{CuS}} = 85,9\text{ kg}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 12 : Fluorure d'aluminium -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">12</span> Synthèse du fluorure d'aluminium</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Synthèse</span>
+                    <span class="badge-difficulty badge-difficile">Difficile</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Le fluorure d'aluminium \(\text{AlF}_3\) est obtenu par action du fluorure d'hydrogène HF sur l'alumine \(\text{Al}_2\text{O}_3\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Al} = 27\text{ g/mol}\), \(M_F = 19\text{ g/mol}\), \(M_O = 16\text{ g/mol}\), \(M_H = 1\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_1')">Voir la solution</button>
+                    <div id="sol12_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\text{Al}_2\text{O}_3 + 6\text{HF} \longrightarrow 2\text{AlF}_3 + 3\text{H}_2\text{O}$$
+                                </div>
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted);">Vérification : Al (2 à gauche, 2 à droite), O (3 à gauche, 3 à droite), H (6 à gauche, 6 à droite), F (6 à gauche, 6 à droite).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        On souhaite obtenir \(1,00\text{ kg}\) de \(\text{AlF}_3\). Déterminer les masses de réactifs nécessaires.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12_2')">Voir la solution</button>
+                    <div id="sol12_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Masses molaires :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{AlF}_3) = 27 + 3 \times 19 = 84\text{ g/mol}$$
+                                    $$M(\text{Al}_2\text{O}_3) = 2 \times 27 + 3 \times 16 = 102\text{ g/mol}$$
+                                    $$M(\text{HF}) = 1 + 19 = 20\text{ g/mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Quantité de AlF₃ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{AlF}_3) = \frac{1000}{84} = 11,90\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Quantités nécessaires :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Al}_2\text{O}_3) = \frac{11,90}{2} = 5,95\text{ mol}$$
+                                    $$n(\text{HF}) = 3 \times 11,90 = 35,7\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masses :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m(\text{Al}_2\text{O}_3) = 5,95 \times 102 = 607\text{ g} = 0,607\text{ kg}$$
+                                    $$m(\text{HF}) = 35,7 \times 20 = 714\text{ g} = 0,714\text{ kg}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(m(\text{Al}_2\text{O}_3) = 0,607\text{ kg}\)</li>
+                                    <li>\(m(\text{HF}) = 0,714\text{ kg}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 13 : Propulsion des missiles -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">13</span> Propulsion des missiles</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Propulsion</span>
+                    <span class="badge-difficulty badge-difficile">Difficile</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Le perchlorate d'ammonium \(\text{NH}_4\text{ClO}_4\) se décompose en diazote, chlorure d'hydrogène, eau et dioxygène. Le dioxygène formé se combine à l'aluminium pour donner l'alumine \(\text{Al}_2\text{O}_3\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Al} = 27\text{ g/mol}\), \(M_{Cl} = 35,5\text{ g/mol}\), \(M_N = 14\text{ g/mol}\), \(M_H = 1\text{ g/mol}\), \(M_O = 16\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation bilan de la décomposition du perchlorate d'ammonium.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_1')">Voir la solution</button>
+                    <div id="sol13_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$2\text{NH}_4\text{ClO}_4 \longrightarrow \text{N}_2 + 2\text{HCl} + 3\text{H}_2\text{O} + \text{O}_2$$
+                                </div>
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted);">Vérification : N (2 à gauche, 2 à droite), H (8 à gauche, 2+6=8 à droite), Cl (2 à gauche, 2 à droite), O (8 à gauche, 3+1=4? non)</p>
+                            <p style="font-size:11px; color:#FF6B6B;">Correction :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$2\text{NH}_4\text{ClO}_4 \longrightarrow \text{N}_2 + 2\text{HCl} + 3\text{H}_2\text{O} + \frac{5}{2}\text{O}_2$$
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted);">Ou multipliée par 2 : \(4\text{NH}_4\text{ClO}_4 \rightarrow 2\text{N}_2 + 4\text{HCl} + 6\text{H}_2\text{O} + 5\text{O}_2\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de la réaction entre l'aluminium et le dioxygène.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_2')">Voir la solution</button>
+                    <div id="sol13_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$4\text{Al} + 3\text{O}_2 \longrightarrow 2\text{Al}_2\text{O}_3$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Montrer que ces deux réactions peuvent être traduites par l'équation bilan suivante :
+                        $$6\text{NH}_4\text{ClO}_4 + 10\text{Al} \longrightarrow 3\text{N}_2 + 6\text{HCl} + 9\text{H}_2\text{O} + 5\text{Al}_2\text{O}_3$$
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_3')">Voir la solution</button>
+                    <div id="sol13_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Décomposition du perchlorate (multipliée par 3) :</span>
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$6\text{NH}_4\text{ClO}_4 \longrightarrow 3\text{N}_2 + 6\text{HCl} + 9\text{H}_2\text{O} + \frac{15}{2}\text{O}_2$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Combustion de l'aluminium (multipliée par 5/2) :</span>
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$10\text{Al} + \frac{15}{2}\text{O}_2 \longrightarrow 5\text{Al}_2\text{O}_3$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Somme des deux équations :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$6\text{NH}_4\text{ClO}_4 + 10\text{Al} \longrightarrow 3\text{N}_2 + 6\text{HCl} + 9\text{H}_2\text{O} + 5\text{Al}_2\text{O}_3$$
+                                </div>
+                            </div>
+                            <p style="font-size:11px; color:#4ECDC4;">✅ L'équation globale est bien équilibrée.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Un petit missile contient \(54,0\text{ g}\) d'aluminium. Quelle masse minimale de perchlorate d'ammonium doit-il contenir ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13_4')">Voir la solution</button>
+                    <div id="sol13_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Quantité d'aluminium :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Al}) = \frac{54,0}{27} = 2,00\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">D'après l'équation, 10 Al réagissent avec 6 NH₄ClO₄ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{NH}_4\text{ClO}_4) = \frac{6}{10} \times n(\text{Al}) = 0,6 \times 2,00 = 1,20\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse molaire de NH₄ClO₄ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{NH}_4\text{ClO}_4) = 14 + 4 \times 1 + 35,5 + 4 \times 16 = 117,5\text{ g/mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$m(\text{NH}_4\text{ClO}_4) = 1,20 \times 117,5 = 141\text{ g}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{NH}_4\text{ClO}_4) = 141\text{ g}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 14 : Précipitation du chlorure d'argent -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">14</span> Précipitation du chlorure d'argent</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Précipitation</span>
+                    <span class="badge-difficulty badge-moyen">Moyen</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On mélange \(100\text{ mL}\) d'une solution de chlorure de calcium \(\text{CaCl}_2\) et \(100\text{ mL}\) d'une solution de nitrate d'argent \(\text{AgNO}_3\). Les deux solutions ont même concentration molaire \(C = 1,0 \times 10^{-2}\text{ mol/L}\). Les ions \(\text{Ag}^+\) et \(\text{Cl}^-\) précipitent pour donner du chlorure d'argent \(\text{AgCl}\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(M_{Ag} = 108\text{ g/mol}\), \(M_{Cl} = 35,5\text{ g/mol}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire l'équation de précipitation.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_1')">Voir la solution</button>
+                    <div id="sol14_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Équation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\text{Ag}^+(aq) + \text{Cl}^-(aq) \longrightarrow \text{AgCl}(s)$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer les quantités initiales des ions \(\text{Ag}^+\) et \(\text{Cl}^-\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_2')">Voir la solution</button>
+                    <div id="sol14_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Dans CaCl₂ : 1 mole donne 2 moles de Cl⁻</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Cl}^-) = 2 \times C \times V = 2 \times 1,0 \times 10^{-2} \times 0,100 = 2,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Dans AgNO₃ : 1 mole donne 1 mole de Ag⁺</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{Ag}^+) = C \times V = 1,0 \times 10^{-2} \times 0,100 = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\(n(\text{Cl}^-) = 2,0 \times 10^{-3}\text{ mol}\)</li>
+                                    <li>\(n(\text{Ag}^+) = 1,0 \times 10^{-3}\text{ mol}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer le réactif limitant et la masse de précipité obtenue.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_3')">Voir la solution</button>
+                    <div id="sol14_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Avancement maximal :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$x_{max} = \min(n(\text{Ag}^+), n(\text{Cl}^-)) = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Réactif limitant :</span>
+                                <p style="color:var(--gold-text); font-weight:700;">Ag⁺ est le réactif limitant.</p>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Quantité de AgCl :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(\text{AgCl}) = x_{max} = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Masse de AgCl :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M(\text{AgCl}) = 108 + 35,5 = 143,5\text{ g/mol}$$
+                                    $$m(\text{AgCl}) = 1,0 \times 10^{-3} \times 143,5 = 0,144\text{ g}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$m(\text{AgCl}) = 0,144\text{ g}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelles sont les concentrations finales des ions en solution ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14_4')">Voir la solution</button>
+                    <div id="sol14_4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Volume total :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_T = 100 + 100 = 200\text{ mL} = 0,200\text{ L}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Ions restants :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_f(\text{Ag}^+) = 0\text{ mol}$$
+                                    $$n_f(\text{Cl}^-) = 2,0 \times 10^{-3} - 1,0 \times 10^{-3} = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Concentrations :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$[\text{Ag}^+] = 0\text{ mol/L}$$
+                                    $$[\text{Cl}^-] = \frac{1,0 \times 10^{-3}}{0,200} = 5,0 \times 10^{-3}\text{ mol/L}$$
+                                </div>
+                                <div style="font-size:11px; color:var(--text-muted);">
+                                    Ions spectateurs : Ca²⁺ et NO₃⁻ restent inchangés.
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultats</span>
+                                <ul style="font-size:12px;">
+                                    <li>\([\text{Ag}^+] = 0\text{ mol/L}\)</li>
+                                    <li>\([\text{Cl}^-] = 5,0 \times 10^{-3}\text{ mol/L}\)</li>
+                                    <li>\([\text{Ca}^{2+}] = 5,0 \times 10^{-3}\text{ mol/L}\)</li>
+                                    <li>\([\text{NO}_3^-] = 5,0 \times 10^{-3}\text{ mol/L}\)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie3.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série 3</a>
+                <a href="index.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+</body>
+</html>

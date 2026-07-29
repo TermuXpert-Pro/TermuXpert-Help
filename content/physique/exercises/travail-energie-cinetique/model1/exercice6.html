@@ -3,212 +3,25 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-XVMNBPXC9D');
-</script>
-    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Exercice 6 - Travail et énergie cinétique | Xpert</title>
+    <link rel="stylesheet" href="../../../../../assets/css/shared-inline.css">
+    <link rel="canonical" href="https://jd-xpert.com/content/physique/exercises/travail-energie-cinetique/model1/exercice6.html">
+    <meta name="description" content="Exercices corrigés : Travail energie cinetique (modèle 1) — Physique, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
 
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
+    
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
 
-    <style>
-        body { font-size: 14px; }
-        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
-        .nav-logo-text { font-size: 14px; }
-        .nav-links a { font-size: 13px; padding: 3px 8px; }
-        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
-        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
-        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
-        .section h2 { font-size: 14px; margin-bottom: 6px; }
-        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
-        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
-        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
-        .section ul li { margin-bottom: 4px; }
-        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
-        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
-        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
-        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
-        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
-        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
-        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
-        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
-        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
-        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
-        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
-        .table-wrap { overflow-x: auto; margin: 4px 0; }
-        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
-        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
-        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
-        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
-        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
-        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
-        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
-        .footer p { font-size: 13px; }
-        .lesson-container { padding: 8px; }
-        .glow-orb { display: none; }
-        .bg-grid { opacity: 0.3; }
-        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .progress-bar { display: none; }
-        .scroll-top-btn { display: none; }
-        .badge-exercice {
-            display: inline-block;
-            background: rgba(255, 107, 107, 0.15);
-            color: #FF6B6B;
-            padding: 2px 12px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .sub-question {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px 10px;
-            margin: 6px 0;
-        }
-        .sub-question .letter {
-            color: #FF6B6B;
-            font-weight: 700;
-            font-size: 13px;
-        }
-        .solution-box {
-            background: var(--solution-bg);
-            border: 1px solid var(--solution-border);
-            border-radius: 6px;
-            padding: 6px 10px;
-            margin: 4px 0;
-            display: none;
-        }
-        .solution-box.show {
-            display: block;
-        }
-        .solution-box .sol-title {
-            color: var(--solution-title);
-            font-weight: 700;
-            font-size: 13px;
-            margin-bottom: 2px;
-        }
-        .solution-box .sol-content {
-            color: var(--text-secondary);
-            font-size: 11.5px;
-            line-height: 1.6;
-        }
-        .solution-box .sol-content .step {
-            background: var(--bg-primary);
-            border-right: 3px solid #FF6B6B;
-            padding: 3px 10px;
-            margin: 3px 0;
-            border-radius: 4px;
-            color: var(--text-secondary);
-            font-size: 11px;
-        }
-        .solution-box .sol-content .step .step-num {
-            color: #FF6B6B;
-            font-weight: 700;
-            margin-left: 6px;
-            font-size: 11px;
-        }
-        .solution-box .sol-content .formula-block {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 4px 8px;
-            margin: 3px 0;
-            text-align: center;
-            overflow-x: auto;
-            font-size: 12px;
-        }
-        .solution-box .sol-content .highlight-box {
-            padding: 4px 8px;
-            margin: 4px 0;
-            border-right-width: 3px;
-        }
-        .solution-box .sol-content .highlight-box .label {
-            font-size: 11px;
-            padding: 1px 8px;
-            margin-bottom: 2px;
-        }
-        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
-        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
-        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
-        .toggle-sol {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: #FF6B6B;
-            padding: 3px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: var(--font-main);
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            margin-top: 4px;
-        }
-        .toggle-sol:hover {
-            border-color: #FF6B6B;
-            background: rgba(255, 107, 107, 0.1);
-        }
-.graph-container {
-            background: #0D1117;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px;
-            margin: 4px 0;
-            text-align: center;
-        }
-        .graph-container canvas {
-            max-width: 100%;
-            border-radius: 4px;
-            background: #0D1117;
-        }
-        .graph-container p {
-            color: var(--text-muted);
-            font-size: 11px;
-            margin-top: 4px;
-        }
-        @media (max-width: 768px) {
-            body { font-size: 13px; }
-            .lesson-title { font-size: 17px; }
-            .section { padding: 6px 8px; }
-            .section h2 { font-size: 14px; }
-            .section p { font-size: 10.5px; }
-            .nav-links a { font-size: 13px; padding: 2px 6px; }
-            .sub-question { padding: 6px 8px; }
-        }
-        @media (max-width: 480px) {
-            body { font-size: 13px; }
-            .lesson-title { font-size: 15px; }
-            .section h2 { font-size: 13px; }
-            .section p { font-size: 13px; }
-            .back-btn { font-size: 13px; padding: 3px 10px; }
-            .nav-logo-text { font-size: 14px; }
-            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
-            .sub-question { padding: 4px 6px; }
-            .sub-question .letter { font-size: 13px; }
-        }
-    </style>
+    
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../favicon.ico" sizes="any">
     <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
@@ -218,6 +31,7 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">

@@ -1,0 +1,639 @@
+/* --- shared block 1c06c66e (used in 15 files) --- */
+body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #FF6B6B;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #FF6B6B;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #FF6B6B;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #FF6B6B;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.1);
+        }
+.graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+
+/* --- shared block 23ebf446 (used in 20 files) --- */
+body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #FF6B6B44; color: #FF6B6B; }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .step { background: var(--bg-primary); border-right: 3px solid #FF6B6B; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #FF6B6B; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #FF6B6B;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #FF6B6B;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show { display: block; }
+        .solution-box .sol-title { color: var(--solution-title); font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+        .solution-box .sol-content { color: var(--text-secondary); font-size: 11.5px; line-height: 1.6; }
+        .solution-box .sol-content .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; margin: 3px 0; text-align: center; overflow-x: auto; font-size: 12px; }
+        .solution-box .sol-content .highlight-box { padding: 4px 8px; margin: 4px 0; border-right-width: 3px; }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #FF6B6B;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.1); }
+.prev-btn, .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+.graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+
+/* --- shared block 6fe4d347 (used in 6 files) --- */
+body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .table-wrap { margin: 4px 0; }
+        .table-wrap table { font-size: 13px; max-width: 240px; }
+        .table-wrap th, .table-wrap td { padding: 3px 8px; font-size: 13px; }
+        .step { font-size: 13px; padding: 3px 10px; margin: 3px 0; }
+        .step .step-num { font-size: 13px; }
+        .part-link { padding: 8px 12px; margin-bottom: 8px; border-radius: 8px; }
+        .part-link .part-num { font-size: 13px; color: #4ECDC4; font-weight: 700; }
+        .part-link .part-title { font-size: 14px; color: var(--text-secondary); }
+        .part-link .part-icon { font-size: 18px; flex-shrink: 0; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .part-link:active { transform: scale(0.97); opacity: 0.8; }
+        .part-link:hover { border-color: #4ECDC4; transform: translateX(-3px); }
+        .section-list-title { color: #4ECDC4; font-size: 13px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+        .part-link .part-arrow { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .part-link { padding: 6px 10px; }
+            .part-link .part-num { font-size: 14px; }
+            .part-link .part-title { font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .part-link { padding: 4px 8px; }
+            .part-link .part-num { font-size: 13px; }
+            .part-link .part-title { font-size: 13px; }
+            .part-link .part-icon { font-size: 14px; }
+            .part-link .part-arrow { font-size: 13px; }
+        }
+
+/* --- shared block 9a46feea (used in 6 files) --- */
+body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .ex-link { padding: 8px 12px; margin-bottom: 8px; border-radius: 8px; }
+        .ex-link .ex-num { font-size: 13px; color: #FF6B6B; font-weight: 700; }
+        .ex-link .ex-title { font-size: 14px; color: var(--text-secondary); }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .ex-link:active { transform: scale(0.97); opacity: 0.8; }
+        .ex-link:hover { border-color: #FF6B6B; transform: translateX(-3px); }
+        .ex-link .ex-arrow { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
+        .badge-difficulty {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-facile { background: #4ECDC422; color: #4ECDC4; }
+        .badge-moyen { background: #F4D03F22; color:var(--gold-text); }
+        .badge-difficile { background: #FF6B6B22; color: #FF6B6B; }
+        .exercice-count {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .exercice-count span { color: #FF6B6B; font-weight: 700; }
+        .badge-theme {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .ex-link { padding: 6px 10px; }
+            .ex-link .ex-num { font-size: 14px; }
+            .ex-link .ex-title { font-size: 13px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .ex-link { padding: 4px 8px; }
+            .ex-link .ex-num { font-size: 13px; }
+            .ex-link .ex-title { font-size: 13px; }
+        }
+
+/* --- shared block f433ad90 (used in 6 files) --- */
+body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.note { background: #4D9DE022; color: #4D9DE0; }
+        .highlight-box .label.theoreme { background: #A8FF7822; color: #A8FF78; }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .solution-box .sol-content .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+.next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+.graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container svg {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+            width: 100%;
+            height: auto;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
