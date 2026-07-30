@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Série 2 - Concentration et solutions électrolytiques | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 400px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #F4D03F; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color:var(--gold-text); font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-serie {
+            display: inline-block;
+            background: rgba(244, 208, 63, 0.15);
+            color:var(--gold-text);
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color:var(--gold-text);
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #F4D03F;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color:var(--gold-text);
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color:var(--gold-text);
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #F4D03F;
+            background: rgba(244, 208, 63, 0.1);
+        }
+.serie-title {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .serie-title span {
+            color:var(--gold-text);
+            font-weight: 700;
+        }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(244, 208, 63, 0.15);
+            color:var(--gold-text);
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-difficulty {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .badge-facile { background: #4ECDC422; color: #4ECDC4; }
+        .badge-moyen { background: #F4D03F22; color:var(--gold-text); }
+        .badge-difficile { background: #FF6B6B22; color: #FF6B6B; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#4ECDC4" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux séries</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-flask" style="color:var(--gold-text);"></i> Série 2 - Concentration et solutions électrolytiques</h1>
+            <div class="serie-title">Exercices <span>4 à 6</span> : Dilution - Facteur de dilution - Protocole expérimental</div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 4 : Dilution d'une solution mère -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">4</span> Dilution d'une solution mère</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Dilution</span>
+                    <span class="badge-difficulty badge-facile">Facile</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On dispose d'une solution mère de chlorure de sodium de concentration \(C_0 = 2,0\text{ mol/L}\). On souhaite préparer un volume \(V = 100\text{ mL}\) d'une solution fille de concentration \(C = 0,50\text{ mol/L}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le volume \(V_0\) de solution mère à prélever.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_1')">Voir la solution</button>
+                    <div id="sol4_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                La quantité de matière de soluté est conservée lors d'une dilution.
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n_{\text{soluté}} = C_0 \times V_0 = C \times V$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_0 = \frac{C \times V}{C_0} = \frac{0,50 \times 100}{2,0} = 25\text{ mL}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_0 = 25\text{ mL}\)</p>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Formule de dilution</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C_0 \times V_0 = C \times V \quad \text{(conservation de la matière)}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le facteur de dilution \(F\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_2')">Voir la solution</button>
+                    <div id="sol4_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$F = \frac{C_0}{C} = \frac{2,0}{0,50} = 4$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> Le facteur de dilution est \(F = 4\). La solution a été diluée 4 fois.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Décrire le protocole de cette dilution.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4_3')">Voir la solution</button>
+                    <div id="sol4_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Matériel nécessaire :</strong></p>
+                            <ul style="font-size:12px; padding-right:18px;">
+                                <li>Solution mère de NaCl \(C_0 = 2,0\text{ mol/L}\)</li>
+                                <li>Eau distillée</li>
+                                <li>Fiole jaugée de 100 mL</li>
+                                <li>Pipette jaugée de 25 mL</li>
+                                <li>Propipette</li>
+                                <li>Becher</li>
+                            </ul>
+                            
+                            <p style="margin-top:6px;"><strong>Protocole :</strong></p>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                À l'aide d'une pipette jaugée de 25 mL, prélever \(25\text{ mL}\) de la solution mère.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Introduire le prélèvement dans une fiole jaugée de 100 mL.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Rincer la pipette avec de l'eau distillée et ajouter dans la fiole.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Ajouter de l'eau distillée jusqu'au trait de jauge.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 5 :</span> 
+                                Homogénéiser par retournement.
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> On obtient 100 mL de solution fille à \(0,50\text{ mol/L}\).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 5 : Eau de Javel -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">5</span> Dilution de l'eau de Javel</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Eau de Javel</span>
+                    <span class="badge-difficulty badge-moyen">Moyen</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Une solution d'eau de Javel commerciale a une concentration en ions hypochlorite \(\text{ClO}^-\) : \(C_0 = 2,0\text{ mol/L}\). Pour un usage domestique, on la dilue 10 fois.
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la concentration \(C\) de la solution diluée ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_1')">Voir la solution</button>
+                    <div id="sol5_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Facteur de dilution \(F = 10\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C = \frac{C_0}{F} = \frac{2,0}{10} = 0,20\text{ mol/L}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(C = 0,20\text{ mol/L}\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        On souhaite préparer \(V = 500\text{ mL}\) de solution diluée. Calculer le volume \(V_0\) de solution commerciale à prélever.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_2')">Voir la solution</button>
+                    <div id="sol5_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(V = 500\text{ mL}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_0 = \frac{V}{F} = \frac{500}{10} = 50\text{ mL}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_0 = 50\text{ mL}\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Quelle quantité de matière d'ions hypochlorite y a-t-il dans 100 mL de solution diluée ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5_3')">Voir la solution</button>
+                    <div id="sol5_3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(V = 100\text{ mL} = 0,100\text{ L}\)
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n = C \times V = 0,20 \times 0,100 = 0,020\text{ mol}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(n = 2,0 \times 10^{-2}\text{ mol}\)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- EXERCICE 6 : Acide chlorhydrique -->
+            <!-- ============================================================ -->
+            <div class="section">
+                <h2><span class="num">6</span> Préparation d'une solution d'acide chlorhydrique</h2>
+                
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
+                    <span class="badge-exercice"><i class="fas fa-check-circle"></i> Acide chlorhydrique</span>
+                    <span class="badge-difficulty badge-moyen">Moyen</span>
+                </div>
+                
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On dispose d'une solution commerciale d'acide chlorhydrique \(\text{HCl}\) de concentration \(C_0 = 12\text{ mol/L}\). On souhaite préparer un volume \(V = 250\text{ mL}\) d'une solution diluée de concentration \(C = 0,10\text{ mol/L}\).
+                </p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer le volume \(V_0\) de solution commerciale à prélever.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_1')">Voir la solution</button>
+                    <div id="sol6_1" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_0 = \frac{C \times V}{C_0} = \frac{0,10 \times 250}{12} = 2,08\text{ mL}$$
+                                </div>
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(V_0 \approx 2,1\text{ mL}\)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Décrire le protocole expérimental en indiquant les précautions à prendre (l'acide chlorhydrique est corrosif).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_2')">Voir la solution</button>
+                    <div id="sol6_2" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <p><strong>Matériel nécessaire :</strong></p>
+                            <ul style="font-size:12px; padding-right:18px;">
+                                <li>Solution commerciale d'acide chlorhydrique (corrosive)</li>
+                                <li>Eau distillée</li>
+                                <li>Fiole jaugée de 250 mL</li>
+                                <li>Pipette jaugée de 2 mL</li>
+                                <li>Propipette</li>
+                                <li>Becher</li>
+                                <li>Gants de protection</li>
+                                <li>Lunettes de sécurité</li>
+                                <li>Hotte aspirante</li>
+                            </ul>
+                            
+                            <p style="margin-top:6px;"><strong>Protocole :</strong></p>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                <span style="color:#FF6B6B;">⚠️ Porter des gants et des lunettes de protection. Travailler sous hotte aspirante.</span>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Remplir la fiole jaugée de 250 mL aux 2/3 avec de l'eau distillée.
+                                <span style="color:#FF6B6B;">⚠️ <strong>Ne jamais verser l'eau dans l'acide !</strong></span>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Prélever \(2,1\text{ mL}\) de la solution commerciale à l'aide d'une pipette jaugée.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Introduire le prélèvement dans la fiole jaugée contenant l'eau.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 5 :</span> 
+                                Rincer la pipette avec de l'eau distillée et ajouter dans la fiole.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 6 :</span> 
+                                Compléter avec de l'eau distillée jusqu'au trait de jauge.
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 7 :</span> 
+                                Homogénéiser par retournement.
+                            </div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> On obtient 250 mL de solution d'acide chlorhydrique à \(0,10\text{ mol/L}\).</p>
+                            <div class="highlight-box red" style="margin-top:6px;">
+                                <span class="label" style="background:#FF6B6B22; color:#FF6B6B;">⚠️ Sécurité</span>
+                                <p style="font-size:11px; color:#FF6B6B;">
+                                    <strong>L'acide chlorhydrique concentré est corrosif.</strong> 
+                                    Toujours ajouter l'acide dans l'eau, jamais l'inverse ! 
+                                    Porter des gants, des lunettes et travailler sous hotte.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="serie1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Série 1</a>
+                <a href="serie3.html" class="next-btn">Série 3 <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+</body>
+</html>

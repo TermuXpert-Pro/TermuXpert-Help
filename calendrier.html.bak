@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>التقويم الدراسي 2026/2027 | السنة الأولى بكالوريا</title>
+
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="stylesheet" href="assets/css/google-fonts.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/root-decor.css">
+
+    <!-- ====== GSAP ====== -->
+    <script src="assets/js/vendor/gsap.min.js"></script>
+
+    <style>
+        /* ====== حالة البداية قبل أنيميشن GSAP (لتفادي فلاش الظهور) ======
+           هاد القيم خاصها تطابق gsap.set() الموجودة فآخر الصفحة تماماً */
+        #calWrap{opacity:0; transform:translateY(40px);}
+        .cal-hero{opacity:0; transform:translateY(30px);}
+        .cal-section{opacity:0; transform:translateY(30px);}
+        .cal-cta-wrap{opacity:0; transform:translateY(30px);}
+
+        /* ====== تصميم صفحة التقويم (بطاقات/جداول) - محافظ عليه كما هو ====== */
+        .cal-wrap{
+            --cal-gold:#F4D03F;
+            --cal-gold-soft:#F7DC6F;
+            --cal-teal:#4ECDC4;
+            position:relative; z-index:1; max-width:820px; margin:0 auto; padding:60px 12px 20px;
+            direction:rtl;
+        }
+
+        .cal-hero{text-align:center; margin-bottom:34px;}
+        .cal-hero .cal-eyebrow{
+            display:inline-flex; align-items:center; gap:8px;
+            color:var(--gold-text); font-size:13px; font-weight:700;
+            letter-spacing:0.5px; background:rgba(244,208,63,0.08);
+            padding:6px 16px; border-radius:20px; border:1px solid rgba(244,208,63,0.25);
+            margin-bottom:16px;
+        }
+        .cal-hero h1{
+            font-size:clamp(24px, 5vw, 34px); font-weight:900; color:var(--text-primary);
+            margin-bottom:8px; font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .cal-hero h1 span{color:var(--gold-text);}
+        .cal-hero p{color:var(--text-muted); font-size:14px; font-family:'Cairo','Tajawal',sans-serif;}
+
+        .cal-section{
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            border-radius:16px;
+            padding:22px 20px;
+            margin-bottom:20px;
+            position:relative;
+            overflow:hidden;
+        }
+        .cal-section::before{
+            content:"";
+            position:absolute; top:0; right:0; width:4px; height:100%;
+            background:linear-gradient(180deg, var(--cal-gold), transparent);
+        }
+        .cal-section h2{
+            display:flex; align-items:center; gap:10px;
+            font-size:17px; font-weight:700; color:var(--gold-text);
+            margin-bottom:14px; font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .cal-section h2 i{font-size:15px;}
+
+        .cal-date-row{
+            display:flex; align-items:center; gap:14px;
+            background:var(--bg-primary);
+            border:1px solid var(--border);
+            border-radius:10px;
+            padding:12px 14px;
+            margin-bottom:10px;
+        }
+        .cal-date-row:last-child{margin-bottom:0;}
+        .cal-date-badge{
+            flex-shrink:0; min-width:74px; text-align:center;
+            background:rgba(244,208,63,0.12); color:var(--gold-text);
+            font-weight:700; font-size:13px; padding:8px 6px; border-radius:8px;
+            font-family:'Cairo','Tajawal',sans-serif;
+        }
+        .cal-date-badge.teal{background:rgba(78,205,196,0.12); color:var(--cal-teal);}
+        .cal-date-text{font-size:13.5px; color:var(--text-secondary); font-family:'Cairo','Tajawal',sans-serif;}
+        .cal-date-text strong{color:var(--text-primary);}
+
+        .cal-table-wrap{overflow-x:auto; border-radius:10px; border:1px solid var(--border);}
+        .cal-table-wrap table{width:100%; border-collapse:collapse; font-size:13px; background:var(--bg-primary); font-family:'Cairo','Tajawal',sans-serif;}
+        .cal-table-wrap th{
+            background:rgba(244,208,63,0.08); color:var(--gold-text);
+            padding:9px 8px; font-weight:700; text-align:center;
+            border-bottom:1px solid var(--border);
+        }
+        .cal-table-wrap td{
+            padding:8px 8px; text-align:center; color:var(--text-secondary);
+            border-bottom:1px solid var(--border);
+        }
+        .cal-table-wrap tr:last-child td{border-bottom:none;}
+        .cal-table-wrap td.label{color:var(--text-primary); font-weight:600; text-align:right;}
+
+        .cal-cta-wrap{text-align:center; margin-top:30px;}
+        .cal-cta-btn{
+            display:inline-flex; align-items:center; gap:10px;
+            background:linear-gradient(135deg, var(--cal-gold), var(--cal-gold-soft));
+            color:#1A1A1A; font-weight:700; font-size:15px; font-family:'Cairo','Tajawal',sans-serif;
+            padding:14px 28px; border-radius:12px; text-decoration:none;
+            box-shadow:0 8px 24px rgba(244,208,63,0.25);
+            transition:transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cal-cta-btn:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(244,208,63,0.35);}
+        .cal-cta-note{color:var(--text-muted); font-size:12px; margin-top:10px; font-family:'Cairo','Tajawal',sans-serif;}
+
+        @media (max-width:480px){
+            .cal-date-row{flex-direction:column; align-items:flex-start; gap:6px;}
+            .cal-date-badge{min-width:unset;}
+        }
+</style>
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection" aria-hidden="true"></div>
+
+<!-- ====== خلفية زليج (multicolore - خاصة بالصفحات الجذرية) ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+
+<div class="geo-pattern geo-pattern-1" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <!-- ====== Navbar ====== -->
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- ====== محتوى الصفحة (تم حذف زر العودة) ====== -->
+    <div class="cal-wrap" id="calWrap">
+
+        <div class="cal-hero">
+            <div class="cal-eyebrow"><i class="fas fa-graduation-cap"></i> السنة الأولى بكالوريا · 2026/2027</div>
+            <h1>التقويم <span>الدراسي</span></h1>
+            <p>أهم التواريخ الخاصة بتلاميذ الجذع المشترك والسنة الأولى بكالوريا</p>
+        </div>
+
+        <!-- ====== التسجيل والدخول ====== -->
+        <div class="cal-section">
+            <h2><i class="fas fa-door-open"></i> التسجيل والدخول المدرسي</h2>
+            <div class="cal-date-row">
+                <div class="cal-date-badge">4 شتنبر</div>
+                <div class="cal-date-text"><strong>الجمعة 4 شتنبر 2026</strong> — التحاق تلاميذ السنة الأولى بكالوريا بمؤسساتهم التعليمية.</div>
+            </div>
+            <div class="cal-date-row">
+                <div class="cal-date-badge teal">7 شتنبر</div>
+                <div class="cal-date-text"><strong>الإثنين 7 شتنبر 2026</strong> — الانطلاقة الفعلية والإلزامية للدراسة بالنسبة لجميع أسلاك التعليم، بما فيها الثانوي التأهيلي.</div>
+            </div>
+        </div>
+
+        <!-- ====== مواعيد الفروض والامتحانات ====== -->
+        <div class="cal-section">
+            <h2><i class="fas fa-file-pen"></i> مواعيد آخر الفروض والامتحانات</h2>
+            <div class="cal-table-wrap">
+                <table>
+                    <tr><th>الأسدوس</th><th>العملية</th><th>التاريخ</th></tr>
+                    <tr><td class="label">الأول</td><td>آخر أجل للفروض المستمرة</td><td>4 – 9 يناير 2027</td></tr>
+                    <tr><td class="label">الأول</td><td>مسك آخر نقط الفروض المستمرة</td><td>16 يناير 2027</td></tr>
+                    <tr><td class="label">الأول</td><td>عقد مجالس الأقسام</td><td>21 و22 يناير 2027</td></tr>
+                    <tr><td class="label">الثاني</td><td>الامتحان الجهوي الموحد (الدورة العادية)</td><td>28 و29 ماي 2027</td></tr>
+                    <tr><td class="label">الثاني</td><td>آخر أجل للفروض المستمرة</td><td>14 – 19 يونيو 2027</td></tr>
+                    <tr><td class="label">الثاني</td><td>الامتحان الجهوي الموحد (الدورة الاستدراكية)</td><td>28 و29 يونيو 2027</td></tr>
+                    <tr><td class="label">الثاني</td><td>الإعلان عن نتائج الامتحان الجهوي</td><td>8 يوليوز 2027</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ====== العطل المدرسية ====== -->
+        <div class="cal-section">
+            <h2><i class="fas fa-umbrella-beach"></i> العطل المدرسية</h2>
+            <div class="cal-table-wrap">
+                <table>
+                    <tr><th>العطلة</th><th>التاريخ</th><th>المدة</th></tr>
+                    <tr><td class="label">عيد الوحدة</td><td>السبت 31 أكتوبر 2026</td><td>يوم واحد</td></tr>
+                    <tr><td class="label">ذكرى المسيرة الخضراء</td><td>الجمعة 6 نونبر 2026</td><td>يوم واحد</td></tr>
+                    <tr><td class="label">عيد الاستقلال</td><td>الأربعاء 18 نونبر 2026</td><td>يوم واحد</td></tr>
+                    <tr><td class="label">العطلة البينية الثانية</td><td>6 – 13 دجنبر 2026</td><td>8 أيام</td></tr>
+                    <tr><td class="label">فاتح السنة الميلادية</td><td>الجمعة فاتح يناير 2027</td><td>يوم واحد</td></tr>
+                    <tr><td class="label">ذكرى تقديم وثيقة الاستقلال</td><td>الإثنين 11 يناير 2027</td><td>يوم واحد</td></tr>
+                    <tr><td class="label">فاتح السنة الأمازيغية</td><td>الخميس 14 يناير 2027</td><td>يوم واحد</td></tr>
+                    <tr><td class="label">عطلة منتصف السنة الدراسية</td><td>24 – 31 يناير 2027</td><td>8 أيام</td></tr>
+                    <tr><td class="label">عيد الفطر</td><td>29 رمضان – 2 شوال 1448</td><td>3 أو 4 أيام</td></tr>
+                    <tr><td class="label">العطلة البينية الثالثة</td><td>21 – 28 مارس 2027</td><td>8 أيام</td></tr>
+                    <tr><td class="label">عيد الشغل</td><td>السبت فاتح ماي 2027</td><td>يوم واحد</td></tr>
+                    <tr><td class="label">العطلة البينية الرابعة</td><td>9 – 16 ماي 2027</td><td>8 أيام</td></tr>
+                    <tr><td class="label">عيد الأضحى</td><td>9 – 11 ذي الحجة 1448</td><td>3 أيام</td></tr>
+                    <tr><td class="label">فاتح محرم</td><td>1 محرم 1449</td><td>يوم واحد</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="cal-cta-wrap">
+            <a class="cal-cta-btn" href="https://mostajad.com/wp-content/uploads/2026/07/%D9%85%D9%82%D8%B1%D8%B1-047.26-%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D8%B3%D9%86%D8%A9-%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D9%8A%D8%A9-2026-2027.pdf" target="_blank" rel="noopener">
+                <i class="fas fa-file-pdf"></i> الاطلاع على المقرر الرسمي كاملاً
+            </a>
+            <p class="cal-cta-note">يحتوي المقرر الرسمي على تفاصيل جميع الأسلاك التعليمية الأخرى</p>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+    <!-- ====== Scripts ====== -->
+    <script src="assets/js/protection.js"></script>
+    <script src="assets/js/script.js"></script>
+<!-- ====== GSAP Animation pour calendrier (toujours active) ====== -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // إذا لم يتم تحميل GSAP → عرض مباشر
+        if (typeof gsap === 'undefined') {
+            console.warn('⚠️ GSAP non chargé - Affichage direct');
+            document.querySelector('.moroccan-bg').style.opacity = '0.6';
+            document.querySelector('.moroccan-shadow').style.opacity = '0.08';
+            document.querySelector('.moroccan-star').style.opacity = '0.04';
+            document.querySelectorAll('.geo-pattern').forEach(el => el.style.opacity = '0.03');
+            document.getElementById('calWrap').style.opacity = '1';
+            document.getElementById('calWrap').style.transform = 'none';
+            document.getElementById('overlayProtection').classList.add('hidden');
+            return;
+        }
+
+        const overlay = document.getElementById('overlayProtection');
+
+        // ====== إعداد العناصر (كلها مخفية) ======
+        gsap.set('.moroccan-bg', { opacity: 0 });
+        gsap.set('.moroccan-shadow', { opacity: 0 });
+        gsap.set('.moroccan-star', { opacity: 0 });
+        gsap.set('.geo-pattern', { opacity: 0 });
+        gsap.set('#calWrap', { opacity: 0, y: 40 });
+        gsap.set('.cal-hero', { opacity: 0, y: 30 });
+        gsap.set('.cal-section', { opacity: 0, y: 30 });
+        gsap.set('.cal-cta-wrap', { opacity: 0, y: 30 });
+
+        // تفعيل طبقة الحماية (تمنع التفاعل أثناء الأنميشن)
+        overlay.classList.add('active');
+
+        // ====== تشغيل الأنميشن ======
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        tl
+            // 1. ظهور الخلفيات (مقصرة ~2.5x)
+            .to('.moroccan-bg', { opacity: 0.6, duration: 0.7, ease: 'power1.out' })
+            .to('.moroccan-shadow', { opacity: 0.08, duration: 0.7, ease: 'power1.out' }, '-=0.45')
+            .to('.moroccan-star', { opacity: 0.04, duration: 0.7, ease: 'power1.out' }, '-=0.45')
+            .to('.geo-pattern', { opacity: 0.03, duration: 0.7, stagger: 0.03, ease: 'power1.out' }, '-=0.5')
+
+            // 2. ظهور المحتوى الرئيسي
+            .to('#calWrap', { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' }, '-=0.1')
+            .to('.cal-hero', { opacity: 1, y: 0, duration: 0.3, ease: 'back.out(1.7)' }, '-=0.15')
+            .to('.cal-section', {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,
+                stagger: 0.06,
+                ease: 'back.out(1.7)'
+            }, '-=0.1')
+            .to('.cal-cta-wrap', { opacity: 1, y: 0, duration: 0.3, ease: 'back.out(1.7)' }, '-=0.1')
+
+            // 3. إخفاء طبقة الحماية بعد الأنميشن
+            .call(() => {
+                overlay.classList.remove('active');
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                console.log('✅ calendrier.html - Animation jouée');
+            });
+
+        // ====== حركات مستمرة للخلفيات ======
+        gsap.to('.moroccan-bg', { opacity: 0.8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('.moroccan-star', { rotation: 360, duration: 30, repeat: -1, ease: 'none' });
+        gsap.to('.geo-pattern-1', { x: 20, y: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('.geo-pattern-2', { x: -20, y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
+    });
+</script>
+
+</body>
+</html>
+
+
+
+

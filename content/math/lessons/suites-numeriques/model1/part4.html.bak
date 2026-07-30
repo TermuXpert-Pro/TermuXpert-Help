@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Partie 4 - Suites géométriques | Xpert</title>
+    
+    <!-- ====== Preconnect CDN ====== -->
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section h3 { font-size: 13px; margin: 6px 0 4px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 1px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .highlight-box.blue { border-color: #4D9DE0; background: rgba(77, 157, 224, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 350px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .table-wrap .true { color: #4ECDC4; font-weight: 700; }
+        .table-wrap .false { color: #FF6B6B; font-weight: 700; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+.lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .graph-container {
+            background: #0D1117; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin: 4px 0; text-align: center; }
+        .graph-container canvas { max-width: 100%; border-radius: 4px; background: #0D1117; }
+        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section h3 { font-size: 11.5px; }
+            .section p { font-size: 10.5px; }
+            .section ul { font-size: 10.5px; }
+            .table-wrap table { max-width: 100%; font-size: 13px; }
+            .table-wrap th, .table-wrap td { padding: 2px 5px; font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 8px; }
+            .highlight-box { padding: 4px 8px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section h3 { font-size: 10.5px; }
+            .section p { font-size: 13px; }
+            .section ul { font-size: 13px; }
+            .formula-block { font-size: 13px; padding: 4px 6px; }
+            .table-wrap th, .table-wrap td { padding: 2px 4px; font-size: 9px; }
+            .step { font-size: 13px; padding: 2px 8px; }
+            .back-btn { font-size: 13px; padding: 3px 8px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+}
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #4ECDC4; }
+        .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-times" style="color:#4ECDC4;"></i> Partie 4 : Suites géométriques</h1>
+
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Définition d'une suite géométrique</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Propriété caractéristique</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Terme général d'une suite géométrique</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Somme des termes consécutifs</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
+            <!-- SECTION 1: DÉFINITION -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Définition d'une suite géométrique</h2>
+
+                <div class="highlight-box green">
+                    <span class="label def">Définition</span>
+                    <p>On appelle <strong>suite géométrique</strong> toute suite $(u_n)_{n\in I}$ définie par son premier terme et par la relation :</p>
+                    <div class="formula-block">
+                        $$\forall n \in I,\ u_{n+1} = q \times u_n$$
+                    </div>
+                    <p>où $q$ est un <strong>réel fixe</strong> appelé la <strong>raison</strong> de la suite.</p>
+                    <p>Le premier terme et la raison sont les <strong>éléments caractéristiques</strong> de la suite géométrique.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemples</span>
+                    <ul>
+                        <li>$(u_n)$ définie par $\begin{cases} u_0 = 2 \\ u_{n+1} = \dfrac{u_n}{2} \end{cases}$ est géométrique de raison $q = \dfrac{1}{2}$ et de premier terme $u_0 = 2$.</li>
+                        <li>Les puissances de 2 : $1, 2, 4, 8, 16, \dots$ est géométrique de raison $q = 2$.</li>
+                        <li>Les puissances de 3 : $1, 3, 9, 27, 81, \dots$ est géométrique de raison $q = 3$.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box yellow" style="margin-top:8px;">
+                    <span class="label ex">Contre-exemple</span>
+                    <p>La suite $(v_n)$ définie par $v_n = 2n + 1$ n'est pas géométrique.</p>
+                    <div class="step"><span class="step-num">Vérification :</span> $\dfrac{v_1}{v_0} = \dfrac{3}{1} = 3$ et $\dfrac{v_2}{v_1} = \dfrac{5}{3} \neq 3$</div>
+                    <div class="step"><span class="step-num">Conclusion :</span> Le rapport n'est pas constant, donc $(v_n)$ n'est pas géométrique.</div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Une suite géométrique est définie par $u_{n+1} = q \times u_n$.</li>
+                        <li>La raison $q$ est constante.</li>
+                        <li>Si $q > 1$ et $u_0 > 0$ : la suite est strictement croissante.</li>
+                        <li>Si $0 < q < 1$ et $u_0 > 0$ : la suite est strictement décroissante.</li>
+                        <li>Si $q = 1$ : la suite est constante.</li>
+                        <li>Si $q < 0$ : la suite alterne en signe.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: PROPRIÉTÉ CARACTÉRISTIQUE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Propriété caractéristique</h2>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Propriété</span>
+                    <p>Soit $(u_n)_{n\ge p}$ une suite. Elle est géométrique <strong>si et seulement si</strong> :</p>
+                    <div class="formula-block">
+                        $$\forall n \ge p,\ u_{n+1}^2 = u_n \times u_{n+2}$$
+                    </div>
+                    <p>Autrement dit : trois termes consécutifs $a, b, c$ sont en progression géométrique ssi :</p>
+                    <div class="formula-block">
+                        $$b^2 = a \times c$$
+                    </div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Application</span>
+                    <p>Déterminer le réel $x$ pour que les nombres $(1+x^2)$, $(3+x)$ et $10$ soient trois termes consécutifs d'une suite géométrique.</p>
+                    <div class="step"><span class="step-num">1 :</span> $(3+x)^2 = 10(1+x^2)$</div>
+                    <div class="step"><span class="step-num">2 :</span> $x^2+6x+9 = 10x^2+10$</div>
+                    <div class="step"><span class="step-num">3 :</span> $9x^2 - 6x + 1 = 0$</div>
+                    <div class="step"><span class="step-num">4 :</span> $(3x-1)^2 = 0$ donc $x = \dfrac{1}{3}$</div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $x = \frac{1}{3}$. Les termes sont : $\frac{10}{9}$, $\frac{10}{3}$, $10$. La raison est $q = 3$.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Trois termes consécutifs d'une suite géométrique vérifient $b^2 = a \times c$.</li>
+                        <li>Cette propriété permet de déterminer des termes inconnus.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: TERME GÉNÉRAL -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Terme général d'une suite géométrique</h2>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Propriété</span>
+                    <p>Soit $(u_n)$ une suite géométrique de raison $q$ et de premier terme $u_p$. Alors :</p>
+                    <div class="formula-block">
+                        $$\forall n \ge p,\ u_n = q^{n-p} \times u_p$$
+                    </div>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label def">Démonstration</span>
+                    <p>Par multiplication successive :</p>
+                    <div class="step"><span class="step-num">1 :</span> $u_{p+1} = q \times u_p$</div>
+                    <div class="step"><span class="step-num">2 :</span> $u_{p+2} = q \times u_{p+1} = q^2 \times u_p$</div>
+                    <div class="step"><span class="step-num">3 :</span> $u_{p+3} = q \times u_{p+2} = q^3 \times u_p$</div>
+                    <div class="step"><span class="step-num">... :</span> $u_n = q^{n-p} \times u_p$</div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Cas particuliers</span>
+                    <ul>
+                        <li>Si $p = 0$ : $u_n = q^n \times u_0$</li>
+                        <li>Si $p = 1$ : $u_n = q^{n-1} \times u_1$</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box yellow" style="margin-top:8px;">
+                    <span class="label ex">Application 1</span>
+                    <p>Soit $(u_n)$ une suite géométrique telle que $u_1 = \dfrac{3}{2}$ et $u_4 = \dfrac{3}{16}$.</p>
+                    <p>1) Déterminer la raison $q$.</p>
+                    <div class="step"><span class="step-num">1 :</span> $u_4 = q^{4-1} \times u_1 = q^3 \times u_1$</div>
+                    <div class="step"><span class="step-num">2 :</span> $\dfrac{3}{16} = q^3 \times \dfrac{3}{2}$</div>
+                    <div class="step"><span class="step-num">3 :</span> $q^3 = \dfrac{1}{8}$ donc $q = \dfrac{1}{2}$</div>
+                    <p>2) Exprimer $u_n$ en fonction de $n$.</p>
+                    <div class="step"><span class="step-num">1 :</span> $u_n = q^{n-1} \times u_1 = \left(\dfrac{1}{2}\right)^{n-1} \times \dfrac{3}{2}$</div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $u_n = \dfrac{3}{2} \times \left(\dfrac{1}{2}\right)^{n-1}$.</p>
+                </div>
+
+                <div class="highlight-box yellow" style="margin-top:8px;">
+                    <span class="label ex">Application 2 : Suite auxiliaire</span>
+                    <p>Soit $(u_n)$ définie par $\begin{cases} u_0 = \dfrac{1}{2} \\ u_{n+1} = \dfrac{u_n}{3-u_n} \end{cases}$ et $(v_n)$ définie par $v_n = 1 - \dfrac{2}{u_n}$.</p>
+                    <p>1) Montrer que $(v_n)$ est géométrique.</p>
+                    <div class="step"><span class="step-num">1 :</span> $v_{n+1} = 1 - \dfrac{2}{u_{n+1}} = 1 - \dfrac{2}{\dfrac{u_n}{3-u_n}} = 1 - \dfrac{2(3-u_n)}{u_n}$</div>
+                    <div class="step"><span class="step-num">2 :</span> $= 1 - \dfrac{6-2u_n}{u_n} = 1 - \dfrac{6}{u_n} + 2 = 3 - \dfrac{6}{u_n}$</div>
+                    <div class="step"><span class="step-num">3 :</span> $= 3\left(1 - \dfrac{2}{u_n}\right) = 3v_n$</div>
+                    <p>Donc $v_{n+1} = 3v_n$ : $(v_n)$ est géométrique de raison $q = 3$.</p>
+                    <p>2) Exprimer $u_n$ en fonction de $n$.</p>
+                    <div class="step"><span class="step-num">1 :</span> $v_0 = 1 - \dfrac{2}{u_0} = 1 - \dfrac{2}{1/2} = 1 - 4 = -3$</div>
+                    <div class="step"><span class="step-num">2 :</span> $v_n = v_0 \times 3^n = -3 \times 3^n = -3^{n+1}$</div>
+                    <div class="step"><span class="step-num">3 :</span> $v_n = 1 - \dfrac{2}{u_n} \Rightarrow \dfrac{2}{u_n} = 1 - v_n = 1 + 3^{n+1}$</div>
+                    <div class="step"><span class="step-num">4 :</span> $u_n = \dfrac{2}{1 + 3^{n+1}}$</div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $u_n = \dfrac{2}{1+3^{n+1}}$.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>$u_n = q^{n-p} \times u_p$</li>
+                        <li>Pour trouver $q$ : $q^{n-p} = \dfrac{u_n}{u_p}$</li>
+                        <li>Si $u_p \neq 0$ et $q > 0$.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: SOMME DES TERMES -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Somme des termes consécutifs</h2>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Propriété</span>
+                    <p>Soit $(u_n)$ une suite géométrique de raison $q$. La somme $S_n$ des termes de $u_p$ à $u_n$ est :</p>
+                    <div class="formula-block">
+                        $$S_n = u_p + u_{p+1} + \cdots + u_n = u_p \times \dfrac{1 - q^{n-p+1}}{1 - q} \quad \text{si } q \neq 1$$
+                    </div>
+                    <p>Si $q = 1$ : $S_n = (n-p+1) \times u_p$.</p>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label def">Démonstration</span>
+                    <p>Soit $S_n = u_p + u_{p+1} + \cdots + u_n$.</p>
+                    <div class="step"><span class="step-num">1 :</span> $S_n = u_p + q u_p + q^2 u_p + \cdots + q^{n-p} u_p$</div>
+                    <div class="step"><span class="step-num">2 :</span> $S_n = u_p(1 + q + q^2 + \cdots + q^{n-p})$</div>
+                    <div class="step"><span class="step-num">3 :</span> $S_n = u_p \times \dfrac{1 - q^{n-p+1}}{1 - q}$ (pour $q \neq 1$)</div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label ex">Exemple 1 : La légende de l'échiquier</span>
+                    <p>Le jeu d'échec : 1 grain sur la première case, 2 sur la deuxième, 4 sur la troisième, etc.</p>
+                    <p>Suite géométrique de premier terme $u_1 = 1$ et de raison $q = 2$.</p>
+                    <div class="step"><span class="step-num">1 :</span> $S_{64} = 1 \times \dfrac{1-2^{64}}{1-2} = 2^{64} - 1$</div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Résultat :</strong> $2^{64} - 1 = 18\,446\,774\,073\,709\,551\,615$ grains.</p>
+                </div>
+
+                <div class="highlight-box yellow" style="margin-top:8px;">
+                    <span class="label ex">Exemple 2</span>
+                    <p>Calculer $S_n = 1 + \dfrac{1}{2} + \left(\dfrac{1}{2}\right)^2 + \cdots + \left(\dfrac{1}{2}\right)^{n-1}$.</p>
+                    <p>Suite géométrique de premier terme $u_0 = 1$ et de raison $q = \dfrac{1}{2}$.</p>
+                    <div class="step"><span class="step-num">1 :</span> $S_n = 1 \times \dfrac{1 - \left(\dfrac{1}{2}\right)^n}{1 - \dfrac{1}{2}} = 2\left(1 - \left(\dfrac{1}{2}\right)^n\right)$</div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Résultat :</strong> $\sum_{k=0}^{n-1} \left(\dfrac{1}{2}\right)^k = 2\left(1 - \left(\dfrac{1}{2}\right)^n\right)$.</p>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé</span>
+                    <ul>
+                        <li>Si $q \neq 1$ : $S = u_p \times \dfrac{1 - q^{n-p+1}}{1 - q}$</li>
+                        <li>Si $q = 1$ : $S = (n-p+1) \times u_p$</li>
+                        <li>Nombre de termes = $n-p+1$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Navigation -->
+            <!-- ============================================================ -->
+            <div class="nav-buttons">
+                <a href="part3.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Partie 3</a>
+                <a href="part5.html" class="next-btn">Résumé <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    
+<script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+</body>
+</html>

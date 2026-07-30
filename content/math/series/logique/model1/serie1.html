@@ -24,6 +24,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Série 1 - Logique | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/math/series/logique/model1/serie1.html">
+    <meta name="description" content="Série d'exercices : Logique (modèle 1) — Mathématiques, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
@@ -146,6 +148,27 @@
         .serie-title span {
             color: #4ECDC4;
             font-weight: 700;
+        }
+        .definition-box {
+            background: rgba(78, 205, 196, 0.05);
+            border-right: 3px solid #4ECDC4;
+            padding: 6px 10px;
+            margin: 4px 0;
+            border-radius: 4px;
+        }
+        .remark-box {
+            background: rgba(255, 107, 107, 0.05);
+            border-right: 3px solid #FF6B6B;
+            padding: 6px 10px;
+            margin: 4px 0;
+            border-radius: 4px;
+        }
+        .property-box {
+            background: rgba(244, 208, 63, 0.05);
+            border-right: 3px solid #F4D03F;
+            padding: 6px 10px;
+            margin: 4px 0;
+            border-radius: 4px;
         }
         @media (max-width: 768px) {
             body { font-size: 13px; }
@@ -419,6 +442,13 @@
             <!-- ============================================================ -->
             <div class="section">
                 <h2><span class="num">1</span> Exercice 1</h2>
+                <div class="definition-box">
+                    <p><strong>Rappel :</strong></p>
+                    <ul>
+                        <li>$\neg(\forall x \in E, P(x)) \equiv \exists x \in E, \neg P(x)$</li>
+                        <li>$\neg(\exists x \in E, P(x)) \equiv \forall x \in E, \neg P(x)$</li>
+                    </ul>
+                </div>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Donner la négation et la valeur de vérité de chacune des propositions suivantes :</p>
 
                 <div class="sub-question">
@@ -428,7 +458,7 @@
                     <div id="sol1_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} / x^2 \leq 0$</p>
+                            <p>$\neg P : \exists x \in \mathbb{R} / x^2 \leq 0$</p>
                             <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span> (car $x=0$ donne $0^2=0$)</p>
                         </div>
                     </div>
@@ -441,7 +471,7 @@
                     <div id="sol1_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $\forall x \in \mathbb{R}, x^2 - 2 \neq 0$</p>
+                            <p>$\neg P : \forall x \in \mathbb{R}, x^2 - 2 \neq 0$</p>
                             <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> (car $x = \sqrt{2}$ ou $x = -\sqrt{2}$)</p>
                         </div>
                     </div>
@@ -454,7 +484,7 @@
                     <div id="sol1_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $x \notin [1; 2[$ c'est-à-dire $x < 1$ ou $x \geq 2$</p>
+                            <p>$\neg P : x \notin [1; 2[$ c'est-à-dire $x < 1$ ou $x \geq 2$</p>
                             <p><strong>Valeur :</strong> dépend de $x$</p>
                         </div>
                     </div>
@@ -467,7 +497,7 @@
                     <div id="sol1_4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $\exists n \in \mathbb{N}, n^2 \notin \mathbb{N}$</p>
+                            <p>$\neg P : \exists n \in \mathbb{N}, n^2 \notin \mathbb{N}$</p>
                             <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> (le carré d'un entier naturel est un entier naturel)</p>
                         </div>
                     </div>
@@ -480,7 +510,7 @@
                     <div id="sol1_5" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R}; \cos x < -1$ ou $\cos x > 1$</p>
+                            <p>$\neg P : \exists x \in \mathbb{R}; \cos x < -1$ ou $\cos x > 1$</p>
                             <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> (propriété de la fonction cosinus)</p>
                         </div>
                     </div>
@@ -493,7 +523,7 @@
                     <div id="sol1_6" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $\exists n \in \mathbb{N}; (\forall m \in \mathbb{N}): n \geq m$</p>
+                            <p>$\neg P : \exists n \in \mathbb{N}; (\forall m \in \mathbb{N}): n \geq m$</p>
                             <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> (pour tout $n$, on peut prendre $m = n+1$)</p>
                         </div>
                     </div>
@@ -506,7 +536,7 @@
                     <div id="sol1_7" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $(\forall n \in \mathbb{N}), 2n+1$ est impair</p>
+                            <p>$\neg P : (\forall n \in \mathbb{N}), 2n+1$ est impair</p>
                             <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span> ($2n+1$ est toujours impair)</p>
                         </div>
                     </div>
@@ -519,7 +549,7 @@
                     <div id="sol1_8" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $\exists n \in \mathbb{N}; \sqrt{n} \notin \mathbb{N}$</p>
+                            <p>$\neg P : \exists n \in \mathbb{N}; \sqrt{n} \notin \mathbb{N}$</p>
                             <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span> (contre-exemple: $n=2$)</p>
                         </div>
                     </div>
@@ -532,7 +562,7 @@
                     <div id="sol1_9" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R}; (\forall y \in \mathbb{R}): y - x \leq 0$</p>
+                            <p>$\neg P : \exists x \in \mathbb{R}; (\forall y \in \mathbb{R}): y - x \leq 0$</p>
                             <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> (pour tout $x$, prendre $y = x+1$)</p>
                         </div>
                     </div>
@@ -545,7 +575,7 @@
                     <div id="sol1_10" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Négation :</strong> $(\forall x \in \mathbb{R}), 2x+4 \neq 0$ ou il existe au moins deux solutions</p>
+                            <p>$\neg P : (\forall x \in \mathbb{R}), 2x+4 \neq 0$ ou il existe au moins deux solutions</p>
                             <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span> (l'unique solution est $x = -2$)</p>
                         </div>
                     </div>
@@ -650,6 +680,9 @@
             <!-- ============================================================ -->
             <div class="section">
                 <h2><span class="num">3</span> Exercice 3</h2>
+                <div class="property-box">
+                    <p><strong>Propriété :</strong> Si $0 < a < b$ alors $\dfrac{1}{a} > \dfrac{1}{b}$</p>
+                </div>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$x \in \mathbb{R}, y \in \mathbb{R}$</p>
                 <div class="formula-block" style="font-size:13px;">
                     Montrer que : $0 \leq x < 2$ et $0 \leq y < 2 \Rightarrow \frac{1}{x} + \frac{1}{y} > 1$
@@ -671,6 +704,9 @@
             <!-- ============================================================ -->
             <div class="section">
                 <h2><span class="num">4</span> Exercice 4</h2>
+                <div class="property-box">
+                    <p><strong>Rappel :</strong> $(a-b)(a+b) = a^2 - b^2$</p>
+                </div>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">$x \in \mathbb{R}^+$</p>
                 <div class="formula-block" style="font-size:13px;">
                     Montrer que : $\frac{1}{1+\sqrt{x}} = 1 - \sqrt{x} \Rightarrow x = 0$
@@ -692,6 +728,9 @@
             <!-- ============================================================ -->
             <div class="section">
                 <h2><span class="num">5</span> Exercice 5</h2>
+                <div class="property-box">
+                    <p><strong>Propriété :</strong> $a^2 + b^2 = 0 \iff a = 0$ et $b = 0$</p>
+                </div>
 
                 <div class="sub-question">
                     <div class="letter">1)</div>
@@ -702,9 +741,9 @@
                     <div id="sol5_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> $a^2 \geq 0$ et $b^2 \geq 0$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $a^2 + b^2 = 0 \Rightarrow a^2 = 0$ et $b^2 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $a = 0$ et $b = 0$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> On a $a^2 \geq 0$ et $b^2 \geq 0$ (tout carré est positif ou nul).</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $a^2 + b^2 = 0 \Rightarrow a^2 = 0$ et $b^2 = 0$ (car la somme est nulle).</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $a^2 = 0 \Rightarrow a = 0$ ; $b^2 = 0 \Rightarrow b = 0$.</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = 0$ et $b = 0$</p>
                         </div>
                     </div>
@@ -720,10 +759,11 @@
                     <div id="sol5_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> $x - 2\sqrt{x} + 1 + y - 2\sqrt{y} + 1 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $\sqrt{x} = 1$ et $\sqrt{y} = 1$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $x = 1$ et $y = 1$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> On réécrit l'équation : $x - 2\sqrt{x} + 1 + y - 2\sqrt{y} + 1 = 0$.</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> On factorise : $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = 0$.</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> Comme la somme de carrés est nulle, chaque carré est nul : $(\sqrt{x} - 1)^2 = 0$ et $(\sqrt{y} - 1)^2 = 0$.</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> $(\sqrt{x} - 1)^2 = 0 \Rightarrow \sqrt{x} = 1 \Rightarrow x = 1$.</div>
+                            <div class="step"><span class="step-num">Étape 5 :</span> $(\sqrt{y} - 1)^2 = 0 \Rightarrow \sqrt{y} = 1 \Rightarrow y = 1$.</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x = y = 1$</p>
                         </div>
                     </div>
@@ -735,6 +775,9 @@
             <!-- ============================================================ -->
             <div class="section">
                 <h2><span class="num">6</span> Exercice 6</h2>
+                <div class="property-box">
+                    <p><strong>Propriété :</strong> $(a-b)^2 \geq 0 \iff a^2 + b^2 \geq 2ab$</p>
+                </div>
                 <div class="formula-block" style="font-size:13px;">
                     $(\forall (a,b) \in \mathbb{R}^2) : a^2 + b^2 = 1 \Rightarrow |a+b| \leq \sqrt{2}$
                 </div>
@@ -742,10 +785,12 @@
                 <div id="sol6" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $(a+b)^2 = a^2 + b^2 + 2ab = 1 + 2ab$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $2ab \leq a^2 + b^2 = 1$ (car $(a-b)^2 \geq 0$)</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $(a+b)^2 \leq 1 + 1 = 2$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $|a+b| \leq \sqrt{2}$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> On calcule $(a+b)^2 = a^2 + b^2 + 2ab$.</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> Puisque $a^2 + b^2 = 1$, on a $(a+b)^2 = 1 + 2ab$.</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> On sait que $(a-b)^2 \geq 0 \iff a^2 + b^2 - 2ab \geq 0 \iff 2ab \leq a^2 + b^2$.</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> Donc $2ab \leq a^2 + b^2 = 1$.</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> On remplace : $(a+b)^2 = 1 + 2ab \leq 1 + 1 = 2$.</div>
+                        <div class="step"><span class="step-num">Étape 6 :</span> On prend la racine carrée (positive) : $|a+b| \leq \sqrt{2}$.</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $|a+b| \leq \sqrt{2}$</p>
                     </div>
                 </div>
@@ -756,6 +801,9 @@
             <!-- ============================================================ -->
             <div class="section">
                 <h2><span class="num">7</span> Exercice 7</h2>
+                <div class="definition-box">
+                    <p><strong>Définition :</strong> $a \in \mathbb{Q} \iff \exists p,q \in \mathbb{Z}, q \neq 0 : a = \dfrac{p}{q}$</p>
+                </div>
                 <div class="formula-block" style="font-size:13px;">
                     Montrer que si $a \in \mathbb{Q}$ et $b \in \mathbb{Q}$ alors $a+b \in \mathbb{Q}$
                 </div>
