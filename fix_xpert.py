@@ -3,16 +3,26 @@
 """
 fix_xpert.py
 ============
+<<<<<<< HEAD
 سكريبت واحد كيصلح 3 مشاكل تقنية فمشروع Xpert:
+=======
+سكريبت واحد كيصلح مشكلتين تقنيتين فمشروع Xpert:
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
 
   1) SEO      : كيزيد/كيصلح <meta name="description"> و <link rel="canonical">
                 فكل صفحة HTML، وكيفرّق العناوين <title> المكررة.
   2) DEDUP    : كيلقى <style>/<script> inline اللي مكررين بزاف بين الصفحات،
                 كيطلعهم لملف مشترك واحد (assets/css/shared-inline.css و
                 assets/js/shared-inline.js) وكيبدلهم بـ <link>/<script src>.
+<<<<<<< HEAD
   3) ZOOM/UX  : كيصلح protection.js (كيحيد منع الزووم الكامل، كيخلي غير
                 حماية الصور) وكيصلح meta viewport (كيحيد maximum-scale=1.0
                 و user-scalable=no من 346 صفحة).
+=======
+
+ملاحظة: السكريبت ماكيمسش protection.js ولا meta viewport — منع الزووم
+فالصفحة متروك كيفما هو بطلب منك (باش الصفحة مايتشوهش فالمتصفح).
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
 
 الاستعمال (من جوج Termux، فـ روت المشروع /storage/emulated/0/Web):
 
@@ -20,7 +30,10 @@ fix_xpert.py
     python3 fix_xpert.py --root . --apply             # تطبيق التعديلات فعليا (كيدير .bak أولا)
     python3 fix_xpert.py --root . --apply --only seo
     python3 fix_xpert.py --root . --apply --only dedup --min-shared 8
+<<<<<<< HEAD
     python3 fix_xpert.py --root . --apply --only zoom
+=======
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
 
 ملاحظة مهمة: دير --dry-run أولا وشوف التقرير قبل ما دير --apply.
 بعد --apply، خدم:  node utils/build.js && node utils/validate.js
@@ -315,6 +328,7 @@ def dedup_pass(root, apply_changes, report, min_shared, kind):
 
 
 # ============================================================
+<<<<<<< HEAD
 # 3) ZOOM/UX: protection.js + meta viewport
 # ============================================================
 
@@ -380,16 +394,26 @@ def fix_viewport(root, apply_changes, report):
 
 
 # ============================================================
+=======
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
 # MAIN
 # ============================================================
 
 def main():
+<<<<<<< HEAD
     ap = argparse.ArgumentParser(description="إصلاح SEO + dedup + zoom لمشروع Xpert")
+=======
+    ap = argparse.ArgumentParser(description="إصلاح SEO + dedup لمشروع Xpert")
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
     ap.add_argument("--root", default=".", help="مسار جذر المشروع (فيه content/, assets/)")
     ap.add_argument("--apply", action="store_true", help="طبق التعديلات فعليا (بلا هاد الفلاق = dry-run)")
     ap.add_argument(
         "--only",
+<<<<<<< HEAD
         choices=["seo", "dedup", "zoom", "all"],
+=======
+        choices=["seo", "dedup", "all"],
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
         default="all",
         help="دير غير جزء معين",
     )
@@ -420,10 +444,13 @@ def main():
         dedup_pass(root, apply_changes, report, args.min_shared, "style")
         dedup_pass(root, apply_changes, report, args.min_shared, "script")
 
+<<<<<<< HEAD
     if args.only in ("zoom", "all"):
         fix_protection_js(root, apply_changes, report)
         fix_viewport(root, apply_changes, report)
 
+=======
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
     # ====== تقرير نهائي ======
     print("=" * 60)
     print("📊 التقرير")
@@ -451,12 +478,15 @@ def main():
         print(f"  blocks تحيدو من الصفحات: {report.get('script_blocks_removed', 0)}")
         print(f"  عدد الصفحات لي تبدلو   : {len(report.get('script_files_touched', []))}")
 
+<<<<<<< HEAD
     if args.only in ("zoom", "all"):
         print(f"\n[ZOOM/UX]")
         print(f"  protection.js موجود؟   : {report.get('protection_js_found', False)}")
         print(f"  protection.js تصلح؟    : {report.get('protection_js_changed', False)}")
         print(f"  صفحات viewport تصلحو   : {report.get('viewport_fixed', 0)}")
 
+=======
+>>>>>>> d3c7c53ed15652262ea5290408de579e623eea52
     print("\n" + "=" * 60)
     if not apply_changes:
         print("ℹ️  هادشي كان غير dry-run. باش تطبق فعلا زيد --apply")
