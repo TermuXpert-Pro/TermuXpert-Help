@@ -217,8 +217,8 @@ function drawGraph7asvg() {
     const A = { x: 2, y: 1, color: '#4ECDC4', label: 'A' };
     const B = { x: 5.5, y: 0.8, color: '#FF6B6B', label: 'B' };
     const C = { x: 3.5, y: 5, color: '#BB8FCE', label: 'C' };
-    const I = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2, color: '#A8FF78', label: 'I' };
-    const G = { x: (1 * A.x + 2 * I.x) / 3, y: (1 * A.y + 2 * I.y) / 3, color: '#F4D03F', label: 'G' };
+    const I = { x: (2 * B.x + C.x) / 3, y: (2 * B.y + C.y) / 3, color: '#A8FF78', label: 'I' };
+    const G = { x: (1 * A.x + 2 * B.x + 1 * C.x) / 4, y: (1 * A.y + 2 * B.y + 1 * C.y) / 4, color: '#F4D03F', label: 'G' };
     const r = 1.5 / 2;
 
     const box = bbox([A, B, C, I], 1.2);
@@ -241,8 +241,8 @@ function drawGraph7bsvg() {
     const A = { x: 2, y: 1, color: '#4ECDC4', label: 'A' };
     const B = { x: 5.5, y: 0.8, color: '#FF6B6B', label: 'B' };
     const C = { x: 3.5, y: 5, color: '#BB8FCE', label: 'C' };
-    const I = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2, color: '#A8FF78', label: 'I' };
-    const G = { x: (1 * A.x + 2 * I.x) / 3, y: (1 * A.y + 2 * I.y) / 3, color: '#F4D03F', label: 'G' };
+    const I = { x: (2 * B.x + C.x) / 3, y: (2 * B.y + C.y) / 3, color: '#A8FF78', label: 'I' };
+    const G = { x: (1 * A.x + 2 * B.x + 1 * C.x) / 4, y: (1 * A.y + 2 * B.y + 1 * C.y) / 4, color: '#F4D03F', label: 'G' };
     const Gp = { x: (3 * A.x + 1 * C.x) / 4, y: (3 * A.y + 1 * C.y) / 4, color: '#F4D03F', label: "G'" };
 
     const mx = (G.x + Gp.x) / 2, my = (G.y + Gp.y) / 2;
@@ -274,7 +274,7 @@ function drawGraph8svg() {
     const C = { x: 0, y: 1, color: '#BB8FCE', label: 'C' };
     const I = { x: -0.5, y: 1.5, color: '#A8FF78', label: 'I' };
     const K = { x: 0.4, y: 0, color: '#F4D03F', label: 'K' };
-    const J = { x: 0, y: 0.875, color: '#4D9DE0', label: 'J' };
+    const J = { x: 0, y: 2 / 3, color: '#4D9DE0', label: 'J' };
 
     const box = bbox([A, B, C, I, K, J], 0.6);
     const s = SvgUtils.setupSVG('graph8svg', box);

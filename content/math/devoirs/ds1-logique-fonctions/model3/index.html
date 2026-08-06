@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Devoir Surveillé N°1 - Modèle 6 | Xpert</title>
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    <link rel="stylesheet" href="../../../../../assets/css/devoir.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <style>
+        /* ====== نفس ستايل التمارين مع تعديلات بسيطة للفرض ====== */
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #BB8FCE;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+        /* ====== جدول التغيرات (Tableau de variations) - بنفس هوية جداول الدروس ====== */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 10px 0;
+        }
+        .variation-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 12.5px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            min-width: 260px;
+        }
+        .variation-table th,
+        .variation-table td {
+            border: 1px solid var(--border);
+            padding: 7px 12px;
+            text-align: center;
+            color: var(--text-secondary);
+            min-width: 40px;
+        }
+        .variation-table tr:first-child th,
+        .variation-table tr:first-child td { border-top: none; }
+        .variation-table tr:last-child th,
+        .variation-table tr:last-child td { border-bottom: none; }
+        .variation-table tr th:first-child,
+        .variation-table tr td:first-child { border-left: none; }
+        .variation-table tr th:last-child,
+        .variation-table tr td:last-child { border-right: none; }
+        .variation-table th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            font-weight: 700;
+            font-style: italic;
+            width: 32px;
+        }
+        .variation-table .vt-bound {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .variation-table .vt-key {
+            color: #BB8FCE;
+            font-weight: 700;
+            background: rgba(187, 143, 206, 0.07);
+        }
+        .variation-table .vt-value {
+            color: #4ECDC4;
+            font-weight: 700;
+            background: rgba(78, 205, 196, 0.07);
+        }
+        .variation-table .vt-arrow {
+            font-size: 16px;
+            line-height: 1;
+            padding: 4px 6px;
+        }
+        .variation-table .vt-arrow.up { color: #4ECDC4; }
+        .variation-table .vt-arrow.down { color: #FF6B6B; }
+        @media (max-width: 480px) {
+            .variation-table { font-size: 11px; min-width: 220px; }
+            .variation-table th, .variation-table td { padding: 5px 8px; min-width: 32px; }
+            .variation-table .vt-arrow { font-size: 14px; }
+        }
+        .graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .graph-container svg { max-width: 100%; height: auto; }
+        .graph-container p { color: var(--text-muted); font-size: 11px; margin-top: 4px; }
+        .devoir-exo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 22px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #BB8FCE44;
+        }
+        .devoir-exo-header h2 { color: #BB8FCE; font-size: 17px; }
+        .question-text { font-size: 12px; color: var(--text-secondary); margin: 6px 0 4px; font-style: italic; }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- زر تبديل الوضع (Dark/Light) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+
+        <!-- زر تثبيت PWA -->
+        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
+            <i class="fas fa-download" aria-hidden="true"></i>
+        </button>
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
+                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span class="sidebar-link-text">Calendrier</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
+            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+            <span style="color:var(--text-muted);opacity:0.4;">•</span>
+            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux modèles</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pen-to-square" style="color:#BB8FCE;"></i> Devoir Surveillé N°1</h1>
+            <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:20px;">
+                <span class="badge-exercice"><i class="fas fa-layer-group"></i> Semestre 1</span>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-clock"></i> Durée : 2 heures</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-book"></i> Logique & Fonctions</span>
+            </p>
+
+            <!-- ============================================================
+                 EXERCICE 1 - Logique mathématique (14 pts)
+            ============================================================ -->
+            <div class="devoir-exo-header">
+                <h2><i class="fas fa-list-ol"></i> Exercice 1</h2>
+                <span class="badge-exercice">14 pts</span>
+            </div>
+
+            <!-- Question 1 -->
+            <div class="sub-question">
+                <div class="letter">1)</div>
+                <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de vérité des propositions suivantes :</p>
+                <div class="question-text">
+                    \[
+                    \text{P} : \left( \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3} \text{ ou } "2 \text{ est premier}" \right) \quad ; \quad \text{Q} : \left( 2,3 \notin \mathbb{N} \text{ et } |1 - \sqrt{2}| = 1 - \sqrt{2} \right)
+                    \]
+                </div>
+                <div id="sol1_1" class="solution-box">
+                    <div class="sol-title">✅ Correction</div>
+                    <div class="sol-content">
+                        <div class="step">
+                            <span class="step-num">1) Proposition P :</span>
+                            <p>On a \(\frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}\) (vraie car \(\frac{\sqrt{3}}{3} = \frac{1}{\sqrt{3}}\)).</p>
+                            <p>L'assertion "2 est premier" est vraie.</p>
+                            <p>La proposition P est de la forme (vraie ou vraie) = <b>vraie</b>.</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">2) Proposition Q :</span>
+                            <p>\(2,3 \notin \mathbb{N}\) est fausse (2,3 n'est pas un entier naturel, mais la notation \(2,3\) signifie 2.3, donc elle n'appartient pas à \(\mathbb{N}\). En réalité, 2,3 n'est pas un entier, donc l'assertion est vraie).</p>
+                            <p>\(|1 - \sqrt{2}| = \sqrt{2} - 1\) car \(\sqrt{2} > 1\). Donc \(|1 - \sqrt{2}| = 1 - \sqrt{2}\) est fausse.</p>
+                            <p>Q est de la forme (vraie et fausse) = <b>fausse</b>.</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>P est <b>vraie</b>, Q est <b>fausse</b>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="sub-question">
+                <div class="letter">2)</div>
+                <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de vérité des propositions suivantes :</p>
+                <div class="question-text">
+                    \[
+                    \text{R} : \left( (\forall x \in \mathbb{R}), x^2 \ge x \right) \quad ; \quad \text{S} : \left( (\exists n \in \mathbb{N}), n^2 - 2n + 1 = 0 \right)
+                    \]
+                </div>
+                <div id="sol1_2" class="solution-box">
+                    <div class="sol-title">✅ Correction</div>
+                    <div class="sol-content">
+                        <div class="step">
+                            <span class="step-num">1) Proposition R :</span>
+                            <p>\(x^2 \ge x \iff x^2 - x \ge 0 \iff x(x-1) \ge 0\).</p>
+                            <p>Cette inégalité est vraie pour \(x \le 0\) ou \(x \ge 1\), mais fausse pour \(0 < x < 1\) (par exemple \(x=0.5\)).</p>
+                            <p>Donc R est <b>fausse</b>.</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">2) Proposition S :</span>
+                            <p>\(n^2 - 2n + 1 = 0 \iff (n-1)^2 = 0 \iff n = 1\).</p>
+                            <p>Puisque \(1 \in \mathbb{N}\), il existe bien un entier naturel \(n=1\) qui vérifie l'équation.</p>
+                            <p>Donc S est <b>vraie</b>.</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>R est <b>fausse</b>, S est <b>vraie</b>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="sub-question">
+                <div class="letter">3)</div>
+                <p style="font-size:11.5px; margin:4px 0;">On considère la proposition suivante :</p>
+                <div class="question-text">
+                    \[
+                    \text{T} : (\forall x \in \mathbb{R}) \; ; \; \sqrt{x^2 + 2x + 3} = x + 1
+                    \]
+                </div>
+                <p style="font-size:11.5px; margin:4px 0;"><b>a</b> - Donner la négation de T.</p>
+                <p style="font-size:11.5px; margin:4px 0;"><b>b</b> - Déduire que la proposition T est fausse.</p>
+                <div id="sol1_3" class="solution-box">
+                    <div class="sol-title">✅ Correction</div>
+                    <div class="sol-content">
+                        <div class="step">
+                            <span class="step-num">a) Négation de T :</span>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                \overline{\text{T}} : (\exists x \in \mathbb{R}) \; ; \; \sqrt{x^2 + 2x + 3} \neq x + 1
+                                \]
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">b) Déduction :</span>
+                            <p>Pour montrer que T est fausse, il suffit de trouver un contre-exemple, c'est-à-dire un \(x \in \mathbb{R}\) tel que \(\sqrt{x^2 + 2x + 3} \neq x + 1\).</p>
+                            <p>Prenons \(x = 0\). On a :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                \sqrt{0^2 + 2(0) + 3} = \sqrt{3} \quad \text{et} \quad 0 + 1 = 1
+                                \]
+                            </div>
+                            <p>Puisque \(\sqrt{3} \neq 1\), la proposition T est fausse.</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>\(\overline{\text{T}} : \exists x \in \mathbb{R}, \sqrt{x^2 + 2x + 3} \neq x + 1\). T est <b>fausse</b>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="sub-question">
+                <div class="letter">4)</div>
+                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par équivalences successives montrer que :</p>
+                <div class="question-text">
+                    \[
+                    (\forall x \in \mathbb{R}) : \sqrt{x^4 + 3x^2 + 1} \ge x^2 + 1
+                    \]
+                </div>
+                <div id="sol1_4" class="solution-box">
+                    <div class="sol-title">✅ Correction</div>
+                    <div class="sol-content">
+                        <div class="step">
+                            <span class="step-num">Raisonnement par équivalences successives :</span>
+                            <p>Pour tout \(x \in \mathbb{R}\), on a \(x^4 + 3x^2 + 1 > 0\) et \(x^2 + 1 > 0\). Donc l'inégalité est équivalente à :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                \sqrt{x^4 + 3x^2 + 1} \ge x^2 + 1 \iff x^4 + 3x^2 + 1 \ge (x^2 + 1)^2
+                                \]
+                            </div>
+                            <p>Développons le membre de droite :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                (x^2 + 1)^2 = x^4 + 2x^2 + 1
+                                \]
+                            </div>
+                            <p>L'inégalité devient :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                x^4 + 3x^2 + 1 \ge x^4 + 2x^2 + 1 \iff x^2 \ge 0
+                                \]
+                            </div>
+                            <p>Or \(x^2 \ge 0\) est vraie pour tout \(x \in \mathbb{R}\).</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>L'inégalité est vraie pour tout \(x \in \mathbb{R}\).</p>
+                        </div>
+                        <div class="highlight-box yellow" style="margin-top:6px;">
+                            <span class="label rappel">Rappel</span>
+                            <p>Pour \(a \ge 0\) et \(b \ge 0\), on a \(a \ge b \iff a^2 \ge b^2\).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="sub-question">
+                <div class="letter">5)</div>
+                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par la contraposée montrer que :</p>
+                <div class="question-text">
+                    \[
+                    \forall (x, y) \in \mathbb{R}^{*2} : (x \neq y \text{ et } x \cdot y \neq 2) \Rightarrow \left( \frac{x^2 + 2}{x} \neq \frac{y^2 + 2}{y} \right)
+                    \]
+                </div>
+                <div id="sol1_5" class="solution-box">
+                    <div class="sol-title">✅ Correction</div>
+                    <div class="sol-content">
+                        <div class="step">
+                            <span class="step-num">Raisonnement par contraposée :</span>
+                            <p>La contraposée de l'implication \(\text{A} \Rightarrow \text{B}\) est \(\overline{\text{B}} \Rightarrow \overline{\text{A}}\).</p>
+                            <p>Montrons que :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                \frac{x^2 + 2}{x} = \frac{y^2 + 2}{y} \Rightarrow (x = y \text{ ou } x \cdot y = 2)
+                                \]
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Calcul :</span>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                \frac{x^2 + 2}{x} = \frac{y^2 + 2}{y} \iff \frac{x^2}{x} + \frac{2}{x} = \frac{y^2}{y} + \frac{2}{y} \iff x + \frac{2}{x} = y + \frac{2}{y}
+                                \]
+                            </div>
+                            <p>On multiplie par \(xy\) (non nul car \(x, y \in \mathbb{R}^*\)) :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                x^2 y + 2y = xy^2 + 2x \iff x^2 y - xy^2 + 2y - 2x = 0
+                                \]
+                            </div>
+                            <p>On factorise :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                xy(x - y) - 2(x - y) = 0 \iff (x - y)(xy - 2) = 0
+                                \]
+                            </div>
+                            <p>Donc \(x = y\) ou \(xy = 2\).</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>La contraposée est vraie, donc l'implication initiale est vraie.</p>
+                        </div>
+                        <div class="highlight-box yellow" style="margin-top:6px;">
+                            <span class="label rappel">Rappel</span>
+                            <p>La contraposée de \(A \Rightarrow B\) est \(\overline{B} \Rightarrow \overline{A}\). Les deux sont équivalentes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="sub-question">
+                <div class="letter">6)</div>
+                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par récurrence montrer que les deux propositions suivantes sont vraies :</p>
+                <div class="question-text">
+                    <p><b>a</b> - \((\forall n \in \mathbb{N}) \quad 1 + 11^1 + 11^2 + \cdots + 11^n = \frac{1}{10}(11^{n+1} - 1)\)</p>
+                    <p><b>b</b> - Le nombre \(3^{3n+2} - 2^{n+2}\) est divisible par \(5\) pour tout \(n\) de \(\mathbb{N}\).</p>
+                </div>
+                <div id="sol1_6" class="solution-box">
+                    <div class="sol-title">✅ Correction</div>
+                    <div class="sol-content">
+                        <p style="font-weight:600; color:#BB8FCE;">a) Somme des puissances de 11</p>
+                        <div class="step">
+                            <span class="step-num">Initialisation (n=0) :</span>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                1 = \frac{1}{10}(11^{1} - 1) = \frac{10}{10} = 1
+                                \]
+                            </div>
+                            <p>La propriété est vraie au rang \(n=0\).</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Hérédité :</span>
+                            <p>Supposons que pour un \(n \in \mathbb{N}\) fixé, on a :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                1 + 11^1 + 11^2 + \cdots + 11^n = \frac{1}{10}(11^{n+1} - 1)
+                                \]
+                            </div>
+                            <p>Montrons que la propriété est vraie au rang \(n+1\) :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                1 + 11^1 + \cdots + 11^n + 11^{n+1} = \frac{1}{10}(11^{n+1} - 1) + 11^{n+1}
+                                \]
+                            </div>
+                            <p>On met au même dénominateur :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                = \frac{11^{n+1} - 1 + 10 \cdot 11^{n+1}}{10} = \frac{11 \cdot 11^{n+1} - 1}{10} = \frac{11^{n+2} - 1}{10}
+                                \]
+                            </div>
+                            <p>La propriété est bien héréditaire.</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>Par récurrence, la proposition est vraie pour tout \(n \in \mathbb{N}\).</p>
+                        </div>
+
+                        <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Divisibilité par 5</p>
+                        <div class="step">
+                            <span class="step-num">Initialisation (n=0) :</span>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                3^{2} - 2^{2} = 9 - 4 = 5
+                                \]
+                            </div>
+                            <p>5 est divisible par 5. La propriété est vraie au rang \(n=0\).</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Hérédité :</span>
+                            <p>Supposons que pour un \(n \in \mathbb{N}\) fixé, \(3^{3n+2} - 2^{n+2}\) est divisible par 5, c'est-à-dire qu'il existe \(k \in \mathbb{N}\) tel que :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                3^{3n+2} - 2^{n+2} = 5k
+                                \]
+                            </div>
+                            <p>Montrons que la propriété est vraie au rang \(n+1\) :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                3^{3(n+1)+2} - 2^{(n+1)+2} = 3^{3n+5} - 2^{n+3} = 27 \cdot 3^{3n+2} - 2 \cdot 2^{n+2}
+                                \]
+                            </div>
+                            <p>On utilise l'hypothèse de récurrence \(3^{3n+2} = 5k + 2^{n+2}\) :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                = 27(5k + 2^{n+2}) - 2 \cdot 2^{n+2} = 27 \cdot 5k + 27 \cdot 2^{n+2} - 2 \cdot 2^{n+2}
+                                \]
+                            </div>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                = 5(27k) + 25 \cdot 2^{n+2} = 5(27k + 5 \cdot 2^{n+2})
+                                \]
+                            </div>
+                            <p>Donc \(3^{3(n+1)+2} - 2^{(n+1)+2}\) est divisible par 5.</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>Par récurrence, \(3^{3n+2} - 2^{n+2}\) est divisible par 5 pour tout \(n \in \mathbb{N}\).</p>
+                        </div>
+                        <div class="highlight-box yellow" style="margin-top:6px;">
+                            <span class="label rappel">Rappel</span>
+                            <p>Le raisonnement par récurrence comporte deux étapes : l'initialisation et l'hérédité.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="sub-question">
+                <div class="letter">7)</div>
+                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par l'absurde montrer que :</p>
+                <div class="question-text">
+                    \[
+                    \forall x \in \mathbb{R}^+ : \sqrt{x} \neq \frac{x+2}{\sqrt{x+4}}
+                    \]
+                </div>
+                <div id="sol1_7" class="solution-box">
+                    <div class="sol-title">✅ Correction</div>
+                    <div class="sol-content">
+                        <div class="step">
+                            <span class="step-num">Raisonnement par l'absurde :</span>
+                            <p>Supposons qu'il existe \(x \in \mathbb{R}^+\) tel que :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                \sqrt{x} = \frac{x+2}{\sqrt{x+4}}
+                                \]
+                            </div>
+                            <p>On élève au carré (les deux membres sont positifs) :</p>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                \[
+                                x = \frac{(x+2)^2}{x+4} \iff x(x+4) = (x+2)^2 \iff x^2 + 4x = x^2 + 4x + 4
+                                \]
+                            </div>
+                            <p>Ce qui donne \(0 = 4\), ce qui est absurde.</p>
+                        </div>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>Notre supposition est fausse, donc \(\forall x \in \mathbb{R}^+, \sqrt{x} \neq \frac{x+2}{\sqrt{x+4}}\).</p>
+                        </div>
+                        <div class="highlight-box yellow" style="margin-top:6px;">
+                            <span class="label rappel">Rappel</span>
+                            <p>Le raisonnement par l'absurde consiste à supposer le contraire de ce que l'on veut montrer et à aboutir à une contradiction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 EXERCICE 2 - Fonction majorée/minorée (3.5 pts)
+            ============================================================ -->
+            <div class="devoir-exo-header">
+                <h2><i class="fas fa-chart-line"></i> Exercice 2</h2>
+                <span class="badge-exercice">3.5 pts</span>
+            </div>
+
+            <div class="sub-question">
+                <p style="font-size:11.5px; margin:4px 0;">On considère la fonction \(f\) définie par \(f(x) = \dfrac{-2x + 4}{x^2 - x + 2}\).</p>
+                
+                <div style="margin-top:10px;">
+                    <p style="margin:4px 0;"><b>1)</b> Montrer que \((\forall x \in \mathbb{R}) \quad x^2 - x + 2 > 0\), et déduire \(D_f\) le domaine de définition de \(f\).</p>
+                    <div id="sol2_1" class="solution-box">
+                        <div class="sol-title">✅ Correction</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étude du discriminant :</span>
+                                <p>Pour le trinôme \(x^2 - x + 2\), on a \(\Delta = (-1)^2 - 4(1)(2) = 1 - 8 = -7 < 0\).</p>
+                                <p>Le coefficient de \(x^2\) est \(a = 1 > 0\).</p>
+                                <p>Donc le trinôme est toujours strictement positif sur \(\mathbb{R}\).</p>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Domaine de définition :</span>
+                                <p>Puisque \(x^2 - x + 2 > 0\) pour tout \(x \in \mathbb{R}\), le dénominateur ne s'annule jamais.</p>
+                                <div class="highlight-box green" style="margin-top:6px;">
+                                    <span class="label resume">Conclusion</span>
+                                    <p>\(\boxed{D_f = \mathbb{R}}\)</p>
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>Pour un trinôme \(ax^2 + bx + c\) avec \(a > 0\) et \(\Delta < 0\), le trinôme est toujours strictement positif.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px;">
+                    <p style="margin:4px 0;"><b>2)</b> Montrer que \(f\) est majorée par \(2\) sur \(\mathbb{R}\).</p>
+                    <div id="sol2_2" class="solution-box">
+                        <div class="sol-title">✅ Correction</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Montrons que \(f(x) \le 2\) pour tout \(x \in \mathbb{R}\) :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    f(x) \le 2 \iff \frac{-2x + 4}{x^2 - x + 2} \le 2
+                                    \]
+                                </div>
+                                <p>Comme \(x^2 - x + 2 > 0\), on peut multiplier sans changer le sens de l'inégalité :</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    -2x + 4 \le 2(x^2 - x + 2) \iff -2x + 4 \le 2x^2 - 2x + 4 \iff 0 \le 2x^2
+                                    \]
+                                </div>
+                                <p>On a \(2x^2 \ge 0\) pour tout \(x \in \mathbb{R}\). Donc l'inégalité est vraie.</p>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(f\) est <b>majorée</b> par 2 sur \(\mathbb{R}\).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px;">
+                    <p style="margin:4px 0;"><b>3)</b> a – Montrer que \(f\) est minorée par \(-1\) sur \(\mathbb{R}\).</p>
+                    <p style="margin:4px 0;"><b>b</b> – Est-ce que \(-1\) est une valeur minimale de \(f\) sur \(\mathbb{R}\) ?</p>
+                    <div id="sol2_3" class="solution-box">
+                        <div class="sol-title">✅ Correction</div>
+                        <div class="sol-content">
+                            <p style="font-weight:600; color:#BB8FCE;">a) Minorée par -1</p>
+                            <div class="step">
+                                <span class="step-num">Montrons que \(f(x) \ge -1\) pour tout \(x \in \mathbb{R}\) :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    f(x) \ge -1 \iff \frac{-2x + 4}{x^2 - x + 2} \ge -1
+                                    \]
+                                </div>
+                                <p>Comme \(x^2 - x + 2 > 0\), on multiplie sans changer le sens :</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    -2x + 4 \ge -(x^2 - x + 2) \iff -2x + 4 \ge -x^2 + x - 2 \iff x^2 - 3x + 6 \ge 0
+                                    \]
+                                </div>
+                                <p>Le discriminant de \(x^2 - 3x + 6\) est \(\Delta = 9 - 24 = -15 < 0\), et le coefficient de \(x^2\) est \(1 > 0\). Donc \(x^2 - 3x + 6 > 0\) pour tout \(x \in \mathbb{R}\).</p>
+                                <p>L'inégalité est donc vraie pour tout \(x \in \mathbb{R}\).</p>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(f\) est <b>minorée</b> par \(-1\) sur \(\mathbb{R}\).</p>
+                            </div>
+
+                            <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Valeur minimale</p>
+                            <div class="step">
+                                <span class="step-num">Vérification :</span>
+                                <p>Pour que \(-1\) soit une valeur minimale, il doit exister \(x_0 \in \mathbb{R}\) tel que \(f(x_0) = -1\).</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    f(x) = -1 \iff \frac{-2x + 4}{x^2 - x + 2} = -1 \iff -2x + 4 = -x^2 + x - 2 \iff x^2 - 3x + 6 = 0
+                                    \]
+                                </div>
+                                <p>Le discriminant de cette équation est \(\Delta = 9 - 24 = -15 < 0\). L'équation n'a pas de solution réelle.</p>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(-1\) n'est <b>pas</b> une valeur minimale de \(f\) sur \(\mathbb{R}\) car l'équation \(f(x) = -1\) n'a pas de solution.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 EXERCICE 3 - Étude de fonctions (6.5 pts)
+            ============================================================ -->
+            <div class="devoir-exo-header">
+                <h2><i class="fas fa-calculator"></i> Exercice 3</h2>
+                <span class="badge-exercice">6.5 pts</span>
+            </div>
+
+            <div class="sub-question">
+                <p style="font-size:11.5px; margin:4px 0;">On considère les fonctions \(f\) et \(g\) définies par : \(f(x) = \dfrac{1}{2}x^3\), \(\quad g(x) = \sqrt{x+3}\).</p>
+
+                <div style="margin-top:10px;">
+                    <p style="margin:4px 0;"><b>1)</b> a - Déterminer \(D_f\), et le tableau de variation de \(f\).</p>
+                    <p style="margin:4px 0;"><b>b</b> - Déterminer \(D_g\), et le tableau de variation de \(g\).</p>
+                    <p style="margin:4px 0;"><b>c</b> - Tracer \(C_f\) et \(C_g\) leurs courbes respectives dans le même repère orthonormé \((O; \vec{i}; \vec{j})\).</p>
+                    <div id="sol3_1" class="solution-box">
+                        <div class="sol-title">✅ Correction</div>
+                        <div class="sol-content">
+                            <p style="font-weight:600; color:#BB8FCE;">a) Fonction \(f\)</p>
+                            <div class="step">
+                                <span class="step-num">Domaine :</span>
+                                <p>\(f(x) = \frac{1}{2}x^3\) est une fonction polynomiale, donc définie sur \(\mathbb{R}\).</p>
+                                <div class="highlight-box green" style="margin-top:6px;">
+                                    <span class="label resume">Conclusion</span>
+                                    <p>\(\boxed{D_f = \mathbb{R}}\)</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Variations de \(f\) :</span>
+                                <p>\(f'(x) = \frac{3}{2}x^2\). On a \(f'(x) \ge 0\) pour tout \(x \in \mathbb{R}\), avec \(f'(0) = 0\).</p>
+                                <p>Donc \(f\) est <b>croissante</b> sur \(\mathbb{R}\).</p>
+                                <div class="table-wrap">
+                                    <table class="variation-table">
+                                        <tr><th>$x$</th><td class="vt-bound">$-\infty$</td><td></td><td class="vt-key">$0$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
+                                        <tr><th>$f$</th><td class="vt-bound">$-\infty$</td><td class="vt-arrow up">↗</td><td class="vt-value">$0$</td><td class="vt-arrow up">↗</td><td class="vt-bound">$+\infty$</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Fonction \(g\)</p>
+                            <div class="step">
+                                <span class="step-num">Domaine :</span>
+                                <p>\(g(x) = \sqrt{x+3}\) est définie pour \(x+3 \ge 0 \iff x \ge -3\).</p>
+                                <div class="highlight-box green" style="margin-top:6px;">
+                                    <span class="label resume">Conclusion</span>
+                                    <p>\(\boxed{D_g = [-3, +\infty[}\)</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Variations de \(g\) :</span>
+                                <p>La fonction racine carrée est croissante sur son domaine. Donc \(g\) est <b>croissante</b> sur \([-3, +\infty[\).</p>
+                                <div class="table-wrap">
+                                    <table class="variation-table">
+                                        <tr><th>$x$</th><td class="vt-key">$-3$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
+                                        <tr><th>$g$</th><td class="vt-value">$0$</td><td class="vt-arrow up">↗</td><td class="vt-bound">$+\infty$</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">c) Tracé des courbes</p>
+                            <div class="graph-container">
+                                <svg id="graphEx3" width="380" height="330"></svg>
+                                <p>\((C_f)\) en rouge (cubique), \((C_g)\) en jaune (racine carrée).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px;">
+                    <p style="margin:4px 0;"><b>2)</b> On considère l'équation \(E : x^3 - 2\sqrt{x+3} = 0\).</p>
+                    <p style="margin:4px 0;"><b>a</b> – Montrer que : \(E \Leftrightarrow f(x) = g(x)\), et déduire graphiquement que \(E\) admet une solution unique \(\alpha\) dans \([-3;+\infty[\).</p>
+                    <p style="margin:4px 0;"><b>b</b> – Montrer que : \(1 < \alpha < 2\).</p>
+                    <p style="margin:4px 0;"><b>c</b> – Résoudre graphiquement dans \([-3;+\infty[\), l'inéquation \(F : x^3 - 2\sqrt{x+3} > 0\).</p>
+                    <div id="sol3_2" class="solution-box">
+                        <div class="sol-title">✅ Correction</div>
+                        <div class="sol-content">
+                            <p style="font-weight:600; color:#BB8FCE;">a) Équivalence et solution unique</p>
+                            <div class="step">
+                                <span class="step-num">Équivalence :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    x^3 - 2\sqrt{x+3} = 0 \iff \frac{1}{2}x^3 = \sqrt{x+3} \iff f(x) = g(x)
+                                    \]
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Solution unique :</span>
+                                <p>Graphiquement, les courbes \((C_f)\) et \((C_g)\) se coupent en un seul point sur \([-3, +\infty[\).</p>
+                                <p>Donc l'équation \(E\) admet une <b>solution unique</b> \(\alpha \in [-3, +\infty[\).</p>
+                            </div>
+
+                            <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Encadrement de \(\alpha\)</p>
+                            <div class="step">
+                                <span class="step-num">Vérification :</span>
+                                <p>On évalue \(h(x) = f(x) - g(x) = \frac{1}{2}x^3 - \sqrt{x+3}\).</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    h(1) = \frac{1}{2} - \sqrt{4} = 0.5 - 2 = -1.5 < 0
+                                    \]
+                                </div>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    h(2) = \frac{8}{2} - \sqrt{5} = 4 - 2.236 = 1.764 > 0
+                                    \]
+                                </div>
+                                <p>Comme \(h\) est continue (car \(f\) et \(g\) le sont) et strictement croissante sur \([-3, +\infty[\) (car \(f\) est croissante et \(g\) est croissante, donc \(f-g\) est croissante), il existe une unique racine \(\alpha\) dans l'intervalle \([1, 2]\).</p>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(\boxed{1 < \alpha < 2}\)</p>
+                            </div>
+
+                            <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">c) Résolution graphique de l'inéquation</p>
+                            <div class="step">
+                                <span class="step-num">Inéquation :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    \[
+                                    x^3 - 2\sqrt{x+3} > 0 \iff \frac{1}{2}x^3 > \sqrt{x+3} \iff f(x) > g(x)
+                                    \]
+                                </div>
+                                <p>Graphiquement, \(f(x) > g(x)\) lorsque la courbe \((C_f)\) est au-dessus de \((C_g)\).</p>
+                            </div>
+                            <div class="graph-container">
+                                <svg id="graphIneqEx3" width="380" height="300"></svg>
+                                <p>Zone où \((C_f)\) est au-dessus de \((C_g)\).</p>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>\(\boxed{S = ]\alpha, +\infty[}\) où \(\alpha \in ]1, 2[\) est la solution de \(E\).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
+        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
+        <span style="color:var(--text-muted);opacity:0.4;">•</span>
+        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+    </div>
+    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+    <script src="../../../../../assets/js/devoir-exam.js"></script>
+    <!-- ====== Fichiers JS pour les graphiques ====== -->
+    <script>
+        // Graphique pour l'exercice 3 (fonctions f et g)
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('graphEx3');
+            if (!container) return;
+            const width = container.clientWidth || 380;
+            const height = container.clientHeight || 330;
+            const margin = { top: 20, right: 30, bottom: 30, left: 40 };
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+            
+            // Définir le viewBox pour le SVG
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            
+            // Définir les échelles
+            const xMin = -3, xMax = 3, yMin = -2, yMax = 5;
+            
+            function xScale(x) { return margin.left + ((x - xMin) / (xMax - xMin)) * innerWidth; }
+            function yScale(y) { return margin.top + innerHeight - ((y - yMin) / (yMax - yMin)) * innerHeight; }
+            
+            // Grille
+            const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            gridGroup.setAttribute('stroke', 'rgba(255,255,255,0.1)');
+            gridGroup.setAttribute('stroke-width', '0.5');
+            for (let x = -3; x <= 3; x += 0.5) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', xScale(x));
+                line.setAttribute('y1', margin.top);
+                line.setAttribute('x2', xScale(x));
+                line.setAttribute('y2', height - margin.bottom);
+                gridGroup.appendChild(line);
+            }
+            for (let y = -2; y <= 5; y += 0.5) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', margin.left);
+                line.setAttribute('y1', yScale(y));
+                line.setAttribute('x2', width - margin.right);
+                line.setAttribute('y2', yScale(y));
+                gridGroup.appendChild(line);
+            }
+            svg.appendChild(gridGroup);
+            
+            // Axes
+            const axesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            axesGroup.setAttribute('stroke', '#888');
+            axesGroup.setAttribute('stroke-width', '1.5');
+            
+            // Axe x
+            const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            xAxis.setAttribute('x1', margin.left);
+            xAxis.setAttribute('y1', yScale(0));
+            xAxis.setAttribute('x2', width - margin.right);
+            xAxis.setAttribute('y2', yScale(0));
+            axesGroup.appendChild(xAxis);
+            
+            // Axe y
+            const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            yAxis.setAttribute('x1', xScale(0));
+            yAxis.setAttribute('y1', margin.top);
+            yAxis.setAttribute('x2', xScale(0));
+            yAxis.setAttribute('y2', height - margin.bottom);
+            axesGroup.appendChild(yAxis);
+            svg.appendChild(axesGroup);
+            
+            // Courbe f(x) = 0.5*x^3
+            const fPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            fPath.setAttribute('stroke', '#FF6B6B');
+            fPath.setAttribute('stroke-width', '2.5');
+            fPath.setAttribute('fill', 'none');
+            let fD = '';
+            for (let x = xMin; x <= xMax; x += 0.02) {
+                const y = 0.5 * x * x * x;
+                if (y >= yMin && y <= yMax) {
+                    fD += (fD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
+                }
+            }
+            fPath.setAttribute('d', fD);
+            svg.appendChild(fPath);
+            
+            // Courbe g(x) = sqrt(x+3)
+            const gPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            gPath.setAttribute('stroke', '#F4D03F');
+            gPath.setAttribute('stroke-width', '2.5');
+            gPath.setAttribute('fill', 'none');
+            let gD = '';
+            for (let x = -3; x <= xMax; x += 0.02) {
+                const y = Math.sqrt(x + 3);
+                if (y >= yMin && y <= yMax) {
+                    gD += (gD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
+                }
+            }
+            gPath.setAttribute('d', gD);
+            svg.appendChild(gPath);
+            
+            // Légende
+            const legendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            legendGroup.setAttribute('transform', 'translate(' + (width - 120) + ', 20)');
+            
+            // f
+            const fRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            fRect.setAttribute('x', '0');
+            fRect.setAttribute('y', '0');
+            fRect.setAttribute('width', '16');
+            fRect.setAttribute('height', '4');
+            fRect.setAttribute('fill', '#FF6B6B');
+            legendGroup.appendChild(fRect);
+            const fText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            fText.setAttribute('x', '22');
+            fText.setAttribute('y', '4');
+            fText.setAttribute('fill', '#ccc');
+            fText.setAttribute('font-size', '10');
+            fText.setAttribute('font-family', 'sans-serif');
+            fText.textContent = 'C_f';
+            legendGroup.appendChild(fText);
+            
+            // g
+            const gRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            gRect.setAttribute('x', '0');
+            gRect.setAttribute('y', '16');
+            gRect.setAttribute('width', '16');
+            gRect.setAttribute('height', '4');
+            gRect.setAttribute('fill', '#F4D03F');
+            legendGroup.appendChild(gRect);
+            const gText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            gText.setAttribute('x', '22');
+            gText.setAttribute('y', '20');
+            gText.setAttribute('fill', '#ccc');
+            gText.setAttribute('font-size', '10');
+            gText.setAttribute('font-family', 'sans-serif');
+            gText.textContent = 'C_g';
+            legendGroup.appendChild(gText);
+            svg.appendChild(legendGroup);
+            
+            container.innerHTML = '';
+            container.appendChild(svg);
+        });
+
+        // Graphique pour l'inéquation
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('graphIneqEx3');
+            if (!container) return;
+            const width = container.clientWidth || 380;
+            const height = container.clientHeight || 300;
+            const margin = { top: 20, right: 30, bottom: 30, left: 40 };
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+            
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            
+            const xMin = -3, xMax = 3, yMin = -2, yMax = 5;
+            
+            function xScale(x) { return margin.left + ((x - xMin) / (xMax - xMin)) * innerWidth; }
+            function yScale(y) { return margin.top + innerHeight - ((y - yMin) / (yMax - yMin)) * innerHeight; }
+            
+            // Grille
+            const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            gridGroup.setAttribute('stroke', 'rgba(255,255,255,0.1)');
+            gridGroup.setAttribute('stroke-width', '0.5');
+            for (let x = -3; x <= 3; x += 0.5) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', xScale(x));
+                line.setAttribute('y1', margin.top);
+                line.setAttribute('x2', xScale(x));
+                line.setAttribute('y2', height - margin.bottom);
+                gridGroup.appendChild(line);
+            }
+            for (let y = -2; y <= 5; y += 0.5) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', margin.left);
+                line.setAttribute('y1', yScale(y));
+                line.setAttribute('x2', width - margin.right);
+                line.setAttribute('y2', yScale(y));
+                gridGroup.appendChild(line);
+            }
+            svg.appendChild(gridGroup);
+            
+            // Axes
+            const axesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            axesGroup.setAttribute('stroke', '#888');
+            axesGroup.setAttribute('stroke-width', '1.5');
+            
+            const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            xAxis.setAttribute('x1', margin.left);
+            xAxis.setAttribute('y1', yScale(0));
+            xAxis.setAttribute('x2', width - margin.right);
+            xAxis.setAttribute('y2', yScale(0));
+            axesGroup.appendChild(xAxis);
+            
+            const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            yAxis.setAttribute('x1', xScale(0));
+            yAxis.setAttribute('y1', margin.top);
+            yAxis.setAttribute('x2', xScale(0));
+            yAxis.setAttribute('y2', height - margin.bottom);
+            axesGroup.appendChild(yAxis);
+            svg.appendChild(axesGroup);
+            
+            // Courbe f(x) = 0.5*x^3
+            const fPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            fPath.setAttribute('stroke', '#FF6B6B');
+            fPath.setAttribute('stroke-width', '2.5');
+            fPath.setAttribute('fill', 'none');
+            let fD = '';
+            for (let x = xMin; x <= xMax; x += 0.02) {
+                const y = 0.5 * x * x * x;
+                if (y >= yMin && y <= yMax) {
+                    fD += (fD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
+                }
+            }
+            fPath.setAttribute('d', fD);
+            svg.appendChild(fPath);
+            
+            // Courbe g(x) = sqrt(x+3)
+            const gPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            gPath.setAttribute('stroke', '#F4D03F');
+            gPath.setAttribute('stroke-width', '2.5');
+            gPath.setAttribute('fill', 'none');
+            let gD = '';
+            for (let x = -3; x <= xMax; x += 0.02) {
+                const y = Math.sqrt(x + 3);
+                if (y >= yMin && y <= yMax) {
+                    gD += (gD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
+                }
+            }
+            gPath.setAttribute('d', gD);
+            svg.appendChild(gPath);
+            
+            // Marquer la zone où f > g (approximativement pour x > alpha)
+            // On va hachurer une zone approximative
+            const alpha = 1.4; // approximation de la racine
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', xScale(alpha));
+            rect.setAttribute('y', margin.top);
+            rect.setAttribute('width', xScale(xMax) - xScale(alpha));
+            rect.setAttribute('height', innerHeight);
+            rect.setAttribute('fill', 'rgba(78, 205, 196, 0.15)');
+            rect.setAttribute('stroke', 'rgba(78, 205, 196, 0.3)');
+            rect.setAttribute('stroke-dasharray', '4,4');
+            svg.appendChild(rect);
+            
+            // Ligne verticale pour alpha
+            const alphaLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            alphaLine.setAttribute('x1', xScale(alpha));
+            alphaLine.setAttribute('y1', margin.top);
+            alphaLine.setAttribute('x2', xScale(alpha));
+            alphaLine.setAttribute('y2', height - margin.bottom);
+            alphaLine.setAttribute('stroke', '#4ECDC4');
+            alphaLine.setAttribute('stroke-width', '1.5');
+            alphaLine.setAttribute('stroke-dasharray', '4,4');
+            svg.appendChild(alphaLine);
+            
+            // Texte alpha
+            const alphaText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            alphaText.setAttribute('x', xScale(alpha) - 5);
+            alphaText.setAttribute('y', yScale(-0.5));
+            alphaText.setAttribute('fill', '#4ECDC4');
+            alphaText.setAttribute('font-size', '12');
+            alphaText.setAttribute('font-family', 'serif');
+            alphaText.setAttribute('font-style', 'italic');
+            alphaText.textContent = 'α';
+            svg.appendChild(alphaText);
+            
+            container.innerHTML = '';
+            container.appendChild(svg);
+        });
+    </script>
+</body>
+</html>

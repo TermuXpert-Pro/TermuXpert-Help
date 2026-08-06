@@ -9,9 +9,6 @@
    Figures dessinées :
      - fig1_1 : graphe de x ↦ x + 16/x sur ]0, +∞[, illustrant
                 le contre-exemple x = 4 pour la question 1 (P1).
-     - fig1_6 : schéma « trois entiers consécutifs », illustrant
-                pourquoi n(n-1)(n+1) est toujours divisible par 3
-                (question 6, P6).
    ============================================================ */
 (function () {
     'use strict';
@@ -126,57 +123,10 @@
         svg.appendChild(text(w - 16, 22, 'f(x) = x + 16/x', { fill: '#4ECDC4', 'font-size': 11.5, 'text-anchor': 'end' }));
     }
 
-    /* ============================================================
-       fig1_6 : trois entiers consécutifs n-1, n, n+1
-       Illustre pourquoi n(n-1)(n+1) est toujours divisible par 3
-       (parmi trois entiers consécutifs, l'un d'eux est un
-       multiple de 3).
-       ============================================================ */
-    function drawFig1_6(svg) {
-        var w = 380, h = 150;
-        setResponsive(svg, w, h);
-        clear(svg);
-
-        var pad = 30;
-        var xmin = -1, xmax = 8;
-        var sx = scaleFn(xmin, xmax, pad, w - pad);
-        var yLine = 78;
-        var axisColor = '#3A4552';
-
-        addArrowMarker(svg, svg.id + '_arrow', axisColor);
-        svg.appendChild(el('line', {
-            x1: sx(xmin), y1: yLine, x2: sx(xmax) + 6, y2: yLine,
-            stroke: axisColor, 'stroke-width': 1.4, 'marker-end': 'url(#' + svg.id + '_arrow)'
-        }));
-
-        var multiples3 = [0, 3, 6];
-        for (var n = xmin + 1; n <= xmax - 1; n++) {
-            var isMult = multiples3.indexOf(n) !== -1;
-            var cx = sx(n);
-            svg.appendChild(el('line', { x1: cx, y1: yLine - 5, x2: cx, y2: yLine + 5, stroke: axisColor, 'stroke-width': 1 }));
-            dot(svg, cx, yLine, isMult ? '#4ECDC4' : '#5B6472', isMult ? 5.5 : 3.6);
-            svg.appendChild(text(cx, yLine + 20, String(n), { fill: isMult ? '#4ECDC4' : '#8B96A5', 'font-size': 11, 'text-anchor': 'middle', 'font-weight': isMult ? 700 : 400 }));
-        }
-
-        // Accolade autour du triplet (3, 4, 5) = (n-1, n, n+1) avec n = 4
-        var xA = sx(3), xB = sx(5), yB = yLine - 24;
-        svg.appendChild(el('path', {
-            d: 'M ' + xA + ',' + (yB + 10) + ' Q ' + xA + ',' + yB + ' ' + ((xA + sx(4)) / 2) + ',' + yB +
-               ' L ' + (sx(4) - 4) + ',' + yB + ' Q ' + sx(4) + ',' + (yB - 6) + ' ' + (sx(4) + 4) + ',' + yB +
-               ' L ' + ((sx(4) + xB) / 2) + ',' + yB + ' Q ' + xB + ',' + yB + ' ' + xB + ',' + (yB + 10),
-            fill: 'none', stroke: '#F4D03F', 'stroke-width': 1.6, 'stroke-linecap': 'round'
-        }));
-        svg.appendChild(text((xA + xB) / 2, yB - 12, 'n-1 , n , n+1  (ex : n = 4)', { fill: '#F4D03F', 'font-size': 10.5, 'text-anchor': 'middle' }));
-
-        svg.appendChild(text(sx(3), yLine + 40, '3 est divisible par 3 ✓', { fill: '#4ECDC4', 'font-size': 10, 'text-anchor': 'middle' }));
-        svg.appendChild(text(w / 2, 16, 'Parmi 3 entiers consécutifs, un seul est multiple de 3', { fill: '#8B96A5', 'font-size': 11, 'text-anchor': 'middle' }));
-    }
-
     /* ---------- Initialisation ---------- */
     function init() {
         var map = {
-            fig1_1: drawFig1_1,
-            fig1_6: drawFig1_6
+            fig1_1: drawFig1_1
         };
         Object.keys(map).forEach(function (id) {
             var svg = document.getElementById(id);

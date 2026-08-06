@@ -190,8 +190,8 @@ const FigureSVG = (function () {
         const A = { x: 2, y: 1, color: '#4ECDC4', label: 'A' };
         const B = { x: 5, y: 0.5, color: '#FF6B6B', label: 'B' };
         const C = { x: 3, y: 4.5, color: '#BB8FCE', label: 'C' };
-        const I = { x: (B.x + C.x) / 2, y: (B.y + C.y) / 2 };
-        const G = { x: (1 * A.x + 2 * I.x) / 3, y: (1 * A.y + 2 * I.y) / 3, color: '#F4D03F', label: 'G' };
+        const I = { x: (2 * B.x + 1 * C.x) / 3, y: (2 * B.y + 1 * C.y) / 3 }; // I = Bar{(B,2);(C,1)} (pas le milieu de [BC])
+        const G = { x: (1 * A.x + 3 * I.x) / 4, y: (1 * A.y + 3 * I.y) / 4, color: '#F4D03F', label: 'G' }; // G = Bar{(A,1);(I,3)}
         const Gp = { x: (3 * A.x + 1 * C.x) / 4, y: (3 * A.y + 1 * C.y) / 4, color: '#F4D03F', label: "G'" };
 
         // Médiatrice = الخط العمودي على [GG'] فمنتصفو
@@ -223,7 +223,7 @@ const FigureSVG = (function () {
         const C = { x: 0, y: 1, color: '#BB8FCE', label: 'C' };
         const I = { x: 2 / 3, y: 0, color: '#A8FF78', label: 'I' };
         const J = { x: 0.5, y: 0.5, color: '#4D9DE0', label: 'J' };
-        const K = { x: -1, y: 2, color: '#F4D03F', label: 'K' };
+        const K = { x: 0, y: 2, color: '#F4D03F', label: 'K' }; // K = Bar{(A,1);(C,-2)} = 2C - A
 
         triangle(s, A, B, C, DASH);
         seg(s, I, K, { color: '#F4D03F', lineWidth: 2.5 });

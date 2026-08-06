@@ -383,7 +383,7 @@ window.XpertAnimateLegalPage = XpertAnimateLegalPage;
     // واختفاء فبرقة العين).
     // ⚠️ TEST: مزيدة لـ 10 ثواني دابا باش تقدر تشوف الشكل والحركة
     // مزيان. رجعها لـ 500 (نصف ثانية) ملي تسالي من التجربة.
-    var MIN_DISPLAY = 500;
+    var MIN_DISPLAY = 200;
     var start = performance.now();
     var hidden = false;
 
@@ -409,6 +409,6 @@ window.XpertAnimateLegalPage = XpertAnimateLegalPage;
     }
 
     // حماية: إيلا لسبب ما DOMContentLoaded ماجاش، نخبيو بالقوة
-    setTimeout(hideLoader, 3000);
+    setTimeout(hideLoader, 1500);
 })();
 // ====== XPERT LOADER END ======

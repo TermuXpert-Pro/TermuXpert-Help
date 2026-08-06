@@ -1,6 +1,7 @@
 /* ============================================================
  LESSON-COMMON.CSS
  أنماط مشتركة لجميع الدروس والأجزاء (نسخة مدمجة)
+ تم تعديلها لدعم Light/Dark Mode بالكامل
  ============================================================ */
 .lesson-container {
  max-width: 900px;
@@ -8,7 +9,7 @@
  padding: 8px;
 }
 .lesson-title {
- color: #4ECDC4;
+ color: var(--accent-light);
  font-size: 20px;
  font-weight: 900;
  text-align: center;
@@ -24,7 +25,7 @@
  margin-bottom: 10px;
 }
 .section h2 {
- color: #66FCF1;
+ color: var(--accent-light);
  font-size: 14px;
  font-weight: 700;
  margin-bottom: 6px;
@@ -52,7 +53,7 @@
  margin: 6px 0 4px;
 }
 .section h4 {
- color:var(--gold-text);
+ color: var(--gold-text);
  font-size: 12px;
  font-weight: 700;
  margin: 4px 0 2px;
@@ -110,6 +111,10 @@
  border-color: #BB8FCE;
  background: rgba(187, 143, 206, 0.08);
 }
+.highlight-box.blue {
+ border-color: #79B8E8;
+ background: rgba(121, 184, 232, 0.08);
+}
 .highlight-box strong {
  color: var(--text-primary);
 }
@@ -123,9 +128,9 @@
 }
 .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
 .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
-.highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+.highlight-box .label.ex { background: #F4D03F22; color: var(--gold-text); }
 .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
-.highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+.highlight-box .label.rappel { background: #F4D03F44; color: var(--gold-text); }
 .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
 .table-wrap {
  overflow-x: auto;
@@ -138,7 +143,8 @@
  background: var(--bg-primary);
  border-radius: 6px;
  overflow: hidden;
- max-width: 240px;
+ max-width: 400px;
+ margin: 0 auto;
 }
 .table-wrap th {
  background: var(--bg-card);
@@ -325,8 +331,10 @@ details summary:hover {
 details div {
  font-size: 11px;
 }
+
+/* ====== GRAPH CONTAINER - يدعم Light/Dark ====== */
 .graph-container {
-    background: #0D1117;
+    background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 16px;
@@ -336,18 +344,19 @@ details div {
 .graph-container canvas {
     max-width: 100%;
     border-radius: 8px;
-    background: #0D1117;
+    background: var(--bg-primary);
 }
 .graph-container svg {
     max-width: 100%;
     border-radius: 8px;
-    background: #0D1117;
+    background: var(--bg-primary);
 }
 .graph-container p {
- color: var(--text-muted);
- font-size: 13px;
- margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 6px;
 }
+
 @media (max-width: 768px) {
  .lesson-title { font-size: 17px; }
  .section { padding: 6px 8px; }
@@ -363,6 +372,8 @@ details div {
  .function-grid { grid-template-columns: 1fr; }
  .nav-buttons .next-btn,
  .nav-buttons .prev-btn { font-size: 10px; padding: 3px 10px; }
+ .graph-container { padding: 8px; }
+ .graph-container p { font-size: 11px; }
 }
 @media (max-width: 480px) {
  .lesson-title { font-size: 15px; }
@@ -448,7 +459,7 @@ details div {
  z-index: 0;
  pointer-events: none;
  opacity: 0.03;
- color:var(--gold-text);
+ color: var(--gold-text);
  font-size: 20px;
  letter-spacing: 20px;
 }
@@ -530,4 +541,139 @@ input, textarea, [contenteditable="true"] {
  -moz-user-select: text !important;
  -ms-user-select: text !important;
  user-select: text !important;
+}
+
+/* ============================================================
+   ESSENTIELS (base) — بطاقات الأساسيات المختصرة
+   هوية لونية خاصة: أزرق #79B8E8
+   يدعم Light/Dark Mode
+   ============================================================ */
+.essential-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(121, 184, 232, 0.22);
+    border-right: 3px solid #79B8E8;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+}
+.essential-card .essential-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.essential-card .essential-icon { color: #79B8E8; font-size: 15px; flex-shrink: 0; }
+.essential-card h3 { color: #79B8E8; font-size: 13px; font-weight: 800; margin: 0; }
+.essential-card .essential-rule {
+    background: var(--bg-primary);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 4px 0;
+    font-size: 12.5px;
+    color: var(--text-primary);
+    text-align: center;
+}
+.essential-card .essential-example {
+    background: rgba(121, 184, 232, 0.07);
+    border-radius: 6px;
+    padding: 5px 8px;
+    margin-top: 4px;
+}
+.essential-card .essential-example-label {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #79B8E8;
+    background: rgba(121, 184, 232, 0.18);
+    padding: 1px 8px;
+    border-radius: 10px;
+    margin-bottom: 3px;
+}
+.essential-card .essential-example p {
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    line-height: 1.5;
+    margin: 0;
+}
+@media (max-width: 480px) {
+    .essential-card { padding: 8px 10px; }
+    .essential-card h3 { font-size: 12px; }
+    .essential-card .essential-rule { font-size: 11.5px; }
+    .essential-card .essential-example p { font-size: 10.5px; }
+}
+
+/* ============================================================
+   STEP BOX — أمثلة مع خطوات منظمة
+   يدعم Light/Dark Mode
+   ============================================================ */
+.step-box {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 4px 0;
+}
+.step-box .step-title {
+    font-weight: 700;
+    color: #79B8E8;
+    font-size: 11px;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.step-box .step-title i { font-size: 11px; }
+.step-box .step-line {
+    border-right: 2px solid #79B8E8;
+    padding-right: 8px;
+    margin-bottom: 2px;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.step-box .step-line .num {
+    color: #79B8E8;
+    font-weight: 700;
+    margin-left: 4px;
+}
+.step-box .step-line .math {
+    font-family: 'Times New Roman', serif;
+    color: var(--text-primary);
+}
+.step-box .step-result {
+    font-weight: 700;
+    color: #4ECDC4;
+    font-size: 12px;
+    margin-top: 2px;
+    padding: 2px 8px;
+    background: rgba(78, 205, 196, 0.08);
+    border-radius: 4px;
+    display: inline-block;
+}
+.step-box .step-result.red {
+    color: #FF6B6B;
+    background: rgba(255, 107, 107, 0.08);
+}
+@media (max-width: 768px) {
+    .step-box { padding: 4px 8px; }
+    .step-box .step-line { font-size: 10.5px; }
+}
+@media (max-width: 480px) {
+    .step-box { padding: 4px 6px; }
+    .step-box .step-line { font-size: 10px; }
+    .step-box .step-result { font-size: 11px; }
+}
+
+/* ============================================================
+   ENSEMBLE BADGE - بطاقات مجموعات الأعداد
+   ============================================================ */
+.ensemble-badge {
+    display: inline-block;
+    background: rgba(121, 184, 232, 0.15);
+    color: #79B8E8;
+    padding: 1px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Times New Roman', serif;
 }

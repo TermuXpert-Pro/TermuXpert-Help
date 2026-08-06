@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -279,6 +277,7 @@
     <div class="content-wrapper" id="contentWrapper">
         <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
             <button class="tab-btn" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
+            <button class="tab-btn" data-tab="autres" onclick="switchTab('autres')"><i class="fas fa-shapes"></i> Autres</button>
             <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
             <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
             <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
@@ -378,6 +377,30 @@
             renderContent(document.getElementById('tabContent'), savedTab);
         }
 
+        // تحميل ملف data/autres.js (بطاقات زر Autres مشتركة بين المواد) ثم إتمام العرض
+        function loadAutresThenRender(id) {
+            function finalize() {
+                if (window.autresData && window.autresData[id]) {
+                    currentSubject.others = window.autresData[id];
+                }
+                renderSubjectHeader();
+            }
+
+            if (window.autresData) {
+                finalize();
+                return;
+            }
+
+            const autresScript = document.createElement('script');
+            autresScript.src = 'data/autres.js';
+            autresScript.onload = finalize;
+            autresScript.onerror = function() {
+                console.error('❌ ملف data/autres.js غير موجود');
+                finalize(); // نكملو العرض حتى إلا ملف autres.js ماكاينش
+            };
+            document.head.appendChild(autresScript);
+        }
+
         function loadSubject() {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('subject');
@@ -392,7 +415,7 @@
             // إذا كانت البيانات محملة من قبل (نادر، لكن للأمان)
             if (window.subjectsData && window.subjectsData[id]) {
                 currentSubject = window.subjectsData[id];
-                renderSubjectHeader();
+                loadAutresThenRender(id);
                 return;
             }
 
@@ -405,7 +428,7 @@
                     showNotFound();
                     return;
                 }
-                renderSubjectHeader();
+                loadAutresThenRender(id);
             };
             script.onerror = function() {
                 console.error(`❌ ملف data/${id}.js غير موجود`);
@@ -495,6 +518,33 @@
                     </div>
                 `;
                 }).join('');
+            } else if (tab === 'autres') {
+                if (!currentSubject.others || currentSubject.others.length === 0) {
+                    html = `
+                        <div class="command-card" style="cursor:default; opacity:0.7;">
+                            <div class="command-title">
+                                <span class="num">✨</span> À venir
+                            </div>
+                            <p>D'autres contenus seront disponibles bientôt</p>
+                            <span class="badge" style="background:#79B8E822; color:#79B8E8; border-color:#79B8E822;"><i class="fas fa-clock"></i> En préparation</span>
+                        </div>
+                    `;
+                } else {
+                    html = currentSubject.others.map((o, i) => {
+                        const color = o.color || '#79B8E8';
+                        const icon = o.icon || 'fa-star';
+                        const label = o.label || 'Découvrir';
+                        return `
+                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${o.file}'">
+                        <div class="command-title">
+                            <span class="num">${i+1}</span> ${o.title}
+                        </div>
+                        <p>${o.desc}</p>
+                        <span class="badge" style="background:${color}22; color:${color}; border-color:${color}22;"><i class="fas ${icon}"></i> ${label}</span>
+                    </div>
+                `;
+                    }).join('');
+                }
             } else if (tab === 'exercices') {
                 html = currentSubject.exercices.map((e, i) => {
                     const modelsLabel = e.models ? `${e.models} modèle${e.models > 1 ? 's' : ''}` : '';
@@ -716,13 +766,4 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
