@@ -3,42 +3,27 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-XVMNBPXC9D');
-</script>
-    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Xpert",
-        "description": "Cours de 1 Bac Sciences Expérimentales"
-    }
-    </script>
+    
+    
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Exercice 1 - Logique | Xpert</title>
+    <title>Exercice 6 - Mélange de solutions | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/chimie/exercises/conductimetrie/model1/exercice6.html">
+    <meta name="description" content="Exercices corrigés : Conductimetrie (modèle 1) — Chimie, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
+    
+    <!-- ====== Preconnect CDN ====== -->
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
+    
+    
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -54,7 +39,18 @@
         .section ul li { margin-bottom: 4px; }
         .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
         .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
         .footer p { font-size: 13px; }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
@@ -64,8 +60,8 @@
         .scroll-top-btn { display: none; }
         .badge-exercice {
             display: inline-block;
-            background: rgba(78, 205, 196, 0.15);
-            color: #4ECDC4;
+            background: rgba(244, 208, 63, 0.15);
+            color:var(--gold-text);
             padding: 2px 12px;
             border-radius: 12px;
             font-size: 13px;
@@ -79,7 +75,7 @@
             margin: 6px 0;
         }
         .sub-question .letter {
-            color: #4ECDC4;
+            color:var(--gold-text);
             font-weight: 700;
             font-size: 13px;
         }
@@ -105,10 +101,48 @@
             font-size: 11.5px;
             line-height: 1.6;
         }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #F4D03F;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color:var(--gold-text);
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .toggle-sol {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            color: #4ECDC4;
+            color:var(--gold-text);
             padding: 3px 10px;
             border-radius: 6px;
             cursor: pointer;
@@ -119,10 +153,39 @@
             margin-top: 4px;
         }
         .toggle-sol:hover {
-            border-color: #4ECDC4;
-            background: rgba(78, 205, 196, 0.1);
+            border-color: #F4D03F;
+            background: rgba(244, 208, 63, 0.1);
         }
-@media (max-width: 768px) {
+.table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
             .section { padding: 6px 8px; }
@@ -141,6 +204,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -152,6 +216,7 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -163,6 +228,7 @@
         </div>
     </div>
 
+
     <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
 
@@ -172,19 +238,19 @@
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                     <rect width="200" height="200" fill="none"/>
-                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#4ECDC4" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
                 </pattern>
             </defs>
             <rect width="800" height="800" fill="url(#zellij)"/>
@@ -385,172 +451,137 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 1</h1>
+            <h1 class="lesson-title"><i class="fas fa-atom" style="color:var(--gold-text);"></i> Exercice 6</h1>
             <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Valeur de vérité et négation</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Facile</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Mélange de solutions - KCl + NaCl</span>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Difficile</span>
             </p>
 
             <div class="section">
-                <h2><span class="num">1</span> Déterminer la valeur de vérité et la négation</h2>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Déterminer la valeur de vérité (Vrai ou Faux) et la négation de chaque proposition.</p>
+                <h2><span class="num">1</span> Énoncé</h2>
 
-                <!-- a -->
-                <div class="sub-question">
-                    <div class="letter">a.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\forall x \in \mathbb{R} ; x^2 \leq x \Rightarrow |x| = x$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1a')">Voir la solution</button>
-                    <div id="sol1a" class="solution-box">
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    On mélange un volume \(V_1 = 200\text{ mL}\) de solution de chlorure de potassium \((K^+ + Cl^-)\) à concentration \(C_1 = 5,0 \times 10^{-3}\text{ mol.L}^{-1}\) et un volume \(V_2 = 800\text{ mL}\) de solution de chlorure de sodium \((Na^+ + Cl^-)\) à concentration \(C_2 = 1,25 \times 10^{-3}\text{ mol.L}^{-1}\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(\lambda_{\text{Na}^+} = 5,01 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{K}^+} = 7,35 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{Cl}^-} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quelle est la conductivité de la solution obtenue ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Vrai</p>
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; x^2 \leq x \land |x| \neq x$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>$x^2 \leq x \Leftrightarrow x^2 - x \leq 0 \Leftrightarrow x(x-1) \leq 0 \Leftrightarrow x \in [0,1]$</p>
-                            <p>Donc l'hypothèse $x^2 \leq x$ n'est vraie que pour $x \in [0,1]$, un intervalle où $x \geq 0$, et donc $|x| = x$.</p>
-                            <p>• Pour $x \in [0,1]$ : l'hypothèse est vraie et $|x|=x$ aussi &rarr; implication vraie.</p>
-                            <p>• Pour $x \notin [0,1]$ : l'hypothèse $x^2 \leq x$ est fausse &rarr; implication vraie par vacuité.</p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion : Vrai</strong></p>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Quantités de matière des ions :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(Cl^-) = C_1 \times V_1 + C_2 \times V_2$$
+                                    $$n(Cl^-) = 5,0 \times 10^{-3} \times 0,200 + 1,25 \times 10^{-3} \times 0,800$$
+                                    $$n(Cl^-) = 1,0 \times 10^{-3} + 1,0 \times 10^{-3} = 2,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$n(K^+) = C_1 \times V_1 = 5,0 \times 10^{-3} \times 0,200 = 1,0 \times 10^{-3}\text{ mol}$$
+                                    $$n(Na^+) = C_2 \times V_2 = 1,25 \times 10^{-3} \times 0,800 = 1,0 \times 10^{-3}\text{ mol}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Volume total :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$V_T = V_1 + V_2 = 0,200 + 0,800 = 1,000\text{ L} = 1,0 \times 10^{-3}\text{ m}^3$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Concentrations en \(\text{mol.m}^{-3}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$[Cl^-] = \frac{2,0 \times 10^{-3}}{1,0 \times 10^{-3}} = 2,0\text{ mol.m}^{-3}$$
+                                    $$[K^+] = \frac{1,0 \times 10^{-3}}{1,0 \times 10^{-3}} = 1,0\text{ mol.m}^{-3}$$
+                                    $$[Na^+] = \frac{1,0 \times 10^{-3}}{1,0 \times 10^{-3}} = 1,0\text{ mol.m}^{-3}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 5 :</span> 
+                                Conductivité du mélange :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma = \lambda_{Cl^-} \times [Cl^-] + \lambda_{K^+} \times [K^+] + \lambda_{Na^+} \times [Na^+]$$
+                                    $$\sigma = 7,63 \times 10^{-3} \times 2,0 + 7,35 \times 10^{-3} \times 1,0 + 5,01 \times 10^{-3} \times 1,0$$
+                                    $$\sigma = 15,26 \times 10^{-3} + 7,35 \times 10^{-3} + 5,01 \times 10^{-3}$$
+                                    $$\sigma = 27,62 \times 10^{-3} = 2,76 \times 10^{-2}\text{ S.m}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\sigma = 2,76 \times 10^{-2}\text{ S.m}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Mélange</span>
+                                <p style="font-size:11px; color:var(--text-secondary);">
+                                    La conductivité est la somme des contributions de tous les ions présents dans le mélange.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- b -->
                 <div class="sub-question">
-                    <div class="letter">b.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\forall x \in \mathbb{R} ; \left(x^2 = 4 \Leftrightarrow x = 2\right)$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1b')">Voir la solution</button>
-                    <div id="sol1b" class="solution-box">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Dans le mélange précédent, on place la cellule d'un conductimètre. La surface des électrodes est \(S = 1,0\text{ cm}^2\) et la distance qui les sépare est \(L = 1,1\text{ cm}\). Quelle est la valeur de la conductance ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; \left(x^2 = 4 \nLeftrightarrow x = 2\right)$</p>
-                            <p><strong>Explication :</strong> $x^2 = 4 \Rightarrow x = 2$ ou $x = -2$</p>
-                            <p>Donc $x^2 = 4 \Leftrightarrow x = 2$ est fausse car $-2$ est un contre-exemple.</p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- c -->
-                <div class="sub-question">
-                    <div class="letter">c.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\left(7 < 5 \text{ et } 2+1=3\right) \text{ ou } \left(-3 \in \mathbb{N}\right)$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1c')">Voir la solution</button>
-                    <div id="sol1c" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\left(7 \geq 5 \text{ ou } 2+1 \neq 3\right) \text{ et } \left(-3 \notin \mathbb{N}\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=3$ est <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• Donc $(7 < 5 \text{ et } 2+1=3)$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span> ($\mathbb{N} = \{0,1,2,\ldots\}$)</p>
-                            <p>• Faux ou Faux = <span style="color:#FF6B6B;">Faux</span></p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- d -->
-                <div class="sub-question">
-                    <div class="letter">d.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\left(7 < 5 \Rightarrow 2+1=0\right) \text{ ou } \left(-3 \in \mathbb{N}\right)$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1d')">Voir la solution</button>
-                    <div id="sol1d" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Vrai</p>
-                            <p><strong>Négation :</strong> $\left(7 < 5 \text{ et } 2+1 \neq 0\right) \text{ et } \left(-3 \notin \mathbb{N}\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=0$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $(7 < 5 \Rightarrow 2+1=0)$ = (Faux $\Rightarrow$ Faux) = <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• Vrai ou Faux = <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion : Vrai</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- e -->
-                <div class="sub-question">
-                    <div class="letter">e.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\exists n \in \mathbb{Z}, n^2 \leq n . \forall x \in \mathbb{R}, x^2 < x$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1e')">Voir la solution</button>
-                    <div id="sol1e" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\left(\forall n \in \mathbb{Z}, n^2 > n\right) \text{ ou } \left(\exists x \in \mathbb{R}, x^2 \geq x\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $\exists n \in \mathbb{Z}, n^2 \leq n$ est <span style="color:#4ECDC4;">Vrai</span> (ex: $n=1$)</p>
-                            <p>• $\forall x \in \mathbb{R}, x^2 < x$ est <span style="color:#FF6B6B;">Faux</span> (ex: $x=2$)</p>
-                            <p>• Vrai . Faux = <span style="color:#FF6B6B;">Faux</span></p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- f -->
-                <div class="sub-question">
-                    <div class="letter">f.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, x - y + 3 = 0 . \exists y \in \mathbb{R}, \forall x \in \mathbb{R}, x - y + 3 = 0$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1f')">Voir la solution</button>
-                    <div id="sol1f" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\left(\exists x \in \mathbb{R}, \forall y \in \mathbb{R}, x - y + 3 \neq 0\right) \text{ ou } \left(\forall y \in \mathbb{R}, \exists x \in \mathbb{R}, x - y + 3 \neq 0\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, x - y + 3 = 0$ est <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>  Pour tout $x$, on peut choisir $y = x+3$</p>
-                            <p>• $\exists y \in \mathbb{R}, \forall x \in \mathbb{R}, x - y + 3 = 0$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>  Cela signifierait $x = y - 3$ pour tout $x$, impossible.</p>
-                            <p>• Vrai . Faux = <span style="color:#FF6B6B;">Faux</span></p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- g -->
-                <div class="sub-question">
-                    <div class="letter">g.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\forall x \in \mathbb{R} ; \sqrt{x^2 + 3} \geq 2 \Leftrightarrow x \geq 1$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1g')">Voir la solution</button>
-                    <div id="sol1g" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; \left(\sqrt{x^2 + 3} \geq 2 \nLeftrightarrow x \geq 1\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>$\sqrt{x^2 + 3} \geq 2 \Leftrightarrow x^2 + 3 \geq 4 \Leftrightarrow x^2 \geq 1$</p>
-                            <p>$\Leftrightarrow x \leq -1 \text{ ou } x \geq 1$</p>
-                            <p>Donc l'équivalence $\sqrt{x^2+3} \geq 2 \Leftrightarrow x \geq 1$ est fausse.</p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Conversion des unités :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$S = 1,0\text{ cm}^2 = 1,0 \times 10^{-4}\text{ m}^2$$
+                                    $$L = 1,1\text{ cm} = 1,1 \times 10^{-2}\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Relation entre conductance et conductivité :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$G = \sigma \times \frac{S}{L}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$G = 2,76 \times 10^{-2} \times \frac{1,0 \times 10^{-4}}{1,1 \times 10^{-2}}$$
+                                    $$G = 2,76 \times 10^{-2} \times 9,09 \times 10^{-3}$$
+                                    $$G = 2,51 \times 10^{-4}\text{ S}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$G = 2,51 \times 10^{-4}\text{ S} \approx 0,25\text{ mS}$$
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-buttons">
+                <a href="exercice5.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 5</a>
                 <a href="index.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Retour</a>
-                <a href="exercice2.html" class="next-btn">Exercice 2 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
@@ -569,26 +600,7 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-    <script>
-        window.addEventListener('scroll', function() {
-            var navbar = document.getElementById('navbar');
-            if (navbar) {
-                navbar.classList.toggle('scrolled', window.scrollY > 30);
-            }
-        });
-
-        function toggleSolution(id) {
-            var el = document.getElementById(id);
-            var btn = el.previousElementSibling;
-            if (el.classList.contains('show')) {
-                el.classList.remove('show');
-                btn.textContent = 'Voir la solution';
-            } else {
-                el.classList.add('show');
-                btn.textContent = 'Cacher la solution';
-            }
-        }
-    </script>
+    
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>

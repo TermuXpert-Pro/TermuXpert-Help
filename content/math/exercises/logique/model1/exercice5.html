@@ -19,7 +19,16 @@
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -403,7 +412,7 @@
                     <div id="sol5a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Méthode 1 - Table de vérité :</strong></p>
+                            <div class="step"><span class="step-num">Méthode 1 - Table de vérité :</span></div>
                             <div class="table-wrap">
                                 <table>
                                     <tr><th>$p$</th><th>$q$</th><th>$q \Rightarrow p$</th><th>$p \Rightarrow (q \Rightarrow p)$</th></tr>
@@ -413,10 +422,10 @@
                                     <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
                                 </table>
                             </div>
-                            <p><strong>Méthode 2 - Équivalences :</strong></p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $p \Rightarrow (q \Rightarrow p) \equiv \neg p \lor (\neg q \lor p)$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $\equiv (\neg p \lor p) \lor \neg q$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $\equiv V \lor \neg q \equiv V$</div>
+                            <div class="step"><span class="step-num">Méthode 2 - Équivalences :</span></div>
+                            <div class="step"><span class="step-num">On a :</span> $p \Rightarrow (q \Rightarrow p) \equiv \neg p \lor (\neg q \lor p)$</div>
+                            <div class="step"><span class="step-num">Donc :</span> $\equiv (\neg p \lor p) \lor \neg q$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $\equiv V \lor \neg q \equiv V$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> C'est une <span style="color:#4ECDC4;">tautologie</span>.</p>
                         </div>
                     </div>
@@ -432,7 +441,7 @@
                     <div id="sol5b" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Méthode 1 - Table de vérité :</strong></p>
+                            <div class="step"><span class="step-num">Méthode 1 - Table de vérité :</span></div>
                             <div class="table-wrap">
                                 <table>
                                     <tr><th>$p$</th><th>$q$</th><th>$p \Rightarrow q$</th><th>$p \Rightarrow (p \Rightarrow q)$</th></tr>
@@ -442,7 +451,7 @@
                                     <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td><td class="true">V</td></tr>
                                 </table>
                             </div>
-                            <p>Ce n'est pas une tautologie car elle est fausse pour $p=V$ et $q=F$.</p>
+                            <div class="step"><span class="step-num">On remarque :</span> pour $p=V$ et $q=F$, la proposition est fausse</div>
                             <p style="color:#FF6B6B;"><strong>Conclusion :</strong> Ce n'est <span style="color:#FF6B6B;">pas</span> une loi logique.</p>
                         </div>
                     </div>
@@ -458,7 +467,7 @@
                     <div id="sol5c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Méthode 1 - Table de vérité :</strong></p>
+                            <div class="step"><span class="step-num">Méthode 1 - Table de vérité :</span></div>
                             <div class="table-wrap">
                                 <table>
                                     <tr><th>$p$</th><th>$q$</th><th>$\neg p$</th><th>$\neg p \Rightarrow q$</th><th>$(\neg p \Rightarrow q) \Rightarrow p$</th></tr>
@@ -468,7 +477,7 @@
                                     <tr><td class="false">F</td><td class="false">F</td><td class="true">V</td><td class="false">F</td><td class="true">V</td></tr>
                                 </table>
                             </div>
-                            <p>Ce n'est pas une tautologie car elle est fausse pour $p=F$ et $q=V$.</p>
+                            <div class="step"><span class="step-num">On remarque :</span> pour $p=F$ et $q=V$, la proposition est fausse</div>
                             <p style="color:#FF6B6B;"><strong>Conclusion :</strong> Ce n'est <span style="color:#FF6B6B;">pas</span> une loi logique.</p>
                         </div>
                     </div>
@@ -485,11 +494,11 @@
                     <div id="sol5d" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Cas 1 :</strong> $n$ est pair ($n = 2k$)</p>
-                            <div class="step"><span class="step-num">Étape :</span> $\frac{n(n^2+1)}{2} = \frac{2k(4k^2+1)}{2} = k(4k^2+1) \in \mathbb{N}$</div>
-                            <p><strong>Cas 2 :</strong> $n$ est impair ($n = 2k+1$)</p>
-                            <div class="step"><span class="step-num">Étape :</span> $n^2+1 = (2k+1)^2+1 = 4k^2+4k+2 = 2(2k^2+2k+1)$</div>
-                            <div class="step"><span class="step-num">Étape :</span> Donc $\frac{n(n^2+1)}{2} = n(2k^2+2k+1) \in \mathbb{N}$</div>
+                            <div class="step"><span class="step-num">Cas 1 :</span> $n$ est pair ($n = 2k$)</div>
+                            <div class="step"><span class="step-num">On a :</span> $\frac{n(n^2+1)}{2} = \frac{2k(4k^2+1)}{2} = k(4k^2+1) \in \mathbb{N}$</div>
+                            <div class="step"><span class="step-num">Cas 2 :</span> $n$ est impair ($n = 2k+1$)</div>
+                            <div class="step"><span class="step-num">On a :</span> $n^2+1 = (2k+1)^2+1 = 4k^2+4k+2 = 2(2k^2+2k+1)$</div>
+                            <div class="step"><span class="step-num">Donc :</span> $\frac{n(n^2+1)}{2} = n(2k^2+2k+1) \in \mathbb{N}$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
                         </div>
                     </div>
@@ -506,11 +515,11 @@
                     <div id="sol5e" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> $p \Rightarrow (q \Rightarrow r)$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $\equiv \neg p \lor (\neg q \lor r)$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $\equiv (\neg p \lor \neg q) \lor r$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $\equiv \neg(p \land q) \lor r$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $\equiv (p \land q) \Rightarrow r$</div>
+                            <div class="step"><span class="step-num">On a :</span> $p \Rightarrow (q \Rightarrow r)$</div>
+                            <div class="step"><span class="step-num">Par définition de $\Rightarrow$ :</span> $\equiv \neg p \lor (\neg q \lor r)$</div>
+                            <div class="step"><span class="step-num">Par associativité de $\lor$ :</span> $\equiv (\neg p \lor \neg q) \lor r$</div>
+                            <div class="step"><span class="step-num">Par loi de De Morgan :</span> $\equiv \neg(p \land q) \lor r$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $\equiv (p \land q) \Rightarrow r$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> Les deux propositions sont <span style="color:#4ECDC4;">équivalentes</span>.</p>
                         </div>
                     </div>
@@ -527,12 +536,13 @@
                     <div id="sol5f" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> $x + y + 2 = 2\sqrt{x} + 2\sqrt{y}$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $x - 2\sqrt{x} + 1 + y - 2\sqrt{y} + 1 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $(\sqrt{x} - 1)^2 = 0$ et $(\sqrt{y} - 1)^2 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $\sqrt{x} = 1$ et $\sqrt{y} = 1$</div>
-                            <div class="step"><span class="step-num">Étape 6 :</span> $x = 1$ et $y = 1$</div>
+                            <div class="step"><span class="step-num">On a :</span> $x + y + 2 = 2\sqrt{x} + 2\sqrt{y}$</div>
+                            <div class="step"><span class="step-num">On réécrit :</span> $x - 2\sqrt{x} + 1 + y - 2\sqrt{y} + 1 = 0$</div>
+                            <div class="step"><span class="step-num">On factorise :</span> $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = 0$</div>
+                            <div class="step"><span class="step-num">Puisque :</span> $(\sqrt{x} - 1)^2 \geq 0$ et $(\sqrt{y} - 1)^2 \geq 0$</div>
+                            <div class="step"><span class="step-num">Alors :</span> $(\sqrt{x} - 1)^2 = 0$ et $(\sqrt{y} - 1)^2 = 0$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $\sqrt{x} = 1$ et $\sqrt{y} = 1$</div>
+                            <div class="step"><span class="step-num">Donc :</span> $x = 1$ et $y = 1$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x = y = 1$.</p>
                         </div>
                     </div>
@@ -559,6 +569,27 @@
 </footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
 
         <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>

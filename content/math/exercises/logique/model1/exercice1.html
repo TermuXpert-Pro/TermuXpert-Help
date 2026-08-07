@@ -3,22 +3,41 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    
-    
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Exercice 1 - Logique | Xpert</title>
-    <link rel="canonical" href="https://jdxpert.pages.dev/content/math/exercises/logique/model1/exercice1.html">
-    <meta name="description" content="Exercices corrigés : Logique (modèle 1) — Mathématiques, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
-    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
@@ -133,7 +152,6 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
-    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -387,13 +405,11 @@
                     <div id="sol1a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Vrai</p>
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; x^2 \leq x \land |x| \neq x$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>$x^2 \leq x \Leftrightarrow x^2 - x \leq 0 \Leftrightarrow x(x-1) \leq 0 \Leftrightarrow x \in [0,1]$</p>
-                            <p>Donc l'hypothèse $x^2 \leq x$ n'est vraie que pour $x \in [0,1]$, un intervalle où $x \geq 0$, et donc $|x| = x$.</p>
-                            <p>• Pour $x \in [0,1]$ : l'hypothèse est vraie et $|x|=x$ aussi &rarr; implication vraie.</p>
-                            <p>• Pour $x \notin [0,1]$ : l'hypothèse $x^2 \leq x$ est fausse &rarr; implication vraie par vacuité.</p>
+                            <div class="step"><span class="step-num">Valeur de vérité :</span> Vrai</div>
+                            <div class="step"><span class="step-num">Négation :</span> $\exists x \in \mathbb{R} ; x^2 \leq x \land |x| \neq x$</div>
+                            <div class="step"><span class="step-num">On a :</span> $x^2 \leq x \Leftrightarrow x(x-1) \leq 0 \Leftrightarrow x \in [0,1]$</div>
+                            <div class="step"><span class="step-num">Sur $[0,1]$ :</span> $x \geq 0$, d'où $|x| = x$</div>
+                            <div class="step"><span class="step-num">Ailleurs :</span> l'hypothèse $x^2 \leq x$ est fausse, donc l'implication est vraie</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Vrai</strong></p>
                         </div>
                     </div>
@@ -409,10 +425,11 @@
                     <div id="sol1b" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; \left(x^2 = 4 \nLeftrightarrow x = 2\right)$</p>
-                            <p><strong>Explication :</strong> $x^2 = 4 \Rightarrow x = 2$ ou $x = -2$</p>
-                            <p>Donc $x^2 = 4 \Leftrightarrow x = 2$ est fausse car $-2$ est un contre-exemple.</p>
+                            <div class="step"><span class="step-num">Valeur de vérité :</span> Faux</div>
+                            <div class="step"><span class="step-num">Négation :</span> $\exists x \in \mathbb{R} ; \left(x^2 = 4 \nLeftrightarrow x = 2\right)$</div>
+                            <div class="step"><span class="step-num">On a :</span> $x^2 = 4 \Rightarrow x = 2$ ou $x = -2$</div>
+                            <div class="step"><span class="step-num">Or :</span> pour $x=-2$ : $x^2=4$ vraie mais $x=2$ fausse</div>
+                            <div class="step"><span class="step-num">Donc :</span> l'équivalence est fausse ($x=-2$ contre-exemple)</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
                         </div>
                     </div>
@@ -428,14 +445,12 @@
                     <div id="sol1c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\left(7 \geq 5 \text{ ou } 2+1 \neq 3\right) \text{ et } \left(-3 \notin \mathbb{N}\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=3$ est <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• Donc $(7 < 5 \text{ et } 2+1=3)$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span> ($\mathbb{N} = \{0,1,2,\ldots\}$)</p>
-                            <p>• Faux ou Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                            <div class="step"><span class="step-num">Valeur de vérité :</span> Faux</div>
+                            <div class="step"><span class="step-num">Négation :</span> $\left(7 \geq 5 \text{ ou } 2+1 \neq 3\right) \text{ et } \left(-3 \notin \mathbb{N}\right)$</div>
+                            <div class="step"><span class="step-num">On a :</span> $7 < 5$ : Faux ; $2+1=3$ : Vrai</div>
+                            <div class="step"><span class="step-num">Donc :</span> $(7<5 \text{ et } 2+1=3)$ : Faux</div>
+                            <div class="step"><span class="step-num">Et :</span> $-3 \in \mathbb{N}$ : Faux</div>
+                            <div class="step"><span class="step-num">Alors :</span> Faux ou Faux = Faux</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
                         </div>
                     </div>
@@ -451,14 +466,12 @@
                     <div id="sol1d" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Vrai</p>
-                            <p><strong>Négation :</strong> $\left(7 < 5 \text{ et } 2+1 \neq 0\right) \text{ et } \left(-3 \notin \mathbb{N}\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=0$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $(7 < 5 \Rightarrow 2+1=0)$ = (Faux $\Rightarrow$ Faux) = <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• Vrai ou Faux = <span style="color:#4ECDC4;">Vrai</span></p>
+                            <div class="step"><span class="step-num">Valeur de vérité :</span> Vrai</div>
+                            <div class="step"><span class="step-num">Négation :</span> $\left(7 < 5 \text{ et } 2+1 \neq 0\right) \text{ et } \left(-3 \notin \mathbb{N}\right)$</div>
+                            <div class="step"><span class="step-num">On a :</span> $7<5$ : Faux ; $2+1=0$ : Faux</div>
+                            <div class="step"><span class="step-num">Donc :</span> (Faux $\Rightarrow$ Faux) = Vrai</div>
+                            <div class="step"><span class="step-num">Et :</span> $-3 \in \mathbb{N}$ : Faux</div>
+                            <div class="step"><span class="step-num">Alors :</span> Vrai ou Faux = Vrai</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Vrai</strong></p>
                         </div>
                     </div>
@@ -474,12 +487,11 @@
                     <div id="sol1e" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\left(\forall n \in \mathbb{Z}, n^2 > n\right) \text{ ou } \left(\exists x \in \mathbb{R}, x^2 \geq x\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $\exists n \in \mathbb{Z}, n^2 \leq n$ est <span style="color:#4ECDC4;">Vrai</span> (ex: $n=1$)</p>
-                            <p>• $\forall x \in \mathbb{R}, x^2 < x$ est <span style="color:#FF6B6B;">Faux</span> (ex: $x=2$)</p>
-                            <p>• Vrai . Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                            <div class="step"><span class="step-num">Valeur de vérité :</span> Faux</div>
+                            <div class="step"><span class="step-num">Négation :</span> $\left(\forall n \in \mathbb{Z}, n^2 > n\right) \text{ ou } \left(\exists x \in \mathbb{R}, x^2 \geq x\right)$</div>
+                            <div class="step"><span class="step-num">On a :</span> $\exists n \in \mathbb{Z}, n^2 \leq n$ : Vrai ($n=1$)</div>
+                            <div class="step"><span class="step-num">Et :</span> $\forall x \in \mathbb{R}, x^2 < x$ : Faux ($x=2$)</div>
+                            <div class="step"><span class="step-num">Donc :</span> Vrai . Faux = Faux</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
                         </div>
                     </div>
@@ -495,14 +507,11 @@
                     <div id="sol1f" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\left(\exists x \in \mathbb{R}, \forall y \in \mathbb{R}, x - y + 3 \neq 0\right) \text{ ou } \left(\forall y \in \mathbb{R}, \exists x \in \mathbb{R}, x - y + 3 \neq 0\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>• $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, x - y + 3 = 0$ est <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>  Pour tout $x$, on peut choisir $y = x+3$</p>
-                            <p>• $\exists y \in \mathbb{R}, \forall x \in \mathbb{R}, x - y + 3 = 0$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>  Cela signifierait $x = y - 3$ pour tout $x$, impossible.</p>
-                            <p>• Vrai . Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                            <div class="step"><span class="step-num">Valeur de vérité :</span> Faux</div>
+                            <div class="step"><span class="step-num">Négation :</span> $\left(\exists x \in \mathbb{R}, \forall y \in \mathbb{R}, x - y + 3 \neq 0\right) \text{ ou } \left(\forall y \in \mathbb{R}, \exists x \in \mathbb{R}, x - y + 3 \neq 0\right)$</div>
+                            <div class="step"><span class="step-num">On a :</span> $\forall x, \exists y, x-y+3=0$ : Vrai ($y=x+3$ convient)</div>
+                            <div class="step"><span class="step-num">Et :</span> $\exists y, \forall x, x-y+3=0$ : Faux ($y$ fixe ne peut convenir pour tout $x$)</div>
+                            <div class="step"><span class="step-num">Donc :</span> Vrai . Faux = Faux</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
                         </div>
                     </div>
@@ -518,12 +527,10 @@
                     <div id="sol1g" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> Faux</p>
-                            <p><strong>Négation :</strong> $\exists x \in \mathbb{R} ; \left(\sqrt{x^2 + 3} \geq 2 \nLeftrightarrow x \geq 1\right)$</p>
-                            <p><strong>Explication :</strong></p>
-                            <p>$\sqrt{x^2 + 3} \geq 2 \Leftrightarrow x^2 + 3 \geq 4 \Leftrightarrow x^2 \geq 1$</p>
-                            <p>$\Leftrightarrow x \leq -1 \text{ ou } x \geq 1$</p>
-                            <p>Donc l'équivalence $\sqrt{x^2+3} \geq 2 \Leftrightarrow x \geq 1$ est fausse.</p>
+                            <div class="step"><span class="step-num">Valeur de vérité :</span> Faux</div>
+                            <div class="step"><span class="step-num">Négation :</span> $\exists x \in \mathbb{R} ; \left(\sqrt{x^2 + 3} \geq 2 \nLeftrightarrow x \geq 1\right)$</div>
+                            <div class="step"><span class="step-num">On a :</span> $\sqrt{x^2 + 3} \geq 2 \Leftrightarrow x^2 \geq 1 \Leftrightarrow x \leq -1 \text{ ou } x \geq 1$</div>
+                            <div class="step"><span class="step-num">D'où :</span> l'équivalence avec « $x \geq 1$ » seul est fausse (ex: $x=-2$)</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion : Faux</strong></p>
                         </div>
                     </div>
@@ -551,7 +558,26 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
@@ -745,3 +771,5 @@
 
 </body>
 </html>
+
+

@@ -3,42 +3,27 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-XVMNBPXC9D');
-</script>
-    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Xpert",
-        "description": "Cours de 1 Bac Sciences Expérimentales"
-    }
-    </script>
+    
+    
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Exercice 2 - Logique | Xpert</title>
+    <title>Exercice 1 - Conductivité d'une solution de KCl | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/chimie/exercises/conductimetrie/model1/exercice1.html">
+    <meta name="description" content="Exercices corrigés : Conductimetrie (modèle 1) — Chimie, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
+    
+    <!-- ====== Preconnect CDN ====== -->
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
+    
+    
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -54,7 +39,18 @@
         .section ul li { margin-bottom: 4px; }
         .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
         .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
         .footer p { font-size: 13px; }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
@@ -64,8 +60,8 @@
         .scroll-top-btn { display: none; }
         .badge-exercice {
             display: inline-block;
-            background: rgba(78, 205, 196, 0.15);
-            color: #4ECDC4;
+            background: rgba(244, 208, 63, 0.15);
+            color:var(--gold-text);
             padding: 2px 12px;
             border-radius: 12px;
             font-size: 13px;
@@ -79,7 +75,7 @@
             margin: 6px 0;
         }
         .sub-question .letter {
-            color: #4ECDC4;
+            color:var(--gold-text);
             font-weight: 700;
             font-size: 13px;
         }
@@ -105,10 +101,48 @@
             font-size: 11.5px;
             line-height: 1.6;
         }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #F4D03F;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color:var(--gold-text);
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .toggle-sol {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            color: #4ECDC4;
+            color:var(--gold-text);
             padding: 3px 10px;
             border-radius: 6px;
             cursor: pointer;
@@ -119,23 +153,39 @@
             margin-top: 4px;
         }
         .toggle-sol:hover {
-            border-color: #4ECDC4;
-            background: rgba(78, 205, 196, 0.1);
+            border-color: #F4D03F;
+            background: rgba(244, 208, 63, 0.1);
         }
-.next-btn, .prev-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--bg-primary);
-            background: var(--gradient);
-            text-decoration: none;
-            font-weight: 700;
-            padding: 4px 12px;
+.table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
             border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 13px;
+            overflow: hidden;
+            max-width: 500px;
+            margin: 0 auto;
         }
-@media (max-width: 768px) {
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
             .section { padding: 6px 8px; }
@@ -154,6 +204,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -165,6 +216,7 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -186,19 +238,19 @@
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                     <rect width="200" height="200" fill="none"/>
-                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#4ECDC4" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
                 </pattern>
             </defs>
             <rect width="800" height="800" fill="url(#zellij)"/>
@@ -399,68 +451,177 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 2</h1>
+            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:var(--gold-text);"></i> Exercice 1</h1>
             <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Quantificateurs</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Facile</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Conductivité d'une solution de KCl</span>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
             </p>
 
             <div class="section">
-                <h2><span class="num">2</span> Écrire avec les quantificateurs</h2>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Écrire les expressions suivantes en utilisant les quantificateurs qui correspondent.</p>
+                <h2><span class="num">1</span> Énoncé</h2>
 
-                <!-- a -->
-                <div class="sub-question">
-                    <div class="letter">a.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Le carré d'un nombre réel est positif.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2a')">Voir la solution</button>
-                    <div id="sol2a" class="solution-box">
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    La mesure de la conductivité d'une solution de chlorure de potassium \(\text{KCl}\) de concentration \(C\) donne \(\sigma = 1,224\text{ mS.cm}^{-1}\) à 21°C.
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Données :</strong> 
+                    \(\lambda_{\text{Cl}^-} = 7,63\text{ mS.m}^2.\text{mol}^{-1}\),
+                    \(\lambda_{\text{K}^+} = 7,35\text{ mS.m}^2.\text{mol}^{-1}\)
+                </div>
+
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Exprimer \(\sigma\) la conductivité en \(\text{S.m}^{-1}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                $\forall x \in \mathbb{R}, x^2 \geq 0$
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                \(\sigma = 1,224\text{ mS.cm}^{-1}\)
                             </div>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">(ou $\forall x \in \mathbb{R}, x^2 > 0$ pour strictement positif)</p>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Conversion des unités :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$1\text{ mS} = 10^{-3}\text{ S} \quad \text{et} \quad 1\text{ cm} = 10^{-2}\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma = 1,224 \times 10^{-3} \times (10^{-2})^{-1} = 1,224 \times 10^{-1}\text{ S.m}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$\sigma = 1,224 \times 10^{-1}\text{ S.m}^{-1}$$
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- b -->
                 <div class="sub-question">
-                    <div class="letter">b.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Il n'existe pas un nombre rationnel qui est solution de l'équation $x^2 - 3 = 0$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2b')">Voir la solution</button>
-                    <div id="sol2b" class="solution-box">
+                    <div class="letter">2.1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Que représente la lettre \(\lambda\) ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                $\nexists x \in \mathbb{Q} : x^2 - 3 = 0$
+                            <div class="step">
+                                <span class="step-num">Réponse :</span> 
+                                La lettre \(\lambda\) représente la <strong>conductivité molaire ionique</strong> des ions.
                             </div>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">Ou encore : $\forall x \in \mathbb{Q}, x^2 - 3 \neq 0$</p>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Définition</span>
+                                <p style="font-size:11px; color:var(--text-secondary);">
+                                    La conductivité molaire ionique \(\lambda_i\) est la contribution d'un ion \(i\) à la conductivité de la solution. Elle dépend de la nature de l'ion, de sa charge et de sa mobilité.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- c -->
                 <div class="sub-question">
-                    <div class="letter">c.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Pour tout nombre entier naturel $n$, il existe au moins un entier naturel $k$ tel que $k \leq n$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2c')">Voir la solution</button>
-                    <div id="sol2c" class="solution-box">
+                    <div class="letter">2.2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Donner les valeurs de \(\lambda_{\text{Cl}^-}\) et \(\lambda_{\text{K}^+}\) en \(\text{S.m}^2.\text{mol}^{-1}\).
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                $\forall n \in \mathbb{N}, \exists k \in \mathbb{N} : k \leq n$
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\lambda_{\text{Cl}^-} = 7,63\text{ mS.m}^2.\text{mol}^{-1} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                </div>
                             </div>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">(Par exemple, on peut prendre $k = 0$ pour tout $n$)</p>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\lambda_{\text{K}^+} = 7,35\text{ mS.m}^2.\text{mol}^{-1} = 7,35 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\lambda_{\text{Cl}^-} = 7,63 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                    $$\lambda_{\text{K}^+} = 7,35 \times 10^{-3}\text{ S.m}^2.\text{mol}^{-1}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2.3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire la concentration \(C\) en \(\text{mol.L}^{-1}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Équation de dissolution :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\text{KCl} \xrightarrow{H_2O} \text{K}^+ + \text{Cl}^-$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                La dissolution est totale, donc :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$[\text{K}^+] = [\text{Cl}^-] = C$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                Expression de la conductivité :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma = \lambda_{\text{K}^+} \times [\text{K}^+] + \lambda_{\text{Cl}^-} \times [\text{Cl}^-]$$
+                                    $$\sigma = (\lambda_{\text{K}^+} + \lambda_{\text{Cl}^-}) \times C$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$C = \frac{\sigma}{\lambda_{\text{K}^+} + \lambda_{\text{Cl}^-}}$$
+                                    $$C = \frac{1,224 \times 10^{-1}}{(7,35 + 7,63) \times 10^{-3}}$$
+                                    $$C = \frac{1,224 \times 10^{-1}}{14,98 \times 10^{-3}} = 8,17\text{ mol.m}^{-3}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 5 :</span> 
+                                Conversion en \(\text{mol.L}^{-1}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$1\text{ m}^3 = 10^3\text{ L} \quad \Rightarrow \quad C = 8,17 \times 10^{-3}\text{ mol.L}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$C = 8,17 \times 10^{-3}\text{ mol.L}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Formule à retenir</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma = \sum_i \lambda_i \times [X_i]$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">La conductivité d'une solution est la somme des contributions de chaque ion.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-buttons">
-                <a href="exercice1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 1</a>
-                <a href="exercice3.html" class="next-btn">Exercice 3 <i class="fas fa-arrow-left"></i></a>
+                <a href="index.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="exercice2.html" class="next-btn">Exercice 2 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
@@ -479,26 +640,8 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-    <script>
-        window.addEventListener('scroll', function() {
-            var navbar = document.getElementById('navbar');
-            if (navbar) {
-                navbar.classList.toggle('scrolled', window.scrollY > 30);
-            }
-        });
-
-        function toggleSolution(id) {
-            var el = document.getElementById(id);
-            var btn = el.previousElementSibling;
-            if (el.classList.contains('show')) {
-                el.classList.remove('show');
-                btn.textContent = 'Voir la solution';
-            } else {
-                el.classList.add('show');
-                btn.textContent = 'Cacher la solution';
-            }
-        }
-    </script>    <script src="../../../../../assets/js/protection.js"></script>
+    
+    <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
 </html>

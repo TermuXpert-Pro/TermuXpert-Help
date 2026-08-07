@@ -3,42 +3,27 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-XVMNBPXC9D');
-</script>
-    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Xpert",
-        "description": "Cours de 1 Bac Sciences Expérimentales"
-    }
-    </script>
+    
+    
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Exercice 3 - Logique | Xpert</title>
+    <title>Exercices - Mesure des quantités de matière en solution par conductimétrie | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/chimie/exercises/conductimetrie/model1/">
+    <meta name="description" content="Exercices corrigés : Conductimetrie (modèle 1) — Chimie, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
+    
+    <!-- ====== Preconnect CDN ====== -->
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
+    
+    
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -46,15 +31,9 @@
         .nav-links a { font-size: 13px; padding: 3px 8px; }
         .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
         .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
-        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
-        .section h2 { font-size: 14px; margin-bottom: 6px; }
-        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
-        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
-        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
-        .section ul li { margin-bottom: 4px; }
-        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
-        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .ex-link { padding: 8px 12px; margin-bottom: 8px; border-radius: 8px; }
+        .ex-link .ex-num { font-size: 13px; color:var(--gold-text); font-weight: 700; }
+        .ex-link .ex-title { font-size: 14px; color: var(--text-secondary); }
         .footer p { font-size: 13px; }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
@@ -62,98 +41,56 @@
         .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .progress-bar { display: none; }
         .scroll-top-btn { display: none; }
-        .badge-exercice {
+        .ex-link:active { transform: scale(0.97); opacity: 0.8; }
+        .ex-link:hover { border-color: #F4D03F; transform: translateX(-3px); }
+        .ex-link .ex-arrow { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
+        .badge-difficulty {
             display: inline-block;
-            background: rgba(78, 205, 196, 0.15);
-            color: #4ECDC4;
-            padding: 2px 12px;
+            padding: 1px 10px;
             border-radius: 12px;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
         }
-        .sub-question {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px 10px;
-            margin: 6px 0;
+        .badge-facile { background: #4ECDC422; color: #4ECDC4; }
+        .badge-moyen { background: #F4D03F22; color:var(--gold-text); }
+        .badge-difficile { background: #FF6B6B22; color: #FF6B6B; }
+        .exercice-count {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
         }
-        .sub-question .letter {
-            color: #4ECDC4;
-            font-weight: 700;
-            font-size: 13px;
-        }
-        .solution-box {
-            background: var(--solution-bg);
-            border: 1px solid var(--solution-border);
-            border-radius: 6px;
-            padding: 6px 10px;
-            margin: 4px 0;
-            display: none;
-        }
-        .solution-box.show {
-            display: block;
-        }
-        .solution-box .sol-title {
-            color: var(--solution-title);
-            font-weight: 700;
-            font-size: 13px;
-            margin-bottom: 2px;
-        }
-        .solution-box .sol-content {
-            color: var(--text-secondary);
-            font-size: 11.5px;
-            line-height: 1.6;
-        }
-        .toggle-sol {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: #4ECDC4;
-            padding: 3px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: var(--font-main);
-            font-size: 13px;
+        .exercice-count span { color:var(--gold-text); font-weight: 700; }
+        .badge-theme {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: 600;
-            transition: all 0.2s ease;
-            margin-top: 4px;
+            background: rgba(187, 143, 206, 0.15);
+            color: #BB8FCE;
         }
-        .toggle-sol:hover {
-            border-color: #4ECDC4;
-            background: rgba(78, 205, 196, 0.1);
+        .section-list {
+            max-width: 700px;
+            margin: 0 auto;
         }
-.next-btn, .prev-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--bg-primary);
-            background: var(--gradient);
-            text-decoration: none;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 13px;
-        }
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
-            .section { padding: 6px 8px; }
-            .section h2 { font-size: 14px; }
-            .section p { font-size: 10.5px; }
+            .ex-link { padding: 6px 10px; }
+            .ex-link .ex-num { font-size: 14px; }
+            .ex-link .ex-title { font-size: 13px; }
             .nav-links a { font-size: 13px; padding: 2px 6px; }
-            .sub-question { padding: 6px 8px; }
         }
         @media (max-width: 480px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 15px; }
-            .section h2 { font-size: 13px; }
-            .section p { font-size: 13px; }
             .back-btn { font-size: 13px; padding: 3px 10px; }
             .nav-logo-text { font-size: 14px; }
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
-            .sub-question { padding: 4px 6px; }
-            .sub-question .letter { font-size: 13px; }
+            .ex-link { padding: 4px 8px; }
+            .ex-link .ex-num { font-size: 13px; }
+            .ex-link .ex-title { font-size: 13px; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -165,6 +102,7 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -178,40 +116,43 @@
 
 
     <!-- ====== طبقة الحماية غير المرئية ====== -->
-    <div class="overlay-protection" id="overlayProtection"></div>
+<div class="overlay-protection" id="overlayProtection"></div>
 
-    <!-- ====== خلفية زليج ====== -->
-    <div class="moroccan-bg" aria-hidden="true">
-        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                    <rect width="200" height="200" fill="none"/>
-                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                </pattern>
-            </defs>
-            <rect width="800" height="800" fill="url(#zellij)"/>
-        </svg>
-    </div>
-    <div class="moroccan-shadow" aria-hidden="true"></div>
-    <div class="moroccan-star" aria-hidden="true">✦</div>
-    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
-    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
 
-    <div class="bg-grid"></div>
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
     <!-- الشعار -->
     <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
@@ -395,98 +336,112 @@
 <!-- ====== Overlay ====== -->
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
+    <!-- ====== MAIN CONTENT ====== -->
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 3</h1>
-            <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Valeur de vérité</span>
-                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Facile</span>
-            </p>
+            <h1 class="lesson-title"><i class="fas fa-bolt" style="color:var(--gold-text);"></i> Exercices - Mesure des quantités de matière en solution par conductimétrie</h1>
+            <div class="exercice-count"><span>6</span> exercices disponibles</div>
 
-            <div class="section">
-                <h2><span class="num">3</span> Déterminer la valeur de vérité</h2>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Déterminer la valeur de vérité (Vrai ou Faux) des propositions suivantes.</p>
+            <div class="section-list">
 
-                <!-- a -->
-                <div class="sub-question">
-                    <div class="letter">a.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $x \in \mathbb{R} ; \left(x^2 = 4 \Leftrightarrow x = 2\right)$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3a')">Voir la solution</button>
-                    <div id="sol3a" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>$x^2 = 4 \Rightarrow x = 2$ ou $x = -2$</p>
-                            <p>Donc l'équivalence est fausse car $-2$ est un contre-exemple.</p>
+                <!-- Exercice 1 -->
+                <a href="exercice1.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold-text); font-size:16px; flex-shrink:0;"><i class="fas fa-bolt"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:var(--gold-text); font-weight:700; font-size:13px;">Exercice 1</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Conductivité d'une solution de KCl - Concentration</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-facile">Facile</span>
+                                <span class="badge-theme">\(\sigma = \sum \lambda_i [X_i]\)</span>
+                            </div>
                         </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
-                </div>
+                </a>
 
-                <!-- b -->
-                <div class="sub-question">
-                    <div class="letter">b.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\left(7 < 5 \text{ et } 2+1=3\right) \text{ ou } \left(-3 \in \mathbb{N}\right)$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3b')">Voir la solution</button>
-                    <div id="sol3b" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=3$ est <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• Donc $(7 < 5 \text{ et } 2+1=3)$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• Faux ou Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                <!-- Exercice 2 -->
+                <a href="exercice2.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold-text); font-size:16px; flex-shrink:0;"><i class="fas fa-flask"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:var(--gold-text); font-weight:700; font-size:13px;">Exercice 2</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Conductance et conductivité - Cellule conductimétrique</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-facile">Facile</span>
+                                <span class="badge-theme">\(G = \sigma \cdot \frac{S}{L}\)</span>
+                            </div>
                         </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
-                </div>
+                </a>
 
-                <!-- c -->
-                <div class="sub-question">
-                    <div class="letter">c.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\left(7 < 5 \Rightarrow 2+1=0\right) \text{ ou } \left(-3 \in \mathbb{N}\right)$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3c')">Voir la solution</button>
-                    <div id="sol3c" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=0$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $(7 < 5 \Rightarrow 2+1=0)$ = (Faux $\Rightarrow$ Faux) = <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• Vrai ou Faux = <span style="color:#4ECDC4;">Vrai</span></p>
+                <!-- Exercice 3 -->
+                <a href="exercice3.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold-text); font-size:16px; flex-shrink:0;"><i class="fas fa-droplet"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:var(--gold-text); font-weight:700; font-size:13px;">Exercice 3</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Dilution d'une solution de NaCl - Conductivité</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                                <span class="badge-theme">Dilution - \(C \times V = C' \times V'\)</span>
+                            </div>
                         </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
-                </div>
+                </a>
 
-                <!-- d -->
-                <div class="sub-question">
-                    <div class="letter">d.</div>
-                    <div class="formula-block" style="font-size:13px;">
-                        $\forall x \in \mathbb{R} ; x^2 \leq x \Rightarrow |x| = x$
-                    </div>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3d')">Voir la solution</button>
-                    <div id="sol3d" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>$x^2 \leq x \Rightarrow x \in [0,1] \Rightarrow x \geq 0 \Rightarrow |x| = x$</p>
-                            <p>Donc la proposition est vraie.</p>
+                <!-- Exercice 4 -->
+                <a href="exercice4.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold-text); font-size:16px; flex-shrink:0;"><i class="fas fa-water"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:var(--gold-text); font-weight:700; font-size:13px;">Exercice 4</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Mesure de conductance - Tension et intensité</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-moyen">Moyen</span>
+                                <span class="badge-theme">\(R = \frac{U}{I}\) - \(G = \frac{1}{R}\)</span>
+                            </div>
                         </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
                     </div>
-                </div>
-            </div>
+                </a>
 
-            <div class="nav-buttons">
-                <a href="exercice2.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 2</a>
-                <a href="exercice4.html" class="next-btn">Exercice 4 <i class="fas fa-arrow-left"></i></a>
+                <!-- Exercice 5 -->
+                <a href="exercice5.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold-text); font-size:16px; flex-shrink:0;"><i class="fas fa-chart-line"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:var(--gold-text); font-weight:700; font-size:13px;">Exercice 5</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Dosage par étalonnage - Courbe \(G = f(C)\)</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-difficile">Difficile</span>
+                                <span class="badge-theme">Étalonnage - Dilution</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
+                <!-- Exercice 6 -->
+                <a href="exercice6.html" class="ex-link" style="display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:8px; color:var(--text-primary); text-decoration:none; transition:all 0.3s ease; cursor:pointer;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold-text); font-size:16px; flex-shrink:0;"><i class="fas fa-atom"></i></span>
+                        <div style="flex:1;">
+                            <div style="color:var(--gold-text); font-weight:700; font-size:13px;">Exercice 6</div>
+                            <div style="color:var(--text-secondary); font-size:12px; line-height:1.4;">Mélange de solutions - KCl + NaCl</div>
+                            <div style="display:flex; gap:4px; margin-top:2px; flex-wrap:wrap;">
+                                <span class="badge-difficulty badge-difficile">Difficile</span>
+                                <span class="badge-theme">Mélange - Conservation des ions</span>
+                            </div>
+                        </div>
+                        <span style="color:var(--text-muted); font-size:12px; flex-shrink:0;"><i class="fas fa-chevron-left"></i></span>
+                    </div>
+                </a>
+
             </div>
         </div>
     </div>
@@ -505,6 +460,8 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -513,18 +470,15 @@
             }
         });
 
-        function toggleSolution(id) {
-            var el = document.getElementById(id);
-            var btn = el.previousElementSibling;
-            if (el.classList.contains('show')) {
-                el.classList.remove('show');
-                btn.textContent = 'Voir la solution';
+        document.addEventListener('DOMContentLoaded', function() {
+            const animationAllowed = sessionStorage.getItem('animation_allowed');
+            if (animationAllowed === 'true') {
+                sessionStorage.removeItem('animation_allowed');
+                console.log('✅ chimie/exercices/conductimetrie/model1/index.html - Animation Zellij jouée');
             } else {
-                el.classList.add('show');
-                btn.textContent = 'Cacher la solution';
+                console.log('✅ chimie/exercices/conductimetrie/model1/index.html - Affichage direct Zellij');
             }
-        }
-    </script>    <script src="../../../../../assets/js/protection.js"></script>
-    <script src="../../../../../assets/js/script.js"></script>
+        });
+    </script>
 </body>
 </html>

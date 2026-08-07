@@ -19,7 +19,16 @@
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -401,9 +410,10 @@
                     <div id="sol3a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>$x^2 = 4 \Rightarrow x = 2$ ou $x = -2$</p>
-                            <p>Donc l'équivalence est fausse car $-2$ est un contre-exemple.</p>
+                            <div class="step"><span class="step-num">Valeur :</span> <span style="color:#FF6B6B;">Faux</span></div>
+                            <div class="step"><span class="step-num">On a :</span> $x^2 = 4 \Rightarrow x = 2$ ou $x = -2$</div>
+                            <div class="step"><span class="step-num">Or :</span> pour $x=-2$ : $x^2=4$ vraie mais $x=2$ fausse</div>
+                            <div class="step"><span class="step-num">Donc :</span> l'équivalence $x^2=4 \Leftrightarrow x=2$ est fausse ($x=-2$ est un contre-exemple)</div>
                         </div>
                     </div>
                 </div>
@@ -418,12 +428,12 @@
                     <div id="sol3b" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=3$ est <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• Donc $(7 < 5 \text{ et } 2+1=3)$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• Faux ou Faux = <span style="color:#FF6B6B;">Faux</span></p>
+                            <div class="step"><span class="step-num">Valeur :</span> <span style="color:#FF6B6B;">Faux</span></div>
+                            <div class="step"><span class="step-num">On a :</span> $7 < 5$ : Faux</div>
+                            <div class="step"><span class="step-num">Et :</span> $2+1=3$ : Vrai</div>
+                            <div class="step"><span class="step-num">Donc :</span> $(7 < 5 \text{ et } 2+1=3)$ = Faux et Vrai = Faux</div>
+                            <div class="step"><span class="step-num">On a :</span> $-3 \in \mathbb{N}$ : Faux</div>
+                            <div class="step"><span class="step-num">Alors :</span> Faux ou Faux = Faux</div>
                         </div>
                     </div>
                 </div>
@@ -438,12 +448,12 @@
                     <div id="sol3c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• $7 < 5$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $2+1=0$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• $(7 < 5 \Rightarrow 2+1=0)$ = (Faux $\Rightarrow$ Faux) = <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>• $-3 \in \mathbb{N}$ est <span style="color:#FF6B6B;">Faux</span></p>
-                            <p>• Vrai ou Faux = <span style="color:#4ECDC4;">Vrai</span></p>
+                            <div class="step"><span class="step-num">Valeur :</span> <span style="color:#4ECDC4;">Vrai</span></div>
+                            <div class="step"><span class="step-num">On a :</span> $7 < 5$ : Faux</div>
+                            <div class="step"><span class="step-num">Et :</span> $2+1=0$ : Faux</div>
+                            <div class="step"><span class="step-num">Donc :</span> $(7 < 5 \Rightarrow 2+1=0)$ = (Faux $\Rightarrow$ Faux) = Vrai</div>
+                            <div class="step"><span class="step-num">On a :</span> $-3 \in \mathbb{N}$ : Faux</div>
+                            <div class="step"><span class="step-num">Alors :</span> Vrai ou Faux = Vrai</div>
                         </div>
                     </div>
                 </div>
@@ -458,9 +468,11 @@
                     <div id="sol3d" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur :</strong> <span style="color:#4ECDC4;">Vrai</span></p>
-                            <p>$x^2 \leq x \Rightarrow x \in [0,1] \Rightarrow x \geq 0 \Rightarrow |x| = x$</p>
-                            <p>Donc la proposition est vraie.</p>
+                            <div class="step"><span class="step-num">Valeur :</span> <span style="color:#4ECDC4;">Vrai</span></div>
+                            <div class="step"><span class="step-num">On a :</span> $x^2 \leq x \Leftrightarrow x(x-1) \leq 0 \Leftrightarrow x \in [0,1]$</div>
+                            <div class="step"><span class="step-num">Sur $[0,1]$ :</span> $x \geq 0$, d'où $|x| = x$</div>
+                            <div class="step"><span class="step-num">Ailleurs :</span> l'hypothèse $x^2 \leq x$ est fausse, donc l'implication est vraie</div>
+                            <div class="step"><span class="step-num">D'où :</span> dans les deux cas, la proposition est vraie</div>
                         </div>
                     </div>
                 </div>
@@ -486,6 +498,27 @@
 </footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
 
         <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>

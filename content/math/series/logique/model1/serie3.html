@@ -19,7 +19,16 @@
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -407,14 +416,18 @@
                 <div id="sol21" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Cas 1 :</span> Si $n$ ou $p$ est pair, alors $np$ est pair</div>
-                        <div class="step"><span class="step-num">Cas 2 :</span> Si $n$ et $p$ sont impairs</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $n = 2k+1$ et $p = 2l+1$</div>
+                        <div class="step"><span class="step-num">Cas 1 :</span> $n$ ou $p$ pair $\Rightarrow n \times p$ pair $\Rightarrow$ proposition vraie</div>
+                        <div class="step"><span class="step-num">Cas 2 :</span> $n$ et $p$ impairs</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $\exists k,l \in \mathbb{N} : n = 2k+1$, $p = 2l+1$</div>
                         <div class="step"><span class="step-num">Étape 2 :</span> $n^2 - p^2 = (n-p)(n+p)$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $n-p = 2(k-l)$ et $n+p = 2(k+l+1)$ sont pairs, donc $n^2-p^2=(n-p)(n+p)$ est multiple de 4</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $(k-l) + (k+l+1) = 2k+1$ est impair, donc l'un des deux nombres $k-l$ et $k+l+1$ est pair : leur produit $(k-l)(k+l+1)$ est donc pair, soit $(k-l)(k+l+1) = 2m$</div>
-                        <div class="step"><span class="step-num">Étape 5 :</span> $(n-p)(n+p) = 4(k-l)(k+l+1) = 4 \times 2m = 8m$, donc $n^2-p^2$ est multiple de 8</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie</p>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $n - p = 2k+1-(2l+1) = 2(k-l)$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $n + p = 2k+1+2l+1 = 2(k+l+1)$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $(n-p)(n+p) = 2(k-l) \times 2(k+l+1) = 4(k-l)(k+l+1)$</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> $(k-l)+(k+l+1) = 2k+1$ est impair</div>
+                        <div class="step"><span class="step-num">Donc :</span> $k-l$ et $k+l+1$ ont des parités différentes $\Rightarrow$ l'un des deux est pair</div>
+                        <div class="step"><span class="step-num">D'où :</span> $(k-l)(k+l+1)$ est pair, on note $(k-l)(k+l+1) = 2m$</div>
+                        <div class="step"><span class="step-num">Étape 6 :</span> $(n-p)(n+p) = 4 \times 2m = 8m$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> dans les 2 cas, $np$ pair ou $n^2-p^2$ multiple de 8 — proposition vraie</p>
                     </div>
                 </div>
             </div>
@@ -432,13 +445,16 @@
                 <div id="sol22" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $\frac{a}{1+b} = \frac{b}{1+a}$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $a(1+a) = b(1+b)$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $a + a^2 = b + b^2$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $a^2 - b^2 + a - b = 0$</div>
-                        <div class="step"><span class="step-num">Étape 5 :</span> $(a-b)(a+b) + (a-b) = 0$</div>
-                        <div class="step"><span class="step-num">Étape 6 :</span> $(a-b)(a+b+1) = 0$</div>
-                        <div class="step"><span class="step-num">Étape 7 :</span> $a+b+1 > 0$, donc $a-b = 0$</div>
+                        <div class="step"><span class="step-num">On a :</span> $\frac{a}{1+b} = \frac{b}{1+a}$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $1+a>0$ et $1+b>0$, on multiplie en croix</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $a(1+a) = b(1+b)$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $a + a^2 = b + b^2$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $a^2 - b^2 + a - b = 0$</div>
+                        <div class="step"><span class="step-num">On factorise :</span> $a^2-b^2 = (a-b)(a+b)$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $(a-b)(a+b) + (a-b) = 0$</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> $(a-b)(a+b+1) = 0$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $a>0$ et $b>0 \Rightarrow a+b+1 > 0$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $a - b = 0$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = b$</p>
                     </div>
                 </div>
@@ -457,10 +473,14 @@
                 <div id="sol23" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $f(x) = x^2 + 2x = (x+1)^2 - 1$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> Quand $x \to +\infty$, $f(x) \to +\infty$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> Donc $f$ n'est pas majorée sur $\mathbb{R}$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> Il n'existe pas de $M$</p>
+                        <p><strong>Par l'absurde :</strong> Supposons $\exists M>0$ tel que $f(x) \leq M$ $\forall x \in \mathbb{R}$</p>
+                        <div class="step"><span class="step-num">On choisit :</span> $x = M$ (car $M>0 \Rightarrow M \in \mathbb{R}$)</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $f(M) = M^2 + 2M$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $M>0 \Rightarrow M^2>0$ et $2M>0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $f(M) = M^2+2M > M$</div>
+                        <div class="step"><span class="step-num">Or :</span> l'hypothèse donne $f(M) \leq M$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $M < f(M) \leq M$ : contradiction</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> aucun $M$ ne convient, $f$ n'est pas majorée sur $\mathbb{R}$</p>
                     </div>
                 </div>
             </div>
@@ -478,11 +498,13 @@
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
                         <p><strong>Par l'absurde :</strong> Supposons $\sqrt{2} \in \mathbb{Q}$</p>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{2} = \frac{p}{q}$ avec $p,q \in \mathbb{Z}^*$ et $pgcd(p,q) = 1$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{2} = \frac{p}{q}$ avec $p,q \in \mathbb{Z}^*$ et $pgcd(p,q) = 1$ (fraction irréductible)</div>
                         <div class="step"><span class="step-num">Étape 2 :</span> $2 = \frac{p^2}{q^2} \Rightarrow p^2 = 2q^2$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $p^2$ est pair, donc $p$ est pair ($p = 2k$)</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $4k^2 = 2q^2 \Rightarrow q^2 = 2k^2$</div>
-                        <div class="step"><span class="step-num">Étape 5 :</span> $q$ est pair aussi, contradiction avec $pgcd(p,q) = 1$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $p^2$ est pair (multiple de 2)</div>
+                        <div class="step"><span class="step-num">Or :</span> si $p$ était impair, $p^2$ serait impair — donc $p$ est pair : $p = 2k$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $p^2 = 4k^2 = 2q^2 \Rightarrow q^2 = 2k^2$</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> de même, $q^2$ est pair $\Rightarrow q$ est pair</div>
+                        <div class="step"><span class="step-num">Or :</span> $p$ pair et $q$ pair $\Rightarrow pgcd(p,q) \geq 2$, contradiction avec $pgcd(p,q)=1$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\sqrt{2} \notin \mathbb{Q}$</p>
                     </div>
                 </div>
@@ -504,10 +526,13 @@
                     <div id="sol25_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> $a + b\sqrt{2} = 0 \Rightarrow a = -b\sqrt{2}$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> Si $b \neq 0$, alors $\sqrt{2} = -\frac{a}{b} \in \mathbb{Q}$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> Contradiction avec $\sqrt{2} \notin \mathbb{Q}$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> Donc $b = 0$ et $a = 0$</div>
+                            <div class="step"><span class="step-num">On a :</span> $a + b\sqrt{2} = 0$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $a = -b\sqrt{2}$</div>
+                            <div class="step"><span class="step-num">Si :</span> $b \neq 0$, on divise par $b$ : $\sqrt{2} = -\frac{a}{b}$</div>
+                            <div class="step"><span class="step-num">Or :</span> $a,b \in \mathbb{Q} \Rightarrow -\frac{a}{b} \in \mathbb{Q}$, donc $\sqrt{2} \in \mathbb{Q}$</div>
+                            <div class="step"><span class="step-num">Contradiction :</span> avec le résultat $\sqrt{2} \notin \mathbb{Q}$ (exercice 24)</div>
+                            <div class="step"><span class="step-num">D'où :</span> $b = 0$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $a = -b\sqrt{2} = -0 \times \sqrt{2} = 0$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = b = 0$</p>
                         </div>
                     </div>
@@ -522,8 +547,10 @@
                     <div id="sol25_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> $a - a' + (b - b')\sqrt{2} = 0$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> D'après 1), $a - a' = 0$ et $b - b' = 0$</div>
+                            <div class="step"><span class="step-num">On a :</span> $a + b\sqrt{2} = a' + b'\sqrt{2}$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $(a-a') + (b-b')\sqrt{2} = 0$</div>
+                            <div class="step"><span class="step-num">D'après 1) :</span> une somme de cette forme est nulle $\Rightarrow$ chaque partie est nulle</div>
+                            <div class="step"><span class="step-num">D'où :</span> $a-a' = 0$ et $b-b' = 0$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = a'$ et $b = b'$</p>
                         </div>
                     </div>
@@ -543,12 +570,14 @@
                 <div id="sol26" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <p><strong>Par l'absurde :</strong> Supposons que $x_i - i$ est impair pour tout $i$</p>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $x_i$ et $i$ ont des parités différentes pour tout $i$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $x_i$ est une permutation de $1, 2, ..., n$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> Le nombre de pairs dans $A$ est $\frac{n-1}{2}$ (car $n$ impair)</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> Contradiction car les parités ne peuvent pas toutes être différentes</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\exists i$ tel que $x_i - i$ est pair</p>
+                        <p><strong>Par l'absurde :</strong> Supposons $x_i - i$ impair $\forall i \in A$</p>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $x_i - i$ impair $\Rightarrow x_i$ et $i$ ont des parités différentes, $\forall i$</div>
+                        <div class="step"><span class="step-num">On compte :</span> dans $A=\{1,...,n\}$ avec $n$ impair, il y a $P=\frac{n-1}{2}$ pairs et $I=\frac{n+1}{2}$ impairs</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> à chaque $i$ pair correspond un $x_i$ impair, et à chaque $i$ impair correspond un $x_i$ pair</div>
+                        <div class="step"><span class="step-num">Donc :</span> parmi les $x_i$, il y a $P$ valeurs impaires et $I$ valeurs paires</div>
+                        <div class="step"><span class="step-num">Or :</span> $(x_i)$ est une permutation de $A$, donc parmi les $x_i$ il y a exactement $P$ valeurs paires et $I$ valeurs impaires (mêmes quantités que dans $A$)</div>
+                        <div class="step"><span class="step-num">D'où :</span> $P = I$, or $P=\frac{n-1}{2} \neq \frac{n+1}{2}=I$ : contradiction</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\exists i \in A$ tel que $x_i - i$ est pair</p>
                     </div>
                 </div>
             </div>

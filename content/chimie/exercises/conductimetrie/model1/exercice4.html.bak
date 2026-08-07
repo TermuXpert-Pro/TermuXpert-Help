@@ -3,42 +3,27 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-XVMNBPXC9D');
-</script>
-    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Xpert",
-        "description": "Cours de 1 Bac Sciences Expérimentales"
-    }
-    </script>
+    
+    
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Exercice 6 - Logique | Xpert</title>
+    <title>Exercice 4 - Mesure de conductance | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/chimie/exercises/conductimetrie/model1/exercice4.html">
+    <meta name="description" content="Exercices corrigés : Conductimetrie (modèle 1) — Chimie, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
+    
+    <!-- ====== Preconnect CDN ====== -->
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
+    
+    
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -54,9 +39,18 @@
         .section ul li { margin-bottom: 4px; }
         .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
         .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
-        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
-        .step { font-size: 13px; padding: 3px 10px; margin: 3px 0; }
-        .step .step-num { font-size: 13px; }
+        .highlight-box .label.def { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box .label.prop { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
         .footer p { font-size: 13px; }
         .lesson-container { padding: 8px; }
         .glow-orb { display: none; }
@@ -66,8 +60,8 @@
         .scroll-top-btn { display: none; }
         .badge-exercice {
             display: inline-block;
-            background: rgba(78, 205, 196, 0.15);
-            color: #4ECDC4;
+            background: rgba(244, 208, 63, 0.15);
+            color:var(--gold-text);
             padding: 2px 12px;
             border-radius: 12px;
             font-size: 13px;
@@ -81,7 +75,7 @@
             margin: 6px 0;
         }
         .sub-question .letter {
-            color: #4ECDC4;
+            color:var(--gold-text);
             font-weight: 700;
             font-size: 13px;
         }
@@ -107,10 +101,48 @@
             font-size: 11.5px;
             line-height: 1.6;
         }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #F4D03F;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color:var(--gold-text);
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
         .toggle-sol {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            color: #4ECDC4;
+            color:var(--gold-text);
             padding: 3px 10px;
             border-radius: 6px;
             cursor: pointer;
@@ -121,8 +153,8 @@
             margin-top: 4px;
         }
         .toggle-sol:hover {
-            border-color: #4ECDC4;
-            background: rgba(78, 205, 196, 0.1);
+            border-color: #F4D03F;
+            background: rgba(244, 208, 63, 0.1);
         }
 .next-btn, .prev-btn {
             display: inline-flex;
@@ -137,7 +169,36 @@
             transition: all 0.3s ease;
             font-size: 13px;
         }
-@media (max-width: 768px) {
+.table-wrap {
+            overflow-x: auto;
+            margin: 4px 0;
+        }
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .table-wrap th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            font-weight: 700;
+            text-align: center;
+            font-size: 11px;
+        }
+        .table-wrap td {
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        @media (max-width: 768px) {
             body { font-size: 13px; }
             .lesson-title { font-size: 17px; }
             .section { padding: 6px 8px; }
@@ -156,6 +217,7 @@
             .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
             .sub-question { padding: 4px 6px; }
             .sub-question .letter { font-size: 13px; }
+            .table-wrap table { max-width: 100%; }
         }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
@@ -167,6 +229,7 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -178,6 +241,7 @@
         </div>
     </div>
 
+
     <!-- ====== طبقة الحماية غير المرئية ====== -->
     <div class="overlay-protection" id="overlayProtection"></div>
 
@@ -187,19 +251,19 @@
             <defs>
                 <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
                     <rect width="200" height="200" fill="none"/>
-                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
-                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
-                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
-                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
-                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
-                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
-                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#F7DC6F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#4ECDC4" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#F4D03F" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#F4D03F" stroke-width="0.3" opacity="0.05"/>
                 </pattern>
             </defs>
             <rect width="800" height="800" fill="url(#zellij)"/>
@@ -397,168 +461,198 @@
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour aux exercices</a>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
         
         <div class="lesson-container">
-            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Exercice 6</h1>
+            <h1 class="lesson-title"><i class="fas fa-water" style="color:var(--gold-text);"></i> Exercice 4</h1>
             <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Implication - Contraposée - Négation</span>
-                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B;"><i class="fas fa-star"></i> Niveau : Moyen</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Mesure de conductance - Tension et intensité</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
             <div class="section">
-                <h2><span class="num">6</span> Étude d'une implication</h2>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">On considère l'implication suivante :</p>
-                <div class="formula-block" style="font-size:14px;">
-                    $P(a,b) : a + b + ab + 1 = 0 \Rightarrow (a = -1 \text{ ou } b = -1)$
+                <h2><span class="num">1</span> Énoncé</h2>
+
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
+                    Aux bornes d'une cellule plongée dans une solution de chlorure de potassium et branchée sur un générateur alternatif, on a mesuré une tension efficace \(U = 13,7\text{ V}\) et une intensité efficace \(I = 89,3\text{ mA}\).
+                </p>
+
+                <div style="font-size:11px; color:var(--text-muted); background:var(--bg-card); padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+                    <strong>Donnée :</strong> 
+                    \(\sigma = 0,512\text{ mS.cm}^{-1}\) à 20°C
                 </div>
 
-                <!-- 1 -->
-                <div class="sub-question">
-                    <div class="letter">1.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Déterminer l'implication contraposée de $P(a,b)$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_1')">Voir la solution</button>
-                    <div id="sol6_1" class="solution-box">
+                <div class="sub-question" style="margin-top:6px;">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la résistance \(R\) de la portion d'électrolyte comprise entre les électrodes.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Contraposée :</strong> $P'(a,b) : (a \neq -1 \text{ et } b \neq -1) \Rightarrow a + b + ab + 1 \neq 0$</p>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">(On utilise $\neg(A \text{ ou } B) \equiv \neg A \text{ et } \neg B$)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2 -->
-                <div class="sub-question">
-                    <div class="letter">2.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la négation de $P(a,b)$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_2')">Voir la solution</button>
-                    <div id="sol6_2" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <p><strong>Négation :</strong></p>
-                            <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                $\neg P(a,b) : a + b + ab + 1 = 0 \text{ et } a \neq -1 \text{ et } b \neq -1$
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Loi d'Ohm :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$U = R \times I \quad \Rightarrow \quad R = \frac{U}{I}$$
+                                </div>
                             </div>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">
-                                (On utilise $\neg(A \Rightarrow B) \equiv A \text{ et } \neg B$)<br>
-                                et $\neg(a = -1 \text{ ou } b = -1) \equiv a \neq -1 \text{ et } b \neq -1$
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3 -->
-                <div class="sub-question">
-                    <div class="letter">3.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $P(a,b)$ est une implication vraie.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6_3')">Voir la solution</button>
-                    <div id="sol6_3" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> $a + b + ab + 1 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $a + 1 + b + ab = 0$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $(a+1) + b(a+1) = 0$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $(a+1)(1+b) = 0$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $a+1 = 0$ ou $b+1 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 6 :</span> $a = -1$ ou $b = -1$</div>
-                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> L'implication $P(a,b)$ est <span style="color:#4ECDC4;">vraie</span>.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section" style="margin-top:12px;">
-                <h2><span class="num">7</span> Étude d'une implication avec quantificateurs</h2>
-                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">On considère l'implication suivante :</p>
-                <div class="formula-block" style="font-size:13px;">
-                    $P : \forall x \in [0,+\infty[, \forall y \in [1,+\infty[ :$
-                    <br>
-                    $\left(\sqrt{x} + \sqrt{y} - 1 = \frac{1}{2}(x + y + 1)\right) \Rightarrow (x = 1 \text{ et } y = 2)$
-                </div>
-
-                <!-- 1 -->
-                <div class="sub-question">
-                    <div class="letter">1.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Écrire $P$ sans utiliser le connecteur $\Rightarrow$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_1')">Voir la solution</button>
-                    <div id="sol7_1" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                $\forall x \in [0,+\infty[, \forall y \in [1,+\infty[ :$
-                                <br>
-                                $\left(\sqrt{x} + \sqrt{y} - 1 \neq \frac{1}{2}(x + y + 1)\right) \text{ ou } (x = 1 \text{ et } y = 2)$
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Conversion de l'intensité :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$I = 89,3\text{ mA} = 89,3 \times 10^{-3}\text{ A}$$
+                                </div>
                             </div>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">
-                                (On utilise $A \Rightarrow B \equiv \neg A \text{ ou } B$)
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2 -->
-                <div class="sub-question">
-                    <div class="letter">2.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la négation de $P$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_2')">Voir la solution</button>
-                    <div id="sol7_2" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                $\exists x \in [0,+\infty[, \exists y \in [1,+\infty[ :$
-                                <br>
-                                $\left(\sqrt{x} + \sqrt{y} - 1 = \frac{1}{2}(x + y + 1)\right) \text{ et } (x \neq 1 \text{ ou } y \neq 2)$
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$R = \frac{13,7}{89,3 \times 10^{-3}} = 153\ \Omega$$
+                                </div>
                             </div>
-                            <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">
-                                (On utilise $\neg(\forall) \equiv \exists$ et $\neg(A \Rightarrow B) \equiv A \text{ et } \neg B$)
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3 -->
-                <div class="sub-question">
-                    <div class="letter">3.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Déterminer l'implication contraposée de $P$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_3')">Voir la solution</button>
-                    <div id="sol7_3" class="solution-box">
-                        <div class="sol-title">✅ Solution</div>
-                        <div class="sol-content">
-                            <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                $\forall x \in [0,+\infty[, \forall y \in [1,+\infty[ :$
-                                <br>
-                                $(x \neq 1 \text{ ou } y \neq 2) \Rightarrow \left(\sqrt{x} + \sqrt{y} - 1 \neq \frac{1}{2}(x + y + 1)\right)$
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$R = 153\ \Omega$$
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 4 -->
                 <div class="sub-question">
-                    <div class="letter">4.</div>
-                    <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de vérité de $P$.</p>
-                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7_4')">Voir la solution</button>
-                    <div id="sol7_4" class="solution-box">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Calculer la conductance \(G\) en \(\text{S}\).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Valeur de vérité :</strong> <span style="color:#4ECDC4;">Vrai</span></p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{x} + \sqrt{y} - 1 = \frac{1}{2}(x + y + 1)$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $2\sqrt{x} + 2\sqrt{y} - 2 = x + y + 1$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $x - 2\sqrt{x} + y - 2\sqrt{y} + 3 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 + 1 = 0$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = -1$</div>
-                            <p>Or une somme de carrés est toujours $\geq 0$, donc elle ne peut jamais être égale à $-1$.</p>
-                            <p>L'équation $\sqrt{x} + \sqrt{y} - 1 = \frac{1}{2}(x+y+1)$ n'a <strong>aucune solution</strong> : l'hypothèse est donc toujours fausse.</p>
-                            <p style="color:#4ECDC4;">Une implication dont l'hypothèse est toujours fausse est toujours vraie (implication vraie par vacuité).</p>
-                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $P$ est <span style="color:#4ECDC4;">Vraie</span>.</p>
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Relation entre conductance et résistance :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$G = \frac{1}{R}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$G = \frac{1}{153} = 6,54 \times 10^{-3}\text{ S}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$G = 6,54 \times 10^{-3}\text{ S} = 6,54\text{ mS}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Relation à retenir</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$G = \frac{1}{R} = \frac{I}{U}$$
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        La conductivité de cette solution est \(\sigma = 0,512\text{ mS.cm}^{-1}\). Calculer la constante \(k\) de la cellule.
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Conversion de \(\sigma\) en \(\text{S.m}^{-1}\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\sigma = 0,512\text{ mS.cm}^{-1} = 0,512 \times 10^{-3} \times 10^2 = 5,12 \times 10^{-2}\text{ S.m}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Relation entre conductance, conductivité et constante de cellule :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$G = \sigma \times \frac{S}{L} = \frac{\sigma}{k} \quad \Rightarrow \quad k = \frac{\sigma}{G}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$k = \frac{5,12 \times 10^{-2}}{6,54 \times 10^{-3}} = 7,83\text{ m}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$k = 7,83\text{ m}^{-1}$$
+                                </div>
+                            </div>
+                            <div class="highlight-box yellow" style="margin-top:6px;">
+                                <span class="label rappel">Constante de cellule</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$k = \frac{L}{S} = \frac{\sigma}{G}$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">
+                                    \(k\) s'exprime en \(\text{m}^{-1}\).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">
+                        Si les électrodes, planes et parallèles, sont séparées de \(L = 1,0\text{ cm}\), quelle est leur surface \(S\) ?
+                    </p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution</div>
+                        <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">Étape 1 :</span> 
+                                Relation entre \(k\), \(L\) et \(S\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$k = \frac{L}{S} \quad \Rightarrow \quad S = \frac{L}{k}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 2 :</span> 
+                                Conversion de \(L\) en mètres :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$L = 1,0\text{ cm} = 1,0 \times 10^{-2}\text{ m}$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 3 :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$S = \frac{1,0 \times 10^{-2}}{7,83} = 1,28 \times 10^{-3}\text{ m}^2$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Étape 4 :</span> 
+                                Conversion en \(\text{cm}^2\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$S = 1,28 \times 10^{-3} \times 10^4 = 12,8\text{ cm}^2$$
+                                </div>
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Résultat</span>
+                                <div class="formula-block" style="font-size:16px; margin:4px 0;">
+                                    $$S = 12,8\text{ cm}^2$$
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-buttons">
-                <a href="exercice5.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 5</a>
-                <a href="exercice7.html" class="next-btn">Exercice 7 <i class="fas fa-arrow-left"></i></a>
+                <a href="exercice3.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Exercice 3</a>
+                <a href="exercice5.html" class="next-btn">Exercice 5 <i class="fas fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
@@ -577,26 +671,8 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-    <script>
-        window.addEventListener('scroll', function() {
-            var navbar = document.getElementById('navbar');
-            if (navbar) {
-                navbar.classList.toggle('scrolled', window.scrollY > 30);
-            }
-        });
-
-        function toggleSolution(id) {
-            var el = document.getElementById(id);
-            var btn = el.previousElementSibling;
-            if (el.classList.contains('show')) {
-                el.classList.remove('show');
-                btn.textContent = 'Voir la solution';
-            } else {
-                el.classList.add('show');
-                btn.textContent = 'Cacher la solution';
-            }
-        }
-    </script>    <script src="../../../../../assets/js/protection.js"></script>
+    
+    <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 </body>
 </html>

@@ -19,7 +19,16 @@
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -416,11 +425,14 @@
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
                         <p><strong>Par récurrence :</strong></p>
-                        <div class="step"><span class="step-num">Initialisation :</span> $n=5 \Rightarrow 2^5 = 32 \geq 30$ ✅</div>
-                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $2^n \geq 6n$ pour $n \geq 5$</div>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=5 \Rightarrow 2^5 = 32 \geq 6 \times 5 = 30$ ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $2^n \geq 6n$ pour un $n \geq 5$</div>
+                        <div class="step"><span class="step-num">But :</span> montrer $2^{n+1} \geq 6(n+1)$</div>
                         <div class="step"><span class="step-num">Étape 1 :</span> $2^{n+1} = 2 \times 2^n \geq 2 \times 6n = 12n$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $12n \geq 6(n+1)$ pour $n \geq 1$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $2^{n+1} \geq 6(n+1)$</p>
+                        <div class="step"><span class="step-num">Puisque :</span> $n \geq 5 \Rightarrow 6n \geq 6$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $12n = 6n+6n \geq 6n+6 = 6(n+1)$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $2^{n+1} \geq 6(n+1)$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall n \geq 5 : 2^n \geq 6n$</p>
                     </div>
                 </div>
             </div>
@@ -438,12 +450,15 @@
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
                         <p><strong>Par récurrence :</strong></p>
-                        <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 0$ divisible par 3 ✅</div>
-                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $3 \mid (n^3 + 2n)$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $(n+1)^3 + 2(n+1) = n^3 + 3n^2 + 3n + 1 + 2n + 2$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $= (n^3 + 2n) + 3n^2 + 3n + 3$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $= 3k + 3(n^2 + n + 1)$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 0^3+2(0)=0$ divisible par 3 ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $\exists k \in \mathbb{N} : n^3+2n = 3k$</div>
+                        <div class="step"><span class="step-num">But :</span> montrer que $(n+1)^3+2(n+1)$ est divisible par 3</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $(n+1)^3+2(n+1) = n^3+3n^2+3n+1+2n+2$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= (n^3+2n) + 3n^2+3n+3$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $= 3k + 3n^2+3n+3$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $= 3(k+n^2+n+1)$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $(n+1)^3+2(n+1)$ est divisible par 3</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall n \in \mathbb{N} : n^3+2n$ est divisible par 3</p>
                     </div>
                 </div>
             </div>
@@ -462,11 +477,14 @@
                     <div class="sol-content">
                         <p><strong>Par récurrence :</strong></p>
                         <div class="step"><span class="step-num">Initialisation :</span> $n=1 \Rightarrow 1^2 = \frac{1 \times 2 \times 3}{6} = 1$ ✅</div>
-                        <div class="step"><span class="step-num">Hérédité :</span> Supposons la formule vraie pour $n$</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$</div>
                         <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k^2 = \frac{n(n+1)(2n+1)}{6} + (n+1)^2$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)}{6}[n(2n+1) + 6(n+1)]$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)(2n^2 + 7n + 6)}{6} = \frac{(n+1)(n+2)(2n+3)}{6}$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$</p>
+                        <div class="step"><span class="step-num">Étape 2 :</span> on met au même dénominateur : $= \frac{n(n+1)(2n+1) + 6(n+1)^2}{6}$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> on factorise par $(n+1)$ : $= \frac{(n+1)[n(2n+1) + 6(n+1)]}{6}$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $n(2n+1)+6(n+1) = 2n^2+n+6n+6 = 2n^2+7n+6$</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> $2n^2+7n+6 = (n+2)(2n+3)$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $\sum_{k=1}^{n+1} k^2 = \frac{(n+1)(n+2)(2n+3)}{6}$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> la formule est vraie $\forall n \in \mathbb{N}^*$</p>
                     </div>
                 </div>
             </div>
@@ -485,11 +503,13 @@
                     <div class="sol-content">
                         <p><strong>Par récurrence :</strong></p>
                         <div class="step"><span class="step-num">Initialisation :</span> $n=1 \Rightarrow 1^3 = \frac{1^2 \times 2^2}{4} = 1$ ✅</div>
-                        <div class="step"><span class="step-num">Hérédité :</span> Supposons la formule vraie pour $n$</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $\sum_{k=1}^{n} k^3 = \frac{n^2(n+1)^2}{4}$</div>
                         <div class="step"><span class="step-num">Étape 1 :</span> $\sum_{k=1}^{n+1} k^3 = \frac{n^2(n+1)^2}{4} + (n+1)^3$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{(n+1)^2}{4}[n^2 + 4(n+1)]$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $= \frac{(n+1)^2(n+2)^2}{4}$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La formule est vraie pour tout $n \in \mathbb{N}^*$</p>
+                        <div class="step"><span class="step-num">Étape 2 :</span> on met au même dénominateur : $= \frac{n^2(n+1)^2 + 4(n+1)^3}{4}$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> on factorise par $(n+1)^2$ : $= \frac{(n+1)^2[n^2 + 4(n+1)]}{4}$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $n^2+4(n+1) = n^2+4n+4 = (n+2)^2$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $\sum_{k=1}^{n+1} k^3 = \frac{(n+1)^2(n+2)^2}{4}$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> la formule est vraie $\forall n \in \mathbb{N}^*$</p>
                     </div>
                 </div>
             </div>
@@ -554,11 +574,13 @@
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
                         <p><strong>Par récurrence :</strong></p>
-                        <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 1 - 1 = 0$ divisible par 6 ✅</div>
-                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $6 \mid (7^n - 1)$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $7^{n+1} - 1 = 7 \times 7^n - 1 = 7(7^n - 1) + 6$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $= 7(6k) + 6 = 6(7k + 1)$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                        <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 7^0-1 = 1-1 = 0$ divisible par 6 ✅</div>
+                        <div class="step"><span class="step-num">Hérédité :</span> Supposons $\exists k \in \mathbb{N} : 7^n-1 = 6k$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $7^{n+1}-1 = 7 \times 7^n - 1 = 7(7^n-1) + 6$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $= 7 \times 6k + 6 = 42k+6$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $= 6(7k+1)$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $7^{n+1}-1$ est divisible par 6</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall n \in \mathbb{N} : 7^n-1$ est divisible par 6</p>
                     </div>
                 </div>
             </div>
@@ -578,8 +600,10 @@
                     <div id="sol49_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $\exists k \in \mathbb{N} : 10^n-1 = 9k$</div>
                             <div class="step"><span class="step-num">Étape 1 :</span> $10^{n+1} - 1 = 10 \times 10^n - 1 = 10(10^n - 1) + 9$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 10(9k) + 9 = 9(10k + 1)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= 10 \times 9k + 9 = 90k+9$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= 9(10k + 1)$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $P(n+1)$ est vraie</p>
                         </div>
                     </div>
@@ -592,8 +616,10 @@
                     <div id="sol49_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $\exists k \in \mathbb{N} : 10^n+1 = 9k$</div>
                             <div class="step"><span class="step-num">Étape 1 :</span> $10^{n+1} + 1 = 10 \times 10^n + 1 = 10(10^n + 1) - 9$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 10(9k) - 9 = 9(10k - 1)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= 10 \times 9k - 9 = 90k-9$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= 9(10k - 1)$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $Q(n+1)$ est vraie</p>
                         </div>
                     </div>
@@ -659,8 +685,10 @@
                     <div id="sol50_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $\exists k \in \mathbb{N} : 7^n-1 = 3k$</div>
                             <div class="step"><span class="step-num">Étape 1 :</span> $7^{n+1} - 1 = 7 \times 7^n - 1 = 7(7^n - 1) + 6$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 7(3k) + 6 = 3(7k + 2)$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $= 7 \times 3k + 6 = 21k+6$</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> $= 3(7k + 2)$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $P(n+1)$ est vraie</p>
                         </div>
                     </div>
@@ -847,10 +875,14 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <p><strong>Par l'absurde :</strong> Supposons que $\sqrt{n^2+1} \in \mathbb{N}$</p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{n^2+1} = k \in \mathbb{N}$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $n^2 + 1 = k^2 \Rightarrow k^2 - n^2 = 1$</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{n^2+1} = k$, avec $k \in \mathbb{N}$</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $n^2 + 1 = k^2 \Leftrightarrow k^2 - n^2 = 1$</div>
                             <div class="step"><span class="step-num">Étape 3 :</span> $(k-n)(k+n) = 1$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $k-n = 1$ et $k+n = 1 \Rightarrow n = 0$, contradiction</div>
+                            <div class="step"><span class="step-num">Puisque :</span> $k^2 = n^2+1 > n^2 \Rightarrow k > n \geq 1 \Rightarrow k+n > 0$ et $k-n > 0$</div>
+                            <div class="step"><span class="step-num">Donc :</span> $k-n$ et $k+n$ sont 2 entiers positifs dont le produit vaut 1</div>
+                            <div class="step"><span class="step-num">D'où :</span> $k-n = 1$ et $k+n = 1$</div>
+                            <div class="step"><span class="step-num">Étape 4 :</span> en additionnant : $2k = 2 \Rightarrow k=1$, puis $n = k-1 = 0$</div>
+                            <div class="step"><span class="step-num">Or :</span> $n \in \mathbb{N}^* \Rightarrow n \geq 1$, contradiction avec $n=0$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\sqrt{n^2+1} \notin \mathbb{N}$</p>
                         </div>
                     </div>
@@ -881,12 +913,15 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <p><strong>Par récurrence :</strong></p>
-                            <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow 1 \geq 1$ ✅</div>
+                            <div class="step"><span class="step-num">Initialisation :</span> $n=0 \Rightarrow (1+a)^0 = 1 \geq 1+0 = 1$ ✅</div>
                             <div class="step"><span class="step-num">Hérédité :</span> Supposons $(1+a)^n \geq 1 + na$</div>
+                            <div class="step"><span class="step-num">Puisque :</span> $1+a > 0$ (car $a \in \mathbb{R}^*_+$), on multiplie l'hypothèse par $(1+a)$</div>
                             <div class="step"><span class="step-num">Étape 1 :</span> $(1+a)^{n+1} = (1+a)(1+a)^n \geq (1+a)(1+na)$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 1 + na + a + na^2 = 1 + (n+1)a + na^2$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $\geq 1 + (n+1)a$</div>
-                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$</p>
+                            <div class="step"><span class="step-num">Étape 2 :</span> $(1+a)(1+na) = 1 + na + a + na^2 = 1 + (n+1)a + na^2$</div>
+                            <div class="step"><span class="step-num">Puisque :</span> $n \geq 0$ et $a^2 \geq 0 \Rightarrow na^2 \geq 0$</div>
+                            <div class="step"><span class="step-num">Donc :</span> $1 + (n+1)a + na^2 \geq 1+(n+1)a$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $(1+a)^{n+1} \geq 1+(n+1)a$</div>
+                            <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall n \in \mathbb{N} : (1+a)^n \geq 1+na$</p>
                         </div>
                     </div>
                 </div>
@@ -918,9 +953,6 @@
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
-<<<<<<< HEAD
-    </body>
-=======
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -1130,5 +1162,4 @@
 </script>
 
 </body>
->>>>>>> 0c4ed322 (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
 </html>

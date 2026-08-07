@@ -19,7 +19,16 @@
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
         .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
@@ -408,12 +417,18 @@
                 <div id="sol11" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $x^2 - x + 1 - |x-1|$</div>
-                        <div class="step"><span class="step-num">Cas 1 :</span> $x \geq 1$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $x^2 - x + 1 - (x-1) = x^2 - 2x + 2 = (x-1)^2 + 1 \geq 0$</div>
-                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 1$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $x^2 - x + 1 - (1-x) = x^2 \geq 0$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $|x-1| \leq x^2 - x + 1$</p>
+                        <div class="step"><span class="step-num">On étudie le signe de :</span> $x^2 - x + 1 - |x-1|$</div>
+                        <div class="step"><span class="step-num">Cas 1 :</span> $x \geq 1 \Rightarrow |x-1| = x-1$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $x^2 - x + 1 - (x-1) = x^2 - 2x + 2$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $x^2 - 2x + 2 = (x-1)^2 + 1$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $(x-1)^2 \geq 0 \Rightarrow (x-1)^2 + 1 \geq 1 > 0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $x^2 - x + 1 - |x-1| \geq 0$ pour $x \geq 1$</div>
+                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 1 \Rightarrow |x-1| = 1-x$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $x^2 - x + 1 - (1-x) = x^2 - x + 1 - 1 + x = x^2$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $x^2 \geq 0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $x^2 - x + 1 - |x-1| \geq 0$ pour $x < 1$</div>
+                        <div class="step"><span class="step-num">D'où :</span> dans les deux cas, $x^2 - x + 1 - |x-1| \geq 0$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R} : |x-1| \leq x^2 - x + 1$</p>
                     </div>
                 </div>
             </div>
@@ -431,12 +446,15 @@
                 <div id="sol12" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Domaine :</span> $2x+3 \geq 0 \Rightarrow x \geq -\frac{3}{2}$</div>
-                        <div class="step"><span class="step-num">Condition :</span> Comme $\sqrt{2x+3} \geq 0$, il faut aussi $x \geq 0$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> Pour $x \geq 0$, on élève au carré : $2x+3 \leq x^2$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $x^2 - 2x - 3 \geq 0 \Rightarrow (x-3)(x+1) \geq 0$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $(x-3)(x+1) \geq 0 \Rightarrow x \leq -1$ ou $x \geq 3$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> On combine avec $x \geq 0$ : seule $x \geq 3$ convient</div>
+                        <div class="step"><span class="step-num">Domaine :</span> $2x+3 \geq 0 \Leftrightarrow x \geq -\frac{3}{2}$</div>
+                        <div class="step"><span class="step-num">Condition nécessaire :</span> $\sqrt{2x+3} \geq 0$ et $\sqrt{2x+3} \leq x \Rightarrow x \geq 0$</div>
+                        <div class="step"><span class="step-num">D'où :</span> le domaine se réduit à $x \geq 0$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> Pour $x \geq 0$, les deux membres sont $\geq 0$, on élève au carré : $2x+3 \leq x^2$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $x^2 - 2x - 3 \geq 0$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $\Delta = (-2)^2 - 4(1)(-3) = 4+12 = 16$, racines $x = \frac{2 \pm 4}{2} = 3$ ou $x=-1$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $x^2 - 2x - 3 = (x-3)(x+1)$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $(x-3)(x+1) \geq 0 \Leftrightarrow x \leq -1$ ou $x \geq 3$</div>
+                        <div class="step"><span class="step-num">On combine avec $x \geq 0$ :</span> seule $x \geq 3$ convient</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $S = [3; +\infty[$</p>
                     </div>
                 </div>
@@ -455,12 +473,15 @@
                 <div id="sol13" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Cas 1 :</span> $x \geq 1$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $(x-1) + 2x - 3 \geq 0 \Rightarrow 3x - 4 \geq 0 \Rightarrow x \geq \frac{4}{3}$</div>
-                        <div class="step"><span class="step-num">Solution 1 :</span> $x \in [\frac{4}{3}; +\infty[$</div>
-                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 1$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $-(x-1) + 2x - 3 \geq 0 \Rightarrow x - 2 \geq 0 \Rightarrow x \geq 2$</div>
-                        <div class="step"><span class="step-num">Solution 2 :</span> $x \in \emptyset$ (car $x < 1$ et $x \geq 2$)</div>
+                        <div class="step"><span class="step-num">Cas 1 :</span> $x \geq 1 \Rightarrow |x-1| = x-1$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $(x-1) + 2x - 3 \geq 0 \Leftrightarrow 3x - 4 \geq 0 \Leftrightarrow x \geq \frac{4}{3}$</div>
+                        <div class="step"><span class="step-num">On combine avec $x \geq 1$ :</span> $\frac{4}{3} > 1$, donc $x \geq \frac{4}{3}$ convient</div>
+                        <div class="step"><span class="step-num">Solution 1 :</span> $S_1 = [\frac{4}{3}; +\infty[$</div>
+                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 1 \Rightarrow |x-1| = 1-x$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $(1-x) + 2x - 3 \geq 0 \Leftrightarrow x - 2 \geq 0 \Leftrightarrow x \geq 2$</div>
+                        <div class="step"><span class="step-num">On combine avec $x < 1$ :</span> $x \geq 2$ et $x < 1$ : impossible</div>
+                        <div class="step"><span class="step-num">Solution 2 :</span> $S_2 = \emptyset$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $S = S_1 \cup S_2$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $S = [\frac{4}{3}; +\infty[$</p>
                     </div>
                 </div>
@@ -479,11 +500,13 @@
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
                         <div class="step"><span class="step-num">Cas 1 :</span> $x \geq 0$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $\sqrt{x^2+1} > 0$ et $x \geq 0$, donc $\sqrt{x^2+1} + x > 0$</div>
-                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 0$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $\sqrt{x^2+1} > -x$ (car $x^2+1 > x^2$)</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> Donc $\sqrt{x^2+1} + x > 0$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\sqrt{x^2+1} + x > 0$ pour tout $x \in \mathbb{R}$</p>
+                        <div class="step"><span class="step-num">On a :</span> $\sqrt{x^2+1} > 0$ (toujours) et $x \geq 0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $\sqrt{x^2+1} + x > 0$ (somme d'un terme $>0$ et d'un terme $\geq 0$)</div>
+                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 0$, on pose $-x > 0$</div>
+                        <div class="step"><span class="step-num">On a :</span> $x^2 + 1 > x^2 = (-x)^2$</div>
+                        <div class="step"><span class="step-num">La fonction $\sqrt{\ }$ étant croissante :</span> $\sqrt{x^2+1} > \sqrt{(-x)^2} = |-x| = -x$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $\sqrt{x^2+1} > -x \Leftrightarrow \sqrt{x^2+1} + x > 0$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R} : \sqrt{x^2+1} + x > 0$</p>
                     </div>
                 </div>
             </div>
@@ -501,13 +524,18 @@
                 <div id="sol15" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Cas 1 :</span> $x \geq 2$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $x^2 - (x-2) + 5 = 0 \Rightarrow x^2 - x + 7 = 0$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $\Delta = 1 - 28 = -27 < 0$, pas de solution</div>
-                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 2$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $x^2 - (2-x) + 5 = 0 \Rightarrow x^2 + x + 3 = 0$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $\Delta = 1 - 12 = -11 < 0$, pas de solution</div>
-                        <p style="color:#FF6B6B;"><strong>Conclusion :</strong> Pas de solution dans $\mathbb{R}$</p>
+                        <div class="step"><span class="step-num">Cas 1 :</span> $x \geq 2 \Rightarrow |x-2| = x-2$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $x^2 - (x-2) + 5 = 0 \Leftrightarrow x^2 - x + 2 + 5 = 0$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $x^2 - x + 7 = 0$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $\Delta = (-1)^2 - 4(1)(7) = 1 - 28 = -27 < 0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> pas de solution réelle dans ce cas</div>
+                        <div class="step"><span class="step-num">Cas 2 :</span> $x < 2 \Rightarrow |x-2| = 2-x$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $x^2 - (2-x) + 5 = 0 \Leftrightarrow x^2 - 2 + x + 5 = 0$</div>
+                        <div class="step"><span class="step-num">Étape 5 :</span> $x^2 + x + 3 = 0$</div>
+                        <div class="step"><span class="step-num">Étape 6 :</span> $\Delta = 1^2 - 4(1)(3) = 1 - 12 = -11 < 0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> pas de solution réelle dans ce cas</div>
+                        <div class="step"><span class="step-num">D'où :</span> dans les deux cas, aucune solution</div>
+                        <p style="color:#FF6B6B;"><strong>Conclusion :</strong> $S = \emptyset$ (pas de solution dans $\mathbb{R}$)</p>
                     </div>
                 </div>
             </div>
@@ -524,9 +552,13 @@
                 <div id="sol16" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> Parmi trois entiers consécutifs $n, n+1, n+2$, l'un est divisible par 3</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> Donc le produit $n(n+1)(n+2)$ est divisible par 3</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $n(n+1)(n+2)$ est multiple de 3</p>
+                        <div class="step"><span class="step-num">Étape 1 :</span> Tout $n \in \mathbb{N}$ s'écrit : $n=3k$, $n=3k+1$ ou $n=3k+2$ ($k \in \mathbb{N}$)</div>
+                        <div class="step"><span class="step-num">Cas 1 :</span> $n=3k \Rightarrow n$ est divisible par 3</div>
+                        <div class="step"><span class="step-num">Cas 2 :</span> $n=3k+1 \Rightarrow n+2 = 3k+3 = 3(k+1)$ est divisible par 3</div>
+                        <div class="step"><span class="step-num">Cas 3 :</span> $n=3k+2 \Rightarrow n+1 = 3k+3 = 3(k+1)$ est divisible par 3</div>
+                        <div class="step"><span class="step-num">D'où :</span> dans les 3 cas, l'un des facteurs $n$, $n+1$, $n+2$ est divisible par 3</div>
+                        <div class="step"><span class="step-num">Donc :</span> le produit $n(n+1)(n+2)$ est divisible par 3</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\forall n \in \mathbb{N} : n(n+1)(n+2)$ est un multiple de 3</p>
                     </div>
                 </div>
             </div>
@@ -544,11 +576,15 @@
                 <div id="sol17" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $2x + 2y - xy - 2 = 2 \Rightarrow 2x + 2y - xy - 4 = 0$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $-xy + 2x + 2y - 4 = 0$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $(x-2)(y-2) = 0$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $x = 2$ ou $y = 2$, contradiction</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie</p>
+                        <div class="step"><span class="step-num">Par l'absurde, on suppose :</span> $2x + 2y - xy - 2 = 2$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $2x + 2y - xy - 2 = 2 \Leftrightarrow 2x + 2y - xy - 4 = 0$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $-xy + 2x + 2y - 4 = 0 \Leftrightarrow xy - 2x - 2y + 4 = 0$</div>
+                        <div class="step"><span class="step-num">On factorise :</span> $xy - 2x - 2y + 4 = x(y-2) - 2(y-2) = (x-2)(y-2)$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $(x-2)(y-2) = 0$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $x-2=0$ ou $y-2=0$, c'est-à-dire $x=2$ ou $y=2$</div>
+                        <div class="step"><span class="step-num">Or :</span> ceci contredit l'hypothèse $x \neq 2$ et $y \neq 2$</div>
+                        <div class="step"><span class="step-num">D'où :</span> l'hypothèse de départ est fausse</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x \neq 2$ et $y \neq 2 \Rightarrow 2x+2y-xy-2 \neq 2$ (proposition vraie)</p>
                     </div>
                 </div>
             </div>
@@ -566,10 +602,12 @@
                 <div id="sol18" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Par contraposée :</span> $\frac{x+2}{x+5} = 2 \Rightarrow x = -8$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $x+2 = 2(x+5) \Rightarrow x+2 = 2x+10$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $-x = 8 \Rightarrow x = -8$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie</p>
+                        <div class="step"><span class="step-num">Par contraposée, on montre :</span> $\frac{x+2}{x+5} = 2 \Rightarrow x = -8$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $x \neq -5$, donc on multiplie par $(x+5)$ : $x+2 = 2(x+5)$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $x+2 = 2x+10$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $x - 2x = 10 - 2 \Leftrightarrow -x = 8$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $x = -8$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> par contraposée, $x \neq -8 \Rightarrow \frac{x+2}{x+5} \neq 2$ (proposition vraie)</p>
                     </div>
                 </div>
             </div>
@@ -587,11 +625,12 @@
                 <div id="sol19" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Par contraposée :</span> Si $n$ est impair alors $n^2$ est impair</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $n = 2k+1$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $n^2$ est impair</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie</p>
+                        <div class="step"><span class="step-num">Par contraposée, on montre :</span> $n$ impair $\Rightarrow n^2$ impair</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $n$ impair $\Rightarrow \exists k \in \mathbb{N} : n = 2k+1$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $n^2 = (2k+1)^2 = 4k^2 + 4k + 1$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $n^2 = 2(2k^2+2k) + 1$, avec $2k^2+2k \in \mathbb{N}$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $n^2$ est de la forme $2p+1$, donc impair</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> par contraposée, $n^2$ pair $\Rightarrow n$ pair (proposition vraie)</p>
                     </div>
                 </div>
             </div>
@@ -609,11 +648,14 @@
                 <div id="sol20" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Par contraposée :</span> $(x+1)(y-1) = (x-1)(y+1) \Rightarrow x = y$</div>
-                        <div class="step"><span class="step-num">Étape 1 :</span> $xy - x + y - 1 = xy + x - y - 1$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $-x + y = x - y$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $2y = 2x \Rightarrow x = y$</div>
-                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est vraie</p>
+                        <div class="step"><span class="step-num">Par contraposée, on montre :</span> $(x+1)(y-1) = (x-1)(y+1) \Rightarrow x = y$</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> $(x+1)(y-1) = xy - x + y - 1$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $(x-1)(y+1) = xy + x - y - 1$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $xy - x + y - 1 = xy + x - y - 1$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> on simplifie $xy$ et $-1$ des deux côtés : $-x + y = x - y$</div>
+                        <div class="step"><span class="step-num">Étape 4 :</span> $y + y = x + x \Leftrightarrow 2y = 2x$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $x = y$</div>
+                        <p style="color:#4ECDC4;"><strong>Conclusion :</strong> par contraposée, $x \neq y \Rightarrow (x+1)(y-1) \neq (x-1)(y+1)$ (proposition vraie)</p>
                     </div>
                 </div>
             </div>
@@ -858,3 +900,5 @@
 </body>
 >>>>>>> 0c4ed322 (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
 </html>
+
+

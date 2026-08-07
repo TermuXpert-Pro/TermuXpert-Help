@@ -3,22 +3,41 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    
-    
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Cours de 1 Bac Sciences Expérimentales"
+    }
+    </script>
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Série 1 - Logique | Xpert</title>
-    <link rel="canonical" href="https://jdxpert.pages.dev/content/math/series/logique/model1/serie1.html">
-    <meta name="description" content="Série d'exercices : Logique (modèle 1) — Mathématiques, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
-    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         body { font-size: 14px; }
@@ -179,7 +198,6 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
-    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -671,9 +689,11 @@
                 <div id="sol3" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $0 < x < 2 \Rightarrow \frac{1}{x} > \frac{1}{2}$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $0 < y < 2 \Rightarrow \frac{1}{y} > \frac{1}{2}$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $\frac{1}{x} + \frac{1}{y} > \frac{1}{2} + \frac{1}{2} = 1$</div>
+                        <div class="step"><span class="step-num">On a :</span> $0 < x < 2$</div>
+                        <div class="step"><span class="step-num">D'après la propriété :</span> $\frac{1}{x} > \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">De même :</span> $0 < y < 2 \Rightarrow \frac{1}{y} > \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">En additionnant :</span> $\frac{1}{x} + \frac{1}{y} > \frac{1}{2} + \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $\frac{1}{x} + \frac{1}{y} > 1$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\frac{1}{x} + \frac{1}{y} > 1$</p>
                     </div>
                 </div>
@@ -695,9 +715,11 @@
                 <div id="sol4" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $\frac{1}{1+\sqrt{x}} = 1 - \sqrt{x}$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $1 = (1-\sqrt{x})(1+\sqrt{x}) = 1 - x$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $1 = 1 - x \Rightarrow x = 0$</div>
+                        <div class="step"><span class="step-num">On suppose :</span> $\frac{1}{1+\sqrt{x}} = 1 - \sqrt{x}$</div>
+                        <div class="step"><span class="step-num">En multipliant par $(1+\sqrt{x})$ :</span> $1 = (1-\sqrt{x})(1+\sqrt{x})$</div>
+                        <div class="step"><span class="step-num">D'après l'identité remarquable :</span> $(1-\sqrt{x})(1+\sqrt{x}) = 1 - x$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $1 = 1 - x$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $x = 0$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x = 0$</p>
                     </div>
                 </div>
@@ -721,9 +743,10 @@
                     <div id="sol5_1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> On a $a^2 \geq 0$ et $b^2 \geq 0$ (tout carré est positif ou nul).</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $a^2 + b^2 = 0 \Rightarrow a^2 = 0$ et $b^2 = 0$ (car la somme est nulle).</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $a^2 = 0 \Rightarrow a = 0$ ; $b^2 = 0 \Rightarrow b = 0$.</div>
+                            <div class="step"><span class="step-num">On a :</span> $a^2 \geq 0$ et $b^2 \geq 0$</div>
+                            <div class="step"><span class="step-num">Puisque :</span> $a^2 + b^2 = 0$</div>
+                            <div class="step"><span class="step-num">Alors :</span> $a^2 = 0$ et $b^2 = 0$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $a = 0$ et $b = 0$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a = 0$ et $b = 0$</p>
                         </div>
                     </div>
@@ -739,11 +762,13 @@
                     <div id="sol5_2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> On réécrit l'équation : $x - 2\sqrt{x} + 1 + y - 2\sqrt{y} + 1 = 0$.</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> On factorise : $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = 0$.</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> Comme la somme de carrés est nulle, chaque carré est nul : $(\sqrt{x} - 1)^2 = 0$ et $(\sqrt{y} - 1)^2 = 0$.</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $(\sqrt{x} - 1)^2 = 0 \Rightarrow \sqrt{x} = 1 \Rightarrow x = 1$.</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $(\sqrt{y} - 1)^2 = 0 \Rightarrow \sqrt{y} = 1 \Rightarrow y = 1$.</div>
+                            <div class="step"><span class="step-num">On a :</span> $x + y + 2 = 2\sqrt{x} + 2\sqrt{y}$</div>
+                            <div class="step"><span class="step-num">On réécrit :</span> $x - 2\sqrt{x} + 1 + y - 2\sqrt{y} + 1 = 0$</div>
+                            <div class="step"><span class="step-num">On factorise :</span> $(\sqrt{x} - 1)^2 + (\sqrt{y} - 1)^2 = 0$</div>
+                            <div class="step"><span class="step-num">Puisque :</span> $(\sqrt{x} - 1)^2 \geq 0$ et $(\sqrt{y} - 1)^2 \geq 0$</div>
+                            <div class="step"><span class="step-num">Alors :</span> $(\sqrt{x} - 1)^2 = 0$ et $(\sqrt{y} - 1)^2 = 0$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $\sqrt{x} = 1$ et $\sqrt{y} = 1$</div>
+                            <div class="step"><span class="step-num">Donc :</span> $x = 1$ et $y = 1$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $x = y = 1$</p>
                         </div>
                     </div>
@@ -765,12 +790,16 @@
                 <div id="sol6" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> On calcule $(a+b)^2 = a^2 + b^2 + 2ab$.</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> Puisque $a^2 + b^2 = 1$, on a $(a+b)^2 = 1 + 2ab$.</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> On sait que $(a-b)^2 \geq 0 \iff a^2 + b^2 - 2ab \geq 0 \iff 2ab \leq a^2 + b^2$.</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> Donc $2ab \leq a^2 + b^2 = 1$.</div>
-                        <div class="step"><span class="step-num">Étape 5 :</span> On remplace : $(a+b)^2 = 1 + 2ab \leq 1 + 1 = 2$.</div>
-                        <div class="step"><span class="step-num">Étape 6 :</span> On prend la racine carrée (positive) : $|a+b| \leq \sqrt{2}$.</div>
+                        <div class="step"><span class="step-num">Étape 1 :</span> On calcule $(a+b)^2 = a^2+b^2+2ab$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $a^2+b^2 = 1$</div>
+                        <div class="step"><span class="step-num">On a :</span> $(a+b)^2 = 1 + 2ab$</div>
+                        <div class="step"><span class="step-num">On sait que :</span> $(a-b)^2 \geq 0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $a^2+b^2-2ab \geq 0$</div>
+                        <div class="step"><span class="step-num">Alors :</span> $2ab \leq a^2+b^2$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $2ab \leq 1$ (puisque $a^2+b^2=1$)</div>
+                        <div class="step"><span class="step-num">Donc :</span> $2ab+1 \leq 1+1 \Leftrightarrow 2ab+1 \leq 2$</div>
+                        <div class="step"><span class="step-num">Alors :</span> $(a+b)^2 \leq 2 \Leftrightarrow \sqrt{(a+b)^2} \leq \sqrt{2}$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $|a+b| \leq \sqrt{2}$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $|a+b| \leq \sqrt{2}$</p>
                     </div>
                 </div>
@@ -791,10 +820,12 @@
                 <div id="sol7" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $a = \frac{p}{q}$ avec $p,q \in \mathbb{Z}, q \neq 0$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $b = \frac{r}{s}$ avec $r,s \in \mathbb{Z}, s \neq 0$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $a+b = \frac{p}{q} + \frac{r}{s} = \frac{ps + rq}{qs}$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $ps + rq \in \mathbb{Z}$ et $qs \in \mathbb{Z}^*$</div>
+                        <div class="step"><span class="step-num">Soient :</span> $a \in \mathbb{Q}$ et $b \in \mathbb{Q}$</div>
+                        <div class="step"><span class="step-num">On a :</span> $a = \frac{p}{q}$ avec $p,q \in \mathbb{Z}$, $q \neq 0$</div>
+                        <div class="step"><span class="step-num">Et :</span> $b = \frac{r}{s}$ avec $r,s \in \mathbb{Z}$, $s \neq 0$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $a+b = \frac{ps+rq}{qs}$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $ps+rq \in \mathbb{Z}$ et $qs \in \mathbb{Z}^*$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $a+b \in \mathbb{Q}$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $a+b \in \mathbb{Q}$</p>
                     </div>
                 </div>
@@ -817,10 +848,15 @@
                 <div id="sol8" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $f(x) - f(1) = \frac{x+2}{2x+1} - 1 = \frac{x+2 - (2x+1)}{2x+1} = \frac{1-x}{2x+1}$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $|f(x) - f(1)| = \frac{|x-1|}{|2x+1|}$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> Si $|x-1| < \frac{1}{2}$, alors $\frac{1}{2} < x < \frac{3}{2}$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $2 < 2x+1 < 4$, donc $\frac{1}{4} < \frac{1}{|2x+1|} < \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">On calcule :</span> $f(x) - f(1) = \frac{x+2}{2x+1} - 1 = \frac{x+2-(2x+1)}{2x+1} = \frac{1-x}{2x+1}$</div>
+                        <div class="step"><span class="step-num">Donc :</span> $|f(x)-f(1)| = \frac{|1-x|}{|2x+1|} = \frac{|x-1|}{|2x+1|}$</div>
+                        <div class="step"><span class="step-num">On a :</span> $|x-1| < \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">D'où :</span> $-\frac{1}{2} < x-1 < \frac{1}{2} \Leftrightarrow \frac{1}{2} < x < \frac{3}{2}$</div>
+                        <div class="step"><span class="step-num">En multipliant par 2 :</span> $1 < 2x < 3$</div>
+                        <div class="step"><span class="step-num">En ajoutant 1 :</span> $2 < 2x+1 < 4$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $2x+1 > 0$, on a $|2x+1| = 2x+1$</div>
+                        <div class="step"><span class="step-num">En passant à l'inverse :</span> $\frac{1}{4} < \frac{1}{2x+1} < \frac{1}{2}$</div>
+                        <div class="step"><span class="step-num">En multipliant par $|x-1|$ (positif) :</span> $\frac{1}{4}|x-1| < \frac{|x-1|}{2x+1} < \frac{1}{2}|x-1|$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $\frac{1}{4}|x-1| \leq |f(x) - f(1)| \leq \frac{1}{2}|x-1|$</p>
                     </div>
                 </div>
@@ -840,7 +876,8 @@
                     <div class="sol-content">
                         <p style="color:#FF6B6B;">⚠️ Cette proposition est <strong>fausse</strong> !</p>
                         <div class="step"><span class="step-num">Contre-exemple :</span> $n = 1$</div>
-                        <div class="step"><span class="step-num">Vérification :</span> $\frac{1+1}{1+2} = \frac{2}{3} \notin \mathbb{N}$</div>
+                        <div class="step"><span class="step-num">On calcule :</span> $\frac{1+1}{1+2} = \frac{2}{3}$</div>
+                        <div class="step"><span class="step-num">Or :</span> $\frac{2}{3} \notin \mathbb{N}$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La proposition est <span style="color:#FF6B6B;">fausse</span></p>
                     </div>
                 </div>
@@ -858,10 +895,15 @@
                 <div id="sol10" class="solution-box">
                     <div class="sol-title">✅ Solution</div>
                     <div class="sol-content">
-                        <div class="step"><span class="step-num">Étape 1 :</span> $x \in [-2; 2] \Rightarrow x^2 \in [0; 4]$</div>
-                        <div class="step"><span class="step-num">Étape 2 :</span> $4 - x^2 \in [0; 4]$</div>
-                        <div class="step"><span class="step-num">Étape 3 :</span> $\sqrt{4 - x^2} \leq 2$</div>
-                        <div class="step"><span class="step-num">Étape 4 :</span> $2\sqrt{2} \approx 2.828 > 2$</div>
+                        <div class="step"><span class="step-num">Soit :</span> $x \in [-2;2]$</div>
+                        <div class="step"><span class="step-num">On a :</span> $-2 \leq x \leq 2$</div>
+                        <div class="step"><span class="step-num">En élevant au carré :</span> $0 \leq x^2 \leq 4$</div>
+                        <div class="step"><span class="step-num">En multipliant par $-1$ :</span> $-4 \leq -x^2 \leq 0$</div>
+                        <div class="step"><span class="step-num">En ajoutant 4 :</span> $0 \leq 4-x^2 \leq 4$</div>
+                        <div class="step"><span class="step-num">En appliquant $\sqrt{\ }$ (croissante sur $[0,+\infty[$) :</span> $0 \leq \sqrt{4-x^2} \leq 2$</div>
+                        <div class="step"><span class="step-num">D'autre part :</span> $(2\sqrt{2})^2 = 4 \times 2 = 8$</div>
+                        <div class="step"><span class="step-num">Puisque :</span> $2 = \sqrt{4}$ et $2\sqrt{2} = \sqrt{8}$, et $4 < 8$, alors $2 < 2\sqrt{2}$</div>
+                        <div class="step"><span class="step-num">Par conséquent :</span> $\sqrt{4-x^2} \leq 2 < 2\sqrt{2}$</div>
                         <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $2\sqrt{2} > \sqrt{4 - x^2}$</p>
                     </div>
                 </div>
@@ -912,9 +954,6 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
-<<<<<<< HEAD
-    </script></body>
-=======
     </script>
 <!-- XPERT-SECTIONS-FAB v4 -->
 <style>
@@ -1105,5 +1144,5 @@
 </script>
 
 </body>
->>>>>>> 0c4ed322 (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
 </html>
+

@@ -159,7 +159,16 @@
         .toc ul li a .num { color: #4ECDC4; font-weight: 700; font-size: 11px; min-width: 20px; }
 </style>
     
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
 <script src="../../../../../assets/js/vendor/gsap.min.js"></script>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../favicon.ico" sizes="any">

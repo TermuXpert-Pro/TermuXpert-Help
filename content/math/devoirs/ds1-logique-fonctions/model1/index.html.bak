@@ -3,42 +3,23 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-XVMNBPXC9D');
-</script>
-    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Xpert",
-        "description": "Cours de 1 Bac Sciences Expérimentales"
-    }
-    </script>
+    
+    
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Devoir Surveillé N°1 - Modèle 1 | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/math/devoirs/ds1-logique-fonctions/model1/">
+    <meta name="description" content="Devoir surveillé : Ds1 logique fonctions (modèle 1) — Mathématiques, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
     <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
     <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
     <link rel="stylesheet" href="../../../../../assets/css/style.css">
     <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     <link rel="stylesheet" href="../../../../../assets/css/devoir.css">
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
+    
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     <style>
         /* ====== نفس ستايل التمارين مع تعديلات بسيطة للفرض ====== */
@@ -256,6 +237,7 @@
     <meta name="theme-color" content="#45A29E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -591,14 +573,24 @@
                     <div class="sol-content">
                         <p style="font-weight:600; color:#BB8FCE;">$P_4$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement :</span> On a $n^2+3n = n(n+3)$.
-                            <ul style="font-size:11.5px; padding-right:18px; margin-top:4px;">
-                                <li>Si $n$ est pair : $n(n+3)$ = pair × impair = pair.</li>
-                                <li>Si $n$ est impair : $n(n+3)$ = impair × pair = pair.</li>
-                            </ul>
+                            <span class="step-num">Raisonnement par disjonction de cas :</span> Un entier naturel $n$ est soit pair, soit impair. Étudions la parité de $n^2+3n$ dans chaque cas.
                         </div>
                         <div class="step">
-                            <span class="step-num">Conclusion :</span> Dans tous les cas, $n^2+3n$ est pair. Donc $n^2+3n+2023$ = pair + impair = <b>impair</b>.
+                            <span class="step-num">1<sup>er</sup> cas — $n$ pair :</span> On pose $n=2k$ avec $k\in\mathbb{N}$.
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$n^2+3n=(2k)^2+3(2k)=4k^2+6k=2(2k^2+3k)$$
+                            </div>
+                            $n^2+3n$ est donc <b>pair</b>.
+                        </div>
+                        <div class="step">
+                            <span class="step-num">2<sup>ème</sup> cas — $n$ impair :</span> On pose $n=2k+1$ avec $k\in\mathbb{N}$.
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$n^2+3n=(2k+1)^2+3(2k+1)=4k^2+4k+1+6k+3=4k^2+10k+4=2(2k^2+5k+2)$$
+                            </div>
+                            $n^2+3n$ est donc aussi <b>pair</b>.
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Conclusion :</span> Dans tous les cas, $n^2+3n$ est pair. Or $2023$ est impair, donc $n^2+3n+2023$ = pair + impair = <b>impair</b>.
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
@@ -639,21 +631,25 @@
                     <div class="sol-content">
                         <p style="font-weight:600; color:#BB8FCE;">$P_6$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Factorisation :</span>
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$n^3 - n = n(n^2-1) = n(n-1)(n+1)$$
-                            </div>
+                            <span class="step-num">Raisonnement par récurrence :</span> Montrons que $\forall n \in \mathbb{N}$, $3 \mid n^3-n$.
                         </div>
                         <div class="step">
-                            <span class="step-num">Raisonnement :</span> $n(n-1)(n+1)$ est le produit de trois entiers consécutifs. Parmi trois entiers consécutifs, l'un d'eux est toujours divisible par 3.
+                            <span class="step-num">Initialisation ($n=0$) :</span>
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$0^3-0=0=3\times 0$$
+                            </div>
+                            La propriété est donc vraie au rang $n=0$.
                         </div>
-                        <div class="graph-container">
-                            <svg id="fig1_6" width="380" height="150"></svg>
-                            <p>Parmi $n-1$, $n$ et $n+1$, l'un des trois est toujours un multiple de 3.</p>
+                        <div class="step">
+                            <span class="step-num">Hérédité :</span> Supposons que pour un $n\in\mathbb{N}$ fixé, $n^3-n=3k$ avec $k\in\mathbb{Z}$ (hypothèse de récurrence). Montrons qu'alors $3 \mid (n+1)^3-(n+1)$.
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$(n+1)^3-(n+1)=n^3+3n^2+3n+1-n-1=(n^3-n)+3n^2+3n=3k+3n^2+3n=3(k+n^2+n)$$
+                            </div>
+                            Donc $(n+1)^3-(n+1)$ est bien divisible par 3 : la propriété est <b>héréditaire</b>.
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>$\forall n \in \mathbb{N}, n^3-n$ est divisible par 3.</p>
+                            <p>D'après le principe de récurrence, $\forall n \in \mathbb{N}, n^3-n$ est divisible par 3.</p>
                         </div>
                     </div>
                 </div>
@@ -738,6 +734,12 @@
                 <div id="sol2_3" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
+                        <div class="step">
+                            <span class="step-num">Courbe $(C_f)$ :</span> c'est une parabole de sommet $\Omega(1\,;2)$ et d'axe de symétrie la droite $x=1$ (branches vers le bas car $a=-1<0$).
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Courbe $(C_g)$ :</span> c'est une demi-parabole croissante, partant du point $(1\,;0)$.
+                        </div>
                         <div class="graph-container">
                             <svg id="graphFCfCg" width="380" height="330"></svg>
                             <p>$(C_f)$ en rouge, $(C_g)$ en jaune. Le point d'intersection $A(2,1)$ est indiqué en turquoise.</p>
@@ -878,14 +880,7 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-    <script>
-        window.addEventListener('scroll', function() {
-            var navbar = document.getElementById('navbar');
-            if (navbar) {
-                navbar.classList.toggle('scrolled', window.scrollY > 30);
-            }
-        });
-    </script>
+    
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
     <script src="../../../../../assets/js/devoir-exam.js"></script>
