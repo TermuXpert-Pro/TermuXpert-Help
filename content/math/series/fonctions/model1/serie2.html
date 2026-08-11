@@ -481,31 +481,65 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> On a $5f(x) + f(-x) = 2x^3 - 3x$ ... (1)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> On remplace $x$ par $-x$ dans (1) :
-                                <br>$5f(-x) + f(x) = -2x^3 + 3x$ ... (2)
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> On résout le système :
-                                <div style="margin:4px 0; font-size:12px;">
-                                    (1) : $5f(x) + f(-x) = 2x^3 - 3x$<br>
-                                    (2) : $f(x) + 5f(-x) = -2x^3 + 3x$
+                                <span class="step-num">On a, pour tout $x \in \mathbb{R}$ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$5f(x) + f(-x) = 2x^3 - 3x \quad \text{...(1)}$$
                                 </div>
                             </div>
+
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> On multiplie (1) par 5 : $25f(x) + 5f(-x) = 10x^3 - 15x$
+                                <span class="step-num">On remplace $x$ par $-x$ dans (1) :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$5f(-x) + f(x) = 2(-x)^3 - 3(-x) = -2x^3 + 3x \quad \text{...(2)}$$
+                                </div>
                             </div>
+
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> On soustrait (2) : $24f(x) = 12x^3 - 18x = 6(2x^3 - 3x)$
+                                <span class="step-num">On obtient donc le système :</span>
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$\begin{cases} 5f(x) + f(-x) = 2x^3 - 3x & \text{...(1)} \\ f(x) + 5f(-x) = -2x^3 + 3x & \text{...(2)} \end{cases}$$
+                                </div>
                             </div>
+
                             <div class="step">
-                                <span class="step-num">Étape 6 :</span> $f(x) = \dfrac{2x^3 - 3x}{4}$
+                                <span class="step-num">On multiplie (1) par $5$ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$25f(x) + 5f(-x) = 10x^3 - 15x \quad \text{...(3)}$$
+                                </div>
                             </div>
+
                             <div class="step">
-                                <span class="step-num">Étape 7 :</span> $f(-x) = \dfrac{2(-x)^3 - 3(-x)}{4} = \dfrac{-2x^3 + 3x}{4} = -f(x)$
+                                <span class="step-num">On calcule (3) − (2), pour éliminer $f(-x)$ :</span>
+                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
+                                    $$\big[25f(x) + 5f(-x)\big] - \big[f(x) + 5f(-x)\big] = (10x^3 - 15x) - (-2x^3 + 3x)$$
+                                </div>
                             </div>
+
+                            <div class="step">
+                                <span class="step-num">En simplifiant les deux membres :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$24f(x) = 12x^3 - 18x = 6(2x^3 - 3x)$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">D'où :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$f(x) = \frac{6(2x^3-3x)}{24} = \frac{2x^3 - 3x}{4}$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Calculons maintenant $f(-x)$ :</span>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$f(-x) = \frac{2(-x)^3 - 3(-x)}{4} = \frac{-2x^3 + 3x}{4} = -\left(\frac{2x^3-3x}{4}\right) = -f(x)$$
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Ainsi :</span> pour tout $x \in \mathbb{R}$, $f(-x) = -f(x)$.
+                            </div>
+
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>impaire</strong>.</p>
                         </div>
                     </div>
@@ -543,7 +577,7 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(-x) = \dfrac{|-x|+1}{2|-x|-3} = \dfrac{|x|+1}{2|x|-3} = f(x)$
+                                <span class="step-num">On a :</span> $f(-x) = \dfrac{|-x|+1}{2|-x|-3} = \dfrac{|x|+1}{2|x|-3} = f(x)$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>paire</strong>, donc $(C_f)$ est symétrique par rapport à l'axe des ordonnées $(Oy)$.</p>
                         </div>
@@ -566,7 +600,7 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f'(x) = 7 > 0$
+                                <span class="step-num">On a :</span> $f'(x) = 7 > 0$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement croissante</strong> sur $\mathbb{R}$.</p>
                         </div>
@@ -581,10 +615,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_g = \mathbb{R}^*$
+                                <span class="step-num">On a :</span> $D_g = \mathbb{R}^*$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $g'(x) = -\dfrac{2}{x^2} < 0$ pour tout $x \neq 0$
+                                <span class="step-num">D'où :</span> $g'(x) = -\dfrac{2}{x^2} < 0$ pour tout $x \neq 0$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>strictement décroissante</strong> sur $]-\infty,0[$ et sur $]0,+\infty[$.</p>
                             <div class="graph-container">
@@ -610,13 +644,13 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_f = \mathbb{R}$
+                                <span class="step-num">On a :</span> $D_f = \mathbb{R}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $f'(x) = 6x$
+                                <span class="step-num">Donc :</span> $f'(x) = 6x$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Tableau de variations :
+                                <span class="step-num">D'où :</span> Tableau de variations :
                             </div>
                             <div class="table-wrap">
                                 <table>
@@ -649,10 +683,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_g = \mathbb{R} \setminus \{-1\}$
+                                <span class="step-num">On a :</span> $D_g = \mathbb{R} \setminus \{-1\}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $g'(x) = \dfrac{1(x+1) - x(1)}{(x+1)^2} = \dfrac{1}{(x+1)^2} > 0$
+                                <span class="step-num">D'où :</span> $g'(x) = \dfrac{1(x+1) - x(1)}{(x+1)^2} = \dfrac{1}{(x+1)^2} > 0$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>strictement croissante</strong> sur $]-\infty,-1[$ et sur $]-1,+\infty[$.</p>
                             <div class="graph-container">
@@ -679,10 +713,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_f = \mathbb{R}$
+                                <span class="step-num">On a :</span> $D_f = \mathbb{R}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $f(-x) = -x+1 \neq f(x)$ et $\neq -f(x)$
+                                <span class="step-num">D'où :</span> $f(-x) = -x+1 \neq f(x)$ et $\neq -f(x)$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_f = \mathbb{R}$, $f$ n'est <strong>ni paire ni impaire</strong>.</p>
                         </div>
@@ -697,7 +731,7 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $T = \dfrac{f(x_2) - f(x_1)}{x_2 - x_1} = \dfrac{(x_2+1) - (x_1+1)}{x_2 - x_1} = \dfrac{x_2 - x_1}{x_2 - x_1} = 1$
+                                <span class="step-num">On a :</span> $T = \dfrac{f(x_2) - f(x_1)}{x_2 - x_1} = \dfrac{(x_2+1) - (x_1+1)}{x_2 - x_1} = \dfrac{x_2 - x_1}{x_2 - x_1} = 1$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $T = 1$ (constant)</p>
                         </div>
@@ -712,7 +746,7 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $T = 1 > 0$ donc $f$ est <strong>strictement croissante</strong> sur tout intervalle.
+                                <span class="step-num">D'où :</span> $T = 1 > 0$ donc $f$ est <strong>strictement croissante</strong> sur tout intervalle.
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est strictement croissante sur $]0;1]$ et sur $[1;+\infty[$.</p>
                         </div>
@@ -766,10 +800,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_k = \mathbb{R}^*$
+                                <span class="step-num">On a :</span> $D_k = \mathbb{R}^*$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $k'(x) = -\dfrac{6}{x^2} < 0$
+                                <span class="step-num">D'où :</span> $k'(x) = -\dfrac{6}{x^2} < 0$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $k$ est <strong>strictement décroissante</strong> sur $]-\infty,0[$ et sur $]0,+\infty[$.</p>
                         </div>
@@ -784,10 +818,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_f = \mathbb{R}$
+                                <span class="step-num">On a :</span> $D_f = \mathbb{R}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $f'(x) = 2x$
+                                <span class="step-num">D'où :</span> $f'(x) = 2x$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>décroissante</strong> sur $]-\infty,0]$ et <strong>croissante</strong> sur $[0,+\infty[$.</p>
                         </div>
@@ -802,10 +836,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_g = \mathbb{R}$
+                                <span class="step-num">On a :</span> $D_g = \mathbb{R}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $g'(x) = -x$
+                                <span class="step-num">D'où :</span> $g'(x) = -x$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>croissante</strong> sur $]-\infty,0]$ et <strong>décroissante</strong> sur $[0,+\infty[$.</p>
                         </div>
@@ -820,10 +854,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_h = \mathbb{R}$
+                                <span class="step-num">On a :</span> $D_h = \mathbb{R}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $h'(x) = -x$
+                                <span class="step-num">D'où :</span> $h'(x) = -x$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h$ est <strong>croissante</strong> sur $]-\infty,0]$ et <strong>décroissante</strong> sur $[0,+\infty[$.</p>
                         </div>
@@ -846,13 +880,13 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f$ et $g$ ont la même expression $\sqrt{\dfrac{x-1}{x+3}}$
+                                <span class="step-num">On a :</span> $f$ et $g$ ont la même expression $\sqrt{\dfrac{x-1}{x+3}}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Domaine de $f$ : il faut $\dfrac{x-1}{x+3} \ge 0$
+                                <span class="step-num">Donc :</span> domaine de $f$ : il faut $\dfrac{x-1}{x+3} \ge 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Tableau de signe :
+                                <span class="step-num">D'où :</span> tableau de signe :
                             </div>
                             <div class="table-wrap">
                                 <table>
@@ -863,7 +897,7 @@
                                 </table>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $D_f = ]-\infty, -3[ \cup [1, +\infty[$. Domaine de $g$ : il faut $x-1 \ge 0$ et $x+3 > 0$, soit $x \ge 1$ et $x > -3$, donc $D_g = [1, +\infty[$
+                                <span class="step-num">Donc :</span> $D_f = ]-\infty, -3[ \cup [1, +\infty[$. Domaine de $g$ : il faut $x-1 \ge 0$ et $x+3 > 0$, soit $x \ge 1$ et $x > -3$, donc $D_g = [1, +\infty[$
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> Bien que $f(x)=g(x)$ pour tout $x \in D_g$, les domaines de définition sont différents ($D_f \neq D_g$), donc <strong>$f$ et $g$ ne sont pas égales</strong>.</p>
                         </div>
@@ -896,21 +930,9 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
-
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="../../../../../assets/js/figuresvt.js"></script>
-<<<<<<< HEAD
-    
-=======
+    <script src="figuresvt_serie2.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.getElementById('navbar');
@@ -1121,6 +1143,5 @@
 })();
 </script>
 
->>>>>>> 0c4ed322 (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
 </body>
 </html>

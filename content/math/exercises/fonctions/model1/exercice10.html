@@ -163,8 +163,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -491,21 +495,18 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Pour $x \in [0; \pi]$, on a $0 \le x \le \pi$
+                                <span class="step-num">On part de l'encadrement de $x$ sur $I$ :</span> $x \in [0;\pi] \Rightarrow 0 \le x \le \pi$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $\cos x \le 1$ donc $2\cos x \le 2$ et $-x \le 0$
+                                <span class="step-num">Majoration : $\cos x \le 1 \Rightarrow 2\cos x \le 2$, et $x \ge 0 \Rightarrow -x \le 0$, on additionne :</span> $f(x) = 2\cos x - x \le 2 + 0 = 2$ ✅
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $f(x) = 2\cos x - x \le 2 - 0 = 2$ ✅
+                                <span class="step-num">Minoration : $\cos x \ge -1 \Rightarrow 2\cos x \ge -2$, et $x \le \pi \Rightarrow -x \ge -\pi$, on additionne :</span> $f(x) = 2\cos x - x \ge -2 - \pi = -\pi - 2$ ✅
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> $\cos x \ge -1$ donc $2\cos x \ge -2$ et $-x \ge -\pi$
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in [0; \pi],\ -\pi - 2 \le f(x) \le 2$</p>
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> $f(x) = 2\cos x - x \ge -2 - \pi = -\pi - 2$ ✅
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in [0; \pi],\ -\pi - 2 \le f(x) \le 2$</p>
                         </div>
                     </div>
                 </div>
@@ -522,7 +523,7 @@
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La fonction $x \mapsto \cos x$ est <strong>strictement décroissante</strong> sur $[0; \pi]$.</p>
                             <div class="graph-container">
-                                <canvas id="graphCos" width="350" height="120"></canvas>
+                                <svg id="graphCos" class="figure-svg"></svg>
                                 <p>$\cos x$ est décroissante sur $[0; \pi]$</p>
                             </div>
                         </div>
@@ -536,21 +537,25 @@
                     <div id="sol1c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> D'après b), $x \mapsto 2\cos x$ est strictement décroissante sur $[0; \pi]$ (multiplier par $2 > 0$ conserve le sens de variation).
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>La somme de deux fonctions décroissantes sur un même intervalle est décroissante sur cet intervalle.</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $x \mapsto x$ est strictement croissante sur $[0; \pi]$, donc $x \mapsto -x$ est strictement décroissante.
+                                <span class="step-num">D'après b), multiplier par $2>0$ ne change pas le sens de variation :</span> $x \mapsto 2\cos x$ est strictement décroissante sur $[0; \pi]$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $f(x) = 2\cos x + (-x)$ est la somme de deux fonctions strictement décroissantes sur $[0; \pi]$.
+                                <span class="step-num">La fonction $x \mapsto x$ est strictement croissante, donc son opposée l'est en sens contraire :</span> $x \mapsto -x$ est strictement décroissante sur $[0; \pi]$
                             </div>
                             <div class="step">
-                                <span class="step-num">Rappel :</span> La somme de deux fonctions décroissantes sur un intervalle est décroissante sur cet intervalle.
+                                <span class="step-num">$f(x) = 2\cos x + (-x)$ est la somme de ces deux fonctions décroissantes, donc :</span> $f$ est strictement décroissante sur $[0; \pi]$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement décroissante</strong> sur $[0; \pi]$.</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$f$ est <strong>strictement décroissante</strong> sur $[0; \pi]$.</p>
+                            </div>
                             <div class="graph-container">
-                                <canvas id="graphF10" width="350" height="150"></canvas>
+                                <svg id="graphF10" class="figure-svg"></svg>
                                 <p>$f(x) = 2\cos x - x$ est décroissante sur $[0; \pi]$</p>
                             </div>
                         </div>
@@ -567,21 +572,25 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $g(x) = f(4x)$, donc $g$ est la composée $g = f \circ \varphi$ avec $\varphi(x) = 4x$.
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>La composée d'une fonction croissante suivie d'une fonction décroissante est décroissante.</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $\varphi$ est strictement croissante sur $\mathbb{R}$ (fonction affine de coefficient $4>0$), et pour $x \in \left[0, \dfrac{\pi}{4}\right]$, on a $\varphi(x) = 4x \in [0; \pi]$.
+                                <span class="step-num">On écrit $g$ comme une composée :</span> $g(x) = f(4x)$, donc $g = f \circ \varphi$ avec $\varphi(x) = 4x$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> D'après c), $f$ est strictement décroissante sur $[0; \pi]$.
+                                <span class="step-num">On étudie $\varphi$ : c'est une fonction affine de coefficient $4>0$, donc strictement croissante sur $\mathbb{R}$ ; et pour $x \in \left[0, \dfrac{\pi}{4}\right]$ :</span> $\varphi(x) = 4x \in [0; \pi]$
                             </div>
                             <div class="step">
-                                <span class="step-num">Rappel :</span> La composée d'une fonction croissante suivie d'une fonction décroissante est décroissante.
+                                <span class="step-num">D'après c), $f$ est strictement décroissante sur $[0; \pi]$, l'intervalle où $\varphi(x)$ prend ses valeurs :</span> on peut donc composer
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>strictement décroissante</strong> sur $\left[0, \dfrac{\pi}{4}\right]$.</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$g = f \circ \varphi$ est <strong>strictement décroissante</strong> sur $\left[0, \dfrac{\pi}{4}\right]$ ($\varphi$ croissante suivie de $f$ décroissante).</p>
+                            </div>
                             <div class="graph-container">
-                                <canvas id="graphG10" width="350" height="150"></canvas>
+                                <svg id="graphG10" class="figure-svg"></svg>
                                 <p>$g(x) = 2\cos(4x) - 4x$ est décroissante sur $[0; \pi/4]$</p>
                             </div>
                         </div>
@@ -599,13 +608,13 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $h(x) = (2\cos x - x)^2 = (f(x))^2$
+                                <span class="step-num">On identifie $h(x)$ en fonction de $f(x)$ :</span> $h(x) = (2\cos x - x)^2 = (f(x))^2$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On pose $u(t) = t^2$
+                                <span class="step-num">On pose $u$ la fonction « mettre au carré » :</span> $u(t) = t^2$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Alors $u \circ f(x) = u(f(x)) = (f(x))^2 = h(x)$
+                                <span class="step-num">Vérification :</span> $(u \circ f)(x) = u(f(x)) = (f(x))^2 = h(x)$ ✅
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
@@ -622,36 +631,32 @@
                     <div id="sol3b" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $h(x) = (f(x))^2$ avec $f(x) = 2\cos x - x$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>Si $f$ est décroissante sur $J$, et si $u$ est croissante sur l'ensemble des valeurs prises par $f$ sur $J$, alors $u \circ f$ est <strong>décroissante</strong> sur $J$.</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la question 1c, $f$ est strictement décroissante sur $[0; \pi]$.
+                                <span class="step-num">D'après a), on a :</span> $h = u \circ f$ avec $f(x) = 2\cos x - x$ et $u(t) = t^2$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $u(t) = t^2$ est décroissante sur $]-\infty; 0]$ et croissante sur $[0; +\infty[$.
+                                <span class="step-num">D'après la question 1c), $f$ est strictement décroissante sur $[0; \pi]$, donc en particulier sur $\left[0; \dfrac{\pi}{4}\right] \subset [0; \pi]$ :</span>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> Sur $\left[0; \dfrac{\pi}{4}\right]$, $f(x) = 2\cos x - x$.
+                                <span class="step-num">Il reste à connaître le signe de $f$ sur $\left[0; \dfrac{\pi}{4}\right]$ pour savoir sur quelle branche de $u$ on se trouve — on calcule $f$ à l'extrémité droite :</span> $f\left(\dfrac{\pi}{4}\right) = 2\cos\dfrac{\pi}{4} - \dfrac{\pi}{4} = \sqrt{2} - \dfrac{\pi}{4} \approx 0.63 > 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> $f\left(\dfrac{\pi}{4}\right) = 2\cos\dfrac{\pi}{4} - \dfrac{\pi}{4} = \sqrt{2} - \dfrac{\pi}{4} \approx 0.63 > 0$
+                                <span class="step-num">Or $f$ est décroissante sur $\left[0; \dfrac{\pi}{4}\right]$, donc $f(x) \ge f\left(\dfrac{\pi}{4}\right) > 0$ pour tout $x$ de cet intervalle :</span> $f(x) > 0$ sur $\left[0; \dfrac{\pi}{4}\right]$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 6 :</span> Donc $f(x) > 0$ sur $\left[0; \dfrac{\pi}{4}\right]$.
+                                <span class="step-num">Or $u(t) = t^2$ est strictement croissante sur $[0; +\infty[$, et $f(x) > 0$ sur $\left[0; \dfrac{\pi}{4}\right]$ :</span> $u$ est donc croissante sur l'ensemble des valeurs prises par $f$
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 7 :</span> $u(t) = t^2$ est croissante sur $[0; +\infty[$.
-                            </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $h = u \circ f$ est <strong>décroissante</strong> sur $\left[0; \dfrac{\pi}{4}\right]$ car $f$ est décroissante et $u$ est croissante (composée de monotonies opposées).</p>
-                            
-                            <div class="highlight-box yellow" style="margin-top:6px;">
-                                <span class="label resume">Rappel</span>
-                                <p>Si $f$ est décroissante et $u$ est croissante, alors $u \circ f$ est <strong>décroissante</strong>.</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$h = u \circ f$ est <strong>strictement décroissante</strong> sur $\left[0; \dfrac{\pi}{4}\right]$, car $f$ est décroissante et $u$ est croissante là où $f$ prend ses valeurs (composée de sens contraires).</p>
                             </div>
                             
                             <div class="graph-container">
-                                <canvas id="graphH10" width="350" height="150"></canvas>
+                                <svg id="graphH10" class="figure-svg"></svg>
                                 <p>$h(x) = (2\cos x - x)^2$ est décroissante sur $[0; \pi/4]$</p>
                             </div>
                         </div>
@@ -907,6 +912,7 @@
             }, 300);
         });
     </script>
+    <script src="figuresvt_p10.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

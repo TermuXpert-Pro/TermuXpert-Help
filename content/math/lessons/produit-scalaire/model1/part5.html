@@ -493,6 +493,11 @@
                         <div class="ex-question">
                             <p>$A(1,0)$ et $B(-1,0)$ deux points du plan. Déterminer une équation cartésienne du cercle de diamètre $[AB]$.</p>
                         </div>
+                        <div class="graph-container">
+                            <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Cercle de diamètre [AB]</p>
+                            <svg id="graphEx1Diametre" width="360" height="260"></svg>
+                            <p>$M\in\mathcal{C}_{[AB]} \iff \overrightarrow{MA}\perp\overrightarrow{MB}$</p>
+                        </div>
                         <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                         <div id="sol1" class="solution-box">
                             <div class="sol-title">✅ Solution détaillée</div>
@@ -653,8 +658,25 @@
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
     
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="figuresvt.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                if (btn) btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                if (btn) btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="figuresvt_p5.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

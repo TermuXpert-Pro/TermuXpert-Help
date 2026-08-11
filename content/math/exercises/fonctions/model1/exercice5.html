@@ -162,8 +162,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -486,14 +490,23 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>La fonction est définie si :</p>
-                            <div class="step">
-                                <span class="step-num">Condition 1 :</span> $1+x \ge 0 \iff x \ge -1$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>$\sqrt{u}$ est définie $\iff u \ge 0$ ; un quotient $\dfrac{A}{B}$ est défini $\iff B \neq 0$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Condition 2 :</span> $x \neq 0$ (dénominateur)
+                                <span class="step-num">Condition sous la racine :</span> $1+x \ge 0 \iff x \ge -1$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_f = [-1, 0[ \cup ]0, +\infty[$</p>
+                            <div class="step">
+                                <span class="step-num">Condition sur le dénominateur :</span> $x \neq 0$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>En réunissant les deux conditions :</p>
+                            </div>
+                            <div class="formula-block" style="font-size:14px;">
+                                $D_f = [-1, 0[ \cup ]0, +\infty[$
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -505,23 +518,29 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = \dfrac{\sqrt{1+x} - 1}{x}$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>Multiplier par l'expression conjuguée $\sqrt{a}+1$ permet d'utiliser l'identité $(\sqrt{a}-1)(\sqrt{a}+1) = a-1$, pour faire disparaître la racine du numérateur</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On multiplie par l'expression conjuguée :
-                                $\dfrac{\sqrt{1+x} - 1}{x} \times \dfrac{\sqrt{1+x} + 1}{\sqrt{1+x} + 1}$
+                                <span class="step-num">On part de :</span> $f(x) = \dfrac{\sqrt{1+x} - 1}{x}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= \dfrac{(1+x) - 1}{x(\sqrt{1+x} + 1)}$
+                                <span class="step-num">On multiplie numérateur et dénominateur par $\sqrt{1+x}+1$ :</span> $f(x) = \dfrac{\sqrt{1+x} - 1}{x} \times \dfrac{\sqrt{1+x} + 1}{\sqrt{1+x} + 1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $= \dfrac{x}{x(\sqrt{1+x} + 1)}$
+                                <span class="step-num">Au numérateur, identité remarquable $(\sqrt{a}-1)(\sqrt{a}+1)=a-1$ :</span> $\big(\sqrt{1+x}-1\big)\big(\sqrt{1+x}+1\big) = (1+x) - 1 = x$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> $= \dfrac{1}{\sqrt{1+x} + 1}$
+                                <span class="step-num">D'où :</span> $f(x) = \dfrac{x}{x\big(\sqrt{1+x} + 1\big)}$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in D_f,\ f(x) = \dfrac{1}{1+\sqrt{x+1}}$ ✅</p>
+                            <div class="step">
+                                <span class="step-num">On simplifie par $x$ (licite car $x \neq 0$ sur $D_f$) :</span> $f(x) = \dfrac{1}{\sqrt{1+x} + 1}$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in D_f,\ f(x) = \dfrac{1}{1+\sqrt{x+1}}$ ✅</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -533,23 +552,32 @@
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>On utilise l'expression simplifiée : $f(x) = \dfrac{1}{1+\sqrt{x+1}}$</p>
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> Soient $x, x' \in D_f$ avec $x < x'$.
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>$f$ est <strong>strictement décroissante</strong> sur $D_f$ $\iff$ $\forall x, x' \in D_f,\ x < x' \implies f(x) > f(x')$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $x < x' \Rightarrow x+1 < x'+1 \Rightarrow \sqrt{x+1} < \sqrt{x'+1}$
+                                <span class="step-num">On utilise la forme simplifiée (question 2) :</span> $f(x) = \dfrac{1}{1+\sqrt{x+1}}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $1+\sqrt{x+1} < 1+\sqrt{x'+1}$
+                                <span class="step-num">Soient $x, x' \in D_f$ avec $x < x'$ :</span> on compare $f(x)$ et $f(x')$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $\dfrac{1}{1+\sqrt{x+1}} > \dfrac{1}{1+\sqrt{x'+1}}$
+                                <span class="step-num">La racine carrée est croissante sur $[0,+\infty[$ :</span> $x < x' \implies x+1 < x'+1 \implies \sqrt{x+1} < \sqrt{x'+1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> $f(x) > f(x')$
+                                <span class="step-num">On ajoute $1$ aux deux membres :</span> $1+\sqrt{x+1} < 1+\sqrt{x'+1}$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x < x',\ f(x) > f(x')$ donc <strong>$f$ est strictement décroissante</strong> sur $D_f$.</p>
+                            <div class="step">
+                                <span class="step-num">La fonction $t \mapsto \dfrac{1}{t}$ est décroissante sur $]0,+\infty[$ (et $1+\sqrt{x+1}>0$) :</span> $\dfrac{1}{1+\sqrt{x+1}} > \dfrac{1}{1+\sqrt{x'+1}}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">C'est-à-dire :</span> $f(x) > f(x')$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x, x' \in D_f,\ x < x' \implies f(x) > f(x')$ $\implies$ <strong>$f$ est strictement décroissante</strong> sur $D_f$.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -562,15 +590,18 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = \dfrac{1}{1+\sqrt{x+1}} > 0$ (car numérateur et dénominateur sont positifs)
+                                <span class="step-num">Signe de $f(x)$ :</span> $\sqrt{x+1} \ge 0 \implies 1+\sqrt{x+1} \ge 1 > 0$, donc $f(x) = \dfrac{1}{1+\sqrt{x+1}} > 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $\sqrt{x+1} \ge 0 \Rightarrow 1+\sqrt{x+1} \ge 1$
+                                <span class="step-num">Puisque $1+\sqrt{x+1} \ge 1$ :</span> en passant à l'inverse (décroissant sur les réels strictement positifs), $\dfrac{1}{1+\sqrt{x+1}} \le \dfrac{1}{1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $\dfrac{1}{1+\sqrt{x+1}} \le 1$
+                                <span class="step-num">D'où :</span> $\dfrac{1}{1+\sqrt{x+1}} \le 1$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in D_f,\ 0 < f(x) \le 1$ ✅</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in D_f,\ 0 < f(x) \le 1$ ✅</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -583,21 +614,21 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(-1) = \dfrac{1}{1+\sqrt{-1+1}} = \dfrac{1}{1+0} = 1$
+                                <span class="step-num">Calcul de $f(-1)$ :</span> $f(-1) = \dfrac{1}{1+\sqrt{-1+1}} = \dfrac{1}{1+\sqrt{0}} = \dfrac{1}{1+0} = 1$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la question 4, on a $f(x) \le 1$ pour tout $x \in D_f$.
+                                <span class="step-num">D'après la question 4) :</span> $\forall x \in D_f,\ f(x) \le 1$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Et $f(-1) = 1$.
+                                <span class="step-num">Et on vient de calculer :</span> $f(-1) = 1$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>La valeur maximale de $f$ sur $D_f$ est <strong>$M = 1$</strong>.</p>
+                                <p>$f$ est majorée par $1$ et cette valeur est atteinte $\implies$ la valeur maximale de $f$ sur $D_f$ est <strong>$M = 1$</strong>.</p>
                                 <p style="font-size:11px; color:var(--text-muted);">Atteinte en $x = -1$.</p>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graphMax5" width="350" height="150"></canvas>
+                                <svg id="graphMax5" class="figure-svg"></svg>
                                 <p>Maximum $M = 1$ atteint en $x = -1$</p>
                             </div>
                         </div>
@@ -727,6 +758,7 @@
             }, 300);
         });
     </script>
+    <script src="figuresvt_p5.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
@@ -920,3 +952,4 @@
 
 </body>
 </html>
+

@@ -162,8 +162,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -488,22 +492,35 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(-x) = |-x-1| + |-x+1|$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>$f$ est <strong>paire</strong> $\iff$ $D_f$ est symétrique par rapport à $0$ <strong>et</strong> $\forall x \in D_f,\ f(-x) = f(x)$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= |-(x+1)| + |-(x-1)|$
+                                <span class="step-num">Domaine :</span> $D_f = \mathbb{R}$ (une valeur absolue est définie sur $\mathbb{R}$ tout entier), qui est symétrique par rapport à $0$ ✓
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= |x+1| + |x-1|$ (car $|-a| = |a|$)
+                                <span class="step-num">Calcul de $f(-x)$ :</span> $f(-x) = |-x-1| + |-x+1|$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $= |x-1| + |x+1| = f(x)$
+                                <span class="step-num">On met $-1$ en facteur dans chaque parenthèse :</span> $-x-1 = -(x+1)$ et $-x+1 = -(x-1)$, d'où $f(-x) = |-(x+1)| + |-(x-1)|$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(-x) = f(x)$ donc <strong>$f$ est paire</strong>.</p>
+                            <div class="step">
+                                <span class="step-num">Propriété de la valeur absolue :</span> $\forall a \in \mathbb{R},\ |-a| = |a|$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">On applique cette propriété :</span> $|-(x+1)| = |x+1|$ et $|-(x-1)| = |x-1|$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">D'où :</span> $f(-x) = |x+1| + |x-1| = |x-1| + |x+1| = f(x)$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$D_f$ symétrique et $\forall x \in \mathbb{R},\ f(-x) = f(x)$ $\implies$ <strong>$f$ est paire</strong>.</p>
+                            </div>
                             <div class="graph-container">
-                                <canvas id="graphParite2" width="350" height="150"></canvas>
-                                <p>Courbe de $f(x) = |x-1| + |x+1|$ (fonction paire)</p>
+                                <svg id="graphParite2" class="figure-svg"></svg>
+                                <p>Courbe de $f(x) = |x-1| + |x+1|$ — symétrique par rapport à l'axe des ordonnées</p>
                             </div>
                         </div>
                     </div>
@@ -516,31 +533,40 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>On utilise l'inégalité triangulaire : $|a| + |b| \ge |a+b|$</p>
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = |x-1| + |x+1|$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>$\forall a \in \mathbb{R}$ : si $a \ge 0$ alors $|a| = a$ ; si $a \le 0$ alors $|a| = -a$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $|x-1| + |x+1| \ge |(x-1) + (x+1)| = |2x|$
+                                <span class="step-num">Tentative avec l'inégalité triangulaire :</span> $|x-1| + |x+1| \ge |(x-1) + (x+1)| = |2x|$
                             </div>
-                            <p style="color:#FF6B6B;">Cette méthode ne donne pas le résultat souhaité car $|2x|$ peut être inférieur à 2.</p>
-                            
-                            <p style="margin-top:6px; font-weight:600; color:var(--gold-text);">Méthode correcte : Étudier les cas</p>
-                            
+                            <p style="color:#FF6B6B; font-size:11px;">⚠ Insuffisant : $|2x|$ peut être $< 2$ (exemple : pour $x=0$, $|2x|=0$). Il faut donc lever chaque valeur absolue en étudiant le signe de $x-1$ et de $x+1$.</p>
+
+                            <p style="margin-top:6px; font-weight:600; color:var(--gold-text);">Méthode : distinguer 3 cas selon le signe de $(x-1)$ et $(x+1)$</p>
+
                             <div class="step">
-                                <span class="step-num">Cas 1 :</span> $x \ge 1$
-                                <br>$f(x) = (x-1) + (x+1) = 2x \ge 2$ ✅
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Cas 2 :</span> $-1 \le x \le 1$
-                                <br>$f(x) = -(x-1) + (x+1) = -x+1+x+1 = 2$ ✅
+                                <span class="step-num">Cas 1 : $x \ge 1$</span><br>
+                                $x-1 \ge 0 \implies |x-1| = x-1$, et $x+1 \ge 2 > 0 \implies |x+1| = x+1$<br>
+                                $f(x) = (x-1) + (x+1) = 2x$<br>
+                                or $x \ge 1 \implies 2x \ge 2$, d'où $f(x) \ge 2$ ✅
                             </div>
                             <div class="step">
-                                <span class="step-num">Cas 3 :</span> $x \le -1$
-                                <br>$f(x) = -(x-1) - (x+1) = -x+1-x-1 = -2x \ge 2$ ✅
+                                <span class="step-num">Cas 2 : $-1 \le x \le 1$</span><br>
+                                $x-1 \le 0 \implies |x-1| = -(x-1) = 1-x$, et $x+1 \ge 0 \implies |x+1| = x+1$<br>
+                                $f(x) = (1-x) + (x+1) = 2$<br>
+                                $f(x) = 2 \ge 2$ ✅
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \ge 2$ ✅</p>
-                            
+                            <div class="step">
+                                <span class="step-num">Cas 3 : $x \le -1$</span><br>
+                                $x-1 \le -2 < 0 \implies |x-1| = 1-x$, et $x+1 \le 0 \implies |x+1| = -(x+1) = -x-1$<br>
+                                $f(x) = (1-x) + (-x-1) = -2x$<br>
+                                or $x \le -1 \implies -2x \ge 2$, d'où $f(x) \ge 2$ ✅
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>Ces 3 cas couvrent $\mathbb{R}$ tout entier, et dans chacun $f(x) \ge 2$ $\implies$ $\forall x \in \mathbb{R},\ f(x) \ge 2$ ✅</p>
+                            </div>
+
                             <div class="table-wrap" style="margin-top:6px;">
                                 <table>
                                     <tr><th>Intervalle</th><th>$f(x)$</th></tr>
@@ -548,7 +574,7 @@
                                     <tr><td>$-1 \le x \le 1$</td><td>$2$</td></tr>
                                     <tr><td>$x \le -1$</td><td>$-2x$</td></tr>
                                 </table>
-                                <p style="text-align:center; color:var(--text-muted); font-size:10px; margin-top:2px;">Expression de f selon les intervalles</p>
+                                <p style="text-align:center; color:var(--text-muted); font-size:10px; margin-top:2px;">Expression de $f$ selon les intervalles — à réutiliser en question 3)</p>
                             </div>
                         </div>
                     </div>
@@ -561,37 +587,34 @@
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>D'après le tableau ci-dessus :</p>
+                            <p style="font-size:11px; color:var(--text-muted);">On réutilise l'expression de $f(x)$ obtenue par intervalle en question 2) :</p>
                             <div class="step">
-                                <span class="step-num">Cas 1 :</span> $x \ge 1$, $f(x) = 2x$
-                                <br>$2x = 2 \iff x = 1$ (vérifie $x \ge 1$) ✅
+                                <span class="step-num">Sur $[1,+\infty[$ :</span> $f(x) = 2x$, donc $f(x)=2 \iff 2x=2 \iff x=1$ ; or $1 \ge 1$, donc $x=1$ est bien dans cet intervalle ✅
                             </div>
                             <div class="step">
-                                <span class="step-num">Cas 2 :</span> $-1 \le x \le 1$, $f(x) = 2$
-                                <br>$2 = 2$ pour tout $x \in [-1,1]$ ✅
+                                <span class="step-num">Sur $[-1,1]$ :</span> $f(x) = 2$ pour tout $x$ de cet intervalle, donc l'équation $2=2$ est toujours vraie : tout $x \in [-1,1]$ est solution ✅
                             </div>
                             <div class="step">
-                                <span class="step-num">Cas 3 :</span> $x \le -1$, $f(x) = -2x$
-                                <br>$-2x = 2 \iff x = -1$ (vérifie $x \le -1$) ✅
+                                <span class="step-num">Sur $]-\infty,-1]$ :</span> $f(x) = -2x$, donc $f(x)=2 \iff -2x=2 \iff x=-1$ ; or $-1 \le -1$, donc $x=-1$ est bien dans cet intervalle ✅
                             </div>
-                            
-                            <p style="margin-top:6px;"><strong>Ensemble des solutions :</strong></p>
+
+                            <p style="margin-top:6px;"><strong>Ensemble des solutions</strong> (réunion des trois cas) :</p>
                             <div class="formula-block" style="font-size:13px;">
-                                $S = [-1, 1]$
+                                $S = \{1\} \cup [-1,1] \cup \{-1\} = [-1, 1]$
                             </div>
-                            
+
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Déduction :</span> On a montré que $f(x) \ge 2$ et $f(x) = 2$ pour tout $x \in [-1,1]$.
+                                <span class="step-num">Lien avec la question 2) :</span> on a $\forall x \in \mathbb{R},\ f(x) \ge 2$, et on vient de montrer que $f(x) = 2$ est effectivement atteinte, pour tout $x \in [-1,1]$
                             </div>
-                            
+
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>La valeur minimale de $f$ sur $\mathbb{R}$ est <strong>$m = 2$</strong>.</p>
-                                <p style="font-size:11px; color:var(--text-muted);">Atteinte pour tout $x \in [-1,1]$.</p>
+                                <p>$f$ est minorée par $2$ et cette valeur est atteinte $\implies$ le minimum de $f$ sur $\mathbb{R}$ est <strong>$m = 2$</strong>.</p>
+                                <p style="font-size:11px; color:var(--text-muted);">Atteint pour tout $x \in [-1,1]$.</p>
                             </div>
-                            
+
                             <div class="graph-container">
-                                <canvas id="graphMin2" width="350" height="150"></canvas>
+                                <svg id="graphMin2" class="figure-svg"></svg>
                                 <p>Minimum $m = 2$ atteint sur $[-1,1]$</p>
                             </div>
                         </div>
@@ -769,6 +792,7 @@
             }, 300);
         });
     </script>
+    <script src="figuresvt_p2.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
@@ -962,3 +986,4 @@
 
 </body>
 </html>
+

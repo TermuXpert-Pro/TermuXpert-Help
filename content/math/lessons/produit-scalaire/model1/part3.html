@@ -493,6 +493,11 @@
                         <div class="ex-question">
                             <p>Considérons le triangle $ABC$ tel que $A(2,1)$, $B(0,1)$ et $C(-2,3)$. Déterminer les équations cartésiennes des médiatrices de $[AB]$ et $[AC]$, puis en déduire le centre $\Omega$ du cercle circonscrit à $ABC$.</p>
                         </div>
+                        <div class="graph-container">
+                            <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Médiatrices et cercle circonscrit</p>
+                            <svg id="graphEx1Mediatrices" width="360" height="290"></svg>
+                            <p>$\Omega=(D_1)\cap(D_2)$ : centre du cercle circonscrit à $ABC$</p>
+                        </div>
                         <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                         <div id="sol1" class="solution-box">
                             <div class="sol-title">✅ Solution détaillée</div>
@@ -590,8 +595,25 @@
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
     
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="figuresvt.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                if (btn) btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                if (btn) btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="figuresvt_p3.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

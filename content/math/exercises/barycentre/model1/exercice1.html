@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -490,30 +489,32 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            <p><strong>Rappel :</strong> Si $G = \text{Bar}\{(A, \alpha); (B, \beta)\}$ alors :</p>
-                            <div class="formula-block" style="font-size:13px;">
-                                $$x_G = \frac{\alpha x_A + \beta x_B}{\alpha + \beta} \quad \text{et} \quad y_G = \frac{\alpha y_A + \beta y_B}{\alpha + \beta}$$
+                            <div class="highlight-box yellow">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>Si $G = \text{Bar}\{(A, \alpha); (B, \beta)\}$ avec $\alpha + \beta \neq 0$, alors :</p>
+                                <div class="formula-block" style="font-size:13px;">
+                                    $$x_G = \frac{\alpha x_A + \beta x_B}{\alpha + \beta} \quad ; \quad y_G = \frac{\alpha y_A + \beta y_B}{\alpha + \beta}$$
+                                </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> On identifie les poids :
-                                <br>$\alpha = 1$ et $\beta = -5$
+                                <span class="step-num">On a :</span> $G = \text{Bar}\{(A, 1); (B, -5)\}$, donc $\alpha = 1$ et $\beta = -5$.
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On calcule la somme des poids :
-                                <br>$\alpha + \beta = 1 + (-5) = -4 \neq 0$ ✅
+                                <span class="step-num">Vérification :</span> $\alpha + \beta = 1 + (-5) = -4 \neq 0$ ✅
+                                <br>Donc $G$ existe bien.
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On calcule l'abscisse $x_G$ :
+                                <span class="step-num">Abscisse $x_G$ :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$x_G = \frac{1 \times 3 + (-5) \times 4}{1 + (-5)} = \frac{3 - 20}{-4} = \frac{-17}{-4} = \frac{17}{4}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> On calcule l'ordonnée $y_G$ :
+                                <span class="step-num">Ordonnée $y_G$ :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$y_G = \frac{1 \times 2 + (-5) \times 1}{1 + (-5)} = \frac{2 - 5}{-4} = \frac{-3}{-4} = \frac{3}{4}$$
                                 </div>
@@ -521,7 +522,7 @@
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>Les coordonnées de $G$ sont :</p>
+                                <p>D'où les coordonnées de $G$ :</p>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
                                     $$G\left(\frac{17}{4}; \frac{3}{4}\right)$$
                                 </div>
@@ -542,27 +543,35 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            <p><strong>Rappel :</strong> Le barycentre de deux points est toujours aligné avec ces deux points.</p>
+                            <div class="highlight-box yellow">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>Le barycentre de deux points $A$ et $B$ appartient toujours à la droite $(AB)$. Pour le prouver, il suffit de montrer que $\overrightarrow{AG}$ et $\overrightarrow{AB}$ sont colinéaires.</p>
+                            </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> On calcule le vecteur $\overrightarrow{AG}$ :
+                                <span class="step-num">On a :</span> $A(3;2)$, $B(4;1)$ et $G\left(\frac{17}{4}; \frac{3}{4}\right)$.
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Vecteur $\overrightarrow{AG}$ :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$\overrightarrow{AG} = \left(\frac{17}{4} - 3;\ \frac{3}{4} - 2\right) = \left(\frac{5}{4};\ -\frac{5}{4}\right)$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On calcule le vecteur $\overrightarrow{AB}$ :
+                                <span class="step-num">Vecteur $\overrightarrow{AB}$ :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$\overrightarrow{AB} = (4 - 3;\ 1 - 2) = (1;\ -1)$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On vérifie la colinéarité :
+                                <span class="step-num">Or :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$\overrightarrow{AG} = \frac{5}{4} \times \overrightarrow{AB} = \frac{5}{4}(1;\ -1) = \left(\frac{5}{4};\ -\frac{5}{4}\right)$$
                                 </div>
+                                <br>Donc $\overrightarrow{AG}$ et $\overrightarrow{AB}$ sont colinéaires ($\overrightarrow{AG} = \frac{5}{4}\overrightarrow{AB}$).
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
@@ -815,5 +824,3 @@
 
 </body>
 </html>
-
-

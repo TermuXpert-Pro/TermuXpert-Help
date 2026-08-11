@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-<<<<<<< HEAD
-    
-    
-=======
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
 <script>
@@ -23,7 +19,6 @@
         "description": "Cours de 1 Bac Sciences Expérimentales"
     }
     </script>
->>>>>>> 0c4ed322 (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
@@ -178,8 +173,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -470,23 +469,32 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>Pour étudier la parité d'une fonction, on calcule $f(-x)$ et on compare avec $f(x)$.</p>
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(-x) = \cos(\pi(-x)) = \cos(-\pi x)$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>$f$ est <strong>paire</strong> $\iff$ $D_f$ est symétrique par rapport à $0$ <strong>et</strong> $\forall x \in D_f,\ f(-x) = f(x)$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $\cos$ est une fonction <strong>paire</strong> : $\cos(-a) = \cos(a)$
+                                <span class="step-num">Domaine :</span> $D_f = \mathbb{R}$ ($\cos$ est définie sur $\mathbb{R}$ tout entier), qui est symétrique par rapport à $0$ ✓
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $f(-x) = \cos(\pi x) = f(x)$
+                                <span class="step-num">Calcul de $f(-x)$ :</span> $f(-x) = \cos\big(\pi \times (-x)\big) = \cos(-\pi x)$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Propriété du cosinus :</span> $\cos$ est une fonction <strong>paire</strong>, c'est-à-dire $\forall a \in \mathbb{R},\ \cos(-a) = \cos(a)$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">On applique cette propriété avec $a = \pi x$ :</span> $\cos(-\pi x) = \cos(\pi x)$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">D'où :</span> $f(-x) = \cos(\pi x) = f(x)$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>$\forall x \in \mathbb{R},\ f(-x) = f(x)$ donc <strong>$f$ est paire</strong>.</p>
+                                <p>$D_f$ symétrique et $\forall x \in \mathbb{R},\ f(-x) = f(x)$ $\implies$ <strong>$f$ est paire</strong>.</p>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graphParite" width="350" height="150"></canvas>
-                                <p>Courbe de $f(x) = \cos(\pi x)$ (fonction paire)</p>
+                                <svg id="graphParite" class="figure-svg"></svg>
+                                <p>Courbe de $f(x) = \cos(\pi x)$ — symétrique par rapport à l'axe des ordonnées (fonction paire)</p>
                             </div>
                         </div>
                     </div>
@@ -500,16 +508,19 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x+2) = \cos(\pi(x+2))$
+                                <span class="step-num">Calcul de $f(x+2)$ :</span> $f(x+2) = \cos\big(\pi(x+2)\big)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= \cos(\pi x + 2\pi)$
+                                <span class="step-num">On développe $\pi(x+2)$ :</span> $\pi(x+2) = \pi x + 2\pi$, d'où $f(x+2) = \cos(\pi x + 2\pi)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $\cos$ est périodique de période $2\pi$ : $\cos(a+2\pi) = \cos(a)$
+                                <span class="step-num">Propriété du cosinus :</span> $\cos$ est périodique de période $2\pi$, c'est-à-dire $\forall a \in \mathbb{R},\ \cos(a+2\pi) = \cos(a)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $f(x+2) = \cos(\pi x) = f(x)$
+                                <span class="step-num">On applique cette propriété avec $a = \pi x$ :</span> $\cos(\pi x + 2\pi) = \cos(\pi x)$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">D'où :</span> $f(x+2) = \cos(\pi x) = f(x)$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
@@ -526,22 +537,23 @@
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> On a montré que $\forall x \in \mathbb{R},\ f(x+2) = f(x)$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>$f$ est <strong>périodique</strong> $\iff$ $\exists T > 0$ tel que $\forall x \in D_f,\ f(x+T) = f(x)$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Par définition, une fonction est <strong>périodique</strong> s'il existe $T > 0$ tel que $f(x+T) = f(x)$.
+                                <span class="step-num">D'après la question 2) :</span> $\forall x \in \mathbb{R},\ f(x+2) = f(x)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Ici $T = 2$ (car $T > 0$).
+                                <span class="step-num">On compare avec la définition :</span> il existe bien un réel $T = 2$, strictement positif, tel que $f(x+T) = f(x)$ pour tout $x$
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
                                 <p>$f$ est périodique de période <strong>$T = 2$</strong>.</p>
                             </div>
-                            <p style="font-size:11px; color:var(--text-muted);">Remarque : La période de $\cos(\pi x)$ est $T = \dfrac{2\pi}{\pi} = 2$.</p>
+                            <p style="font-size:11px; color:var(--text-muted);">Remarque : $T = 2$ est en fait la plus petite période possible, puisque la période « naturelle » de $\cos(\pi x)$ vaut $\dfrac{2\pi}{\pi} = 2$.</p>
                             <div class="graph-container">
-                                <canvas id="graphPeriodique" width="350" height="150"></canvas>
+                                <svg id="graphPeriodique" class="figure-svg"></svg>
                                 <p>Périodicité de $f(x) = \cos(\pi x)$ avec $T=2$</p>
                             </div>
                         </div>
@@ -591,11 +603,9 @@
         }
 
         // ============================================================
-        // GRAPHIQUES - Les dessins sont maintenant dans figures.js
         // ============================================================
     </script>
-    <script src="../../../../../assets/js/canvas-utils.js"></script>
-    <script src="figures.js"></script>
+    <script src="figuresvt_p1.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

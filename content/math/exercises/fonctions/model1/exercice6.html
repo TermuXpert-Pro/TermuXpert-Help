@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-<<<<<<< HEAD
-    
-    
-=======
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
 <script>
@@ -23,7 +19,6 @@
         "description": "Cours de 1 Bac Sciences Expérimentales"
     }
     </script>
->>>>>>> 0c4ed322 (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
@@ -154,6 +149,28 @@
         }
         .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
         .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas, .graph-container svg.figure-svg {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
         .toggle-sol {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -469,47 +486,66 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:#4ECDC4; margin-top:6px;">1) $D_{f \circ g}$</p>
-                            <p>$f \circ g(x) = f(g(x)) = \sqrt{g(x)-1}$</p>
-                            
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_f = [1, +\infty[$ et $D_g = \mathbb{R} \setminus \{-2\}$
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:6px;">a) Domaine de $f \circ g$</p>
+                            <p style="font-size:11px; color:var(--text-muted);">$(f \circ g)(x) = f(g(x)) = \sqrt{g(x)-1}$</p>
+
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>$x \in D_{f \circ g} \iff x \in D_g$ <strong>et</strong> $g(x) \in D_f$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Pour que $f \circ g$ soit définie, il faut que $g(x) \in D_f$, c'est-à-dire $g(x) \ge 1$.
+                                <span class="step-num">Domaines de départ :</span> $D_f = [1, +\infty[$ et $D_g = \mathbb{R} \setminus \{-2\}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $\dfrac{x}{x+2} \ge 1$
+                                <span class="step-num">Condition à vérifier :</span> $g(x) \in D_f \iff g(x) \ge 1$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $\dfrac{x}{x+2} - 1 \ge 0 \iff \dfrac{x - (x+2)}{x+2} \ge 0 \iff \dfrac{-2}{x+2} \ge 0$
+                                <span class="step-num">On remplace $g(x)$ :</span> $\dfrac{x}{x+2} \ge 1$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> $\dfrac{-2}{x+2} \ge 0 \iff x+2 < 0 \iff x < -2$
-                            </div>
-                            
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_{f \circ g} = ]-\infty, -2[$</p>
-                            
-                            <p style="font-weight:600; color:#4ECDC4; margin-top:10px;">2) $D_{g \circ f}$</p>
-                            <p>$g \circ f(x) = g(f(x)) = \dfrac{f(x)}{f(x)+2}$</p>
-                            
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $D_f = [1, +\infty[$
+                                <span class="step-num">On ramène à un seul quotient :</span> $\dfrac{x}{x+2} - 1 \ge 0 \iff \dfrac{x-(x+2)}{x+2} \ge 0 \iff \dfrac{-2}{x+2} \ge 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Pour que $g \circ f$ soit définie, il faut que $x \in D_f$ et $f(x)+2 \neq 0$.
+                                <span class="step-num">Étude de signe (le numérateur $-2$ est constant et négatif) :</span> $\dfrac{-2}{x+2} \ge 0 \iff x+2 < 0 \iff x < -2$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$D_{f \circ g} = \ ]-\infty, -2[$</p>
+                            </div>
+                            <div class="graph-container">
+                                <svg id="domFG" class="figure-svg"></svg>
+                                <p>Construction de $D_{f \circ g}$ : $D_g$ privé de $-2$, restreint à $g(x)\ge 1$</p>
+                            </div>
+
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:10px;">b) Domaine de $g \circ f$</p>
+                            <p style="font-size:11px; color:var(--text-muted);">$(g \circ f)(x) = g(f(x)) = \dfrac{f(x)}{f(x)+2}$</p>
+
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>$x \in D_{g \circ f} \iff x \in D_f$ <strong>et</strong> $f(x) \in D_g$, c'est-à-dire $f(x) \neq -2$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $f(x)+2 = \sqrt{x-1}+2 > 0$ pour tout $x \ge 1$.
+                                <span class="step-num">Domaine de départ :</span> $D_f = [1, +\infty[$
                             </div>
-                            
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_{g \circ f} = [1, +\infty[$</p>
-                            
+                            <div class="step">
+                                <span class="step-num">Condition à vérifier :</span> $f(x)+2 \neq 0$, c'est-à-dire $\sqrt{x-1}+2 \neq 0$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Or $\sqrt{x-1} \ge 0$ pour tout $x \ge 1$ :</span> $\sqrt{x-1}+2 \ge 2 > 0$, donc la condition est toujours vérifiée
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$D_{g \circ f} = [1, +\infty[$</p>
+                            </div>
+                            <div class="graph-container">
+                                <svg id="domGF" class="figure-svg"></svg>
+                                <p>Construction de $D_{g \circ f}$ : $D_f$ tout entier, car $f(x)+2 \neq 0$ toujours vérifiée</p>
+                            </div>
+
                             <div class="highlight-box green" style="margin-top:8px;">
                                 <span class="label resume">Résumé</span>
                                 <ul style="font-size:12px;">
-                                    <li>$D_{f \circ g} = ]-\infty, -2[$</li>
+                                    <li>$D_{f \circ g} = \ ]-\infty, -2[$</li>
                                     <li>$D_{g \circ f} = [1, +\infty[$</li>
                                 </ul>
                             </div>
@@ -525,21 +561,24 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $(f \circ g)(x) = f(g(x))$
+                                <span class="step-num">Définition de la composée :</span> $(f \circ g)(x) = f(g(x))$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= f\left(\dfrac{x}{x+2}\right)$
+                                <span class="step-num">On remplace $g(x)$ :</span> $= f\left(\dfrac{x}{x+2}\right)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= \sqrt{\dfrac{x}{x+2} - 1}$
+                                <span class="step-num">On applique $f(u) = \sqrt{u-1}$ avec $u = \dfrac{x}{x+2}$ :</span> $= \sqrt{\dfrac{x}{x+2} - 1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $= \sqrt{\dfrac{x - (x+2)}{x+2}}$
+                                <span class="step-num">On ramène le contenu de la racine au même dénominateur :</span> $= \sqrt{\dfrac{x - (x+2)}{x+2}}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> $= \sqrt{\dfrac{-2}{x+2}}$
+                                <span class="step-num">On simplifie le numérateur :</span> $= \sqrt{\dfrac{-2}{x+2}}$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in ]-\infty, -2[,\ (f \circ g)(x) = \sqrt{\dfrac{-2}{x+2}}$</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in \ ]-\infty, -2[,\ (f \circ g)(x) = \sqrt{\dfrac{-2}{x+2}}$</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -564,9 +603,6 @@
     <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
 </footer>
 
-<<<<<<< HEAD
-    
-=======
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
     <script>
@@ -589,7 +625,7 @@
             }
         }
     </script>
->>>>>>> 0c4ed322 (🗑️ إزالة رسالة التحذير من الصفحة الرئيسية)
+    <script src="figuresvt_p6.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
@@ -783,3 +819,4 @@
 
 </body>
 </html>
+

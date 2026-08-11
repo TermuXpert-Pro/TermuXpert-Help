@@ -175,8 +175,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -498,24 +502,28 @@
                     <div id="sol1a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = x^2 + 2x = (x+1)^2 - 1$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Méthode</span>
+                                <p>Pour étudier la monotonie de $f$ sur un intervalle, on prend deux réels $x, x'$ de cet intervalle avec $x<x'$, et on étudie le signe de $f(x')-f(x)$.</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Soient $x, x' \in \mathbb{R}^+$ avec $x < x'$.
+                                <span class="step-num">On écrit $f(x)$ sous forme canonique :</span> $f(x) = x^2 + 2x = (x+1)^2 - 1$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $f(x') - f(x) = (x'^2 - x^2) + 2(x' - x) = (x' - x)(x' + x + 2)$
+                                <span class="step-num">On prend deux réels $x, x' \in \mathbb{R}^+$ avec $x < x'$, et on calcule la différence en la factorisant :</span> $f(x') - f(x) = (x'^2 - x^2) + 2(x' - x) = (x' - x)(x' + x + 2)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $x' - x > 0$ et $x' + x + 2 > 0$ (car $x,x' \ge 0$)
+                                <span class="step-num">On étudie le signe de chaque facteur : $x' - x > 0$ (car $x<x'$) et $x' + x + 2 > 0$ (car $x,x' \ge 0$) :</span> donc leur produit est strictement positif
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> Donc $f(x') - f(x) > 0 \iff f(x) < f(x')$
+                                <span class="step-num">Donc $f(x') - f(x) > 0$, c'est-à-dire :</span> $f(x) < f(x')$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement croissante</strong> sur $\mathbb{R}^+$.</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$f$ est <strong>strictement croissante</strong> sur $\mathbb{R}^+$.</p>
+                            </div>
                             <div class="graph-container">
-                                <canvas id="graphF" width="350" height="150"></canvas>
+                                <svg id="graphF" class="figure-svg"></svg>
                                 <p>$f(x) = x^2 + 2x$ est croissante sur ℝ⁺</p>
                             </div>
                         </div>
@@ -530,15 +538,18 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = x^2 + 2x = x(x+2)$
+                                <span class="step-num">On factorise $f(x)$ :</span> $f(x) = x^2 + 2x = x(x+2)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Pour $x \ge 0$, on a $x \ge 0$ et $x+2 > 0$
+                                <span class="step-num">Pour $x \ge 0$, les deux facteurs sont positifs ou nuls :</span> $x \ge 0$ et $x+2 > 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Donc $x(x+2) \ge 0$
+                                <span class="step-num">Un produit de deux facteurs positifs est positif, donc :</span> $x(x+2) \ge 0$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R}^+,\ f(x) \ge 0$ ✅</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in \mathbb{R}^+,\ f(x) \ge 0$ ✅</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -554,20 +565,20 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $g(x) = -1 + \sqrt{1+x}$
+                                <span class="step-num">On prend deux réels $x, x' \in \mathbb{R}^+$ avec $x < x'$ :</span> $g(x) = -1 + \sqrt{1+x}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Soient $x, x' \in \mathbb{R}^+$ avec $x < x'$.
+                                <span class="step-num">La fonction racine carrée est strictement croissante sur $[0,+\infty[$, donc :</span> $x < x' \Rightarrow 1+x < 1+x' \Rightarrow \sqrt{1+x} < \sqrt{1+x'}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $x < x' \Rightarrow 1+x < 1+x' \Rightarrow \sqrt{1+x} < \sqrt{1+x'}$
+                                <span class="step-num">On ajoute $-1$ aux deux membres (cela ne change pas le sens de l'inégalité) :</span> $-1 + \sqrt{1+x} < -1 + \sqrt{1+x'}$, c'est-à-dire $g(x) < g(x')$
                             </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> $-1 + \sqrt{1+x} < -1 + \sqrt{1+x'} \iff g(x) < g(x')$
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$g$ est <strong>strictement croissante</strong> sur $\mathbb{R}^+$.</p>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $g$ est <strong>strictement croissante</strong> sur $\mathbb{R}^+$.</p>
                             <div class="graph-container">
-                                <canvas id="graphG" width="350" height="150"></canvas>
+                                <svg id="graphG" class="figure-svg"></svg>
                                 <p>$g(x) = -1 + \sqrt{1+x}$ est croissante sur ℝ⁺</p>
                             </div>
                         </div>
@@ -582,15 +593,18 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $g(x) = -1 + \sqrt{1+x}$
+                                <span class="step-num">Pour $x \ge 0$, on a :</span> $1+x \ge 1$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Pour $x \ge 0$, on a $1+x \ge 1 \Rightarrow \sqrt{1+x} \ge 1$
+                                <span class="step-num">La racine carrée est croissante, donc :</span> $\sqrt{1+x} \ge \sqrt{1} = 1$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $-1 + \sqrt{1+x} \ge -1 + 1 = 0$
+                                <span class="step-num">On soustrait $1$ aux deux membres :</span> $-1 + \sqrt{1+x} \ge -1 + 1 = 0$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R}^+,\ g(x) \ge 0$ ✅</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in \mathbb{R}^+,\ g(x) \ge 0$ ✅</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -603,41 +617,35 @@
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>1) $(f \circ g)(x)$ :</strong></p>
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:6px;">a) Calcul de $(f \circ g)(x)$</p>
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $(f \circ g)(x) = f(g(x)) = f(-1 + \sqrt{1+x})$
+                                <span class="step-num">On calcule $(f \circ g)(x) = f(g(x))$ :</span> $= f(-1 + \sqrt{1+x})$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= (-1 + \sqrt{1+x})^2 + 2(-1 + \sqrt{1+x})$
+                                <span class="step-num">On applique $f(u) = u^2+2u$ avec $u = -1+\sqrt{1+x}$ :</span> $= (-1 + \sqrt{1+x})^2 + 2(-1 + \sqrt{1+x})$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= (1 - 2\sqrt{1+x} + 1 + x) - 2 + 2\sqrt{1+x}$
+                                <span class="step-num">On développe le carré, $(-1+\sqrt{1+x})^2 = 1 - 2\sqrt{1+x} + (1+x)$ :</span> $= \left[1 - 2\sqrt{1+x} + 1+x\right] + \left[-2 + 2\sqrt{1+x}\right]$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $= x$ (les termes en $\sqrt{1+x}$ s'annulent)
+                                <span class="step-num">Les termes en $\sqrt{1+x}$ s'éliminent ($-2\sqrt{1+x}+2\sqrt{1+x}=0$), il reste :</span> $1+1+x-2 = x$
                             </div>
                             <div class="formula-block" style="font-size:13px; margin:6px 0;">
                                 $(f \circ g)(x) = x$
                             </div>
                             
-                            <p style="margin-top:8px;"><strong>2) $(g \circ f)(x)$ :</strong></p>
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:10px;">b) Calcul de $(g \circ f)(x)$</p>
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $(g \circ f)(x) = g(f(x)) = g(x^2 + 2x)$
+                                <span class="step-num">On calcule $(g \circ f)(x) = g(f(x))$ :</span> $= g(x^2 + 2x)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= -1 + \sqrt{1 + x^2 + 2x}$
+                                <span class="step-num">On applique $g(u) = -1+\sqrt{1+u}$ avec $u = x^2+2x$ :</span> $= -1 + \sqrt{1 + x^2 + 2x}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= -1 + \sqrt{(x+1)^2}$
+                                <span class="step-num">On reconnaît une identité remarquable sous la racine, $1+x^2+2x = (x+1)^2$ :</span> $= -1 + \sqrt{(x+1)^2} = -1 + |x+1|$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $= -1 + |x+1|$
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> Pour $x \ge 0$, $x+1 \ge 0$ donc $|x+1| = x+1$
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 6 :</span> $(g \circ f)(x) = -1 + x + 1 = x$
+                                <span class="step-num">Pour $x \ge 0$, on a $x+1 \ge 0$, donc $|x+1| = x+1$ :</span> $(g \circ f)(x) = -1 + x + 1 = x$
                             </div>
                             <div class="formula-block" style="font-size:13px; margin:6px 0;">
                                 $(g \circ f)(x) = x$
@@ -645,8 +653,8 @@
                             
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>$(f \circ g)(x) = (g \circ f)(x) = x$</p>
-                                <p style="font-size:11px; color:var(--text-muted);">Les fonctions f et g sont réciproques l'une de l'autre sur ℝ⁺</p>
+                                <p>$\forall x \in \mathbb{R}^+,\ (f \circ g)(x) = (g \circ f)(x) = x$</p>
+                                <p style="font-size:11px; color:var(--text-muted);">Les fonctions $f$ et $g$ sont réciproques l'une de l'autre sur $\mathbb{R}^+$.</p>
                             </div>
                         </div>
                     </div>
@@ -663,7 +671,7 @@
                             <p>Puisque $(f \circ g)(x) = (g \circ f)(x) = x$, les courbes $C_f$ et $C_g$ sont <strong>symétriques</strong> par rapport à la droite $y=x$.</p>
                             
                             <div class="graph-container">
-                                <canvas id="graphSym" width="400" height="250"></canvas>
+                                <svg id="graphSym" class="figure-svg"></svg>
                                 <p>$C_f$ (bleu), $C_g$ (vert) et $y=x$ (rouge)</p>
                             </div>
                             
@@ -899,6 +907,7 @@
             }, 300);
         });
     </script>
+    <script src="figuresvt_p9.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

@@ -488,30 +488,32 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            <p><strong>Rappel :</strong> Si $G = \text{Bar}\{(A, \alpha); (B, \beta)\}$ alors :</p>
-                            <div class="formula-block" style="font-size:13px;">
-                                $$x_G = \frac{\alpha x_A + \beta x_B}{\alpha + \beta} \quad \text{et} \quad y_G = \frac{\alpha y_A + \beta y_B}{\alpha + \beta}$$
+                            <div class="highlight-box yellow">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>Si $G = \text{Bar}\{(A, \alpha); (B, \beta)\}$ avec $\alpha + \beta \neq 0$, alors :</p>
+                                <div class="formula-block" style="font-size:13px;">
+                                    $$x_G = \frac{\alpha x_A + \beta x_B}{\alpha + \beta} \quad ; \quad y_G = \frac{\alpha y_A + \beta y_B}{\alpha + \beta}$$
+                                </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> On identifie les poids :
-                                <br>$\alpha = 1$ et $\beta = 2$
+                                <span class="step-num">On a :</span> $G = \text{Bar}\{(A, 1); (B, 2)\}$, donc $\alpha = 1$ et $\beta = 2$.
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On calcule la somme des poids :
-                                <br>$\alpha + \beta = 1 + 2 = 3 \neq 0$ ✅
+                                <span class="step-num">Vérification :</span> $\alpha + \beta = 1 + 2 = 3 \neq 0$ ✅
+                                <br>Donc $G$ existe bien.
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On calcule l'abscisse $x_G$ :
+                                <span class="step-num">Abscisse $x_G$ :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$x_G = \frac{1 \times 0 + 2 \times 3}{1 + 2} = \frac{0 + 6}{3} = 2$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> On calcule l'ordonnée $y_G$ :
+                                <span class="step-num">Ordonnée $y_G$ :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$y_G = \frac{1 \times 5 + 2 \times 2}{1 + 2} = \frac{5 + 4}{3} = 3$$
                                 </div>
@@ -519,7 +521,7 @@
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>Les coordonnées de $G$ sont :</p>
+                                <p>D'où les coordonnées de $G$ :</p>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
                                     $$G(2; 3)$$
                                 </div>
@@ -540,39 +542,40 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            <p><strong>Rappel :</strong> Propriété caractéristique du barycentre :</p>
-                            <div class="formula-block" style="font-size:13px;">
-                                $$\overrightarrow{MA} + 2\overrightarrow{MB} = 3\overrightarrow{MG}$$
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> On applique la propriété caractéristique :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\overrightarrow{MA} + 2\overrightarrow{MB} = 3\overrightarrow{MG}$$
+                            <div class="highlight-box yellow">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>Propriété caractéristique du barycentre : pour tout point $M$ du plan,</p>
+                                <div class="formula-block" style="font-size:13px;">
+                                    $$\overrightarrow{MA} + 2\overrightarrow{MB} = (1+2)\overrightarrow{MG} = 3\overrightarrow{MG}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> L'équation devient :
+                                <span class="step-num">On a :</span> $(C) = \left\{ M \in (P) \mid \| \overrightarrow{MA} + 2\overrightarrow{MB} \| = 6 \right\}$
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">D'après la propriété caractéristique :</span> $\overrightarrow{MA} + 2\overrightarrow{MB} = 3\overrightarrow{MG}$, donc la condition devient :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$\|3\overrightarrow{MG}\| = 6$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On simplifie :
+                                <span class="step-num">Or :</span> $\|3\overrightarrow{MG}\| = 3\|\overrightarrow{MG}\|$, donc :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
                                     $$3 \| \overrightarrow{MG} \| = 6 \iff \| \overrightarrow{MG} \| = 2$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> Cela signifie que la distance $MG = 2$.
+                                <span class="step-num">D'où :</span> $\| \overrightarrow{MG} \| = 2 \iff MG = 2$.
+                                <br>Donc $M$ est à une distance constante $2$ du point fixe $G$.
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>L'ensemble $(C)$ est le <strong>cercle</strong> de centre $G(2; 3)$ et de rayon $r = 2$ cm.</p>
+                                <p>L'ensemble $(C)$ est le <strong>cercle</strong> de centre $G(2; 3)$ et de rayon $r = 2$ :</p>
                                 <div class="formula-block" style="font-size:15px; margin:4px 0;">
                                     $$(C) = \mathcal{C}(G, 2)$$
                                 </div>

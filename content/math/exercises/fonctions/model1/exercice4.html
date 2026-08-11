@@ -162,8 +162,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -457,17 +461,23 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>La fonction est définie si la quantité sous la racine carrée est positive ou nulle :</p>
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $4 - x^2 \ge 0$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>$\sqrt{u}$ est définie $\iff u \ge 0$ ; ici $u = 4 - x^2$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $x^2 \le 4$
+                                <span class="step-num">Condition d'existence :</span> $4 - x^2 \ge 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $-2 \le x \le 2$
+                                <span class="step-num">On isole $x^2$ :</span> $4 - x^2 \ge 0 \iff x^2 \le 4$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $D_f = [-2, 2]$</p>
+                            <div class="step">
+                                <span class="step-num">Propriété ($x^2 \le a^2 \iff |x| \le a$, pour $a \ge 0$) :</span> $x^2 \le 4 \iff |x| \le 2 \iff -2 \le x \le 2$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$D_f = [-2, 2]$</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -479,16 +489,29 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(-x) = (-x)\sqrt{4 - (-x)^2} = -x\sqrt{4 - x^2}$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>$f$ est <strong>impaire</strong> $\iff$ $D_f$ symétrique par rapport à $0$ <strong>et</strong> $\forall x \in D_f,\ f(-x) = -f(x)$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= -f(x)$
+                                <span class="step-num">Domaine :</span> $D_f = [-2, 2]$ (question 1), symétrique par rapport à $0$ ✓
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in D_f,\ f(-x) = -f(x)$ donc <strong>$f$ est impaire</strong>.</p>
+                            <div class="step">
+                                <span class="step-num">Calcul de $f(-x)$ :</span> $f(-x) = (-x)\sqrt{4 - (-x)^2}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">On simplifie $(-x)^2 = x^2$ :</span> $f(-x) = -x\sqrt{4 - x^2}$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">On reconnaît l'expression de $f(x)$ :</span> $f(-x) = -\big(x\sqrt{4-x^2}\big) = -f(x)$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$D_f$ symétrique et $\forall x \in D_f,\ f(-x) = -f(x)$ $\implies$ <strong>$f$ est impaire</strong>.</p>
+                            </div>
                             <div class="graph-container">
-                                <canvas id="graphParite4" width="350" height="150"></canvas>
-                                <p>Courbe de $f(x) = x\sqrt{4-x^2}$ (fonction impaire)</p>
+                                <svg id="graphParite4" class="figure-svg"></svg>
+                                <p>Courbe de $f(x) = x\sqrt{4-x^2}$ — symétrique par rapport à l'origine (fonction impaire)</p>
                             </div>
                         </div>
                     </div>
@@ -502,44 +525,47 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $(f(x))^2 - 4 = (x\sqrt{4-x^2})^2 - 4$
+                                <span class="step-num">On développe $(f(x))^2$ :</span> $(f(x))^2 - 4 = \big(x\sqrt{4-x^2}\big)^2 - 4$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= x^2(4-x^2) - 4$
+                                <span class="step-num">Propriété $(\sqrt{u})^2 = u$ pour $u \ge 0$ :</span> $= x^2(4-x^2) - 4$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= 4x^2 - x^4 - 4$
+                                <span class="step-num">On distribue $x^2$ :</span> $= 4x^2 - x^4 - 4$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $= -(x^4 - 4x^2 + 4)$
+                                <span class="step-num">On réordonne et on met $-1$ en facteur :</span> $= -(x^4 - 4x^2 + 4)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> $= -(x^2 - 2)^2$
+                                <span class="step-num">On reconnaît une identité remarquable :</span> $x^4 - 4x^2 + 4 = (x^2-2)^2$, d'où $(f(x))^2 - 4 = -(x^2-2)^2$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 6 :</span> $(x^2 - 2)^2 \ge 0 \Rightarrow -(x^2 - 2)^2 \le 0$
+                                <span class="step-num">Signe d'un carré :</span> $(x^2-2)^2 \ge 0 \implies -(x^2-2)^2 \le 0$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in D_f,\ (f(x))^2 - 4 \le 0$</p>
-                            <p style="font-size:11px; color:var(--text-muted);">Donc $(f(x))^2 \le 4 \iff |f(x)| \le 2 \iff -2 \le f(x) \le 2$</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in D_f,\ (f(x))^2 - 4 \le 0$</p>
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted);">C'est-à-dire $(f(x))^2 \le 4 \iff |f(x)| \le 2 \iff -2 \le f(x) \le 2$</p>
                             
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Déduction :</span> On a $f(x) \le 2$ pour tout $x \in D_f$.
+                                <span class="step-num">On en déduit une majoration :</span> $\forall x \in D_f,\ f(x) \le 2$
                             </div>
                             <div class="step">
-                                <span class="step-num">Égalité :</span> $(f(x))^2 - 4 = 0 \iff (x^2 - 2)^2 = 0 \iff x^2 = 2 \iff x = \pm\sqrt{2}$
+                                <span class="step-num">Cas d'égalité :</span> $(f(x))^2-4 = 0 \iff (x^2-2)^2 = 0 \iff x^2 = 2 \iff x = \sqrt{2}$ ou $x = -\sqrt{2}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Vérification :</span> $f(\sqrt{2}) = \sqrt{2}\sqrt{4-2} = \sqrt{2}\sqrt{2} = 2$ ✅
+                                <span class="step-num">Vérification en $x=\sqrt{2}$ :</span> $f(\sqrt{2}) = \sqrt{2}\times\sqrt{4-2} = \sqrt{2}\times\sqrt{2} = 2$ ✅
                             </div>
                             
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>La fonction $f$ admet une valeur maximale sur $D_f$ : <strong>$M = 2$</strong>.</p>
-                                <p style="font-size:11px; color:var(--text-muted);">Atteinte en $x = \sqrt{2}$ (et $x = -\sqrt{2}$ donne le minimum $-2$).</p>
+                                <p>$f$ est majorée par $2$ et cette valeur est atteinte $\implies$ $f$ admet une valeur maximale sur $D_f$ : <strong>$M = 2$</strong>.</p>
+                                <p style="font-size:11px; color:var(--text-muted);">Atteinte en $x = \sqrt{2}$ (et $x = -\sqrt{2}$ donne le minimum $-2$, par imparité de $f$).</p>
                             </div>
                             
                             <div class="graph-container">
-                                <canvas id="graphMax4" width="350" height="150"></canvas>
+                                <svg id="graphMax4" class="figure-svg"></svg>
                                 <p>Maximum $M = 2$ atteint en $x = \sqrt{2}$</p>
                             </div>
                         </div>
@@ -714,6 +740,7 @@
             }, 300);
         });
     </script>
+    <script src="figuresvt_p4.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
@@ -907,3 +934,4 @@
 
 </body>
 </html>
+

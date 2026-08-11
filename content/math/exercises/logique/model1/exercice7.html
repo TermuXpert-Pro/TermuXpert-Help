@@ -411,10 +411,10 @@
                     <div id="sol8a" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Vérification à $n=0$ :</strong></p>
-                            <div class="step"><span class="step-num">Étape :</span> $3^{2} + 2^{4} = 9 + 16 = 25 = 5 \times 5$ ✅ (divisible par 5)</div>
-                            <p><strong>Vérification à $n=1$ :</strong></p>
-                            <div class="step"><span class="step-num">Étape :</span> $3^{3} + 2^{5} = 27 + 32 = 59$ (59 n'est <strong>pas</strong> divisible par 5)</div>
+                            <div class="step"><span class="step-num">Vérification à $n=0$ :</span></div>
+                            <div class="step"><span class="step-num">On calcule :</span> $3^{2} + 2^{4} = 9 + 16 = 25 = 5 \times 5$ ✅ (divisible par 5)</div>
+                            <div class="step"><span class="step-num">Vérification à $n=1$ :</span></div>
+                            <div class="step"><span class="step-num">On calcule :</span> $3^{3} + 2^{5} = 27 + 32 = 59$ (59 n'est <strong>pas</strong> divisible par 5)</div>
                             <p style="color:#FF6B6B;">La propriété est vraie pour $n=0$ mais fausse pour $n=1$ : elle n'est donc <strong>pas vraie pour tout</strong> $n \in \mathbb{N}$. La récurrence ne peut pas fonctionner ici, car l'hérédité échoue (essayer de la "forcer" mènerait à une étape fausse).</p>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est <span style="color:#FF6B6B;">fausse</span> ($n=1$ est un contre-exemple).</p>
                         </div>
@@ -431,9 +431,9 @@
                     <div id="sol8b" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Initialisation :</strong> $n=1$</p>
-                            <div class="step"><span class="step-num">Étape :</span> $3^{3} + 2^{5} = 27 + 32 = 59$</div>
-                            <p>59 n'est pas divisible par 5.</p>
+                            <div class="step"><span class="step-num">Initialisation :</span> $n=1$</div>
+                            <div class="step"><span class="step-num">On calcule :</span> $3^{3} + 2^{5} = 27 + 32 = 59$</div>
+                            <div class="step"><span class="step-num">Or :</span> 59 n'est pas divisible par 5</div>
                             <p style="color:#FF6B6B;"><strong>Conclusion :</strong> La propriété est <span style="color:#FF6B6B;">fausse</span> pour $n=1$, donc fausse sur $\mathbb{N}^*$.</p>
                             <p style="color:var(--text-muted); font-size:10px; margin-top:4px;">(Comme en (a), la propriété n'est vraie qu'à $n=0$ ; c'est un cas isolé, pas une propriété valable pour tout $n$.)</p>
                         </div>
@@ -450,14 +450,13 @@
                     <div id="sol8c" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Initialisation :</strong> $n=1$</p>
-                            <div class="step"><span class="step-num">Étape :</span> $4(1)^3 - 1 = 4 - 1 = 3$, divisible par 3 ✅</div>
-                            <p><strong>Hérédité :</strong> Supposons que $3 \mid (4n^3 - n)$.</p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $4(n+1)^3 - (n+1)$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 4(n^3 + 3n^2 + 3n + 1) - n - 1$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $= (4n^3 - n) + 12n^2 + 12n + 3$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $= 3k + 3(4n^2 + 4n + 1)$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $= 3(k + 4n^2 + 4n + 1)$</div>
+                            <div class="step"><span class="step-num">Initialisation :</span> $n=1$</div>
+                            <div class="step"><span class="step-num">On calcule :</span> $4(1)^3 - 1 = 4 - 1 = 3$, divisible par 3 ✅</div>
+                            <div class="step"><span class="step-num">Hérédité :</span> Supposons $\exists k \in \mathbb{N} : 4n^3 - n = 3k$</div>
+                            <div class="step"><span class="step-num">On développe :</span> $4(n+1)^3 - (n+1) = 4(n^3 + 3n^2 + 3n + 1) - n - 1$</div>
+                            <div class="step"><span class="step-num">On réécrit :</span> $= (4n^3 - n) + 12n^2 + 12n + 3$</div>
+                            <div class="step"><span class="step-num">On remplace :</span> $= 3k + 3(4n^2 + 4n + 1)$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $= 3(k + 4n^2 + 4n + 1)$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}^*$.</p>
                         </div>
                     </div>
@@ -473,17 +472,16 @@
                     <div id="sol8d" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Initialisation :</strong> $n=0$</p>
-                            <div class="step"><span class="step-num">Étape :</span> $1 + 5^{1} + 2 \times 3^{0} = 1 + 5 + 2 = 8$, divisible par 8 ✅</div>
-                            <p><strong>Hérédité :</strong> Supposons que $8 \mid (1 + 5^{n+1} + 2 \times 3^n)$.</p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $1 + 5^{n+2} + 2 \times 3^{n+1}$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= (1 + 5^{n+1} + 2 \times 3^n) + (5^{n+2} - 5^{n+1}) + 2(3^{n+1} - 3^n)$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $= 8k + 5^{n+1}(5-1) + 2 \times 3^n(3-1)$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $= 8k + 4 \times 5^{n+1} + 4 \times 3^n$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $= 8k + 4(5^{n+1} + 3^n)$</div>
-                            <p>Or $5^{n+1}$ est impair, $3^n$ est impair, donc leur somme est paire.</p>
-                            <p>Donc $5^{n+1} + 3^n = 2m$</p>
-                            <div class="step"><span class="step-num">Étape 6 :</span> $= 8k + 4(2m) = 8(k + m)$</div>
+                            <div class="step"><span class="step-num">Initialisation :</span> $n=0$</div>
+                            <div class="step"><span class="step-num">On calcule :</span> $1 + 5^{1} + 2 \times 3^{0} = 1 + 5 + 2 = 8$, divisible par 8 ✅</div>
+                            <div class="step"><span class="step-num">Hérédité :</span> Supposons $\exists k \in \mathbb{N} : 1 + 5^{n+1} + 2 \times 3^n = 8k$</div>
+                            <div class="step"><span class="step-num">On développe :</span> $1 + 5^{n+2} + 2 \times 3^{n+1}$</div>
+                            <div class="step"><span class="step-num">On réécrit :</span> $= (1 + 5^{n+1} + 2 \times 3^n) + (5^{n+2} - 5^{n+1}) + 2(3^{n+1} - 3^n)$</div>
+                            <div class="step"><span class="step-num">On remplace :</span> $= 8k + 5^{n+1}(5-1) + 2 \times 3^n(3-1)$</div>
+                            <div class="step"><span class="step-num">Donc :</span> $= 8k + 4 \times 5^{n+1} + 4 \times 3^n$</div>
+                            <div class="step"><span class="step-num">On factorise :</span> $= 8k + 4(5^{n+1} + 3^n)$</div>
+                            <div class="step"><span class="step-num">Or :</span> $5^{n+1}$ est impair et $3^n$ est impair, donc leur somme est paire, on pose $5^{n+1} + 3^n = 2m$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $= 8k + 4(2m) = 8(k + m)$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
                         </div>
                     </div>
@@ -499,14 +497,13 @@
                     <div id="sol8e" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Initialisation :</strong> $n=0$</p>
-                            <div class="step"><span class="step-num">Étape :</span> $4^0 + 6(0) - 1 = 1 + 0 - 1 = 0$, divisible par 9 ✅</div>
-                            <p><strong>Hérédité :</strong> Supposons que $9 \mid (4^n + 6n - 1)$.</p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $4^{n+1} + 6(n+1) - 1$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 4 \times 4^n + 6n + 6 - 1$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $= 4(4^n + 6n - 1) - 18n + 9$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $= 4(9k) - 9(2n - 1)$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $= 9(4k - 2n + 1)$</div>
+                            <div class="step"><span class="step-num">Initialisation :</span> $n=0$</div>
+                            <div class="step"><span class="step-num">On calcule :</span> $4^0 + 6(0) - 1 = 1 + 0 - 1 = 0$, divisible par 9 ✅</div>
+                            <div class="step"><span class="step-num">Hérédité :</span> Supposons $\exists k \in \mathbb{N} : 4^n + 6n - 1 = 9k$</div>
+                            <div class="step"><span class="step-num">On développe :</span> $4^{n+1} + 6(n+1) - 1 = 4 \times 4^n + 6n + 6 - 1$</div>
+                            <div class="step"><span class="step-num">On réécrit :</span> $= 4(4^n + 6n - 1) - 18n + 9$</div>
+                            <div class="step"><span class="step-num">On remplace :</span> $= 4(9k) - 9(2n - 1)$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $= 9(4k - 2n + 1)$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
                         </div>
                     </div>
@@ -522,15 +519,15 @@
                     <div id="sol8f" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p><strong>Initialisation :</strong> $n=0$</p>
-                            <div class="step"><span class="step-num">Étape :</span> $3 \times 5^{1} + 2^{1} = 15 + 2 = 17$, divisible par 17 ✅</div>
-                            <p><strong>Hérédité :</strong> Supposons que $17 \mid (3 \times 5^{2n+1} + 2^{3n+1})$.</p>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $3 \times 5^{2n+3} + 2^{3n+4}$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= 25 \times 3 \times 5^{2n+1} + 8 \times 2^{3n+1}$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $= 25(3 \times 5^{2n+1}) + 8(2^{3n+1})$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $= 17 \times 3 \times 5^{2n+1} + 8(3 \times 5^{2n+1} + 2^{3n+1})$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $= 17 \times 3 \times 5^{2n+1} + 8(17k)$</div>
-                            <div class="step"><span class="step-num">Étape 6 :</span> $= 17(3 \times 5^{2n+1} + 8k)$</div>
+                            <div class="step"><span class="step-num">Initialisation :</span> $n=0$</div>
+                            <div class="step"><span class="step-num">On calcule :</span> $3 \times 5^{1} + 2^{1} = 15 + 2 = 17$, divisible par 17 ✅</div>
+                            <div class="step"><span class="step-num">Hérédité :</span> Supposons $\exists k \in \mathbb{N} : 3 \times 5^{2n+1} + 2^{3n+1} = 17k$</div>
+                            <div class="step"><span class="step-num">On développe :</span> $3 \times 5^{2n+3} + 2^{3n+4}$</div>
+                            <div class="step"><span class="step-num">On réécrit :</span> $= 25 \times 3 \times 5^{2n+1} + 8 \times 2^{3n+1}$</div>
+                            <div class="step"><span class="step-num">On sépare $25=17+8$ :</span> $= 17 \times 3 \times 5^{2n+1} + 8 \times 3 \times 5^{2n+1} + 8 \times 2^{3n+1}$</div>
+                            <div class="step"><span class="step-num">On regroupe :</span> $= 17 \times 3 \times 5^{2n+1} + 8(3 \times 5^{2n+1} + 2^{3n+1})$</div>
+                            <div class="step"><span class="step-num">Par hérédité :</span> $= 17 \times 3 \times 5^{2n+1} + 8 \times 17k$</div>
+                            <div class="step"><span class="step-num">D'où :</span> $= 17(3 \times 5^{2n+1} + 8k)$</div>
                             <p style="color:#4ECDC4;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
                         </div>
                     </div>
@@ -557,6 +554,27 @@
 </footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
 
         <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>

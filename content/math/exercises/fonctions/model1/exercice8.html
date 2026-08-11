@@ -176,8 +176,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -500,19 +504,26 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $g(x) = \dfrac{2x^2+1}{x^2+1}$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Idée</span>
+                                <p>Le but est de faire apparaître $x^2+1$ (le dénominateur) au numérateur, pour pouvoir simplifier la fraction.</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= \dfrac{x^2 + (x^2+1)}{x^2+1}$
+                                <span class="step-num">On part de l'expression de $g(x)$ :</span> $g(x) = \dfrac{2x^2+1}{x^2+1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= \dfrac{x^2}{x^2+1} + \dfrac{x^2+1}{x^2+1}$
+                                <span class="step-num">On écrit $2x^2+1$ comme somme de $x^2$ et de $(x^2+1)$ :</span> $2x^2+1 = x^2 + (x^2+1)$, donc $g(x) = \dfrac{x^2 + (x^2+1)}{x^2+1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> $= 1 + \dfrac{x^2}{x^2+1}$
+                                <span class="step-num">On sépare en deux fractions de même dénominateur :</span> $= \dfrac{x^2}{x^2+1} + \dfrac{x^2+1}{x^2+1}$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ g(x) = 1 + \dfrac{x^2}{x^2+1}$ ✅</p>
+                            <div class="step">
+                                <span class="step-num">Or $\dfrac{x^2+1}{x^2+1} = 1$, donc :</span> $= 1 + \dfrac{x^2}{x^2+1}$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in \mathbb{R},\ g(x) = 1 + \dfrac{x^2}{x^2+1}$ ✅</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -524,37 +535,39 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:6px;">a) On montre l'égalité</p>
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $g(x) = \dfrac{2x^2+1}{x^2+1}$
+                                <span class="step-num">On repart de l'expression de $g(x)$ :</span> $g(x) = \dfrac{2x^2+1}{x^2+1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $= \dfrac{2(x^2+1) - 1}{x^2+1}$
+                                <span class="step-num">On écrit $2x^2+1 = 2(x^2+1) - 1$, pour faire apparaître $2(x^2+1)$ au numérateur :</span> $g(x) = \dfrac{2(x^2+1) - 1}{x^2+1}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= 2 - \dfrac{1}{x^2+1}$
+                                <span class="step-num">On sépare la fraction en deux termes :</span> $= \dfrac{2(x^2+1)}{x^2+1} - \dfrac{1}{x^2+1} = 2 - \dfrac{1}{x^2+1}$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Égalité :</strong> $\forall x \in \mathbb{R},\ g(x) = 2 - \dfrac{1}{x^2+1}$ ✅</p>
-                            
-                            <div style="margin-top:8px;">
-                                <p><strong>Encadrement :</strong></p>
-                                <div class="step">
-                                    <span class="step-num">Étape 1 :</span> $x^2 \ge 0 \Rightarrow x^2+1 \ge 1$
-                                </div>
-                                <div class="step">
-                                    <span class="step-num">Étape 2 :</span> $0 < \dfrac{1}{x^2+1} \le 1$
-                                </div>
-                                <div class="step">
-                                    <span class="step-num">Étape 3 :</span> $0 \le \dfrac{x^2}{x^2+1} < 1$ (d'après la question 1)
-                                </div>
-                                <div class="step">
-                                    <span class="step-num">Étape 4 :</span> $1 \le 1 + \dfrac{x^2}{x^2+1} < 2$
-                                </div>
+                            <div class="highlight-box green" style="margin-top:6px; margin-bottom:10px;">
+                                <span class="label resume">Égalité</span>
+                                <p>$\forall x \in \mathbb{R},\ g(x) = 2 - \dfrac{1}{x^2+1}$ ✅</p>
+                            </div>
+
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:10px;">b) On en déduit l'encadrement</p>
+                            <div class="step">
+                                <span class="step-num">On a $x^2 \ge 0$ pour tout $x \in \mathbb{R}$, donc en ajoutant $1$ :</span> $x^2+1 \ge 1$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">En passant à l'inverse (la fonction inverse est décroissante sur $]0,+\infty[$, l'inégalité change de sens) :</span> $0 < \dfrac{1}{x^2+1} \le 1$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">On multiplie par $-1$ (l'inégalité change de sens), puis on ajoute $2$ :</span> $-1 \le -\dfrac{1}{x^2+1} < 0 \ \Rightarrow\ 1 \le 2-\dfrac{1}{x^2+1} < 2$, donc $1 \le g(x) < 2$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Vérification avec le résultat de la question 1 :</span> $0 \le \dfrac{x^2}{x^2+1} < 1$, donc $1 \le 1+\dfrac{x^2}{x^2+1} < 2$ : on retrouve bien le même encadrement pour $g(x)$.
                             </div>
                             
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
                                 <p>$\forall x \in \mathbb{R},\ 1 \le g(x) < 2$</p>
-                                <p style="font-size:11px; color:var(--text-muted);">(Ou $1 \le g(x) \le 2$ avec $g(0)=1$)</p>
+                                <p style="font-size:11px; color:var(--text-muted);">La borne $1$ est atteinte en $x=0$ (car $g(0)=1$) ; la borne $2$ n'est jamais atteinte, c'est seulement une limite quand $x \to \pm\infty$.</p>
                             </div>
                             
                             <div class="table-wrap" style="margin-top:6px;">
@@ -576,19 +589,22 @@
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = 3x - 5$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel</span>
+                                <p>Une fonction $h$ est <strong>bornée</strong> sur $\mathbb{R}$ s'il existe deux réels $m$ et $M$ tels que $m \le h(x) \le M$ pour tout $x \in \mathbb{R}$.</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> Quand $x \to +\infty$, $f(x) \to +\infty$
+                                <span class="step-num">On étudie le comportement de $f(x) = 3x-5$ quand $x$ devient très grand ou très petit :</span>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Quand $x \to -\infty$, $f(x) \to -\infty$
+                                <span class="step-num">Quand $x \to +\infty$ :</span> $f(x) \to +\infty$, donc $f$ n'est pas majorée
                             </div>
-                            <p style="color:#FF6B6B; margin-top:4px;"><strong>Conclusion :</strong> $f$ n'est <strong>pas bornée</strong> sur ℝ car elle n'est ni majorée ni minorée.</p>
+                            <div class="step">
+                                <span class="step-num">Quand $x \to -\infty$ :</span> $f(x) \to -\infty$, donc $f$ n'est pas minorée
+                            </div>
                             <div class="highlight-box red" style="margin-top:6px;">
-                                <span class="label resume">Raison</span>
-                                <p>$f$ est une fonction affine non constante, elle n'est pas bornée sur ℝ.</p>
+                                <span class="label resume">Conclusion</span>
+                                <p>$f$ n'est <strong>pas bornée</strong> sur $\mathbb{R}$, car elle n'est ni majorée ni minorée : c'est une fonction affine non constante, sa courbe est une droite qui s'étend à l'infini dans les deux sens.</p>
                             </div>
                         </div>
                     </div>
@@ -602,18 +618,21 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $(g \circ f)(x) = g(f(x)) = g(3x-5)$
+                                <span class="step-num">On calcule $(g \circ f)(x)$ :</span> $(g \circ f)(x) = g(f(x)) = g(3x-5)$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> D'après la question 2, pour tout $t \in \mathbb{R}$, $1 \le g(t) \le 2$
+                                <span class="step-num">D'après la question 2, on a l'encadrement :</span> pour tout $t \in \mathbb{R}$, $1 \le g(t) < 2$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> En posant $t = f(x)$, on a $1 \le g(f(x)) \le 2$
+                                <span class="step-num">Or $f(x) \in \mathbb{R}$ pour tout $x \in \mathbb{R}$, donc on peut poser $t = f(x)$ dans cet encadrement :</span> $1 \le g(f(x)) < 2$, c'est-à-dire $1 \le (g \circ f)(x) < 2$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La fonction $g \circ f$ est <strong>bornée</strong> sur ℝ car $1 \le (g \circ f)(x) \le 2$.</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>La fonction $g \circ f$ est <strong>bornée</strong> sur $\mathbb{R}$, car $1 \le (g \circ f)(x) < 2$ pour tout $x \in \mathbb{R}$.</p>
+                            </div>
                             <div class="graph-container">
-                                <canvas id="graphBorne" width="350" height="150"></canvas>
-                                <p>$1 \le (g \circ f)(x) \le 2$</p>
+                                <svg id="graphBorne" class="figure-svg"></svg>
+                                <p>$1 \le (g \circ f)(x) < 2$</p>
                             </div>
                         </div>
                     </div>
@@ -626,23 +645,33 @@
                     <div id="sol5" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:6px;">a) La valeur $1$</p>
                             <div class="step">
-                                <span class="step-num">Valeur 1 :</span> $g(t)=1 \iff \dfrac{x^2}{x^2+1}=0 \iff t=0$ (d'après la question 1)
+                                <span class="step-num">D'après la question 1, on cherche $t$ tel que $g(t)=1$ :</span> $g(t)=1 \iff \dfrac{t^2}{t^2+1}=0 \iff t^2=0 \iff t=0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape :</span> $f(x)=0 \iff 3x-5=0 \iff x=\dfrac{5}{3}$
+                                <span class="step-num">On cherche $x$ tel que $f(x)=0$ (c'est-à-dire $t=0$) :</span> $f(x)=0 \iff 3x-5=0 \iff x=\dfrac{5}{3}$
                             </div>
-                            <p>Donc $(g \circ f)\left(\dfrac{5}{3}\right)=1$ : la valeur $1$ est <strong>atteinte</strong>.</p>
+                            <div class="highlight-box green" style="margin-top:6px; margin-bottom:10px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$(g \circ f)\left(\dfrac{5}{3}\right) = g(0) = 1$, donc la valeur $1$ est <strong>atteinte</strong> (pour $x=\dfrac{5}{3}$).</p>
+                            </div>
+
+                            <p style="font-weight:600; color:#4ECDC4; margin-top:10px;">b) La valeur $2$</p>
                             <div class="step">
-                                <span class="step-num">Valeur 2 :</span> $g(t)=2 \iff \dfrac{1}{t^2+1}=0$, ce qui est impossible pour $t \in \mathbb{R}$
+                                <span class="step-num">On cherche $t$ tel que $g(t)=2$ :</span> $g(t)=2 \iff 2-\dfrac{1}{t^2+1}=2 \iff \dfrac{1}{t^2+1}=0$, ce qui est <strong>impossible</strong> car $\dfrac{1}{t^2+1} > 0$ pour tout $t \in \mathbb{R}$
                             </div>
-                            <p>Or $t=f(x)$ décrit tout $\mathbb{R}$ quand $x$ décrit $\mathbb{R}$ (car $f$ est affine non constante), donc $(g \circ f)(x)$ ne vaut jamais $2$ : la valeur $2$ n'est <strong>jamais atteinte</strong> (elle n'est qu'une limite quand $t \to \pm\infty$).</p>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $1$ est un minimum atteint, $2$ est seulement une borne supérieure non atteinte.</p>
+                            <div class="step">
+                                <span class="step-num">Or $t = f(x)$ décrit tout $\mathbb{R}$ quand $x$ décrit $\mathbb{R}$ (car $f$ est affine non constante) :</span> donc $(g \circ f)(x)$ ne vaut jamais $2$
+                            </div>
+                            <div class="highlight-box red" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>La valeur $2$ n'est <strong>jamais atteinte</strong> : c'est seulement une limite quand $x \to \pm\infty$.</p>
+                            </div>
                             
-                            <div class="highlight-box green" style="margin-top:6px;">
+                            <div class="highlight-box green" style="margin-top:8px;">
                                 <span class="label resume">Résumé</span>
-                                <p>$(g \circ f)(x)$ est bornée entre <strong>1</strong> et <strong>2</strong>.</p>
-                                <p style="font-size:11px; color:var(--text-muted);">La valeur $1$ est atteinte quand $f(x) = 0$ soit $x = \dfrac{5}{3}$.</p>
+                                <p>$(g \circ f)(x)$ est bornée entre <strong>1</strong> et <strong>2</strong> : $1$ est un <strong>minimum atteint</strong> en $x=\dfrac{5}{3}$, alors que $2$ est seulement une borne supérieure, <strong>jamais atteinte</strong>.</p>
                             </div>
                         </div>
                     </div>
@@ -766,6 +795,7 @@
             }, 300);
         });
     </script>
+    <script src="figuresvt_p8.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
@@ -959,3 +989,4 @@
 
 </body>
 </html>
+

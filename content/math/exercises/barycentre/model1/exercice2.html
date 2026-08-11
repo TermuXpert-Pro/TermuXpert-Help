@@ -18,7 +18,16 @@
     <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
     
     
-    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -463,10 +472,10 @@
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    Soient $E$ et $F$ deux points du plan tels que : $\overrightarrow{EG} = 2\overrightarrow{EF}$ et $E \in (AB)$.
+                    Soient $E$ et $F$ deux points du plan et $G$ le point tel que : $\overrightarrow{EG} = 2\overrightarrow{EF}$.
                 </p>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
-                    On sait que $G$ est le barycentre des points $(A; 2)$ et $(B; -3)$.
+                    On sait de plus que $G$ est le barycentre des points $(A; 2)$ et $(B; -3)$.
                 </p>
 
                 <div class="sub-question">
@@ -476,48 +485,46 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            <p>On sait que : $\overrightarrow{EG} = 2\overrightarrow{EF}$</p>
+                            <div class="highlight-box yellow">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>Pour montrer que $G = \text{Bar}\{(E, \alpha); (F, \beta)\}$, on doit obtenir une relation de la forme $\alpha\overrightarrow{GE} + \beta\overrightarrow{GF} = \vec{0}$.</p>
+                            </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> On utilise la relation de Chasles :
+                                <span class="step-num">On a :</span> $\overrightarrow{EG} = 2\overrightarrow{EF}$
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">D'après la relation de Chasles :</span> $\overrightarrow{EF} = \overrightarrow{EG} + \overrightarrow{GF}$, donc :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\overrightarrow{EG} = 2\overrightarrow{EF} = 2(\overrightarrow{EG} + \overrightarrow{GF})$$
+                                    $$\overrightarrow{EG} = 2(\overrightarrow{EG} + \overrightarrow{GF}) = 2\overrightarrow{EG} + 2\overrightarrow{GF}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On développe :
+                                <span class="step-num">D'où :</span> en regroupant les termes :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\overrightarrow{EG} = 2\overrightarrow{EG} + 2\overrightarrow{GF}$$
+                                    $$\overrightarrow{EG} - 2\overrightarrow{EG} - 2\overrightarrow{GF} = \vec{0} \ \Leftrightarrow\ -\overrightarrow{EG} - 2\overrightarrow{GF} = \vec{0}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On transpose les termes :
+                                <span class="step-num">Or $-\overrightarrow{EG} = \overrightarrow{GE}$, donc :</span>
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\overrightarrow{EG} - 2\overrightarrow{EG} - 2\overrightarrow{GF} = 0$$
-                                    $$-\overrightarrow{EG} - 2\overrightarrow{GF} = 0$$
+                                    $$\overrightarrow{GE} - 2\overrightarrow{GF} = \vec{0} \ \Leftrightarrow\ \overrightarrow{GE} = 2\overrightarrow{GF}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> On utilise $-\overrightarrow{EG} = \overrightarrow{GE}$ :
+                                <span class="step-num">Ainsi :</span> on obtient la relation barycentrique :
                                 <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$\overrightarrow{GE} - 2\overrightarrow{GF} = 0$$
-                                    $$\overrightarrow{GE} = 2\overrightarrow{GF}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> On réécrit sous la forme du barycentre :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$-1\overrightarrow{GE} + 2\overrightarrow{GF} = 0$$
+                                    $$-1\overrightarrow{GE} + 2\overrightarrow{GF} = \vec{0}$$
                                 </div>
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>$G$ est le barycentre du système pondéré :</p>
+                                <p>$G$ est donc le barycentre du système pondéré :</p>
                                 <div class="formula-block" style="font-size:16px; margin:4px 0;">
                                     $$G = \text{Bar}\{(E, -1); (F, 2)\}$$
                                 </div>
@@ -533,27 +540,29 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> D'après la question 1, $G$ est le barycentre des points $(E; -1)$ et $(F; 2)$.
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 2 :</span> Or, le barycentre de deux points est toujours aligné avec ces deux points.
-                                <br>Donc : $G \in (EF)$.
+                            <div class="highlight-box yellow">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>Le barycentre de deux points appartient toujours à la droite définie par ces deux points.</p>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> On sait aussi que $G$ est le barycentre des points $(A; 2)$ et $(B; -3)$.
-                                <br>Donc : $G \in (AB)$.
+                                <span class="step-num">D'après la question 1) :</span> $G$ est le barycentre des points $(E; -1)$ et $(F; 2)$.
+                                <br>Or le barycentre de deux points est toujours aligné avec ces deux points, donc $G \in (EF)$.
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> Puisque $G \in (EF)$ et $G \in (AB)$, on a :
+                                <span class="step-num">Et :</span> $G$ est aussi le barycentre des points $(A; 2)$ et $(B; -3)$.
+                                <br>De même, donc $G \in (AB)$.
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">Puisque :</span> $G \in (EF)$ et $G \in (AB)$, alors les deux droites ont un point commun :
                                 <br>$(EF) \cap (AB) = \{G\}$.
                             </div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>Les droites $(EF)$ et $(AB)$ se coupent au point <strong>$G$</strong>.</p>
+                                <p>Les droites $(EF)$ et $(AB)$ ne sont pas parallèles : elles se coupent au point <strong>$G$</strong>.</p>
                             </div>
 
                             <div class="graph-container">

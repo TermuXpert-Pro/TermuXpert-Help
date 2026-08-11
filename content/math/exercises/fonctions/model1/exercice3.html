@@ -162,8 +162,12 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg.figure-svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -457,17 +461,26 @@
                     <div id="sol1" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = x^2 + x$
+                            <div class="highlight-box purple" style="margin-top:0; margin-bottom:6px;">
+                                <span class="label rappel">Rappel du cours</span>
+                                <p>Mettre $f(x)=ax^2+bx+c$ sous forme canonique $a(x-\alpha)^2+\beta$, c'est « compléter le carré » à l'aide de l'identité $(x+k)^2 = x^2+2kx+k^2$</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> On complète le carré :
-                                $x^2 + x = \left(x^2 + x + \dfrac{1}{4}\right) - \dfrac{1}{4}$
+                                <span class="step-num">On identifie $k$ :</span> $f(x) = x^2 + x$ ; on veut $2k = 1$, donc $k = \dfrac{1}{2}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $= \left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4}$
+                                <span class="step-num">On ajoute et on retranche $k^2 = \dfrac{1}{4}$ :</span> $x^2 + x = \left(x^2 + x + \dfrac{1}{4}\right) - \dfrac{1}{4}$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La forme canonique est :</p>
+                            <div class="step">
+                                <span class="step-num">On reconnaît l'identité remarquable :</span> $x^2 + x + \dfrac{1}{4} = \left(x + \dfrac{1}{2}\right)^2$
+                            </div>
+                            <div class="step">
+                                <span class="step-num">D'où :</span> $f(x) = \left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4}$
+                            </div>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>La forme canonique de $f$ est :</p>
+                            </div>
                             <div class="formula-block" style="font-size:14px;">
                                 $f(x) = \left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4}$
                             </div>
@@ -482,17 +495,19 @@
                     <div id="sol2" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>D'après la forme canonique :</p>
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = \left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4}$
+                                <span class="step-num">D'après la question 1) :</span> $f(x) = \left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $\left(x + \dfrac{1}{2}\right)^2 \ge 0$ pour tout $x \in \mathbb{R}$
+                                <span class="step-num">Un carré est toujours positif ou nul :</span> $\forall x \in \mathbb{R},\ \left(x + \dfrac{1}{2}\right)^2 \ge 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Donc $\left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4} \ge -\dfrac{1}{4}$
+                                <span class="step-num">On ajoute $-\dfrac{1}{4}$ aux deux membres de l'inégalité :</span> $\left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4} \ge 0 - \dfrac{1}{4}$
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \ge -\dfrac{1}{4}$ ✅</p>
+                            <div class="highlight-box green" style="margin-top:6px;">
+                                <span class="label resume">Conclusion</span>
+                                <p>$\forall x \in \mathbb{R},\ f(x) \ge -\dfrac{1}{4}$ ✅</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -505,16 +520,13 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> $f(x) = -\dfrac{1}{4}$
+                                <span class="step-num">On pose l'équation :</span> $f(x) = -\dfrac{1}{4} \iff \left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4} = -\dfrac{1}{4}$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> $\left(x + \dfrac{1}{2}\right)^2 - \dfrac{1}{4} = -\dfrac{1}{4}$
+                                <span class="step-num">On isole le carré :</span> $\left(x + \dfrac{1}{2}\right)^2 = 0$
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> $\left(x + \dfrac{1}{2}\right)^2 = 0$
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> $x + \dfrac{1}{2} = 0 \iff x = -\dfrac{1}{2}$
+                                <span class="step-num">Un carré est nul $\iff$ sa base est nulle :</span> $x + \dfrac{1}{2} = 0 \iff x = -\dfrac{1}{2}$
                             </div>
                             
                             <p style="margin-top:6px;"><strong>Ensemble des solutions :</strong></p>
@@ -523,17 +535,17 @@
                             </div>
                             
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Déduction :</span> On a montré que $f(x) \ge -\dfrac{1}{4}$ et $f\left(-\dfrac{1}{2}\right) = -\dfrac{1}{4}$.
+                                <span class="step-num">Lien avec la question 2) :</span> on a $\forall x \in \mathbb{R},\ f(x) \ge -\dfrac{1}{4}$, et cette valeur est effectivement atteinte, en $x = -\dfrac{1}{2}$
                             </div>
                             
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>La valeur minimale de $f$ sur $\mathbb{R}$ est <strong>$m = -\dfrac{1}{4}$</strong>.</p>
-                                <p style="font-size:11px; color:var(--text-muted);">Atteinte en $x = -\dfrac{1}{2}$.</p>
+                                <p>$f$ est minorée par $-\dfrac{1}{4}$ et cette valeur est atteinte $\implies$ le minimum de $f$ sur $\mathbb{R}$ est <strong>$m = -\dfrac{1}{4}$</strong>.</p>
+                                <p style="font-size:11px; color:var(--text-muted);">Atteint en $x = -\dfrac{1}{2}$.</p>
                             </div>
                             
                             <div class="graph-container">
-                                <canvas id="graphMin3" width="350" height="150"></canvas>
+                                <svg id="graphMin3" class="figure-svg"></svg>
                                 <p>Minimum $m = -\dfrac{1}{4}$ atteint en $x = -\dfrac{1}{2}$</p>
                             </div>
                         </div>
@@ -663,6 +675,7 @@
             }, 300);
         });
     </script>
+    <script src="figuresvt_p3.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
@@ -856,3 +869,4 @@
 
 </body>
 </html>
+

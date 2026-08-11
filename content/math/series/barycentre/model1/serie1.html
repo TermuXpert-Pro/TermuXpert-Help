@@ -175,7 +175,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -511,7 +511,7 @@
                             </div>
 
                             <div class="graph-container">
-                                <canvas id="graph1" width="400" height="200"></canvas>
+                                <svg id="graph1" role="img" aria-label="Figure barycentre exercice 1"></svg>
                                 <p>Construction de G = Bar{(A,4); (B,-5)}</p>
                             </div>
                         </div>
@@ -572,7 +572,7 @@
                             </div>
 
                             <div class="graph-container">
-                                <canvas id="graph2" width="400" height="200"></canvas>
+                                <svg id="graph2" role="img" aria-label="Figure barycentre exercice 2"></svg>
                                 <p>Construction de G = Bar{(A,√8); (B,-√2)}</p>
                             </div>
                         </div>
@@ -628,7 +628,7 @@
                             </div>
 
                             <div class="graph-container">
-                                <canvas id="graph3" width="400" height="250"></canvas>
+                                <svg id="graph3" role="img" aria-label="Figure barycentre exercice 3"></svg>
                                 <p>Position de G dans le repère</p>
                             </div>
                         </div>
@@ -686,7 +686,7 @@
                             </div>
 
                             <div class="graph-container">
-                                <canvas id="graph4" width="400" height="250"></canvas>
+                                <svg id="graph4" role="img" aria-label="Figure barycentre exercice 4"></svg>
                                 <p>Position de I dans le repère (A; AB; AC)</p>
                             </div>
                         </div>
@@ -747,245 +747,8 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraph1() {
-            var canvas = document.getElementById('graph1');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h/2 + 10;
-            var scale = 40;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Points A et B
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
-            var G = {x: 5, y: 0, color: '#F4D03F', label: 'G'};
-
-            var pts = [A, B, G];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            // Flèche
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy);
-            ctx.lineTo(ox + G.x * scale, oy);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('AG = 5 AB', 10, 20);
-        }
-
-        function drawGraph2() {
-            var canvas = document.getElementById('graph2');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h/2 + 10;
-            var scale = 40;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Points A, B, G
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
-            var G = {x: -1, y: 0, color: '#F4D03F', label: 'G'};
-
-            var pts = [A, B, G];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('G symétrique de B par rapport à A', 10, 20);
-        }
-
-        function drawGraph3() {
-            var canvas = document.getElementById('graph3');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 60, oy = h - 30;
-            var scale = 40;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 10, 16);
-
-            // Points
-            var pts = [
-                {x: 3, y: 2, color: '#4ECDC4', label: 'A'},
-                {x: 4, y: 1, color: '#FF6B6B', label: 'B'},
-                {x: 17/4, y: 3/4, color: '#F4D03F', label: 'G'}
-            ];
-
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label + ' (' + pts[i].x.toFixed(1) + ';' + pts[i].y.toFixed(1) + ')', px + 8, py - 6);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('A, G et B sont alignés', 200, 20);
-        }
-
-        function drawGraph4() {
-            var canvas = document.getElementById('graph4');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 45;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('AB', w - 30, oy + 18);
-            ctx.fillText('AC', ox + 10, 16);
-
-            // Points
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
-            var C = {x: 0, y: 1, color: '#BB8FCE', label: 'C'};
-            var I = {x: 4, y: -3, color: '#F4D03F', label: 'I'};
-
-            var pts = [A, B, C, I];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 6, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '12px Arial';
-                ctx.fillText(pts[i].label, px + 8, py - 6);
-            }
-
-            // Triangle ABC
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(ox + 1 * scale, oy);
-            ctx.lineTo(ox, oy - 1 * scale);
-            ctx.closePath();
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('I(4; -3) dans le repère (A; AB; AC)', 200, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph1();
-                drawGraph2();
-                drawGraph3();
-                drawGraph4();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p1.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

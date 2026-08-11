@@ -508,6 +508,11 @@
                             <p>Le plan $(\mathcal{P})$ est rapporté à un repère orthonormé $\mathcal{R}(O,\vec{i},\vec{j})$. Considérons les points $A(2,1)$, $B(5,0)$ et $C(7,6)$.</p>
                             <p>Montrer que le triangle $ABC$ est rectangle en $B$, puis calculer sa surface.</p>
                         </div>
+                        <div class="graph-container">
+                            <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Triangle ABC</p>
+                            <svg id="graphEx1Rectangle" width="360" height="280"></svg>
+                            <p>$A(2,1)$, $B(5,0)$, $C(7,6)$</p>
+                        </div>
                         <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
                         <div id="sol1" class="solution-box">
                             <div class="sol-title">✅ Solution détaillée</div>
@@ -533,6 +538,11 @@
                         <div class="ex-question">
                             <p>Le plan $(\mathcal{P})$ est rapporté à un repère orthonormé $\mathcal{R}(O,\vec{i},\vec{j})$. On considère la droite $(D): 2x-y+1=0$ et $N$ un point de $(D)$ d'abscisse $\alpha$.</p>
                             <p>1) Déterminer les coordonnées de $N$. &nbsp; 2) Déterminer la distance $ON$. &nbsp; 3) Pour quelle valeur de $\alpha$ la distance $ON$ est-elle minimale ?</p>
+                        </div>
+                        <div class="graph-container">
+                            <p style="color:#4ECDC4; font-weight:bold; margin-bottom:6px;">📐 Point N sur (D) et distance ON</p>
+                            <svg id="graphEx2Distance" width="360" height="290"></svg>
+                            <p>$ON$ est minimale quand $N=N_0$ (projeté orthogonal de $O$ sur $(D)$)</p>
                         </div>
                         <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
                         <div id="sol2" class="solution-box">
@@ -588,8 +598,25 @@
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
     
-    <script src="../../../../../assets/js/svg-utils.js"></script>
-    <script src="figuresvt.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) { navbar.classList.toggle('scrolled', window.scrollY > 30); }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                if (btn) btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                if (btn) btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="figuresvt_p1.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 
