@@ -490,12 +490,12 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Système étudié : la bille.
-                                <br>Bilan des forces : \(\vec{P}\) (poids).
+                                <span class="step-num">Système étudié :</span> la bille, assimilée à un point matériel.
+                                <br><span class="step-num" style="margin-top:4px; display:inline-block;">Bilan des forces :</span> seul le poids \(\vec{P}\) s'exerce sur la bille (chute libre).
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Tableau des états :
+                                <span class="step-num">On a :</span> le point B correspond au sommet de la trajectoire, là où la vitesse s'annule. Le tableau des états s'écrit :
                                 <div class="table-wrap" style="margin:4px 0;">
                                     <table>
                                         <tr><th></th><th>État initial (A)</th><th>État final (B)</th></tr>
@@ -506,16 +506,19 @@
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Application du théorème de l'énergie cinétique entre A et B :
+                                <span class="step-num">Donc :</span> d'après le théorème de l'énergie cinétique, appliqué à la bille entre A et B :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P})$$
-                                    $$\frac{1}{2} m v_B^2 - \frac{1}{2} m v_A^2 = m \cdot g (z_A - z_B)$$
-                                    $$-\frac{1}{2} v_A^2 = g(z_A - z_B)$$
+                                    $$\frac{1}{2} m v_B^2 - \frac{1}{2} m v_A^2 = m \cdot g \cdot (z_A - z_B)$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Or \(v_B = 0\), donc en simplifiant par \(m\) :</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$-\frac{1}{2} v_A^2 = g \cdot (z_A - z_B)$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> On isole \(z_B\) :
+                                <span class="step-num">D'où :</span> on isole \(z_B\), puis on applique numériquement avec \(v_A = 10\text{ m/s}\), \(g = 10\text{ N/kg}\) et \(z_A = 2,0\text{ m}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$z_B = z_A + \frac{v_A^2}{2g} = 2,0 + \frac{10^2}{2 \times 10} = 2,0 + 5,0 = 7,0\text{ m}$$
                                 </div>
@@ -539,7 +542,7 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Tableau des états :
+                                <span class="step-num">On a :</span> après avoir atteint le point B (sommet), la bille retombe en chute libre jusqu'au sol (point O). Le tableau des états s'écrit :
                                 <div class="table-wrap" style="margin:4px 0;">
                                     <table>
                                         <tr><th></th><th>État initial (B)</th><th>État final (O)</th></tr>
@@ -550,16 +553,19 @@
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre B et O :
+                                <span class="step-num">Donc :</span> d'après le théorème de l'énergie cinétique, appliqué à la bille entre B et O :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cO} - E_{cB} = W_{B\to O}(\vec{P})$$
-                                    $$\frac{1}{2} m v_0^2 - 0 = m \cdot g (z_B - z_0)$$
+                                    $$\frac{1}{2} m v_0^2 - 0 = m \cdot g \cdot (z_B - z_0)$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Or \(z_0 = 0\), donc en simplifiant par \(m\) :</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\frac{1}{2} v_0^2 = g \cdot z_B$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> On isole \(v_0\) :
+                                <span class="step-num">A.N :</span> on isole \(v_0\), puis on remplace par \(g = 10\text{ N/kg}\) et \(z_B = 7,0\text{ m}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$v_0 = \sqrt{2g \cdot z_B} = \sqrt{2 \times 10 \times 7,0} = \sqrt{140} \approx 11,8\text{ m/s}$$
                                 </div>
@@ -918,3 +924,4 @@
 
 </body>
 </html>
+

@@ -388,27 +388,25 @@
                     <span class="label ex">Exemple</span>
                     <p>Résoudre l'équation suivante : <strong>$|x+1| + 2x = 0$</strong>, $x \in \mathbb{R}$</p>
                     <p style="font-weight:600; color:var(--gold-text); margin-top:6px;">1er cas : $x \in ]-\infty, -1]$</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $|x+1| + 2x = 0 \iff -(x+1) + 2x = 0$
+                    <p>Dans ce cas $x+1 \le 0$, donc $|x+1| = -(x+1)$. On a :</p>
+                    <div class="formula-block">
+                        $|x+1| + 2x = 0 \iff -(x+1) + 2x = 0$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $\iff -x - 1 + 2x = 0 \iff x - 1 = 0$
+                    <p>on développe et on réduit :</p>
+                    <div class="formula-block">
+                        $\iff -x - 1 + 2x = 0 \iff x - 1 = 0 \iff x = 1$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $\iff x = 1 \notin ]-\infty, -1]$
-                    </div>
-                    <p style="color:#FF6B6B;">Donc : $S_1 = \varnothing$</p>
+                    <p>or $1 \notin\ ]-\infty, -1]$, cette valeur est à rejeter. Donc : $S_1 = \varnothing$</p>
                     <p style="font-weight:600; color:var(--gold-text); margin-top:10px;">2ème cas : $x \in [-1, +\infty[$</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $|x+1| + 2x = 0 \iff (x+1) + 2x = 0$
+                    <p>Dans ce cas $x+1 \ge 0$, donc $|x+1| = x+1$. On a :</p>
+                    <div class="formula-block">
+                        $|x+1| + 2x = 0 \iff (x+1) + 2x = 0$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $\iff 3x + 1 = 0$
+                    <p>on développe et on réduit :</p>
+                    <div class="formula-block">
+                        $\iff 3x + 1 = 0 \iff x = -\frac{1}{3}$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $\iff x = -\frac{1}{3} \in [-1, +\infty[$
-                    </div>
-                    <p style="color:#4ECDC4;">Donc : $S_2 = \left\{-\frac{1}{3}\right\}$</p>
+                    <p>or $-\dfrac{1}{3} \in [-1, +\infty[$, cette valeur est acceptée. Donc : $S_2 = \left\{-\frac{1}{3}\right\}$</p>
                     <p style="font-weight:700; color:#4ECDC4; margin-top:10px;">Conclusion : $S = S_1 \cup S_2 = \left\{-\frac{1}{3}\right\}$</p>
                 </div>
 
@@ -453,40 +451,33 @@
                     <p>Soient <strong>r</strong> un nombre rationnel et <strong>i</strong> un nombre irrationnel et <strong>s = r + i</strong>.</p>
                     <p>Montrer que <strong>s</strong> est un nombre irrationnel.</p>
                     <p style="font-weight:600; color:var(--gold-text); margin-top:6px;">On utilise un raisonnement par l'absurde :</p>
-                    <div class="step">
-                        <span class="step-num">Supposition :</span> On suppose que $s$ est un nombre rationnel.
+                    <p>On suppose que $s$ est un nombre <strong>rationnel</strong>. On a :</p>
+                    <div class="formula-block">
+                        $s = r + i \iff i = s - r$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $s = r + i \iff i = s - r$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $s - r$ est un nombre rationnel (car la somme de deux rationnels est rationnelle).
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> Mais $i = s - r$ et $i$ est un nombre irrationnel.
-                    </div>
+                    <p>Or $s$ et $r$ sont tous les deux rationnels par supposition, et la somme (ou différence) de deux rationnels est rationnelle, donc $s - r$ est <strong>rationnel</strong>.</p>
+                    <p>Mais $i = s - r$, donc $i$ serait rationnel — ce qui contredit le fait que $i$ est irrationnel.</p>
                     <p style="color:#FF6B6B; margin-top:4px;"><strong>Contradiction !</strong></p>
                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La supposition « s est rationnel » est fausse. Donc <strong>s est irrationnel</strong>.</p>
                 </div>
                 <div class="highlight-box yellow" style="margin-top:12px;">
                     <span class="label ex">Exemple 2 : √2 est irrationnel</span>
                     <p>Montrer que <strong>$\sqrt{2} \notin \mathbb{Q}$</strong> (√2 n'est pas un nombre rationnel).</p>
-                    <div class="step">
-                        <span class="step-num">Supposition :</span> On suppose que $\sqrt{2}$ est un nombre rationnel.
+                    <p style="font-weight:600; color:var(--gold-text); margin-top:6px;">On utilise un raisonnement par l'absurde :</p>
+                    <p>On suppose que $\sqrt{2}$ est un nombre <strong>rationnel</strong>. Il existe alors $p,q \in \mathbb{Z}^*$ avec $pgcd(p,q) = 1$ tels que :</p>
+                    <div class="formula-block">
+                        $\sqrt{2} = \dfrac{p}{q}$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $\sqrt{2} = \dfrac{p}{q}$ avec $p,q \in \mathbb{Z}^*$ et $pgcd(p,q) = 1$
+                    <p>en élevant au carré :</p>
+                    <div class="formula-block">
+                        $2 = \dfrac{p^2}{q^2} \Rightarrow p^2 = 2q^2$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $2 = \dfrac{p^2}{q^2} \Rightarrow p^2 = 2q^2$
+                    <p>donc $p^2$ est pair, ce qui entraîne que $p$ lui-même est pair : on pose $p = 2k$ avec $k \in \mathbb{Z}$. En remplaçant :</p>
+                    <div class="formula-block">
+                        $4k^2 = 2q^2 \Rightarrow q^2 = 2k^2$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $p^2$ est pair $\Rightarrow p$ est pair ($p = 2k$)
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 4 :</span> $4k^2 = 2q^2 \Rightarrow q^2 = 2k^2 \Rightarrow q$ est pair
-                    </div>
-                    <p style="color:#FF6B6B; margin-top:4px;"><strong>Contradiction !</strong> ($p$ et $q$ sont pairs donc $pgcd(p,q) \neq 1$)</p>
+                    <p>donc $q^2$ est pair, donc $q$ est pair également.</p>
+                    <p style="color:#FF6B6B; margin-top:4px;"><strong>Contradiction !</strong> $p$ et $q$ sont tous les deux pairs, donc $pgcd(p,q) \ge 2 \neq 1$, ce qui contredit l'hypothèse $pgcd(p,q)=1$.</p>
                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\sqrt{2} \notin \mathbb{Q}$</p>
                 </div>
                 <div class="highlight-box purple">
@@ -526,41 +517,39 @@
                     <span class="label ex">Exemple 1 : Somme des entiers</span>
                     <p>Montrer que : <strong>$\forall n \in \mathbb{N}^* : 1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$</strong></p>
                     <p style="font-weight:600; color:var(--gold-text); margin-top:6px;">Initialisation :</p>
-                    <div class="step">
-                        <span class="step-num">n = 1 :</span> $1 = \dfrac{1 \times 2}{2} = 1$ ✅
-                    </div>
+                    <p>Pour $n = 1$ : $1 = \dfrac{1 \times 2}{2} = 1$ ✅ &nbsp; la propriété est vraie au rang 1.</p>
                     <p style="font-weight:600; color:var(--gold-text); margin-top:8px;">Hérédité :</p>
-                    <p>Supposons que $1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $1 + 2 + 3 + \cdots + n + (n+1) = \dfrac{n(n+1)}{2} + (n+1)$
+                    <p>Soit $n \ge 1$. Supposons que $1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$ (hypothèse de récurrence), et montrons que la propriété reste vraie au rang $n+1$. On a :</p>
+                    <div class="formula-block">
+                        $1 + 2 + 3 + \cdots + n + (n+1) = \dfrac{n(n+1)}{2} + (n+1)$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $= \dfrac{n(n+1) + 2(n+1)}{2} = \dfrac{(n+1)(n+2)}{2}$
+                    <p>on met au même dénominateur puis on factorise par $(n+1)$ :</p>
+                    <div class="formula-block">
+                        $= \dfrac{n(n+1) + 2(n+1)}{2} = \dfrac{(n+1)(n+2)}{2}$
                     </div>
-                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}^*$.</p>
+                    <p>ce qui est bien la formule attendue au rang $n+1$.</p>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> D'après le principe de récurrence, la propriété est vraie pour tout $n \in \mathbb{N}^*$.</p>
                 </div>
                 <div class="highlight-box yellow" style="margin-top:12px;">
                     <span class="label ex">Exemple 2 : Divisibilité</span>
                     <p>Montrer que : <strong>$\forall n \in \mathbb{N},\ n^3 + 2n$ est divisible par 3</strong></p>
                     <p style="font-weight:600; color:var(--gold-text); margin-top:6px;">Initialisation :</p>
-                    <div class="step">
-                        <span class="step-num">n = 0 :</span> $0^3 + 2 \times 0 = 0$ divisible par 3 ✅
-                    </div>
+                    <p>Pour $n = 0$ : $0^3 + 2 \times 0 = 0$ est divisible par 3 ✅ &nbsp; la propriété est vraie au rang 0.</p>
                     <p style="font-weight:600; color:var(--gold-text); margin-top:8px;">Hérédité :</p>
-                    <p>Supposons que $3 \mid (n^3 + 2n)$ (c.à.d. $n^3 + 2n = 3k$)</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $(n+1)^3 + 2(n+1) = n^3 + 3n^2 + 3n + 1 + 2n + 2$
+                    <p>Soit $n \ge 0$. Supposons que $3 \mid (n^3 + 2n)$, c.à.d. qu'il existe $k \in \mathbb{N}$ tel que $n^3 + 2n = 3k$ (hypothèse de récurrence), et montrons que $3 \mid \left[(n+1)^3 + 2(n+1)\right]$. On développe :</p>
+                    <div class="formula-block">
+                        $(n+1)^3 + 2(n+1) = n^3 + 3n^2 + 3n + 1 + 2n + 2$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $= (n^3 + 2n) + 3n^2 + 3n + 3$
+                    <p>on regroupe $n^3 + 2n$ (que l'on remplace par $3k$) avec le reste :</p>
+                    <div class="formula-block">
+                        $= (n^3 + 2n) + 3n^2 + 3n + 3 = 3k + 3n^2 + 3n + 3$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $= 3k + 3(n^2 + n + 1)$
+                    <p>on met 3 en facteur commun :</p>
+                    <div class="formula-block">
+                        $= 3(k + n^2 + n + 1)$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 4 :</span> $= 3(k + n^2 + n + 1)$
-                    </div>
-                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La propriété est vraie pour tout $n \in \mathbb{N}$.</p>
+                    <p>donc $(n+1)^3 + 2(n+1)$ est bien un multiple de 3.</p>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> D'après le principe de récurrence, la propriété est vraie pour tout $n \in \mathbb{N}$.</p>
                 </div>
                 <div class="highlight-box purple">
                     <span class="label resume">Résumé</span>

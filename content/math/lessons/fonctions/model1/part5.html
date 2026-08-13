@@ -415,14 +415,12 @@
                         <div id="sol1a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>Pour montrer que $f$ est majorée par $M=1$, il faut prouver que :</p>
-                                <div class="formula-block">$f(x) \le 1$ pour tout $x \in \mathbb{R}$</div>
-                                <div class="step"><span class="step-num">Étape 1 :</span> $f(x) = -x^2 + 2x = -(x^2 - 2x)$</div>
-                                <div class="step"><span class="step-num">Étape 2 :</span> $= -(x^2 - 2x + 1) + 1$ (on complète le carré)</div>
-                                <div class="step"><span class="step-num">Étape 3 :</span> $= -(x-1)^2 + 1$</div>
-                                <div class="step"><span class="step-num">Étape 4 :</span> $(x-1)^2 \ge 0 \Rightarrow -(x-1)^2 \le 0$</div>
-                                <div class="step"><span class="step-num">Étape 5 :</span> $-(x-1)^2 + 1 \le 1$</div>
-                                <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \le 1$ donc $f$ est majorée par $M=1$.</p>
+                                <p>Pour montrer que $f$ est majorée par $M=1$, on doit prouver que : $f(x) \le 1,\ \forall x \in \mathbb{R}$.</p>
+                                <div class="step">On a $\forall x \in \mathbb{R}$ :
+                                $$f(x) = -x^2+2x = -(x^2-2x) = -(x^2-2x+1)+1 \quad \text{(on complète le carré)}$$
+                                $$\text{d'où}\quad f(x) = -(x-1)^2+1$$</div>
+                                <div class="step">Or $(x-1)^2 \ge 0 \ \Rightarrow\ -(x-1)^2 \le 0 \ \Rightarrow\ -(x-1)^2+1 \le 1$</div>
+                                <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \le 1$, donc $f$ est majorée par $M=1$.</p>
                                 <div class="graph-container">
                                     <svg id="graph1a" width="300" height="150"></svg>
                                     <p>Courbe de $f(x) = -x^2 + 2x$ majorée par $M=1$</p>
@@ -437,14 +435,11 @@
                         <div id="sol1b" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>Pour montrer que $f$ est majorée par $M=3$, il faut prouver que :</p>
-                                <div class="formula-block">$f(x) \le 3$ pour tout $x \in \mathbb{R}$</div>
-                                <div class="step"><span class="step-num">Étape 1 :</span> $f(x) = \frac{3x^2+2}{x^2+1}$</div>
-                                <div class="step"><span class="step-num">Étape 2 :</span> $= \frac{3(x^2+1)-1}{x^2+1}$ (on écrit $3x^2+2 = 3x^2+3-1$)</div>
-                                <div class="step"><span class="step-num">Étape 3 :</span> $= 3 - \frac{1}{x^2+1}$</div>
-                                <div class="step"><span class="step-num">Étape 4 :</span> $\frac{1}{x^2+1} \ge 0 \Rightarrow -\frac{1}{x^2+1} \le 0$</div>
-                                <div class="step"><span class="step-num">Étape 5 :</span> $3 - \frac{1}{x^2+1} \le 3$</div>
-                                <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \le 3$ donc $f$ est majorée par $M=3$.</p>
+                                <p>Pour montrer que $f$ est majorée par $M=3$, on doit prouver que : $f(x) \le 3,\ \forall x \in \mathbb{R}$.</p>
+                                <div class="step">On a $\forall x \in \mathbb{R}$, en écrivant $3x^2+2 = 3(x^2+1)-1$ :
+                                $$f(x) = \frac{3x^2+2}{x^2+1} = \frac{3(x^2+1)-1}{x^2+1} = 3 - \frac{1}{x^2+1}$$</div>
+                                <div class="step">Or $\dfrac{1}{x^2+1} \ge 0 \ \Rightarrow\ -\dfrac{1}{x^2+1} \le 0 \ \Rightarrow\ 3-\dfrac{1}{x^2+1} \le 3$</div>
+                                <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \le 3$, donc $f$ est majorée par $M=3$.</p>
                             </div>
                         </div>
                     </div>
@@ -459,13 +454,11 @@
                         <div id="sol2a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>Pour montrer que $f$ est minorée par $m=-4$, il faut prouver que :</p>
-                                <div class="formula-block">$f(x) \ge -4$ pour tout $x \in \mathbb{R}$</div>
-                                <div class="step"><span class="step-num">Étape 1 :</span> $f(x) = x^2 + 4x$</div>
-                                <div class="step"><span class="step-num">Étape 2 :</span> $= (x^2 + 4x + 4) - 4$ (on complète le carré)</div>
-                                <div class="step"><span class="step-num">Étape 3 :</span> $= (x+2)^2 - 4$</div>
-                                <div class="step"><span class="step-num">Étape 4 :</span> $(x+2)^2 \ge 0 \Rightarrow (x+2)^2 - 4 \ge -4$</div>
-                                <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \ge -4$ donc $f$ est minorée par $m=-4$.</p>
+                                <p>Pour montrer que $f$ est minorée par $m=-4$, on doit prouver que : $f(x) \ge -4,\ \forall x \in \mathbb{R}$.</p>
+                                <div class="step">On a $\forall x \in \mathbb{R}$, en complétant le carré :
+                                $$f(x) = x^2+4x = (x^2+4x+4)-4 = (x+2)^2-4$$</div>
+                                <div class="step">Or $(x+2)^2 \ge 0 \ \Rightarrow\ (x+2)^2-4 \ge -4$</div>
+                                <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x) \ge -4$, donc $f$ est minorée par $m=-4$.</p>
                             </div>
                         </div>
                     </div>
@@ -484,15 +477,12 @@
                     <div id="sol4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <p>Pour montrer que $f(-1)$ est le minimum, il faut prouver que :</p>
-                            <div class="formula-block">$\forall x \in \mathbb{R},\ f(x) \ge f(-1)$</div>
-                            <div class="step"><span class="step-num">Étape 1 :</span> $f(x) = x^2 + 2x + 3$</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> $= (x^2 + 2x + 1) + 2$</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> $= (x+1)^2 + 2$</div>
-                            <div class="step"><span class="step-num">Étape 4 :</span> $f(-1) = (-1+1)^2 + 2 = 0 + 2 = 2$</div>
-                            <div class="step"><span class="step-num">Étape 5 :</span> $(x+1)^2 \ge 0 \Rightarrow (x+1)^2 + 2 \ge 2$</div>
-                            <div class="step"><span class="step-num">Étape 6 :</span> $f(x) \ge 2 = f(-1)$</div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f(-1) = 2$ est le minimum absolu de $f$ sur $\mathbb{R}$.</p>
+                            <p>Pour montrer que $f(-1)$ est le minimum de $f$, on doit prouver que : $f(x) \ge f(-1),\ \forall x \in \mathbb{R}$.</p>
+                            <div class="step">On a $\forall x \in \mathbb{R}$, en complétant le carré :
+                            $$f(x) = x^2+2x+3 = (x^2+2x+1)+2 = (x+1)^2+2$$
+                            et $f(-1) = (-1+1)^2+2 = 0+2 = 2$.</div>
+                            <div class="step">Or $(x+1)^2 \ge 0 \ \Rightarrow\ (x+1)^2+2 \ge 2 \ \Rightarrow\ f(x) \ge 2 = f(-1)$</div>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x \in \mathbb{R},\ f(x)\ge f(-1)$, donc $f(-1) = 2$ est le minimum absolu de $f$ sur $\mathbb{R}$.</p>
                             <div class="graph-container">
                                 <svg id="graph2" width="300" height="150"></svg>
                                 <p>Minimum de $f(x) = x^2 + 2x + 3$ en $(-1, 2)$</p>
@@ -511,17 +501,17 @@
                 <div class="highlight-box">
                     <p><strong>Déterminer les variations de la fonction $f$ :</strong></p>
 
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+                    <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
                         <div class="exercice-box">
                             <div class="ex-title">1) $f(x) = x^2 + \sqrt{2}$</div>
                             <button class="toggle-sol" onclick="toggleSolution('sol6a')">Voir la solution</button>
                             <div id="sol6a" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>Soient $x,x' \in \mathbb{R}$ avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{f(x)-f(x')}{x-x'} = \dfrac{x^2-x'^2}{x-x'} = \dfrac{(x-x')(x+x')}{x-x'} = x+x'$</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> Si $x,x' \in\ ]-\infty,0]$ alors $x+x' \le 0$ donc $T_f \le 0$</div>
-                                    <div class="step"><span class="step-num">Étape 3 :</span> Si $x,x' \in [0,+\infty[$ alors $x+x' \ge 0$ donc $T_f \ge 0$</div>
+                                    <p>Soient $x,x' \in \mathbb{R}$, avec $x \neq x'$. On calcule le taux d'accroissement :</p>
+                                    <div class="step">$$T_f = \frac{f(x)-f(x')}{x-x'} = \frac{x^2-x'^2}{x-x'} = \frac{(x-x')(x+x')}{x-x'} = x+x'$$</div>
+                                    <div class="step">• Si $x,x' \in\ ]-\infty,0]$, alors $x+x' \le 0$, donc $T_f \le 0$ ;<br>
+                                    • Si $x,x' \in [0,+\infty[$, alors $x+x' \ge 0$, donc $T_f \ge 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>décroissante</strong> sur $]-\infty,0]$ et <strong>croissante</strong> sur $[0,+\infty[$.</p>
                                     <div class="graph-container">
                                         <svg id="graph3" width="300" height="150"></svg>
@@ -536,10 +526,9 @@
                             <div id="sol6b" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>Soient $x,x' \in \mathbb{R}$ avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{x^3-x'^3}{x-x'} = x^2+xx'+x'^2$ (identité $a^3-b^3=(a-b)(a^2+ab+b^2)$)</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> $x^2+xx'+x'^2 = \left(x+\dfrac{x'}{2}\right)^2 + \dfrac{3x'^2}{4} \ge 0$, avec égalité seulement si $x=x'=0$</div>
-                                    <div class="step"><span class="step-num">Étape 3 :</span> Comme $x \neq x'$, on a $T_f > 0$</div>
+                                    <p>Soient $x,x' \in \mathbb{R}$, avec $x \neq x'$. En utilisant l'identité $a^3-b^3=(a-b)(a^2+ab+b^2)$ :</p>
+                                    <div class="step">$$T_f = \frac{x^3-x'^3}{x-x'} = x^2+xx'+x'^2$$</div>
+                                    <div class="step">Or $x^2+xx'+x'^2 = \left(x+\dfrac{x'}{2}\right)^2 + \dfrac{3x'^2}{4} \ge 0$, avec égalité seulement si $x=x'=0$ ; comme $x \neq x'$, on a $T_f > 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement croissante</strong> sur $\mathbb{R}$.</p>
                                 </div>
                             </div>
@@ -550,9 +539,9 @@
                             <div id="sol6c" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>Soient $x,x'$ non nuls, de même signe, avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{\frac{8}{x}-\frac{8}{x'}}{x-x'} = \dfrac{8(x'-x)}{xx'(x-x')} = -\dfrac{8}{xx'}$</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> Sur $]-\infty,0[$ ou sur $]0,+\infty[$ : $xx' > 0$ donc $T_f = -\dfrac{8}{xx'} < 0$</div>
+                                    <p>$D_f = \mathbb{R}^*$. Soient $x,x'$ de même signe, non nuls, avec $x \neq x'$ :</p>
+                                    <div class="step">$$T_f = \frac{\frac{8}{x}-\frac{8}{x'}}{x-x'} = \frac{8(x'-x)}{xx'(x-x')} = -\frac{8}{xx'}$$</div>
+                                    <div class="step">Or, sur $]-\infty,0[$ comme sur $]0,+\infty[$, on a $xx' > 0$, donc $T_f = -\dfrac{8}{xx'} < 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement décroissante</strong> sur $]-\infty,0[$ et sur $]0,+\infty[$.</p>
                                 </div>
                             </div>
@@ -563,11 +552,11 @@
                             <div id="sol6d" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>$D_f = [3,+\infty[$. Soient $x,x' \in D_f$ avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{-3\sqrt{x-3}+3\sqrt{x'-3}}{x-x'} = -3\dfrac{\sqrt{x-3}-\sqrt{x'-3}}{x-x'}$</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> On multiplie par l'expression conjuguée : $\sqrt{x-3}-\sqrt{x'-3} = \dfrac{x-x'}{\sqrt{x-3}+\sqrt{x'-3}}$</div>
-                                    <div class="step"><span class="step-num">Étape 3 :</span> $T_f = -\dfrac{3}{\sqrt{x-3}+\sqrt{x'-3}}$</div>
-                                    <div class="step"><span class="step-num">Étape 4 :</span> $\sqrt{x-3}+\sqrt{x'-3} > 0$ (car $x \neq x'$ donc les deux ne sont pas nuls en même temps) donc $T_f < 0$</div>
+                                    <p>$D_f = [3,+\infty[$. Soient $x,x' \in D_f$, avec $x \neq x'$ :</p>
+                                    <div class="step">$$T_f = \frac{-3\sqrt{x-3}+3\sqrt{x'-3}}{x-x'} = -3\cdot\frac{\sqrt{x-3}-\sqrt{x'-3}}{x-x'}$$</div>
+                                    <div class="step">En multipliant par l'expression conjuguée, $\sqrt{x-3}-\sqrt{x'-3} = \dfrac{x-x'}{\sqrt{x-3}+\sqrt{x'-3}}$, d'où :
+                                    $$T_f = -\frac{3}{\sqrt{x-3}+\sqrt{x'-3}}$$</div>
+                                    <div class="step">Or $x \neq x' \ \Rightarrow\ \sqrt{x-3}$ et $\sqrt{x'-3}$ ne sont pas nuls en même temps, donc $\sqrt{x-3}+\sqrt{x'-3} > 0$, d'où $T_f < 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement décroissante</strong> sur $[3,+\infty[$.</p>
                                 </div>
                             </div>
@@ -578,10 +567,9 @@
                             <div id="sol6e" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>Soient $x,x' \in \mathbb{R}$ avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{x^2-x'^2}{x-x'} = x+x'$ (même calcul qu'à la question 1)</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> Sur $]-\infty,0]$ : $x+x' \le 0 \Rightarrow T_f \le 0$</div>
-                                    <div class="step"><span class="step-num">Étape 3 :</span> Sur $[0,+\infty[$ : $x+x' \ge 0 \Rightarrow T_f \ge 0$</div>
+                                    <p>Soient $x,x' \in \mathbb{R}$, avec $x \neq x'$. Comme à la question 1, on a $T_f = \dfrac{x^2-x'^2}{x-x'} = x+x'$.</p>
+                                    <div class="step">• Sur $]-\infty,0]$ : $x+x' \le 0 \ \Rightarrow\ T_f \le 0$ ;<br>
+                                    • Sur $[0,+\infty[$ : $x+x' \ge 0 \ \Rightarrow\ T_f \ge 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>décroissante</strong> sur $]-\infty,0]$ et <strong>croissante</strong> sur $[0,+\infty[$.</p>
                                 </div>
                             </div>
@@ -592,10 +580,10 @@
                             <div id="sol6f" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>Posons $k = -\sqrt{3}+1$. Comme $\sqrt{3}\approx 1{,}73$, on a $k < 0$.</p>
-                                    <p>Soient $x,x'$ non nuls, de même signe, avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{\frac{k}{x}-\frac{k}{x'}}{x-x'} = -\dfrac{k}{xx'}$ (même calcul qu'à la question 3)</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> Sur $]-\infty,0[$ ou sur $]0,+\infty[$ : $xx' > 0$, et comme $k<0$ alors $-k>0$, donc $T_f = \dfrac{-k}{xx'} > 0$</div>
+                                    <p>Posons $k = -\sqrt{3}+1$ ; comme $\sqrt{3}\approx 1{,}73 > 1$, on a $k < 0$.</p>
+                                    <p>Soient $x,x'$ de même signe, non nuls, avec $x \neq x'$. Comme à la question 3 :</p>
+                                    <div class="step">$$T_f = \frac{\frac{k}{x}-\frac{k}{x'}}{x-x'} = -\frac{k}{xx'}$$</div>
+                                    <div class="step">Or, sur $]-\infty,0[$ comme sur $]0,+\infty[$, on a $xx' > 0$ ; et comme $k<0$, alors $-k>0$, donc $T_f = \dfrac{-k}{xx'} > 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement croissante</strong> sur $]-\infty,0[$ et sur $]0,+\infty[$.</p>
                                 </div>
                             </div>
@@ -606,10 +594,10 @@
                             <div id="sol6g" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>$D_f = [5,+\infty[$. Soient $x,x' \in D_f$ avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{\sqrt{x-5}-\sqrt{x'-5}}{x-x'}$</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> Expression conjuguée : $T_f = \dfrac{1}{\sqrt{x-5}+\sqrt{x'-5}}$</div>
-                                    <div class="step"><span class="step-num">Étape 3 :</span> $\sqrt{x-5}+\sqrt{x'-5} > 0$ (car $x \neq x'$) donc $T_f > 0$</div>
+                                    <p>$D_f = [5,+\infty[$. Soient $x,x' \in D_f$, avec $x \neq x'$ :</p>
+                                    <div class="step">$$T_f = \frac{\sqrt{x-5}-\sqrt{x'-5}}{x-x'}$$
+                                    En multipliant par l'expression conjuguée : $$T_f = \frac{1}{\sqrt{x-5}+\sqrt{x'-5}}$$</div>
+                                    <div class="step">Or $x \neq x' \ \Rightarrow\ \sqrt{x-5}+\sqrt{x'-5} > 0$, donc $T_f > 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement croissante</strong> sur $[5,+\infty[$.</p>
                                 </div>
                             </div>
@@ -620,10 +608,9 @@
                             <div id="sol6h" class="solution-box">
                                 <div class="sol-title">✅ Solution</div>
                                 <div class="sol-content">
-                                    <p>Soient $x,x' \in \mathbb{R}$ avec $x \neq x'$ :</p>
-                                    <div class="step"><span class="step-num">Étape 1 :</span> $T_f = \dfrac{-6x^3+6x'^3}{x-x'} = -6 \cdot \dfrac{x^3-x'^3}{x-x'} = -6(x^2+xx'+x'^2)$</div>
-                                    <div class="step"><span class="step-num">Étape 2 :</span> Comme $x \neq x'$, on a $x^2+xx'+x'^2 > 0$ (même calcul qu'à la question 2)</div>
-                                    <div class="step"><span class="step-num">Étape 3 :</span> Donc $T_f = -6(x^2+xx'+x'^2) < 0$</div>
+                                    <p>Soient $x,x' \in \mathbb{R}$, avec $x \neq x'$ :</p>
+                                    <div class="step">$$T_f = \frac{-6x^3+6x'^3}{x-x'} = -6\cdot\frac{x^3-x'^3}{x-x'} = -6(x^2+xx'+x'^2)$$</div>
+                                    <div class="step">Or, comme à la question 2, $x \neq x' \ \Rightarrow\ x^2+xx'+x'^2 > 0$, donc $T_f = -6(x^2+xx'+x'^2) < 0$.</div>
                                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est <strong>strictement décroissante</strong> sur $\mathbb{R}$.</p>
                                 </div>
                             </div>
@@ -641,7 +628,7 @@
                 <div class="highlight-box">
                     <p><strong>Déterminer $D_{g \circ f}$, $D_{f \circ g}$ et les expressions :</strong></p>
 
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+                    <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
                         <div class="exercice-box">
                             <div class="ex-title">1) $f(x)=x^2$, $g(x)=x^3$</div>
                             <button class="toggle-sol" onclick="toggleSolution('sol7a')">Voir la solution</button>
@@ -708,10 +695,11 @@
                         <div id="sol8a" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>$f(x) = v(u(x))$ où $u(x) = x^2+1$ et $v(t) = \sqrt{t}$</p>
-                                <div class="step"><span class="step-num">Étape 1 :</span> $u(x) = x^2+1$ est <strong>décroissante</strong> sur $\mathbb{R}^-$ et <strong>croissante</strong> sur $\mathbb{R}^+$</div>
-                                <div class="step"><span class="step-num">Étape 2 :</span> $v(t) = \sqrt{t}$ est <strong>croissante</strong> sur $\mathbb{R}^+$</div>
-                                <div class="step"><span class="step-num">Étape 3 :</span> Donc $f = v \circ u$ est <strong>décroissante</strong> sur $\mathbb{R}^-$ et <strong>croissante</strong> sur $\mathbb{R}^+$</div>
+                                <p>On pose $f = v \circ u$ avec $u(x) = x^2+1$ et $v(t) = \sqrt{t}$.</p>
+                                <div class="step">On a $u(x) = x^2+1$ <strong>décroissante</strong> sur $\mathbb{R}^-$ et <strong>croissante</strong> sur $\mathbb{R}^+$, et $v(t) = \sqrt{t}$ <strong>croissante</strong> sur $\mathbb{R}^+ = D_v$.</div>
+                                <div class="step">Or $u(\mathbb{R}) \subset \mathbb{R}^+ = D_v$ ; d'après la règle de composition de la monotonie (même sens $\Rightarrow$ composée dans le même sens que $u$, sens contraire $\Rightarrow$ composée en sens contraire de $u$) :
+                                <br>• $u$ décroissante & $v$ croissante $\Rightarrow$ $v\circ u$ décroissante sur $\mathbb{R}^-$ ;
+                                <br>• $u$ croissante & $v$ croissante $\Rightarrow$ $v\circ u$ croissante sur $\mathbb{R}^+$.</div>
                                 <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est décroissante sur $\mathbb{R}^-$ et croissante sur $\mathbb{R}^+$.</p>
                             </div>
                         </div>
@@ -723,10 +711,11 @@
                         <div id="sol8b" class="solution-box">
                             <div class="sol-title">✅ Solution</div>
                             <div class="sol-content">
-                                <p>$f(x) = v(u(x))$ où $u(x) = x^2+3$ et $v(t) = \frac{1}{t}$</p>
-                                <div class="step"><span class="step-num">Étape 1 :</span> $u(x) = x^2+3$ est <strong>décroissante</strong> sur $\mathbb{R}^-$ et <strong>croissante</strong> sur $\mathbb{R}^+$</div>
-                                <div class="step"><span class="step-num">Étape 2 :</span> $v(t) = \frac{1}{t}$ est <strong>décroissante</strong> sur $\mathbb{R}^+$</div>
-                                <div class="step"><span class="step-num">Étape 3 :</span> Donc $f = v \circ u$ est <strong>croissante</strong> sur $\mathbb{R}^-$ et <strong>décroissante</strong> sur $\mathbb{R}^+$</div>
+                                <p>On pose $f = v \circ u$ avec $u(x) = x^2+3$ et $v(t) = \dfrac{1}{t}$.</p>
+                                <div class="step">On a $u(x) = x^2+3$ <strong>décroissante</strong> sur $\mathbb{R}^-$ et <strong>croissante</strong> sur $\mathbb{R}^+$, et $v(t) = \dfrac{1}{t}$ <strong>décroissante</strong> sur $\mathbb{R}^{+*} \supset u(\mathbb{R})$.</div>
+                                <div class="step">Or, $u$ et $v$ ont des sens de variation opposés sur chaque intervalle :
+                                <br>• $u$ décroissante & $v$ décroissante $\Rightarrow$ $v\circ u$ croissante sur $\mathbb{R}^-$ ;
+                                <br>• $u$ croissante & $v$ décroissante $\Rightarrow$ $v\circ u$ décroissante sur $\mathbb{R}^+$.</div>
                                 <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $f$ est croissante sur $\mathbb{R}^-$ et décroissante sur $\mathbb{R}^+$.</p>
                             </div>
                         </div>
@@ -980,3 +969,5 @@
 
 </body>
 </html>
+
+

@@ -387,9 +387,11 @@
                 </div>
 
                 <div class="highlight-box yellow">
-                    <span class="label ex">Exemple</span>
-                    <p>P : « 2 est un nombre pair »</p>
-                    <p>Sa négation $\overline{P}$ est : « 2 est un nombre <strong>impair</strong> »</p>
+                    <span class="label ex">Exemples</span>
+                    <p><strong>1)</strong> P : « 2 est un nombre pair » (vraie)</p>
+                    <p>Sa négation $\overline{P}$ est : « 2 est un nombre <strong>impair</strong> » (fausse)</p>
+                    <p style="margin-top:6px;"><strong>2)</strong> Q : « $3 > 5$ » (fausse)</p>
+                    <p>Sa négation $\overline{Q}$ est : « $3 \le 5$ » (vraie) &nbsp;<span style="color:var(--text-muted);">— attention : la négation de « $>$ » est « $\le$ », et non « $<$ ».</span></p>
                 </div>
 
                 <div class="graph-container">
@@ -446,10 +448,10 @@
                 </div>
 
                 <div class="highlight-box yellow">
-                    <span class="label ex">Exemple</span>
+                    <span class="label ex">Exemples</span>
                     <ul>
-                        <li>« (2 est un nombre pair) <strong>∧</strong> (2 + 3 = 6) » est une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
-                        <li>« (2 est un nombre pair) <strong>et</strong> (2 + 3 = 6) » est une autre écriture (avec le mot « et ») de la même proposition, donc elle est aussi <span style="color:#FF6B6B;">fausse</span>.</li>
+                        <li><strong>1)</strong> « (2 est un nombre pair) <strong>∧</strong> (2 + 3 = 6) » : on a $P$ vraie et $Q$ fausse, donc $P \land Q$ est une proposition <span style="color:#FF6B6B;">fausse</span>.</li>
+                        <li><strong>2)</strong> « (3 est un nombre premier) <strong>∧</strong> (4 est un carré parfait) » : on a $P$ vraie et $Q$ vraie, donc $P \land Q$ est une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
                     </ul>
                 </div>
 
@@ -475,10 +477,10 @@
                 </div>
 
                 <div class="highlight-box yellow">
-                    <span class="label ex">Exemple</span>
+                    <span class="label ex">Exemples</span>
                     <ul>
-                        <li>« (2 est un nombre pair) <strong>∨</strong> (2 + 3 = 6) » est une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
-                        <li>« (2 est un nombre pair) <strong>ou</strong> (2 + 3 = 6) » est une autre écriture (avec le mot « ou ») de la même proposition, donc elle est aussi <span style="color:#4ECDC4;">vraie</span>.</li>
+                        <li><strong>1)</strong> « (2 est un nombre pair) <strong>∨</strong> (2 + 3 = 6) » : on a $P$ vraie et $Q$ fausse, donc $P \lor Q$ est une proposition <span style="color:#4ECDC4;">vraie</span>.</li>
+                        <li><strong>2)</strong> « (4 est un nombre impair) <strong>∨</strong> (2 + 2 = 5) » : on a $P$ fausse et $Q$ fausse, donc $P \lor Q$ est une proposition <span style="color:#FF6B6B;">fausse</span> (le seul cas où la disjonction est fausse).</li>
                     </ul>
                 </div>
 
@@ -512,6 +514,10 @@
                     <div class="formula-block">
                         $P \lor (Q \land R) \iff (P \lor Q) \land (P \lor R)$
                     </div>
+                    <p style="margin-top:8px;"><strong>Exemple de vérification :</strong> soient $P$ : « $5 > 3$ » (V), $Q$ : « 5 est pair » (F) et $R$ : « 5 est impair » (V).</p>
+                    <p>D'un côté : $Q \lor R = F \lor V = V$, donc $P \land (Q \lor R) = V \land V = \mathbf{V}$.</p>
+                    <p>De l'autre : $P \land Q = V \land F = F$ et $P \land R = V \land V = V$, donc $(P \land Q) \lor (P \land R) = F \lor V = \mathbf{V}$.</p>
+                    <p style="color:#4ECDC4;">Les deux membres valent V : la loi de distributivité est bien vérifiée sur cet exemple.</p>
                 </div>
 
                 <div class="highlight-box purple">
@@ -634,10 +640,11 @@
                 </div>
 
                 <div class="highlight-box yellow">
-                    <span class="label ex">Exemple</span>
-                    <div class="formula-block">
-                        $\forall x \in \mathbb{R},\ \forall y \in \mathbb{R} : x^2 = y^2 \iff (x = y \text{ ou } x = -y)$
-                    </div>
+                    <span class="label ex">Exemples</span>
+                    <p><strong>1)</strong> $\forall x \in \mathbb{R},\ \forall y \in \mathbb{R} : x^2 = y^2 \iff (x = y \text{ ou } x = -y)$</p>
+                    <p style="margin-top:8px;"><strong>2)</strong> P : « 6 est divisible par 3 » (V) et Q : « 6 est un nombre pair » (V).</p>
+                    <p>P et Q ont la même valeur de vérité (toutes les deux vraies), donc $P \Leftrightarrow Q$ est <span style="color:#4ECDC4;">vraie</span>.</p>
+                    <p style="margin-top:4px; color:var(--text-muted);">Par contre, si on prend R : « 7 est premier » (V) et S : « 7 est pair » (F), alors R et S n'ont pas la même valeur de vérité, donc $R \Leftrightarrow S$ est <span style="color:#FF6B6B;">fausse</span>.</p>
                 </div>
 
                 <div class="highlight-box purple">

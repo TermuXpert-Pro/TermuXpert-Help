@@ -175,7 +175,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -520,7 +520,7 @@
                                 <div class="formula-block" style="font-size:16px;">\(G\left(-\frac{2}{5}; \frac{7}{5}\right)\)</div>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graph13" width="450" height="280"></canvas>
+                                <svg id="graph13" role="img" aria-label="Exercice 13 — points K, L, G dans le repère"></svg>
                                 <p>Points K, L, G dans le repère</p>
                             </div>
                         </div>
@@ -536,7 +536,7 @@
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
                     \(ABCD\) est un quadrilatère convexe.
                     <br>Soit \(H = \text{Bar}\{(A, 2); (B, 5); (C, -1)\}\)
-                    <br>Soit \(K = \text{Bar}\{(B, 5); (C, -1); (D, 6)\}\)
+                    <br>Soit \(K = \text{Bar}\{(B, 5); (C, -1); (D, -6)\}\)
                     <br>Soit \(E = \text{Bar}\{(C, -1); (B, 5)\}\)
                 </p>
 
@@ -582,12 +582,12 @@
                     <div id="sol14_3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 1 :</span> \(K = \text{Bar}\{(B, 5); (C, -1); (D, 6)\}\) et \(E = \text{Bar}\{(C, -1); (B, 5)\}\)</div>
-                            <div class="step"><span class="step-num">Étape 2 :</span> D'après l'associativité : \(K = \text{Bar}\{(E, 4); (D, 6)\}\)</div>
-                            <div class="step"><span class="step-num">Étape 3 :</span> En divisant par \(2\) : \(K = \text{Bar}\{(E, 2); (D, 3)\}\)</div>
+                            <div class="step"><span class="step-num">Étape 1 :</span> \(K = \text{Bar}\{(B, 5); (C, -1); (D, -6)\}\) et \(E = \text{Bar}\{(C, -1); (B, 5)\}\)</div>
+                            <div class="step"><span class="step-num">Étape 2 :</span> D'après l'associativité : \(K = \text{Bar}\{(E, 4); (D, -6)\}\)</div>
+                            <div class="step"><span class="step-num">Étape 3 :</span> En divisant par \(-2\) : \(K = \text{Bar}\{(E, -2); (D, 3)\}\), soit, en multipliant les deux poids par \(-1\) (même barycentre) : \(K = \text{Bar}\{(D, -3); (E, 2)\}\)</div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <div class="formula-block" style="font-size:15px;">\(K = \text{Bar}\{(D, 3); (E, 2)\}\)</div>
+                                <div class="formula-block" style="font-size:15px;">\(K = \text{Bar}\{(D, -3); (E, 2)\}\)</div>
                             </div>
                         </div>
                     </div>
@@ -603,20 +603,20 @@
                     <div id="sol14_4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            <div class="step"><span class="step-num">Étape 4a :</span> \(K = \text{Bar}\{(D, 3); (E, 2)\}\) donc pour tout point \(M\) : \(3\overrightarrow{MD} + 2\overrightarrow{ME} = 5\overrightarrow{MK}\)</div>
-                            <div class="step"><span class="step-num">Étape 4a :</span> En posant \(M = D\) : \(2\overrightarrow{DE} = 5\overrightarrow{DK} \iff \overrightarrow{DK} = \frac{2}{5}\overrightarrow{DE}\)</div>
+                            <div class="step"><span class="step-num">Étape 4a :</span> \(K = \text{Bar}\{(D, -3); (E, 2)\}\) donc pour tout point \(M\) : \(-3\overrightarrow{MD} + 2\overrightarrow{ME} = -\overrightarrow{MK}\)</div>
+                            <div class="step"><span class="step-num">Étape 4a :</span> En posant \(M = D\) : \(2\overrightarrow{DE} = -\overrightarrow{DK} \iff \overrightarrow{DK} = -2\overrightarrow{DE}\), c'est-à-dire \(3\overrightarrow{D} = \overrightarrow{K} + 2\overrightarrow{E}\)</div>
                             <div class="step"><span class="step-num">Étape 4a :</span> Donc \(D = \text{Bar}\{(K, 1); (E, 2)\}\) ✅</div>
 
                             <div class="step" style="margin-top:8px;"><span class="step-num">Étape 4b :</span> \(H = \text{Bar}\{(A, 1); (E, 2)\}\) et \(D = \text{Bar}\{(K, 1); (E, 2)\}\)</div>
-                            <div class="step"><span class="step-num">Étape 4b :</span> On a \(\overrightarrow{DH} = \overrightarrow{DA} + \overrightarrow{AK} + \overrightarrow{KH}\) ...</div>
-                            <div class="step"><span class="step-num">Étape 4b :</span> Par la propriété caractéristique : \(\overrightarrow{3DH} = \overrightarrow{DA} - \overrightarrow{DK}\)</div>
-                            <div class="step"><span class="step-num">Étape 4b :</span> Donc \(\overrightarrow{3DH} = \overrightarrow{AK}\)</div>
+                            <div class="step"><span class="step-num">Étape 4b :</span> Propriété caractéristique de \(H\), posons \(M = D\) : \(\overrightarrow{DA} + 2\overrightarrow{DE} = 3\overrightarrow{DH}\)</div>
+                            <div class="step"><span class="step-num">Étape 4b :</span> Or \(\overrightarrow{DK} + 2\overrightarrow{DE} = \vec{0}\) (propriété caractéristique de \(D\) en \(M=D\)), donc \(\overrightarrow{DE} = -\frac{1}{2}\overrightarrow{DK}\)</div>
+                            <div class="step"><span class="step-num">Étape 4b :</span> En substituant : \(3\overrightarrow{DH} = \overrightarrow{DA} - \overrightarrow{DK} = (\overrightarrow{A}-\overrightarrow{D}) - (\overrightarrow{K}-\overrightarrow{D}) = \overrightarrow{A}-\overrightarrow{K} = -\overrightarrow{AK}\)</div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>\(\overrightarrow{3DH} = \overrightarrow{AK}\), donc \((AK) \parallel (DH)\).</p>
+                                <p>\(\overrightarrow{AK} = -3\overrightarrow{DH}\), donc \((AK) \parallel (DH)\) (vecteurs colinéaires, de sens opposés, dans un rapport \(3\)).</p>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graph14" width="450" height="280"></canvas>
+                                <svg id="graph14" role="img" aria-label="Exercice 14 — parallélisme (AK) ∥ (DH)"></svg>
                                 <p>(AK) ∥ (DH)</p>
                             </div>
                         </div>
@@ -631,7 +631,7 @@
                 <h2><span class="num">15</span> Exercice 15</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
                     \(ABC\) un triangle. \(I\), \(J\), \(K\) tels que :
-                    \(2\overrightarrow{BI} = 3\overrightarrow{BC}\), \(8\overrightarrow{CJ} = \overrightarrow{CA}\), \(5\overrightarrow{AK} = 2\overrightarrow{AB}\).
+                    \(2\overrightarrow{BI} = 3\overrightarrow{BC}\), \(3\overrightarrow{CJ} = \overrightarrow{CA}\), \(5\overrightarrow{AK} = 2\overrightarrow{AB}\).
                 </p>
 
                 <div class="sub-question">
@@ -666,10 +666,10 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step"><span class="step-num">Étape 2a :</span> Dans \(R(A; \overrightarrow{AB}; \overrightarrow{AC})\) : \(A(0;0), B(1;0), C(0;1)\)</div>
-                            <div class="step"><span class="step-num">Étape 2a :</span> \(I\left(-\frac{1}{2}; \frac{3}{2}\right)\), \(K\left(\frac{2}{5}; 0\right)\), \(J\left(0; \frac{7}{8}\right)\)</div>
+                            <div class="step"><span class="step-num">Étape 2a :</span> \(I\left(-\frac{1}{2}; \frac{3}{2}\right)\), \(K\left(\frac{2}{5}; 0\right)\), \(J\left(0; \frac{2}{3}\right)\)</div>
 
                             <div class="step" style="margin-top:8px;"><span class="step-num">Étape 2b :</span> Vecteur \(\overrightarrow{IK} = \left(\frac{2}{5} + \frac{1}{2}; 0 - \frac{3}{2}\right) = \left(\frac{9}{10}; -\frac{3}{2}\right)\)</div>
-                            <div class="step"><span class="step-num">Étape 2b :</span> Vecteur \(\overrightarrow{IJ} = \left(0 + \frac{1}{2}; \frac{7}{8} - \frac{3}{2}\right) = \left(\frac{1}{2}; -\frac{5}{8}\right)\)</div>
+                            <div class="step"><span class="step-num">Étape 2b :</span> Vecteur \(\overrightarrow{IJ} = \left(0 + \frac{1}{2}; \frac{2}{3} - \frac{3}{2}\right) = \left(\frac{1}{2}; -\frac{5}{6}\right)\)</div>
                             <div class="step"><span class="step-num">Étape 2b :</span> \(\overrightarrow{IK} = \frac{9}{5}\overrightarrow{IJ}\) (colinéaires)</div>
 
                             <div class="highlight-box green" style="margin-top:6px;">
@@ -677,7 +677,7 @@
                                 <p>Les vecteurs \(\overrightarrow{IK}\) et \(\overrightarrow{IJ}\) sont colinéaires, donc \(I\), \(J\), \(K\) sont alignés.</p>
                             </div>
                             <div class="graph-container">
-                                <canvas id="graph15" width="450" height="280"></canvas>
+                                <svg id="graph15" role="img" aria-label="Exercice 15 — alignement de I, J, K"></svg>
                                 <p>I, J, K sont alignés</p>
                             </div>
                         </div>
@@ -739,230 +739,12 @@
         }
 
         // ============================================================
-        // GRAPHIQUES
+        // graph14, graph15 : convertis en SVG — voir figuresvt_p4.js
+        // (les deux exercices ont été corrigés : voir le texte des solutions
+        // ci-dessus pour le détail des corrections apportées)
         // ============================================================
-
-        function drawGraph13() {
-            var canvas = document.getElementById('graph13');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 50;
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('x', w - 20, oy + 18);
-            ctx.fillText('y', ox + 10, 16);
-
-            var pts = [
-                {x: -1, y: 1, color: '#4ECDC4', label: 'A'},
-                {x: 0, y: 2, color: '#FF6B6B', label: 'B'},
-                {x: 1, y: -1, color: '#BB8FCE', label: 'C'},
-                {x: 1, y: 0, color: '#A8FF78', label: 'D'},
-                {x: -2/5, y: 8/5, color: '#F4D03F', label: 'K'},
-                {x: 0, y: 2/3, color: '#4D9DE0', label: 'L'},
-                {x: -2/5, y: 7/5, color: '#F4D03F', label: 'G'}
-            ];
-
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '10px Arial';
-                ctx.fillText(pts[i].label, px + 6, py - 4);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Points K, L, G', 10, 20);
-        }
-
-        function drawGraph14() {
-            var canvas = document.getElementById('graph14');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 70, oy = h - 30;
-            var scale = 40;
-
-            var A = {x: 1, y: 1, color: '#4ECDC4', label: 'A'};
-            var B = {x: 5, y: 0.5, color: '#FF6B6B', label: 'B'};
-            var C = {x: 4, y: 4, color: '#BB8FCE', label: 'C'};
-            var D = {x: 0, y: 4.5, color: '#A8FF78', label: 'D'};
-
-            var Ex = C.x + 0.25*(B.x - C.x);
-            var Ey = C.y + 0.25*(B.y - C.y);
-            var E = {x: Ex, y: Ey, color: '#4D9DE0', label: 'E'};
-
-            var Hx = (1*A.x + 2*E.x)/3;
-            var Hy = (1*A.y + 2*E.y)/3;
-            var H = {x: Hx, y: Hy, color: '#F4D03F', label: 'H'};
-
-            var Kx = (-3*D.x + 2*E.x)/(-1);
-            var Ky = (-3*D.y + 2*E.y)/(-1);
-            var K = {x: Kx, y: Ky, color: '#F4D03F', label: 'K'};
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            // Quadrilatère
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
-            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
-            ctx.lineTo(ox + D.x * scale, oy - D.y * scale);
-            ctx.closePath();
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Droites AK et DH
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + K.x * scale, oy - K.y * scale);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox + D.x * scale, oy - D.y * scale);
-            ctx.lineTo(ox + H.x * scale, oy - H.y * scale);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            var pts = [A, B, C, D, E, H, K];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '10px Arial';
-                ctx.fillText(pts[i].label, px + 6, py - 4);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('(AK) ∥ (DH)', 250, 20);
-        }
-
-        function drawGraph15() {
-            var canvas = document.getElementById('graph15');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 80, oy = h - 30;
-            var scale = 50;
-
-            var A = {x: 0, y: 0, color: '#4ECDC4', label: 'A'};
-            var B = {x: 1, y: 0, color: '#FF6B6B', label: 'B'};
-            var C = {x: 0, y: 1, color: '#BB8FCE', label: 'C'};
-            var I = {x: -0.5, y: 1.5, color: '#A8FF78', label: 'I'};
-            var J = {x: 0, y: 7/8, color: '#4D9DE0', label: 'J'};
-            var K = {x: 2/5, y: 0, color: '#F4D03F', label: 'K'};
-
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('AB', w - 30, oy + 18);
-            ctx.fillText('AC', ox + 10, 16);
-
-            // Triangle
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(ox + A.x * scale, oy - A.y * scale);
-            ctx.lineTo(ox + B.x * scale, oy - B.y * scale);
-            ctx.lineTo(ox + C.x * scale, oy - C.y * scale);
-            ctx.closePath();
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Droite IK
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox + I.x * scale, oy - I.y * scale);
-            ctx.lineTo(ox + K.x * scale, oy - K.y * scale);
-            ctx.stroke();
-
-            var pts = [A, B, C, I, J, K];
-            for (var i = 0; i < pts.length; i++) {
-                var px = ox + pts[i].x * scale;
-                var py = oy - pts[i].y * scale;
-                ctx.fillStyle = pts[i].color;
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '10px Arial';
-                ctx.fillText(pts[i].label, px + 6, py - 4);
-            }
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('I, J, K sont alignés', 250, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph13();
-                drawGraph14();
-                drawGraph15();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_p4.js"></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

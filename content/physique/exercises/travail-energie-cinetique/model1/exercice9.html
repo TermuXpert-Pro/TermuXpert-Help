@@ -490,20 +490,26 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Système étudié : le solide S.
-                                <br>Forces exercées : \(\vec{P}\) (poids) et \(\vec{T}\) (tension du fil).
+                                <span class="step-num">Système étudié :</span> le solide S.
+                                <br><span class="step-num" style="margin-top:4px; display:inline-block;">Bilan des forces :</span> \(\vec{P}\) (poids) et \(\vec{T}\) (tension du fil).
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre l'instant initial (A) et final (B) :
+                                <span class="step-num">On a :</span> d'après le théorème de l'énergie cinétique, appliqué au solide S entre l'instant initial A (\(t=0\)) et l'instant final B (\(t\)) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P}) + W_{A\to B}(\vec{T})$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Or :</span> \(E_{cA} = 0\) (vitesse nulle en A). Le solide S s'élève d'une hauteur \(h\), donc le poids s'oppose au mouvement : \(W_{A\to B}(\vec{P}) = -m \cdot g \cdot h\). La tension \(\vec{T}\) tire le solide vers le haut, dans le sens du déplacement : \(W_{A\to B}(\vec{T}) = T \cdot h\). L'équation devient :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\frac{1}{2} m v^2 - 0 = -m \cdot g \cdot h + T \cdot h$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> On isole \(T\) :
+                                <span class="step-num">D'où :</span> on isole \(T\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$T \cdot h = \frac{1}{2} m v^2 + m \cdot g \cdot h$$
                                     $$T = m \left(\frac{v^2}{2h} + g\right)$$
@@ -511,7 +517,7 @@
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> Application numérique :
+                                <span class="step-num">A.N :</span> avec \(m = 100\text{ kg}\), \(v = 4\text{ m/s}\), \(h = 5\text{ m}\) et \(g = 9,81\text{ N.kg}^{-1}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$T = 100 \times \left(\frac{4^2}{2 \times 5} + 9,81\right) = 100 \times \left(\frac{16}{10} + 9,81\right)$$
                                     $$T = 100 \times (1,6 + 9,81) = 100 \times 11,41 = 1141\text{ N}$$
@@ -536,36 +542,40 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Système étudié : la poulie.
-                                <br>Forces qui travaillent : \(\vec{T}\) (tension du fil) et \(\vec{F}\) (force appliquée).
+                                <span class="step-num">Système étudié :</span> la poulie.
+                                <br><span class="step-num" style="margin-top:4px; display:inline-block;">Forces qui travaillent :</span> \(\vec{T}\) (tension du fil, côté solide S) et \(\vec{F}\) (force appliquée à l'autre extrémité). Le poids \(\vec{P}\) et la réaction de l'axe \(\vec{R}\) sont appliqués au centre de la poulie : leur travail est nul.
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique à la poulie :
+                                <span class="step-num">On a :</span> d'après le théorème de l'énergie cinétique, appliqué à la poulie entre les instants \(t=0\) et \(t\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cf} - E_{ci} = W(\vec{P}) + W(\vec{R}) + W(\vec{F}) + W(\vec{T})$$
-                                    $$\frac{1}{2} J_{\Delta} \omega^2 - 0 = 0 + 0 + F \cdot h - T' \cdot h$$
                                 </div>
-                                <p style="font-size:11px; color:var(--text-muted);">Avec \(T' = T\) (même tension dans le fil) et \(h = R \cdot \Delta\theta\)</p>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> La vitesse angulaire est liée à la vitesse linéaire par :
+                                <span class="step-num">Or :</span> \(E_{ci} = 0\) et \(W(\vec{P}) = W(\vec{R}) = 0\). En notant \(T' = T\) (même tension dans le fil de part et d'autre de la poulie) et \(h = R \cdot \Delta\theta\) le déplacement du fil, la force \(\vec{F}\) entraîne la poulie (travail moteur positif) tandis que la tension \(\vec{T'}\) la freine (travail résistant négatif) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$\frac{1}{2} J_{\Delta} \omega^2 - 0 = F \cdot h - T' \cdot h$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">Or :</span> la vitesse angulaire \(\omega\) de la poulie est liée à la vitesse linéaire \(v\) du fil (donc du solide S) par la relation \(v = R \cdot \omega\), d'où :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\omega = \frac{v}{R} = \frac{4}{0,10} = 40\text{ rad/s}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> On isole \(F\) :
+                                <span class="step-num">D'où :</span> on isole \(F\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\frac{1}{2} J_{\Delta} \omega^2 = h \cdot (F - T)$$
-                                    $$F = T + \frac{J_{\Delta} \cdot \omega^2}{2h} = T + \frac{J_{\Delta} \cdot v^2}{2R^2 \cdot h}$$
+                                    $$\frac{1}{2} J_{\Delta} \omega^2 = h \cdot (F - T) \quad\Longrightarrow\quad F = T + \frac{J_{\Delta} \cdot \omega^2}{2h} = T + \frac{J_{\Delta} \cdot v^2}{2R^2 \cdot h}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 5 :</span> Application numérique :
+                                <span class="step-num">A.N :</span> avec \(T = 1141\text{ N}\) (question 1), \(J_{\Delta} = 5 \times 10^{-3}\text{ kg.m}^2\), \(v = 4\text{ m/s}\), \(R = 0,10\text{ m}\) et \(h = 5\text{ m}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$F = 1141 + \frac{5 \times 10^{-3} \times 4^2}{2 \times (0,10)^2 \times 5}$$
                                     $$F = 1141 + \frac{5 \times 10^{-3} \times 16}{2 \times 0,01 \times 5} = 1141 + \frac{0,08}{0,1}$$
@@ -968,3 +978,4 @@
 
 </body>
 </html>
+

@@ -307,16 +307,16 @@
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Système étudié : la bille.
-                                <br>Bilan des forces : \(\vec{P}\) (poids) et \(\vec{T}\) (tension du fil).
+                                <span class="step-num">Système étudié :</span> la bille.
+                                <br><span class="step-num" style="margin-top:4px; display:inline-block;">Bilan des forces :</span> \(\vec{P}\) (poids) et \(\vec{T}\) (tension du fil).
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Le travail de la tension \(\vec{T}\) est <strong>nul</strong> car elle est toujours perpendiculaire au déplacement de la bille.
+                                <span class="step-num">Or :</span> la tension \(\vec{T}\) est, à chaque instant, perpendiculaire au déplacement de la bille (car elle est dirigée le long du fil, et la bille se déplace toujours perpendiculairement au fil). Donc son travail est nul : \(W_{A\to B}(\vec{T}) = 0\).
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Tableau des états :
+                                <span class="step-num">On a :</span> en prenant B comme origine des altitudes, le tableau des états s'écrit :
                                 <div class="table-wrap" style="margin:4px 0;">
                                     <table>
                                         <tr><th></th><th>État initial (A)</th><th>État final (B)</th></tr>
@@ -327,16 +327,18 @@
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> Application du théorème de l'énergie cinétique entre A et B :
+                                <span class="step-num">Donc :</span> d'après le théorème de l'énergie cinétique, appliqué à la bille entre A et B :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P}) + W_{A\to B}(\vec{T})$$
-                                    $$\frac{1}{2} m v_B^2 - 0 = m \cdot g (z_A - z_B) + 0$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Or \(v_A = 0\) et \(W_{A\to B}(\vec{T}) = 0\), donc en simplifiant par \(m\) :</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\frac{1}{2} v_B^2 = g \cdot z_A$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 5 :</span> La hauteur \(z_A = h\) est :
+                                <span class="step-num">Or :</span> il faut d'abord calculer la hauteur \(z_A = h\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$h = L(1 - \cos\alpha) = 1,00 \times (1 - \cos 70^\circ)$$
                                     $$h = 1,00 \times (1 - 0,342) = 0,658\text{ m}$$
@@ -344,7 +346,7 @@
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 6 :</span> On isole \(v_B\) :
+                                <span class="step-num">D'où :</span> on isole \(v_B\), puis on remplace par \(g = 10\text{ N/kg}\) et \(h = 0,658\text{ m}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$v_B^2 = 2g \cdot h = 2 \times 10 \times 0,658 = 13,16$$
                                     $$v_B = \sqrt{13,16} \approx 3,63\text{ m/s}$$
@@ -749,3 +751,4 @@
 
 </body>
 </html>
+

@@ -487,38 +487,41 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Bilan des forces sur AB :
+                                <span class="step-num">Bilan des forces</span> sur la partie AB :
                                 <ul>
                                     <li>\(\vec{P}\) : Poids (vertical vers le bas)</li>
-                                    <li>\(\vec{R}\) : Réaction normale</li>
+                                    <li>\(\vec{R}\) : Réaction normale de la piste</li>
                                     <li>\(\vec{f}\) : Frottement (parallèle à la pente, opposé au mouvement)</li>
                                 </ul>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Application du théorème de l'énergie cinétique entre A et B :
+                                <span class="step-num">On a :</span> d'après le théorème de l'énergie cinétique, appliqué au solide S entre A et B :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cB} - E_{cA} = W_{A\to B}(\vec{P}) + W_{A\to B}(\vec{R}) + W_{A\to B}(\vec{f})$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Avec \(v_B = 0\), \(W(\vec{R}) = 0\) :
+                                <span class="step-num">Or :</span> \(v_B = 0\), la réaction normale \(\vec{R}\) est perpendiculaire au déplacement donc \(W(\vec{R}) = 0\), \(W_{A\to B}(\vec{P}) = -m \cdot g \cdot AB \cdot \sin\alpha\) (le solide monte) et \(W_{A\to B}(\vec{f}) = -f \cdot AB\) (force opposée au mouvement). L'équation devient :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$-\frac{1}{2} m v_A^2 = -m \cdot g \cdot AB \cdot \sin\alpha - f \cdot AB$$
-                                    $$\frac{1}{2} m v_A^2 = AB(m \cdot g \cdot \sin\alpha + f)$$
                                 </div>
-                            </div>
-
-                            <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> On isole \(AB\) :
+                                <p style="font-size:11px; color:var(--text-muted);">Soit, en multipliant les deux membres par \((-1)\) :</p>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$AB = \frac{m v_A^2}{2(m \cdot g \cdot \sin\alpha + f)}$$
+                                    $$\frac{1}{2} m v_A^2 = AB \, (m \cdot g \cdot \sin\alpha + f)$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 5 :</span> Application numérique :
+                                <span class="step-num">D'où :</span> on isole \(AB\) :
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$AB = \frac{m \, v_A^2}{2(m \cdot g \cdot \sin\alpha + f)}$$
+                                </div>
+                            </div>
+
+                            <div class="step" style="margin-top:6px;">
+                                <span class="step-num">A.N :</span> avec \(m = 50\text{ g} = 50 \times 10^{-3}\text{ kg}\), \(v_A = 6\text{ m/s}\), \(g = 10\text{ N/kg}\), \(\alpha = 60^\circ\) et \(f = 10^{-2}\text{ N}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$AB = \frac{50 \times 10^{-3} \times 6^2}{2 \times (50 \times 10^{-3} \times 10 \times \sin(60^\circ) + 10^{-2})}$$
                                     $$AB = \frac{50 \times 10^{-3} \times 36}{2 \times (0,5 \times 0,866 + 0,01)}$$
@@ -544,23 +547,21 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Sur BC, on néglige les frottements. La seule force qui travaille est le poids.
-                                <br>On applique le théorème de l'énergie cinétique entre B et C :
+                                <span class="step-num">On a :</span> sur la partie circulaire BC, on néglige les frottements : seul le poids travaille. D'après le théorème de l'énergie cinétique, appliqué entre B et C :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cC} - E_{cB} = W_{B\to C}(\vec{P}) + W_{B\to C}(\vec{R})$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Avec \(v_B = 0\) et \(W(\vec{R}) = 0\) :
+                                <span class="step-num">Or :</span> \(v_B = 0\) et la réaction \(\vec{R}\) est perpendiculaire au déplacement, donc \(W(\vec{R}) = 0\). La dénivellation entre B et C vaut le rayon \(r\) (le solide descend d'une hauteur \(r\) le long du quart de cercle), donc :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$\frac{1}{2} m v_C^2 = m \cdot g \cdot r$$
-                                    $$v_C^2 = 2g \cdot r$$
+                                    $$\frac{1}{2} m v_C^2 = m \cdot g \cdot r \quad\Longrightarrow\quad v_C^2 = 2g \cdot r$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Application numérique :
+                                <span class="step-num">A.N :</span> avec \(g = 10\text{ N/kg}\) et \(r = 0,5\text{ m}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$v_C = \sqrt{2 \times 10 \times 0,5} = \sqrt{10} \approx 3,16\text{ m/s}$$
                                 </div>
@@ -584,8 +585,7 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Entre C et D, le solide est en chute libre (seul le poids travaille).
-                                <br>On applique le théorème de l'énergie cinétique entre C et D :
+                                <span class="step-num">On a :</span> entre C et D, le solide est en chute libre (seul le poids travaille). D'après le théorème de l'énergie cinétique, appliqué entre C et D :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cD} - E_{cC} = W_{C\to D}(\vec{P})$$
                                     $$\frac{1}{2} m v_D^2 - \frac{1}{2} m v_C^2 = m \cdot g \cdot (z_C - z_D)$$
@@ -593,21 +593,21 @@
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> La dénivellation entre C et D :
+                                <span class="step-num">Or :</span> la dénivellation entre C et D correspond à la hauteur \(h = AB \cdot \sin\alpha\) atteinte sur la pente, diminuée du rayon \(r\) descendu sur BC :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$z_C - z_D = h - r = AB \cdot \sin\alpha - r$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> On isole \(v_D\) :
+                                <span class="step-num">D'où :</span> en remplaçant et en simplifiant par \(m\), on isole \(v_D\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$v_D^2 = 2g(AB \cdot \sin\alpha - r) + v_C^2$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> Application numérique :
+                                <span class="step-num">A.N :</span> avec \(g = 10\text{ N/kg}\), \(AB \approx 2,03\text{ m}\) (question 1), \(\alpha = 60^\circ\), \(r = 0,5\text{ m}\) et \(v_C \approx 3,16\text{ m/s}\) (question 2) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$v_D^2 = 2 \times 10 \times (2,03 \times \sin(60^\circ) - 0,5) + (3,16)^2$$
                                     $$v_D^2 = 20 \times (2,03 \times 0,866 - 0,5) + 10$$
@@ -1004,3 +1004,4 @@
 
 </body>
 </html>
+

@@ -487,32 +487,34 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Conversion de la vitesse angulaire en \(\text{rad.s}^{-1}\) :
+                                <span class="step-num">Or :</span> il faut d'abord convertir la vitesse angulaire en \(\text{rad.s}^{-1}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\omega = \frac{2\pi N}{60} = \frac{2\pi \times 45}{60} = 1,5\pi \approx 4,71\text{ rad.s}^{-1}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> Angle de rotation avant l'arrêt :
+                                <span class="step-num">Or :</span> il faut aussi convertir en radians l'angle balayé par le cylindre avant l'arrêt (\(120\) tours) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta\theta = 2\pi \times n = 2\pi \times 120 = 240\pi \approx 754\text{ rad}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Application du théorème de l'énergie cinétique entre l'instant d'arrêt du moteur et l'arrêt complet du cylindre :
+                                <span class="step-num">On a :</span> d'après le théorème de l'énergie cinétique, appliqué au cylindre entre l'instant où l'on coupe le moteur (vitesse \(\omega\)) et l'instant où il s'arrête (vitesse nulle) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta E_c = E_{cf} - E_{ci} = W(\vec{P}) + W(\vec{T}) + W_f$$
-                                    $$0 - \frac{1}{2} J_{\Delta} \omega^2 = 0 + 0 + M_f \cdot \Delta\theta$$
-                                    $$M_f = -\frac{J_{\Delta} \cdot \omega^2}{2\Delta\theta}$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">Or le poids et la réaction de l'axe ne travaillent pas (\(W(\vec{P}) = W(\vec{T}) = 0\)), et le travail du couple de frottement s'écrit \(W_f = M_f \cdot \Delta\theta\). L'équation devient :</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$0 - \frac{1}{2} J_{\Delta} \omega^2 = M_f \cdot \Delta\theta$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> Application numérique :
+                                <span class="step-num">D'où :</span> on isole \(M_f\), puis on remplace par \(J_{\Delta} = 3 \times 10^{-2}\text{ kg.m}^2\), \(\omega \approx 4,71\text{ rad.s}^{-1}\) et \(\Delta\theta \approx 754\text{ rad}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M_f = -\frac{3 \times 10^{-2} \times (1,5\pi)^2}{2 \times 240\pi}$$
+                                    $$M_f = -\frac{J_{\Delta} \cdot \omega^2}{2\Delta\theta} = -\frac{3 \times 10^{-2} \times (1,5\pi)^2}{2 \times 240\pi}$$
                                     $$M_f = -\frac{3 \times 10^{-2} \times 22,2}{1508} = -\frac{0,666}{1508}$$
                                     $$M_f \approx -4,4 \times 10^{-4}\text{ N.m}$$
                                 </div>
@@ -537,23 +539,25 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Le mouvement est uniforme, donc \(\Delta E_c = 0\).
-                                <br>On applique le théorème de l'énergie cinétique entre deux instants de durée \(\Delta t = 1\text{ min}\) :
+                                <span class="step-num">On a :</span> le mouvement est maintenant uniforme (\(\omega\) constant), donc \(\Delta E_c = 0\). D'après le théorème de l'énergie cinétique, appliqué entre le début et la fin de la durée \(\Delta t = 1\text{ min}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$0 = W_m + M_f \cdot \Delta\theta'$$
+                                </div>
+                                <p style="font-size:11px; color:var(--text-muted);">D'où, en isolant le travail moteur \(W_m\) :</p>
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$W_m = -M_f \cdot \Delta\theta'$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 2 :</span> L'angle parcouru pendant une minute :
+                                <span class="step-num">Or :</span> il faut d'abord calculer l'angle \(\Delta\theta'\) parcouru pendant cette minute :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\Delta\theta' = \omega \cdot \Delta t = 1,5\pi \times 60 = 90\pi \text{ rad}$$
                                 </div>
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 3 :</span> Le travail du moteur :
+                                <span class="step-num">A.N :</span> avec \(M_f \approx -4,4 \times 10^{-4}\text{ N.m}\) (question 1) et \(\Delta\theta' = 90\pi\text{ rad}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$W_m = -(-4,4 \times 10^{-4}) \times 90\pi = 4,4 \times 10^{-4} \times 282,7$$
                                     $$W_m \approx 0,124\text{ J}$$
@@ -561,7 +565,7 @@
                             </div>
 
                             <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 4 :</span> La puissance du moteur :
+                                <span class="step-num">Donc :</span> par définition, la puissance moyenne du moteur pendant cette minute est :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$P = \frac{W_m}{\Delta t} = \frac{0,124}{60} \approx 2,07 \times 10^{-3}\text{ W} = 2,07\text{ mW}$$
                                 </div>
@@ -894,3 +898,4 @@
 
 </body>
 </html>
+

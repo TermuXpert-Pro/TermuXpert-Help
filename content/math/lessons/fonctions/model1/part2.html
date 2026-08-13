@@ -681,11 +681,12 @@
                 </div>
 
                 <div class="highlight-box">
-                    <p><strong>Application :</strong> Montrer que $f(x) = \sin(ax)$ avec $a \neq 0$ est périodique de période $T = \frac{2\pi}{|a|}$.</p>
-                    <div class="step"><span class="step-num">Étape 1 :</span> $\sin(ax + 2\pi) = \sin(ax)$</div>
-                    <div class="step"><span class="step-num">Étape 2 :</span> $\sin(a(x + \frac{2\pi}{a})) = \sin(ax + 2\pi) = \sin(ax)$</div>
-                    <div class="step"><span class="step-num">Étape 3 :</span> Donc $T = \frac{2\pi}{a}$ pour $a > 0$, $T = \frac{2\pi}{|a|}$ pour $a \neq 0$.</div>
-                    <p style="color:#4ECDC4;"><strong>Conclusion :</strong> $f(x) = \sin(ax)$ est périodique de période $T = \frac{2\pi}{|a|}$.</p>
+                    <p><strong>Application :</strong> Montrer que $f(x) = \sin(ax)$ avec $a \neq 0$ est périodique de période $T = \dfrac{2\pi}{|a|}$.</p>
+                    <div class="step">$D_f = \mathbb{R}$, donc pour tout $x \in \mathbb{R}$, $x+T \in \mathbb{R}$ et $x-T \in \mathbb{R}$ : la première condition est vérifiée.</div>
+                    <div class="step">Posons $T = \dfrac{2\pi}{|a|} > 0$. On sait que $\sin$ est $2\pi$-périodique, donc $\sin(u+2\pi) = \sin(u) = \sin(u-2\pi)$ pour tout $u \in \mathbb{R}$.
+                    <br>• Si $a>0$ : $aT = a\cdot\dfrac{2\pi}{a} = 2\pi$, d'où $f(x+T) = \sin(ax+2\pi) = \sin(ax) = f(x)$ ;
+                    <br>• Si $a<0$ : $aT = a\cdot\dfrac{2\pi}{-a} = -2\pi$, d'où $f(x+T) = \sin(ax-2\pi) = \sin(ax) = f(x)$.</div>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> dans les deux cas, $f(x+T) = f(x)$ avec $T = \dfrac{2\pi}{|a|} > 0$, donc $f(x) = \sin(ax)$ est périodique de période $T = \dfrac{2\pi}{|a|}$.</p>
                 </div>
 
                 <div class="graph-container">
@@ -929,3 +930,5 @@
 
 </body>
 </html>
+
+

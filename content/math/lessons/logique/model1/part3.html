@@ -425,23 +425,27 @@
                 <div class="highlight-box yellow">
                     <span class="label ex">Preuve d'une loi logique</span>
                     <p><strong>Exemple :</strong> Montrons que $(P \land Q) \Rightarrow P$ est une loi logique.</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $(P \land Q) \Rightarrow P \equiv \overline{P \land Q} \lor P$
+                    <p style="margin-top:6px;">On a, par définition de l'implication :</p>
+                    <div class="formula-block">
+                        $(P \land Q) \Rightarrow P \iff \overline{P \land Q} \lor P$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $\equiv (\overline{P} \lor \overline{Q}) \lor P$
+                    <p>D'après les lois de Morgan :</p>
+                    <div class="formula-block">
+                        $\iff (\overline{P} \lor \overline{Q}) \lor P$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $\equiv (\overline{P} \lor P) \lor \overline{Q}$
+                    <p>Par commutativité et associativité de $\lor$, on regroupe $\overline{P}$ et $P$ :</p>
+                    <div class="formula-block">
+                        $\iff (\overline{P} \lor P) \lor \overline{Q}$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 4 :</span> $\equiv \mathbf{V} \lor \overline{Q} \equiv \mathbf{V}$
+                    <p>Or $\overline{P} \lor P = \mathbf{V}$ (toujours vraie), donc :</p>
+                    <div class="formula-block">
+                        $\iff \mathbf{V} \lor \overline{Q} \iff \mathbf{V}$
                     </div>
                     <p style="color:var(--text-muted); font-size:11px; margin-top:2px;">
                         <strong>📘 Remarque :</strong> $\mathbf{V}$ désigne une <strong>proposition toujours vraie</strong> (tautologie).
                         La disjonction d'une tautologie avec n'importe quelle proposition est toujours vraie.
                     </p>
-                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La proposition est toujours vraie, c'est une <strong>loi logique</strong>.</p>
+                    <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $(P \land Q) \Rightarrow P$ est toujours vraie, c'est donc une <strong>loi logique</strong>.</p>
                 </div>
 
                 <div class="highlight-box purple">
@@ -512,20 +516,21 @@
                 <div class="highlight-box yellow">
                     <span class="label ex">Exemple</span>
                     <p>Montrer que : <strong>$\forall a,b \in \mathbb{R} : a^2 + b^2 = 2ab \iff a = b$</strong></p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $a^2 + b^2 = 2ab$
+                    <p style="margin-top:6px;">Soient $a, b \in \mathbb{R}$. On a :</p>
+                    <div class="formula-block">
+                        $a^2 + b^2 = 2ab$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $\iff a^2 + b^2 - 2ab = 0$
+                    <p>on transpose $2ab$ dans le premier membre :</p>
+                    <div class="formula-block">
+                        $\iff a^2 + b^2 - 2ab = 0$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $\iff (a - b)^2 = 0$
+                    <p>on reconnaît une identité remarquable $a^2 - 2ab + b^2 = (a-b)^2$ :</p>
+                    <div class="formula-block">
+                        $\iff (a - b)^2 = 0$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 4 :</span> $\iff a - b = 0$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 5 :</span> $\iff a = b$
+                    <p>or un carré est nul si et seulement si sa base est nulle, d'où :</p>
+                    <div class="formula-block">
+                        $\iff a - b = 0 \iff a = b$
                     </div>
                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall a,b \in \mathbb{R} : a^2 + b^2 = 2ab \iff a = b$</p>
                 </div>
@@ -559,17 +564,15 @@
 
                 <div class="highlight-box yellow">
                     <span class="label ex">Exemple</span>
-                    <div class="step">
-                        <span class="step-num">1.</span> On suppose qu'on a démontré : $\forall a,b > 0,\ \sqrt{ab} \le \dfrac{a+b}{2}$
+                    <p>On suppose qu'on a démontré la propriété : $\forall a,b > 0,\ \sqrt{ab} \le \dfrac{a+b}{2}$</p>
+                    <p style="margin-top:4px;">On veut en déduire que : $\forall x > 0,\ 2\sqrt{x} \le 1 + x$</p>
+                    <p style="font-weight:600; color:var(--gold-text); margin-top:6px;">On applique la propriété avec $a = 1$ et $b = x$ :</p>
+                    <div class="formula-block">
+                        $\sqrt{1 \times x} \le \dfrac{1 + x}{2}$
                     </div>
-                    <div class="step">
-                        <span class="step-num">2.</span> On déduit que : $\forall x > 0,\ 2\sqrt{x} \le 1 + x$
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Preuve :</span> D'après la 1ère question, on pose $a = 1$ et $b = x$.
-                    </div>
-                    <div class="step">
-                        <span class="step-num">D'où :</span> $\sqrt{1 \times x} \le \dfrac{1 + x}{2} \Rightarrow 2\sqrt{x} \le 1 + x$
+                    <p>c'est-à-dire $\sqrt{x} \le \dfrac{1+x}{2}$, donc en multipliant les deux membres par 2 :</p>
+                    <div class="formula-block">
+                        $2\sqrt{x} \le 1 + x$
                     </div>
                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> $\forall x > 0,\ 2\sqrt{x} \le 1 + x$</p>
                 </div>
@@ -605,21 +608,22 @@
                     <span class="label ex">Exemple</span>
                     <p>Montrer que : <strong>$\forall x,y \in ]2, +\infty[,\ x \neq y \Rightarrow x^2 - 4x \neq y^2 - 4y$</strong></p>
                     <p style="font-weight:600; color:var(--gold-text);">On utilise un raisonnement par contraposée.</p>
-                    <p>On démontre : $\forall x,y \in ]2, +\infty[,\ x^2 - 4x = y^2 - 4y \Rightarrow x = y$</p>
-                    <div class="step">
-                        <span class="step-num">Étape 1 :</span> $x^2 - 4x = y^2 - 4y$
+                    <p>Il suffit de démontrer : $\forall x,y \in ]2, +\infty[,\ x^2 - 4x = y^2 - 4y \Rightarrow x = y$</p>
+                    <p style="margin-top:6px;">Soient $x,y \in ]2, +\infty[$ tels que $x^2 - 4x = y^2 - 4y$. On a :</p>
+                    <div class="formula-block">
+                        $x^2 - 4x = y^2 - 4y$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 2 :</span> $\Rightarrow x^2 - 4x + 4 = y^2 - 4y + 4$
+                    <p>on ajoute 4 aux deux membres :</p>
+                    <div class="formula-block">
+                        $\Rightarrow x^2 - 4x + 4 = y^2 - 4y + 4$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 3 :</span> $\Rightarrow (x-2)^2 = (y-2)^2$
+                    <p>on reconnaît des identités remarquables :</p>
+                    <div class="formula-block">
+                        $\Rightarrow (x-2)^2 = (y-2)^2$
                     </div>
-                    <div class="step">
-                        <span class="step-num">Étape 4 :</span> $\Rightarrow x-2 = y-2$ <span style="color:var(--text-muted);">(car $x,y > 2$ donc $x-2$ et $y-2$ sont positifs)</span>
-                    </div>
-                    <div class="step">
-                        <span class="step-num">Étape 5 :</span> $\Rightarrow x = y$
+                    <p>or $x,y > 2$ donc $x-2 > 0$ et $y-2 > 0$ ; deux nombres positifs de carrés égaux sont égaux, d'où :</p>
+                    <div class="formula-block">
+                        $\Rightarrow x-2 = y-2 \Rightarrow x = y$
                     </div>
                     <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> L'implication contraposée est vraie, donc l'implication initiale est vraie.</p>
                 </div>
