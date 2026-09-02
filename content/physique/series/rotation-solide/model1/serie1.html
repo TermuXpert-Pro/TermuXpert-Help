@@ -179,8 +179,11 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container svg {
             max-width: 100%;
+            width: 100%;
+            height: auto;
+            display: block;
             border-radius: 4px;
             background: #0D1117;
         }
@@ -285,16 +288,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -350,6 +344,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -377,13 +375,6 @@
                     <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -440,12 +431,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -515,8 +506,8 @@
                             </div>
 
                             <div class="graph-container">
-                                <canvas id="graphEx1" width="300" height="200"></canvas>
-                                <p>Trajectoire circulaire de la roche</p>
+                                <svg id="svgEx1Roche" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
+                                <p>Trajectoire circulaire de la roche au bout de la corde (R = 1,00 m)</p>
                             </div>
                         </div>
                     </div>
@@ -567,6 +558,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="svgEx2PointP" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
+                    <p>Point P sur la roue : un tour complet correspond à d = 3,0 m</p>
                 </div>
             </div>
 
@@ -760,8 +756,8 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphEx4" width="350" height="200"></canvas>
-                    <p>Vitesse linéaire en fonction du rayon</p>
+                    <svg id="svgEx4VitesseR" viewBox="0 0 350 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
+                    <p>Vitesse linéaire en fonction du rayon (v = R·ω)</p>
                 </div>
             </div>
 
@@ -847,6 +843,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="svgEx5Scie" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
+                    <p>Scie circulaire : vitesse linéaire d'une dent en périphérie</p>
                 </div>
             </div>
 
@@ -1003,8 +1004,8 @@
                 </div>
 
                 <div class="graph-container">
-                    <canvas id="graphEx6" width="400" height="220"></canvas>
-                    <p>Comparaison des deux roues</p>
+                    <svg id="svgEx6Tracteur" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
+                    <p>Comparaison des deux roues du tracteur : même vitesse linéaire au sol</p>
                 </div>
             </div>
 
@@ -1019,17 +1020,6 @@
         </div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -1053,213 +1043,8 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUES
-        // ============================================================
-
-        function drawGraphEx1() {
-            var canvas = document.getElementById('graphEx1');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var cx = w/2, cy = h/2;
-            var rayon = 70;
-
-            // Cercle
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Centre
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
-
-            // Point M
-            var angle = Math.PI/3;
-            var mx = cx + rayon * Math.cos(angle);
-            var my = cy + rayon * Math.sin(angle);
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.arc(mx, my, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('M', mx + 8, my - 6);
-
-            // Rayon
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3, 3]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(mx, my);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '10px Arial';
-            ctx.fillText('R = 1,00 m', cx + 10, cy - 20);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Trajectoire circulaire', 170, 20);
-        }
-
-        function drawGraphEx4() {
-            var canvas = document.getElementById('graphEx4');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var ox = 50, oy = h - 30;
-            var scaleX = 3800, scaleY = 80;
-
-            // Axes
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(w - 20, oy);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(ox, 20);
-            ctx.lineTo(ox, oy);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '12px Arial';
-            ctx.fillText('R (m)', w - 40, oy + 18);
-            ctx.fillText('v (m/s)', ox + 8, 16);
-
-            // Droite v = R·ω
-            var omega = 22.5;
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(ox, oy);
-            ctx.lineTo(ox + 0.07 * scaleX, oy - 0.07 * omega * scaleY);
-            ctx.stroke();
-
-            // Points
-            var points = [
-                {R: 0.02, v: 0.45, label: '2 cm'},
-                {R: 0.06, v: 1.35, label: '6 cm'}
-            ];
-            for (var i = 0; i < points.length; i++) {
-                var px = ox + points[i].R * scaleX;
-                var py = oy - points[i].v * scaleY;
-                ctx.fillStyle = '#4ECDC4';
-                ctx.beginPath();
-                ctx.arc(px, py, 5, 0, 2 * Math.PI);
-                ctx.fill();
-                ctx.fillStyle = '#FFFFFF';
-                ctx.font = '9px Arial';
-                ctx.fillText(points[i].label, px - 12, py - 10);
-            }
-
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '11px Arial';
-            ctx.fillText('v = R·ω', 200, 20);
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('ω = 22,5 rad/s', 200, 35);
-        }
-
-        function drawGraphEx6() {
-            var canvas = document.getElementById('graphEx6');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Grande roue
-            var cx1 = 120, cy1 = h/2 + 20;
-            var R1 = 70;
-
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx1, cy1, R1, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            ctx.fillStyle = '#4ECDC4';
-            ctx.font = '11px Arial';
-            ctx.fillText('Grande roue', cx1 - 30, cy1 - R1 - 15);
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '9px Arial';
-            ctx.fillText('R = 7 cm', cx1 - 20, cy1 + R1 + 20);
-            ctx.fillText('ω = 18 tr/min', cx1 - 25, cy1 + R1 + 35);
-
-            // Petite roue
-            var cx2 = 320, cy2 = h/2 + 20;
-            var R2 = 35;
-
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(cx2, cy2, R2, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '11px Arial';
-            ctx.fillText('Petite roue', cx2 - 25, cy2 - R2 - 15);
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '9px Arial';
-            ctx.fillText('R = 3,5 cm', cx2 - 22, cy2 + R2 + 20);
-            ctx.fillText('ω = 36 tr/min', cx2 - 27, cy2 + R2 + 35);
-
-            // Flèche de vitesse (même vitesse)
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx1 - 30, cy1 + R1 + 55);
-            ctx.lineTo(cx2 + 30, cy2 + R2 + 55);
-            ctx.stroke();
-
-            // Tête de flèche
-            ctx.fillStyle = '#F4D03F';
-            ctx.beginPath();
-            ctx.moveTo(cx2 + 22, cy2 + R2 + 49);
-            ctx.lineTo(cx2 + 35, cy2 + R2 + 55);
-            ctx.lineTo(cx2 + 22, cy2 + R2 + 61);
-            ctx.fill();
-
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '11px Arial';
-            ctx.fillText('v = 0,132 m/s', 200, cy2 + R2 + 70);
-
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Comparaison des deux roues', 200, 20);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraphEx1();
-                drawGraphEx4();
-                drawGraphEx6();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_s1.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

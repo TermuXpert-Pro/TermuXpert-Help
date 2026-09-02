@@ -7,11 +7,11 @@
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="صفحة الدعم لموقع Xpert - أبلغ عن أي مشكلة تقنية أو خطأ في المحتوى وسنساعدك.">
+    <meta name="description" content="Page de support du site Xpert - signalez tout problème technique ou erreur de contenu, nous vous aiderons.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>الدعم | Xpert</title>
+    <title>Support | Xpert</title>
     <link rel="canonical" href="https://jdxpert.pages.dev/support.html">
 
     <link rel="manifest" href="manifest.json">
@@ -71,11 +71,16 @@
         .support-email-box a{
             color:var(--legal-teal); text-decoration:none; font-weight:700; font-size:15px;
         }
+
+        /* ====== Forcer LTR (page traduite en français) ====== */
+        .legal-wrap{ direction:ltr !important; }
+        .legal-section h2, .legal-section p, .legal-section li{ text-align:left !important; }
+        .legal-wrap ul, .legal-wrap ol{ padding-left:20px !important; padding-right:0 !important; }
 </style>
     <script src="assets/js/shared-inline.js"></script>
 </head>
 <body>
-    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+    <div id="xpertLoader" role="status" aria-label="Chargement">
         <div class="xpert-shape-wrap">
             <div class="xpert-ring"></div>
             <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
@@ -126,16 +131,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -191,6 +187,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -218,13 +218,6 @@
                     <a href="recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -281,12 +274,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -306,83 +299,72 @@
 
         <div class="legal-hero">
             <div class="legal-eyebrow"><i class="fas fa-headset"></i> Xpert</div>
-            <h1>مركز <span>الدعم</span></h1>
-            <p>هل واجهتك مشكلة في الموقع؟ نحن هنا لمساعدتك</p>
+            <h1>Centre <span>de support</span></h1>
+            <p>Vous avez rencontré un problème sur le site ? Nous sommes là pour vous aider</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-info"></i> مرحباً بك</h2>
-            <p>إذا صادفتك أي مشكلة في محتوى الموقع أو في جانبه التقني، يرجى قبل التواصل معنا أن تحدد نوع المشكلة من القائمة أدناه. سيساعدنا هذا على فهم المشكلة بسرعة وحلها في أقرب وقت ممكن.</p>
+            <h2><i class="fas fa-circle-info"></i> Bienvenue</h2>
+            <p>Si vous rencontrez un problème dans le contenu du site ou sur le plan technique, merci de préciser d'abord le type de problème depuis la liste ci-dessous avant de nous contacter. Cela nous aidera à comprendre le problème rapidement et à le résoudre dans les plus brefs délais.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-list-check"></i> أنواع المشاكل الشائعة</h2>
+            <h2><i class="fas fa-list-check"></i> Types de problèmes courants</h2>
             <div class="support-issue-grid">
                 <div class="support-issue-card">
                     <i class="fas fa-chart-line"></i>
                     <div>
-                        <div class="support-issue-title">رسم أو بيان مشوّه</div>
-                        <div class="support-issue-desc">شكل أو منحنى أو رسم بياني يبدو غير واضح أو غير دقيق.</div>
+                        <div class="support-issue-title">Schéma ou graphique déformé</div>
+                        <div class="support-issue-desc">Une figure, une courbe ou un graphique qui semble flou ou inexact.</div>
                     </div>
                 </div>
                 <div class="support-issue-card">
                     <i class="fas fa-circle-exclamation"></i>
                     <div>
-                        <div class="support-issue-title">معلومة خاطئة</div>
-                        <div class="support-issue-desc">نتيجة أو قانون أو معطى خاطئ في درس أو تمرين معيّن.</div>
+                        <div class="support-issue-title">Information erronée</div>
+                        <div class="support-issue-desc">Un résultat, une loi ou une donnée incorrecte dans un cours ou un exercice précis.</div>
                     </div>
                 </div>
                 <div class="support-issue-card">
                     <i class="fas fa-book-open"></i>
                     <div>
-                        <div class="support-issue-title">نقص في تمرين</div>
-                        <div class="support-issue-desc">درس معيّن ينقصه تمرين، أو تمرين لا يمكن فتحه.</div>
+                        <div class="support-issue-title">Exercice manquant</div>
+                        <div class="support-issue-desc">Un cours auquel il manque un exercice, ou un exercice impossible à ouvrir.</div>
                     </div>
                 </div>
                 <div class="support-issue-card">
                     <i class="fas fa-gears"></i>
                     <div>
-                        <div class="support-issue-title">مشكلة تقنية</div>
-                        <div class="support-issue-desc">صفحة لا يمكن فتحها، أو بطء في الموقع، أو مشكلة عامة في العرض.</div>
+                        <div class="support-issue-title">Problème technique</div>
+                        <div class="support-issue-desc">Une page qui ne s'ouvre pas, une lenteur du site, ou un problème d'affichage général.</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-paper-plane"></i> كيف تُبلغ عن مشكلة</h2>
-            <p>لحل المشكلة بسرعة، يرجى تزويدنا بما يلي:</p>
+            <h2><i class="fas fa-paper-plane"></i> Comment signaler un problème</h2>
+            <p>Pour résoudre le problème rapidement, merci de nous fournir les éléments suivants :</p>
             <ul>
-                <li>اسم الصفحة أو الدرس أو التمرين الذي تحتوي عليه المشكلة.</li>
-                <li>وصف موجز للمشكلة التي واجهتها.</li>
-                <li>لقطة شاشة (screenshot) إن أمكن.</li>
+                <li>Le nom de la page, du cours ou de l'exercice concerné par le problème.</li>
+                <li>Une brève description du problème rencontré.</li>
+                <li>Une capture d'écran si possible.</li>
             </ul>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-envelope"></i> تواصل معنا</h2>
-            <p>أرسل لنا المشكلة التي واجهتها عبر البريد الإلكتروني:</p>
+            <h2><i class="fas fa-envelope"></i> Nous contacter</h2>
+            <p>Envoyez-nous le problème rencontré par e-mail :</p>
             <div class="support-email-box">
                 <i class="fas fa-envelope" style="color:var(--legal-teal);"></i>
                 <a href="mailto:jdelkhayaty@gmail.com">jdelkhayaty@gmail.com</a>
             </div>
         </div>
 
-        <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
+        <p class="legal-updated">Xpert &copy; 2026 - Tous droits réservés</p>
 
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 

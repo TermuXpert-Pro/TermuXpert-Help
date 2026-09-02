@@ -7,11 +7,11 @@
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="تعرف على منصة Xpert وعلى مطورها - موقع تعليمي مجاني لتلاميذ الأولى باكالوريا علوم تجريبية.">
+    <meta name="description" content="Découvrez la plateforme Xpert et son développeur - un site éducatif gratuit pour les élèves de 1ère année baccalauréat sciences expérimentales.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>من نحن | Xpert</title>
+    <title>À propos | Xpert</title>
     <link rel="canonical" href="https://jdxpert.pages.dev/about.html">
 
     <link rel="manifest" href="manifest.json">
@@ -126,11 +126,16 @@
         .about-badge-row .about-badge{opacity:0; transform:translateY(10px);}
         .about-social-row .about-social-link{opacity:0; transform:scale(0.9);}
         .about-feature-card{opacity:0; transform:translateY(16px);}
+
+        /* ====== Forcer LTR (page traduite en français) ====== */
+        .legal-wrap{ direction:ltr !important; }
+        .legal-section h2, .legal-section p, .legal-section li{ text-align:left !important; }
+        .legal-wrap ul, .legal-wrap ol{ padding-left:20px !important; padding-right:0 !important; }
 </style>
     <script src="assets/js/shared-inline.js"></script>
 </head>
 <body>
-    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+    <div id="xpertLoader" role="status" aria-label="Chargement">
         <div class="xpert-shape-wrap">
             <div class="xpert-ring"></div>
             <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
@@ -181,16 +186,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -246,6 +242,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -273,13 +273,6 @@
                     <a href="recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -336,12 +329,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -361,23 +354,23 @@
 
         <div class="legal-hero">
             <div class="legal-eyebrow"><i class="fas fa-circle-info"></i> Xpert</div>
-            <h1>من <span>نحن</span></h1>
-            <p>تعرّف على منصة Xpert وعلى الشخص الذي يطوّرها</p>
+            <h1>À <span>propos</span></h1>
+            <p>Découvrez la plateforme Xpert et la personne qui la développe</p>
         </div>
 
         <!-- ====== بطاقة المطور ====== -->
         <div class="legal-section">
             <div class="about-dev-card">
                 <div class="about-avatar-wrap">
-                    <img src="assets/images/jaouad.jpg" alt="صورة المطور">
+                    <img src="assets/images/jaouad.jpg" alt="Photo du développeur">
                     <span class="about-avatar-badge"><i class="fas fa-code"></i></span>
                 </div>
-                <div class="about-dev-name">جواد الخياطي</div>
-                <div class="about-dev-role">تلميذ ومبرمج مواقع</div>
+                <div class="about-dev-name">Jaouad El Khayati</div>
+                <div class="about-dev-role">Élève et développeur web</div>
                 <div class="about-badge-row">
-                    <span class="about-badge"><i class="fas fa-graduation-cap"></i> تلميذ بالثانوي التأهيلي</span>
-                    <span class="about-badge"><i class="fas fa-flag"></i> مغربي الجنسية</span>
-                    <span class="about-badge"><i class="fas fa-laptop-code"></i> مبرمج مواقع ويب</span>
+                    <span class="about-badge"><i class="fas fa-graduation-cap"></i> Élève au lycée qualifiant</span>
+                    <span class="about-badge"><i class="fas fa-flag"></i> Nationalité marocaine</span>
+                    <span class="about-badge"><i class="fas fa-laptop-code"></i> Développeur web</span>
                 </div>
                 <div class="about-social-row">
                     <a href="https://www.instagram.com/elkayatyjaouad?igsh=MTc1bXppcjg1N2p1ag==" target="_blank" rel="noopener noreferrer" class="about-social-link">
@@ -388,70 +381,59 @@
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-user-pen"></i> نبذة عني</h2>
-            <p>مرحباً، أنا تلميذ مغربي أدرس في الثانوي التأهيلي، وفي الوقت نفسه أبرمج مواقع الويب من هاتفي الذكي (Termux). لدي شغف كبير بالمعلوميات والتعليم، وهذا المزيج هو ما دفعني إلى بناء <strong>Xpert</strong> بمفردي، دون فريق أو ميزانية، فقط بالإرادة والوقت الفارغ.</p>
+            <h2><i class="fas fa-user-pen"></i> À propos de moi</h2>
+            <p>Bonjour, je suis un élève marocain scolarisé au lycée qualifiant, et en même temps je développe des sites web depuis mon smartphone (Termux). J'ai une grande passion pour l'informatique et l'enseignement, et c'est ce mélange qui m'a poussé à construire <strong>Xpert</strong> seul, sans équipe ni budget, avec juste de la volonté et du temps libre.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-graduation-cap"></i> عن منصة Xpert</h2>
-            <p>Xpert هو موقع تعليمي مجاني موجّه لتلاميذ <strong>السنة الأولى من سلك البكالوريا، شعبة العلوم التجريبية</strong> بالمغرب. هدفه بسيط: جمع الدروس والتمارين والسلاسل الخاصة بالرياضيات والفيزياء والكيمياء في مكان واحد، بطريقة واضحة ومنظمة حسب المنهاج الرسمي.</p>
+            <h2><i class="fas fa-graduation-cap"></i> À propos de la plateforme Xpert</h2>
+            <p>Xpert est un site éducatif gratuit destiné aux élèves de la <strong>1ère année du cycle baccalauréat, filière sciences expérimentales</strong>, au Maroc. Son objectif est simple : rassembler les cours, exercices et séries de mathématiques, physique et chimie en un seul endroit, de façon claire et organisée selon le programme officiel.</p>
             <div class="about-feature-grid">
                 <div class="about-feature-card">
                     <i class="fas fa-calculator"></i>
                     <div>
-                        <div class="about-feature-title">الرياضيات</div>
-                        <div class="about-feature-desc">دروس، تمارين مصححة، وسلاسل تمارين لكل درس.</div>
+                        <div class="about-feature-title">Mathématiques</div>
+                        <div class="about-feature-desc">Cours, exercices corrigés et séries d'exercices pour chaque leçon.</div>
                     </div>
                 </div>
                 <div class="about-feature-card">
                     <i class="fas fa-atom"></i>
                     <div>
-                        <div class="about-feature-title">الفيزياء</div>
-                        <div class="about-feature-desc">شروحات مع رسومات ومخططات توضيحية.</div>
+                        <div class="about-feature-title">Physique</div>
+                        <div class="about-feature-desc">Explications avec schémas et illustrations.</div>
                     </div>
                 </div>
                 <div class="about-feature-card">
                     <i class="fas fa-flask"></i>
                     <div>
-                        <div class="about-feature-title">الكيمياء</div>
-                        <div class="about-feature-desc">مفاهيم مبسطة مع تمارين للتطبيق.</div>
+                        <div class="about-feature-title">Chimie</div>
+                        <div class="about-feature-desc">Concepts simplifiés avec exercices d'application.</div>
                     </div>
                 </div>
                 <div class="about-feature-card">
                     <i class="fas fa-mobile-screen"></i>
                     <div>
-                        <div class="about-feature-title">مجاني ومتاح للكل</div>
-                        <div class="about-feature-desc">يعمل على الهاتف والحاسوب دون تسجيل أو دفع.</div>
+                        <div class="about-feature-title">Gratuit et accessible à tous</div>
+                        <div class="about-feature-desc">Fonctionne sur téléphone et ordinateur, sans inscription ni paiement.</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-heart"></i> لماذا Xpert؟</h2>
-            <p>بصفتي تلميذاً، عانيت بنفسي من صعوبة إيجاد موارد مراجعة منظمة ومطابقة للمنهاج المغربي. فقررت أن أبني الحل الذي كنت أبحث عنه، وأشاركه مع تلاميذ آخرين يعيشون الوضعية نفسها.</p>
+            <h2><i class="fas fa-heart"></i> Pourquoi Xpert ?</h2>
+            <p>En tant qu'élève, j'ai moi-même souffert de la difficulté à trouver des ressources de révision organisées et conformes au programme marocain. J'ai donc décidé de construire la solution que je cherchais, et de la partager avec d'autres élèves vivant la même situation.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-comment-dots"></i> كلمة أخيرة</h2>
-            <p>أتمنى حقاً أن يفيدكم هذا الموقع في مراجعتكم. استمتعت كثيراً وأنا أبنيه، وبذلت جهدي لأجعل استخدامه سهلاً وبسيطاً قدر الإمكان. بالتوفيق للجميع! 🍀</p>
+            <h2><i class="fas fa-comment-dots"></i> Mot de la fin</h2>
+            <p>J'espère sincèrement que ce site vous sera utile dans vos révisions. J'ai pris beaucoup de plaisir à le construire, et j'ai fait de mon mieux pour le rendre aussi simple et agréable à utiliser que possible. Bonne chance à tous ! 🍀</p>
         </div>
 
-        <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
+        <p class="legal-updated">Xpert &copy; 2026 - Tous droits réservés</p>
 
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 

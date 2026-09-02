@@ -150,16 +150,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -215,6 +206,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -242,13 +237,6 @@
                     <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -305,12 +293,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -396,17 +384,6 @@
         </div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
     <script src="../../../../../assets/js/protection.js"></script>

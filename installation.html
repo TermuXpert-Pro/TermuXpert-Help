@@ -7,11 +7,11 @@
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="دليل تثبيت Xpert كتطبيق (PWA) على الهاتف أو الحاسوب - خطوة بخطوة.">
+    <meta name="description" content="Guide d'installation de Xpert en tant qu'application (PWA) sur téléphone ou ordinateur, étape par étape.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>دليل التثبيت | Xpert</title>
+    <title>Guide d'installation | Xpert</title>
     <link rel="canonical" href="https://jdxpert.pages.dev/installation.html">
 
     <link rel="manifest" href="manifest.json">
@@ -138,11 +138,16 @@
             margin-top:10px; font-size:12px; color:var(--text-muted);
             font-family:'Cairo','Tajawal',sans-serif;
         }
+
+        /* ====== Forcer LTR (page traduite en français) ====== */
+        .legal-wrap{ direction:ltr !important; }
+        .legal-section h2, .legal-section p, .legal-section li{ text-align:left !important; }
+        .legal-wrap ul, .legal-wrap ol{ padding-left:20px !important; padding-right:0 !important; }
     </style>
     <script src="assets/js/shared-inline.js"></script>
 </head>
 <body>
-    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+    <div id="xpertLoader" role="status" aria-label="Chargement">
         <div class="xpert-shape-wrap">
             <div class="xpert-ring"></div>
             <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
@@ -193,16 +198,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -258,6 +254,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -285,13 +285,6 @@
                     <a href="recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -348,12 +341,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -373,75 +366,64 @@
 
         <div class="legal-hero">
             <div class="legal-eyebrow"><i class="fas fa-download"></i> Xpert</div>
-            <h1>دليل <span>التثبيت</span></h1>
-            <p>ثبّت Xpert كتطبيق على هاتفك أو حاسوبك في بضع خطوات بسيطة</p>
+            <h1>Guide d'<span>installation</span></h1>
+            <p>Installez Xpert comme application sur votre téléphone ou ordinateur en quelques étapes simples</p>
             <button class="install-cta-btn" id="installPageBtn" type="button">
-                <i class="fas fa-download"></i> حمّل التطبيق الآن
+                <i class="fas fa-download"></i> Télécharger l'application
             </button>
-            <p class="install-cta-note" id="installPageBtnNote">اضغط الزر وسيظهر تنبيه التثبيت مباشرة (Android/Chrome/Edge)، أو تعليمات يدوية على iPhone/iPad.</p>
+            <p class="install-cta-note" id="installPageBtnNote">Cliquez sur le bouton : l'invite d'installation apparaîtra directement (Android/Chrome/Edge), ou des instructions manuelles s'afficheront sur iPhone/iPad.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-question"></i> ما معنى PWA؟</h2>
-            <p><strong>PWA</strong> تعني <strong>Progressive Web App</strong>، أي تطبيق ويب متطوّر. بمعنى آخر، Xpert هو موقع ويب، لكنه مبني بطريقة تتيح لك <strong>تثبيته</strong> على هاتفك أو حاسوبك مثل أي تطبيق عادي، دون الحاجة إلى الدخول إلى Play Store أو App Store.</p>
-            <p>بعد التثبيت، ستجد أيقونة Xpert على شاشتك الرئيسية، ويُفتح في نافذة خاصة به (دون شريط عنوان المتصفح)، وتعمل بعض الصفحات حتى دون اتصال بالإنترنت.</p>
+            <h2><i class="fas fa-circle-question"></i> Que signifie PWA ?</h2>
+            <p><strong>PWA</strong> signifie <strong>Progressive Web App</strong>, c'est-à-dire une application web évoluée. Autrement dit, Xpert est un site web, mais conçu de façon à vous permettre de l'<strong>installer</strong> sur votre téléphone ou ordinateur comme n'importe quelle application classique, sans avoir besoin de passer par le Play Store ou l'App Store.</p>
+            <p>Après l'installation, vous retrouverez l'icône de Xpert sur votre écran d'accueil. Elle s'ouvre dans sa propre fenêtre (sans la barre d'adresse du navigateur), et certaines pages fonctionnent même sans connexion internet.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-star"></i> فوائد التثبيت</h2>
+            <h2><i class="fas fa-star"></i> Avantages de l'installation</h2>
             <div class="install-benefit-grid">
                 <div class="install-benefit-card">
                     <i class="fas fa-bolt"></i>
                     <div>
-                        <div class="install-benefit-title">أسرع في الفتح</div>
-                        <div class="install-benefit-desc">يُفتح مباشرة من الأيقونة، دون الحاجة للبحث عنه في المتصفح.</div>
+                        <div class="install-benefit-title">Ouverture plus rapide</div>
+                        <div class="install-benefit-desc">S'ouvre directement depuis l'icône, sans avoir à le chercher dans le navigateur.</div>
                     </div>
                 </div>
                 <div class="install-benefit-card">
                     <i class="fas fa-wifi"></i>
                     <div>
-                        <div class="install-benefit-title">يعمل دون إنترنت</div>
-                        <div class="install-benefit-desc">الصفحات التي زرتها من قبل تبقى محفوظة، ويمكنك فتحها دون واي فاي.</div>
+                        <div class="install-benefit-title">Fonctionne hors ligne</div>
+                        <div class="install-benefit-desc">Les pages déjà visitées restent enregistrées et peuvent être consultées sans Wi-Fi.</div>
                     </div>
                 </div>
                 <div class="install-benefit-card">
                     <i class="fas fa-window-maximize"></i>
                     <div>
-                        <div class="install-benefit-title">واجهة نظيفة</div>
-                        <div class="install-benefit-desc">يعمل في نافذة خاصة به دون شريط عنوان المتصفح، مثل تطبيق حقيقي.</div>
+                        <div class="install-benefit-title">Interface épurée</div>
+                        <div class="install-benefit-desc">S'exécute dans sa propre fenêtre, sans la barre d'adresse du navigateur, comme une véritable application.</div>
                     </div>
                 </div>
                 <div class="install-benefit-card">
                     <i class="fas fa-hard-drive"></i>
                     <div>
-                        <div class="install-benefit-title">لا يشغل حيّزاً كبيراً</div>
-                        <div class="install-benefit-desc">على عكس تطبيقات Play Store، فهو لا يُثقل ذاكرة الهاتف.</div>
+                        <div class="install-benefit-title">Ne prend pas beaucoup de place</div>
+                        <div class="install-benefit-desc">Contrairement aux applications du Play Store, il n'alourdit pas la mémoire du téléphone.</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-lightbulb"></i> ملاحظة</h2>
-            <p>اضغط على زر <strong>"حمّل التطبيق الآن"</strong> بأعلى الصفحة لتثبيت Xpert. على <strong>Android/Chrome</strong> و<strong>Windows/macOS (Chrome أو Edge)</strong> سيظهر تنبيه التثبيت مباشرة بلا أي خطوة إضافية.</p>
-            <p>أما على <strong>iPhone/iPad (Safari)</strong> أو المتصفحات الأخرى التي لا تدعم التثبيت التلقائي، فسيظهر لك تنبيه يوجّهك لاستخدام قائمة المتصفح واختيار خيار "تثبيت" أو "إضافة إلى الشاشة الرئيسية" يدويًا.</p>
+            <h2><i class="fas fa-lightbulb"></i> Remarque</h2>
+            <p>Cliquez sur le bouton <strong>« Télécharger l'application »</strong> en haut de la page pour installer Xpert. Sur <strong>Android/Chrome</strong> et <strong>Windows/macOS (Chrome ou Edge)</strong>, l'invite d'installation apparaîtra directement, sans aucune étape supplémentaire.</p>
+            <p>Sur <strong>iPhone/iPad (Safari)</strong> ou les autres navigateurs qui ne prennent pas en charge l'installation automatique, un message vous invitera à utiliser le menu du navigateur et à choisir manuellement l'option « Installer » ou « Ajouter à l'écran d'accueil ».</p>
         </div>
 
-        <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
+        <p class="legal-updated">Xpert &copy; 2026 - Tous droits réservés</p>
 
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -458,7 +440,7 @@
             if (window.XpertPWAInstall) {
                 window.XpertPWAInstall();
             } else {
-                alert('التثبيت غير متاح حالياً، جرّب من قائمة المتصفح (⋮) → "تثبيت التطبيق".');
+                alert('Installation indisponible pour le moment. Essayez depuis le menu du navigateur (⋮) → "Installer l\'application".');
             }
         });
     });

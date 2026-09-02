@@ -24,10 +24,12 @@
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']]
             },
-            svg: { fontCache: 'global' }
+            svg: { fontCache: 'local' }
         };
     </script>
     <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
     
     <style>
         body { font-size: 14px; }
@@ -225,6 +227,53 @@
             .sub-question .letter { font-size: 13px; }
             .nav-buttons .next-btn { padding: 5px 12px; font-size: 12px; }
         }
+
+        /* ====== وضع تصدير PDF (يُطبَّق على نسخة مستنسخة من العنصر أثناء الالتقاط بواسطة html2canvas) ====== */
+        .pdf-export-mode #exportPdfBtn,
+        .pdf-export-mode .toggle-sol,
+        .pdf-export-mode .nav-buttons {
+            display: none !important;
+        }
+        .pdf-export-mode .solution-box {
+            display: block !important;
+        }
+
+        /* ====== تصدير عبر طباعة المتصفح (Ctrl+P) كبديل احتياطي على الحاسوب ====== */
+        @media print {
+            /* إخفاء عناصر التنقل والتزيين التي لا فائدة منها فالمطبوع */
+            .navbar, .sidebar, #sidebarOverlay, .xpert-sec-fab-btn, .xpert-sec-menu,
+            .moroccan-bg, .moroccan-shadow, .moroccan-star,
+            .geo-pattern-1, .geo-pattern-2, .geo-pattern-3, .geo-pattern-4,
+            .bg-grid, .toggle-sol, .nav-buttons, .footer, #xpertLoader,
+            .overlay-protection, #exportPdfBtn {
+                display: none !important;
+            }
+
+            /* إظهار كل الحلول عند الطباعة حتى لو ماتفتحاتش فالشاشة */
+            .solution-box { display: block !important; }
+
+            /* خلفية بيضاء ونص أسود لوضوح الطباعة وتوفير الحبر */
+            html, body { background: #ffffff !important; }
+            .lesson-container, .section, .sub-question, .solution-box,
+            .formula-block, .highlight-box, .step, .table-wrap table {
+                background: #ffffff !important;
+                color: #111111 !important;
+                border-color: #cccccc !important;
+                box-shadow: none !important;
+            }
+            .lesson-title, h1, h2, p, span, div, li, td, th, u, strong {
+                color: #111111 !important;
+            }
+            .badge-exercice { background: #eeeeee !important; color: #111111 !important; }
+
+            /* الحفاظ على الخلفية الداكنة الخاصة بالرسوم التوضيحية SVG فقط لأنها مصممة عليها */
+            .graph-container { background: #0D1117 !important; border-color: #444 !important; }
+            .graph-container p { color: #cccccc !important; }
+
+            a { text-decoration: none !important; }
+            .lesson-container { padding: 0 !important; }
+            div[style*="max-width:900px"] { padding: 0 !important; max-width: 100% !important; }
+        }
     </style>
     <link rel="manifest" href="../../../../../manifest.json">
     <link rel="icon" href="../../../../../favicon.ico" sizes="any">
@@ -236,6 +285,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
     <script src="../../../../../assets/js/shared-inline.js"></script>
+    <script src="figuresvt_p1.js" defer></script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -291,16 +341,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -356,6 +397,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -383,13 +428,6 @@
                     <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -446,12 +484,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -474,6 +512,12 @@
                 <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-star"></i> Niveau : Facile</span>
             </p>
 
+            <div style="display:flex; justify-content:center; margin-bottom:14px;">
+                <button id="exportPdfBtn" type="button" onclick="xpertDownloadPDF()" style="display:flex; align-items:center; gap:6px; background:var(--bg-card); border:1px solid var(--border); color:#4ECDC4; padding:6px 16px; border-radius:8px; cursor:pointer; font-family:var(--font-main); font-size:13px; font-weight:600; transition:all .2s ease;" onmouseover="this.style.borderColor='#4ECDC4'; this.style.background='rgba(78,205,196,0.1)';" onmouseout="this.style.borderColor='var(--border)'; this.style.background='var(--bg-card)';">
+                    <i class="fas fa-file-pdf"></i> <span id="exportPdfBtnLabel">Télécharger en PDF</span>
+                </button>
+            </div>
+
             <div class="section">
                 <h2><span class="num">1</span> Énoncé</h2>
                 <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">
@@ -481,7 +525,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph1" width="350" height="200"></canvas>
+                    <svg id="figExo1" viewBox="0 0 350 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:380px;" role="img" aria-label="Roche attachée à une corde de 1,00 m en mouvement circulaire uniforme"></svg>
                     <p>Mouvement circulaire uniforme - Roche attachée à une corde</p>
                 </div>
 
@@ -536,17 +580,6 @@
         </div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -571,87 +604,167 @@
         }
 
         // ============================================================
-        // GRAPHIQUE - Exercice 1
+        // TÉLÉCHARGEMENT PDF (html2canvas + jsPDF) — fonctionne sur mobile,
+        // tablette, ordinateur et en PWA installée (sans dépendre de la
+        // boîte de dialogue d'impression du navigateur).
+        //
+        // Deux correctifs importants par rapport à une implémentation naïve :
+        // 1) MathJax est configuré en fontCache:'local' (voir <head>) pour que
+        //    chaque formule soit autonome — sinon les formules INLINE dont les
+        //    glyphes pointent vers un cache SVG global situé hors de l'élément
+        //    capturé restent invisibles (bug classique html2canvas + MathJax).
+        // 2) La pagination NE découpe PLUS un bloc au milieu : on repère les
+        //    éléments "à protéger" (.step, .formula-block, .highlight-box,
+        //    .graph-container, titres) et on décale le saut de page juste
+        //    avant eux si une coupure naïve tomberait en plein milieu.
         // ============================================================
+        function xpertDownloadPDF() {
+            var btn = document.getElementById('exportPdfBtn');
+            var label = document.getElementById('exportPdfBtnLabel');
+            var target = document.querySelector('.lesson-container');
+            if (!target) return;
 
-        function drawGraph1() {
-            var canvas = document.getElementById('graph1');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
+            if (typeof html2canvas === 'undefined' || !window.jspdf) {
+                alert('Le téléchargement nécessite une connexion Internet (chargement des outils PDF). Vérifiez votre connexion puis réessayez.');
+                return;
+            }
 
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
+            var originalLabel = label ? label.textContent : '';
+            if (label) label.textContent = 'Préparation...';
+            if (btn) {
+                btn.disabled = true;
+                btn.style.opacity = '0.65';
+                btn.style.pointerEvents = 'none';
+            }
 
-            var cx = w/2, cy = h/2 + 10;
-            var rayon = 70;
+            // --- Étape 1 : appliquer le mode export directement sur le DOM réel
+            // (pas sur un clone) pour que les mesures de mise en page (getBoundingClientRect)
+            // soient exactes lors du calcul des zones protégées. ---
+            target.classList.add('pdf-export-mode');
+            var boxes = target.querySelectorAll('.solution-box');
+            var reopenedBoxes = [];
+            boxes.forEach(function (b) {
+                if (!b.classList.contains('show')) {
+                    b.classList.add('show');
+                    reopenedBoxes.push(b);
+                }
+            });
 
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([6, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 15);
-            ctx.lineTo(cx, h - 15);
-            ctx.stroke();
-            ctx.setLineDash([]);
+            function restoreDOM() {
+                target.classList.remove('pdf-export-mode');
+                reopenedBoxes.forEach(function (b) { b.classList.remove('show'); });
+                if (label) label.textContent = originalLabel;
+                if (btn) {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                }
+            }
 
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.fillText('(Δ)', cx + 10, 22);
+            // --- Étape 2 : s'assurer que MathJax a fini de composer avant la capture ---
+            var mathReady = (window.MathJax && window.MathJax.typesetPromise)
+                ? window.MathJax.typesetPromise()
+                : Promise.resolve();
 
-            // Cercle (trajectoire)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
+            mathReady
+                .then(function () {
+                    // laisser le navigateur recalculer la mise en page après
+                    // l'ouverture des solutions + le (re)typesetting MathJax
+                    return new Promise(function (resolve) { requestAnimationFrame(function () { requestAnimationFrame(resolve); }); });
+                })
+                .then(function () {
+                    var scale = Math.min(2, window.devicePixelRatio || 2);
+                    var targetRect = target.getBoundingClientRect();
 
-            // Corde
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            var angle = Math.PI/4;
-            var x = cx + rayon * Math.cos(angle);
-            var y = cy + rayon * Math.sin(angle);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(x, y);
-            ctx.stroke();
+                    // Zones à ne jamais couper au milieu (en pixels canvas, échelle incluse)
+                    var protectedSelector = '.step, .formula-block, .highlight-box, .graph-container, h1, h2, .sol-title';
+                    var protectedZones = [];
+                    target.querySelectorAll(protectedSelector).forEach(function (el) {
+                        var r = el.getBoundingClientRect();
+                        var top = (r.top - targetRect.top) * scale;
+                        var bottom = (r.bottom - targetRect.top) * scale;
+                        if (bottom > top) protectedZones.push({ top: top, bottom: bottom });
+                    });
+                    protectedZones.sort(function (a, b) { return a.top - b.top; });
 
-            // Roche
-            ctx.fillStyle = '#A8FF78';
-            ctx.beginPath();
-            ctx.arc(x, y, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('Roche', x + 12, y - 6);
+                    var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary').trim() || '#0B0C10';
 
-            // Centre
-            ctx.fillStyle = '#BB8FCE';
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('O', cx + 8, cy + 4);
+                    return html2canvas(target, {
+                        backgroundColor: bgColor,
+                        scale: scale,
+                        useCORS: true
+                    }).then(function (canvas) {
+                        return { canvas: canvas, protectedZones: protectedZones };
+                    });
+                })
+                .then(function (data) {
+                    var canvas = data.canvas;
+                    var protectedZones = data.protectedZones;
 
-            // Rayon
-            ctx.fillStyle = '#A8FF78';
-            ctx.font = '10px Arial';
-            ctx.fillText('R = 1,00 m', cx + 30, cy - 20);
+                    var jsPDFCtor = window.jspdf.jsPDF;
+                    var pdf = new jsPDFCtor('p', 'mm', 'a4');
+                    var pageWidthMM = pdf.internal.pageSize.getWidth();
+                    var pageHeightMM = pdf.internal.pageSize.getHeight();
 
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.fillText('Mouvement circulaire uniforme', 130, 20);
+                    // ratio pixels-canvas -> mm, pour convertir une hauteur de page en pixels
+                    var pxPerMM = canvas.width / pageWidthMM;
+                    var pageHeightPx = pageHeightMM * pxPerMM;
+
+                    // Trouve, pour une coupure naïve donnée, la zone protégée qui la chevauche (s'il y en a une)
+                    function findOverlapping(cutY) {
+                        for (var i = 0; i < protectedZones.length; i++) {
+                            var z = protectedZones[i];
+                            if (cutY > z.top && cutY < z.bottom) return z;
+                        }
+                        return null;
+                    }
+
+                    var sliceCanvas = document.createElement('canvas');
+                    var sliceCtx = sliceCanvas.getContext('2d');
+
+                    var currentY = 0;
+                    var firstPage = true;
+                    var guardCounter = 0;
+
+                    while (currentY < canvas.height - 1 && guardCounter < 500) {
+                        guardCounter++;
+                        var naiveCut = Math.min(currentY + pageHeightPx, canvas.height);
+                        var overlap = findOverlapping(naiveCut);
+
+                        if (overlap && overlap.top > currentY + 20) {
+                            // on recule la coupure juste avant l'élément protégé
+                            naiveCut = overlap.top;
+                        }
+                        // garde-fou : si l'élément protégé est lui-même plus grand qu'une page,
+                        // ou si on ne peut pas avancer, on accepte la coupure naïve telle quelle
+                        if (naiveCut <= currentY) {
+                            naiveCut = Math.min(currentY + pageHeightPx, canvas.height);
+                        }
+
+                        var sliceHeightPx = naiveCut - currentY;
+                        sliceCanvas.width = canvas.width;
+                        sliceCanvas.height = sliceHeightPx;
+                        sliceCtx.clearRect(0, 0, sliceCanvas.width, sliceCanvas.height);
+                        sliceCtx.drawImage(canvas, 0, currentY, canvas.width, sliceHeightPx, 0, 0, canvas.width, sliceHeightPx);
+
+                        var sliceImgData = sliceCanvas.toDataURL('image/jpeg', 0.92);
+                        var sliceHeightMM = sliceHeightPx / pxPerMM;
+
+                        if (!firstPage) pdf.addPage();
+                        pdf.addImage(sliceImgData, 'JPEG', 0, 0, pageWidthMM, sliceHeightMM);
+
+                        firstPage = false;
+                        currentY = naiveCut;
+                    }
+
+                    pdf.save('Xpert-Exercice1-Rotation-solide.pdf');
+                })
+                .catch(function (err) {
+                    console.error('Erreur export PDF:', err);
+                    alert('Une erreur est survenue lors de la génération du PDF. Réessayez.');
+                })
+                .finally(restoreDOM);
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph1();
-            }, 500);
-        });
     </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>

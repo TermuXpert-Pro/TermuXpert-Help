@@ -125,7 +125,7 @@ a:active, button:active {
 .glow-orb-1{width:clamp(150px,30vw,300px);height:clamp(150px,30vw,300px);background:var(--accent);top:-10%;right:-10%;animation:orbFloat 8s ease-in-out infinite}
 .glow-orb-2{width:clamp(120px,25vw,250px);height:clamp(120px,25vw,250px);background:var(--accent-light);bottom:-10%;left:-10%;animation:orbFloat 10s ease-in-out infinite reverse}
 @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(0.95)}}
-.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(var(--bg-primary-rgb),0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(69,162,158,0.15);padding:0 var(--container-padding);height:var(--navbar-height);display:flex;align-items:center;justify-content:space-between;transition:all 0.3s ease}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(var(--bg-primary-rgb),0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(69,162,158,0.15);padding:0 var(--container-padding);height:var(--navbar-height);display:flex;align-items:center;justify-content:space-between;transition:box-shadow 0.3s ease;transform:translateZ(0);-webkit-transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .navbar.scrolled{box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 .nav-logo{display:flex;align-items:center;gap:clamp(6px,1vw,10px);text-decoration:none;flex-shrink:0}
 .nav-logo-icon{width:clamp(26px,4vw,32px);height:clamp(26px,4vw,32px);background:var(--gradient);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:900;font-size:clamp(12px,2vw,16px);color:var(--bg-primary)}
@@ -351,16 +351,6 @@ details div {
 .toggle-sol.active {
  background: rgba(78, 205, 196, 0.15);
  border-color: #4ECDC4;
-}
-.progress-bar {
- position: fixed;
- top: 0;
- left: 0;
- width: 0%;
- height: 3px;
- background: var(--gradient);
- z-index: 10000;
- transition: width 0.1s linear;
 }
 .table-wrap {
  overflow-x: auto;
@@ -1461,5 +1451,46 @@ body.xpert-loaded{
     }
 }
 /* ====== XPERT LOADER END ====== */
+
+
+
+
+/* === XPERT-UI-PATCH === */
+/* زر تبديل الوضع منقول لأعلى يمين قسم البروفايل بالسايدبار */
+.sidebar-section-profile {
+    position: relative;
+}
+.sidebar-section-profile .theme-toggle {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    z-index: 2;
+}
+@media (max-width: 480px) {
+    .sidebar-section-profile .theme-toggle {
+        top: 12px;
+        right: 14px;
+    }
+}
+
+/* روابط الدعم/التثبيت/الشروط بالفرنسية - حجم متجاوب */
+.sidebar-legal-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 4px 16px 12px;
+    font-size: clamp(10px, 2.6vw, 12px);
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+}
+.sidebar-legal-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+.sidebar-legal-links span {
+    color: var(--text-muted);
+    opacity: 0.4;
+}
 
 

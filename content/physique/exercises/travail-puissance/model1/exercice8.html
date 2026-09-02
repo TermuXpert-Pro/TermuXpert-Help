@@ -95,16 +95,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -160,6 +151,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -187,13 +182,6 @@
                     <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -250,12 +238,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -296,8 +284,34 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph8" width="420" height="240"></canvas>
-                    <p>Solide glissant sur un plan incliné - Sans frottement</p>
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Solide sur un plan incliné à 15 degrés, tiré par un câble formant un angle de 20 degrés avec la ligne de plus grande pente, avec le poids P et la réaction R">
+                      <defs>
+                        <marker id="arrow_ex8_0" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#BB8FCE"/></marker>
+                        <marker id="arrow_ex8_1" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#F4D03F"/></marker>
+                        <marker id="arrow_ex8_2" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#FF6B6B"/></marker>
+                      </defs>
+                      <rect x="0" y="0" width="400" height="250" rx="8" fill="#0D1117"/>
+                      <polygon points="55.0,220.0 335.1,144.9 335.1,238.0 55.0,238.0" fill="#161B22"/>
+                      <line x1="32.0" y1="220.0" x2="105.0" y2="220.0" stroke="#555555" stroke-width="1" stroke-linecap="round" stroke-dasharray="4,4"/>
+                      <line x1="55.0" y1="220.0" x2="335.1" y2="144.9" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round"/>
+                      <path d="M 91.0,220.0 A 36,36 0 0,0 89.8,210.7" fill="none" stroke="#F4D03F" stroke-width="1.2"/>
+                      <text x="100.0" y="213.0" font-size="10.5" fill="#F4D03F" text-anchor="start" font-family="Tahoma, Arial, sans-serif">α = 15°</text>
+                      <polygon points="158.2,192.4 187.1,184.6 182.5,167.2 153.5,175.0" fill="#A8FF78"/>
+                      <text x="204.3" y="201.8" font-size="10" fill="#A8FF78" text-anchor="middle" font-family="Tahoma, Arial, sans-serif">Solide (m = 5 kg)</text>
+                      <line x1="170.3" y1="179.8" x2="170.3" y2="234.8" stroke="#FF6B6B" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow_ex8_2)"/>
+                      <text x="178.3" y="229.8" font-size="12.5" fill="#FF6B6B" text-anchor="start" font-weight="bold" font-family="Tahoma, Arial, sans-serif">P</text>
+                      <line x1="170.3" y1="179.8" x2="156.1" y2="126.7" stroke="#BB8FCE" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow_ex8_0)"/>
+                      <text x="150.1" y="118.7" font-size="12.5" fill="#BB8FCE" text-anchor="start" font-weight="bold" font-family="Tahoma, Arial, sans-serif">R</text>
+                      <line x1="170.3" y1="179.8" x2="235.9" y2="133.9" stroke="#F4D03F" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrow_ex8_1)"/>
+                      <text x="241.9" y="131.9" font-size="13" fill="#F4D03F" text-anchor="start" font-weight="bold" font-family="Tahoma, Arial, sans-serif">T</text>
+                      <line x1="170.3" y1="179.8" x2="210.9" y2="168.9" stroke="#4ECDC4" stroke-width="0.7" stroke-linecap="round" stroke-dasharray="2,2"/>
+                      <path d="M 210.9,168.9 A 42,42 0 0,0 204.7,155.7" fill="none" stroke="#F4D03F" stroke-width="1"/>
+                      <text x="230.3" y="115.8" font-size="9.5" fill="#F4D03F" text-anchor="start" font-family="Tahoma, Arial, sans-serif">β = 20°</text>
+                      <text x="260.0" y="35.0" font-size="10.5" fill="#9aa4b2" text-anchor="start" font-family="Tahoma, Arial, sans-serif">m = 5 kg</text>
+                      <text x="260.0" y="50.0" font-size="10.5" fill="#9aa4b2" text-anchor="start" font-family="Tahoma, Arial, sans-serif">v = constante</text>
+                      <text x="260.0" y="65.0" font-size="10.5" fill="#9aa4b2" text-anchor="start" font-family="Tahoma, Arial, sans-serif">sans frottement</text>
+                    </svg>
+                    <p>Solide entraîné sur un plan incliné à 15° par un câble faisant un angle β=20° avec la ligne de plus grande pente</p>
                 </div>
 
                 <div class="sub-question">
@@ -412,17 +426,6 @@
         </div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -445,142 +448,6 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
-
-        // ============================================================
-        // GRAPHIQUE - Exercice 8
-        // ============================================================
-
-        function drawGraph8() {
-            var canvas = document.getElementById('graph8');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var baseX = 30, baseY = h - 30;
-            var longueur = 250;
-            var angle = 15 * Math.PI / 180;
-
-            // Plan incliné
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(baseX, baseY);
-            var finX = baseX + longueur * Math.cos(angle);
-            var finY = baseY - longueur * Math.sin(angle);
-            ctx.lineTo(finX, finY);
-            ctx.stroke();
-
-            // Horizontale
-            ctx.strokeStyle = '#2A2A3E';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(baseX - 10, baseY);
-            ctx.lineTo(baseX + 20, baseY);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Angle α
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.arc(baseX, baseY, 25, -angle, 0);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('α = 15°', baseX + 18, baseY - 14);
-
-            // Solide (point G)
-            var gx = baseX + longueur * 0.5 * Math.cos(angle);
-            var gy = baseY - longueur * 0.5 * Math.sin(angle);
-
-            // Représentation du solide (carré)
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 10;
-            ctx.fillRect(gx - 15, gy - 15, 30, 30);
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.fillText('G', gx + 20, gy + 4);
-
-            // Flèche Poids
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(gx, gy);
-            ctx.lineTo(gx, gy + 45);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '14px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('P', gx + 8, gy + 32);
-
-            // Flèche Réaction
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 2;
-            var rAngle = Math.PI/2 - angle;
-            ctx.beginPath();
-            ctx.moveTo(gx, gy - 8);
-            ctx.lineTo(gx + 40 * Math.cos(rAngle), gy - 8 - 40 * Math.sin(rAngle));
-            ctx.stroke();
-            ctx.fillStyle = '#BB8FCE';
-            ctx.font = '14px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('R', gx + 44, gy - 32);
-
-            // Flèche Tension (câble)
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 2;
-            var beta = 20 * Math.PI / 180;
-            var tLen = 45;
-            var tx = gx + 10 + tLen * Math.cos(beta);
-            var ty = gy - 10 - tLen * Math.sin(beta);
-            ctx.beginPath();
-            ctx.moveTo(gx + 10, gy - 10);
-            ctx.lineTo(tx, ty);
-            ctx.stroke();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.font = '14px Arial';
-            ctx.fillText('T', tx + 6, ty + 4);
-
-            // Angle β
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            // Ligne de plus grande pente (parallèle au plan, vers le haut)
-            ctx.moveTo(gx + 10, gy - 10);
-            var penteX = gx + 10 + 20 * Math.cos(angle);
-            var penteY = gy - 10 - 20 * Math.sin(angle);
-            ctx.lineTo(penteX, penteY);
-            ctx.stroke();
-            // Arc pour l'angle
-            ctx.beginPath();
-            ctx.arc(gx + 10, gy - 10, 18, -beta, 0);
-            ctx.stroke();
-            ctx.fillStyle = '#F4D03F';
-            ctx.font = '10px Arial';
-            ctx.fillText('β = 20°', gx + 25, gy - 24);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('m = 5 kg', 10, 20);
-            ctx.fillText('Sans frottement', 10, 35);
-            ctx.fillText('g = 9,81 N/kg', 10, 50);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph8();
-            }, 500);
-        });
     </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>

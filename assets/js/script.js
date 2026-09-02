@@ -47,27 +47,6 @@
     });
 })();
 
-(function() {
-    var progressBar = document.getElementById('progressBar');
-    if (!progressBar) {
-        progressBar = document.createElement('div');
-        progressBar.className = 'progress-bar';
-        progressBar.id = 'progressBar';
-        document.body.appendChild(progressBar);
-    }
-
-    function updateProgress() {
-        var scrollTop = window.scrollY;
-        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = Math.min(progress, 100) + '%';
-    }
-
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('resize', updateProgress, { passive: true });
-    updateProgress();
-})();
-
 document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('page-transition');
     setTimeout(function() {
@@ -298,11 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
         else if (href.includes('subjects.html') && linkNorm === currentNorm) {
             link.classList.add('active');
         }
-        // Calendrier (AJOUT)
-        else if (href.includes('calendrier.html') && linkNorm === currentNorm) {
-            link.classList.add('active');
-        }
-        // Matière spécifique (subject.html?subject=...)
+// Matière spécifique (subject.html?subject=...)
         else if (href.includes('subject.html') && currentSearch.includes('subject=')) {
             const subject = new URLSearchParams(currentSearch).get('subject');
             if (href.includes('subject=' + subject)) {
@@ -412,3 +387,5 @@ window.XpertAnimateLegalPage = XpertAnimateLegalPage;
     setTimeout(hideLoader, 1500);
 })();
 // ====== XPERT LOADER END ======
+
+

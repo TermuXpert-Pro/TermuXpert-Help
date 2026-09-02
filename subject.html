@@ -43,6 +43,93 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
     <script src="assets/js/shared-inline.js"></script>
+    <style>
+        /* ====== مقدمة الصفحة (Page Intro) - subject.html ======
+           عنصر ثابت (position: relative، ماشي fixed/absolute) كيدخل
+           فالتدفق الطبيعي للصفحة، قبل .content-wrapper مباشرة.
+           padding-top كيحسب المسافة يدويًا (navbar-height + هامش) باش
+           يبقى دائمًا تحت الـ navbar الثابت، بلا ما يعتمد على أي
+           توسيط عمودي (flex/justify-content:center) اللي ممكن يدفعو
+           لفوق فالشاشات الصغيرة ويختبي جزء منو تحت الـ navbar. */
+        .page-intro {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: calc(var(--navbar-height) + 30px) 20px 0;
+            text-align: center;
+        }
+        .page-intro-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(78, 205, 196, 0.08);
+            border: 1px solid rgba(78, 205, 196, 0.2);
+            color: #4ECDC4;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        .page-intro h2 {
+            font-size: clamp(24px, 4vw, 34px);
+            font-weight: 900;
+            line-height: 1.3;
+            margin: 0 0 10px;
+            color: var(--text-primary);
+        }
+        .page-intro p {
+            color: var(--text-muted);
+            font-size: clamp(13.5px, 1.6vw, 15.5px);
+            line-height: 1.8;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .page-intro-search {
+            margin-top: 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 26px;
+            border-radius: 50px;
+            background: rgba(var(--overlay-rgb), 0.04);
+            border: 1px solid rgba(78, 205, 196, 0.28);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 14.5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .page-intro-search i {
+            color: #4ECDC4;
+            font-size: 15px;
+            transition: transform 0.35s ease;
+        }
+        .page-intro-search:hover {
+            background: rgba(78, 205, 196, 0.1);
+            border-color: rgba(78, 205, 196, 0.55);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(78, 205, 196, 0.16);
+        }
+        .page-intro-search:hover i { transform: scale(1.15) rotate(-8deg); }
+        .page-intro-search:active { transform: translateY(0) scale(0.98); }
+        @media (max-width: 768px) {
+            .page-intro { padding: calc(var(--navbar-height) + 22px) 18px 0; }
+            .page-intro h2 { font-size: 22px; }
+            .page-intro-search { padding: 12px 22px; font-size: 13.5px; }
+        }
+        @media (max-width: 480px) {
+            .page-intro { padding: calc(var(--navbar-height) + 18px) 16px 0; }
+            .page-intro-eyebrow { font-size: 11px; padding: 4px 12px; }
+        }
+    </style>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -83,7 +170,6 @@
 <div class="geo-pattern geo-pattern-3" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
 <div class="geo-pattern geo-pattern-4" aria-hidden="true">✦ ✧ ✦ ✧ ✦</div>
 
-    <div class="progress-bar" id="progressBar"></div>
     <div class="bg-grid"></div>
 
     <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
@@ -94,16 +180,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -159,6 +236,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -186,13 +267,6 @@
                     <a href="recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -249,12 +323,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -274,10 +348,21 @@
         <p class="subtitle" id="subTitle">Tous les contenus de la matière</p>
     </div>
 
+    <!-- ====== مقدمة ثابتة للصفحة (عنوان + ملخص + زر بحث) ====== -->
+    <div class="page-intro" id="pageIntro">
+        <span class="page-intro-eyebrow" id="pageIntroEyebrow"><i class="fas fa-book-open" aria-hidden="true"></i> Matière</span>
+        <h2 id="pageIntroTitle">Matière</h2>
+        <p id="pageIntroDesc">Tous les contenus de la matière</p>
+        <a href="recherche.html" id="pageIntroSearch" class="page-intro-search" onclick="sessionStorage.setItem('animation_allowed', 'true');">
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+            <span id="pageIntroSearchLabel">Rechercher dans cette matière...</span>
+        </a>
+    </div>
+
     <div class="content-wrapper" id="contentWrapper">
         <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
             <button class="tab-btn" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
-            <button class="tab-btn" data-tab="autres" onclick="switchTab('autres')"><i class="fas fa-shapes"></i> Autres</button>
+            <button class="tab-btn" data-tab="autres" onclick="switchTab('autres')" style="display:none;"><i class="fas fa-shapes"></i> Autres</button>
             <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
             <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
             <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
@@ -286,17 +371,6 @@
         <div class="cards-grid" role="tabpanel" id="tabContent"></div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -322,6 +396,28 @@
 
         // ألوان كل مادة (نفس الألوان المستعملة فـ باقي المشروع)
         const SUBJECT_ACCENT = { math: '#4ECDC4', physique: '#FF6B6B', chimie: '#F4D03F' };
+        const SUBJECT_ICON = { math: 'fa-calculator', physique: 'fa-atom', chimie: 'fa-flask' };
+
+        // مطابقة كل Tab فهاد الصفحة مع فئة صفحة البحث (recherche.html)
+        // "autres" ماعندهاش مقابل فصفحة البحث، فكنعطيو رابط بلا category
+        const TAB_TO_CATEGORY = { lessons: 'lessons', exercices: 'exercices', series: 'series', exams: 'exams' };
+        const TAB_LABELS = { lessons: 'les cours', autres: 'les contenus', exercices: 'les exercices', series: 'les séries', exams: 'les devoirs et examens' };
+
+        // ============================================================
+        // تحديث رابط ونص زر البحث فالمقدمة، حسب المادة والتبويب الحالي
+        // ============================================================
+        function updateSearchLink() {
+            const link = document.getElementById('pageIntroSearch');
+            const label = document.getElementById('pageIntroSearchLabel');
+            if (!link || !label || !currentSubjectId) return;
+
+            const category = TAB_TO_CATEGORY[currentTab];
+            let url = 'recherche.html?subject=' + encodeURIComponent(currentSubjectId);
+            if (category) url += '&category=' + encodeURIComponent(category);
+
+            link.setAttribute('href', url);
+            label.textContent = 'Rechercher dans ' + (TAB_LABELS[currentTab] || 'cette matière') + '...';
+        }
 
         // ============================================================
         // حفظ واستعادة التبويب الحالي
@@ -334,7 +430,8 @@
 
         function getSavedTab() {
             try {
-                return sessionStorage.getItem('subject_tab') || 'lessons';
+                var t = sessionStorage.getItem('subject_tab') || 'lessons';
+                return t === 'autres' ? 'lessons' : t;
             } catch(e) {
                 return 'lessons';
             }
@@ -360,6 +457,10 @@
         // ============================================================
         function showNotFound() {
             document.getElementById('subjectTitle').textContent = '⚠️ Matière non trouvée';
+            document.getElementById('pageIntroTitle').textContent = '⚠️ Matière non trouvée';
+            document.getElementById('pageIntroDesc').textContent = "La matière demandée n'existe pas ou a été déplacée.";
+            const searchBtn = document.getElementById('pageIntroSearch');
+            if (searchBtn) searchBtn.style.display = 'none';
             document.getElementById('tabContent').innerHTML = '<div class="no-data">Matière non trouvée</div>';
         }
 
@@ -367,8 +468,28 @@
             document.getElementById('subjectTitle').textContent = currentSubject.title;
             document.getElementById('subTitle').textContent = currentSubject.desc;
 
+            // ====== تحديث المقدمة الثابتة (page-intro) ======
+            const accent = SUBJECT_ACCENT[currentSubjectId] || '#4ECDC4';
+            const icon = SUBJECT_ICON[currentSubjectId] || 'fa-book-open';
+            document.getElementById('pageIntroTitle').textContent = currentSubject.title;
+            document.getElementById('pageIntroDesc').textContent = currentSubject.desc;
+            const eyebrow = document.getElementById('pageIntroEyebrow');
+            eyebrow.innerHTML = `<i class="fas ${icon}" aria-hidden="true"></i> Matière`;
+            eyebrow.style.color = accent;
+            eyebrow.style.background = accent + '14';
+            eyebrow.style.borderColor = accent + '33';
+            document.getElementById('pageIntroTitle').style.color = accent;
+
             const savedTab = getSavedTab();
             currentTab = savedTab;
+            updateSearchLink();
+
+            // تلوين حدود وأيقونة زر البحث بلون المادة الحالية
+            const searchBtn = document.getElementById('pageIntroSearch');
+            if (searchBtn) {
+                searchBtn.style.borderColor = accent + '48';
+                searchBtn.querySelector('i').style.color = accent;
+            }
 
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
@@ -457,6 +578,7 @@
             
             currentTab = tab;
             saveCurrentTab(tab);
+            updateSearchLink();
             
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
@@ -766,4 +888,6 @@
     </script>
 </body>
 </html>
+
+
 

@@ -175,7 +175,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -271,16 +271,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -336,6 +327,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -363,13 +358,6 @@
                     <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -426,12 +414,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -478,7 +466,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph9" width="420" height="260"></canvas>
+                    <svg id="graph9" role="img" aria-label="Poulie entraînant un solide S attaché par un fil"></svg>
                     <p>Poulie - Solide attaché par un fil</p>
                 </div>
 
@@ -610,17 +598,6 @@
         </div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -644,147 +621,8 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUE - Exercice 9
-        // ============================================================
-
-        function drawGraph9() {
-            var canvas = document.getElementById('graph9');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Poulie (cercle)
-            var cx = 210, cy = 50;
-            var rayon = 40;
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.arc(cx, cy, rayon, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Axe de rotation
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, 10);
-            ctx.lineTo(cx, 90);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('(Δ)', cx + 8, 20);
-
-            // Fil à gauche (vers le solide)
-            ctx.strokeStyle = '#A8FF78';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx - rayon, cy);
-            ctx.lineTo(cx - rayon, 220);
-            ctx.stroke();
-
-            // Solide S
-            var solX = cx - rayon - 25;
-            var solY = 210;
-            ctx.fillStyle = '#F4D03F';
-            ctx.shadowColor = '#F4D03F';
-            ctx.shadowBlur = 10;
-            ctx.fillRect(solX - 15, solY - 15, 30, 30);
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('S', solX, solY + 4);
-
-            // Fil à droite (vers la force F)
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx + rayon, cy);
-            ctx.lineTo(cx + rayon + 80, cy);
-            ctx.stroke();
-
-            // Flèche F
-            ctx.strokeStyle = '#4D9DE0';
-            ctx.lineWidth = 2;
-            var fX = cx + rayon + 80;
-            var fY = cy;
-            ctx.beginPath();
-            ctx.moveTo(fX, fY);
-            ctx.lineTo(fX + 35, fY);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(fX + 35, fY);
-            ctx.lineTo(fX + 28, fY - 5);
-            ctx.moveTo(fX + 35, fY);
-            ctx.lineTo(fX + 28, fY + 5);
-            ctx.stroke();
-            ctx.fillStyle = '#4D9DE0';
-            ctx.font = '13px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('F', fX + 18, fY - 8);
-
-            // Flèche T (tension)
-            ctx.strokeStyle = '#FFA500';
-            ctx.lineWidth = 2;
-            var tX = cx - rayon;
-            var tY = (cy + solY) / 2;
-            ctx.beginPath();
-            ctx.moveTo(tX, tY);
-            ctx.lineTo(tX - 30, tY);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(tX - 30, tY);
-            ctx.lineTo(tX - 23, tY - 5);
-            ctx.moveTo(tX - 30, tY);
-            ctx.lineTo(tX - 23, tY + 5);
-            ctx.stroke();
-            ctx.fillStyle = '#FFA500';
-            ctx.font = '13px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('T', tX - 15, tY - 8);
-
-            // Flèche Poids
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(solX, solY + 15);
-            ctx.lineTo(solX, solY + 45);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(solX, solY + 45);
-            ctx.lineTo(solX - 4, solY + 38);
-            ctx.moveTo(solX, solY + 45);
-            ctx.lineTo(solX + 4, solY + 38);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '13px Arial';
-            ctx.fillText('P', solX + 8, solY + 35);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('m = 100 kg', 10, 20);
-            ctx.fillText('R = 10 cm', 10, 35);
-            ctx.fillText('JΔ = 5×10⁻³ kg.m²', 10, 50);
-            ctx.fillText('h = 5 m', 10, 65);
-            ctx.fillText('v = 4 m/s', 10, 80);
-            ctx.fillText('g = 9,81 N/kg', 10, 95);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph9();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_ex9.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

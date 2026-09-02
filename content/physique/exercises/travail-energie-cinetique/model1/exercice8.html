@@ -175,7 +175,7 @@
             margin: 4px 0;
             text-align: center;
         }
-        .graph-container canvas {
+        .graph-container canvas, .graph-container svg {
             max-width: 100%;
             border-radius: 4px;
             background: #0D1117;
@@ -271,16 +271,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -336,6 +327,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -363,13 +358,6 @@
                     <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -426,12 +414,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -475,7 +463,7 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph8" width="420" height="280"></canvas>
+                    <svg id="graph8" role="img" aria-label="Point matériel sur piste inclinée puis circulaire avec chute"></svg>
                     <p>Point matériel sur piste - Mouvement avec frottement</p>
                 </div>
 
@@ -638,17 +626,6 @@
         </div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -672,145 +649,8 @@
             }
         }
 
-        // ============================================================
-        // GRAPHIQUE - Exercice 8
-        // ============================================================
-
-        function drawGraph8() {
-            var canvas = document.getElementById('graph8');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            var baseX = 30, baseY = h - 30;
-            var longueur = 200;
-            var angle = 60 * Math.PI / 180;
-
-            // Partie AB (plan incliné)
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(baseX, baseY);
-            var finX = baseX + longueur * Math.cos(angle);
-            var finY = baseY - longueur * Math.sin(angle);
-            ctx.lineTo(finX, finY);
-            ctx.stroke();
-
-            // Partie BC (courbe circulaire)
-            var r = 50;
-            var cx = finX + r * Math.sin(angle);
-            var cy = finY + r * Math.cos(angle);
-            ctx.strokeStyle = '#4ECDC4';
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            var startAngle = -Math.PI/2 + angle;
-            var endAngle = -Math.PI/2;
-            ctx.arc(cx, cy, r, startAngle, endAngle);
-            ctx.stroke();
-
-            // Point C
-            var cX = cx;
-            var cY = cy - r;
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(cX, cY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '11px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('C', cX, cY + 16);
-
-            // Point D (sol)
-            var dX = cX;
-            var dY = baseY + 20;
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(dX, dY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillText('D', dX, dY + 16);
-
-            // Point A
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(baseX, baseY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'left';
-            ctx.fillText('A', baseX + 10, baseY + 4);
-
-            // Point B
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(finX, finY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'left';
-            ctx.fillText('B', finX + 10, finY + 4);
-
-            // Centre I
-            ctx.fillStyle = '#BB8FCE';
-            ctx.shadowColor = '#BB8FCE';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.textAlign = 'right';
-            ctx.fillText('I', cx - 8, cy + 4);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('m = 50 g', 10, 20);
-            ctx.fillText('α = 60°', 10, 35);
-            ctx.fillText('r = 0,5 m', 10, 50);
-            ctx.fillText('f = 10⁻² N', 10, 65);
-            ctx.fillText('v_A = 6 m/s', 10, 80);
-
-            // Flèche vitesse C
-            ctx.strokeStyle = '#FFD93D';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(cX, cY - 12);
-            ctx.lineTo(cX, cY - 35);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(cX, cY - 35);
-            ctx.lineTo(cX - 4, cY - 28);
-            ctx.moveTo(cX, cY - 35);
-            ctx.lineTo(cX + 4, cY - 28);
-            ctx.stroke();
-            ctx.fillStyle = '#FFD93D';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('v_C', cX + 6, cY - 25);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph8();
-            }, 500);
-        });
     </script>
+    <script src="figuresvt_ex8.js" defer></script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

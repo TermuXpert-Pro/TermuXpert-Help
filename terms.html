@@ -7,11 +7,11 @@
     
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta charset="UTF-8">
-    <meta name="description" content="شروط الاستخدام لموقع Xpert - منصة تعليمية للسنة الأولى بكالوريا علوم تجريبية.">
+    <meta name="description" content="Conditions d'utilisation du site Xpert - plateforme éducative pour la 1ère année baccalauréat sciences expérimentales.">
     <meta name="author" content="Xpert">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>شروط الاستخدام | Xpert</title>
+    <title>Conditions d'utilisation | Xpert</title>
     <link rel="canonical" href="https://jdxpert.pages.dev/terms.html">
 
     <link rel="manifest" href="manifest.json">
@@ -33,10 +33,17 @@
 
     <!-- ====== GSAP ====== -->
     <script src="assets/js/vendor/gsap.min.js"></script>
+
+    <style>
+        /* ====== Forcer LTR (page traduite en français) ====== */
+        .legal-wrap{ direction:ltr !important; }
+        .legal-section h2, .legal-section p, .legal-section li{ text-align:left !important; }
+        .legal-wrap ul, .legal-wrap ol{ padding-left:20px !important; padding-right:0 !important; }
+    </style>
     <script src="assets/js/shared-inline.js"></script>
 </head>
 <body>
-    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+    <div id="xpertLoader" role="status" aria-label="Chargement">
         <div class="xpert-shape-wrap">
             <div class="xpert-ring"></div>
             <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
@@ -87,16 +94,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -152,6 +150,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -179,13 +181,6 @@
                     <a href="recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -242,12 +237,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -267,64 +262,53 @@
 
         <div class="legal-hero">
             <div class="legal-eyebrow"><i class="fas fa-file-contract"></i> Xpert</div>
-            <h1>شروط <span>الاستخدام</span></h1>
-            <p>آخر تحديث: يوليوز 2026</p>
+            <h1>Conditions <span>d'utilisation</span></h1>
+            <p>Dernière mise à jour : juillet 2026</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-circle-info"></i> قبول الشروط</h2>
-            <p>باستخدامك لموقع Xpert، فإنك توافق على الشروط المذكورة في هذه الصفحة. وإذا لم توافق على أي بند منها، نرجو منك التوقف عن استخدام الموقع.</p>
+            <h2><i class="fas fa-circle-info"></i> Acceptation des conditions</h2>
+            <p>En utilisant le site Xpert, vous acceptez les conditions mentionnées sur cette page. Si vous n'êtes pas d'accord avec l'une de ces clauses, nous vous prions de cesser d'utiliser le site.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-graduation-cap"></i> طبيعة الخدمة</h2>
-            <p>Xpert منصة تعليمية <strong>مجانية</strong> موجهة لتلاميذ السنة الأولى من سلك البكالوريا، شعبة العلوم التجريبية، بالمغرب. المحتوى (دروس، تمارين، سلاسل) مُعدّ لأغراض تعليمية ومساعدة فقط، ولا يُغني عن المقرر الرسمي أو المدرّس.</p>
+            <h2><i class="fas fa-graduation-cap"></i> Nature du service</h2>
+            <p>Xpert est une plateforme éducative <strong>gratuite</strong> destinée aux élèves de la 1ère année du cycle baccalauréat, filière sciences expérimentales, au Maroc. Le contenu (cours, exercices, séries) est conçu à des fins pédagogiques et d'aide uniquement, et ne remplace pas le programme officiel ni l'enseignant.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-triangle-exclamation"></i> إخلاء المسؤولية</h2>
+            <h2><i class="fas fa-triangle-exclamation"></i> Clause de non-responsabilité</h2>
             <ul>
-                <li>نبذل جهدنا لضمان دقة المحتوى، لكننا لا نضمن خلوّه التام من الأخطاء.</li>
-                <li>يُقدَّم الموقع "كما هو" (as-is) بلا أي ضمان، ولا نتحمل مسؤولية أي ضرر ناتج عن استخدام المعلومات المقدَّمة.</li>
-                <li>يُنصح دائماً بالرجوع إلى المقرر الرسمي والمدرّس في حال الشك.</li>
+                <li>Nous faisons de notre mieux pour garantir l'exactitude du contenu, mais nous ne garantissons pas qu'il soit totalement exempt d'erreurs.</li>
+                <li>Le site est fourni « tel quel » (as-is), sans aucune garantie, et nous déclinons toute responsabilité pour tout dommage résultant de l'utilisation des informations fournies.</li>
+                <li>Il est toujours recommandé de se référer au programme officiel et à l'enseignant en cas de doute.</li>
             </ul>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-copyright"></i> حقوق الملكية</h2>
-            <p>جميع المحتويات (نصوص، تصاميم، شعار Xpert) محمية بحقوق الملكية. يُسمح باستخدام المحتوى للأغراض الشخصية والتعليمية، لكن يُمنع إعادة نشره أو بيعه أو استخدامه تجارياً بدون إذن مسبق.</p>
+            <h2><i class="fas fa-copyright"></i> Droits de propriété</h2>
+            <p>Tous les contenus (textes, designs, logo Xpert) sont protégés par des droits de propriété. L'utilisation du contenu est autorisée à des fins personnelles et éducatives, mais sa republication, sa vente ou son utilisation commerciale sont interdites sans autorisation préalable.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-link"></i> روابط خارجية</h2>
-            <p>قد يحتوي الموقع على روابط لمواقع خارجية (مثل المقرر الرسمي). لا نتحمل مسؤولية محتوى أو سياسات هذه المواقع الخارجية.</p>
+            <h2><i class="fas fa-link"></i> Liens externes</h2>
+            <p>Le site peut contenir des liens vers des sites externes (comme le programme officiel). Nous ne sommes pas responsables du contenu ni des politiques de ces sites externes.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-arrows-rotate"></i> تعديل الشروط</h2>
-            <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. ويُعدّ استمرارك في استخدام الموقع بعد أي تعديل موافقةً على الشروط الجديدة.</p>
+            <h2><i class="fas fa-arrows-rotate"></i> Modification des conditions</h2>
+            <p>Nous nous réservons le droit de modifier ces conditions à tout moment. La poursuite de l'utilisation du site après toute modification vaut acceptation des nouvelles conditions.</p>
         </div>
 
         <div class="legal-section">
-            <h2><i class="fas fa-envelope"></i> التواصل معنا</h2>
-            <p>لأي سؤال أو استفسار حول هذه الشروط: <strong><a href="mailto:jdelkhayaty@gmail.com" style="color:var(--legal-teal);text-decoration:none;">jdelkhayaty@gmail.com</a></strong></p>
+            <h2><i class="fas fa-envelope"></i> Nous contacter</h2>
+            <p>Pour toute question ou demande concernant ces conditions : <strong><a href="mailto:jdelkhayaty@gmail.com" style="color:var(--legal-teal);text-decoration:none;">jdelkhayaty@gmail.com</a></strong></p>
         </div>
 
-        <p class="legal-updated">Xpert &copy; 2026 - جميع الحقوق محفوظة</p>
+        <p class="legal-updated">Xpert &copy; 2026 - Tous droits réservés</p>
 
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 

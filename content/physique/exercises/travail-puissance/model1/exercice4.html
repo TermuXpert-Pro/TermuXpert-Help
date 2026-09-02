@@ -95,16 +95,7 @@
     </a>
 
     <div style="display:flex;align-items:center;gap:6px;">
-        <!-- زر تبديل الوضع (Dark/Light) -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
-            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
-            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
-        </button>
 
-        <!-- زر تثبيت PWA -->
-        <button class="pwa-install-btn" id="pwaInstallBtn" aria-label="ثبّت التطبيق" type="button">
-            <i class="fas fa-download" aria-hidden="true"></i>
-        </button>
 
         <!-- أيقونة القائمة الجانبية -->
         <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -160,6 +151,10 @@
 
     <!-- ====== القسم 1: Profil (بسيط) ====== -->
     <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <div class="profile-simple">
             <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
         </div>
@@ -187,13 +182,6 @@
                     <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
                         <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
                         <span class="sidebar-link-text">Recherche</span>
-                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../../../../../calendrier.html" class="sidebar-link" data-page="calendrier">
-                        <span class="sidebar-link-icon"><i class="fas fa-calendar-days"></i></span>
-                        <span class="sidebar-link-text">Calendrier</span>
                         <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
                     </a>
                 </li>
@@ -250,12 +238,12 @@
 
     <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
     <div class="sidebar-section sidebar-section-legal">
-        <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4px 16px 12px;font-size:11px;font-family:'Cairo','Tajawal',sans-serif;">
-            <a href="../../../../../support.html" data-page="support" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../installation.html" data-page="installation" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-            <span style="color:var(--text-muted);opacity:0.4;">•</span>
-            <a href="../../../../../terms.html" data-page="terms" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
         </div>
     </div>
 
@@ -290,8 +278,32 @@
                 </p>
 
                 <div class="graph-container">
-                    <canvas id="graph4" width="380" height="160"></canvas>
-                    <p>Enfant tirant un camion</p>
+                    <svg viewBox="0 0 360 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Enfant tirant un camion en bois par une corde sur un sol horizontal, force de traction F">
+                      <defs>
+                        <marker id="arrow_ex4_0" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#F4D03F"/></marker>
+                        <marker id="arrow_ex4_1" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#FF6B6B"/></marker>
+                      </defs>
+                      <rect x="0" y="0" width="360" height="190" rx="8" fill="#0D1117"/>
+                      <line x1="20.0" y1="150.0" x2="340.0" y2="150.0" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round"/>
+                      <polygon points="20.0,150.0 340.0,150.0 340.0,175.0 20.0,175.0" fill="#161B22"/>
+                      <circle cx="75.0" cy="104.0" r="12" fill="#4ECDC4"/>
+                      <line x1="75.0" y1="116.0" x2="75.0" y2="136.0" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
+                      <line x1="75.0" y1="136.0" x2="65.0" y2="144.0" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
+                      <line x1="75.0" y1="136.0" x2="85.0" y2="144.0" stroke="#4ECDC4" stroke-width="3" stroke-linecap="round"/>
+                      <text x="75.0" y="88.0" font-size="10.5" fill="#4ECDC4" text-anchor="middle" font-family="Tahoma, Arial, sans-serif">Enfant</text>
+                      <polygon points="235.0,126.0 325.0,126.0 325.0,150.0 235.0,150.0" fill="#A8FF78"/>
+                      <circle cx="251.0" cy="150.0" r="8" fill="#0D1117"/>
+                      <circle cx="309.0" cy="150.0" r="8" fill="#0D1117"/>
+                      <text x="280.0" y="140.0" font-size="10" fill="#0D1117" text-anchor="middle" font-weight="bold" font-family="Tahoma, Arial, sans-serif">Camion</text>
+                      <line x1="85.0" y1="128.0" x2="235.0" y2="136.0" stroke="#BB8FCE" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="4,3"/>
+                      <line x1="91.0" y1="130.0" x2="141.0" y2="127.0" stroke="#FF6B6B" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow_ex4_1)"/>
+                      <text x="109.0" y="116.0" font-size="13" fill="#FF6B6B" text-anchor="start" font-weight="bold" font-family="Tahoma, Arial, sans-serif">F</text>
+                      <line x1="255.0" y1="112.0" x2="305.0" y2="112.0" stroke="#F4D03F" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arrow_ex4_0)"/>
+                      <text x="265.0" y="104.0" font-size="9" fill="#F4D03F" text-anchor="start" font-family="Tahoma, Arial, sans-serif">déplacement</text>
+                      <text x="20.0" y="25.0" font-size="11" fill="#9aa4b2" text-anchor="start" font-family="Tahoma, Arial, sans-serif">W(F) = 2,0 kJ</text>
+                      <text x="20.0" y="42.0" font-size="10.5" fill="#9aa4b2" text-anchor="start" font-family="Tahoma, Arial, sans-serif">Δt = 30 s (une demi-minute)</text>
+                    </svg>
+                    <p>Enfant tirant un camion en bois à l'aide d'une corde</p>
                 </div>
 
                 <div class="sub-question">
@@ -344,17 +356,6 @@
         </div>
     </div>
 
-    <footer class="footer">
-    <div class="divider"></div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;font-family:'Cairo','Tajawal',sans-serif;">
-        <a href="../../../../../support.html" style="color:var(--text-muted);text-decoration:none;">الدعم</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../installation.html" style="color:var(--text-muted);text-decoration:none;">التثبيت</a>
-        <span style="color:var(--text-muted);opacity:0.4;">•</span>
-        <a href="../../../../../terms.html" style="color:var(--text-muted);text-decoration:none;">شروط الاستخدام</a>
-    </div>
-    <p>Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</p>
-</footer>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
@@ -377,106 +378,6 @@
                 btn.textContent = 'Cacher la solution';
             }
         }
-
-        // ============================================================
-        // GRAPHIQUE - Exercice 4
-        // ============================================================
-
-        function drawGraph4() {
-            var canvas = document.getElementById('graph4');
-            if (!canvas) return;
-            var ctx = canvas.getContext('2d');
-            var w = canvas.width, h = canvas.height;
-
-            ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#0D1117';
-            ctx.fillRect(0, 0, w, h);
-
-            // Enfant (personnage simplifié)
-            var cx = 90, cy = 85;
-
-            // Corps
-            ctx.fillStyle = '#4ECDC4';
-            ctx.shadowColor = '#4ECDC4';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(cx, cy - 20, 18, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('Enfant', cx, cy - 5);
-
-            // Bras (corde)
-            ctx.strokeStyle = '#F4D03F';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx + 15, cy - 15);
-            ctx.lineTo(cx + 60, cy - 25);
-            ctx.stroke();
-
-            // Corde
-            ctx.strokeStyle = '#BB8FCE';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx + 60, cy - 25);
-            ctx.lineTo(cx + 140, cy - 30);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Camion
-            var camX = 180, camY = 85;
-
-            // Carrosserie
-            ctx.fillStyle = '#A8FF78';
-            ctx.shadowColor = '#A8FF78';
-            ctx.shadowBlur = 10;
-            ctx.fillRect(camX, camY - 35, 80, 30);
-            ctx.shadowBlur = 0;
-
-            // Roues
-            ctx.fillStyle = '#FF6B6B';
-            ctx.shadowColor = '#FF6B6B';
-            ctx.shadowBlur = 8;
-            ctx.beginPath();
-            ctx.arc(camX + 15, camY + 5, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(camX + 65, camY + 5, 8, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = '10px Arial';
-            ctx.fillText('Camion', camX + 40, camY - 10);
-
-            // Flèche de la force
-            ctx.strokeStyle = '#FF6B6B';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(cx + 60, cy - 25);
-            ctx.lineTo(cx + 60, cy - 55);
-            ctx.stroke();
-            ctx.fillStyle = '#FF6B6B';
-            ctx.font = '13px Arial';
-            ctx.fillText('F', cx + 65, cy - 45);
-
-            // Légende
-            ctx.fillStyle = '#888888';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'left';
-            ctx.fillText('t = 30 s', 270, 30);
-            ctx.fillText('W = 2,0 kJ', 270, 45);
-            ctx.fillText('P_m = ?', 270, 60);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                drawGraph4();
-            }, 500);
-        });
     </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
