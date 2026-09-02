@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -430,6 +431,15 @@
 
         function getSavedTab() {
             try {
+                // ====== أولوية للتبويب القادم من الرابط (?tab=...) ======
+                // كايجي من أزرار "دروس/تمارين/سلاسل/فروض" فبطاقات subjects.html
+                var params = new URLSearchParams(window.location.search);
+                var urlTab = params.get('tab');
+                var validTabs = ['lessons', 'exercices', 'series', 'exams'];
+                if (urlTab && validTabs.indexOf(urlTab) !== -1) {
+                    sessionStorage.setItem('subject_tab', urlTab);
+                    return urlTab;
+                }
                 var t = sessionStorage.getItem('subject_tab') || 'lessons';
                 return t === 'autres' ? 'lessons' : t;
             } catch(e) {
@@ -888,6 +898,3 @@
     </script>
 </body>
 </html>
-
-
-
