@@ -10,16 +10,21 @@ window.subjectsData.chimie = {
     desc: "Exercices, devoirs et examens régionaux",
 
     exercices: [
-        { models: 1, semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/exercises/mesure-chimie/model1/exercice1.html", desc: "2 exercices avec solutions détaillées" },
-        { models: 1, semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/series/mesure-chimie/model1/serie1.html", desc: "1 séries" },
-        { models: 1, semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/exercises/quantite-matiere/model1/exercice1.html", desc: "5 exercices avec solutions détaillées" },
-        { models: 1, semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/series/quantite-matiere/model1/serie1.html", desc: "4 séries" },
-        { models: 1, semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/exercises/concentration-solutions/model1/exercice1.html", desc: "6 exercices avec solutions détaillées" },
-        { models: 1, semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/series/concentration-solutions/model1/serie1.html", desc: "4 séries" },
-        { models: 1, semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/exercises/suivi-transformation/model1/index.html", desc: "قيد الإعداد 🔧" },
-        { models: 1, semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/series/suivi-transformation/model1/index.html", desc: "قيد الإعداد 🔧" },
-        { models: 1, semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/exercises/conductimetrie/model1/index.html", desc: "قيد الإعداد 🔧" },
-        { models: 1, semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/series/conductimetrie/model1/index.html", desc: "قيد الإعداد 🔧" }
+        { semester: 1, title: "Importance de la mesure en chimie",
+          exercice: { file: "content/chimie/exercises/mesure-chimie/model1/exercice1.html", desc: "2 exercices avec solutions détaillées" },
+          serie: { file: "content/chimie/series/mesure-chimie/model1/serie1.html", desc: "1 séries" } },
+        { semester: 1, title: "Grandeurs physiques liées à la quantité de matière",
+          exercice: { file: "content/chimie/exercises/quantite-matiere/model1/exercice1.html", desc: "5 exercices avec solutions détaillées" },
+          serie: { file: "content/chimie/series/quantite-matiere/model1/serie1.html", desc: "4 séries" } },
+        { semester: 1, title: "La concentration et les solutions électrolytiques",
+          exercice: { file: "content/chimie/exercises/concentration-solutions/model1/exercice1.html", desc: "6 exercices avec solutions détaillées" },
+          serie: { file: "content/chimie/series/concentration-solutions/model1/serie1.html", desc: "4 séries" } },
+        { semester: 1, title: "Suivi d'une transformation chimique",
+          exercice: { file: "content/chimie/exercises/suivi-transformation/model1/index.html", desc: "قيد الإعداد 🔧" },
+          serie: { file: "content/chimie/series/suivi-transformation/model1/index.html", desc: "قيد الإعداد 🔧" } },
+        { semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie",
+          exercice: { file: "content/chimie/exercises/conductimetrie/model1/index.html", desc: "قيد الإعداد 🔧" },
+          serie: { file: "content/chimie/series/conductimetrie/model1/index.html", desc: "قيد الإعداد 🔧" } }
     ],
     exams: [
     {

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
 
@@ -129,6 +130,47 @@
         @media (max-width: 480px) {
             .page-intro { padding: calc(var(--navbar-height) + 18px) 16px 0; }
             .page-intro-eyebrow { font-size: 11px; padding: 4px 12px; }
+        }
+        /* ====== أزرار "Exercices/Séries" جوه البطاقة المدموجة ====== */
+        #tabContent .card-modes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 9px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(var(--overlay-rgb), 0.07);
+            /* ✅ إصلاح: بلا هاد السطرين، ::before ديال .command-card
+               (position:absolute بلا z-index) كان كيطلع فوق الأزرار
+               (Static بلا position) ويقبض الضغطة بدلهم */
+            position: relative;
+            z-index: 1;
+        }
+        #tabContent .card-modes.single-mode { grid-template-columns: 1fr; }
+        #tabContent .card-mode-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 11px 6px;
+            border-radius: 13px;
+            border: 1px solid color-mix(in srgb, var(--mode-color, var(--accent)) 28%, transparent);
+            background: color-mix(in srgb, var(--mode-color, var(--accent)) 10%, transparent);
+            color: var(--mode-color, var(--text-secondary));
+            font-family: var(--font-main);
+            font-size: clamp(11px, 1.1vw, 12.5px);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        #tabContent .card-mode-btn i { font-size: 12px; }
+        #tabContent .card-mode-btn:hover {
+            background: color-mix(in srgb, var(--mode-color, var(--accent)) 24%, transparent);
+            transform: translateY(-2px);
+        }
+        #tabContent .card-mode-btn:active { transform: scale(0.95); }
+        @media (max-width: 480px) {
+            #tabContent .card-modes { gap: 6px; margin-top: 10px; padding-top: 10px; }
+            #tabContent .card-mode-btn { padding: 9px 4px; font-size: 10.5px; border-radius: 11px; }
         }
     </style>
 </head>
@@ -600,15 +642,20 @@
             
             if (tab === 'exercices') {
                 html = currentSubject.exercices.map((e, i) => {
-                    const modelsLabel = e.models ? `${e.models} modèle${e.models > 1 ? 's' : ''}` : '';
+                    const descParts = [];
+                    if (e.exercice && e.exercice.desc) descParts.push(e.exercice.desc);
+                    if (e.serie && e.serie.desc) descParts.push(e.serie.desc);
+                    const desc = descParts.join(' • ');
                     return `
-                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${e.file}'">
+                    <div class="command-card" style="cursor:default;">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${e.title}
                         </div>
-                        <p>${e.desc}</p>
-                        <span class="badge" style="background:#E8873A22; color: var(--exercice-title); border-color:#E8873A22;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
-                        ${modelsLabel ? `<span class="badge" style="background:#E8873A1f; color:#E8873A; border-color:#E8873A30;"><i class="fas fa-copy"></i> ${modelsLabel}</span>` : ''}
+                        <p>${desc}</p>
+                        <div class="card-modes${e.serie ? '' : ' single-mode'}" role="group" aria-label="Accès rapide - ${e.title}">
+                            <button type="button" class="card-mode-btn" style="--mode-color:#E8873A;" onclick="saveCurrentTab('${tab}'); location.href='${e.exercice.file}'"><i class="fas fa-pencil"></i> Exercices</button>
+                            ${e.serie ? `<button type="button" class="card-mode-btn" style="--mode-color:#F4D03F;" onclick="saveCurrentTab('${tab}'); location.href='${e.serie.file}'"><i class="fas fa-list-check"></i> Séries</button>` : ''}
+                        </div>
                     </div>
                 `;
                 }).join('');
@@ -805,3 +852,5 @@
     </script>
 </body>
 </html>
+
+

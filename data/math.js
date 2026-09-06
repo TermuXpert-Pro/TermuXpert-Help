@@ -9,13 +9,17 @@ window.subjectsData.math = {
     desc: "Exercices, devoirs et examens régionaux",
 
     exercices: [
-        { models: 1, semester: 1, title: "Logique mathématique", file: "content/math/exercises/logique/model1/exercice1.html", desc: "8 exercices avec solutions" },
-        { models: 1, semester: 1, title: "Logique mathématique", file: "content/math/series/logique/model1/serie1.html", desc: "5 séries" },
-        { models: 1, semester: 1, title: "Généralités sur les fonctions", file: "content/math/exercises/fonctions/model1/exercice1.html", desc: "10 exercices avec solutions" },
-        { models: 1, semester: 1, title: "Généralités sur les fonctions", file: "content/math/series/fonctions/model1/serie1.html", desc: "7 séries" },
-        { models: 1, semester: 1, title: "Barycentre dans le plan", file: "content/math/exercises/barycentre/model1/exercice1.html", desc: "8 exercices avec solutions" },
-        { models: 1, semester: 1, title: "Barycentre dans le plan", file: "content/math/series/barycentre/model1/serie1.html", desc: "6 séries" },
-        { models: 1, semester: 1, title: "Le produit scalaire et ses applications", file: "content/math/exercises/produit-scalaire/model1/exercice1.html", desc: "11 exercices avec solutions" }
+        { semester: 1, title: "Logique mathématique",
+          exercice: { file: "content/math/exercises/logique/model1/exercice1.html", desc: "8 exercices avec solutions" },
+          serie: { file: "content/math/series/logique/model1/serie1.html", desc: "5 séries" } },
+        { semester: 1, title: "Généralités sur les fonctions",
+          exercice: { file: "content/math/exercises/fonctions/model1/exercice1.html", desc: "10 exercices avec solutions" },
+          serie: { file: "content/math/series/fonctions/model1/serie1.html", desc: "7 séries" } },
+        { semester: 1, title: "Barycentre dans le plan",
+          exercice: { file: "content/math/exercises/barycentre/model1/exercice1.html", desc: "8 exercices avec solutions" },
+          serie: { file: "content/math/series/barycentre/model1/serie1.html", desc: "6 séries" } },
+        { semester: 1, title: "Le produit scalaire et ses applications",
+          exercice: { file: "content/math/exercises/produit-scalaire/model1/exercice1.html", desc: "11 exercices avec solutions" } }
     ],
     
     // ============================================================

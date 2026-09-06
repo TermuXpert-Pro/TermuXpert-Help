@@ -4,6 +4,10 @@
  * التحديث: النصوص والصيغ الرياضية بقات قابلة للتحديد والنسخ
  * الحماية بقات غير على: سحب/حفظ الصور، القائمة المختصرة عليها
  * + منع الزووم بجميع الطرق (لمس، فأرة، كيبورد) فـ كل الأجهزة
+ * ✅ إصلاح: منع preventDefault على الأزرار/الروابط باش ما تبقاش
+ *    الأزرار (بحال "Exercices"/"Séries" فـ subject.html) ما خدامينش
+ *    ملي كيتضغط عليهم بسرعة (كانت المشكلة: touchend عام كيلغي
+ *    الـ click الاصطناعي ديال أي عنصر، ماشي غير ديال الزووم الحقيقي)
  * ============================================================
  */
 
@@ -87,8 +91,18 @@
     }, { passive: false });
 
     // منع double-tap zoom
+    // ✅ إصلاح: كنستثناو الأزرار/الروابط/العناصر التفاعلية باش
+    // الضغط السريع عليهم (أو التنقل بسرعة من زر لآخر) ما يتبطلش
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function(e) {
+        const isInteractive = e.target.closest(
+            'a, button, [onclick], [role="button"], input, select, textarea, label'
+        );
+        if (isInteractive) {
+            lastTouchEnd = 0; // نصفّيو العداد باش ما يأثرش على لمسة جاية فبلاصة أخرى
+            return;
+        }
+
         const now = Date.now();
         if (now - lastTouchEnd <= 300) {
             e.preventDefault();

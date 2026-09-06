@@ -10,49 +10,32 @@ window.subjectsData.physique = {
 
     exercices: [
         {
-            models: 1, semester: 1,
+            semester: 1,
             title: "Rotation d'un solide",
-            file: "content/physique/exercises/rotation-solide/model1/exercice1.html",
-            desc: "6 exercices avec solutions"
+            exercice: { file: "content/physique/exercises/rotation-solide/model1/exercice1.html", desc: "6 exercices avec solutions" },
+            serie: { file: "content/physique/series/rotation-solide/model1/serie1.html", desc: "1 séries" }
         },
         {
-            models: 1, semester: 1,
-            title: "Rotation d'un solide",
-            file: "content/physique/series/rotation-solide/model1/serie1.html",
-            desc: "1 séries"
-        },
-        {
-            models: 1, semester: 1,
+            semester: 1,
             title: "Travail et puissance d'une force",
-            file: "content/physique/exercises/travail-puissance/model1/exercice1.html",
-            desc: "8 exercices avec solutions détaillées"
+            exercice: { file: "content/physique/exercises/travail-puissance/model1/exercice1.html", desc: "8 exercices avec solutions détaillées" },
+            serie: { file: "content/physique/series/travail-puissance/model1/serie1.html", desc: "1 séries" }
         },
         {
-            models: 1, semester: 1,
-            title: "Travail et puissance d'une force",
-            file: "content/physique/series/travail-puissance/model1/serie1.html",
-            desc: "1 séries"
-        },
-        {
-            models: 1, semester: 1,
+            semester: 1,
             title: "Travail et énergie cinétique",
-            file: "content/physique/exercises/travail-energie-cinetique/model1/exercice1.html",
-            desc: "9 exercices avec solutions détaillées"
+            exercice: { file: "content/physique/exercises/travail-energie-cinetique/model1/exercice1.html", desc: "9 exercices avec solutions détaillées" },
+            serie: { file: "content/physique/series/travail-energie-cinetique/model1/serie1.html", desc: "1 séries" }
         },
         {
-            models: 1, semester: 1,
-            title: "Travail et énergie cinétique",
-            file: "content/physique/series/travail-energie-cinetique/model1/serie1.html",
-            desc: "1 séries"
-        },
-        {
-            models: 1, semester: 1,
+            semester: 1,
             title: "Travail et énergie potentielle de pesanteur - Énergie mécanique",
-            file: "content/physique/exercises/energie-potentielle-mecanique/model1/index.html",
-            desc: "قيد الإعداد 🔧"
+            exercice: { file: "content/physique/exercises/energie-potentielle-mecanique/model1/index.html", desc: "قيد الإعداد 🔧" }
         },
-        { models: 1, semester: 1, title: "Transfert d'énergie dans un circuit électrique", file: "content/physique/exercises/circuit-electrique/model1/index.html", desc: "قيد الإعداد 🔧" },
-        { models: 1, semester: 1, title: "Comportement global d'un circuit électrique", file: "content/physique/exercises/comportement-global-circuit/model1/index.html", desc: "قيد الإعداد 🔧" }
+        { semester: 1, title: "Transfert d'énergie dans un circuit électrique",
+          exercice: { file: "content/physique/exercises/circuit-electrique/model1/index.html", desc: "قيد الإعداد 🔧" } },
+        { semester: 1, title: "Comportement global d'un circuit électrique",
+          exercice: { file: "content/physique/exercises/comportement-global-circuit/model1/index.html", desc: "قيد الإعداد 🔧" } }
     ],
     exams: [
     {

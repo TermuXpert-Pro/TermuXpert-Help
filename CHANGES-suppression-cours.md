@@ -90,3 +90,16 @@ node utils/validate.js           # (إلا كان موجود) للتأكد من 
 ## خلاصة البنية الجديدة لتبويبات subject.html
 قبل: Cours (محذوف فالمرحلة 1) | Autres (محذوف) | Exercices | Séries (مدموج) | Devoirs & Examens
 دابا: **Exercices** | **Devoirs & Examens** — بس تبويبين.
+
+---
+
+# المرحلة 3: دمج بطاقتي Exercices/Séries فبطاقة وحدة بزوج أزرار
+
+بدل ما يبانو بطاقتين منفصلين لكل موضوع (وحدة للتمارين ووحدة للسلاسل)، دابا كل موضوع كيبان **بطاقة وحدة** فيها عنوان الموضوع ووصف مختصر (تمارين + سلاسل)، وتحتها زوج أزرار "Exercices" و"Séries" (بحال أزرار subjects.html بالضبط - نفس التصميم `.card-mode-btn`).
+
+## التغييرات
+- `data/math.js`, `data/physique.js`, `data/chimie.js`: بدّلت شكل عناصر `exercices[]` من مصفوفة مسطحة (عنصر لكل تمرين وعنصر لكل سلسلة) إلى عنصر واحد لكل موضوع بحقلين فرعيين `exercice: {file, desc}` و`serie: {file, desc}` (السلسلة اختيارية - بعض المواضيع ماعندهمش سلسلة بعد)
+- `subject.html`:
+  - زدت CSS `#tabContent .card-modes` و `.card-mode-btn` (نفس تصميم subjects.html، بلون `--mode-color` مختلف لكل زر)
+  - بدّلت renderContent(tab==='exercices') باش يبني بطاقة وحدة لكل موضوع، مع زرين منفصلين (كل واحد عندو onclick خاص بيه يوديك لصفحته)، بدل ما تكون البطاقة كاملة قابلة للضغط
+  - إلا ماكانش عندو `serie`، كيبان غير زر "Exercices" وحدو (البطاقة كتاخد كلاس `single-mode` باش الزر يوخد العرض كامل)
