@@ -342,17 +342,9 @@
             </div>
 
             <div class="search-type-menu" id="searchTypeMenu" role="listbox">
-                <button class="search-type-option" data-category="lessons" style="--cat-color:#4ECDC4;" role="option">
-                    <span class="search-type-option-icon"><i class="fas fa-book"></i></span>
-                    <span class="search-type-option-name">Cours</span>
-                </button>
                 <button class="search-type-option" data-category="exercices" style="--cat-color:#E8873A;" role="option">
                     <span class="search-type-option-icon"><i class="fas fa-pencil"></i></span>
                     <span class="search-type-option-name">Exercices</span>
-                </button>
-                <button class="search-type-option" data-category="series" style="--cat-color:#F4D03F;" role="option">
-                    <span class="search-type-option-icon"><i class="fas fa-list-check"></i></span>
-                    <span class="search-type-option-name">Séries</span>
                 </button>
                 <button class="search-type-option" data-category="exams" style="--cat-color:#BB8FCE;" role="option">
                     <span class="search-type-option-icon"><i class="fas fa-pen-to-square"></i></span>
@@ -387,9 +379,7 @@
         ];
 
         const SEARCH_CATEGORIES = {
-            lessons:   { label: 'Cours',              icon: 'fa-book',           field: 'lessons',   linkKey: 'file', color: '#4ECDC4', viewLabel: 'Voir le cours' },
             exercices: { label: 'Exercices',           icon: 'fa-pencil',         field: 'exercices', linkKey: 'file', color: '#E8873A', viewLabel: 'Voir les exercices' },
-            series:    { label: 'Séries',               icon: 'fa-list-check',     field: 'series',    linkKey: 'file', color: '#F4D03F', viewLabel: 'Voir les séries' },
             exams:     { label: 'Devoirs & Examens',    icon: 'fa-pen-to-square',  field: 'exams',     linkKey: 'hub',  color: '#BB8FCE', viewLabel: 'Voir le devoir' }
         };
 
@@ -536,7 +526,7 @@
                 extraBadge = `<span class="badge" style="background:#BB8FCE1f; color:#BB8FCE; border-color:#BB8FCE30;">
                     <i class="fas fa-copy"></i> ${item.models} modèle${item.models > 1 ? 's' : ''}
                 </span>`;
-            } else if ((category === 'exercices' || category === 'series') && item.models) {
+            } else if (category === 'exercices' && item.models) {
                 extraBadge = `<span class="badge" style="background:${conf.color}1f; color:${conf.color}; border-color:${conf.color}30;">
                     <i class="fas fa-copy"></i> ${item.models} modèle${item.models > 1 ? 's' : ''}
                 </span>`;
@@ -902,5 +892,3 @@
     </script>
 </body>
 </html>
-
-

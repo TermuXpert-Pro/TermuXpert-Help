@@ -44,7 +44,7 @@ window.dataLayer = window.dataLayer || [];
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "Xpert",
-        "description": "Cours de 1 Bac Sciences Expérimentales"
+        "description": "Exercices et séries de 1 Bac Sciences Expérimentales"
     }
 
 /* --- shared block b442a327 (used in 6 files) --- */

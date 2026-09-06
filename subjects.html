@@ -377,7 +377,7 @@
     <div class="page-intro" id="pageIntro">
         <span class="page-intro-eyebrow"><i class="fas fa-graduation-cap" aria-hidden="true"></i> 1ère Bac Sciences Expérimentales</span>
         <h2>Explorez vos <span class="gradient-text">matières</span></h2>
-        <p>Cours complets, exercices corrigés, séries et examens classés par matière. Choisissez une matière ci-dessous pour découvrir tout son contenu.</p>
+        <p>Exercices corrigés, séries et devoirs classés par matière. Choisissez une matière ci-dessous pour découvrir tout son contenu.</p>
     </div>
 
     <div class="cards-wrapper" id="cardsWrapper">
@@ -407,8 +407,7 @@
                 glow: "rgba(78, 205, 196, 0.1)",
                 delay: 0,
                 rotation: -2,
-                lessons: 11,
-                exercises: 26
+                exercises: 55
             },
             { 
                 id: "physique", 
@@ -420,8 +419,7 @@
                 glow: "rgba(255, 107, 107, 0.1)",
                 delay: 0.15,
                 rotation: 1,
-                lessons: 13,
-                exercises: 23
+                exercises: 26
             },
             { 
                 id: "chimie", 
@@ -433,14 +431,13 @@
                 glow: "rgba(244, 208, 63, 0.1)",
                 delay: 0.3,
                 rotation: -1,
-                lessons: 12,
-                exercises: 13
+                exercises: 22
             }
         ];
 
         // ====== الانتقال المباشر لمادة معيّنة، مع تحديد التبويب (وضع) مسبقًا ======
         function goToSubject(id, tab) {
-            const targetTab = tab || 'lessons';
+            const targetTab = tab || 'exercices';
             try {
                 sessionStorage.setItem('animation_allowed', 'true');
                 sessionStorage.setItem('subject_tab', targetTab);
@@ -461,22 +458,13 @@
                         <p>${s.description}</p>
                         <div class="card-badges">
                             <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
-                                <i class="fas fa-book"></i> ${s.lessons} cours
-                            </span>
-                            <span class="badge" style="background:${s.bgColor}; color:${s.color}; border-color: ${s.color}22;">
                                 <i class="fas fa-list-check"></i> ${s.exercises} exercices
                             </span>
                         </div>
                     </div>
                     <div class="card-modes" role="group" aria-label="Accès rapide - ${s.title}">
-                        <button type="button" class="card-mode-btn" style="--mode-color:${s.color};" onclick="event.stopPropagation(); goToSubject('${s.id}','lessons')">
-                            <i class="fas fa-book"></i> Cours
-                        </button>
                         <button type="button" class="card-mode-btn" style="--mode-color:${s.color};" onclick="event.stopPropagation(); goToSubject('${s.id}','exercices')">
                             <i class="fas fa-pencil"></i> Exercices
-                        </button>
-                        <button type="button" class="card-mode-btn" style="--mode-color:${s.color};" onclick="event.stopPropagation(); goToSubject('${s.id}','series')">
-                            <i class="fas fa-list-check"></i> Séries
                         </button>
                         <button type="button" class="card-mode-btn" style="--mode-color:${s.color};" onclick="event.stopPropagation(); goToSubject('${s.id}','exams')">
                             <i class="fas fa-pen-to-square"></i> Devoirs

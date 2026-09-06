@@ -9,9 +9,9 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Course",
+        "@type": "EducationalOrganization",
         "name": "Matière - Xpert",
-        "description": "Cours, exercices, séries et examens",
+        "description": "Exercices et devoirs",
         "provider": {
             "@type": "EducationalOrganization",
             "name": "Xpert"
@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Xpert - Matière</title>
     <link rel="canonical" href="https://jdxpert.pages.dev/subject.html">
-    <meta name="description" content="Cours, exercices corrigés et séries classés par matière sur Xpert, pour la 1ère Bac Sciences Expérimentales.">
+    <meta name="description" content="Exercices corrigés et devoirs classés par matière sur Xpert, pour la 1ère Bac Sciences Expérimentales.">
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="stylesheet" href="assets/css/google-fonts.css">
@@ -362,10 +362,7 @@
 
     <div class="content-wrapper" id="contentWrapper">
         <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
-            <button class="tab-btn" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
-            <button class="tab-btn" data-tab="autres" onclick="switchTab('autres')" style="display:none;"><i class="fas fa-shapes"></i> Autres</button>
             <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
-            <button class="tab-btn" data-tab="series" onclick="switchTab('series')"><i class="fas fa-list-check"></i> Séries</button>
             <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
 
@@ -392,7 +389,7 @@
 
         let currentSubject = null;
         let currentSubjectId = null;
-        let currentTab = 'lessons';
+        let currentTab = 'exercices';
         let isAnimating = false;
 
         // ألوان كل مادة (نفس الألوان المستعملة فـ باقي المشروع)
@@ -400,9 +397,8 @@
         const SUBJECT_ICON = { math: 'fa-calculator', physique: 'fa-atom', chimie: 'fa-flask' };
 
         // مطابقة كل Tab فهاد الصفحة مع فئة صفحة البحث (recherche.html)
-        // "autres" ماعندهاش مقابل فصفحة البحث، فكنعطيو رابط بلا category
-        const TAB_TO_CATEGORY = { lessons: 'lessons', exercices: 'exercices', series: 'series', exams: 'exams' };
-        const TAB_LABELS = { lessons: 'les cours', autres: 'les contenus', exercices: 'les exercices', series: 'les séries', exams: 'les devoirs et examens' };
+        const TAB_TO_CATEGORY = { exercices: 'exercices', exams: 'exams' };
+        const TAB_LABELS = { exercices: 'les exercices', exams: 'les devoirs et examens' };
 
         // ============================================================
         // تحديث رابط ونص زر البحث فالمقدمة، حسب المادة والتبويب الحالي
@@ -432,18 +428,18 @@
         function getSavedTab() {
             try {
                 // ====== أولوية للتبويب القادم من الرابط (?tab=...) ======
-                // كايجي من أزرار "دروس/تمارين/سلاسل/فروض" فبطاقات subjects.html
+                // كايجي من أزرار "تمارين/سلاسل/فروض" فبطاقات subjects.html
                 var params = new URLSearchParams(window.location.search);
                 var urlTab = params.get('tab');
-                var validTabs = ['lessons', 'exercices', 'series', 'exams'];
+                var validTabs = ['exercices', 'exams'];
                 if (urlTab && validTabs.indexOf(urlTab) !== -1) {
                     sessionStorage.setItem('subject_tab', urlTab);
                     return urlTab;
                 }
-                var t = sessionStorage.getItem('subject_tab') || 'lessons';
-                return t === 'autres' ? 'lessons' : t;
+                var t = sessionStorage.getItem('subject_tab') || 'exercices';
+                return (t === 'autres' || t === 'lessons' || t === 'series') ? 'exercices' : t;
             } catch(e) {
-                return 'lessons';
+                return 'exercices';
             }
         }
 
@@ -508,30 +504,6 @@
             renderContent(document.getElementById('tabContent'), savedTab);
         }
 
-        // تحميل ملف data/autres.js (بطاقات زر Autres مشتركة بين المواد) ثم إتمام العرض
-        function loadAutresThenRender(id) {
-            function finalize() {
-                if (window.autresData && window.autresData[id]) {
-                    currentSubject.others = window.autresData[id];
-                }
-                renderSubjectHeader();
-            }
-
-            if (window.autresData) {
-                finalize();
-                return;
-            }
-
-            const autresScript = document.createElement('script');
-            autresScript.src = 'data/autres.js';
-            autresScript.onload = finalize;
-            autresScript.onerror = function() {
-                console.error('❌ ملف data/autres.js غير موجود');
-                finalize(); // نكملو العرض حتى إلا ملف autres.js ماكاينش
-            };
-            document.head.appendChild(autresScript);
-        }
-
         function loadSubject() {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('subject');
@@ -546,7 +518,7 @@
             // إذا كانت البيانات محملة من قبل (نادر، لكن للأمان)
             if (window.subjectsData && window.subjectsData[id]) {
                 currentSubject = window.subjectsData[id];
-                loadAutresThenRender(id);
+                renderSubjectHeader();
                 return;
             }
 
@@ -559,7 +531,7 @@
                     showNotFound();
                     return;
                 }
-                loadAutresThenRender(id);
+                renderSubjectHeader();
             };
             script.onerror = function() {
                 console.error(`❌ ملف data/${id}.js غير موجود`);
@@ -626,58 +598,7 @@
         function renderContent(container, tab, callback) {
             let html = '';
             
-            if (tab === 'lessons') {
-                let prevSemester = null;
-                html = currentSubject.lessons.map((l, i) => {
-                    let divider = '';
-                    if (l.semester && l.semester !== prevSemester) {
-                        prevSemester = l.semester;
-                        const frLabel = l.semester === 1 ? 'Semestre 1' : 'Semestre 2';
-                        divider = `
-                    <div class="semester-divider">
-                        <span class="semester-divider-line"></span>
-                        <span class="semester-divider-label"><i class="fas fa-bookmark"></i> ${frLabel}</span>
-                        <span class="semester-divider-line"></span>
-                    </div>`;
-                    }
-                    return `${divider}
-                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${l.file}'">
-                        <div class="command-title">
-                            <span class="num">${i+1}</span> ${l.title}
-                        </div>
-                        <p>${l.desc}</p>
-                        <span class="badge"><i class="fas fa-eye"></i> Voir le cours</span>
-                    </div>
-                `;
-                }).join('');
-            } else if (tab === 'autres') {
-                if (!currentSubject.others || currentSubject.others.length === 0) {
-                    html = `
-                        <div class="command-card" style="cursor:default; opacity:0.7;">
-                            <div class="command-title">
-                                <span class="num">✨</span> À venir
-                            </div>
-                            <p>D'autres contenus seront disponibles bientôt</p>
-                            <span class="badge" style="background:#79B8E822; color:#79B8E8; border-color:#79B8E822;"><i class="fas fa-clock"></i> En préparation</span>
-                        </div>
-                    `;
-                } else {
-                    html = currentSubject.others.map((o, i) => {
-                        const color = o.color || '#79B8E8';
-                        const icon = o.icon || 'fa-star';
-                        const label = o.label || 'Découvrir';
-                        return `
-                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${o.file}'">
-                        <div class="command-title">
-                            <span class="num">${i+1}</span> ${o.title}
-                        </div>
-                        <p>${o.desc}</p>
-                        <span class="badge" style="background:${color}22; color:${color}; border-color:${color}22;"><i class="fas ${icon}"></i> ${label}</span>
-                    </div>
-                `;
-                    }).join('');
-                }
-            } else if (tab === 'exercices') {
+            if (tab === 'exercices') {
                 html = currentSubject.exercices.map((e, i) => {
                     const modelsLabel = e.models ? `${e.models} modèle${e.models > 1 ? 's' : ''}` : '';
                     return `
@@ -688,20 +609,6 @@
                         <p>${e.desc}</p>
                         <span class="badge" style="background:#E8873A22; color: var(--exercice-title); border-color:#E8873A22;"><i class="fas fa-folder-open"></i> Voir les exercices</span>
                         ${modelsLabel ? `<span class="badge" style="background:#E8873A1f; color:#E8873A; border-color:#E8873A30;"><i class="fas fa-copy"></i> ${modelsLabel}</span>` : ''}
-                    </div>
-                `;
-                }).join('');
-            } else if (tab === 'series') {
-                html = currentSubject.series.map((s, i) => {
-                    const modelsLabel = s.models ? `${s.models} modèle${s.models > 1 ? 's' : ''}` : '';
-                    return `
-                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${s.file}'">
-                        <div class="command-title">
-                            <span class="num">${i+1}</span> ${s.title}
-                        </div>
-                        <p>${s.desc}</p>
-                        <span class="badge" style="background:#F4D03F22; color:var(--gold-text); border-color:#F4D03F22;"><i class="fas fa-folder-open"></i> Voir les séries</span>
-                        ${modelsLabel ? `<span class="badge" style="background:#F4D03F1f; color:#F4D03F; border-color:#F4D03F30;"><i class="fas fa-copy"></i> ${modelsLabel}</span>` : ''}
                     </div>
                 `;
                 }).join('');

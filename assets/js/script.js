@@ -387,5 +387,3 @@ window.XpertAnimateLegalPage = XpertAnimateLegalPage;
     setTimeout(hideLoader, 1500);
 })();
 // ====== XPERT LOADER END ======
-
-
