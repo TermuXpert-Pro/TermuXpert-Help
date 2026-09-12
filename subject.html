@@ -12,7 +12,7 @@
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "Matière - Xpert",
-        "description": "Exercices et devoirs",
+        "description": "Cours, exercices et devoirs",
         "provider": {
             "@type": "EducationalOrganization",
             "name": "Xpert"
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Xpert - Matière</title>
     <link rel="canonical" href="https://jdxpert.pages.dev/subject.html">
-    <meta name="description" content="Exercices corrigés et devoirs classés par matière sur Xpert, pour la 1ère Bac Sciences Expérimentales.">
+    <meta name="description" content="Cours, exercices corrigés et devoirs classés par matière sur Xpert, pour la 1ère Bac Sciences Expérimentales.">
     
     <!-- ====== Preconnect CDN ====== -->
     <link rel="stylesheet" href="assets/css/google-fonts.css">
@@ -404,6 +404,7 @@
 
     <div class="content-wrapper" id="contentWrapper">
         <div class="tabs-wrapper" role="tablist" id="tabsWrapper">
+            <button class="tab-btn" data-tab="lessons" onclick="switchTab('lessons')"><i class="fas fa-book"></i> Cours</button>
             <button class="tab-btn" data-tab="exercices" onclick="switchTab('exercices')"><i class="fas fa-pencil"></i> Exercices</button>
             <button class="tab-btn" data-tab="exams" onclick="switchTab('exams')"><i class="fas fa-pen-to-square"></i> Devoirs & Examens</button>
         </div>
@@ -431,7 +432,7 @@
 
         let currentSubject = null;
         let currentSubjectId = null;
-        let currentTab = 'exercices';
+        let currentTab = 'lessons';
         let isAnimating = false;
 
         // ألوان كل مادة (نفس الألوان المستعملة فـ باقي المشروع)
@@ -439,8 +440,8 @@
         const SUBJECT_ICON = { math: 'fa-calculator', physique: 'fa-atom', chimie: 'fa-flask' };
 
         // مطابقة كل Tab فهاد الصفحة مع فئة صفحة البحث (recherche.html)
-        const TAB_TO_CATEGORY = { exercices: 'exercices', exams: 'exams' };
-        const TAB_LABELS = { exercices: 'les exercices', exams: 'les devoirs et examens' };
+        const TAB_TO_CATEGORY = { lessons: 'lessons', exercices: 'exercices', exams: 'exams' };
+        const TAB_LABELS = { lessons: 'les cours', exercices: 'les exercices', exams: 'les devoirs et examens' };
 
         // ============================================================
         // تحديث رابط ونص زر البحث فالمقدمة، حسب المادة والتبويب الحالي
@@ -470,18 +471,18 @@
         function getSavedTab() {
             try {
                 // ====== أولوية للتبويب القادم من الرابط (?tab=...) ======
-                // كايجي من أزرار "تمارين/سلاسل/فروض" فبطاقات subjects.html
+                // كايجي من أزرار "دروس/تمارين/فروض" فبطاقات subjects.html
                 var params = new URLSearchParams(window.location.search);
                 var urlTab = params.get('tab');
-                var validTabs = ['exercices', 'exams'];
+                var validTabs = ['lessons', 'exercices', 'exams'];
                 if (urlTab && validTabs.indexOf(urlTab) !== -1) {
                     sessionStorage.setItem('subject_tab', urlTab);
                     return urlTab;
                 }
-                var t = sessionStorage.getItem('subject_tab') || 'exercices';
-                return (t === 'autres' || t === 'lessons' || t === 'series') ? 'exercices' : t;
+                var t = sessionStorage.getItem('subject_tab') || 'lessons';
+                return (t === 'autres' || t === 'series') ? 'exercices' : t;
             } catch(e) {
-                return 'exercices';
+                return 'lessons';
             }
         }
 
@@ -640,7 +641,31 @@
         function renderContent(container, tab, callback) {
             let html = '';
             
-            if (tab === 'exercices') {
+            if (tab === 'lessons') {
+                let prevSemester = null;
+                html = currentSubject.lessons.map((l, i) => {
+                    let divider = '';
+                    if (l.semester && l.semester !== prevSemester) {
+                        prevSemester = l.semester;
+                        const frLabel = l.semester === 1 ? 'Semestre 1' : 'Semestre 2';
+                        divider = `
+                    <div class="semester-divider">
+                        <span class="semester-divider-line"></span>
+                        <span class="semester-divider-label"><i class="fas fa-bookmark"></i> ${frLabel}</span>
+                        <span class="semester-divider-line"></span>
+                    </div>`;
+                    }
+                    return `${divider}
+                    <div class="command-card" onclick="saveCurrentTab('${tab}'); location.href='${l.file}'">
+                        <div class="command-title">
+                            <span class="num">${i+1}</span> ${l.title}
+                        </div>
+                        <p>${l.desc}</p>
+                        <span class="badge"><i class="fas fa-eye"></i> Voir le cours</span>
+                    </div>
+                `;
+                }).join('');
+            } else if (tab === 'exercices') {
                 html = currentSubject.exercices.map((e, i) => {
                     const descParts = [];
                     if (e.exercice && e.exercice.desc) descParts.push(e.exercice.desc);
@@ -852,5 +877,3 @@
     </script>
 </body>
 </html>
-
-

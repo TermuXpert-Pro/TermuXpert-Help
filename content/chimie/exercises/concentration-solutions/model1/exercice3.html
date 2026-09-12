@@ -218,6 +218,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
     <script src="../../../../../assets/js/shared-inline.js"></script>
+    <script>
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -442,7 +455,7 @@
         <div class="lesson-container">
             <h1 class="lesson-title"><i class="fas fa-flask" style="color:var(--gold-text);"></i> Exercice 3</h1>
             <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
-                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Chlorure de baryum - Tableau d'avancement</span>
+                <span class="badge-exercice"><i class="fas fa-check-circle"></i> Chlorure de baryum - Dissolution et concentrations ioniques</span>
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Niveau : Moyen</span>
             </p>
 
@@ -467,17 +480,17 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Masse molaire du chlorure de baryum :
+                                <span class="step-num">On a :</span> 
+                                la masse molaire du chlorure de baryum \(\text{BaCl}_2\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$M = M_{Ba} + 2M_{Cl} = 137 + 2 \times 35,5 = 137 + 71 = 208\text{ g/mol}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Quantité de matière :
+                                <span class="step-num">Or :</span> 
+                                par définition, \(n = \dfrac{m}{M}\), donc :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$n = \frac{m}{M} = \frac{0,20}{208} = 9,6 \times 10^{-4}\text{ mol}$$
+                                    $$n = \frac{0,20}{208} = 9,6 \times 10^{-4}\text{ mol}$$
                                 </div>
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(n = 9,6 \times 10^{-4}\text{ mol}\)</p>
@@ -493,13 +506,13 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                \(V = 500\text{ mL} = 0,500\text{ L}\)
+                                <span class="step-num">On a :</span> 
+                                \(V = 500\text{ mL} = 0,500\text{ L}\), et par définition \(C = \dfrac{n}{V}\).
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">Donc :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{n}{V} = \frac{9,6 \times 10^{-4}}{0,500} = 1,92 \times 10^{-3}\text{ mol/L}$$
+                                    $$C = \frac{9,6 \times 10^{-4}}{0,500} = 1,92 \times 10^{-3}\text{ mol/L}$$
                                 </div>
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(C = 1,92 \times 10^{-3}\text{ mol/L}\)</p>
@@ -514,6 +527,10 @@
                     <div id="sol3" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
+                            <div class="step">
+                                <span class="step-num">On a :</span> 
+                                le chlorure de baryum, une fois dissous, se dissocie totalement en ses ions \(\text{Ba}^{2+}\) et \(\text{Cl}^-\) :
+                            </div>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 $$\text{BaCl}_2 \xrightarrow{H_2O} \text{Ba}^{2+}_{(aq)} + 2\text{Cl}^-_{(aq)}$$
                             </div>
@@ -528,67 +545,17 @@
                     <div id="sol4" class="solution-box">
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
-                            
-                            <p style="font-weight:600; color:var(--gold-text); margin-bottom:6px;">Tableau d'avancement</p>
-
-                            <div class="table-wrap">
-                                <table>
-                                    <tr>
-                                        <th colspan="2">Équation</th>
-                                        <th colspan="3">\(\text{BaCl}_2 \longrightarrow \text{Ba}^{2+} + 2\text{Cl}^-\)</th>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><strong>État du système</strong></td>
-                                        <td><strong>Avancement</strong></td>
-                                        <td>\(\text{BaCl}_2\)</td>
-                                        <td>\(\text{Ba}^{2+}\)</td>
-                                        <td>\(\text{Cl}^-\)</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Initial</td>
-                                        <td>\(x = 0\)</td>
-                                        <td>\(9,6 \times 10^{-4}\)</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Intermédiaire</td>
-                                        <td>\(x\)</td>
-                                        <td>\(9,6 \times 10^{-4} - x\)</td>
-                                        <td>\(x\)</td>
-                                        <td>\(2x\)</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Final</td>
-                                        <td>\(x_{max}\)</td>
-                                        <td>0</td>
-                                        <td>\(x_{max}\)</td>
-                                        <td>\(2x_{max}\)</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="step" style="margin-top:6px;">
-                                <span class="step-num">Étape 1 :</span> 
-                                Avancement maximal :
+                            <div class="step">
+                                <span class="step-num">D'après l'équation de dissolution :</span> 
+                                \(\text{BaCl}_2 \longrightarrow \text{Ba}^{2+} + 2\text{Cl}^-\) : chaque mole de \(\text{BaCl}_2\) dissoute libère 1 mol de \(\text{Ba}^{2+}\) et 2 mol de \(\text{Cl}^-\). Or \(C\) (calculée à la question 2) représente la concentration en soluté apporté \(\text{BaCl}_2\), donc :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$x_{max} = 9,6 \times 10^{-4}\text{ mol}$$
+                                    $$[\text{Ba}^{2+}] = 1 \times C = 1,92 \times 10^{-3}\text{ mol/L}$$
                                 </div>
                             </div>
-
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Concentration des ions \(\text{Ba}^{2+}\) :
+                                <span class="step-num">De même :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Ba}^{2+}] = \frac{x_{max}}{V} = \frac{9,6 \times 10^{-4}}{0,500} = 1,92 \times 10^{-3}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Concentration des ions \(\text{Cl}^-\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Cl}^-] = \frac{2x_{max}}{V} = 2 \times 1,92 \times 10^{-3} = 3,84 \times 10^{-3}\text{ mol/L}$$
+                                    $$[\text{Cl}^-] = 2 \times C = 2 \times 1,92 \times 10^{-3} = 3,84 \times 10^{-3}\text{ mol/L}$$
                                 </div>
                             </div>
 
@@ -599,6 +566,7 @@
                                     <li>\([\text{Cl}^-] = 3,84 \times 10^{-3}\text{ mol/L}\)</li>
                                 </ul>
                             </div>
+                            <p style="font-size:10.5px; color:var(--text-muted); margin-top:6px;"><i class="fas fa-info-circle"></i> Remarque : ici la dissolution est totale (le sel est entièrement soluble dans l'eau ajoutée), donc le passage direct « [ion] = coefficient stœchiométrique × C » suffit — le tableau d'avancement (outil du chapitre des transformations chimiques, utile quand la réaction n'est pas forcément totale) n'est pas nécessaire.</p>
                         </div>
                     </div>
                 </div>
@@ -717,7 +685,7 @@
 <div class="xpert-sec-menu" id="xpertSecMenu" role="menu"></div>
 <script>
 (function(){
-  var sections = [{"href":"exercice1.html","label":"Exercice 1","desc":"Sulfate d'aluminium - Dissolution et concentrations ioniques"},{"href":"exercice2.html","label":"Exercice 2","desc":"Sulfate de zinc - Dissolution et concentrations ioniques"},{"href":"exercice3.html","label":"Exercice 3","desc":"Chlorure de baryum - Tableau d'avancement"},{"href":"exercice4.html","label":"Exercice 4","desc":"Sel de Mohr - Préparation et dilution"},{"href":"exercice5.html","label":"Exercice 5","desc":"Chlorure de cobalt hydraté - Dissolution"},{"href":"exercice6.html","label":"Exercice 6","desc":"Mélange de solutions - Concentrations ioniques"}];
+  var sections = [{"href":"exercice1.html","label":"Exercice 1","desc":"Sulfate d'aluminium - Dissolution et concentrations ioniques"},{"href":"exercice2.html","label":"Exercice 2","desc":"Sulfate de zinc - Dissolution et concentrations ioniques"},{"href":"exercice3.html","label":"Exercice 3","desc":"Chlorure de baryum - Dissolution et concentrations ioniques"},{"href":"exercice4.html","label":"Exercice 4","desc":"Sel de Mohr - Préparation et dilution"},{"href":"exercice5.html","label":"Exercice 5","desc":"Chlorure de cobalt hydraté - Dissolution"},{"href":"exercice6.html","label":"Exercice 6","desc":"Mélange de solutions - Concentrations ioniques"}];
   var current = "exercice3.html";
   var STAGGER_STEP = 40, STAGGER_MAX = 300;
   var btn = document.getElementById('xpertSecFabBtn');

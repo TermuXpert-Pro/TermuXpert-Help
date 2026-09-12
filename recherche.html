@@ -343,6 +343,10 @@
             </div>
 
             <div class="search-type-menu" id="searchTypeMenu" role="listbox">
+                <button class="search-type-option" data-category="lessons" style="--cat-color:#4ECDC4;" role="option">
+                    <span class="search-type-option-icon"><i class="fas fa-book"></i></span>
+                    <span class="search-type-option-name">Cours</span>
+                </button>
                 <button class="search-type-option" data-category="exercices" style="--cat-color:#E8873A;" role="option">
                     <span class="search-type-option-icon"><i class="fas fa-pencil"></i></span>
                     <span class="search-type-option-name">Exercices</span>
@@ -380,6 +384,7 @@
         ];
 
         const SEARCH_CATEGORIES = {
+            lessons:   { label: 'Cours',              icon: 'fa-book',           field: 'lessons',   linkKey: 'file', color: '#4ECDC4', viewLabel: 'Voir le cours' },
             exercices: { label: 'Exercices',           icon: 'fa-pencil',         field: 'exercices', linkKey: 'file', color: '#E8873A', viewLabel: 'Voir les exercices' },
             exams:     { label: 'Devoirs & Examens',    icon: 'fa-pen-to-square',  field: 'exams',     linkKey: 'hub',  color: '#BB8FCE', viewLabel: 'Voir le devoir' }
         };

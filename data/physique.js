@@ -6,7 +6,43 @@ window.subjectsData = window.subjectsData || {};
 
 window.subjectsData.physique = {
     title: "Physique",
-    desc: "Exercices, devoirs et examens régionaux",
+    desc: "Cours, exercices, devoirs et examens régionaux",
+
+    lessons: [
+        {
+            semester: 1,
+            title: "Rotation d'un solide autour d'un axe fixe",
+            file: "content/physique/lessons/rotation-solide/model1/part1.html",
+            desc: "Mouvement de rotation, vitesse angulaire, période, fréquence"
+        },
+        {
+            semester: 1,
+            title: "Travail et puissance d'une force",
+            file: "content/physique/lessons/travail-puissance/model1/part1.html",
+            desc: "Travail d'une force, puissance, couple de forces"
+        },
+        {
+            semester: 1,
+            title: "Travail et énergie cinétique",
+            file: "content/physique/lessons/travail-energie-cinetique/model1/part1.html",
+            desc: "Énergie cinétique en translation et rotation, théorème de l'énergie cinétique"
+        },
+        {
+            semester: 1,
+            title: "Travail et énergie potentielle de pesanteur - Énergie mécanique",
+            file: "content/physique/lessons/energie-potentielle-mecanique/model1/index.html",
+            desc: "قيد الإعداد 🔧"
+        },
+        { semester: 1, title: "Transfert d'énergie dans un circuit électrique", file: "content/physique/lessons/circuit-electrique/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Comportement global d'un circuit électrique", file: "content/physique/lessons/comportement-global-circuit/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Le champ magnétique", file: "content/physique/lessons/champ-magnetique/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Le champ magnétique créé par un courant électrique", file: "content/physique/lessons/champ-magnetique-courant/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Les forces électromagnétiques - La loi de Laplace", file: "content/physique/lessons/forces-laplace/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Visibilité d'un objet", file: "content/physique/lessons/visibilite-objet/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Les images formées par un miroir plan", file: "content/physique/lessons/miroir-plan/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Les images formées par une lentille mince convergente", file: "content/physique/lessons/lentille-convergente/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Quelques instruments optiques", file: "content/physique/lessons/instruments-optiques/model1/index.html", desc: "قيد الإعداد 🔧" }
+    ],
 
     exercices: [
         {

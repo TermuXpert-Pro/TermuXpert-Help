@@ -103,3 +103,51 @@ node utils/validate.js           # (إلا كان موجود) للتأكد من 
   - زدت CSS `#tabContent .card-modes` و `.card-mode-btn` (نفس تصميم subjects.html، بلون `--mode-color` مختلف لكل زر)
   - بدّلت renderContent(tab==='exercices') باش يبني بطاقة وحدة لكل موضوع، مع زرين منفصلين (كل واحد عندو onclick خاص بيه يوديك لصفحته)، بدل ما تكون البطاقة كاملة قابلة للضغط
   - إلا ماكانش عندو `serie`، كيبان غير زر "Exercices" وحدو (البطاقة كتاخد كلاس `single-mode` باش الزر يوخد العرض كامل)
+
+---
+
+# المرحلة 4: التراجع عن الحذف - إرجاع قسم "دروس" بالكامل
+
+بعد إعادة النظر، تقرر إرجاع قسم "دروس" (Cours) بالكامل للموقع. هاد التعديلات كتلغي المرحلة 1 (حذف دروس) بينما كتحافظ على المرحلتين 2 و3 (حذف Autres/Base، ودمج Exercices+Séries فبطاقة وحدة بزوج أزرار).
+
+## المحتوى المرجوع
+- `content/math/lessons/` (11 موضوع)
+- `content/physique/lessons/` (13 موضوع)
+- `content/chimie/lessons/` (12 موضوع)
+- (`templates/lesson-template.html` كان أصلا موجود، ماتحذفش من المشروع الحقيقي)
+
+## data/math.js, data/physique.js, data/chimie.js
+- رجّعت مصفوفة `lessons: [...]` الأصلية كاملة (نفس المحتوى القديم بالضبط)
+- `desc` رجع يذكر "Cours" مرة أخرى: "Cours, exercices, devoirs et examens régionaux"
+
+## subject.html
+- زر تبويب "Cours" رجع (أول تبويب: **Cours → Exercices → Devoirs & Examens**)
+- `currentTab` الافتراضي رجع لـ `lessons`
+- `renderContent` رجع فيه فرع `tab === 'lessons'` (بطاقات مع فواصل السمستر، بادج "Voir le cours")
+- `TAB_TO_CATEGORY`, `TAB_LABELS`, `validTabs` رجعو يتضمنو `lessons`
+- `getSavedTab()` رجع الافتراضي لـ `lessons` (القيم القديمة `autres`/`series` بقات كتحول لـ `exercices`، ماشي `lessons`)
+- Meta description + JSON-LD رجعو يذكرو "Cours"
+
+## subjects.html
+- زر "Cours" رجع فبطاقات الوصول السريع (دابا 3 أزرار: **Cours / Exercices / Devoirs**)
+- شبكة الأزرار (`card-modes`) بدّلت من عمودين لـ 3 أعمدة
+- `goToSubject()` بلا تحديد tab كيمشي دابا لـ `lessons` بدل `exercices`
+- النص التسويقي رجع يذكر "Cours complets"
+
+## recherche.html
+- خيار "Cours" رجع فقائمة أنواع البحث
+- `lessons` رجع لـ `SEARCH_CATEGORIES`
+
+## index.html, about.html, support.html, terms.html
+- كل النصوص التسويقية/الوصفية اللي كانت تشيل ذكر "Cours" رجعت للحالة الأصلية (meta description, keywords, JSON-LD, بطاقة "Cours structurés" فالصفحة الرئيسية، فقرة "À propos"، أسئلة الدعم، الشروط)
+
+## اللي بقى بلا تغيير (ماشي من ضمن الطلب)
+- Autres/Base (Essentiels) - بقاو محذوفين
+- دمج Exercices+Séries فبطاقة وحدة بزوج أزرار - بقا كما هو (الطلب كان غير على دروس)
+- إصلاح باگ الأزرار (`position: relative; z-index: 1;` على `.command-card`) - بقا مطبق
+
+## خطوات بعد وضع الملفات فالمشروع الحقيقي
+```bash
+node utils/build.js
+node utils/generate-sitemap.js
+```

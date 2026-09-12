@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+
+    
+    
+
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Partie 1 : Le récepteur électrique | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/physique/lessons/circuit-electrique/model1/part1.html">
+    <meta name="description" content="Cours : Circuit electrique (modèle 1) — Physique, 1ère Bac Sciences Expérimentales. Corrigé détaillé sur Xpert.">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 18px; padding-bottom: 8px; margin-bottom: 14px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .mini-note { display:flex; gap:8px; align-items:flex-start; background:rgba(78,205,196,0.08); border-right:3px solid #FF6B6B; border-radius:6px; padding:6px 10px; margin:8px 0 14px; font-size:11.5px; color:var(--text-secondary); line-height:1.5; }
+        .mini-note i { color:#FF6B6B; margin-top:2px; }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 16px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+        }
+            .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; }
+        .toc h3 { color:var(--gold-text); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc ul li { margin-bottom: 2px; }
+        .toc ul li a { color: var(--text-secondary); font-size: 12px; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 6px; }
+        .toc ul li a:hover { color: #FF6B6B; }
+        .toc ul li a .num { color: #FF6B6B; font-weight: 700; font-size: 11px; min-width: 20px; }
+</style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+<!-- ====== طبقة الحماية غير المرئية ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== خلفية زليج ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#FF8A8A" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#FF6B6B" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#FF6B6B" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">11 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">13 cours</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">12 cours</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-lightbulb" style="color:#FF6B6B;"></i> Partie 1 : Le récepteur électrique</h1>
+
+            
+            <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table des matières</h3>
+                <ul>
+                    <li><a href="#sec1"><span class="num">1.</span> Bilan qualitatif d'énergie</a></li>
+                    <li><a href="#sec2"><span class="num">2.</span> Le récepteur électrique</a></li>
+                    <li><a href="#sec3"><span class="num">3.</span> Énergie reçue par un récepteur</a></li>
+                    <li><a href="#sec4"><span class="num">4.</span> Puissance électrique reçue par un récepteur</a></li>
+                </ul>
+            </div>
+<!-- ============================================================ -->
+            <!-- SECTION 1: BILAN QUALITATIF D'ÉNERGIE -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec1">
+                <h2><span class="num">1</span> Bilan qualitatif d'énergie</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Activité</span>
+                    <p>On considère le circuit électrique suivant : un générateur $G$, une lampe $L$, un électrolyseur $E$ et un interrupteur $K$, tous montés en série.</p>
+                    <p>Quand on ferme l'interrupteur $K$ :</p>
+                    <ul>
+                        <li>La <strong>lampe</strong> $L$ s'allume et s'échauffe : elle reçoit de l'énergie électrique du générateur et la convertit en énergie <strong>rayonnante</strong> et en énergie <strong>thermique</strong>.</li>
+                        <li>L'<strong>électrolyseur</strong> $E$ produit des réactions chimiques : l'énergie qu'il reçoit est convertie en énergie <strong>chimique</strong> et en énergie <strong>thermique</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="graphCircuitRecepteur" width="380" height="260"></svg>
+                    <p>Circuit série : générateur G, lampe L, électrolyseur E, interrupteur K</p>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Bilans d'énergie</span>
+                    <div class="formula-block" style="font-size:15px;">$$W_e = W_r + W_{th} \quad \text{(lampe)}$$</div>
+                    <div class="formula-block" style="font-size:15px;">$$W_e = W_{ch} + W_{th} \quad \text{(électrolyseur)}$$</div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Conclusion</span>
+                    <p>Le récepteur (lampe, moteur, électrolyseur...) convertit l'énergie électrique qu'il reçoit en une <strong>autre forme d'énergie</strong>, en plus de l'énergie thermique. Il y a <strong>conservation de l'énergie</strong> lors de ce transfert.</p>
+                </div>
+
+                <div class="mini-note">
+                    <i class="fas fa-circle-info"></i>
+                    <span><strong>En bref :</strong> tout récepteur transforme l'énergie électrique reçue en énergie thermique <u>+</u> une autre forme utile (lumière, mouvement, réaction chimique...). Rien ne se perd, tout se transforme.</span>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: DÉFINITION ET CONVENTION -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec2">
+                <h2><span class="num">2</span> Le récepteur électrique</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Définition</span>
+                    <p>Le <strong>récepteur</strong> est un dipôle qui reçoit de l'énergie électrique et la convertit en une autre forme d'énergie, en plus de l'énergie thermique.</p>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Convention récepteur</span>
+                    <p>Dans la convention récepteur, la tension $U_{AB}$ est <strong>positive</strong> si le courant électrique circule de $A$ vers $B$ (le courant entre par la borne où la flèche de tension arrive).</p>
+                </div>
+
+                <div class="graph-container">
+                    <svg id="graphConventionRecepteur" width="320" height="130"></svg>
+                    <p>Convention récepteur : $I$ et $U_{AB}$ en sens opposés</p>
+                </div>
+
+                <div class="mini-note">
+                    <i class="fas fa-circle-info"></i>
+                    <span><strong>Tip pour retenir :</strong> en convention récepteur, la flèche de $I$ et la flèche de $U_{AB}$ pointent dans des sens <strong>opposés</strong>.</span>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: ÉNERGIE REÇUE PAR UN RÉCEPTEUR -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec3">
+                <h2><span class="num">3</span> Énergie reçue par un récepteur</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Loi</span>
+                    <p>En régime permanent, l'énergie électrique reçue par un récepteur parcouru par un courant $I$ et soumis à une tension $U_{AB}$, pendant une durée $\Delta t$, est :</p>
+                    <div class="formula-block" style="font-size:17px;">$$W = U_{AB} \cdot I \cdot \Delta t$$</div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Notations</span>
+                    <ul>
+                        <li>$W$ : énergie reçue en <strong>joule (J)</strong></li>
+                        <li>$U_{AB}$ : tension en <strong>volt (V)</strong></li>
+                        <li>$I$ : intensité du courant en <strong>ampère (A)</strong></li>
+                        <li>$\Delta t$ : durée en <strong>seconde (s)</strong></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Remarque : le kilowattheure</span>
+                    <p>On utilise aussi une autre unité d'énergie électrique : le <strong>kilowattheure (kWh)</strong>. C'est l'énergie consommée par un récepteur de 1 kW pendant une heure.</p>
+                    <div class="formula-block" style="font-size:15px;">$$1\text{ kWh} = 1000\text{ Wh} = 1000 \times 3600 = 3{,}6\text{ MJ}$$</div>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Application</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Un récepteur est soumis à une tension $U_{AB} = 12\text{ V}$ et parcouru par un courant $I = 0{,}4\text{ A}$ pendant $\Delta t = 5\text{ min}$. Calculer l'énergie électrique $W$ reçue.
+                    </p>
+                    <div style="margin-top:6px;">
+                        <div class="step"><span class="step-num">Étape 1 :</span> convertir la durée en secondes : $\Delta t = 5 \times 60 = 300\text{ s}$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $W = U_{AB} \cdot I \cdot \Delta t$</div>
+                        <div class="step"><span class="step-num">Étape 3 :</span> $W = 12 \times 0{,}4 \times 300 = 1440\text{ J}$</div>
+                    </div>
+                    <div style="margin-top:6px; color:#FF6B6B; font-weight:700;">✅ $W = 1440\text{ J} = 1{,}44\text{ kJ}$</div>
+                </div>
+
+                <div class="mini-note">
+                    <i class="fas fa-circle-info"></i>
+                    <span><strong>Attention :</strong> $\Delta t$ doit toujours être exprimé en <strong>secondes</strong> dans la formule $W = U_{AB}\cdot I \cdot \Delta t$, même si l'énoncé donne des minutes ou des heures.</span>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 4: PUISSANCE REÇUE PAR UN RÉCEPTEUR -->
+            <!-- ============================================================ -->
+            <div class="section" id="sec4">
+                <h2><span class="num">4</span> Puissance électrique reçue par un récepteur</h2>
+
+                <div class="highlight-box red">
+                    <span class="label def">Loi</span>
+                    <p>En régime permanent, la puissance électrique reçue par un récepteur parcouru par un courant $I$ et soumis à une tension $U_{AB}$ est :</p>
+                    <div class="formula-block" style="font-size:17px;">$$P = U_{AB} \cdot I$$</div>
+                </div>
+
+                <div class="highlight-box yellow">
+                    <span class="label rem">Notations</span>
+                    <ul>
+                        <li>$P$ : puissance en <strong>watt (W)</strong></li>
+                        <li>$U_{AB}$ : tension en <strong>volt (V)</strong></li>
+                        <li>$I$ : intensité du courant en <strong>ampère (A)</strong></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green">
+                    <span class="label prop">Lien avec l'énergie</span>
+                    <p>La puissance est le débit d'énergie dans le temps : $P = \dfrac{W}{\Delta t}$, d'où $W = P \cdot \Delta t = U_{AB}\cdot I \cdot \Delta t$.</p>
+                </div>
+
+                <div class="exemple-box">
+                    <div class="ex-title">📝 Application</div>
+                    <p style="font-size:11.5px; color:var(--text-secondary);">
+                        Reprenons le récepteur précédent ($U_{AB} = 12\text{ V}$, $I = 0{,}4\text{ A}$). Calculer la puissance reçue $P$.
+                    </p>
+                    <div style="margin-top:6px;">
+                        <div class="step"><span class="step-num">Étape 1 :</span> $P = U_{AB} \cdot I$</div>
+                        <div class="step"><span class="step-num">Étape 2 :</span> $P = 12 \times 0{,}4 = 4{,}8\text{ W}$</div>
+                    </div>
+                    <div style="margin-top:6px; color:#FF6B6B; font-weight:700;">✅ $P = 4{,}8\text{ W}$</div>
+                </div>
+
+                <div class="highlight-box purple">
+                    <span class="label resume">Résumé de la partie 1</span>
+                    <ul>
+                        <li>Un récepteur convertit l'énergie électrique en énergie thermique <strong>+</strong> une autre forme d'énergie.</li>
+                        <li>Convention récepteur : $I$ et $U_{AB}$ en sens <strong>opposés</strong>.</li>
+                        <li>Énergie reçue : $W = U_{AB}\cdot I \cdot \Delta t$ (en joules, $\Delta t$ en secondes)</li>
+                        <li>Puissance reçue : $P = U_{AB}\cdot I$ (en watts)</li>
+                        <li>$1\text{ kWh} = 3{,}6\text{ MJ}$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="index.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+                <a href="part2.html" class="next-btn">Partie 2 <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    
+    <script src="../../../../../assets/js/svg-utils.js"></script>
+    <script src="figuresvt.js"></script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+</body>
+</html>

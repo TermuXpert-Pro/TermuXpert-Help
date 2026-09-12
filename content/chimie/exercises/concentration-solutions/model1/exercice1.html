@@ -227,6 +227,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
     <script src="../../../../../assets/js/shared-inline.js"></script>
+    <script>
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -477,19 +490,19 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Formule du sulfate d'aluminium : \(\text{Al}_2(\text{SO}_4)_3\)
+                                <span class="step-num">Formule :</span> 
+                                Le sulfate d'aluminium a pour formule \(\text{Al}_2(\text{SO}_4)_3\) : il contient 2 atomes Al, 3 atomes S et 12 atomes O (3×4).
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">On a :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 2M_{Al} + 3(M_S + 4M_O) = 2 \times 27 + 3(32 + 4 \times 16)$$
+                                    $$M = 2M_{Al} + 3(M_S + 4M_O)$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
+                                <span class="step-num">Donc :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = 54 + 3(32 + 64) = 54 + 3 \times 96 = 54 + 288 = 342\text{ g/mol}$$
+                                    $$M = 2 \times 27 + 3(32 + 4 \times 16) = 54 + 3(32 + 64) = 54 + 3 \times 96 = 54 + 288$$
                                 </div>
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(M = 342\text{ g/mol}\)</p>
@@ -508,22 +521,26 @@
                             <p style="font-weight:600; color:var(--gold-text); margin-bottom:6px;">a) Concentration massique (titre)</p>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                \(V = 250\text{ mL} = 0,250\text{ L}\)
+                                <span class="step-num">On a :</span> 
+                                \(V = 250\text{ mL} = 0,250\text{ L}\), et par définition \(C_m = \dfrac{m}{V}\).
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">Donc :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_m = \frac{m}{V} = \frac{17,1}{0,250} = 68,4\text{ g/L}$$
+                                    $$C_m = \frac{17,1}{0,250} = 68,4\text{ g/L}$$
                                 </div>
                             </div>
 
                             <p style="font-weight:600; color:var(--gold-text); margin-top:10px; margin-bottom:6px;">b) Concentration en soluté apporté</p>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
+                                <span class="step-num">Or :</span> 
+                                la concentration massique et la concentration molaire sont liées par \(C_m = C \times M\), donc \(C = \dfrac{C_m}{M}\).
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Donc :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{C_m}{M} = \frac{68,4}{342} = 0,20\text{ mol/L}$$
+                                    $$C = \frac{68,4}{342} = 0,20\text{ mol/L}$$
                                 </div>
                             </div>
 
@@ -546,24 +563,18 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Équation de dissolution :
+                                <span class="step-num">On a :</span> 
+                                l'équation de dissolution du sulfate d'aluminium dans l'eau :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\text{Al}_2(\text{SO}_4)_3 \longrightarrow 2\text{Al}^{3+} + 3\text{SO}_4^{2-}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Concentration des ions \(\text{Al}^{3+}\) :
+                                <span class="step-num">D'après les coefficients :</span> 
+                                chaque mole dissoute libère 2 mol de \(\text{Al}^{3+}\) et 3 mol de \(\text{SO}_4^{2-}\), donc :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{Al}^{3+}] = 2 \times C = 2 \times 0,20 = 0,40\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Concentration des ions \(\text{SO}_4^{2-}\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$[\text{SO}_4^{2-}] = 3 \times C = 3 \times 0,20 = 0,60\text{ mol/L}$$
+                                    $$[\text{Al}^{3+}] = 2C = 2 \times 0,20 = 0,40\text{ mol/L}$$
+                                    $$[\text{SO}_4^{2-}] = 3C = 3 \times 0,20 = 0,60\text{ mol/L}$$
                                 </div>
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong></p>
@@ -583,26 +594,28 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Calcul de la charge totale positive :
+                                <span class="step-num">Condition :</span> 
+                                l'électroneutralité d'une solution s'écrit : la somme des charges positives = la somme des charges négatives. Ici, \(\text{Al}^{3+}\) porte la charge \(+3\) et \(\text{SO}_4^{2-}\) porte la charge \(-2\), donc il faut vérifier que \(3[\text{Al}^{3+}] = 2[\text{SO}_4^{2-}]\).
+                            </div>
+                            <div class="step">
+                                <span class="step-num">D'une part :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$3 \times [\text{Al}^{3+}] = 3 \times 0,40 = 1,20\text{ mol/L}$$
+                                    $$3[\text{Al}^{3+}] = 3 \times 0,40 = 1,20\text{ mol/L}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Calcul de la charge totale négative :
+                                <span class="step-num">D'autre part :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$2 \times [\text{SO}_4^{2-}] = 2 \times 0,60 = 1,20\text{ mol/L}$$
+                                    $$2[\text{SO}_4^{2-}] = 2 \times 0,60 = 1,20\text{ mol/L}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
+                                <span class="step-num">On trouve :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$3[\text{Al}^{3+}] = 2[\text{SO}_4^{2-}] = 1,20\text{ mol/L}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La solution est électriquement neutre ✅</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> les charges positives et négatives s'équilibrent ⇒ la solution est bien électriquement neutre ✅</p>
                         </div>
                     </div>
                 </div>
@@ -721,7 +734,7 @@
 <div class="xpert-sec-menu" id="xpertSecMenu" role="menu"></div>
 <script>
 (function(){
-  var sections = [{"href":"exercice1.html","label":"Exercice 1","desc":"Sulfate d'aluminium - Dissolution et concentrations ioniques"},{"href":"exercice2.html","label":"Exercice 2","desc":"Sulfate de zinc - Dissolution et concentrations ioniques"},{"href":"exercice3.html","label":"Exercice 3","desc":"Chlorure de baryum - Tableau d'avancement"},{"href":"exercice4.html","label":"Exercice 4","desc":"Sel de Mohr - Préparation et dilution"},{"href":"exercice5.html","label":"Exercice 5","desc":"Chlorure de cobalt hydraté - Dissolution"},{"href":"exercice6.html","label":"Exercice 6","desc":"Mélange de solutions - Concentrations ioniques"}];
+  var sections = [{"href":"exercice1.html","label":"Exercice 1","desc":"Sulfate d'aluminium - Dissolution et concentrations ioniques"},{"href":"exercice2.html","label":"Exercice 2","desc":"Sulfate de zinc - Dissolution et concentrations ioniques"},{"href":"exercice3.html","label":"Exercice 3","desc":"Chlorure de baryum - Dissolution et concentrations ioniques"},{"href":"exercice4.html","label":"Exercice 4","desc":"Sel de Mohr - Préparation et dilution"},{"href":"exercice5.html","label":"Exercice 5","desc":"Chlorure de cobalt hydraté - Dissolution"},{"href":"exercice6.html","label":"Exercice 6","desc":"Mélange de solutions - Concentrations ioniques"}];
   var current = "exercice1.html";
   var STAGGER_STEP = 40, STAGGER_MAX = 300;
   var btn = document.getElementById('xpertSecFabBtn');

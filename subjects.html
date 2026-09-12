@@ -121,7 +121,7 @@
         }
         #subjectsGrid .card-modes {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 9px;
             margin-top: 18px;
             padding-top: 16px;
@@ -378,7 +378,7 @@
     <div class="page-intro" id="pageIntro">
         <span class="page-intro-eyebrow"><i class="fas fa-graduation-cap" aria-hidden="true"></i> 1ère Bac Sciences Expérimentales</span>
         <h2>Explorez vos <span class="gradient-text">matières</span></h2>
-        <p>Exercices corrigés, séries et devoirs classés par matière. Choisissez une matière ci-dessous pour découvrir tout son contenu.</p>
+        <p>Cours complets, exercices corrigés et devoirs classés par matière. Choisissez une matière ci-dessous pour découvrir tout son contenu.</p>
     </div>
 
     <div class="cards-wrapper" id="cardsWrapper">
@@ -438,7 +438,7 @@
 
         // ====== الانتقال المباشر لمادة معيّنة، مع تحديد التبويب (وضع) مسبقًا ======
         function goToSubject(id, tab) {
-            const targetTab = tab || 'exercices';
+            const targetTab = tab || 'lessons';
             try {
                 sessionStorage.setItem('animation_allowed', 'true');
                 sessionStorage.setItem('subject_tab', targetTab);
@@ -464,6 +464,9 @@
                         </div>
                     </div>
                     <div class="card-modes" role="group" aria-label="Accès rapide - ${s.title}">
+                        <button type="button" class="card-mode-btn" style="--mode-color:${s.color};" onclick="event.stopPropagation(); goToSubject('${s.id}','lessons')">
+                            <i class="fas fa-book"></i> Cours
+                        </button>
                         <button type="button" class="card-mode-btn" style="--mode-color:${s.color};" onclick="event.stopPropagation(); goToSubject('${s.id}','exercices')">
                             <i class="fas fa-pencil"></i> Exercices
                         </button>

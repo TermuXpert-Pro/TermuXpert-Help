@@ -7,7 +7,22 @@ window.subjectsData = window.subjectsData || {};
 
 window.subjectsData.chimie = {
     title: "Chimie",
-    desc: "Exercices, devoirs et examens régionaux",
+    desc: "Cours, exercices, devoirs et examens régionaux",
+
+    lessons: [
+        { semester: 1, title: "Importance de la mesure en chimie", file: "content/chimie/lessons/mesure-chimie/model1/part1.html", desc: "Mesurer pour informer, surveiller/protéger et agir : concentration massique, densité" },
+        { semester: 1, title: "Grandeurs physiques liées à la quantité de matière", file: "content/chimie/lessons/quantite-matiere/model1/part1.html", desc: "Quantité de matière, masse molaire, volume molaire, concentration molaire" },
+        { semester: 1, title: "La concentration et les solutions électrolytiques", file: "content/chimie/lessons/concentration-solutions/model1/part1.html", desc: "Dissolution, dilution, préparation des solutions électrolytiques" },
+        { semester: 1, title: "Suivi d'une transformation chimique", file: "content/chimie/lessons/suivi-transformation/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Mesure des quantités de matière en solution par conductimétrie", file: "content/chimie/lessons/conductimetrie/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Les réactions acido-basiques", file: "content/chimie/lessons/reactions-acido-basiques/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Les réactions d'oxydo-réduction", file: "content/chimie/lessons/reactions-oxydoreduction/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 1, title: "Les dosages (ou titrages) directs", file: "content/chimie/lessons/dosages-directs/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Expansion de la chimie organique", file: "content/chimie/lessons/chimie-organique/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Les molécules organiques et les squelettes carbonés", file: "content/chimie/lessons/molecules-organiques/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Modification du squelette carboné", file: "content/chimie/lessons/modification-squelette/model1/index.html", desc: "قيد الإعداد 🔧" },
+        { semester: 2, title: "Les groupes caractéristiques en chimie organique - La réactivité des alcools", file: "content/chimie/lessons/groupes-caracteristiques/model1/index.html", desc: "قيد الإعداد 🔧" }
+    ],
 
     exercices: [
         { semester: 1, title: "Importance de la mesure en chimie",

@@ -465,7 +465,7 @@
                             </p>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
+                                <span class="step-num">On a :</span> 
                                 \(M(\text{Na}_2\text{CO}_3) = 2M_{Na} + M_C + 3M_O\)
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$M = 2 \times 23 + 12 + 3 \times 16 = 46 + 12 + 48 = 106\text{ g/mol}$$
@@ -591,24 +591,21 @@
                         <div class="sol-content">
                             
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Masse molaire de l'eau :
+                                <span class="step-num">On a, la masse molaire de l'eau :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$M(\text{H}_2\text{O}) = 2M_H + M_O = 2 \times 1 + 16 = 18\text{ g/mol}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Quantité de matière d'eau dans 100g :
+                                <span class="step-num">D'où, la quantité de matière d'eau dans 100 g :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$n = \frac{m}{M} = \frac{100}{18} = 5,56\text{ mol}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Nombre de molécules :
+                                <span class="step-num">Alors, le nombre de molécules :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$N = n \times N_A = 5,56 \times 6,02 \times 10^{23} = 3,34 \times 10^{24}\text{ molécules}$$
                                 </div>
@@ -737,13 +734,13 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> Le sodium se trouve uniquement dans \(\text{NaHCO}_3\).
+                                <span class="step-num">On a :</span> le sodium se trouve uniquement dans \(\text{NaHCO}_3\).
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> \(n_{\text{Na}} = n_{\text{NaHCO}_3} = 1,93 \times 10^{-2}\text{ mol}\)
+                                <span class="step-num">Donc :</span> \(n_{\text{Na}} = n_{\text{NaHCO}_3} = 1,93 \times 10^{-2}\text{ mol}\)
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> Masse de sodium :
+                                <span class="step-num">D'où, la masse de sodium :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$m_{Na} = n \times M_{Na} = 1,93 \times 10^{-2} \times 23 = 0,444\text{ g} = 444\text{ mg}$$
                                 </div>
@@ -786,7 +783,26 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

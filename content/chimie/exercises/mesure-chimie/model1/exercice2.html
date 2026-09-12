@@ -482,26 +482,24 @@
                 </div>
 
                 <p style="color:var(--text-muted); font-size:11px; margin-top:10px; margin-bottom:6px;">
-                    Les <strong>valeurs normales</strong> dans le sang sont :
+                    Les <strong>valeurs normales</strong> (titre massique) dans le sang sont :
                 </p>
 
-                <ul style="font-size:11.5px; color:var(--text-secondary); padding-right:18px; margin:4px 0;">
-                    <li>
-                        <strong>Urée</strong> : concentration comprise entre <strong>3 et 8 mmol/L</strong><br>
-                        <span style="font-size:11px; color:var(--text-muted);">Formule brute : \(\text{CH}_4\text{N}_2\text{O}\)</span>
-                    </li>
-                    <li style="margin-top:6px;">
-                        <strong>Glucose</strong> : concentration comprise entre <strong>3 et 8 mmol/L</strong><br>
-                        <span style="font-size:11px; color:var(--text-muted);">Formule brute : \(\text{C}_6\text{H}_{12}\text{O}_6\)</span>
-                    </li>
-                </ul>
-
-                <div class="formula-block" style="font-size:12px; margin:8px 0; background:rgba(var(--overlay-rgb), 0.03);">
-                    <strong>Données :</strong> 
-                    \(M_C = 12\text{ g/mol}\), 
-                    \(M_O = 16\text{ g/mol}\), 
-                    \(M_H = 1\text{ g/mol}\), 
-                    \(M_N = 14\text{ g/mol}\)
+                <div class="table-wrap">
+                    <table style="max-width:320px;">
+                        <tr>
+                            <th>Substance</th>
+                            <th>Intervalle normal (g/L)</th>
+                        </tr>
+                        <tr>
+                            <td>Urée</td>
+                            <td>\([0,15 \ ; \ 0,45]\)</td>
+                        </tr>
+                        <tr>
+                            <td>Glucose</td>
+                            <td>\([0,70 \ ; \ 1,10]\)</td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:6px; padding:8px 10px; margin:8px 0;">
@@ -516,146 +514,59 @@
                     <div id="sol" class="solution-box">
                         <div class="sol-title">✅ Solution détaillée</div>
                         <div class="sol-content">
-                            
+
+                            <div class="step">
+                                <span class="step-num">Méthode :</span>
+                                on compare chaque titre massique mesuré \(C_m\) à l'intervalle normal \([C_{m,\min} ; C_{m,\max}]\).
+                            </div>
+
                             <!-- ============================================= -->
                             <!-- PARTIE 1 : URÉE -->
                             <!-- ============================================= -->
-                            <p style="font-weight:700; color:var(--gold-text); font-size:13px; margin-top:4px; margin-bottom:6px;">
-                                <i class="fas fa-flask" style="margin-left:6px;"></i> 1) Étude de l'urée
+                            <p style="font-weight:700; color:var(--gold-text); font-size:13px; margin-top:10px; margin-bottom:6px;">
+                                <i class="fas fa-flask" style="margin-left:6px;"></i> 1) Urée
                             </p>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Calcul de la masse molaire de l'urée \(\text{CH}_4\text{N}_2\text{O}\)
+                                <span class="step-num">On a :</span>
+                                mesure du patient \(C_m(\text{urée}) = 3,5 \times 10^{-1}\text{ g/L} = 0,35\text{ g/L}\), à comparer à \([0,15 \ ; \ 0,45]\text{ g/L}\).
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">On compare :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M_{\text{urée}} = M_C + 4M_H + 2M_N + M_O$$
-                                    $$M_{\text{urée}} = 12 + 4 + 2 \times 14 + 16 = 60\text{ g/mol}$$
+                                    $$0,15 \le 0,35 \le 0,45 \quad ✓$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Rappel de la formule reliant le titre massique \(C_m\) et la concentration molaire \(C\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{C_m}{M}$$
-                                </div>
-                                <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">
-                                    Où \(C\) est en mol/L, \(C_m\) en g/L et \(M\) en g/mol.
-                                </p>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Application numérique pour l'urée :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{urée}} = \frac{3,5 \times 10^{-1}}{60}$$
-                                    $$C_{\text{urée}} = 5,83 \times 10^{-3}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                Conversion en mmol/L (1 mol = 1000 mmol) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{urée}} = 5,83 \times 10^{-3} \times 1000 = 5,83\text{ mmol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 5 :</span> 
-                                Comparaison avec les valeurs normales \([3 ; 8]\text{ mmol/L}\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$3 \le 5,83 \le 8 \quad \text{✔️}$$
-                                </div>
-                                <p style="color:#4ECDC4; font-weight:700; margin-top:2px;">
-                                    ✅ La concentration en urée est <strong>normale</strong>.
-                                </p>
-                                <p style="font-size:11px; color:var(--text-muted);">
-                                    Le patient <strong>n'est pas</strong> atteint d'insuffisance rénale.
-                                </p>
+                                <span style="color:#4ECDC4; font-weight:700;">✅ Conclusion :</span>
+                                le titre en urée est <strong>normal</strong> — le patient n'a pas d'insuffisance rénale.
                             </div>
 
                             <!-- ============================================= -->
                             <!-- PARTIE 2 : GLUCOSE -->
                             <!-- ============================================= -->
                             <p style="font-weight:700; color:var(--gold-text); font-size:13px; margin-top:12px; margin-bottom:6px;">
-                                <i class="fas fa-flask" style="margin-left:6px;"></i> 2) Étude du glucose
+                                <i class="fas fa-flask" style="margin-left:6px;"></i> 2) Glucose
                             </p>
 
                             <div class="step">
-                                <span class="step-num">Étape 6 :</span> 
-                                Calcul de la masse molaire du glucose \(\text{C}_6\text{H}_{12}\text{O}_6\)
+                                <span class="step-num">On a :</span>
+                                mesure du patient \(C_m(\text{glucose}) = 7,5 \times 10^{-3}\text{ g/L} = 0,0075\text{ g/L}\), à comparer à \([0,70 \ ; \ 1,10]\text{ g/L}\).
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">On compare :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M_{\text{glucose}} = 6M_C + 12M_H + 6M_O$$
-                                    $$M_{\text{glucose}} = 6 \times 12 + 12 \times 1 + 6 \times 16 = 180\text{ g/mol}$$
+                                    $$0,0075 < 0,70 \quad ✗$$
                                 </div>
+                                la mesure est très inférieure à la borne minimale normale.
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 7 :</span> 
-                                Application numérique pour le glucose :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{glucose}} = \frac{7,5 \times 10^{-3}}{180}$$
-                                    $$C_{\text{glucose}} = 4,17 \times 10^{-5}\text{ mol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 8 :</span> 
-                                Conversion en mmol/L :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_{\text{glucose}} = 4,17 \times 10^{-5} \times 1000 = 0,0417\text{ mmol/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 9 :</span> 
-                                Comparaison avec les valeurs normales \([3 ; 8]\text{ mmol/L}\) :
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$0,0417 < 3 \quad \text{❌}$$
-                                </div>
-                                <p style="color:#FF6B6B; font-weight:700; margin-top:2px;">
-                                    ❌ La concentration en glucose est <strong>très inférieure</strong> à la normale.
-                                </p>
-                            </div>
-
-                            <!-- ============================================= -->
-                            <!-- VÉRIFICATION PAR LA MASSE VOLUMIQUE -->
-                            <!-- ============================================= -->
-                            <p style="font-weight:700; color:#BB8FCE; font-size:13px; margin-top:12px; margin-bottom:6px;">
-                                <i class="fas fa-check-circle" style="margin-left:6px;"></i> 3) Vérification par le titre massique
-                            </p>
-
-                            <div class="step">
-                                <span class="step-num">Étape 10 :</span> 
-                                Calcul des valeurs normales du glucose en g/L :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$3\text{ mmol/L} = 3 \times 10^{-3}\text{ mol/L}$$
-                                    $$C_m = C \times M = 3 \times 10^{-3} \times 180 = 0,54\text{ g/L}$$
-                                </div>
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$8\text{ mmol/L} = 8 \times 10^{-3}\text{ mol/L}$$
-                                    $$C_m = 8 \times 10^{-3} \times 180 = 1,44\text{ g/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 11 :</span> 
-                                Les valeurs normales du glucose sont donc comprises entre :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$0,54\text{ g/L} \le C_m(\text{glucose}) \le 1,44\text{ g/L}$$
-                                </div>
-                            </div>
-
-                            <div class="step">
-                                <span class="step-num">Étape 12 :</span> 
-                                Comparaison avec la mesure du patient \(7,5 \times 10^{-3}\text{ g/L}\) :
-                                <div class="formula-block" style="font-size:13px; margin:4px 0;">
-                                    $$7,5 \times 10^{-3} < 0,54 \quad \text{❌}$$
-                                </div>
-                                <p style="color:#FF6B6B; font-weight:700; margin-top:2px;">
-                                    ❌ Le patient a un taux de glucose <strong>anormalement bas</strong>.
-                                </p>
+                                <span style="color:#FF6B6B; font-weight:700;">❌ Conclusion :</span>
+                                le titre en glucose est <strong>anormalement bas</strong> (largement en dessous de l'intervalle normal).
                             </div>
 
                             <!-- ============================================= -->
@@ -674,14 +585,14 @@
                                         </tr>
                                         <tr>
                                             <td>Urée</td>
-                                            <td>\(5,83\text{ mmol/L}\)</td>
-                                            <td>\([3 ; 8]\text{ mmol/L}\)</td>
+                                            <td>\(0,35\text{ g/L}\)</td>
+                                            <td>\([0,15 ; 0,45]\)</td>
                                             <td class="true">✅ Normale</td>
                                         </tr>
                                         <tr>
                                             <td>Glucose</td>
-                                            <td>\(0,0417\text{ mmol/L}\)</td>
-                                            <td>\([3 ; 8]\text{ mmol/L}\)</td>
+                                            <td>\(0,0075\text{ g/L}\)</td>
+                                            <td>\([0,70 ; 1,10]\)</td>
                                             <td class="false">❌ Trop bas</td>
                                         </tr>
                                     </table>
@@ -700,18 +611,13 @@
                             </div>
 
                             <!-- ============================================= -->
-                            <!-- RAPPEL DE LA FORMULE -->
+                            <!-- RAPPEL -->
                             <!-- ============================================= -->
                             <div class="highlight-box yellow" style="margin-top:8px;">
-                                <span class="label rappel">Formule clé à retenir</span>
-                                <div class="formula-block" style="font-size:16px; margin:4px 0; border-color:#F4D03F;">
-                                    $$C = \frac{C_m}{M}$$
-                                </div>
-                                <ul style="font-size:11px; color:var(--text-secondary); padding-right:18px; margin:2px 0;">
-                                    <li>\(C\) : concentration molaire (mol/L)</li>
-                                    <li>\(C_m\) : titre massique (g/L)</li>
-                                    <li>\(M\) : masse molaire (g/mol)</li>
-                                </ul>
+                                <span class="label rappel">À retenir</span>
+                                <p style="font-size:11px;">
+                                    Une mesure n'a de sens que comparée à une <strong>valeur de référence</strong> : c'est cette comparaison — pas le chiffre seul — qui permet le diagnostic.
+                                </p>
                             </div>
 
                         </div>
@@ -732,6 +638,20 @@
     
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
+
+    <script>
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
 
 <!-- XPERT-SECTIONS-FAB v4 -->
 <style>

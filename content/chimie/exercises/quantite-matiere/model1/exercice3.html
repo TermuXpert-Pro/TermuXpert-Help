@@ -550,8 +550,8 @@
                             </p>
 
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Masse molaire :
+                                <span class="step-num">On a :</span> 
+                                la masse molaire de l'acide éthanoïque est :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$M = 2M_C + 4M_H + 2M_O = 2 \times 12 + 4 \times 1 + 2 \times 16$$
                                     $$M = 24 + 4 + 32 = 60\text{ g/mol}$$
@@ -559,16 +559,14 @@
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Masse :
+                                <span class="step-num">D'où, la masse correspondante :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$m = n \times M = 0,100 \times 60 = 6,00\text{ g}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Volume :
+                                <span class="step-num">Alors, le volume s'obtient à partir de la masse volumique :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\mu = \frac{m}{V} \quad \Rightarrow \quad V = \frac{m}{\mu} = \frac{6,00}{1,05} = 5,71\text{ mL}$$
                                 </div>
@@ -582,8 +580,8 @@
                             </p>
 
                             <div class="step">
-                                <span class="step-num">Étape 4 :</span> 
-                                Masse molaire :
+                                <span class="step-num">On a :</span> 
+                                la masse molaire du benzaldéhyde est :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$M = 7M_C + 6M_H + M_O = 7 \times 12 + 6 \times 1 + 16$$
                                     $$M = 84 + 6 + 16 = 106\text{ g/mol}$$
@@ -591,16 +589,14 @@
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 5 :</span> 
-                                Masse :
+                                <span class="step-num">Or, la masse se déduit de la masse volumique :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$m = \mu \times V = 1,05 \times 12 = 12,6\text{ g}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 6 :</span> 
-                                Quantité de matière :
+                                <span class="step-num">D'où, la quantité de matière :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$n = \frac{m}{M} = \frac{12,6}{106} = 0,119\text{ mol}$$
                                 </div>
@@ -614,8 +610,8 @@
                             </p>
 
                             <div class="step">
-                                <span class="step-num">Étape 7 :</span> 
-                                Masse molaire :
+                                <span class="step-num">On a :</span> 
+                                la masse molaire de l'alcool benzylique est :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$M = 7M_C + 8M_H + M_O = 7 \times 12 + 8 \times 1 + 16$$
                                     $$M = 84 + 8 + 16 = 108\text{ g/mol}$$
@@ -623,16 +619,14 @@
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 8 :</span> 
-                                Volume :
+                                <span class="step-num">D'où, le volume s'obtient à partir de la masse volumique :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$V = \frac{m}{\mu} = \frac{15,0}{1,04} = 14,4\text{ mL}$$
                                 </div>
                             </div>
 
                             <div class="step">
-                                <span class="step-num">Étape 9 :</span> 
-                                Quantité de matière :
+                                <span class="step-num">Alors, la quantité de matière :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$n = \frac{m}{M} = \frac{15,0}{108} = 0,139\text{ mol}$$
                                 </div>
@@ -713,7 +707,26 @@
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
-    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
 

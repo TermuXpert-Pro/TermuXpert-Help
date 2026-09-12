@@ -215,6 +215,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Xpert">
     <script src="../../../../../assets/js/shared-inline.js"></script>
+    <script>
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="xpertLoader" role="status" aria-label="جاري التحميل">
@@ -465,13 +478,19 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Formule du sulfate de zinc : \(\text{ZnSO}_4\)
+                                <span class="step-num">Formule :</span> 
+                                le sulfate de zinc a pour formule \(\text{ZnSO}_4\) : 1 atome Zn, 1 atome S et 4 atomes O.
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">On a :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$M = M_{Zn} + M_S + 4M_O = 65,4 + 32 + 4 \times 16 = 65,4 + 32 + 64 = 161,4\text{ g/mol}$$
+                                    $$M = M_{Zn} + M_S + 4M_O$$
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="step-num">Donc :</span> 
+                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                    $$M = 65,4 + 32 + 4 \times 16 = 65,4 + 32 + 64 = 161,4\text{ g/mol}$$
                                 </div>
                             </div>
                             <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> \(M = 161,4\text{ g/mol}\)</p>
@@ -488,19 +507,20 @@
                         <div class="sol-content">
                             
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                \(V = 250\text{ mL} = 0,250\text{ L}\)
+                                <span class="step-num">On a :</span> 
+                                \(V = 250\text{ mL} = 0,250\text{ L}\), et par définition \(C_m = \dfrac{m}{V}\).
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">Donc :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C_m = \frac{m}{V} = \frac{32,3}{0,250} = 129,2\text{ g/L}$$
+                                    $$C_m = \frac{32,3}{0,250} = 129,2\text{ g/L}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
+                                <span class="step-num">Or :</span> 
+                                \(C_m = C \times M\), donc \(C = \dfrac{C_m}{M}\) :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$C = \frac{C_m}{M} = \frac{129,2}{161,4} = 0,80\text{ mol/L}$$
+                                    $$C = \frac{129,2}{161,4} = 0,80\text{ mol/L}$$
                                 </div>
                             </div>
 
@@ -523,21 +543,17 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Équation de dissolution :
+                                <span class="step-num">On a :</span> 
+                                l'équation de dissolution du sulfate de zinc dans l'eau :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$\text{ZnSO}_4 \longrightarrow \text{Zn}^{2+} + \text{SO}_4^{2-}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">D'après les coefficients :</span> 
+                                chaque mole dissoute libère 1 mol de \(\text{Zn}^{2+}\) et 1 mol de \(\text{SO}_4^{2-}\) (rapport 1:1:1), donc :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$[\text{Zn}^{2+}] = C = 0,80\text{ mol/L}$$
-                                </div>
-                            </div>
-                            <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$[\text{SO}_4^{2-}] = C = 0,80\text{ mol/L}$$
                                 </div>
                             </div>
@@ -558,24 +574,28 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
+                                <span class="step-num">Condition :</span> 
+                                \(\text{Zn}^{2+}\) porte la charge \(+2\) et \(\text{SO}_4^{2-}\) porte la charge \(-2\), donc il faut vérifier que \(2[\text{Zn}^{2+}] = 2[\text{SO}_4^{2-}]\).
+                            </div>
+                            <div class="step">
+                                <span class="step-num">D'une part :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$2 \times [\text{Zn}^{2+}] = 2 \times 0,80 = 1,60\text{ mol/L}$$
+                                    $$2[\text{Zn}^{2+}] = 2 \times 0,80 = 1,60\text{ mol/L}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
+                                <span class="step-num">D'autre part :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                    $$2 \times [\text{SO}_4^{2-}] = 2 \times 0,80 = 1,60\text{ mol/L}$$
+                                    $$2[\text{SO}_4^{2-}] = 2 \times 0,80 = 1,60\text{ mol/L}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
+                                <span class="step-num">On trouve :</span> 
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$2[\text{Zn}^{2+}] = 2[\text{SO}_4^{2-}] = 1,60\text{ mol/L}$$
                                 </div>
                             </div>
-                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> La solution est électriquement neutre ✅</p>
+                            <p style="color:#4ECDC4; margin-top:4px;"><strong>Conclusion :</strong> les charges positives et négatives s'équilibrent ⇒ la solution est bien électriquement neutre ✅</p>
                         </div>
                     </div>
                 </div>
@@ -694,7 +714,7 @@
 <div class="xpert-sec-menu" id="xpertSecMenu" role="menu"></div>
 <script>
 (function(){
-  var sections = [{"href":"exercice1.html","label":"Exercice 1","desc":"Sulfate d'aluminium - Dissolution et concentrations ioniques"},{"href":"exercice2.html","label":"Exercice 2","desc":"Sulfate de zinc - Dissolution et concentrations ioniques"},{"href":"exercice3.html","label":"Exercice 3","desc":"Chlorure de baryum - Tableau d'avancement"},{"href":"exercice4.html","label":"Exercice 4","desc":"Sel de Mohr - Préparation et dilution"},{"href":"exercice5.html","label":"Exercice 5","desc":"Chlorure de cobalt hydraté - Dissolution"},{"href":"exercice6.html","label":"Exercice 6","desc":"Mélange de solutions - Concentrations ioniques"}];
+  var sections = [{"href":"exercice1.html","label":"Exercice 1","desc":"Sulfate d'aluminium - Dissolution et concentrations ioniques"},{"href":"exercice2.html","label":"Exercice 2","desc":"Sulfate de zinc - Dissolution et concentrations ioniques"},{"href":"exercice3.html","label":"Exercice 3","desc":"Chlorure de baryum - Dissolution et concentrations ioniques"},{"href":"exercice4.html","label":"Exercice 4","desc":"Sel de Mohr - Préparation et dilution"},{"href":"exercice5.html","label":"Exercice 5","desc":"Chlorure de cobalt hydraté - Dissolution"},{"href":"exercice6.html","label":"Exercice 6","desc":"Mélange de solutions - Concentrations ioniques"}];
   var current = "exercice2.html";
   var STAGGER_STEP = 40, STAGGER_MAX = 300;
   var btn = document.getElementById('xpertSecFabBtn');

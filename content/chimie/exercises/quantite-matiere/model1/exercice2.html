@@ -512,15 +512,14 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                La masse d'éthanol est la différence entre la masse de l'éprouvette pleine et la masse de l'éprouvette vide :
+                                <span class="step-num">On a :</span> 
+                                la masse d'éthanol est la différence entre la masse de l'éprouvette pleine et la masse de l'éprouvette vide, d'où :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$m_{\text{éthanol}} = m - m'$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Application numérique :
+                                <span class="step-num">Donc :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$m_{\text{éthanol}} = 94,3 - 53,8 = 40,5\text{ g}$$
                                 </div>
@@ -546,22 +545,20 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                À volume égal (\(50\text{ mL}\)), la masse d'eau est :
+                                <span class="step-num">On a :</span> 
+                                à volume égal (\(50\text{ mL}\)), la masse d'eau est :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$m_{eau} = \rho_{eau} \times V = 1,00 \times 50 = 50,0\text{ g}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                La densité est le rapport des masses à volume égal :
+                                <span class="step-num">Or, la densité est le rapport des masses à volume égal :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$d_{\text{éthanol}} = \frac{m_{\text{éthanol}}}{m_{eau}}$$
                                 </div>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 3 :</span> 
-                                Application numérique :
+                                <span class="step-num">D'où :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$d_{\text{éthanol}} = \frac{40,5}{50,0} = 0,81$$
                                 </div>
@@ -599,16 +596,16 @@
                         <div class="sol-title">✅ Solution</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Étape 1 :</span> 
-                                Comparaison des densités :
+                                <span class="step-num">On a :</span> 
+                                en comparant les densités :
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     $$d_{\text{heptane}} = 0,68 \quad ; \quad d_{\text{éthanol}} = 0,81$$
                                 </div>
                                 <p style="color:var(--gold-text); font-weight:700;">\(d_{\text{heptane}} < d_{\text{éthanol}}\)</p>
                             </div>
                             <div class="step">
-                                <span class="step-num">Étape 2 :</span> 
-                                Le liquide le <strong>moins dense</strong> se place au-dessus.
+                                <span class="step-num">Or :</span> 
+                                le liquide le <strong>moins dense</strong> se place au-dessus.
                                 <br>Donc l'<strong>heptane</strong> (\(d = 0,68\)) surmonte l'<strong>éthanol</strong> (\(d = 0,81\)).
                             </div>
 
@@ -645,11 +642,29 @@
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
 
     <!-- ====== Scripts ====== -->
-    
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
     
     <!-- ====== Canvas Utils + Figures ====== -->
     <script src="figuresvt_p2.js"></script>
-    <script src="figures.js"></script>
     
     <script src="../../../../../assets/js/protection.js"></script>
     <script src="../../../../../assets/js/script.js"></script>
