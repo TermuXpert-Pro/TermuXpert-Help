@@ -474,37 +474,42 @@
                 <span class="badge-exercice"><i class="fas fa-layer-group"></i> Semestre 1</span>
                 <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-clock"></i> Durée : 2 heures</span>
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-book"></i> Logique & Fonctions</span>
+                <span class="badge-exercice" style="background:rgba(255,255,255,0.06); color:var(--text-muted);"><i class="fas fa-star"></i> Barème sur 20</span>
             </p>
 
             <!-- ============================================================
                  EXERCICE 1 - Logique mathématique
             ============================================================ -->
             <div class="devoir-exo-header">
-                <h2><i class="fas fa-list-ol"></i> Exercice 1</h2>
-                <span class="badge-exercice">9 pts · 1,5 pt × 6</span>
+                <h2><i class="fas fa-list-ol"></i> Exercice 1 — Logique mathématique</h2>
+                <span class="badge-exercice">10 pts</span>
             </div>
+            <p style="font-size:11px; color:var(--text-muted); margin:-6px 0 14px;">Pour chacune des propositions suivantes, déterminer sa valeur de vérité (vraie ou fausse) et écrire sa négation. <b>Toute réponse doit être justifiée par un raisonnement précis et complet</b> (le type de raisonnement attendu est indiqué à titre indicatif).</p>
 
             <!-- Question 1 -->
             <div class="sub-question">
                 <div class="letter">1)</div>
-                <p style="font-size:11.5px; margin:4px 0;">$P_1 : (\forall x \in \mathbb{R}^{*+}) \; ; \; x + \dfrac{16}{x} > 8$</p>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-diagram-project"></i> Type : Raisonnement par contraposée</span>
+                <p style="font-size:11.5px; margin:6px 0;">Étudier la valeur de vérité de la proposition suivante, puis écrire sa négation :</p>
+                <p style="font-size:11.5px; margin:4px 0;">$P_1 : \left(\forall x \in \mathbb{R}\setminus\{-2\}\right)\left(\forall y \in \mathbb{R}\setminus\{-2\}\right) \; ; \; x \neq y \Rightarrow \dfrac{x-1}{x+2} \neq \dfrac{y-1}{y+2}$ <span style="color:var(--text-muted);">(1,5 pt)</span></p>
                 <div id="sol1_1" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
-                        <p style="font-weight:600; color:#BB8FCE;">$P_1$ est <b>fausse</b>.</p>
+                        <p style="font-weight:600; color:#BB8FCE;">$P_1$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement :</span> On raisonne par contre-exemple. Pour $x=4 \in \mathbb{R}^{*+}$, on a :
+                            <span class="step-num">Raisonnement par contraposée :</span> il suffit de montrer que $\dfrac{x-1}{x+2}=\dfrac{y-1}{y+2} \Rightarrow x=y$.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$x+\dfrac{16}{x}=4+\dfrac{16}{4}=8 \not> 8$$
+                                $$\dfrac{x-1}{x+2}=\dfrac{y-1}{y+2} \iff (x-1)(y+2)=(y-1)(x+2) \iff xy+2x-y-2=xy+2y-x-2$$
+                                $$\iff 2x-y=2y-x \iff 3x=3y \iff x=y$$
                             </div>
                         </div>
-                        <div class="graph-container">
-                            <svg id="fig1_1" width="380" height="250"></svg>
-                            <p>Minimum de $x+\frac{16}{x}$ égal à 8, atteint en $x=4$.</p>
+                        <div class="highlight-box green" style="margin-top:6px;">
+                            <span class="label resume">Conclusion</span>
+                            <p>La contraposée est vraie, donc $P_1$ est vraie pour tous $x,y \in \mathbb{R}\setminus\{-2\}$.</p>
                         </div>
                         <div class="highlight-box yellow" style="margin-top:6px;">
                             <span class="label rappel">Négation</span>
-                            <p>$\overline{P_1} : \exists x \in \mathbb{R}^{*+} \; ; \; x+\dfrac{16}{x} \le 8$ (vraie)</p>
+                            <p>$\overline{P_1} : \exists x,y \in \mathbb{R}\setminus\{-2\} \; ; \; x \neq y \text{ et } \dfrac{x-1}{x+2}=\dfrac{y-1}{y+2}$ (fausse)</p>
                         </div>
                     </div>
                 </div>
@@ -513,24 +518,26 @@
             <!-- Question 2 -->
             <div class="sub-question">
                 <div class="letter">2)</div>
-                <p style="font-size:11.5px; margin:4px 0;">$P_2 : \forall n \in \mathbb{N} \; : \; \dfrac{n+5}{n+4} \neq 1$</p>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B; font-size:10px; margin-bottom:6px;"><i class="fas fa-magnifying-glass"></i> Type : Contre-exemple</span>
+                <p style="font-size:11.5px; margin:6px 0;">Étudier la valeur de vérité de la proposition suivante, puis écrire sa négation :</p>
+                <p style="font-size:11.5px; margin:4px 0;">$P_2 : (\forall x \in \mathbb{R}^{*+}) \; ; \; x + \dfrac{9}{x} \ge 7$ <span style="color:var(--text-muted);">(1,5 pt)</span></p>
                 <div id="sol1_2" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
-                        <p style="font-weight:600; color:#BB8FCE;">$P_2$ est <b>vraie</b>.</p>
+                        <p style="font-weight:600; color:#BB8FCE;">$P_2$ est <b>fausse</b>.</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement par l'absurde :</span> Supposons qu'il existe $n \in \mathbb{N}$ tel que $\dfrac{n+5}{n+4}=1$. Alors :
+                            <span class="step-num">Raisonnement :</span> on cherche un contre-exemple. Pour $x=3 \in \mathbb{R}^{*+}$ :
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$n+5 = n+4 \iff 5=4 \quad \text{(absurde)}$$
+                                $$x+\dfrac{9}{x}=3+\dfrac{9}{3}=3+3=6 \not\ge 7$$
                             </div>
                         </div>
-                        <div class="highlight-box green" style="margin-top:6px;">
-                            <span class="label resume">Conclusion</span>
-                            <p>$\forall n \in \mathbb{N}, \dfrac{n+5}{n+4} \neq 1$.</p>
+                        <div class="graph-container">
+                            <svg id="fig1_2" width="380" height="250"></svg>
+                            <p>Minimum de $x+\frac{9}{x}$ égal à $6$, atteint en $x=3$.</p>
                         </div>
                         <div class="highlight-box yellow" style="margin-top:6px;">
                             <span class="label rappel">Négation</span>
-                            <p>$\overline{P_2} : \exists n \in \mathbb{N} \; ; \; \dfrac{n+5}{n+4} = 1$ (fausse)</p>
+                            <p>$\overline{P_2} : \exists x \in \mathbb{R}^{*+} \; ; \; x+\dfrac{9}{x} < 7$ (vraie)</p>
                         </div>
                     </div>
                 </div>
@@ -539,24 +546,40 @@
             <!-- Question 3 -->
             <div class="sub-question">
                 <div class="letter">3)</div>
-                <p style="font-size:11.5px; margin:4px 0;">$P_3 : \forall x \in \mathbb{R}^{*} \; ; \; \forall y \in \mathbb{R}^{*} \; : \; x \neq y \Rightarrow \dfrac{x}{5+x} \neq \dfrac{y}{5+y}$</p>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text); font-size:10px; margin-bottom:6px;"><i class="fas fa-code-branch"></i> Type : Disjonction de cas</span>
+                <p style="font-size:11.5px; margin:6px 0;">Étudier la valeur de vérité de la proposition suivante, puis écrire sa négation :</p>
+                <p style="font-size:11.5px; margin:4px 0;">$P_3 : (\forall n \in \mathbb{N}) \; ; \; n^2+n+41 \text{ est un entier impair}$ <span style="color:var(--text-muted);">(2 pts)</span></p>
                 <div id="sol1_3" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <p style="font-weight:600; color:#BB8FCE;">$P_3$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement par contraposée :</span> Montrons que $\dfrac{x}{5+x}=\dfrac{y}{5+y} \Rightarrow x=y$.
+                            <span class="step-num">Raisonnement par disjonction de cas :</span> un entier naturel $n$ est soit pair, soit impair. Étudions la parité de $n^2+n$ dans chaque cas.
+                        </div>
+                        <div class="step">
+                            <span class="step-num">1<sup>er</sup> cas — $n$ pair :</span> on pose $n=2k$ avec $k\in\mathbb{N}$.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$\dfrac{x}{5+x}=\dfrac{y}{5+y} \iff x(5+y)=y(5+x) \iff 5x=5y \iff x=y$$
+                                $$n^2+n=(2k)^2+2k=4k^2+2k=2(2k^2+k)$$
                             </div>
+                            $n^2+n$ est donc <b>pair</b>.
+                        </div>
+                        <div class="step">
+                            <span class="step-num">2<sup>ème</sup> cas — $n$ impair :</span> on pose $n=2k+1$ avec $k\in\mathbb{N}$.
+                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
+                                $$n^2+n=(2k+1)^2+(2k+1)=4k^2+4k+1+2k+1=4k^2+6k+2=2(2k^2+3k+1)$$
+                            </div>
+                            $n^2+n$ est donc aussi <b>pair</b>.
+                        </div>
+                        <div class="step">
+                            <span class="step-num">Conclusion :</span> dans tous les cas, $n^2+n$ est pair. Or $41$ est impair, donc $n^2+n+41$ = pair + impair = <b>impair</b>.
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>L'implication est vraie pour tous $x, y \in \mathbb{R}^{*}$.</p>
+                            <p>$\forall n \in \mathbb{N}, n^2+n+41$ est impair.</p>
                         </div>
                         <div class="highlight-box yellow" style="margin-top:6px;">
                             <span class="label rappel">Négation</span>
-                            <p>$\overline{P_3} : \exists x,y \in \mathbb{R}^{*} \; ; \; x\neq y \text{ et } \dfrac{x}{5+x}=\dfrac{y}{5+y}$ (fausse)</p>
+                            <p>$\overline{P_3} : \exists n \in \mathbb{N} \; ; \; n^2+n+41 \text{ est pair}$ (fausse)</p>
                         </div>
                     </div>
                 </div>
@@ -565,34 +588,26 @@
             <!-- Question 4 -->
             <div class="sub-question">
                 <div class="letter">4)</div>
-                <p style="font-size:11.5px; margin:4px 0;">$P_4 : (\forall n \in \mathbb{N}) \; ; \; n^2+3n+2023 \text{ est un entier impair}$</p>
+                <span class="badge-exercice" style="background:rgba(187,143,206,0.15); color:#BB8FCE; font-size:10px; margin-bottom:6px;"><i class="fas fa-ban"></i> Type : Raisonnement par l'absurde</span>
+                <p style="font-size:11.5px; margin:6px 0;">Étudier la valeur de vérité de la proposition suivante, puis écrire sa négation :</p>
+                <p style="font-size:11.5px; margin:4px 0;">$P_4 : \left(\forall n \in \mathbb{Z}\setminus\{-1\}\right) \; ; \; \dfrac{n+3}{n+1} \neq 1$ <span style="color:var(--text-muted);">(1,5 pt)</span></p>
                 <div id="sol1_4" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <p style="font-weight:600; color:#BB8FCE;">$P_4$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement par disjonction de cas :</span> Un entier naturel $n$ est soit pair, soit impair. Étudions la parité de $n^2+3n$ dans chaque cas.
-                        </div>
-                        <div class="step">
-                            <span class="step-num">1<sup>er</sup> cas — $n$ pair :</span> On pose $n=2k$ avec $k\in\mathbb{N}$.
+                            <span class="step-num">Raisonnement par l'absurde :</span> supposons qu'il existe $n \in \mathbb{Z}\setminus\{-1\}$ tel que $\dfrac{n+3}{n+1}=1$. Alors :
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$n^2+3n=(2k)^2+3(2k)=4k^2+6k=2(2k^2+3k)$$
+                                $$n+3 = n+1 \iff 3=1 \quad \text{(absurde)}$$
                             </div>
-                            $n^2+3n$ est donc <b>pair</b>.
-                        </div>
-                        <div class="step">
-                            <span class="step-num">2<sup>ème</sup> cas — $n$ impair :</span> On pose $n=2k+1$ avec $k\in\mathbb{N}$.
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$n^2+3n=(2k+1)^2+3(2k+1)=4k^2+4k+1+6k+3=4k^2+10k+4=2(2k^2+5k+2)$$
-                            </div>
-                            $n^2+3n$ est donc aussi <b>pair</b>.
-                        </div>
-                        <div class="step">
-                            <span class="step-num">Conclusion :</span> Dans tous les cas, $n^2+3n$ est pair. Or $2023$ est impair, donc $n^2+3n+2023$ = pair + impair = <b>impair</b>.
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>$\forall n \in \mathbb{N}, n^2+3n+2023$ est impair.</p>
+                            <p>Cette contradiction montre que l'hypothèse est fausse, donc $\forall n \in \mathbb{Z}\setminus\{-1\}, \dfrac{n+3}{n+1} \neq 1$.</p>
+                        </div>
+                        <div class="highlight-box yellow" style="margin-top:6px;">
+                            <span class="label rappel">Négation</span>
+                            <p>$\overline{P_4} : \exists n \in \mathbb{Z}\setminus\{-1\} \; ; \; \dfrac{n+3}{n+1} = 1$ (fausse)</p>
                         </div>
                     </div>
                 </div>
@@ -601,20 +616,26 @@
             <!-- Question 5 -->
             <div class="sub-question">
                 <div class="letter">5)</div>
-                <p style="font-size:11.5px; margin:4px 0;">$P_5 : \forall x \in \mathbb{R} \; ; \; \forall y \in \mathbb{R} \; \; (x+3)(y-3) = (x-3)(y+3) \Rightarrow x = y$</p>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-check-double"></i> Type : Existence et unicité</span>
+                <p style="font-size:11.5px; margin:6px 0;">Étudier la valeur de vérité de la proposition suivante, puis écrire sa négation :</p>
+                <p style="font-size:11.5px; margin:4px 0;">$P_5 : \exists! \, x \in \mathbb{R} \; ; \; x^2-4x+4=0$ <span style="color:var(--text-muted);">(1,5 pt)</span></p>
                 <div id="sol1_5" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <p style="font-weight:600; color:#BB8FCE;">$P_5$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Développement :</span>
+                            <span class="step-num">Résolution :</span> on reconnaît une identité remarquable.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$(x+3)(y-3)=(x-3)(y+3) \iff -3x+3y=3x-3y \iff 6y=6x \iff x=y$$
+                                $$x^2-4x+4=0 \iff (x-2)^2=0 \iff x=2$$
                             </div>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>L'implication est vraie pour tous $x, y \in \mathbb{R}$.</p>
+                            <p>L'équation admet exactement une solution, $x=2$ : il y a bien <b>existence</b> (elle est vérifiée par $x=2$) et <b>unicité</b> (c'est la seule).</p>
+                        </div>
+                        <div class="highlight-box yellow" style="margin-top:6px;">
+                            <span class="label rappel">Négation</span>
+                            <p>$\overline{P_5} :$ « aucun réel ne vérifie l'équation » <b>ou</b> « il en existe au moins deux distincts qui la vérifient » (fausse dans les deux cas)</p>
                         </div>
                     </div>
                 </div>
@@ -623,31 +644,33 @@
             <!-- Question 6 -->
             <div class="sub-question">
                 <div class="letter">6)</div>
-                <p style="font-size:11.5px; margin:4px 0;">$P_6 : \forall n \in \mathbb{N} \; ; \; n^3 - n \text{ est divisible par } 3$</p>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text); font-size:10px; margin-bottom:6px;"><i class="fas fa-repeat"></i> Type : Raisonnement par récurrence</span>
+                <p style="font-size:11.5px; margin:6px 0;">Étudier la valeur de vérité de la proposition suivante :</p>
+                <p style="font-size:11.5px; margin:4px 0;">$P_6 : (\forall n \in \mathbb{N}) \; ; \; n^3 + 2n \text{ est divisible par } 3$ <span style="color:var(--text-muted);">(2 pts)</span></p>
                 <div id="sol1_6" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <p style="font-weight:600; color:#BB8FCE;">$P_6$ est <b>vraie</b>.</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement par récurrence :</span> Montrons que $\forall n \in \mathbb{N}$, $3 \mid n^3-n$.
+                            <span class="step-num">Raisonnement par récurrence :</span> montrons que $\forall n \in \mathbb{N}$, $3 \mid n^3+2n$.
                         </div>
                         <div class="step">
                             <span class="step-num">Initialisation ($n=0$) :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$0^3-0=0=3\times 0$$
+                                $$0^3+2(0)=0=3\times 0$$
                             </div>
                             La propriété est donc vraie au rang $n=0$.
                         </div>
                         <div class="step">
-                            <span class="step-num">Hérédité :</span> Supposons que pour un $n\in\mathbb{N}$ fixé, $n^3-n=3k$ avec $k\in\mathbb{Z}$ (hypothèse de récurrence). Montrons qu'alors $3 \mid (n+1)^3-(n+1)$.
+                            <span class="step-num">Hérédité :</span> supposons que pour un $n\in\mathbb{N}$ fixé, $n^3+2n=3k$ avec $k\in\mathbb{Z}$ (hypothèse de récurrence). Montrons qu'alors $3 \mid (n+1)^3+2(n+1)$.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$(n+1)^3-(n+1)=n^3+3n^2+3n+1-n-1=(n^3-n)+3n^2+3n=3k+3n^2+3n=3(k+n^2+n)$$
+                                $$(n+1)^3+2(n+1)=n^3+3n^2+3n+1+2n+2=(n^3+2n)+3n^2+3n+3=3k+3(n^2+n+1)=3(k+n^2+n+1)$$
                             </div>
-                            Donc $(n+1)^3-(n+1)$ est bien divisible par 3 : la propriété est <b>héréditaire</b>.
+                            Donc $(n+1)^3+2(n+1)$ est bien divisible par 3 : la propriété est <b>héréditaire</b>.
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>D'après le principe de récurrence, $\forall n \in \mathbb{N}, n^3-n$ est divisible par 3.</p>
+                            <p>D'après le principe de récurrence, $\forall n \in \mathbb{N}, n^3+2n$ est divisible par 3.</p>
                         </div>
                     </div>
                 </div>
@@ -657,32 +680,34 @@
                  EXERCICE 2 - Généralités sur les fonctions
             ============================================================ -->
             <div class="devoir-exo-header">
-                <h2><i class="fas fa-chart-line"></i> Exercice 2</h2>
-                <span class="badge-exercice">11 pts</span>
+                <h2><i class="fas fa-chart-line"></i> Exercice 2 — Généralités sur les fonctions</h2>
+                <span class="badge-exercice">10 pts</span>
             </div>
+            <p style="font-size:11.5px; margin:-6px 0 14px;">Soient $f$ et $g$ deux fonctions définies par : $f(x)=-x^2-4x-2$ et $g(x)=\sqrt{x+2}$, et soient $(C_f)$ et $(C_g)$ leurs courbes représentatives respectives.</p>
 
             <!-- Question 1 -->
             <div class="sub-question">
                 <div class="letter">1)</div>
-                <p style="font-size:11.5px; margin:4px 0;">Vérifier que $(C_f)$ et $(C_g)$ se coupent en $A(2\,;1)$. <span style="color:var(--text-muted);">(0,5 pt)</span></p>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-calculator"></i> Type : Vérification numérique</span>
+                <p style="font-size:11.5px; margin:6px 0;">Vérifier que $(C_f)$ et $(C_g)$ se coupent au point $A(-1\,;1)$. <span style="color:var(--text-muted);">(1 pt)</span></p>
                 <div id="sol2_1" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <div class="step">
-                            <span class="step-num">Calcul de $f(2)$ :</span>
+                            <span class="step-num">Calcul de $f(-1)$ :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$f(2) = -2^2 + 2(2) + 1 = -4+4+1 = 1$$
+                                $$f(-1) = -(-1)^2-4(-1)-2 = -1+4-2 = 1$$
                             </div>
                         </div>
                         <div class="step">
-                            <span class="step-num">Calcul de $g(2)$ :</span>
+                            <span class="step-num">Calcul de $g(-1)$ :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$g(2) = \sqrt{2-1} = \sqrt{1} = 1$$
+                                $$g(-1) = \sqrt{-1+2} = \sqrt{1} = 1$$
                             </div>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>Puisque $f(2) = g(2) = 1$, le point $A(2,1)$ appartient aux deux courbes.</p>
+                            <p>Puisque $f(-1) = g(-1) = 1$, le point $A(-1,1)$ appartient bien aux deux courbes.</p>
                         </div>
                     </div>
                 </div>
@@ -691,7 +716,8 @@
             <!-- Question 2 -->
             <div class="sub-question">
                 <div class="letter">2)</div>
-                <p style="font-size:11.5px; margin:4px 0;">Déterminer les tableaux de variations de $f$ et $g$. <span style="color:var(--text-muted);">(1,5 pt)</span></p>
+                <span class="badge-exercice" style="background:rgba(187,143,206,0.15); color:#BB8FCE; font-size:10px; margin-bottom:6px;"><i class="fas fa-table"></i> Type : Étude de variations</span>
+                <p style="font-size:11.5px; margin:6px 0;">Déterminer les tableaux de variations de $f$ et $g$. <span style="color:var(--text-muted);">(2 pts)</span></p>
                 <div id="sol2_2" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
@@ -699,25 +725,25 @@
                         <div class="step">
                             <span class="step-num">Forme canonique :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$f(x) = -(x-1)^2 + 2$$
+                                $$f(x) = -(x+2)^2 + 2$$
                             </div>
-                            <p style="font-size:11px; color:var(--text-muted);">Le sommet de la parabole est en $x=1$, avec $f(1)=2$.</p>
+                            <p style="font-size:11px; color:var(--text-muted);">Le sommet de la parabole est en $x=-2$, avec $f(-2)=2$ (maximum, car $a=-1<0$).</p>
                         </div>
                         <div class="table-wrap">
                             <table class="variation-table">
-                                <tr><th>$x$</th><td class="vt-bound">$-\infty$</td><td></td><td class="vt-key">$1$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
+                                <tr><th>$x$</th><td class="vt-bound">$-\infty$</td><td></td><td class="vt-key">$-2$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
                                 <tr><th>$f$</th><td class="vt-bound">$-\infty$</td><td class="vt-arrow up">↗</td><td class="vt-value">$2$</td><td class="vt-arrow down">↘</td><td class="vt-bound">$-\infty$</td></tr>
                             </table>
                         </div>
-                        
+
                         <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">Variations de $g$ :</p>
                         <div class="step">
                             <span class="step-num">Domaine et monotonie :</span>
-                            <p style="font-size:11px; color:var(--text-muted);">$D_g = [1, +\infty[$. La fonction racine carrée est croissante sur son domaine.</p>
+                            <p style="font-size:11px; color:var(--text-muted);">$D_g = [-2, +\infty[$. La fonction racine carrée est croissante sur son domaine.</p>
                         </div>
                         <div class="table-wrap">
                             <table class="variation-table">
-                                <tr><th>$x$</th><td class="vt-key">$1$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
+                                <tr><th>$x$</th><td class="vt-key">$-2$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
                                 <tr><th>$g$</th><td class="vt-value">$0$</td><td class="vt-arrow up">↗</td><td class="vt-bound">$+\infty$</td></tr>
                             </table>
                         </div>
@@ -728,19 +754,20 @@
             <!-- Question 3 -->
             <div class="sub-question">
                 <div class="letter">3)</div>
-                <p style="font-size:11.5px; margin:4px 0;">Tracer les courbes $(C_f)$ et $(C_g)$ dans un même repère $(O,\vec{i},\vec{j})$. <span style="color:var(--text-muted);">(2 pts)</span></p>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text); font-size:10px; margin-bottom:6px;"><i class="fas fa-chart-area"></i> Type : Tracé graphique</span>
+                <p style="font-size:11.5px; margin:6px 0;">Tracer les courbes $(C_f)$ et $(C_g)$ dans un même repère $(O,\vec{i},\vec{j})$. <span style="color:var(--text-muted);">(2 pts)</span></p>
                 <div id="sol2_3" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <div class="step">
-                            <span class="step-num">Courbe $(C_f)$ :</span> c'est une parabole de sommet $\Omega(1\,;2)$ et d'axe de symétrie la droite $x=1$ (branches vers le bas car $a=-1<0$).
+                            <span class="step-num">Courbe $(C_f)$ :</span> c'est une parabole de sommet $\Omega(-2\,;2)$ et d'axe de symétrie la droite $x=-2$ (branches vers le bas car $a=-1<0$).
                         </div>
                         <div class="step">
-                            <span class="step-num">Courbe $(C_g)$ :</span> c'est une demi-parabole croissante, partant du point $(1\,;0)$.
+                            <span class="step-num">Courbe $(C_g)$ :</span> c'est une demi-parabole croissante, partant du point $(-2\,;0)$.
                         </div>
                         <div class="graph-container">
                             <svg id="graphFCfCg" width="380" height="330"></svg>
-                            <p>$(C_f)$ en rouge, $(C_g)$ en jaune. Le point d'intersection $A(2,1)$ est indiqué en turquoise.</p>
+                            <p>$(C_f)$ en rouge, $(C_g)$ en jaune. Le point d'intersection $A(-1,1)$ est indiqué en turquoise.</p>
                         </div>
                     </div>
                 </div>
@@ -749,18 +776,19 @@
             <!-- Question 4 -->
             <div class="sub-question">
                 <div class="letter">4)</div>
-                <p style="font-size:11.5px; margin:4px 0;">Résoudre graphiquement l'inéquation $x^2-2x-1+\sqrt{x-1} < 0$. <span style="color:var(--text-muted);">(2 pts)</span></p>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B; font-size:10px; margin-bottom:6px;"><i class="fas fa-magnifying-glass-chart"></i> Type : Résolution graphique</span>
+                <p style="font-size:11.5px; margin:6px 0;">Résoudre graphiquement l'inéquation $x^2+4x+2+\sqrt{x+2} < 0$. <span style="color:var(--text-muted);">(2 pts)</span></p>
                 <div id="sol2_4" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <div class="step">
-                            <span class="step-num">Transformation :</span>
+                            <span class="step-num">Transformation :</span> on remarque que $x^2+4x+2 = -f(x)$, donc :
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$x^2-2x-1+\sqrt{x-1} < 0 \iff g(x) < f(x)$$
+                                $$x^2+4x+2+\sqrt{x+2} < 0 \iff -f(x)+g(x) < 0 \iff g(x) < f(x)$$
                             </div>
                         </div>
                         <div class="step">
-                            <span class="step-num">Lecture graphique :</span> $(C_g)$ est en dessous de $(C_f)$ sur $[1, 2[$.
+                            <span class="step-num">Lecture graphique :</span> $(C_g)$ est en dessous de $(C_f)$ sur $[-2, -1[$.
                         </div>
                         <div class="graph-container">
                             <svg id="graphIneq" width="380" height="300"></svg>
@@ -768,7 +796,7 @@
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Solution</span>
-                            <p>$\boxed{S = [1, 2[}$</p>
+                            <p>$\boxed{S = [-2, -1[}$</p>
                         </div>
                     </div>
                 </div>
@@ -777,29 +805,30 @@
             <!-- Question 5 -->
             <div class="sub-question">
                 <div class="letter">5)</div>
-                <p style="font-size:11.5px; margin:4px 0;">Déterminer graphiquement les images de $[0\,;1]$ et $[1\,;2]$ par $f$. <span style="color:var(--text-muted);">(1 pt)</span></p>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-arrows-left-right-to-line"></i> Type : Images d'intervalles</span>
+                <p style="font-size:11.5px; margin:6px 0;">Déterminer graphiquement les images de $[-3\,;-2]$ et $[-2\,;-1]$ par $f$. <span style="color:var(--text-muted);">(1 pt)</span></p>
                 <div id="sol2_5" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
                         <div class="step">
-                            <span class="step-num">Image de $[0, 1]$ :</span> $f$ est croissante sur cet intervalle.
+                            <span class="step-num">Image de $[-3, -2]$ :</span> $f$ est croissante sur cet intervalle.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$f([0,1]) = [f(0), f(1)] = [1, 2]$$
+                                $$f([-3,-2]) = [f(-3), f(-2)] = [1, 2]$$
                             </div>
                         </div>
                         <div class="step">
-                            <span class="step-num">Image de $[1, 2]$ :</span> $f$ est décroissante sur cet intervalle.
+                            <span class="step-num">Image de $[-2, -1]$ :</span> $f$ est décroissante sur cet intervalle.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$f([1,2]) = [f(2), f(1)] = [1, 2]$$
+                                $$f([-2,-1]) = [f(-1), f(-2)] = [1, 2]$$
                             </div>
                         </div>
                         <div class="graph-container">
                             <svg id="graphImages" width="380" height="300"></svg>
-                            <p>Les deux intervalles $[0,1]$ et $[1,2]$ ont exactement la même image $[1,2]$ par $f$.</p>
+                            <p>Les deux intervalles $[-3,-2]$ et $[-2,-1]$ ont exactement la même image $[1,2]$ par $f$.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>$f([0,1]) = f([1,2]) = [1, 2]$</p>
+                            <p>$f([-3,-2]) = f([-2,-1]) = [1, 2]$</p>
                         </div>
                     </div>
                 </div>
@@ -808,11 +837,12 @@
             <!-- Question 6 -->
             <div class="sub-question">
                 <div class="letter">6)</div>
-                <p style="font-size:11.5px; margin:4px 0;">On considère la fonction $h$ telle que : $h(x)=\sqrt{-x^2+2x}$</p>
+                <span class="badge-exercice" style="background:rgba(187,143,206,0.15); color:#BB8FCE; font-size:10px; margin-bottom:6px;"><i class="fas fa-diagram-project"></i> Type : Domaine, composition & monotonie</span>
+                <p style="font-size:11.5px; margin:6px 0;">On considère la fonction $h$ telle que : $h(x)=\sqrt{-x^2-4x}$</p>
                 <div style="margin-top:6px; padding-right:14px;">
-                    <p style="margin:4px 0;"><b>a)</b> Déterminer $D_h$. <span style="color:var(--text-muted);">(1 pt)</span></p>
-                    <p style="margin:4px 0;"><b>b)</b> Vérifier que $h(x)=(g\circ f)(x) \; \forall x\in D_h$. <span style="color:var(--text-muted);">(1 pt)</span></p>
-                    <p style="margin:4px 0;"><b>c)</b> Étudier la monotonie de $h$ dans $[0\,;1]$ et $[1\,;2]$. <span style="color:var(--text-muted);">(2 pts)</span></p>
+                    <p style="margin:4px 0;"><b>a)</b> Déterminer $D_h$. <span style="color:var(--text-muted);">(0,5 pt)</span></p>
+                    <p style="margin:4px 0;"><b>b)</b> Vérifier que $h(x)=(g\circ f)(x) \; \forall x\in D_h$. <span style="color:var(--text-muted);">(0,5 pt)</span></p>
+                    <p style="margin:4px 0;"><b>c)</b> Étudier la monotonie de $h$ dans $[-4\,;-2]$ et $[-2\,;0]$. <span style="color:var(--text-muted);">(1 pt)</span></p>
                 </div>
                 <div id="sol2_6" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
@@ -821,19 +851,19 @@
                         <div class="step">
                             <span class="step-num">Condition d'existence :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$-x^2+2x \ge 0 \iff x(x-2) \le 0 \iff x \in [0, 2]$$
+                                $$-x^2-4x \ge 0 \iff x(x+4) \le 0 \iff x \in [-4, 0]$$
                             </div>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>$\boxed{D_h = [0, 2]}$</p>
+                            <p>$\boxed{D_h = [-4, 0]}$</p>
                         </div>
 
                         <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Vérification de $h = g \circ f$</p>
                         <div class="step">
-                            <span class="step-num">Calcul :</span> Pour $x \in D_h = [0,2]$, on a $f(x) \in [1,2] \subset D_g$.
+                            <span class="step-num">Calcul :</span> pour $x \in D_h = [-4,0]$, on a $f(x) \in [1,2] \subset D_g$.
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                $$(g \circ f)(x) = g(f(x)) = \sqrt{f(x)-1} = \sqrt{-x^2+2x+1-1} = \sqrt{-x^2+2x} = h(x)$$
+                                $$(g \circ f)(x) = g(f(x)) = \sqrt{f(x)+2} = \sqrt{-x^2-4x-2+2} = \sqrt{-x^2-4x} = h(x)$$
                             </div>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
@@ -843,19 +873,19 @@
 
                         <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">c) Monotonie de $h$</p>
                         <div class="step">
-                            <span class="step-num">Raisonnement :</span> $h = g \circ f$, avec $g$ croissante sur $[1, +\infty[$.
+                            <span class="step-num">Raisonnement :</span> $h = g \circ f$, avec $g$ croissante sur $[-2, +\infty[$.
                             <ul style="font-size:11.5px; padding-right:18px; margin-top:4px;">
-                                <li>Sur $[0, 1]$ : $f$ est croissante $\Rightarrow$ (croissante ∘ croissante) $\Rightarrow$ $h$ est <b>croissante</b>.</li>
-                                <li>Sur $[1, 2]$ : $f$ est décroissante $\Rightarrow$ (croissante ∘ décroissante) $\Rightarrow$ $h$ est <b>décroissante</b>.</li>
+                                <li>Sur $[-4, -2]$ : $f$ est croissante $\Rightarrow$ (croissante ∘ croissante) $\Rightarrow$ $h$ est <b>croissante</b>.</li>
+                                <li>Sur $[-2, 0]$ : $f$ est décroissante $\Rightarrow$ (croissante ∘ décroissante) $\Rightarrow$ $h$ est <b>décroissante</b>.</li>
                             </ul>
                         </div>
                         <div class="graph-container">
                             <svg id="graphH" width="380" height="230"></svg>
-                            <p>$h$ est le demi-cercle supérieur de centre $(1;0)$ et de rayon 1.</p>
+                            <p>$h$ est le demi-cercle supérieur de centre $(-2;0)$ et de rayon 2.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>$h$ est <b>croissante</b> sur $[0,1]$ et <b>décroissante</b> sur $[1,2]$.</p>
+                            <p>$h$ est <b>croissante</b> sur $[-4,-2]$ et <b>décroissante</b> sur $[-2,0]$.</p>
                         </div>
                     </div>
                 </div>
@@ -875,3 +905,5 @@
     <script src="figuresvt_ex2.js"></script>
 </body>
 </html>
+
+

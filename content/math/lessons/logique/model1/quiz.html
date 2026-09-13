@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+<script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Quiz : Logique mathématique | Xpert</title>
+<meta name="description" content="Quiz QCM interactif sur le cours de logique mathématique - 1ère Bac Sciences Expérimentales - Xpert">
+<link rel="canonical" href="https://jdxpert.pages.dev/content/math/lessons/logique/model1/quiz.html">
+
+<link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+<link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+<link rel="stylesheet" href="../../../../../assets/css/style.css">
+<link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+<link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+
+<script>
+MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+};
+</script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+
+<style>
+/* ============================================================
+   QUIZ-LOGIQUE — design cohérent avec le langage visuel de Xpert
+   (utilise les mêmes variables : --bg-card / --border / --accent-light...)
+   ============================================================ */
+body{font-size:14px;}
+.quiz-wrap{max-width:640px;margin:0 auto;padding:76px 12px 90px;position:relative;z-index:1;}
+
+/* ---------- en-tête compact : titre du cours + barre de progression ---------- */
+.quiz-head{text-align:center;margin-bottom:14px;margin-top:8px;}
+.quiz-head .qh-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(69,162,158,0.10);
+  border:1px solid rgba(69,162,158,0.25);color:var(--accent-light);padding:4px 14px;border-radius:50px;
+  font-size:11px;font-weight:700;margin-bottom:8px;}
+.quiz-head h1{font-size:18px;font-weight:900;color:var(--text-primary);margin-bottom:10px;}
+.qh-progress-track{height:7px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border);overflow:hidden;}
+.qh-progress-fill{height:100%;background:var(--gradient);border-radius:6px;width:0%;transition:width .45s cubic-bezier(.4,0,.2,1);}
+.qh-progress-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:5px;font-weight:600;}
+
+/* ---------- carte de la question (verre dépoli + motif zellige) ---------- */
+.q-card{
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'><g fill='none' stroke='%2345A29E' stroke-width='0.7' opacity='0.35'><polygon points='36,2 70,36 36,70 2,36'/><polygon points='36,14 58,36 36,58 14,36'/></g></svg>") repeat,
+    color-mix(in srgb, var(--bg-card) 72%, transparent);
+  border:1px solid var(--border);border-radius:16px;padding:18px 16px;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 6px 24px rgba(0,0,0,0.10);animation:qFadeIn .35s ease;}
+@keyframes qFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.q-tag{display:inline-block;font-size:10.5px;font-weight:800;color:var(--accent);background:rgba(69,162,158,0.10);
+  border:1px solid rgba(69,162,158,0.25);padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+.q-text{font-size:15px;font-weight:700;color:var(--text-primary);line-height:1.65;margin-bottom:16px;}
+
+.q-options{display:flex;flex-direction:column;gap:9px;}
+.q-opt{display:flex;align-items:center;gap:10px;background:color-mix(in srgb, var(--bg-primary) 78%, transparent);border:1.5px solid var(--border);
+  border-radius:12px;padding:11px 13px;cursor:pointer;transition:border-color .18s ease,background .18s ease,transform .12s ease;
+  text-align:left;font-size:13.5px;color:var(--text-secondary);font-family:var(--font-main);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.q-opt:active{transform:scale(0.98);}
+.q-opt:hover:not(.locked){border-color:rgba(69,162,158,0.5);background:rgba(69,162,158,0.05);}
+.q-opt .opt-letter{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--bg-card);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--text-muted);transition:all .18s ease;}
+.q-opt .opt-body{flex:1;}
+.q-opt .opt-icon{flex-shrink:0;font-size:15px;opacity:0;transition:opacity .15s ease;}
+
+.q-opt.correct{border-color:#3DC98E;background:rgba(61,201,142,0.10);}
+.q-opt.correct .opt-letter{background:#3DC98E;border-color:#3DC98E;color:#0b0f0e;}
+.q-opt.correct .opt-icon{opacity:1;color:#3DC98E;}
+.q-opt.wrong{border-color:#FF6B6B;background:rgba(255,107,107,0.10);}
+.q-opt.wrong .opt-letter{background:#FF6B6B;border-color:#FF6B6B;color:#fff;}
+.q-opt.wrong .opt-icon{opacity:1;color:#FF6B6B;}
+.q-opt.locked{cursor:default;}
+.q-opt.dimmed{opacity:.45;}
+
+/* ---------- zone de remarque/explication après la réponse ---------- */
+.q-feedback{margin-top:14px;border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.6;
+  display:none;animation:qFeedIn .3s ease;}
+@keyframes qFeedIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+.q-feedback.show{display:block;}
+.q-feedback.ok{background:rgba(61,201,142,0.09);border:1px solid rgba(61,201,142,0.3);color:var(--text-secondary);}
+.q-feedback.ko{background:rgba(255,107,107,0.09);border:1px solid rgba(255,107,107,0.3);color:var(--text-secondary);}
+.q-feedback b{color:var(--text-primary);}
+.q-feedback .fb-title{display:flex;align-items:center;gap:7px;font-weight:800;font-size:13px;margin-bottom:5px;}
+.q-feedback.ok .fb-title{color:#3DC98E;}
+.q-feedback.ko .fb-title{color:#FF6B6B;}
+
+/* ---------- petit message d'encouragement ---------- */
+.q-encourage{text-align:center;font-size:12px;font-weight:700;color:var(--gold-text);margin-top:10px;
+  min-height:16px;opacity:0;transition:opacity .3s ease;}
+.q-encourage.show{opacity:1;}
+
+/* ---------- bouton suivant ---------- */
+.q-next-wrap{margin-top:16px;display:none;}
+.q-next-wrap.show{display:block;}
+.q-next-btn{width:100%;background:var(--gradient);color:var(--bg-primary);border:none;border-radius:12px;
+  padding:13px;font-size:14px;font-weight:800;font-family:var(--font-main);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s ease,transform .12s ease;}
+.q-next-btn:active{transform:scale(0.97);opacity:.85;}
+
+/* ============================================================
+   écran des résultats
+   ============================================================ */
+.res-wrap{display:none;text-align:center;}
+.res-wrap.show{display:block;animation:qFadeIn .4s ease;}
+.res-score-ring{width:132px;height:132px;margin:6px auto 14px;position:relative;}
+.res-score-ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+.res-score-ring circle{fill:none;stroke-width:9;}
+.res-score-ring .bg{stroke:var(--border);}
+.res-score-ring .fg{stroke:url(#resGrad);stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);}
+.res-score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.res-score-num .n{font-size:28px;font-weight:900;color:var(--text-primary);}
+.res-score-num .s{font-size:11px;color:var(--text-muted);font-weight:700;}
+.res-msg{font-size:15px;font-weight:800;color:var(--text-primary);margin-bottom:4px;}
+.res-sub{font-size:12.5px;color:var(--text-secondary);margin-bottom:20px;}
+
+.res-grid-label{font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:8px;text-align:left;}
+.res-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;}
+.res-cell{aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px;cursor:pointer;border:1.5px solid;transition:transform .12s ease;}
+.res-cell:active{transform:scale(0.92);}
+.res-cell.ok{background:rgba(61,201,142,0.12);border-color:#3DC98E;color:#3DC98E;}
+.res-cell.ko{background:rgba(255,107,107,0.12);border-color:#FF6B6B;color:#FF6B6B;}
+
+.res-actions{display:flex;gap:10px;}
+.res-btn{flex:1;border-radius:12px;padding:12px;font-size:13px;font-weight:800;font-family:var(--font-main);
+  cursor:pointer;border:none;transition:opacity .2s ease,transform .12s ease;}
+.res-btn:active{transform:scale(0.96);}
+.res-btn.primary{background:var(--gradient);color:var(--bg-primary);}
+.res-btn.ghost{background:var(--bg-card);border:1.5px solid var(--border);color:var(--text-secondary);}
+
+/* ============================================================
+   Dialog d'explication (au clic sur une case du tableau de résultats)
+   ============================================================ */
+.qz-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  z-index:10000;display:none;align-items:flex-end;justify-content:center;padding:0;}
+.qz-overlay.open{display:flex;animation:qzOverlayIn .2s ease;}
+@keyframes qzOverlayIn{from{opacity:0;}to{opacity:1;}}
+.qz-dialog{background:var(--bg-card);border:1px solid var(--border);border-radius:20px 20px 0 0;
+  max-width:640px;width:100%;max-height:82vh;overflow-y:auto;padding:18px 18px 22px;
+  box-shadow:0 -8px 30px rgba(0,0,0,0.3);animation:qzDialogIn .28s cubic-bezier(.34,1.3,.64,1);}
+@media (min-width:640px){
+  .qz-overlay{align-items:center;}
+  .qz-dialog{border-radius:18px;max-height:80vh;}
+}
+@keyframes qzDialogIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.qz-dialog-handle{width:38px;height:4px;border-radius:4px;background:var(--border);margin:0 auto 14px;}
+.qz-dialog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.qz-dialog-badge{font-size:11px;font-weight:800;color:var(--accent);background:rgba(69,162,158,0.10);
+  border:1px solid rgba(69,162,158,0.25);padding:4px 12px;border-radius:20px;}
+.qz-dialog-badge.ko{color:#FF6B6B;background:rgba(255,107,107,0.10);border-color:rgba(255,107,107,0.3);}
+.qz-dialog-close{width:30px;height:30px;border-radius:50%;background:var(--bg-primary);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;color:var(--text-muted);cursor:pointer;font-size:13px;}
+.qz-dialog-q{font-size:14.5px;font-weight:700;color:var(--text-primary);line-height:1.6;margin-bottom:14px;}
+.qz-dialog-row{display:flex;align-items:flex-start;gap:8px;font-size:13px;padding:9px 11px;border-radius:10px;margin-bottom:8px;}
+.qz-dialog-row.mine-ko{background:rgba(255,107,107,0.08);color:var(--text-secondary);}
+.qz-dialog-row.mine-ok{background:rgba(61,201,142,0.08);color:var(--text-secondary);}
+.qz-dialog-row.correct{background:rgba(61,201,142,0.08);color:var(--text-secondary);}
+.qz-dialog-row i{margin-top:2px;flex-shrink:0;}
+.qz-dialog-row.mine-ko i{color:#FF6B6B;}
+.qz-dialog-row.mine-ok i,.qz-dialog-row.correct i{color:#3DC98E;}
+.qz-dialog-explain{background:var(--bg-primary);border:1px solid var(--border);border-radius:12px;padding:12px 13px;
+  margin-top:8px;font-size:12.5px;line-height:1.7;color:var(--text-secondary);}
+.qz-dialog-explain b{color:var(--gold-text);}
+
+/* ---------- réduction générale sur mobile ---------- */
+@media(max-width:480px){
+  .q-text{font-size:14px;}
+  .q-opt{font-size:12.5px;padding:10px 12px;}
+  .res-grid{grid-template-columns:repeat(5,1fr);}
+}
+
+/* ---------- ajustements pour intégrer la barre d'outils / sidebar du site ---------- */
+.nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+.nav-logo-text { font-size: 14px; }
+.back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+.glow-orb { display: none; }
+.bg-grid { opacity: 0.3; }
+.navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.progress-bar { display: none; }
+.scroll-top-btn { display: none; }
+@media (max-width: 768px) {
+  body { font-size: 13px; }
+  .back-btn { font-size: 13px; padding: 3px 10px; }
+}
+</style>
+</head>
+<body>
+<div id="xpertLoader" role="status" aria-label="Chargement">
+    <div class="xpert-shape-wrap">
+        <div class="xpert-ring"></div>
+        <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+        <div class="xpert-shape-glow"></div>
+        <div class="xpert-shape"></div>
+    </div>
+</div>
+
+<!-- ====== couche de protection invisible ====== -->
+<div class="overlay-protection" id="overlayProtection"></div>
+
+<!-- ====== fond zellige ====== -->
+<div class="moroccan-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <rect width="200" height="200" fill="none"/>
+                <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.2"/>
+                <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+            </pattern>
+        </defs>
+        <rect width="800" height="800" fill="url(#zellij)"/>
+    </svg>
+</div>
+<div class="moroccan-shadow" aria-hidden="true"></div>
+<div class="moroccan-star" aria-hidden="true">✦</div>
+<div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+<div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+<div class="bg-grid"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+<nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- logo -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+        <!-- icône du menu latéral -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== Menu latéral (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+
+    <!-- ====== fond zellige simplifié ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== fond mathématique animé (CSS uniquement) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== zone de défilement commune (Profil + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== section 1 : Profil (simple) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== section 2 : Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== section 3 : Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">55 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">26 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">22 exercices</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== fin de la zone de défilement commune ====== -->
+
+    <!-- ====== section 4 : liens légaux (fixe en bas) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<div class="quiz-wrap">
+
+  <button class="back-btn" onclick="window.location.href='part1.html'"><i class="fas fa-arrow-right"></i> Retour au cours</button>
+
+  <div class="quiz-head" id="quizHead">
+    <span class="qh-eyebrow"><i class="fas fa-brain"></i> Xpert · Mathématiques</span>
+    <h1>Quiz du cours — Logique mathématique</h1>
+    <div class="qh-progress-track"><div class="qh-progress-fill" id="progFill"></div></div>
+    <div class="qh-progress-label"><span id="progLabel">Question 1 sur 18</span><span id="progScore">0 point</span></div>
+  </div>
+
+  <!-- ============ carte de la question ============ -->
+  <div class="q-card" id="qCard">
+    <span class="q-tag" id="qTag">Section I</span>
+    <div class="q-text" id="qText">...</div>
+    <div class="q-options" id="qOptions"></div>
+
+    <div class="q-feedback" id="qFeedback">
+      <div class="fb-title" id="fbTitle"></div>
+      <div id="fbBody"></div>
+    </div>
+
+    <div class="q-encourage" id="qEncourage"></div>
+
+    <div class="q-next-wrap" id="qNextWrap">
+      <button class="q-next-btn" id="qNextBtn">Question suivante <i class="fas fa-arrow-left"></i></button>
+    </div>
+  </div>
+
+  <!-- ============ écran des résultats ============ -->
+  <div class="res-wrap" id="resWrap">
+    <svg width="0" height="0"><defs><linearGradient id="resGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#45A29E"/><stop offset="100%" stop-color="#66FCF1"/>
+    </linearGradient></defs></svg>
+    <div class="res-score-ring">
+      <svg viewBox="0 0 120 120">
+        <circle class="bg" cx="60" cy="60" r="52"></circle>
+        <circle class="fg" id="resRing" cx="60" cy="60" r="52" stroke-dasharray="327" stroke-dashoffset="327"></circle>
+      </svg>
+      <div class="res-score-num"><span class="n" id="resPercent">0%</span><span class="s" id="resFraction">0/18</span></div>
+    </div>
+    <div class="res-msg" id="resMsg">Ton résultat est prêt !</div>
+    <div class="res-sub" id="resSub">Regarde le détail de chaque question ci-dessous 👇</div>
+
+    <div class="res-grid-label">Clique sur une case pour voir le détail de la question :</div>
+    <div class="res-grid" id="resGridEl"></div>
+
+    <div class="res-actions">
+      <button class="res-btn ghost" onclick="window.location.href='part1.html'"><i class="fas fa-book"></i> Retour au cours</button>
+      <button class="res-btn primary" id="restartBtn"><i class="fas fa-redo"></i> Refaire le quiz</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ Dialog d'explication ============ -->
+<div class="qz-overlay" id="qzOverlay">
+  <div class="qz-dialog">
+    <div class="qz-dialog-handle"></div>
+    <div class="qz-dialog-head">
+      <span class="qz-dialog-badge" id="dlgBadge">Bonne réponse</span>
+      <span class="qz-dialog-close" id="dlgClose"><i class="fas fa-times"></i></span>
+    </div>
+    <div class="qz-dialog-q" id="dlgQ"></div>
+    <div id="dlgRows"></div>
+    <div class="qz-dialog-explain" id="dlgExplain"></div>
+  </div>
+</div>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+<script src="../../../../../assets/js/shared-inline.js"></script>
+<script src="../../../../../assets/js/protection.js"></script>
+<script src="../../../../../assets/js/script.js"></script>
+
+<script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+</script>
+
+<script>
+/* ============================================================
+   Banque de questions — cours de Logique mathématique
+   18 questions couvrant toutes les sections du cours (I / II / III)
+   correct : index de la bonne réponse (0-3)
+   optExplain : explication courte affichée directement sous la question selon le choix
+   review : explication complète affichée dans le Dialog à la fin du quiz
+   ============================================================ */
+var QUIZ_DATA = [
+{
+  tag:"Section I — Proposition",
+  q:"Quelle est la définition d'une « proposition » en logique mathématique ?",
+  options:[
+    "N'importe quelle phrase mathématique, quelle qu'elle soit",
+    "Une phrase mathématique ayant un sens, qui peut être vraie ou fausse, mais pas les deux à la fois",
+    "Une phrase qui contient toujours une variable x",
+    "Une phrase qui contient uniquement le symbole d'égalité"
+  ],
+  correct:1,
+  optExplain:[
+    "Imprécis — certaines phrases mathématiques (comme les fonctions propositionnelles) n'ont pas de valeur de vérité fixe.",
+    "",
+    "C'est la définition d'une « fonction propositionnelle », pas d'une « proposition ».",
+    "Une proposition peut être une équation, une inéquation, ou même une phrase sans symbole = du tout (par exemple « 2 est un nombre pair »)."
+  ],
+  review:"Une proposition est une phrase mathématique <b>ayant un sens</b>, que l'on peut juger <b>vraie ou fausse</b>, mais jamais les deux à la fois. Exemple : « 2+3=5 » est une proposition vraie, et « 2+3=6 » est une proposition fausse."
+},
+{
+  tag:"Section I — Fonction propositionnelle",
+  q:"L'expression $A(x)$ : « pour tout $x$ de $\\mathbb{R}$, $\\sqrt{x^2}=x$ » est appelée :",
+  options:[
+    "Une proposition toujours vraie",
+    "Une proposition toujours fausse",
+    "Une fonction propositionnelle, car elle contient une variable $x$ non déterminée",
+    "Une équation du second degré"
+  ],
+  correct:2,
+  optExplain:[
+    "Au contraire, elle est fausse pour les valeurs négatives de $x$ (par exemple $x=-2$).",
+    "Elle n'est pas toujours fausse, elle n'est simplement pas une proposition tant que $x$ n'est pas fixé.",
+    "",
+    "Le terme « équation du second degré » ne s'applique pas ici, $\\sqrt{x^2}=x$ n'a pas cette forme."
+  ],
+  review:"Tant que $x$ n'est pas fixé par une valeur précise ou par un quantificateur ($\\forall$ ou $\\exists$), l'expression reste une <b>fonction propositionnelle</b> — il faut fixer $x$ pour obtenir une proposition avec une valeur de vérité claire. D'ailleurs, l'expression avec «$\\forall x\\in\\mathbb{R}$» est en réalité fausse, car $\\sqrt{x^2}=|x|$ et non $x$ en général."
+},
+{
+  tag:"Section I — Quantificateurs",
+  q:"Que signifie le symbole $\\exists!$ dans la phrase $\\exists! x \\in E, Q(x)$ ?",
+  options:[
+    "Il existe au moins un élément vérifiant $Q(x)$",
+    "Il existe un unique élément vérifiant $Q(x)$ (existence + unicité)",
+    "Il n'existe aucun élément vérifiant $Q(x)$",
+    "Tous les éléments de $E$ vérifient $Q(x)$"
+  ],
+  correct:1,
+  optExplain:[
+    "C'est le sens du simple symbole $\\exists$, pas de $\\exists!$ qui ajoute la condition d'unicité.",
+    "",
+    "C'est le sens de la négation de $\\exists$, c'est-à-dire $\\forall x, \\overline{Q(x)}$.",
+    "C'est le sens de $\\forall$, pas de $\\exists!$."
+  ],
+  review:"Le symbole $\\exists!$ combine <b>l'existence</b> (il existe au moins un élément) et <b>l'unicité</b> (cet élément est unique, aucun autre ne vérifie la même condition). Exemple : $\\exists! x\\in\\mathbb{R}: x+4=3$ est vraie car $x=-1$ est l'unique solution."
+},
+{
+  tag:"Section I — Négation des quantificateurs",
+  q:"La négation de la proposition $P: \\forall x\\in E, \\exists y\\in E: Q(x,y)$ est :",
+  options:[
+    "$\\forall x\\in E, \\forall y\\in E: \\overline{Q(x,y)}$",
+    "$\\exists x\\in E, \\forall y\\in E: \\overline{Q(x,y)}$",
+    "$\\exists x\\in E, \\exists y\\in E: \\overline{Q(x,y)}$",
+    "$\\forall x\\in E, \\exists y\\in E: \\overline{Q(x,y)}$"
+  ],
+  correct:1,
+  optExplain:[
+    "Erreur fréquente : tu as oublié de changer $\\forall x$ en $\\exists x$ — tu n'as inversé que le deuxième quantificateur.",
+    "",
+    "Erreur sur le premier quantificateur : la négation de $\\forall x$ est bien $\\exists x$, mais la négation de $\\exists y$ est $\\forall y$ (et non $\\exists y$).",
+    "Ici, aucun quantificateur n'a été inversé — la négation complète exige d'inverser les deux à la fois."
+  ],
+  review:"Pour nier une proposition contenant plusieurs quantificateurs, <b>chaque quantificateur s'inverse individuellement</b> : $\\forall$ devient $\\exists$, et $\\exists$ devient $\\forall$, puis enfin la proposition interne est niée. La négation correcte est donc : $\\exists x\\in E, \\forall y\\in E: \\overline{Q(x,y)}$."
+},
+{
+  tag:"Section II — Négation & Conjonction",
+  q:"Si $P$ est vraie et $Q$ est fausse, alors la valeur de $P \\land Q$ est :",
+  options:[
+    "Vraie",
+    "Fausse",
+    "Indéterminée",
+    "Toujours égale à $Q$"
+  ],
+  correct:1,
+  optExplain:[
+    "Le connecteur « et » ($\\land$) exige que les deux membres soient vrais simultanément — ici $Q$ est fausse, donc le résultat est faux.",
+    "",
+    "Non, la table de vérité de $\\land$ est parfaitement définie dans les quatre cas.",
+    "Ce ne serait vrai que si $P$ était aussi fausse — ici $P$ est vraie, donc il n'y a pas d'égalité générale."
+  ],
+  review:"$P\\land Q$ (la conjonction) est vraie <b>uniquement</b> si $P$ et $Q$ sont vraies toutes les deux. Puisque $Q$ est fausse ici, $P\\land Q$ est fausse, quelle que soit la valeur de $P$."
+},
+{
+  tag:"Section II — Disjonction",
+  q:"$P\\lor Q$ est fausse uniquement dans le cas où :",
+  options:[
+    "$P$ est vraie et $Q$ est fausse",
+    "$P$ est fausse et $Q$ est vraie",
+    "$P$ et $Q$ sont fausses toutes les deux",
+    "$P$ et $Q$ sont vraies toutes les deux"
+  ],
+  correct:2,
+  optExplain:[
+    "Dans ce cas, $P\\lor Q$ est vraie (il suffit qu'un seul des deux membres soit vrai).",
+    "De même, $P\\lor Q$ est vraie ici aussi.",
+    "",
+    "Dans ce cas, $P\\lor Q$ est vraie sans conteste (les deux membres sont vrais)."
+  ],
+  review:"La disjonction $P\\lor Q$ est fausse <b>uniquement</b> lorsque $P$ et $Q$ sont fausses toutes les deux — dans tous les autres cas (vrai+vrai, vrai+faux, faux+vrai), le résultat est vrai."
+},
+{
+  tag:"Section II — Implication",
+  q:"Si $P$ est fausse, alors la valeur de $P \\Rightarrow Q$ est :",
+  options:[
+    "Toujours fausse",
+    "Toujours vraie, quelle que soit $Q$",
+    "Égale à la valeur de $Q$",
+    "Non définie"
+  ],
+  correct:1,
+  optExplain:[
+    "Au contraire ! Quand $P$ est fausse, l'implication est toujours vraie.",
+    "",
+    "Non, la valeur est fixe (vraie) quelle que soit $Q$ — elle n'en dépend pas.",
+    "L'implication est définie dans les quatre cas possibles."
+  ],
+  review:"L'implication $P\\Rightarrow Q$ est fausse <b>uniquement</b> dans un seul cas : $P$ vraie et $Q$ fausse. Dans tous les autres cas — en particulier quand $P$ est fausse — l'implication est automatiquement vraie. C'est la règle la plus importante de la table de vérité de l'implication."
+},
+{
+  tag:"Section II — Contraposée",
+  q:"La contraposée de l'implication $P\\Rightarrow Q$ est :",
+  options:[
+    "$Q \\Rightarrow P$",
+    "$\\bar{P} \\Rightarrow \\bar{Q}$",
+    "$\\bar{Q} \\Rightarrow \\bar{P}$",
+    "$P \\land \\bar{Q}$"
+  ],
+  correct:2,
+  optExplain:[
+    "Cela s'appelle « la réciproque », pas la contraposée.",
+    "C'est un mélange non standard — attention à l'ordre : il faut commencer par la négation de $Q$.",
+    "",
+    "Cette formule est la négation de l'implication $\\overline{P\\Rightarrow Q}$, et non la contraposée (la contraposée est équivalente à l'implication d'origine, pas sa négation)."
+  ],
+  review:"La contraposée de l'implication $P\\Rightarrow Q$ est <b>$\\bar{Q}\\Rightarrow\\bar{P}$</b> — elle est <b>logiquement équivalente</b> à l'implication d'origine (toujours la même valeur de vérité). Cela diffère de « la réciproque » ($Q\\Rightarrow P$) qui n'est pas nécessairement équivalente."
+},
+{
+  tag:"Section II — Lois de Morgan",
+  q:"Selon les lois de De Morgan, $\\overline{P \\lor Q}$ est égale à :",
+  options:[
+    "$\\bar{P} \\lor \\bar{Q}$",
+    "$\\bar{P} \\land \\bar{Q}$",
+    "$P \\land Q$",
+    "$\\bar{P}$"
+  ],
+  correct:1,
+  optExplain:[
+    "Erreur fréquente : tu as oublié de changer le connecteur de $\\lor$ à $\\land$ — la loi de De Morgan change aussi le connecteur, pas seulement la négation.",
+    "",
+    "C'est une négation incomplète — tu as oublié de nier $Q$ aussi.",
+    "Cette réponse est incomplète, il manque complètement $Q$."
+  ],
+  review:"Première loi de De Morgan : $\\overline{P\\lor Q} = \\bar{P}\\land\\bar{Q}$ — en niant « ou », le connecteur devient « et » et chaque membre est nié séparément. (De même : $\\overline{P\\land Q}=\\bar{P}\\lor\\bar{Q}$.)"
+},
+{
+  tag:"Section III — Contre-exemple",
+  q:"Pour démontrer que la proposition $\\forall x\\in E, P(x)$ est fausse, il suffit de :",
+  options:[
+    "Vérifier $P(x)$ pour tous les éléments de $E$",
+    "Trouver un seul élément de $E$ qui ne vérifie pas $P(x)$",
+    "Utiliser le raisonnement par récurrence",
+    "Démontrer que $P(x)$ est vraie pour un seul élément"
+  ],
+  correct:1,
+  optExplain:[
+    "Cela serait nécessaire pour prouver que la proposition est <b>vraie</b>, pas pour la réfuter.",
+    "",
+    "La récurrence est un outil pour démontrer qu'une proposition est vraie pour tout $n$, pas pour la réfuter.",
+    "Cela prouve l'existence d'un cas vrai, mais ne réfute pas que la proposition générale soit vraie — c'est exactement l'inverse de ce qu'on cherche."
+  ],
+  review:"Pour réfuter une proposition de la forme $\\forall x, P(x)$, <b>un seul contre-exemple suffit</b> : un élément $x_0\\in E$ qui ne vérifie pas $P(x_0)$. Cela prouve que la phrase « pour tout x » n'est pas correcte, sans avoir besoin d'examiner les autres éléments."
+},
+{
+  tag:"Section III — Absurde",
+  q:"Dans le raisonnement par l'absurde, une fois qu'on arrive à une contradiction, on en déduit que :",
+  options:[
+    "La proposition d'origine est fausse",
+    "L'hypothèse supposée (la négation de la conclusion) était fausse, donc la conclusion d'origine est vraie",
+    "On ne peut pas se prononcer sur la proposition",
+    "Il faut refaire la démonstration autrement"
+  ],
+  correct:1,
+  optExplain:[
+    "C'est exactement l'inverse de la bonne conclusion — la contradiction invalide l'hypothèse contraire, pas la proposition d'origine.",
+    "",
+    "Au contraire, la contradiction nous donne une conclusion claire et définitive.",
+    "La contradiction est exactement le but recherché dans cette démonstration — il n'y a pas besoin de recommencer."
+  ],
+  review:"Principe du raisonnement par l'absurde : on suppose la <b>négation</b> de la conclusion souhaitée, puis on cherche une contradiction logique. Si on aboutit à une contradiction, cela signifie que <b>notre hypothèse (la négation) était fausse</b>, et donc que la conclusion d'origine est <b>vraie</b>."
+},
+{
+  tag:"Section III — Contraposée (stratégie)",
+  q:"Pour démontrer $P\\Rightarrow Q$ par la méthode de la contraposée, on démontre en réalité :",
+  options:[
+    "$Q \\Rightarrow P$",
+    "$\\bar{P} \\Rightarrow \\bar{Q}$",
+    "$\\bar{Q} \\Rightarrow \\bar{P}$",
+    "$P \\land \\bar{Q}$ est fausse"
+  ],
+  correct:2,
+  optExplain:[
+    "C'est « la réciproque », et la démontrer ne garantit pas la vérité de $P\\Rightarrow Q$ d'origine.",
+    "C'est un mélange logiquement incorrect pour cette stratégie.",
+    "",
+    "C'est effectivement correct (car cela équivaut à $\\overline{P\\land\\bar{Q}}$, c'est-à-dire $P\\Rightarrow Q$ elle-même), mais ce n'est pas la formulation habituelle/la plus simple pour cette stratégie — il est préférable d'utiliser directement la contraposée."
+  ],
+  review:"Stratégie de la démonstration par contraposée : au lieu de démontrer $P\\Rightarrow Q$ directement, on démontre la contraposée <b>$\\bar{Q}\\Rightarrow\\bar{P}$</b>, qui est logiquement équivalente à l'implication d'origine. Cette méthode est souvent utilisée lorsque $\\bar{Q}$ est plus facile à manipuler que $Q$ elle-même."
+},
+{
+  tag:"Section III — Disjonction des cas",
+  q:"Lors de la résolution d'une équation contenant une valeur absolue $|x+1|$, la raison du recours à la disjonction des cas est :",
+  options:[
+    "Parce que la valeur absolue est toujours positive",
+    "Parce que $|x+1|$ a deux définitions différentes selon le signe de $x+1$",
+    "Uniquement pour accélérer la résolution, sans nécessité logique",
+    "Parce que l'équation est du second degré"
+  ],
+  correct:1,
+  optExplain:[
+    "C'est vrai en tant que propriété, mais ce n'est pas la raison directe du besoin de disjonction des cas.",
+    "",
+    "Au contraire, la disjonction des cas est ici <b>logiquement nécessaire</b> et pas un simple choix de rapidité.",
+    "Cela n'a aucun rapport avec le degré de l'équation — c'est la valeur absolue qui en est la cause."
+  ],
+  review:"La valeur absolue $|x+1|$ se définit de deux façons : $x+1$ si $x+1\\geq0$ (c'est-à-dire $x\\geq-1$), et $-(x+1)$ si $x+1<0$ (c'est-à-dire $x<-1$). C'est pourquoi résoudre une équation qui la contient nécessite de <b>diviser le domaine en deux cas</b> afin de la lever correctement."
+},
+{
+  tag:"Section III — Récurrence (Initialisation)",
+  q:"Pourquoi l'étape « d'initialisation » est-elle nécessaire dans un raisonnement par récurrence, même si « l'hérédité » est vraie ?",
+  options:[
+    "Parce que c'est une simple formalité sans réelle importance",
+    "Parce que l'hérédité seule ne signifie rien s'il n'existe pas de point de départ vrai à partir duquel la propriété se transmet",
+    "Parce que l'hérédité suffit toujours à elle seule",
+    "Uniquement pour embellir la démonstration"
+  ],
+  correct:1,
+  optExplain:[
+    "Au contraire, c'est une étape essentielle et non une formalité — sans elle, la proposition peut être totalement fausse malgré une hérédité vraie.",
+    "",
+    "Erreur fréquente et grave — l'hérédité montre seulement « la transmission », mais sans point de départ vrai, il n'y a rien à transmettre.",
+    "L'initialisation fait partie intégrante de la validité logique de la démonstration, ce n'est pas un simple ornement."
+  ],
+  review:"L'hérédité ($P(n)\\Rightarrow P(n+1)$) prouve seulement que la propriété <b>se transmet</b> d'un rang à l'autre — mais si elle n'est pas vraie au rang de départ ($P(n_0)$), il n'y a rien à partir de quoi la transmettre, et la propriété reste <b>fausse pour tout n</b> malgré une hérédité vraie."
+},
+{
+  tag:"Section III — Équivalences successives",
+  q:"La démonstration par équivalences successives est utilisée en particulier pour prouver une proposition de la forme :",
+  options:[
+    "$P \\Rightarrow Q$",
+    "$P \\Leftrightarrow Q$",
+    "$\\forall x, P(x)$",
+    "Une proposition fausse"
+  ],
+  correct:1,
+  optExplain:[
+    "L'implication simple peut se démontrer par d'autres méthodes (directe, contraposée...) — les équivalences successives sont réservées à l'équivalence.",
+    "",
+    "C'est plutôt le domaine de la démonstration directe ou par récurrence, pas nécessairement des équivalences successives.",
+    "Les équivalences successives sont un outil de démonstration, pas de réfutation."
+  ],
+  review:"La démonstration par équivalences successives convient particulièrement pour prouver <b>$P\\Leftrightarrow Q$</b> : on construit une chaîne $P\\Leftrightarrow P_1\\Leftrightarrow P_2\\Leftrightarrow\\cdots\\Leftrightarrow Q$, où chaque étape est correctement réversible."
+},
+{
+  tag:"Section III — Choix de méthode",
+  q:"Pour démontrer que $\\sqrt{2}\\notin\\mathbb{Q}$, la méthode de démonstration la plus adaptée est :",
+  options:[
+    "La démonstration directe",
+    "Le raisonnement par l'absurde",
+    "La démonstration par disjonction des cas",
+    "La démonstration par contre-exemple"
+  ],
+  correct:1,
+  optExplain:[
+    "Il est difficile de démontrer « la non-appartenance » directement sans supposer le contraire.",
+    "",
+    "Il n'y a pas de cas naturels ici pour diviser le problème.",
+    "Le contre-exemple sert à réfuter une proposition de la forme $\\forall$, ce qui n'est pas le cas ici."
+  ],
+  review:"« La non-appartenance à $\\mathbb{Q}$ » est difficile à prouver directement (comme prouver la non-existence de quelque chose). La solution optimale : on suppose le contraire ($\\sqrt{2}=\\frac{p}{q}$ sous forme irréductible) et on aboutit à une contradiction ($p$ et $q$ pairs tous les deux), ce qui invalide l'hypothèse et prouve que $\\sqrt{2}$ est bien irrationnel."
+},
+{
+  tag:"Section III — Synthèse",
+  q:"Si l'hérédité $Q(n)\\Rightarrow Q(n+1)$ est vraie, mais que $Q(0)$ est fausse, alors $Q(n)$ :",
+  options:[
+    "Est vraie pour tout $n\\geq1$",
+    "Est vraie pour tout $n$ car l'hérédité suffit",
+    "Peut être fausse pour tout $n$, car le point de départ lui-même est faux",
+    "Ne peut jamais être déterminée"
+  ],
+  correct:2,
+  optExplain:[
+    "L'hérédité seule ne garantit pas cela — sans initialisation vraie, il n'y a aucune garantie.",
+    "C'est exactement l'erreur méthodologique la plus grave du principe de récurrence.",
+    "",
+    "Au contraire, on peut se prononcer clairement : sans initialisation vraie, le principe de récurrence ne peut absolument pas s'appliquer."
+  ],
+  review:"Cet exemple illustre précisément pourquoi l'initialisation est <b>nécessaire et non une formalité</b> : l'hérédité prouve seulement « si $Q(n)$ est vraie, alors $Q(n+1)$ est vraie aussi » — mais puisque $Q(0)$ est fausse dès le départ, rien ne garantit que $Q(n)$ soit vraie pour un quelconque $n$."
+},
+{
+  tag:"Section III — Synthèse (choix final)",
+  q:"Pour démontrer $\\forall x,y\\in\\mathbb{R}, x\\neq y \\Rightarrow (x+1)(y-1)\\neq(x-1)(y+1)$, la méthode la plus adaptée est :",
+  options:[
+    "Le raisonnement par récurrence, car l'implication contient des variables",
+    "La démonstration par contraposée, car la négation de la conclusion (l'égalité) est plus simple à manipuler que la conclusion elle-même (l'inégalité)",
+    "La démonstration par contre-exemple, car la proposition semble fausse",
+    "La disjonction des cas, en raison de la présence d'une valeur absolue"
+  ],
+  correct:1,
+  optExplain:[
+    "Il n'y a aucune construction cumulative liée à $n$ dans cette proposition — la récurrence n'est pas adaptée ici.",
+    "",
+    "La proposition est en réalité vraie (pas fausse), et le contre-exemple ne sert qu'à réfuter des propositions fausses.",
+    "Il n'y a aucune valeur absolue dans cette proposition."
+  ],
+  review:"Lorsque l'hypothèse et la conclusion sont toutes deux de forme négative ($\\neq$), la contraposée est le choix le plus judicieux : on ramène le problème à une simple équation (égalité) au lieu de traiter directement deux inégalités, ce qui simplifie grandement la résolution."
+}
+];
+
+/* ============================================================
+   messages d'encouragement aléatoires (affichés après chaque bonne réponse)
+   ============================================================ */
+var ENCOURAGE_MSGS = [
+  "Bravo ! 🎯", "Excellent, tu assures ! ✨", "Exactement ! Continue comme ça 🔥",
+  "Génial ! Ta compréhension du cours est solide 💪", "Réponse maligne ! 👏", "Raisonnement solide ! 🌟",
+  "Très précis ! Continue 🚀", "Tu maîtrises le cours ! 🎓"
+];
+
+/* ============================================================
+   logique du quiz
+   ============================================================ */
+var state = { current:0, score:0, answers:[] }; // answers[i] = {picked, correct}
+
+var els = {
+  progFill: document.getElementById('progFill'),
+  progLabel: document.getElementById('progLabel'),
+  progScore: document.getElementById('progScore'),
+  qCard: document.getElementById('qCard'),
+  qTag: document.getElementById('qTag'),
+  qText: document.getElementById('qText'),
+  qOptions: document.getElementById('qOptions'),
+  qFeedback: document.getElementById('qFeedback'),
+  fbTitle: document.getElementById('fbTitle'),
+  fbBody: document.getElementById('fbBody'),
+  qEncourage: document.getElementById('qEncourage'),
+  qNextWrap: document.getElementById('qNextWrap'),
+  qNextBtn: document.getElementById('qNextBtn'),
+  resWrap: document.getElementById('resWrap'),
+  resRing: document.getElementById('resRing'),
+  resPercent: document.getElementById('resPercent'),
+  resFraction: document.getElementById('resFraction'),
+  resMsg: document.getElementById('resMsg'),
+  resSub: document.getElementById('resSub'),
+  resGridEl: document.getElementById('resGridEl'),
+  restartBtn: document.getElementById('restartBtn'),
+  quizHead: document.getElementById('quizHead')
+};
+
+var LETTERS = ['A','B','C','D'];
+var RING_CIRC = 2 * Math.PI * 52;
+
+function ptsLabel(n){ return n + (n > 1 ? ' points' : ' point'); }
+
+function typeset(){
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise().catch(function(){});
+  }
+}
+
+function renderQuestion(){
+  var i = state.current;
+  var data = QUIZ_DATA[i];
+
+  els.progLabel.textContent = 'Question ' + (i+1) + ' sur ' + QUIZ_DATA.length;
+  els.progScore.textContent = ptsLabel(state.score);
+  els.progFill.style.width = ((i) / QUIZ_DATA.length * 100) + '%';
+
+  els.qTag.textContent = data.tag;
+  els.qText.innerHTML = data.q;
+  els.qOptions.innerHTML = '';
+  els.qFeedback.className = 'q-feedback';
+  els.qFeedback.innerHTML = '<div class="fb-title" id="fbTitle"></div><div id="fbBody"></div>';
+  els.qEncourage.className = 'q-encourage';
+  els.qEncourage.textContent = '';
+  els.qNextWrap.className = 'q-next-wrap';
+
+  data.options.forEach(function(optText, idx){
+    var opt = document.createElement('div');
+    opt.className = 'q-opt';
+    opt.innerHTML =
+      '<span class="opt-letter">' + LETTERS[idx] + '</span>' +
+      '<span class="opt-body">' + optText + '</span>' +
+      '<span class="opt-icon"><i class="fas fa-check"></i></span>';
+    opt.addEventListener('click', function(){ pickOption(idx); });
+    els.qOptions.appendChild(opt);
+  });
+
+  typeset();
+}
+
+function pickOption(idx){
+  var i = state.current;
+  var data = QUIZ_DATA[i];
+  if (state.answers[i]) return; // déjà répondu
+
+  var isCorrect = (idx === data.correct);
+  state.answers[i] = { picked: idx, correct: isCorrect };
+  if (isCorrect) state.score++;
+
+  var optEls = els.qOptions.querySelectorAll('.q-opt');
+  optEls.forEach(function(el, k){
+    el.classList.add('locked');
+    if (k === data.correct) el.classList.add('correct');
+    if (k === idx && !isCorrect) el.classList.add('wrong');
+    if (k !== idx && k !== data.correct) el.classList.add('dimmed');
+  });
+
+  var fb = document.getElementById('qFeedback');
+  var fbTitle = document.getElementById('fbTitle');
+  var fbBody = document.getElementById('fbBody');
+
+  if (isCorrect) {
+    fb.className = 'q-feedback ok show';
+    fbTitle.innerHTML = '<i class="fas fa-check-circle"></i> Réponse correcte';
+    fbBody.innerHTML = 'Tu as choisi la bonne réponse directement — continue sur cette lancée.';
+    var msg = ENCOURAGE_MSGS[Math.floor(Math.random()*ENCOURAGE_MSGS.length)];
+    els.qEncourage.textContent = msg;
+    els.qEncourage.className = 'q-encourage show';
+  } else {
+    fb.className = 'q-feedback ko show';
+    fbTitle.innerHTML = '<i class="fas fa-times-circle"></i> Réponse incorrecte';
+    fbBody.innerHTML = (data.optExplain[idx] || 'Ce choix est incorrect.') +
+      '<br><br><b>La bonne réponse est (' + LETTERS[data.correct] + ') :</b> ' + data.options[data.correct];
+  }
+
+  typeset();
+  els.qNextWrap.className = 'q-next-wrap show';
+  els.progFill.style.width = ((i+1) / QUIZ_DATA.length * 100) + '%';
+  els.progScore.textContent = ptsLabel(state.score);
+}
+
+els.qNextBtn.addEventListener('click', function(){
+  if (state.current < QUIZ_DATA.length - 1) {
+    state.current++;
+    renderQuestion();
+    window.scrollTo({top:0, behavior:'smooth'});
+  } else {
+    showResults();
+  }
+});
+
+function showResults(){
+  els.quizHead.style.display = 'none';
+  els.qCard.style.display = 'none';
+  els.resWrap.className = 'res-wrap show';
+
+  var total = QUIZ_DATA.length;
+  var pct = Math.round(state.score / total * 100);
+  els.resPercent.textContent = pct + '%';
+  els.resFraction.textContent = state.score + '/' + total;
+
+  var offset = RING_CIRC - (pct/100) * RING_CIRC;
+  setTimeout(function(){ els.resRing.style.strokeDashoffset = offset; }, 100);
+
+  var msg, sub;
+  if (pct >= 90) { msg = 'Exceptionnel ! 🏆'; sub = 'Une maîtrise quasi totale du cours de logique mathématique.'; }
+  else if (pct >= 75) { msg = 'Très bonne performance ! 💪'; sub = 'Ta compréhension du cours est excellente, revois juste les petites erreurs.'; }
+  else if (pct >= 50) { msg = 'Bonne performance, à améliorer 👍'; sub = 'Revois les questions incorrectes ci-dessous pour consolider ta compréhension.'; }
+  else { msg = 'Reprends confiance et recommence 🌱'; sub = "Revois le cours puis refais le quiz — chaque erreur est une occasion d'apprendre."; }
+  els.resMsg.textContent = msg;
+  els.resSub.textContent = sub;
+
+  els.resGridEl.innerHTML = '';
+  state.answers.forEach(function(a, idx){
+    var cell = document.createElement('div');
+    cell.className = 'res-cell ' + (a.correct ? 'ok' : 'ko');
+    cell.textContent = idx+1;
+    cell.addEventListener('click', function(){ openDialog(idx); });
+    els.resGridEl.appendChild(cell);
+  });
+
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ============================================================
+   Dialog d'explication
+   ============================================================ */
+var dlgOverlay = document.getElementById('qzOverlay');
+function openDialog(idx){
+  var data = QUIZ_DATA[idx];
+  var ans = state.answers[idx];
+  var badge = document.getElementById('dlgBadge');
+  badge.className = 'qz-dialog-badge' + (ans.correct ? '' : ' ko');
+  badge.textContent = 'Question ' + (idx+1) + ' — ' + (ans.correct ? 'Bonne réponse' : 'Mauvaise réponse');
+
+  document.getElementById('dlgQ').innerHTML = data.q;
+
+  var rowsHtml = '';
+  if (!ans.correct) {
+    rowsHtml += '<div class="qz-dialog-row mine-ko"><i class="fas fa-times-circle"></i><div>Ta réponse : <b>(' + LETTERS[ans.picked] + ')</b> ' + data.options[ans.picked] + '</div></div>';
+  }
+  rowsHtml += '<div class="qz-dialog-row correct"><i class="fas fa-check-circle"></i><div>La bonne réponse : <b>(' + LETTERS[data.correct] + ')</b> ' + data.options[data.correct] + '</div></div>';
+  document.getElementById('dlgRows').innerHTML = rowsHtml;
+
+  document.getElementById('dlgExplain').innerHTML = '<b>Explication :</b><br>' + data.review;
+
+  dlgOverlay.classList.add('open');
+  typeset();
+}
+document.getElementById('dlgClose').addEventListener('click', function(){ dlgOverlay.classList.remove('open'); });
+dlgOverlay.addEventListener('click', function(e){ if (e.target === dlgOverlay) dlgOverlay.classList.remove('open'); });
+
+els.restartBtn.addEventListener('click', function(){
+  state = { current:0, score:0, answers:[] };
+  els.quizHead.style.display = '';
+  els.qCard.style.display = '';
+  els.resWrap.className = 'res-wrap';
+  renderQuestion();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+renderQuestion();
+</script>
+
+</body>
+</html>

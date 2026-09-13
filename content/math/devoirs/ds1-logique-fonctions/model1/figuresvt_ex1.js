@@ -1,5 +1,4 @@
 /* ============================================================
-   figuresvt_ex1.js — Devoir Surveillé N°1 (Modèle 1)
    Exercice 1 : Logique mathématique
    Fichier autonome (self-contained) : aucune dépendance à une
    librairie partagée (svg-utils.js). Toutes les fonctions
@@ -7,8 +6,8 @@
    ce même fichier.
 
    Figures dessinées :
-     - fig1_1 : graphe de x ↦ x + 16/x sur ]0, +∞[, illustrant
-                le contre-exemple x = 4 pour la question 1 (P1).
+     - fig1_2 : graphe de x ↦ x + 9/x sur ]0, +∞[, illustrant
+                le contre-exemple x = 3 pour la question 2 (P2).
    ============================================================ */
 (function () {
     'use strict';
@@ -91,42 +90,42 @@
     }
 
     /* ============================================================
-       fig1_1 : x ↦ x + 16/x  sur ]0, +∞[
-       Illustre pourquoi P1 est fausse : le minimum de la fonction
-       vaut exactement 8, atteint en x = 4 (contre-exemple).
+       fig1_2 : x ↦ x + 9/x  sur ]0, +∞[
+       Illustre pourquoi P2 est fausse : le minimum de la fonction
+       vaut exactement 6, atteint en x = 3 (contre-exemple).
        ============================================================ */
-    function drawFig1_1(svg) {
+    function drawFig1_2(svg) {
         var w = 380, h = 250;
         setResponsive(svg, w, h);
         clear(svg);
         var ax = drawAxes(svg, {
             pad: { l: 30, r: 18, t: 18, b: 26 }, w: w, h: h,
-            xmin: -0.4, xmax: 10.6, ymin: 5, ymax: 18.5, gridStep: 2,
+            xmin: -0.3, xmax: 8.6, ymin: 4, ymax: 13.5, gridStep: 1,
             xLabel: 'x', yLabel: 'y'
         });
-        var f = function (x) { return x + 16 / x; };
+        var f = function (x) { return x + 9 / x; };
 
-        // Ligne de repère horizontale y = 8
-        dashLine(svg, ax.sx(-0.2), ax.sy(8), ax.sx(10.4), ax.sy(8), '#F4D03F');
-        svg.appendChild(text(ax.sx(10.4) - 4, ax.sy(8) - 6, 'y = 8', { fill: '#F4D03F', 'font-size': 10.5, 'text-anchor': 'end' }));
+        // Ligne de repère horizontale y = 7 (seuil de la proposition)
+        dashLine(svg, ax.sx(-0.1), ax.sy(7), ax.sx(8.4), ax.sy(7), '#F4D03F');
+        svg.appendChild(text(ax.sx(8.4) - 4, ax.sy(7) - 6, 'y = 7', { fill: '#F4D03F', 'font-size': 10.5, 'text-anchor': 'end' }));
 
         // Courbe de f, en deux branches autour du minimum
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, 0.85, 4), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.4 }));
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, 4, 10.4), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.4 }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, 0.7, 3), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.4 }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, 3, 8.4), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.4 }));
 
-        // Point du minimum / contre-exemple (4 ; 8)
-        dashLine(svg, ax.sx(4), ax.sy(8), ax.sx(4), ax.y0, '#FF6B6B');
-        dot(svg, ax.sx(4), ax.sy(8), '#FF6B6B', 4);
-        svg.appendChild(text(ax.sx(4) + 8, ax.sy(8) - 10, 'x = 4', { fill: '#FF6B6B', 'font-size': 11, 'font-weight': 700 }));
-        svg.appendChild(text(ax.sx(4) + 8, ax.sy(8) + 16, 'f(4) = 8', { fill: '#FF6B6B', 'font-size': 10.5 }));
+        // Point du minimum / contre-exemple (3 ; 6)
+        dashLine(svg, ax.sx(3), ax.sy(6), ax.sx(3), ax.y0, '#FF6B6B');
+        dot(svg, ax.sx(3), ax.sy(6), '#FF6B6B', 4);
+        svg.appendChild(text(ax.sx(3) + 8, ax.sy(6) - 10, 'x = 3', { fill: '#FF6B6B', 'font-size': 11, 'font-weight': 700 }));
+        svg.appendChild(text(ax.sx(3) + 8, ax.sy(6) + 16, 'f(3) = 6', { fill: '#FF6B6B', 'font-size': 10.5 }));
 
-        svg.appendChild(text(w - 16, 22, 'f(x) = x + 16/x', { fill: '#4ECDC4', 'font-size': 11.5, 'text-anchor': 'end' }));
+        svg.appendChild(text(w - 16, 22, 'f(x) = x + 9/x', { fill: '#4ECDC4', 'font-size': 11.5, 'text-anchor': 'end' }));
     }
 
     /* ---------- Initialisation ---------- */
     function init() {
         var map = {
-            fig1_1: drawFig1_1
+            fig1_2: drawFig1_2
         };
         Object.keys(map).forEach(function (id) {
             var svg = document.getElementById(id);

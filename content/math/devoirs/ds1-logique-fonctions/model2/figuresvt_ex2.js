@@ -1,15 +1,10 @@
 /* ============================================================
-   figuresvt_ex2.js — Devoir Surveillé N°1 (Modèle 2)
-   Exercice 2 : Fonction périodique et paire
-
-   f est définie sur ℝ, périodique de période T=2, paire,
-   avec f(x) = x pour tout x ∈ [0,1].
-   ⇒ f(x) = distance de x à l'entier pair le plus proche
-          (fonction "triangle", en dents de scie symétrique).
+   Exercice 2 : Fonction périodique (Modèle 2)
+   f périodique de période T=2, paire, f(x)=1-x sur [0,1].
+   Fichier autonome (self-contained).
 
    Figure dessinée :
-     - graphPeriodique : représentation de f sur [-5, 5]
-       (question 2).
+     - graphPeriodique : tracé de f sur [-5, 5] (onde "en tentes").
    ============================================================ */
 (function () {
     'use strict';
@@ -17,7 +12,9 @@
 
     function el(tag, attrs) {
         var e = document.createElementNS(NS, tag);
-        for (var k in attrs) { if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]); }
+        for (var k in attrs) {
+            if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]);
+        }
         return e;
     }
     function text(x, y, str, attrs) {
@@ -70,56 +67,49 @@
         svg.appendChild(text(x0 + 8, sy(ymax) - 10, opts.yLabel || 'y', { fill: '#8B96A5', 'font-size': 11, 'font-style': 'italic' }));
         return { sx: sx, sy: sy, x0: x0, y0: y0 };
     }
-    function dot(svg, cx, cy, color, r) {
-        svg.appendChild(el('circle', { cx: cx, cy: cy, r: r || 3, fill: color, stroke: '#0D1117', 'stroke-width': 1 }));
+
+    /* f(x) = 1 - dist(x, plus proche multiple pair) ... implémentation directe : */
+    function fPeriodic(x) {
+        // Ramener x dans [-1, 1] par périodicité de 2
+        var t = x - 2 * Math.round(x / 2);
+        // t ∈ [-1,1] ; par parité, f(t) = f(|t|) = 1 - |t|
+        return 1 - Math.abs(t);
     }
 
-    // f(x) = distance de x à l'entier pair le plus proche = |x - 2*round(x/2)|
-    function fPeriodique(x) {
-        var n = Math.round(x / 2);
-        return Math.abs(x - 2 * n);
-    }
-
-    /* ============================================================
-       graphPeriodique : représentation de f sur [-5, 5]
-       ============================================================ */
     function drawGraphPeriodique(svg) {
-        var w = 380, h = 210;
+        var w = 380, h = 220;
         setResponsive(svg, w, h);
         clear(svg);
         var ax = drawAxes(svg, {
-            pad: { l: 26, r: 16, t: 16, b: 24 }, w: w, h: h,
-            xmin: -5.4, xmax: 5.4, ymin: -0.35, ymax: 1.35, gridStep: 1,
+            pad: { l: 26, r: 16, t: 18, b: 26 }, w: w, h: h,
+            xmin: -5.4, xmax: 5.4, ymin: -0.3, ymax: 1.4, gridStep: 1,
             xLabel: 'x', yLabel: 'y'
         });
 
-        // Tracé "triangle" morceau par morceau (segments entre entiers)
         var d = '';
-        for (var k = -6; k <= 5; k++) {
-            var x1 = k, x2 = k + 1;
-            if (x2 < -5 || x1 > 5) continue;
-            var seg = 'M' + ax.sx(Math.max(x1, -5)).toFixed(2) + ',' + ax.sy(fPeriodique(Math.max(x1, -5))).toFixed(2) +
-                      ' L' + ax.sx(Math.min(x2, 5)).toFixed(2) + ',' + ax.sy(fPeriodique(Math.min(x2, 5))).toFixed(2) + ' ';
-            d += seg;
+        var steps = 400;
+        for (var i = 0; i <= steps; i++) {
+            var x = -5.3 + (10.6) * i / steps;
+            var y = fPeriodic(x);
+            d += (i === 0 ? 'M' : 'L') + ax.sx(x).toFixed(2) + ',' + ax.sy(y).toFixed(2) + ' ';
         }
-        svg.appendChild(el('path', { d: d, fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.4, 'stroke-linejoin': 'round' }));
+        svg.appendChild(el('path', { d: d, fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.2 }));
 
-        // Marqueurs aux sommets entiers dans [-5,5]
-        for (var xi = -5; xi <= 5; xi++) {
-            dot(svg, ax.sx(xi), ax.sy(fPeriodique(xi)), '#FF6B6B', 3);
-        }
+        // Repères pointillés sur les pics (x pair) et les creux (x impair)
+        [-4, -2, 0, 2, 4].forEach(function (xv) {
+            svg.appendChild(el('circle', { cx: ax.sx(xv), cy: ax.sy(1), r: 2.6, fill: '#F4D03F' }));
+        });
+        [-5, -3, -1, 1, 3, 5].forEach(function (xv) {
+            svg.appendChild(el('circle', { cx: ax.sx(xv), cy: ax.sy(0), r: 2.6, fill: '#FF6B6B' }));
+        });
 
-        // Repère visuel d'une période T = 2 (entre x=0 et x=2)
-        svg.appendChild(el('line', { x1: ax.sx(0), y1: ax.sy(1.22), x2: ax.sx(2), y2: ax.sy(1.22), stroke: '#4ECDC4', 'stroke-width': 1.4 }));
-        svg.appendChild(el('line', { x1: ax.sx(0), y1: ax.sy(1.15), x2: ax.sx(0), y2: ax.sy(1.29), stroke: '#4ECDC4', 'stroke-width': 1.4 }));
-        svg.appendChild(el('line', { x1: ax.sx(2), y1: ax.sy(1.15), x2: ax.sx(2), y2: ax.sy(1.29), stroke: '#4ECDC4', 'stroke-width': 1.4 }));
-        svg.appendChild(text(ax.sx(1), ax.sy(1.22) - 6, 'T = 2', { fill: '#4ECDC4', 'font-size': 10, 'text-anchor': 'middle' }));
+        svg.appendChild(text(w / 2, 16, 'f périodique (T=2), paire, f(x)=1-x sur [0,1]', { fill: '#8B96A5', 'font-size': 10.5, 'text-anchor': 'middle' }));
     }
 
     function init() {
         var svg = document.getElementById('graphPeriodique');
         if (svg) {
-            try { drawGraphPeriodique(svg); } catch (e) { console.error('figuresvt_ex2:', e); }
+            try { drawGraphPeriodique(svg); } catch (e) { console.error('figuresvt_ex2 (model2):', e); }
         }
     }
 
@@ -128,5 +118,6 @@
     } else {
         init();
     }
+
     window.addEventListener('resize', init);
 })();

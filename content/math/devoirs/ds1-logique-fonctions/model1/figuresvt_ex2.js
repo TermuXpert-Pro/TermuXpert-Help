@@ -1,5 +1,4 @@
 /* ============================================================
-   figuresvt_ex2.js — Devoir Surveillé N°1 (Modèle 1)
    Exercice 2 : Généralités sur les fonctions
    Fichier autonome (self-contained) : aucune dépendance à une
    librairie partagée (svg-utils.js). Toutes les fonctions
@@ -7,16 +6,16 @@
    ce même fichier.
 
    Rappel des données de l'exercice :
-     f(x) = -x² + 2x + 1 = -(x-1)² + 2      (D_f = ℝ)
-     g(x) = √(x-1)                           (D_g = [1, +∞[)
-     A(2 ; 1) = point d'intersection de (Cf) et (Cg)
-     h(x) = √(-x² + 2x) = √(1-(x-1)²)        (D_h = [0, 2])
+     f(x) = -x² - 4x - 2 = -(x+2)² + 2      (D_f = ℝ)
+     g(x) = √(x+2)                           (D_g = [-2, +∞[)
+     A(-1 ; 1) = point d'intersection de (Cf) et (Cg)
+     h(x) = √(-x²-4x) = √(4-(x+2)²)          (D_h = [-4, 0])
 
    Figures dessinées :
      - graphFCfCg  : question 3, tracé de (Cf) et (Cg).
      - graphIneq   : question 4, résolution graphique de
-                     x²-2x-1+√(x-1) < 0  ⇔  g(x) < f(x).
-     - graphImages : question 5, images de [0,1] et [1,2] par f.
+                     x²+4x+2+√(x+2) < 0  ⇔  g(x) < f(x).
+     - graphImages : question 5, images de [-3,-2] et [-2,-1] par f.
      - graphH      : question 6c, monotonie de h (demi-cercle).
    ============================================================ */
 (function () {
@@ -103,11 +102,11 @@
     }
 
     /* Fonctions de l'exercice */
-    var f = function (x) { return -x * x + 2 * x + 1; };
-    var g = function (x) { return Math.sqrt(x - 1); };
-    var h = function (x) { return Math.sqrt(Math.max(0, -x * x + 2 * x)); };
+    var f = function (x) { return -x * x - 4 * x - 2; };
+    var g = function (x) { return Math.sqrt(x + 2); };
+    var h = function (x) { return Math.sqrt(Math.max(0, -x * x - 4 * x)); };
 
-    var WIN = { xmin: -1, xmax: 3.5, ymin: -2.4, ymax: 2.6 };
+    var WIN = { xmin: -4, xmax: 0.5, ymin: -2.4, ymax: 2.6 };
 
     /* ============================================================
        graphFCfCg : question 3 — tracé de (Cf) et (Cg)
@@ -123,22 +122,22 @@
         });
 
         svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, WIN.xmin + 0.05, WIN.xmax - 0.05), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.4 }));
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, 1, WIN.xmax - 0.05), fill: 'none', stroke: '#F4D03F', 'stroke-width': 2.4 }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, -2, WIN.xmax - 0.05), fill: 'none', stroke: '#F4D03F', 'stroke-width': 2.4 }));
 
-        // Point d'intersection A(2;1)
-        dashLine(svg, ax.sx(2), ax.sy(1), ax.sx(2), ax.y0, '#4ECDC4');
-        dashLine(svg, ax.x0, ax.sy(1), ax.sx(2), ax.sy(1), '#4ECDC4');
-        dot(svg, ax.sx(2), ax.sy(1), '#4ECDC4', 4);
-        svg.appendChild(text(ax.sx(2) + 8, ax.sy(1) - 8, 'A(2 ; 1)', { fill: '#4ECDC4', 'font-size': 11, 'font-weight': 700 }));
+        // Point d'intersection A(-1;1)
+        dashLine(svg, ax.sx(-1), ax.sy(1), ax.sx(-1), ax.y0, '#4ECDC4');
+        dashLine(svg, ax.x0, ax.sy(1), ax.sx(-1), ax.sy(1), '#4ECDC4');
+        dot(svg, ax.sx(-1), ax.sy(1), '#4ECDC4', 4);
+        svg.appendChild(text(ax.sx(-1) + 8, ax.sy(1) - 8, 'A(-1 ; 1)', { fill: '#4ECDC4', 'font-size': 11, 'font-weight': 700 }));
 
-        svg.appendChild(text(ax.sx(0.3), ax.sy(f(0.3)) - 10, '(Cf)', { fill: '#FF6B6B', 'font-size': 12, 'font-weight': 700 }));
-        svg.appendChild(text(ax.sx(3.1), ax.sy(g(3.1)) + 16, '(Cg)', { fill: '#F4D03F', 'font-size': 12, 'font-weight': 700 }));
+        svg.appendChild(text(ax.sx(-3.7), ax.sy(f(-3.7)) - 10, '(Cf)', { fill: '#FF6B6B', 'font-size': 12, 'font-weight': 700 }));
+        svg.appendChild(text(ax.sx(-0.4), ax.sy(g(-0.4)) + 16, '(Cg)', { fill: '#F4D03F', 'font-size': 12, 'font-weight': 700 }));
     }
 
     /* ============================================================
-       graphIneq : question 4 — résoudre x²-2x-1+√(x-1) < 0
+       graphIneq : question 4 — résoudre x²+4x+2+√(x+2) < 0
        ⇔ g(x) < f(x)  ⇔  (Cg) en dessous de (Cf)
-       Solution : S = [1, 2[
+       Solution : S = [-2, -1[
        ============================================================ */
     function drawGraphIneq(svg) {
         var w = 380, h_ = 300;
@@ -150,34 +149,34 @@
             xLabel: 'x', yLabel: 'y'
         });
 
-        // Zone hachurée où (Cg) est sous (Cf) : x ∈ [1, 2]
-        var top = pathFromFn(ax.sx, ax.sy, f, 1, 2, 40);
-        var bottomRev = pathFromFn(ax.sx, ax.sy, g, 2, 1, 40).replace('M', 'L');
+        // Zone hachurée où (Cg) est sous (Cf) : x ∈ [-2, -1]
+        var top = pathFromFn(ax.sx, ax.sy, f, -2, -1, 40);
+        var bottomRev = pathFromFn(ax.sx, ax.sy, g, -1, -2, 40).replace('M', 'L');
         svg.appendChild(el('path', { d: top + bottomRev + ' Z', fill: 'rgba(78,205,196,0.16)', stroke: 'none' }));
 
         svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, WIN.xmin + 0.05, WIN.xmax - 0.05), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.2, opacity: 0.85 }));
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, 1, WIN.xmax - 0.05), fill: 'none', stroke: '#F4D03F', 'stroke-width': 2.2, opacity: 0.85 }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, -2, WIN.xmax - 0.05), fill: 'none', stroke: '#F4D03F', 'stroke-width': 2.2, opacity: 0.85 }));
 
-        svg.appendChild(text(ax.sx(0.3), ax.sy(f(0.3)) - 10, '(Cf)', { fill: '#FF6B6B', 'font-size': 11 }));
-        svg.appendChild(text(ax.sx(3.1), ax.sy(g(3.1)) + 16, '(Cg)', { fill: '#F4D03F', 'font-size': 11 }));
+        svg.appendChild(text(ax.sx(-3.7), ax.sy(f(-3.7)) - 10, '(Cf)', { fill: '#FF6B6B', 'font-size': 11 }));
+        svg.appendChild(text(ax.sx(-0.4), ax.sy(g(-0.4)) + 16, '(Cg)', { fill: '#F4D03F', 'font-size': 11 }));
 
-        // Solution S = [1, 2[ marquée sur l'axe des x
+        // Solution S = [-2, -1[ marquée sur l'axe des x
         var y0 = ax.y0;
-        svg.appendChild(el('line', { x1: ax.sx(1), y1: y0, x2: ax.sx(2), y2: y0, stroke: '#4ECDC4', 'stroke-width': 4 }));
-        dot(svg, ax.sx(1), y0, '#4ECDC4', 4);      // borne fermée en 1
-        ring(svg, ax.sx(2), y0, '#4ECDC4', 4);     // borne ouverte en 2
-        svg.appendChild(text((ax.sx(1) + ax.sx(2)) / 2, y0 + 22, 'S = [1, 2[', { fill: '#4ECDC4', 'font-size': 11.5, 'font-weight': 700, 'text-anchor': 'middle' }));
+        svg.appendChild(el('line', { x1: ax.sx(-2), y1: y0, x2: ax.sx(-1), y2: y0, stroke: '#4ECDC4', 'stroke-width': 4 }));
+        dot(svg, ax.sx(-2), y0, '#4ECDC4', 4);      // borne fermée en -2
+        ring(svg, ax.sx(-1), y0, '#4ECDC4', 4);     // borne ouverte en -1
+        svg.appendChild(text((ax.sx(-2) + ax.sx(-1)) / 2, y0 + 22, 'S = [-2, -1[', { fill: '#4ECDC4', 'font-size': 11.5, 'font-weight': 700, 'text-anchor': 'middle' }));
     }
 
     /* ============================================================
-       graphImages : question 5 — images de [0,1] et [1,2] par f
-       f([0,1]) = [1,2]  et  f([1,2]) = [1,2]
+       graphImages : question 5 — images de [-3,-2] et [-2,-1] par f
+       f([-3,-2]) = [1,2]  et  f([-2,-1]) = [1,2]
        ============================================================ */
     function drawGraphImages(svg) {
         var w = 380, h_ = 300;
         setResponsive(svg, w, h_);
         clear(svg);
-        var xw = { xmin: -0.4, xmax: 2.4, ymin: -0.4, ymax: 2.4 };
+        var xw = { xmin: -3.4, xmax: -0.6, ymin: -0.4, ymax: 2.4 };
         var ax = drawAxes(svg, {
             pad: { l: 30, r: 18, t: 18, b: 30 }, w: w, h: h_,
             xmin: xw.xmin, xmax: xw.xmax, ymin: xw.ymin, ymax: xw.ymax, gridStep: 1,
@@ -185,54 +184,54 @@
         });
 
         svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, xw.xmin + 0.05, xw.xmax - 0.05), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.4 }));
-        svg.appendChild(text(ax.sx(2.15), ax.sy(f(2.15)) + 16, '(Cf)', { fill: '#FF6B6B', 'font-size': 11 }));
+        svg.appendChild(text(ax.sx(-0.85), ax.sy(f(-0.85)) + 16, '(Cf)', { fill: '#FF6B6B', 'font-size': 11 }));
 
         // segments d'antécédents sur l'axe des x
-        svg.appendChild(el('line', { x1: ax.sx(0), y1: ax.y0, x2: ax.sx(1), y2: ax.y0, stroke: '#4ECDC4', 'stroke-width': 4 }));
-        svg.appendChild(el('line', { x1: ax.sx(1), y1: ax.y0, x2: ax.sx(2), y2: ax.y0, stroke: '#F4D03F', 'stroke-width': 4 }));
+        svg.appendChild(el('line', { x1: ax.sx(-3), y1: ax.y0, x2: ax.sx(-2), y2: ax.y0, stroke: '#4ECDC4', 'stroke-width': 4 }));
+        svg.appendChild(el('line', { x1: ax.sx(-2), y1: ax.y0, x2: ax.sx(-1), y2: ax.y0, stroke: '#F4D03F', 'stroke-width': 4 }));
 
         // segment image commun sur l'axe des y : [1, 2]
         svg.appendChild(el('line', { x1: ax.x0, y1: ax.sy(1), x2: ax.x0, y2: ax.sy(2), stroke: '#BB8FCE', 'stroke-width': 4 }));
 
-        [0, 1, 2].forEach(function (xv) {
+        [-3, -2, -1].forEach(function (xv) {
             dashLine(svg, ax.sx(xv), ax.sy(f(xv)), ax.sx(xv), ax.y0, '#8B96A5');
             dashLine(svg, ax.x0, ax.sy(f(xv)), ax.sx(xv), ax.sy(f(xv)), '#8B96A5');
             dot(svg, ax.sx(xv), ax.sy(f(xv)), '#66FCF1', 3.2);
         });
 
-        svg.appendChild(text(ax.sx(0.5), ax.y0 + 20, '[0,1]', { fill: '#4ECDC4', 'font-size': 10.5, 'text-anchor': 'middle' }));
-        svg.appendChild(text(ax.sx(1.5), ax.y0 + 20, '[1,2]', { fill: '#F4D03F', 'font-size': 10.5, 'text-anchor': 'middle' }));
+        svg.appendChild(text(ax.sx(-2.5), ax.y0 + 20, '[-3,-2]', { fill: '#4ECDC4', 'font-size': 10.5, 'text-anchor': 'middle' }));
+        svg.appendChild(text(ax.sx(-1.5), ax.y0 + 20, '[-2,-1]', { fill: '#F4D03F', 'font-size': 10.5, 'text-anchor': 'middle' }));
         svg.appendChild(text(ax.x0 - 24, (ax.sy(1) + ax.sy(2)) / 2, '[1,2]', { fill: '#BB8FCE', 'font-size': 10, 'text-anchor': 'middle' }));
-        svg.appendChild(text(w / 2, 16, 'f([0,1]) = f([1,2]) = [1, 2]', { fill: '#8B96A5', 'font-size': 11, 'text-anchor': 'middle' }));
+        svg.appendChild(text(w / 2, 16, 'f([-3,-2]) = f([-2,-1]) = [1, 2]', { fill: '#8B96A5', 'font-size': 11, 'text-anchor': 'middle' }));
     }
 
     /* ============================================================
-       graphH : question 6c — monotonie de h(x) = √(-x²+2x)
-       h est le demi-cercle supérieur de centre (1;0), rayon 1.
-       Croissante sur [0,1], décroissante sur [1,2].
+       graphH : question 6c — monotonie de h(x) = √(-x²-4x)
+       h est le demi-cercle supérieur de centre (-2;0), rayon 2.
+       Croissante sur [-4,-2], décroissante sur [-2,0].
        ============================================================ */
     function drawGraphH(svg) {
         var w = 380, h_ = 230;
         setResponsive(svg, w, h_);
         clear(svg);
-        var xw = { xmin: -0.5, xmax: 2.5, ymin: -0.4, ymax: 1.5 };
+        var xw = { xmin: -4.7, xmax: 0.7, ymin: -0.4, ymax: 2.6 };
         var ax = drawAxes(svg, {
             pad: { l: 30, r: 18, t: 18, b: 26 }, w: w, h: h_,
             xmin: xw.xmin, xmax: xw.xmax, ymin: xw.ymin, ymax: xw.ymax, gridStep: 1,
             xLabel: 'x', yLabel: 'y'
         });
 
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, h, 0, 1, 50), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.6 }));
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, h, 1, 2, 50), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.6 }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, h, -4, -2, 50), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.6 }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, h, -2, 0, 50), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.6 }));
 
-        dot(svg, ax.sx(0), ax.sy(0), '#4ECDC4', 3.4);
-        dot(svg, ax.sx(1), ax.sy(1), '#F4D03F', 3.8);
-        dot(svg, ax.sx(2), ax.sy(0), '#FF6B6B', 3.4);
+        dot(svg, ax.sx(-4), ax.sy(0), '#4ECDC4', 3.4);
+        dot(svg, ax.sx(-2), ax.sy(2), '#F4D03F', 3.8);
+        dot(svg, ax.sx(0), ax.sy(0), '#FF6B6B', 3.4);
 
-        svg.appendChild(text(ax.sx(0.5), ax.sy(h(0.5)) - 10, 'croissante ↗', { fill: '#4ECDC4', 'font-size': 10.5, 'text-anchor': 'middle' }));
-        svg.appendChild(text(ax.sx(1.5), ax.sy(h(1.5)) - 10, 'décroissante ↘', { fill: '#FF6B6B', 'font-size': 10.5, 'text-anchor': 'middle' }));
-        svg.appendChild(text(ax.sx(1), ax.sy(1) - 14, '(1 ; 1)', { fill: '#F4D03F', 'font-size': 10.5, 'text-anchor': 'middle' }));
-        svg.appendChild(text(w / 2, 16, 'h(x) = √(-x²+2x)  sur  D_h = [0, 2]', { fill: '#8B96A5', 'font-size': 11, 'text-anchor': 'middle' }));
+        svg.appendChild(text(ax.sx(-3), ax.sy(h(-3)) - 10, 'croissante ↗', { fill: '#4ECDC4', 'font-size': 10.5, 'text-anchor': 'middle' }));
+        svg.appendChild(text(ax.sx(-1), ax.sy(h(-1)) - 10, 'décroissante ↘', { fill: '#FF6B6B', 'font-size': 10.5, 'text-anchor': 'middle' }));
+        svg.appendChild(text(ax.sx(-2), ax.sy(2) - 14, '(-2 ; 2)', { fill: '#F4D03F', 'font-size': 10.5, 'text-anchor': 'middle' }));
+        svg.appendChild(text(w / 2, 16, 'h(x) = √(-x²-4x)  sur  D_h = [-4, 0]', { fill: '#8B96A5', 'font-size': 11, 'text-anchor': 'middle' }));
     }
 
     /* ---------- Initialisation ---------- */

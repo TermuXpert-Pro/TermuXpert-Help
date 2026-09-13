@@ -1,14 +1,12 @@
 /* ============================================================
-   figuresvt_ex3.js — Devoir Surveillé N°1 (Modèle 2)
-   Exercice 3 : Étude de fonction
-
-   g(x) = (2x+1)/(x-1) = 2 + 3/(x-1)
-   Centre de symétrie I(1;2), asymptotes x=1 et y=2.
-   - Branche gauche (x<1) : décroissante de 2⁻ (en -∞) à -∞ (en 1⁻).
-   - Branche droite (x>1) : décroissante de +∞ (en 1⁺) à 2⁺ (en +∞).
+   Exercice 3 : Étude de fonction (Modèle 2)
+   g(x) = (3x-1)/(x-2) = 3 + 5/(x-2)
+   Centre de symétrie I(2,3) ; asymptotes x=2 et y=3.
+   Fichier autonome (self-contained).
 
    Figure dessinée :
-     - graphCg : courbe (Cg) (question 1-d).
+     - graphCg : tracé de l'hyperbole (Cg), avec ses deux
+                 asymptotes et son centre de symétrie.
    ============================================================ */
 (function () {
     'use strict';
@@ -16,7 +14,9 @@
 
     function el(tag, attrs) {
         var e = document.createElementNS(NS, tag);
-        for (var k in attrs) { if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]); }
+        for (var k in attrs) {
+            if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]);
+        }
         return e;
     }
     function text(x, y, str, attrs) {
@@ -71,7 +71,7 @@
         return { sx: sx, sy: sy, x0: x0, y0: y0 };
     }
     function pathFromFn(sx, sy, fn, x1, x2, steps) {
-        steps = steps || 90;
+        steps = steps || 80;
         var d = '';
         for (var i = 0; i <= steps; i++) {
             var x = x1 + (x2 - x1) * i / steps;
@@ -80,51 +80,50 @@
         }
         return d;
     }
-    function dot(svg, cx, cy, color, r) {
-        svg.appendChild(el('circle', { cx: cx, cy: cy, r: r || 3.6, fill: color, stroke: '#0D1117', 'stroke-width': 1 }));
-    }
     function dashLine(svg, x1, y1, x2, y2, color) {
-        svg.appendChild(el('line', { x1: x1, y1: y1, x2: x2, y2: y2, stroke: color, 'stroke-width': 1, 'stroke-dasharray': '4,3' }));
+        svg.appendChild(el('line', { x1: x1, y1: y1, x2: x2, y2: y2, stroke: color, 'stroke-width': 1.2, 'stroke-dasharray': '5,4' }));
+    }
+    function dot(svg, cx, cy, color, r) {
+        svg.appendChild(el('circle', { cx: cx, cy: cy, r: r || 3.4, fill: color, stroke: '#0D1117', 'stroke-width': 1 }));
     }
 
-    var g = function (x) { return 2 + 3 / (x - 1); };
+    var g = function (x) { return 3 + 5 / (x - 2); };
 
-    /* ============================================================
-       graphCg : courbe de g, hyperbole de centre I(1,2)
-       ============================================================ */
     function drawGraphCg(svg) {
         var w = 360, h = 280;
         setResponsive(svg, w, h);
         clear(svg);
-        var WIN = { xmin: -4.2, xmax: 6.2, ymin: -3, ymax: 7 };
         var ax = drawAxes(svg, {
-            pad: { l: 30, r: 16, t: 16, b: 26 }, w: w, h: h,
-            xmin: WIN.xmin, xmax: WIN.xmax, ymin: WIN.ymin, ymax: WIN.ymax, gridStep: 2,
+            pad: { l: 30, r: 16, t: 18, b: 26 }, w: w, h: h,
+            xmin: -1.5, xmax: 5.5, ymin: -2, ymax: 8, gridStep: 1,
             xLabel: 'x', yLabel: 'y'
         });
 
-        // Asymptotes
-        svg.appendChild(el('line', { x1: ax.sx(1), y1: ax.sy(WIN.ymin), x2: ax.sx(1), y2: ax.sy(WIN.ymax), stroke: '#F4D03F', 'stroke-width': 1.2, 'stroke-dasharray': '5,4' }));
-        svg.appendChild(el('line', { x1: ax.sx(WIN.xmin), y1: ax.sy(2), x2: ax.sx(WIN.xmax), y2: ax.sy(2), stroke: '#F4D03F', 'stroke-width': 1.2, 'stroke-dasharray': '5,4' }));
-        svg.appendChild(text(ax.sx(1) + 4, ax.sy(WIN.ymax) + 10, 'x=1', { fill: '#F4D03F', 'font-size': 10 }));
-        svg.appendChild(text(ax.sx(WIN.xmin) + 4, ax.sy(2) - 6, 'y=2', { fill: '#F4D03F', 'font-size': 10 }));
+        // Asymptotes x=2 et y=3
+        dashLine(svg, ax.sx(2), ax.sy(-2), ax.sx(2), ax.sy(8), '#8B96A5');
+        dashLine(svg, ax.sx(-1.5), ax.sy(3), ax.sx(5.5), ax.sy(3), '#8B96A5');
+        svg.appendChild(text(ax.sx(2) + 6, ax.sy(8) + 10, 'x = 2', { fill: '#8B96A5', 'font-size': 10.5 }));
+        svg.appendChild(text(ax.sx(5.5) - 4, ax.sy(3) - 6, 'y = 3', { fill: '#8B96A5', 'font-size': 10.5, 'text-anchor': 'end' }));
 
-        // Branche gauche (x<1) : décroissante de 2⁻ à -∞
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, WIN.xmin + 0.1, 0.55), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.4 }));
-        // Branche droite (x>1) : décroissante de +∞ à 2⁺
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, 1.45, WIN.xmax - 0.1), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.4 }));
+        // Deux branches de l'hyperbole
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, -1.4, 1.85), fill: 'none', stroke: '#BB8FCE', 'stroke-width': 2.4 }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, g, 2.15, 5.4), fill: 'none', stroke: '#BB8FCE', 'stroke-width': 2.4 }));
 
-        // Centre de symétrie I(1;2)
-        dot(svg, ax.sx(1), ax.sy(2), '#4ECDC4', 4);
-        svg.appendChild(text(ax.sx(1) + 8, ax.sy(2) - 8, 'I(1 ; 2)', { fill: '#4ECDC4', 'font-size': 11, 'font-weight': 700 }));
+        // Centre de symétrie I(2,3)
+        dot(svg, ax.sx(2), ax.sy(3), '#4ECDC4', 4);
+        svg.appendChild(text(ax.sx(2) + 8, ax.sy(3) - 8, 'I(2 ; 3)', { fill: '#4ECDC4', 'font-size': 11, 'font-weight': 700 }));
 
-        svg.appendChild(text(ax.sx(WIN.xmin + 0.5), ax.sy(g(WIN.xmin + 0.5)) + 14, '(Cg)', { fill: '#FF6B6B', 'font-size': 11.5, 'font-weight': 700 }));
+        // Point d'annulation (1/3 ; 0)
+        dot(svg, ax.sx(1 / 3), ax.sy(0), '#F4D03F', 3.4);
+        svg.appendChild(text(ax.sx(1 / 3) + 6, ax.sy(0) + 16, '1/3', { fill: '#F4D03F', 'font-size': 10 }));
+
+        svg.appendChild(text(w - 14, 20, '(Cg)', { fill: '#BB8FCE', 'font-size': 12, 'font-weight': 700, 'text-anchor': 'end' }));
     }
 
     function init() {
         var svg = document.getElementById('graphCg');
         if (svg) {
-            try { drawGraphCg(svg); } catch (e) { console.error('figuresvt_ex3:', e); }
+            try { drawGraphCg(svg); } catch (e) { console.error('figuresvt_ex3 (model2):', e); }
         }
     }
 
@@ -133,5 +132,6 @@
     } else {
         init();
     }
+
     window.addEventListener('resize', init);
 })();

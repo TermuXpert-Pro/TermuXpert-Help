@@ -1,23 +1,23 @@
 /* ============================================================
-   figuresvt_ex1.js — Devoir Surveillé N°1 (Modèle 2)
-   Exercice 1 : Logique mathématique
+   Exercice 1 : Logique mathématique (Modèle 2)
    Fichier autonome (self-contained) : aucune dépendance à une
    librairie partagée (svg-utils.js).
 
    Figures dessinées :
-     - fig1_4 : y ↦ y² + 1 (avec x = -2 choisi), montre que la
-                courbe reste strictement au-dessus de 0 pour
-                tout y (question 4, P4 — vraie).
-     - fig1_5 : comparaison de 2^n et 1+n, illustrant
-                2^n ≥ 1+n pour tout n (question 5, P5).
+     - fig1_2 : comparaison de 3^n et 1+2n (question 2, récurrence).
+     - fig1_5 : courbe y ↦ y²+3, toujours strictement positive
+                (question 5, existence).
    ============================================================ */
 (function () {
     'use strict';
     var NS = 'http://www.w3.org/2000/svg';
 
+    /* ---------- Utilitaires SVG de base ---------- */
     function el(tag, attrs) {
         var e = document.createElementNS(NS, tag);
-        for (var k in attrs) { if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]); }
+        for (var k in attrs) {
+            if (attrs.hasOwnProperty(k)) e.setAttribute(k, attrs[k]);
+        }
         return e;
     }
     function text(x, y, str, attrs) {
@@ -84,77 +84,71 @@
     function dot(svg, cx, cy, color, r) {
         svg.appendChild(el('circle', { cx: cx, cy: cy, r: r || 3.4, fill: color, stroke: '#0D1117', 'stroke-width': 1 }));
     }
-    function dashLine(svg, x1, y1, x2, y2, color) {
-        svg.appendChild(el('line', { x1: x1, y1: y1, x2: x2, y2: y2, stroke: color, 'stroke-width': 1, 'stroke-dasharray': '4,3' }));
-    }
 
     /* ============================================================
-       fig1_4 : y ↦ y² + 1  (x = -2 choisi)
-       Illustre pourquoi P4 est vraie : la courbe reste toujours
-       strictement au-dessus de 0.
+       fig1_2 : comparaison de 3^n et 1+2n (n entier de 0 à 4)
        ============================================================ */
-    function drawFig1_4(svg) {
-        var w = 360, h = 220;
-        setResponsive(svg, w, h);
-        clear(svg);
-        var ax = drawAxes(svg, {
-            pad: { l: 30, r: 16, t: 18, b: 26 }, w: w, h: h,
-            xmin: -3, xmax: 3, ymin: -1.2, ymax: 5.5, gridStep: 1,
-            xLabel: 'y', yLabel: 'valeur'
-        });
-        var wfn = function (t) { return t * t + 1; };
-
-        // Ligne de repère y = 0 (seuil à dépasser)
-        dashLine(svg, ax.sx(-3), ax.sy(0), ax.sx(3), ax.sy(0), '#8B96A5');
-
-        // Courbe y ↦ y² + 1
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, wfn, -2.2, 2.2), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.4 }));
-
-        // Minimum en (0, 1)
-        dashLine(svg, ax.sx(0), ax.sy(1), ax.sx(0), ax.y0, '#F4D03F');
-        dot(svg, ax.sx(0), ax.sy(1), '#F4D03F', 4);
-        svg.appendChild(text(ax.sx(0) + 8, ax.sy(1) - 8, 'min = 1', { fill: '#F4D03F', 'font-size': 11, 'font-weight': 700 }));
-
-        svg.appendChild(text(w - 14, 22, 'y² + 1  (avec x = -2)', { fill: '#4ECDC4', 'font-size': 10.5, 'text-anchor': 'end' }));
-        svg.appendChild(text(w / 2, h - 6, 'toujours > 0 : jamais sous la ligne pointillée', { fill: '#8B96A5', 'font-size': 9.5, 'text-anchor': 'middle' }));
-    }
-
-    /* ============================================================
-       fig1_5 : comparaison de 2^n et 1+n
-       Illustre 2^n ≥ 1+n pour tout n ∈ ℕ (égalité en n=0 et n=1).
-       ============================================================ */
-    function drawFig1_5(svg) {
+    function drawFig1_2(svg) {
         var w = 360, h = 230;
         setResponsive(svg, w, h);
         clear(svg);
         var ax = drawAxes(svg, {
             pad: { l: 30, r: 16, t: 18, b: 26 }, w: w, h: h,
-            xmin: -0.3, xmax: 4.3, ymin: -0.6, ymax: 17, gridStep: 4,
-            xLabel: 'n', yLabel: 'valeur'
+            xmin: -0.4, xmax: 4.4, ymin: -3, ymax: 82, gridStep: 20,
+            xLabel: 'n', yLabel: 'y'
         });
-        var expo = function (n) { return Math.pow(2, n); };
-        var lin = function (n) { return 1 + n; };
 
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, expo, 0, 4, 60), fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.4 }));
-        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, lin, 0, 4, 20), fill: 'none', stroke: '#F4D03F', 'stroke-width': 2.2 }));
+        var ns = [0, 1, 2, 3, 4];
+        var pow3 = ns.map(function (n) { return Math.pow(3, n); });
+        var lin = ns.map(function (n) { return 1 + 2 * n; });
 
-        // Points d'égalité en n=0 et n=1
-        [0, 1].forEach(function (n) {
-            dot(svg, ax.sx(n), ax.sy(expo(n)), '#4ECDC4', 4);
+        // Courbe (points reliés) de 3^n
+        var dPow = '';
+        ns.forEach(function (n, i) { dPow += (i === 0 ? 'M' : 'L') + ax.sx(n).toFixed(2) + ',' + ax.sy(pow3[i]).toFixed(2) + ' '; });
+        svg.appendChild(el('path', { d: dPow, fill: 'none', stroke: '#FF6B6B', 'stroke-width': 2.2 }));
+        ns.forEach(function (n, i) { dot(svg, ax.sx(n), ax.sy(pow3[i]), '#FF6B6B', 3.2); });
+
+        // Droite (points reliés) de 1+2n
+        var dLin = '';
+        ns.forEach(function (n, i) { dLin += (i === 0 ? 'M' : 'L') + ax.sx(n).toFixed(2) + ',' + ax.sy(lin[i]).toFixed(2) + ' '; });
+        svg.appendChild(el('path', { d: dLin, fill: 'none', stroke: '#F4D03F', 'stroke-width': 2.2 }));
+        ns.forEach(function (n, i) { dot(svg, ax.sx(n), ax.sy(lin[i]), '#F4D03F', 3.2); });
+
+        svg.appendChild(text(w - 14, 20, '3ⁿ', { fill: '#FF6B6B', 'font-size': 12, 'font-weight': 700, 'text-anchor': 'end' }));
+        svg.appendChild(text(w - 14, 36, '1+2n', { fill: '#F4D03F', 'font-size': 12, 'font-weight': 700, 'text-anchor': 'end' }));
+    }
+
+    /* ============================================================
+       fig1_5 : y ↦ y²+3, toujours strictement positive
+       ============================================================ */
+    function drawFig1_5(svg) {
+        var w = 360, h = 220;
+        setResponsive(svg, w, h);
+        clear(svg);
+        var ax = drawAxes(svg, {
+            pad: { l: 30, r: 16, t: 18, b: 26 }, w: w, h: h,
+            xmin: -3.2, xmax: 3.2, ymin: -1, ymax: 12, gridStep: 2,
+            xLabel: 'y', yLabel: 'z'
         });
-        svg.appendChild(text(ax.sx(0.5), ax.sy(expo(0.5)) - 10, 'égalité en n=0 et n=1', { fill: '#4ECDC4', 'font-size': 9.5, 'text-anchor': 'middle' }));
+        var f = function (y) { return y * y + 3; };
 
-        svg.appendChild(text(ax.sx(3.3), ax.sy(expo(3.3)) - 6, '2ⁿ', { fill: '#FF6B6B', 'font-size': 12, 'font-weight': 700 }));
-        svg.appendChild(text(ax.sx(3.6), ax.sy(lin(3.6)) + 14, '1+n', { fill: '#F4D03F', 'font-size': 12, 'font-weight': 700 }));
+        svg.appendChild(el('line', { x1: ax.sx(-3.2), y1: ax.y0, x2: ax.sx(3.2), y2: ax.y0, stroke: '#8B96A5', 'stroke-width': 1, 'stroke-dasharray': '4,3' }));
+        svg.appendChild(el('path', { d: pathFromFn(ax.sx, ax.sy, f, -3, 3), fill: 'none', stroke: '#4ECDC4', 'stroke-width': 2.4 }));
+        dot(svg, ax.sx(0), ax.sy(3), '#FF6B6B', 4);
+        svg.appendChild(text(ax.sx(0) + 8, ax.sy(3) - 8, 'min = 3', { fill: '#FF6B6B', 'font-size': 10.5, 'font-weight': 700 }));
+        svg.appendChild(text(w - 14, 20, 'z = y²+3', { fill: '#4ECDC4', 'font-size': 11.5, 'text-anchor': 'end' }));
     }
 
     /* ---------- Initialisation ---------- */
     function init() {
-        var map = { fig1_4: drawFig1_4, fig1_5: drawFig1_5 };
+        var map = {
+            fig1_2: drawFig1_2,
+            fig1_5: drawFig1_5
+        };
         Object.keys(map).forEach(function (id) {
             var svg = document.getElementById(id);
             if (svg) {
-                try { map[id](svg); } catch (e) { console.error('figuresvt_ex1:', id, e); }
+                try { map[id](svg); } catch (e) { console.error('figuresvt_ex1 (model2):', id, e); }
             }
         });
     }
@@ -164,5 +158,6 @@
     } else {
         init();
     }
+
     window.addEventListener('resize', init);
 })();

@@ -484,23 +484,25 @@
                 <span class="badge-exercice"><i class="fas fa-layer-group"></i> Semestre 1</span>
                 <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4;"><i class="fas fa-clock"></i> Durée : 2 heures</span>
                 <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-book"></i> Logique & Fonctions</span>
+                <span class="badge-exercice" style="background:rgba(255,255,255,0.06); color:var(--text-muted);"><i class="fas fa-star"></i> Barème sur 24</span>
             </p>
 
             <!-- ============================================================
                  EXERCICE 1 - Logique mathématique (14 pts)
             ============================================================ -->
             <div class="devoir-exo-header">
-                <h2><i class="fas fa-list-ol"></i> Exercice 1</h2>
-                <span class="badge-exercice">14 pts</span>
+                <h2><i class="fas fa-list-ol"></i> Exercice 1 — Logique mathématique</h2>
+                <span class="badge-exercice">14 pts · 2 pts × 7</span>
             </div>
 
             <!-- Question 1 -->
             <div class="sub-question">
                 <div class="letter">1)</div>
-                <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de vérité des propositions suivantes :</p>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-code-fork"></i> Type : Connecteurs logiques (OU / ET)</span>
+                <p style="font-size:11.5px; margin:6px 0;">Déterminer la valeur de vérité des propositions suivantes :</p>
                 <div class="question-text">
                     \[
-                    \text{P} : \left( \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3} \text{ ou } "2 \text{ est premier}" \right) \quad ; \quad \text{Q} : \left( 2,3 \notin \mathbb{N} \text{ et } |1 - \sqrt{2}| = 1 - \sqrt{2} \right)
+                    \text{P} : \left( \frac{1}{\sqrt{5}} = \frac{\sqrt{5}}{5} \text{ ou } "4 \text{ est premier}" \right) \quad ; \quad \text{Q} : \left( 3,7 \notin \mathbb{N} \text{ et } |1 - \sqrt{3}| = 1 - \sqrt{3} \right)
                     \]
                 </div>
                 <div id="sol1_1" class="solution-box">
@@ -508,14 +510,14 @@
                     <div class="sol-content">
                         <div class="step">
                             <span class="step-num">1) Proposition P :</span>
-                            <p>On a \(\frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}\) (vraie car \(\frac{\sqrt{3}}{3} = \frac{1}{\sqrt{3}}\)).</p>
-                            <p>L'assertion "2 est premier" est vraie.</p>
-                            <p>La proposition P est de la forme (vraie ou vraie) = <b>vraie</b>.</p>
+                            <p>On a \(\frac{1}{\sqrt{5}} = \frac{\sqrt{5}}{5}\) (vraie, identité classique).</p>
+                            <p>L'assertion "4 est premier" est fausse (\(4 = 2 \times 2\)).</p>
+                            <p>P est de la forme (vraie ou fausse) = <b>vraie</b>.</p>
                         </div>
                         <div class="step">
                             <span class="step-num">2) Proposition Q :</span>
-                            <p>\(2,3 \notin \mathbb{N}\) est fausse (2,3 n'est pas un entier naturel, mais la notation \(2,3\) signifie 2.3, donc elle n'appartient pas à \(\mathbb{N}\). En réalité, 2,3 n'est pas un entier, donc l'assertion est vraie).</p>
-                            <p>\(|1 - \sqrt{2}| = \sqrt{2} - 1\) car \(\sqrt{2} > 1\). Donc \(|1 - \sqrt{2}| = 1 - \sqrt{2}\) est fausse.</p>
+                            <p>\(3,7 \notin \mathbb{N}\) est vraie (3,7 n'est pas un entier naturel).</p>
+                            <p>\(|1-\sqrt{3}| = \sqrt{3}-1\) car \(\sqrt{3} > 1\). Donc \(|1-\sqrt{3}| = 1-\sqrt{3}\) est fausse.</p>
                             <p>Q est de la forme (vraie et fausse) = <b>fausse</b>.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
@@ -529,10 +531,11 @@
             <!-- Question 2 -->
             <div class="sub-question">
                 <div class="letter">2)</div>
-                <p style="font-size:11.5px; margin:4px 0;">Déterminer la valeur de vérité des propositions suivantes :</p>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B; font-size:10px; margin-bottom:6px;"><i class="fas fa-magnifying-glass"></i> Type : Quantificateurs & contre-exemple</span>
+                <p style="font-size:11.5px; margin:6px 0;">Déterminer la valeur de vérité des propositions suivantes :</p>
                 <div class="question-text">
                     \[
-                    \text{R} : \left( (\forall x \in \mathbb{R}), x^2 \ge x \right) \quad ; \quad \text{S} : \left( (\exists n \in \mathbb{N}), n^2 - 2n + 1 = 0 \right)
+                    \text{R} : \left( (\forall x \in \mathbb{R}), x^2 \ge 3x \right) \quad ; \quad \text{S} : \left( (\exists n \in \mathbb{N}), n^2 - 6n + 9 = 0 \right)
                     \]
                 </div>
                 <div id="sol1_2" class="solution-box">
@@ -540,14 +543,14 @@
                     <div class="sol-content">
                         <div class="step">
                             <span class="step-num">1) Proposition R :</span>
-                            <p>\(x^2 \ge x \iff x^2 - x \ge 0 \iff x(x-1) \ge 0\).</p>
-                            <p>Cette inégalité est vraie pour \(x \le 0\) ou \(x \ge 1\), mais fausse pour \(0 < x < 1\) (par exemple \(x=0.5\)).</p>
+                            <p>\(x^2 \ge 3x \iff x^2 - 3x \ge 0 \iff x(x-3) \ge 0\).</p>
+                            <p>Cette inégalité est fausse pour \(0 < x < 3\) (par exemple \(x=1\) : \(1 \ge 3\) est faux).</p>
                             <p>Donc R est <b>fausse</b>.</p>
                         </div>
                         <div class="step">
                             <span class="step-num">2) Proposition S :</span>
-                            <p>\(n^2 - 2n + 1 = 0 \iff (n-1)^2 = 0 \iff n = 1\).</p>
-                            <p>Puisque \(1 \in \mathbb{N}\), il existe bien un entier naturel \(n=1\) qui vérifie l'équation.</p>
+                            <p>\(n^2 - 6n + 9 = 0 \iff (n-3)^2 = 0 \iff n = 3\).</p>
+                            <p>Puisque \(3 \in \mathbb{N}\), il existe bien un entier naturel qui vérifie l'équation.</p>
                             <p>Donc S est <b>vraie</b>.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
@@ -561,10 +564,11 @@
             <!-- Question 3 -->
             <div class="sub-question">
                 <div class="letter">3)</div>
-                <p style="font-size:11.5px; margin:4px 0;">On considère la proposition suivante :</p>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text); font-size:10px; margin-bottom:6px;"><i class="fas fa-magnifying-glass"></i> Type : Négation & contre-exemple</span>
+                <p style="font-size:11.5px; margin:6px 0;">On considère la proposition suivante :</p>
                 <div class="question-text">
                     \[
-                    \text{T} : (\forall x \in \mathbb{R}) \; ; \; \sqrt{x^2 + 2x + 3} = x + 1
+                    \text{T} : (\forall x \in \mathbb{R}) \; ; \; \sqrt{x^2 + 4x + 7} = x + 2
                     \]
                 </div>
                 <p style="font-size:11.5px; margin:4px 0;"><b>a</b> - Donner la négation de T.</p>
@@ -576,24 +580,27 @@
                             <span class="step-num">a) Négation de T :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                \overline{\text{T}} : (\exists x \in \mathbb{R}) \; ; \; \sqrt{x^2 + 2x + 3} \neq x + 1
+                                \overline{\text{T}} : (\exists x \in \mathbb{R}) \; ; \; \sqrt{x^2 + 4x + 7} \neq x + 2
                                 \]
                             </div>
                         </div>
                         <div class="step">
                             <span class="step-num">b) Déduction :</span>
-                            <p>Pour montrer que T est fausse, il suffit de trouver un contre-exemple, c'est-à-dire un \(x \in \mathbb{R}\) tel que \(\sqrt{x^2 + 2x + 3} \neq x + 1\).</p>
-                            <p>Prenons \(x = 0\). On a :</p>
+                            <p>Il suffit de trouver un contre-exemple. Prenons \(x = 0\). On a :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                \sqrt{0^2 + 2(0) + 3} = \sqrt{3} \quad \text{et} \quad 0 + 1 = 1
+                                \sqrt{0^2 + 4(0) + 7} = \sqrt{7} \quad \text{et} \quad 0 + 2 = 2
                                 \]
                             </div>
-                            <p>Puisque \(\sqrt{3} \neq 1\), la proposition T est fausse.</p>
+                            <p>Puisque \(\sqrt{7} \neq 2\) (car \(\sqrt{7} \approx 2{,}65\)), la proposition T est fausse.</p>
+                        </div>
+                        <div class="graph-container">
+                            <svg id="fig1_3" width="360" height="230"></svg>
+                            <p>Les courbes \(y=\sqrt{x^2+4x+7}\) et \(y=x+2\) ne coïncident pas : en \(x=0\), un écart net apparaît entre \(\sqrt{7}\) et \(2\).</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>\(\overline{\text{T}} : \exists x \in \mathbb{R}, \sqrt{x^2 + 2x + 3} \neq x + 1\). T est <b>fausse</b>.</p>
+                            <p>\(\overline{\text{T}} : \exists x \in \mathbb{R}, \sqrt{x^2+4x+7} \neq x+2\). T est <b>fausse</b>.</p>
                         </div>
                     </div>
                 </div>
@@ -602,10 +609,11 @@
             <!-- Question 4 -->
             <div class="sub-question">
                 <div class="letter">4)</div>
-                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par équivalences successives montrer que :</p>
+                <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-equals"></i> Type : Équivalences successives</span>
+                <p style="font-size:11.5px; margin:6px 0;">En utilisant le raisonnement par équivalences successives montrer que :</p>
                 <div class="question-text">
                     \[
-                    (\forall x \in \mathbb{R}) : \sqrt{x^4 + 3x^2 + 1} \ge x^2 + 1
+                    (\forall x \in \mathbb{R}) : \sqrt{x^4 + 5x^2 + 4} \ge x^2 + 2
                     \]
                 </div>
                 <div id="sol1_4" class="solution-box">
@@ -613,22 +621,22 @@
                     <div class="sol-content">
                         <div class="step">
                             <span class="step-num">Raisonnement par équivalences successives :</span>
-                            <p>Pour tout \(x \in \mathbb{R}\), on a \(x^4 + 3x^2 + 1 > 0\) et \(x^2 + 1 > 0\). Donc l'inégalité est équivalente à :</p>
+                            <p>Pour tout \(x \in \mathbb{R}\), \(x^4+5x^2+4>0\) et \(x^2+2>0\). L'inégalité équivaut donc à :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                \sqrt{x^4 + 3x^2 + 1} \ge x^2 + 1 \iff x^4 + 3x^2 + 1 \ge (x^2 + 1)^2
+                                \sqrt{x^4+5x^2+4} \ge x^2+2 \iff x^4+5x^2+4 \ge (x^2+2)^2
                                 \]
                             </div>
                             <p>Développons le membre de droite :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                (x^2 + 1)^2 = x^4 + 2x^2 + 1
+                                (x^2+2)^2 = x^4+4x^2+4
                                 \]
                             </div>
                             <p>L'inégalité devient :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                x^4 + 3x^2 + 1 \ge x^4 + 2x^2 + 1 \iff x^2 \ge 0
+                                x^4+5x^2+4 \ge x^4+4x^2+4 \iff x^2 \ge 0
                                 \]
                             </div>
                             <p>Or \(x^2 \ge 0\) est vraie pour tout \(x \in \mathbb{R}\).</p>
@@ -648,10 +656,11 @@
             <!-- Question 5 -->
             <div class="sub-question">
                 <div class="letter">5)</div>
-                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par la contraposée montrer que :</p>
+                <span class="badge-exercice" style="background:rgba(187,143,206,0.15); color:#BB8FCE; font-size:10px; margin-bottom:6px;"><i class="fas fa-diagram-project"></i> Type : Raisonnement par contraposée</span>
+                <p style="font-size:11.5px; margin:6px 0;">En utilisant le raisonnement par la contraposée montrer que :</p>
                 <div class="question-text">
                     \[
-                    \forall (x, y) \in \mathbb{R}^{*2} : (x \neq y \text{ et } x \cdot y \neq 2) \Rightarrow \left( \frac{x^2 + 2}{x} \neq \frac{y^2 + 2}{y} \right)
+                    \forall (x, y) \in \mathbb{R}^{*2} : (x \neq y \text{ et } x \cdot y \neq 3) \Rightarrow \left( \frac{x^2 + 3}{x} \neq \frac{y^2 + 3}{y} \right)
                     \]
                 </div>
                 <div id="sol1_5" class="solution-box">
@@ -659,11 +668,10 @@
                     <div class="sol-content">
                         <div class="step">
                             <span class="step-num">Raisonnement par contraposée :</span>
-                            <p>La contraposée de l'implication \(\text{A} \Rightarrow \text{B}\) est \(\overline{\text{B}} \Rightarrow \overline{\text{A}}\).</p>
-                            <p>Montrons que :</p>
+                            <p>La contraposée de \(\text{A} \Rightarrow \text{B}\) est \(\overline{\text{B}} \Rightarrow \overline{\text{A}}\). Montrons que :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                \frac{x^2 + 2}{x} = \frac{y^2 + 2}{y} \Rightarrow (x = y \text{ ou } x \cdot y = 2)
+                                \frac{x^2+3}{x} = \frac{y^2+3}{y} \Rightarrow (x=y \text{ ou } xy=3)
                                 \]
                             </div>
                         </div>
@@ -671,22 +679,22 @@
                             <span class="step-num">Calcul :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                \frac{x^2 + 2}{x} = \frac{y^2 + 2}{y} \iff \frac{x^2}{x} + \frac{2}{x} = \frac{y^2}{y} + \frac{2}{y} \iff x + \frac{2}{x} = y + \frac{2}{y}
+                                \frac{x^2+3}{x} = \frac{y^2+3}{y} \iff x+\frac{3}{x} = y+\frac{3}{y}
                                 \]
                             </div>
-                            <p>On multiplie par \(xy\) (non nul car \(x, y \in \mathbb{R}^*\)) :</p>
+                            <p>On multiplie par \(xy\) (non nul car \(x,y \in \mathbb{R}^*\)) :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                x^2 y + 2y = xy^2 + 2x \iff x^2 y - xy^2 + 2y - 2x = 0
+                                x^2y+3y = xy^2+3x \iff x^2y-xy^2+3y-3x=0
                                 \]
                             </div>
                             <p>On factorise :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                xy(x - y) - 2(x - y) = 0 \iff (x - y)(xy - 2) = 0
+                                xy(x-y)-3(x-y)=0 \iff (x-y)(xy-3)=0
                                 \]
                             </div>
-                            <p>Donc \(x = y\) ou \(xy = 2\).</p>
+                            <p>Donc \(x=y\) ou \(xy=3\).</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
@@ -703,42 +711,36 @@
             <!-- Question 6 -->
             <div class="sub-question">
                 <div class="letter">6)</div>
-                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par récurrence montrer que les deux propositions suivantes sont vraies :</p>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text); font-size:10px; margin-bottom:6px;"><i class="fas fa-repeat"></i> Type : Raisonnement par récurrence</span>
+                <p style="font-size:11.5px; margin:6px 0;">En utilisant le raisonnement par récurrence montrer que les deux propositions suivantes sont vraies :</p>
                 <div class="question-text">
-                    <p><b>a</b> - \((\forall n \in \mathbb{N}) \quad 1 + 11^1 + 11^2 + \cdots + 11^n = \frac{1}{10}(11^{n+1} - 1)\)</p>
-                    <p><b>b</b> - Le nombre \(3^{3n+2} - 2^{n+2}\) est divisible par \(5\) pour tout \(n\) de \(\mathbb{N}\).</p>
+                    <p><b>a</b> - \((\forall n \in \mathbb{N}) \quad 1 + 7^1 + 7^2 + \cdots + 7^n = \frac{1}{6}(7^{n+1} - 1)\)</p>
+                    <p><b>b</b> - Le nombre \(2^{3n+1} + 3^{n+1}\) est divisible par \(5\) pour tout \(n\) de \(\mathbb{N}\).</p>
                 </div>
                 <div id="sol1_6" class="solution-box">
                     <div class="sol-title">✅ Correction</div>
                     <div class="sol-content">
-                        <p style="font-weight:600; color:#BB8FCE;">a) Somme des puissances de 11</p>
+                        <p style="font-weight:600; color:#BB8FCE;">a) Somme des puissances de 7</p>
                         <div class="step">
                             <span class="step-num">Initialisation (n=0) :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                1 = \frac{1}{10}(11^{1} - 1) = \frac{10}{10} = 1
+                                1 = \frac{1}{6}(7^1-1) = \frac{6}{6} = 1
                                 \]
                             </div>
                             <p>La propriété est vraie au rang \(n=0\).</p>
                         </div>
                         <div class="step">
                             <span class="step-num">Hérédité :</span>
-                            <p>Supposons que pour un \(n \in \mathbb{N}\) fixé, on a :</p>
+                            <p>Supposons que pour un \(n \in \mathbb{N}\) fixé, on a \(1+7^1+\cdots+7^n = \frac{1}{6}(7^{n+1}-1)\). Montrons la propriété au rang \(n+1\) :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                1 + 11^1 + 11^2 + \cdots + 11^n = \frac{1}{10}(11^{n+1} - 1)
+                                1+7^1+\cdots+7^n+7^{n+1} = \frac{1}{6}(7^{n+1}-1) + 7^{n+1}
                                 \]
                             </div>
-                            <p>Montrons que la propriété est vraie au rang \(n+1\) :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                1 + 11^1 + \cdots + 11^n + 11^{n+1} = \frac{1}{10}(11^{n+1} - 1) + 11^{n+1}
-                                \]
-                            </div>
-                            <p>On met au même dénominateur :</p>
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                \[
-                                = \frac{11^{n+1} - 1 + 10 \cdot 11^{n+1}}{10} = \frac{11 \cdot 11^{n+1} - 1}{10} = \frac{11^{n+2} - 1}{10}
+                                = \frac{7^{n+1}-1+6\cdot7^{n+1}}{6} = \frac{7\cdot7^{n+1}-1}{6} = \frac{7^{n+2}-1}{6}
                                 \]
                             </div>
                             <p>La propriété est bien héréditaire.</p>
@@ -753,41 +755,36 @@
                             <span class="step-num">Initialisation (n=0) :</span>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                3^{2} - 2^{2} = 9 - 4 = 5
+                                2^{1}+3^{1} = 2+3 = 5
                                 \]
                             </div>
                             <p>5 est divisible par 5. La propriété est vraie au rang \(n=0\).</p>
                         </div>
                         <div class="step">
                             <span class="step-num">Hérédité :</span>
-                            <p>Supposons que pour un \(n \in \mathbb{N}\) fixé, \(3^{3n+2} - 2^{n+2}\) est divisible par 5, c'est-à-dire qu'il existe \(k \in \mathbb{N}\) tel que :</p>
+                            <p>Supposons que pour un \(n \in \mathbb{N}\) fixé, \(2^{3n+1}+3^{n+1}\) est divisible par 5, c'est-à-dire qu'il existe \(k \in \mathbb{N}\) tel que \(2^{3n+1}+3^{n+1}=5k\).</p>
+                            <p>Montrons la propriété au rang \(n+1\) :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                3^{3n+2} - 2^{n+2} = 5k
+                                2^{3(n+1)+1}+3^{(n+1)+1} = 2^{3n+4}+3^{n+2} = 8\cdot2^{3n+1} + 3\cdot3^{n+1}
                                 \]
                             </div>
-                            <p>Montrons que la propriété est vraie au rang \(n+1\) :</p>
+                            <p>On utilise l'hypothèse de récurrence \(2^{3n+1} = 5k-3^{n+1}\) :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                3^{3(n+1)+2} - 2^{(n+1)+2} = 3^{3n+5} - 2^{n+3} = 27 \cdot 3^{3n+2} - 2 \cdot 2^{n+2}
-                                \]
-                            </div>
-                            <p>On utilise l'hypothèse de récurrence \(3^{3n+2} = 5k + 2^{n+2}\) :</p>
-                            <div class="formula-block" style="font-size:14px; margin:4px 0;">
-                                \[
-                                = 27(5k + 2^{n+2}) - 2 \cdot 2^{n+2} = 27 \cdot 5k + 27 \cdot 2^{n+2} - 2 \cdot 2^{n+2}
+                                = 8(5k-3^{n+1}) + 3\cdot3^{n+1} = 40k - 8\cdot3^{n+1} + 3\cdot3^{n+1} = 40k - 5\cdot3^{n+1}
                                 \]
                             </div>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                = 5(27k) + 25 \cdot 2^{n+2} = 5(27k + 5 \cdot 2^{n+2})
+                                = 5(8k - 3^{n+1})
                                 \]
                             </div>
-                            <p>Donc \(3^{3(n+1)+2} - 2^{(n+1)+2}\) est divisible par 5.</p>
+                            <p>Donc \(2^{3(n+1)+1}+3^{(n+1)+1}\) est divisible par 5.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>Par récurrence, \(3^{3n+2} - 2^{n+2}\) est divisible par 5 pour tout \(n \in \mathbb{N}\).</p>
+                            <p>Par récurrence, \(2^{3n+1}+3^{n+1}\) est divisible par 5 pour tout \(n \in \mathbb{N}\).</p>
                         </div>
                         <div class="highlight-box yellow" style="margin-top:6px;">
                             <span class="label rappel">Rappel</span>
@@ -800,10 +797,11 @@
             <!-- Question 7 -->
             <div class="sub-question">
                 <div class="letter">7)</div>
-                <p style="font-size:11.5px; margin:4px 0;">En utilisant le raisonnement par l'absurde montrer que :</p>
+                <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B; font-size:10px; margin-bottom:6px;"><i class="fas fa-ban"></i> Type : Raisonnement par l'absurde</span>
+                <p style="font-size:11.5px; margin:6px 0;">En utilisant le raisonnement par l'absurde montrer que :</p>
                 <div class="question-text">
                     \[
-                    \forall x \in \mathbb{R}^+ : \sqrt{x} \neq \frac{x+2}{\sqrt{x+4}}
+                    \forall x \in \mathbb{R}^+ : \sqrt{x} \neq \frac{x+3}{\sqrt{x+6}}
                     \]
                 </div>
                 <div id="sol1_7" class="solution-box">
@@ -814,20 +812,20 @@
                             <p>Supposons qu'il existe \(x \in \mathbb{R}^+\) tel que :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                \sqrt{x} = \frac{x+2}{\sqrt{x+4}}
+                                \sqrt{x} = \frac{x+3}{\sqrt{x+6}}
                                 \]
                             </div>
                             <p>On élève au carré (les deux membres sont positifs) :</p>
                             <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                 \[
-                                x = \frac{(x+2)^2}{x+4} \iff x(x+4) = (x+2)^2 \iff x^2 + 4x = x^2 + 4x + 4
+                                x = \frac{(x+3)^2}{x+6} \iff x(x+6) = (x+3)^2 \iff x^2+6x = x^2+6x+9
                                 \]
                             </div>
-                            <p>Ce qui donne \(0 = 4\), ce qui est absurde.</p>
+                            <p>Ce qui donne \(0 = 9\), ce qui est absurde.</p>
                         </div>
                         <div class="highlight-box green" style="margin-top:6px;">
                             <span class="label resume">Conclusion</span>
-                            <p>Notre supposition est fausse, donc \(\forall x \in \mathbb{R}^+, \sqrt{x} \neq \frac{x+2}{\sqrt{x+4}}\).</p>
+                            <p>Notre supposition est fausse, donc \(\forall x \in \mathbb{R}^+, \sqrt{x} \neq \frac{x+3}{\sqrt{x+6}}\).</p>
                         </div>
                         <div class="highlight-box yellow" style="margin-top:6px;">
                             <span class="label rappel">Rappel</span>
@@ -841,27 +839,27 @@
                  EXERCICE 2 - Fonction majorée/minorée (3.5 pts)
             ============================================================ -->
             <div class="devoir-exo-header">
-                <h2><i class="fas fa-chart-line"></i> Exercice 2</h2>
-                <span class="badge-exercice">3.5 pts</span>
+                <h2><i class="fas fa-chart-line"></i> Exercice 2 — Fonction majorée/minorée</h2>
+                <span class="badge-exercice">3,5 pts</span>
             </div>
 
             <div class="sub-question">
-                <p style="font-size:11.5px; margin:4px 0;">On considère la fonction \(f\) définie par \(f(x) = \dfrac{-2x + 4}{x^2 - x + 2}\).</p>
-                
+                <p style="font-size:11.5px; margin:4px 0;">On considère la fonction \(f\) définie par \(f(x) = \dfrac{-3x+6}{x^2-2x+5}\).</p>
+
                 <div style="margin-top:10px;">
-                    <p style="margin:4px 0;"><b>1)</b> Montrer que \((\forall x \in \mathbb{R}) \quad x^2 - x + 2 > 0\), et déduire \(D_f\) le domaine de définition de \(f\).</p>
+                    <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-check"></i> Type : Signe d'un trinôme (discriminant)</span>
+                    <p style="margin:4px 0;"><b>1)</b> Montrer que \((\forall x \in \mathbb{R}) \quad x^2-2x+5 > 0\), et déduire \(D_f\).</p>
                     <div id="sol2_1" class="solution-box">
                         <div class="sol-title">✅ Correction</div>
                         <div class="sol-content">
                             <div class="step">
                                 <span class="step-num">Étude du discriminant :</span>
-                                <p>Pour le trinôme \(x^2 - x + 2\), on a \(\Delta = (-1)^2 - 4(1)(2) = 1 - 8 = -7 < 0\).</p>
-                                <p>Le coefficient de \(x^2\) est \(a = 1 > 0\).</p>
-                                <p>Donc le trinôme est toujours strictement positif sur \(\mathbb{R}\).</p>
+                                <p>Pour \(x^2-2x+5\), \(\Delta = (-2)^2-4(1)(5) = 4-20 = -16 < 0\).</p>
+                                <p>Le coefficient de \(x^2\) est \(a=1>0\), donc le trinôme est toujours strictement positif sur \(\mathbb{R}\).</p>
                             </div>
                             <div class="step">
                                 <span class="step-num">Domaine de définition :</span>
-                                <p>Puisque \(x^2 - x + 2 > 0\) pour tout \(x \in \mathbb{R}\), le dénominateur ne s'annule jamais.</p>
+                                <p>Le dénominateur ne s'annulant jamais :</p>
                                 <div class="highlight-box green" style="margin-top:6px;">
                                     <span class="label resume">Conclusion</span>
                                     <p>\(\boxed{D_f = \mathbb{R}}\)</p>
@@ -869,82 +867,87 @@
                             </div>
                             <div class="highlight-box yellow" style="margin-top:6px;">
                                 <span class="label rappel">Rappel</span>
-                                <p>Pour un trinôme \(ax^2 + bx + c\) avec \(a > 0\) et \(\Delta < 0\), le trinôme est toujours strictement positif.</p>
+                                <p>Pour \(ax^2+bx+c\) avec \(a>0\) et \(\Delta<0\), le trinôme est toujours strictement positif.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div style="margin-top:10px;">
-                    <p style="margin:4px 0;"><b>2)</b> Montrer que \(f\) est majorée par \(2\) sur \(\mathbb{R}\).</p>
+                    <span class="badge-exercice" style="background:rgba(187,143,206,0.15); color:#BB8FCE; font-size:10px; margin-bottom:6px;"><i class="fas fa-arrow-up"></i> Type : Majoration</span>
+                    <p style="margin:4px 0;"><b>2)</b> Montrer que \(f\) est majorée par \(3\) sur \(\mathbb{R}\).</p>
                     <div id="sol2_2" class="solution-box">
                         <div class="sol-title">✅ Correction</div>
                         <div class="sol-content">
                             <div class="step">
-                                <span class="step-num">Montrons que \(f(x) \le 2\) pour tout \(x \in \mathbb{R}\) :</span>
+                                <span class="step-num">Montrons que \(f(x) \le 3\) pour tout \(x \in \mathbb{R}\) :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    f(x) \le 2 \iff \frac{-2x + 4}{x^2 - x + 2} \le 2
+                                    f(x) \le 3 \iff \frac{-3x+6}{x^2-2x+5} \le 3
                                     \]
                                 </div>
-                                <p>Comme \(x^2 - x + 2 > 0\), on peut multiplier sans changer le sens de l'inégalité :</p>
+                                <p>Comme \(x^2-2x+5>0\), on multiplie sans changer le sens :</p>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    -2x + 4 \le 2(x^2 - x + 2) \iff -2x + 4 \le 2x^2 - 2x + 4 \iff 0 \le 2x^2
+                                    -3x+6 \le 3(x^2-2x+5) \iff -3x+6 \le 3x^2-6x+15 \iff 0 \le 3x^2-3x+9
                                     \]
                                 </div>
-                                <p>On a \(2x^2 \ge 0\) pour tout \(x \in \mathbb{R}\). Donc l'inégalité est vraie.</p>
+                                <p>Soit \(x^2-x+3 \ge 0\). Discriminant : \(1-12=-11<0\), \(a=1>0\) : toujours vrai.</p>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>\(f\) est <b>majorée</b> par 2 sur \(\mathbb{R}\).</p>
+                                <p>\(f\) est <b>majorée</b> par 3 sur \(\mathbb{R}\).</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div style="margin-top:10px;">
-                    <p style="margin:4px 0;"><b>3)</b> a – Montrer que \(f\) est minorée par \(-1\) sur \(\mathbb{R}\).</p>
-                    <p style="margin:4px 0;"><b>b</b> – Est-ce que \(-1\) est une valeur minimale de \(f\) sur \(\mathbb{R}\) ?</p>
+                    <span class="badge-exercice" style="background:rgba(255,107,107,0.15); color:#FF6B6B; font-size:10px; margin-bottom:6px;"><i class="fas fa-arrow-down"></i> Type : Minoration & existence d'un minimum</span>
+                    <p style="margin:4px 0;"><b>3)</b> a – Montrer que \(f\) est minorée par \(-2\) sur \(\mathbb{R}\).</p>
+                    <p style="margin:4px 0;"><b>b</b> – Est-ce que \(-2\) est une valeur minimale de \(f\) sur \(\mathbb{R}\) ?</p>
                     <div id="sol2_3" class="solution-box">
                         <div class="sol-title">✅ Correction</div>
                         <div class="sol-content">
-                            <p style="font-weight:600; color:#BB8FCE;">a) Minorée par -1</p>
+                            <p style="font-weight:600; color:#BB8FCE;">a) Minorée par -2</p>
                             <div class="step">
-                                <span class="step-num">Montrons que \(f(x) \ge -1\) pour tout \(x \in \mathbb{R}\) :</span>
+                                <span class="step-num">Montrons que \(f(x) \ge -2\) pour tout \(x \in \mathbb{R}\) :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    f(x) \ge -1 \iff \frac{-2x + 4}{x^2 - x + 2} \ge -1
+                                    f(x) \ge -2 \iff \frac{-3x+6}{x^2-2x+5} \ge -2
                                     \]
                                 </div>
-                                <p>Comme \(x^2 - x + 2 > 0\), on multiplie sans changer le sens :</p>
+                                <p>Comme \(x^2-2x+5>0\), on multiplie sans changer le sens :</p>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    -2x + 4 \ge -(x^2 - x + 2) \iff -2x + 4 \ge -x^2 + x - 2 \iff x^2 - 3x + 6 \ge 0
+                                    -3x+6 \ge -2(x^2-2x+5) \iff -3x+6 \ge -2x^2+4x-10 \iff 2x^2-7x+16 \ge 0
                                     \]
                                 </div>
-                                <p>Le discriminant de \(x^2 - 3x + 6\) est \(\Delta = 9 - 24 = -15 < 0\), et le coefficient de \(x^2\) est \(1 > 0\). Donc \(x^2 - 3x + 6 > 0\) pour tout \(x \in \mathbb{R}\).</p>
-                                <p>L'inégalité est donc vraie pour tout \(x \in \mathbb{R}\).</p>
+                                <p>Discriminant : \(49-128=-79<0\), \(a=2>0\) : toujours vrai.</p>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>\(f\) est <b>minorée</b> par \(-1\) sur \(\mathbb{R}\).</p>
+                                <p>\(f\) est <b>minorée</b> par \(-2\) sur \(\mathbb{R}\).</p>
                             </div>
 
                             <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Valeur minimale</p>
                             <div class="step">
                                 <span class="step-num">Vérification :</span>
-                                <p>Pour que \(-1\) soit une valeur minimale, il doit exister \(x_0 \in \mathbb{R}\) tel que \(f(x_0) = -1\).</p>
+                                <p>Il faudrait \(x_0 \in \mathbb{R}\) tel que \(f(x_0)=-2\) :</p>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    f(x) = -1 \iff \frac{-2x + 4}{x^2 - x + 2} = -1 \iff -2x + 4 = -x^2 + x - 2 \iff x^2 - 3x + 6 = 0
+                                    f(x)=-2 \iff -3x+6 = -2x^2+4x-10 \iff 2x^2-7x+16=0
                                     \]
                                 </div>
-                                <p>Le discriminant de cette équation est \(\Delta = 9 - 24 = -15 < 0\). L'équation n'a pas de solution réelle.</p>
+                                <p>Discriminant \(=-79<0\) : aucune solution réelle.</p>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>\(-1\) n'est <b>pas</b> une valeur minimale de \(f\) sur \(\mathbb{R}\) car l'équation \(f(x) = -1\) n'a pas de solution.</p>
+                                <p>\(-2\) n'est <b>pas</b> une valeur minimale de \(f\) sur \(\mathbb{R}\), car l'équation \(f(x)=-2\) n'a pas de solution.</p>
+                            </div>
+                            <div class="graph-container">
+                                <svg id="figEx2" width="360" height="260"></svg>
+                                <p>La courbe de \(f\) reste toujours strictement entre les droites \(y=-2\) (minorant) et \(y=3\) (majorant), sans jamais les atteindre.</p>
                             </div>
                         </div>
                     </div>
@@ -955,14 +958,15 @@
                  EXERCICE 3 - Étude de fonctions (6.5 pts)
             ============================================================ -->
             <div class="devoir-exo-header">
-                <h2><i class="fas fa-calculator"></i> Exercice 3</h2>
-                <span class="badge-exercice">6.5 pts</span>
+                <h2><i class="fas fa-calculator"></i> Exercice 3 — Étude de fonctions</h2>
+                <span class="badge-exercice">6,5 pts</span>
             </div>
 
             <div class="sub-question">
-                <p style="font-size:11.5px; margin:4px 0;">On considère les fonctions \(f\) et \(g\) définies par : \(f(x) = \dfrac{1}{2}x^3\), \(\quad g(x) = \sqrt{x+3}\).</p>
+                <p style="font-size:11.5px; margin:4px 0;">On considère les fonctions \(f\) et \(g\) définies par : \(f(x) = \dfrac{1}{3}x^3\), \(\quad g(x) = \sqrt{x+2}\).</p>
 
                 <div style="margin-top:10px;">
+                    <span class="badge-exercice" style="background:rgba(78,205,196,0.15); color:#4ECDC4; font-size:10px; margin-bottom:6px;"><i class="fas fa-table"></i> Type : Domaine, variations & tracé</span>
                     <p style="margin:4px 0;"><b>1)</b> a - Déterminer \(D_f\), et le tableau de variation de \(f\).</p>
                     <p style="margin:4px 0;"><b>b</b> - Déterminer \(D_g\), et le tableau de variation de \(g\).</p>
                     <p style="margin:4px 0;"><b>c</b> - Tracer \(C_f\) et \(C_g\) leurs courbes respectives dans le même repère orthonormé \((O; \vec{i}; \vec{j})\).</p>
@@ -972,7 +976,7 @@
                             <p style="font-weight:600; color:#BB8FCE;">a) Fonction \(f\)</p>
                             <div class="step">
                                 <span class="step-num">Domaine :</span>
-                                <p>\(f(x) = \frac{1}{2}x^3\) est une fonction polynomiale, donc définie sur \(\mathbb{R}\).</p>
+                                <p>\(f(x) = \frac{1}{3}x^3\) est une fonction polynomiale, donc définie sur \(\mathbb{R}\).</p>
                                 <div class="highlight-box green" style="margin-top:6px;">
                                     <span class="label resume">Conclusion</span>
                                     <p>\(\boxed{D_f = \mathbb{R}}\)</p>
@@ -980,8 +984,7 @@
                             </div>
                             <div class="step">
                                 <span class="step-num">Variations de \(f\) :</span>
-                                <p>\(f'(x) = \frac{3}{2}x^2\). On a \(f'(x) \ge 0\) pour tout \(x \in \mathbb{R}\), avec \(f'(0) = 0\).</p>
-                                <p>Donc \(f\) est <b>croissante</b> sur \(\mathbb{R}\).</p>
+                                <p>\(f'(x) = x^2 \ge 0\) pour tout \(x \in \mathbb{R}\), avec \(f'(0)=0\). Donc \(f\) est <b>croissante</b> sur \(\mathbb{R}\).</p>
                                 <div class="table-wrap">
                                     <table class="variation-table">
                                         <tr><th>$x$</th><td class="vt-bound">$-\infty$</td><td></td><td class="vt-key">$0$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
@@ -993,18 +996,18 @@
                             <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Fonction \(g\)</p>
                             <div class="step">
                                 <span class="step-num">Domaine :</span>
-                                <p>\(g(x) = \sqrt{x+3}\) est définie pour \(x+3 \ge 0 \iff x \ge -3\).</p>
+                                <p>\(g(x)=\sqrt{x+2}\) définie pour \(x+2 \ge 0 \iff x \ge -2\).</p>
                                 <div class="highlight-box green" style="margin-top:6px;">
                                     <span class="label resume">Conclusion</span>
-                                    <p>\(\boxed{D_g = [-3, +\infty[}\)</p>
+                                    <p>\(\boxed{D_g = [-2, +\infty[}\)</p>
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Variations de \(g\) :</span>
-                                <p>La fonction racine carrée est croissante sur son domaine. Donc \(g\) est <b>croissante</b> sur \([-3, +\infty[\).</p>
+                                <p>La fonction racine carrée est croissante sur son domaine. Donc \(g\) est <b>croissante</b> sur \([-2,+\infty[\).</p>
                                 <div class="table-wrap">
                                     <table class="variation-table">
-                                        <tr><th>$x$</th><td class="vt-key">$-3$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
+                                        <tr><th>$x$</th><td class="vt-key">$-2$</td><td></td><td class="vt-bound">$+\infty$</td></tr>
                                         <tr><th>$g$</th><td class="vt-value">$0$</td><td class="vt-arrow up">↗</td><td class="vt-bound">$+\infty$</td></tr>
                                     </table>
                                 </div>
@@ -1020,10 +1023,11 @@
                 </div>
 
                 <div style="margin-top:10px;">
-                    <p style="margin:4px 0;"><b>2)</b> On considère l'équation \(E : x^3 - 2\sqrt{x+3} = 0\).</p>
-                    <p style="margin:4px 0;"><b>a</b> – Montrer que : \(E \Leftrightarrow f(x) = g(x)\), et déduire graphiquement que \(E\) admet une solution unique \(\alpha\) dans \([-3;+\infty[\).</p>
+                    <span class="badge-exercice" style="background:rgba(187,143,206,0.15); color:#BB8FCE; font-size:10px; margin-bottom:6px;"><i class="fas fa-magnifying-glass-chart"></i> Type : Encadrement & résolution graphique</span>
+                    <p style="margin:4px 0;"><b>2)</b> On considère l'équation \(E : x^3-3\sqrt{x+2}=0\).</p>
+                    <p style="margin:4px 0;"><b>a</b> – Montrer que : \(E \Leftrightarrow f(x)=g(x)\), et déduire graphiquement que \(E\) admet une solution unique \(\alpha\) dans \([-2;+\infty[\).</p>
                     <p style="margin:4px 0;"><b>b</b> – Montrer que : \(1 < \alpha < 2\).</p>
-                    <p style="margin:4px 0;"><b>c</b> – Résoudre graphiquement dans \([-3;+\infty[\), l'inéquation \(F : x^3 - 2\sqrt{x+3} > 0\).</p>
+                    <p style="margin:4px 0;"><b>c</b> – Résoudre graphiquement dans \([-2;+\infty[\), l'inéquation \(F : x^3-3\sqrt{x+2} > 0\).</p>
                     <div id="sol3_2" class="solution-box">
                         <div class="sol-title">✅ Correction</div>
                         <div class="sol-content">
@@ -1032,31 +1036,31 @@
                                 <span class="step-num">Équivalence :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    x^3 - 2\sqrt{x+3} = 0 \iff \frac{1}{2}x^3 = \sqrt{x+3} \iff f(x) = g(x)
+                                    x^3-3\sqrt{x+2}=0 \iff \frac{1}{3}x^3 = \sqrt{x+2} \iff f(x)=g(x)
                                     \]
                                 </div>
                             </div>
                             <div class="step">
                                 <span class="step-num">Solution unique :</span>
-                                <p>Graphiquement, les courbes \((C_f)\) et \((C_g)\) se coupent en un seul point sur \([-3, +\infty[\).</p>
-                                <p>Donc l'équation \(E\) admet une <b>solution unique</b> \(\alpha \in [-3, +\infty[\).</p>
+                                <p>Graphiquement, \((C_f)\) et \((C_g)\) se coupent en un seul point sur \([-2,+\infty[\).</p>
+                                <p>Donc \(E\) admet une <b>solution unique</b> \(\alpha \in [-2,+\infty[\).</p>
                             </div>
 
                             <p style="font-weight:600; color:#BB8FCE; margin-top:10px;">b) Encadrement de \(\alpha\)</p>
                             <div class="step">
                                 <span class="step-num">Vérification :</span>
-                                <p>On évalue \(h(x) = f(x) - g(x) = \frac{1}{2}x^3 - \sqrt{x+3}\).</p>
+                                <p>On pose \(h(x)=f(x)-g(x)=\frac{1}{3}x^3-\sqrt{x+2}\).</p>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    h(1) = \frac{1}{2} - \sqrt{4} = 0.5 - 2 = -1.5 < 0
+                                    h(1) = \frac{1}{3} - \sqrt{3} \approx 0{,}33 - 1{,}73 = -1{,}40 < 0
                                     \]
                                 </div>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    h(2) = \frac{8}{2} - \sqrt{5} = 4 - 2.236 = 1.764 > 0
+                                    h(2) = \frac{8}{3} - \sqrt{4} \approx 2{,}67 - 2 = 0{,}67 > 0
                                     \]
                                 </div>
-                                <p>Comme \(h\) est continue (car \(f\) et \(g\) le sont) et strictement croissante sur \([-3, +\infty[\) (car \(f\) est croissante et \(g\) est croissante, donc \(f-g\) est croissante), il existe une unique racine \(\alpha\) dans l'intervalle \([1, 2]\).</p>
+                                <p>Comme \(h\) est continue et strictement croissante sur \([-2,+\infty[\) (car \(f\) et \(g\) sont croissantes), il existe une unique racine \(\alpha\) dans \([1,2]\).</p>
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
@@ -1068,10 +1072,10 @@
                                 <span class="step-num">Inéquation :</span>
                                 <div class="formula-block" style="font-size:14px; margin:4px 0;">
                                     \[
-                                    x^3 - 2\sqrt{x+3} > 0 \iff \frac{1}{2}x^3 > \sqrt{x+3} \iff f(x) > g(x)
+                                    x^3-3\sqrt{x+2} > 0 \iff \frac{1}{3}x^3 > \sqrt{x+2} \iff f(x) > g(x)
                                     \]
                                 </div>
-                                <p>Graphiquement, \(f(x) > g(x)\) lorsque la courbe \((C_f)\) est au-dessus de \((C_g)\).</p>
+                                <p>Graphiquement, \(f(x)>g(x)\) lorsque \((C_f)\) est au-dessus de \((C_g)\).</p>
                             </div>
                             <div class="graph-container">
                                 <svg id="graphIneqEx3" width="380" height="300"></svg>
@@ -1079,7 +1083,7 @@
                             </div>
                             <div class="highlight-box green" style="margin-top:6px;">
                                 <span class="label resume">Conclusion</span>
-                                <p>\(\boxed{S = ]\alpha, +\infty[}\) où \(\alpha \in ]1, 2[\) est la solution de \(E\).</p>
+                                <p>\(\boxed{S = ]\alpha, +\infty[}\) où \(\alpha \in ]1,2[\) est la solution de \(E\).</p>
                             </div>
                         </div>
                     </div>
@@ -1104,276 +1108,8 @@
     <script src="../../../../../assets/js/script.js"></script>
     <script src="../../../../../assets/js/devoir-exam.js"></script>
     <!-- ====== Fichiers JS pour les graphiques ====== -->
-    <script>
-        // Graphique pour l'exercice 3 (fonctions f et g)
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('graphEx3');
-            if (!container) return;
-            const width = container.clientWidth || 380;
-            const height = container.clientHeight || 330;
-            const margin = { top: 20, right: 30, bottom: 30, left: 40 };
-            const innerWidth = width - margin.left - margin.right;
-            const innerHeight = height - margin.top - margin.bottom;
-            
-            // Définir le viewBox pour le SVG
-            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
-            svg.setAttribute('width', '100%');
-            svg.setAttribute('height', '100%');
-            
-            // Définir les échelles
-            const xMin = -3, xMax = 3, yMin = -2, yMax = 5;
-            
-            function xScale(x) { return margin.left + ((x - xMin) / (xMax - xMin)) * innerWidth; }
-            function yScale(y) { return margin.top + innerHeight - ((y - yMin) / (yMax - yMin)) * innerHeight; }
-            
-            // Grille
-            const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            gridGroup.setAttribute('stroke', 'rgba(255,255,255,0.1)');
-            gridGroup.setAttribute('stroke-width', '0.5');
-            for (let x = -3; x <= 3; x += 0.5) {
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', xScale(x));
-                line.setAttribute('y1', margin.top);
-                line.setAttribute('x2', xScale(x));
-                line.setAttribute('y2', height - margin.bottom);
-                gridGroup.appendChild(line);
-            }
-            for (let y = -2; y <= 5; y += 0.5) {
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', margin.left);
-                line.setAttribute('y1', yScale(y));
-                line.setAttribute('x2', width - margin.right);
-                line.setAttribute('y2', yScale(y));
-                gridGroup.appendChild(line);
-            }
-            svg.appendChild(gridGroup);
-            
-            // Axes
-            const axesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            axesGroup.setAttribute('stroke', '#888');
-            axesGroup.setAttribute('stroke-width', '1.5');
-            
-            // Axe x
-            const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            xAxis.setAttribute('x1', margin.left);
-            xAxis.setAttribute('y1', yScale(0));
-            xAxis.setAttribute('x2', width - margin.right);
-            xAxis.setAttribute('y2', yScale(0));
-            axesGroup.appendChild(xAxis);
-            
-            // Axe y
-            const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            yAxis.setAttribute('x1', xScale(0));
-            yAxis.setAttribute('y1', margin.top);
-            yAxis.setAttribute('x2', xScale(0));
-            yAxis.setAttribute('y2', height - margin.bottom);
-            axesGroup.appendChild(yAxis);
-            svg.appendChild(axesGroup);
-            
-            // Courbe f(x) = 0.5*x^3
-            const fPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            fPath.setAttribute('stroke', '#FF6B6B');
-            fPath.setAttribute('stroke-width', '2.5');
-            fPath.setAttribute('fill', 'none');
-            let fD = '';
-            for (let x = xMin; x <= xMax; x += 0.02) {
-                const y = 0.5 * x * x * x;
-                if (y >= yMin && y <= yMax) {
-                    fD += (fD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
-                }
-            }
-            fPath.setAttribute('d', fD);
-            svg.appendChild(fPath);
-            
-            // Courbe g(x) = sqrt(x+3)
-            const gPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            gPath.setAttribute('stroke', '#F4D03F');
-            gPath.setAttribute('stroke-width', '2.5');
-            gPath.setAttribute('fill', 'none');
-            let gD = '';
-            for (let x = -3; x <= xMax; x += 0.02) {
-                const y = Math.sqrt(x + 3);
-                if (y >= yMin && y <= yMax) {
-                    gD += (gD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
-                }
-            }
-            gPath.setAttribute('d', gD);
-            svg.appendChild(gPath);
-            
-            // Légende
-            const legendGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            legendGroup.setAttribute('transform', 'translate(' + (width - 120) + ', 20)');
-            
-            // f
-            const fRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            fRect.setAttribute('x', '0');
-            fRect.setAttribute('y', '0');
-            fRect.setAttribute('width', '16');
-            fRect.setAttribute('height', '4');
-            fRect.setAttribute('fill', '#FF6B6B');
-            legendGroup.appendChild(fRect);
-            const fText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            fText.setAttribute('x', '22');
-            fText.setAttribute('y', '4');
-            fText.setAttribute('fill', '#ccc');
-            fText.setAttribute('font-size', '10');
-            fText.setAttribute('font-family', 'sans-serif');
-            fText.textContent = 'C_f';
-            legendGroup.appendChild(fText);
-            
-            // g
-            const gRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            gRect.setAttribute('x', '0');
-            gRect.setAttribute('y', '16');
-            gRect.setAttribute('width', '16');
-            gRect.setAttribute('height', '4');
-            gRect.setAttribute('fill', '#F4D03F');
-            legendGroup.appendChild(gRect);
-            const gText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            gText.setAttribute('x', '22');
-            gText.setAttribute('y', '20');
-            gText.setAttribute('fill', '#ccc');
-            gText.setAttribute('font-size', '10');
-            gText.setAttribute('font-family', 'sans-serif');
-            gText.textContent = 'C_g';
-            legendGroup.appendChild(gText);
-            svg.appendChild(legendGroup);
-            
-            container.innerHTML = '';
-            container.appendChild(svg);
-        });
-
-        // Graphique pour l'inéquation
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('graphIneqEx3');
-            if (!container) return;
-            const width = container.clientWidth || 380;
-            const height = container.clientHeight || 300;
-            const margin = { top: 20, right: 30, bottom: 30, left: 40 };
-            const innerWidth = width - margin.left - margin.right;
-            const innerHeight = height - margin.top - margin.bottom;
-            
-            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
-            svg.setAttribute('width', '100%');
-            svg.setAttribute('height', '100%');
-            
-            const xMin = -3, xMax = 3, yMin = -2, yMax = 5;
-            
-            function xScale(x) { return margin.left + ((x - xMin) / (xMax - xMin)) * innerWidth; }
-            function yScale(y) { return margin.top + innerHeight - ((y - yMin) / (yMax - yMin)) * innerHeight; }
-            
-            // Grille
-            const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            gridGroup.setAttribute('stroke', 'rgba(255,255,255,0.1)');
-            gridGroup.setAttribute('stroke-width', '0.5');
-            for (let x = -3; x <= 3; x += 0.5) {
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', xScale(x));
-                line.setAttribute('y1', margin.top);
-                line.setAttribute('x2', xScale(x));
-                line.setAttribute('y2', height - margin.bottom);
-                gridGroup.appendChild(line);
-            }
-            for (let y = -2; y <= 5; y += 0.5) {
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', margin.left);
-                line.setAttribute('y1', yScale(y));
-                line.setAttribute('x2', width - margin.right);
-                line.setAttribute('y2', yScale(y));
-                gridGroup.appendChild(line);
-            }
-            svg.appendChild(gridGroup);
-            
-            // Axes
-            const axesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            axesGroup.setAttribute('stroke', '#888');
-            axesGroup.setAttribute('stroke-width', '1.5');
-            
-            const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            xAxis.setAttribute('x1', margin.left);
-            xAxis.setAttribute('y1', yScale(0));
-            xAxis.setAttribute('x2', width - margin.right);
-            xAxis.setAttribute('y2', yScale(0));
-            axesGroup.appendChild(xAxis);
-            
-            const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            yAxis.setAttribute('x1', xScale(0));
-            yAxis.setAttribute('y1', margin.top);
-            yAxis.setAttribute('x2', xScale(0));
-            yAxis.setAttribute('y2', height - margin.bottom);
-            axesGroup.appendChild(yAxis);
-            svg.appendChild(axesGroup);
-            
-            // Courbe f(x) = 0.5*x^3
-            const fPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            fPath.setAttribute('stroke', '#FF6B6B');
-            fPath.setAttribute('stroke-width', '2.5');
-            fPath.setAttribute('fill', 'none');
-            let fD = '';
-            for (let x = xMin; x <= xMax; x += 0.02) {
-                const y = 0.5 * x * x * x;
-                if (y >= yMin && y <= yMax) {
-                    fD += (fD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
-                }
-            }
-            fPath.setAttribute('d', fD);
-            svg.appendChild(fPath);
-            
-            // Courbe g(x) = sqrt(x+3)
-            const gPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            gPath.setAttribute('stroke', '#F4D03F');
-            gPath.setAttribute('stroke-width', '2.5');
-            gPath.setAttribute('fill', 'none');
-            let gD = '';
-            for (let x = -3; x <= xMax; x += 0.02) {
-                const y = Math.sqrt(x + 3);
-                if (y >= yMin && y <= yMax) {
-                    gD += (gD === '' ? 'M' : 'L') + xScale(x) + ',' + yScale(y);
-                }
-            }
-            gPath.setAttribute('d', gD);
-            svg.appendChild(gPath);
-            
-            // Marquer la zone où f > g (approximativement pour x > alpha)
-            // On va hachurer une zone approximative
-            const alpha = 1.4; // approximation de la racine
-            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            rect.setAttribute('x', xScale(alpha));
-            rect.setAttribute('y', margin.top);
-            rect.setAttribute('width', xScale(xMax) - xScale(alpha));
-            rect.setAttribute('height', innerHeight);
-            rect.setAttribute('fill', 'rgba(78, 205, 196, 0.15)');
-            rect.setAttribute('stroke', 'rgba(78, 205, 196, 0.3)');
-            rect.setAttribute('stroke-dasharray', '4,4');
-            svg.appendChild(rect);
-            
-            // Ligne verticale pour alpha
-            const alphaLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            alphaLine.setAttribute('x1', xScale(alpha));
-            alphaLine.setAttribute('y1', margin.top);
-            alphaLine.setAttribute('x2', xScale(alpha));
-            alphaLine.setAttribute('y2', height - margin.bottom);
-            alphaLine.setAttribute('stroke', '#4ECDC4');
-            alphaLine.setAttribute('stroke-width', '1.5');
-            alphaLine.setAttribute('stroke-dasharray', '4,4');
-            svg.appendChild(alphaLine);
-            
-            // Texte alpha
-            const alphaText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            alphaText.setAttribute('x', xScale(alpha) - 5);
-            alphaText.setAttribute('y', yScale(-0.5));
-            alphaText.setAttribute('fill', '#4ECDC4');
-            alphaText.setAttribute('font-size', '12');
-            alphaText.setAttribute('font-family', 'serif');
-            alphaText.setAttribute('font-style', 'italic');
-            alphaText.textContent = 'α';
-            svg.appendChild(alphaText);
-            
-            container.innerHTML = '';
-            container.appendChild(svg);
-        });
-    </script>
+    <script src="figuresvt_ex1.js"></script>
+    <script src="figuresvt_ex2.js"></script>
+    <script src="figuresvt_ex3.js"></script>
 </body>
 </html>
