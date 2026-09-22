@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Section 2 - Propriétés : invariance, propriété caractéristique, construction - Barycentre (modèle 2) | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/math/exercises/barycentre/model2/exercice2.html">
+    <meta name="description" content="Exercices corrigés : Barycentre dans le plan (modèle 2) — Propriétés : invariance, propriété caractéristique, construction. Mathématiques, 1ère Bac Sciences Expérimentales. Du plus simple au plus difficile, corrigé détaillé sur Xpert.">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/gsap.min.js"></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+.next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+.graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
+
+    <style>
+        /* ====== Modèle 2 : sections du cours -> séries d'exercices ====== */
+        .section h2 .num { width: auto; min-width: 22px; padding: 0 7px; border-radius: 11px; }
+        .lvl { display: inline-block; padding: 1px 9px; border-radius: 10px; font-size: 10.5px; font-weight: 700; margin-inline-start: 4px; white-space: nowrap; }
+        .lvl.f { background: rgba(78,205,196,0.15); color: #4ECDC4; }
+        .lvl.m { background: rgba(244,208,63,0.15); color: var(--gold-text); }
+        .lvl.d { background: rgba(255,107,107,0.15); color: #FF6B6B; }
+        .section h2 { flex-wrap: wrap; }
+        .pts { color: var(--text-muted); font-size: 11px; font-weight: 600; margin-inline-start: 4px; }
+        .sub-question .letter .pts { font-size: 10.5px; }
+        .recap-cours { margin-bottom: 10px; }
+        .recap-cours .highlight-box p { font-size: 11.5px; }
+        .sub-question ol, .sub-question ul { font-size: 11.5px; padding-right: 18px; margin: 4px 0; color: var(--text-secondary); }
+        .sub-question li { margin-bottom: 2px; }
+        .graph-container svg { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">55 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">26 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">22 exercices</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../../../../../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Section 2 : Propriétés : invariance, propriété caractéristique, construction</h1>
+            <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-book-open"></i> Cours : Partie 1 · §4</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Du plus simple au plus difficile</span>
+            </p>
+<div class="recap-cours"><div class="highlight-box green"><span class="label def">À retenir du cours</span><p><b>Invariance :</b> si $G=\text{Bar}\{(A,a);(B,b)\}$, alors pour tout $k\in\mathbb{R}^*$, $G=\text{Bar}\{(A,ka);(B,kb)\}$.</p><p><b>Propriété caractéristique :</b> pour <b>tout</b> point $M$ : $a\overrightarrow{MA}+b\overrightarrow{MB}=(a+b)\overrightarrow{MG}$.</p><p><b>Construction :</b> $\overrightarrow{AG}=\dfrac{b}{a+b}\overrightarrow{AB}$ : on partage $[AB]$ en $|a+b|$ parts égales.</p></div></div>
+            <div class="section">
+                <h2><span class="num">2.1</span> Invariance : reconnaître et simplifier les poids <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soient $A$ et $B$ deux points distincts et $G=\text{Bar}\{(A,2);(B,6)\}$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Parmi les systèmes suivants, lesquels ont pour barycentre $G$ ? <br>(a) $\{(A,1);(B,3)\}$ &nbsp; (b) $\{(A,-4);(B,-12)\}$ &nbsp; (c) $\{(A,3);(B,9)\}$ &nbsp; (d) $\{(A,2);(B,5)\}$</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="highlight-box yellow"><span class="label rappel">Rappel du cours</span><p>Deux systèmes ont le même barycentre dès que leurs poids sont <b>proportionnels</b> : $(\alpha,\beta)=k(2,6)$ avec $k\neq 0$.</p></div><div class="step"><span class="step-num">(a) :</span> $(1,3)=\dfrac12(2,6)$, avec $k=\dfrac12\neq 0$ ✔ : $G$ est barycentre.</div><div class="step"><span class="step-num">(b) :</span> $(-4,-12)=-2\,(2,6)$, avec $k=-2\neq 0$ ✔ : $G$ est barycentre.</div><div class="step"><span class="step-num">(c) :</span> $(3,9)=\dfrac32(2,6)$, avec $k=\dfrac32$ ✔ : $G$ est barycentre.</div><div class="step"><span class="step-num">(d) :</span> $2=k\times2$ donne $k=1$, mais $5=k\times 6$ donne $k=\dfrac56$ : les poids ne sont pas proportionnels.<br>Vérifions avec $\overrightarrow{AG}$ : pour $\{(A,2);(B,6)\}$, $\overrightarrow{AG}=\dfrac68\overrightarrow{AB}=\dfrac34\overrightarrow{AB}$, alors que pour $\{(A,2);(B,5)\}$ on trouve $\dfrac57\overrightarrow{AB}$, et $\dfrac34\neq\dfrac57$ ✘</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Les systèmes (a), (b) et (c) ont pour barycentre $G$ ; le système (d) n'a pas $G$ pour barycentre.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit $G'=\text{Bar}\{(A,12);(B,-18)\}$. Simplifier les poids, puis exprimer $\overrightarrow{AG'}$ en fonction de $\overrightarrow{AB}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $(12,-18)=6\times(2,-3)$ : on multiplie les poids par $k=\dfrac16\neq0$.</div><div class="step"><span class="step-num">Donc :</span> d'après l'invariance, $G'=\text{Bar}\{(A,2);(B,-3)\}$.</div><div class="step"><span class="step-num">Alors :</span> $a+b=2-3=-1\neq 0$ et<div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overrightarrow{AG'}=\frac{-3}{-1}\overrightarrow{AB}=3\,\overrightarrow{AB}$$</div></div><div class="step"><span class="step-num">Vérification :</span> avec les poids de départ : $\dfrac{-18}{12-18}=\dfrac{-18}{-6}=3$ ✔</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G'=\text{Bar}\{(A,2);(B,-3)\}$ et $\overrightarrow{AG'}=3\overrightarrow{AB}$ : $G'$ est sur la demi-droite $[AB)$, au-delà de $B$, avec $AG'=3\,AB$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire $G$ comme barycentre de $A$ et $B$ avec des poids dont la somme vaut $1$. Que devient alors la formule donnant $\overrightarrow{AG}$ ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $a+b=2+6=8$ : on multiplie les poids par $k=\dfrac18$.</div><div class="step"><span class="step-num">Donc :</span> $G=\text{Bar}\{\left(A,\dfrac14\right);\left(B,\dfrac34\right)\}$, et la somme des poids vaut $\dfrac14+\dfrac34=1$.</div><div class="step"><span class="step-num">Formule :</span> quand $a+b=1$, la formule $\overrightarrow{AG}=\dfrac{b}{a+b}\overrightarrow{AB}$ devient simplement $\overrightarrow{AG}=b\,\overrightarrow{AB}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overrightarrow{AG}=\dfrac34\overrightarrow{AB}$ : le poids de $B$ (somme des poids égale à $1$) donne directement la position de $G$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">2.2</span> Propriété caractéristique : réduire une somme vectorielle <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soient $A$ et $B$ deux points distincts et $G=\text{Bar}\{(A,3);(B,1)\}$. Soit $M$ un point quelconque du plan.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que pour tout point $M$ : $3\overrightarrow{MA}+\overrightarrow{MB}=4\overrightarrow{MG}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Chasles :</span> $\overrightarrow{MA}=\overrightarrow{MG}+\overrightarrow{GA}$ et $\overrightarrow{MB}=\overrightarrow{MG}+\overrightarrow{GB}$.</div><div class="step"><span class="step-num">Donc :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$3\overrightarrow{MA}+\overrightarrow{MB}=3\left(\overrightarrow{MG}+\overrightarrow{GA}\right)+\left(\overrightarrow{MG}+\overrightarrow{GB}\right)=4\overrightarrow{MG}+\left(3\overrightarrow{GA}+\overrightarrow{GB}\right)$$</div></div><div class="step"><span class="step-num">Or :</span> $G=\text{Bar}\{(A,3);(B,1)\}$, donc $3\overrightarrow{GA}+\overrightarrow{GB}=\overrightarrow{0}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Pour tout point $M$ : $3\overrightarrow{MA}+\overrightarrow{MB}=4\overrightarrow{MG}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En choisissant $M=A$, retrouver l'expression de $\overrightarrow{AG}$ en fonction de $\overrightarrow{AB}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
+                    <div id="sol5" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> la relation est vraie pour tout $M$ ; pour $M=A$ : $3\overrightarrow{AA}+\overrightarrow{AB}=4\overrightarrow{AG}$.</div><div class="step"><span class="step-num">Or :</span> $\overrightarrow{AA}=\overrightarrow{0}$, donc $\overrightarrow{AB}=4\overrightarrow{AG}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overrightarrow{AG}=\dfrac14\overrightarrow{AB}$ (on retrouve la formule du cours avec $\dfrac{b}{a+b}=\dfrac14$).</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En choisissant $M=B$, exprimer $\overrightarrow{BG}$ en fonction de $\overrightarrow{BA}$. Vérifier la cohérence avec la question 2).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6')">Voir la solution</button>
+                    <div id="sol6" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> pour $M=B$ : $3\overrightarrow{BA}+\overrightarrow{BB}=4\overrightarrow{BG}$, soit $3\overrightarrow{BA}=4\overrightarrow{BG}$.</div><div class="step"><span class="step-num">Donc :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overrightarrow{BG}=\frac34\overrightarrow{BA}$$</div></div><div class="step"><span class="step-num">Cohérence :</span> $\overrightarrow{BG}=\dfrac34\overrightarrow{BA}=-\dfrac34\overrightarrow{AB}$, donc $\overrightarrow{AG}=\overrightarrow{AB}+\overrightarrow{BG}=\overrightarrow{AB}-\dfrac34\overrightarrow{AB}=\dfrac14\overrightarrow{AB}$ ✔</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overrightarrow{BG}=\dfrac34\overrightarrow{BA}$ : $G$ est aux $\dfrac34$ du chemin de $B$ vers $A$, ce qui correspond bien à $\overrightarrow{AG}=\dfrac14\overrightarrow{AB}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Réduire $2\overrightarrow{MA}-5\overrightarrow{MB}$ en un seul vecteur (pour tout point $M$).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7')">Voir la solution</button>
+                    <div id="sol7" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $a=2$ et $b=-5$, donc $a+b=-3\neq 0$ : le barycentre $G'=\text{Bar}\{(A,2);(B,-5)\}$ existe.</div><div class="step"><span class="step-num">Propriété caractéristique :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$2\overrightarrow{MA}-5\overrightarrow{MB}=(2-5)\overrightarrow{MG'}=-3\overrightarrow{MG'}$$</div></div><div class="step"><span class="step-num">Position de $G'$ :</span> $\overrightarrow{AG'}=\dfrac{-5}{-3}\overrightarrow{AB}=\dfrac53\overrightarrow{AB}$ : $G'$ est au-delà de $B$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$2\overrightarrow{MA}-5\overrightarrow{MB}=-3\overrightarrow{MG'}$ avec $\overrightarrow{AG'}=\dfrac53\overrightarrow{AB}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit $I$ le milieu de $[AB]$. Réduire $4\overrightarrow{MA}+4\overrightarrow{MB}$. Quel est l'ensemble des points $M$ tels que $3\overrightarrow{MA}+\overrightarrow{MB}=\overrightarrow{0}$ ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8')">Voir la solution</button>
+                    <div id="sol8" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Première partie :</span> $I=\text{Bar}\{(A,4);(B,4)\}$ (poids égaux) et $4+4=8$, donc $4\overrightarrow{MA}+4\overrightarrow{MB}=8\overrightarrow{MI}$.</div><div class="step"><span class="step-num">Deuxième partie :</span> d'après 1), $3\overrightarrow{MA}+\overrightarrow{MB}=4\overrightarrow{MG}$, donc $3\overrightarrow{MA}+\overrightarrow{MB}=\overrightarrow{0}\iff4\overrightarrow{MG}=\overrightarrow{0}\iff M=G$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$4\overrightarrow{MA}+4\overrightarrow{MB}=8\overrightarrow{MI}$ ; et l'ensemble cherché est le singleton $\{G\}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">2.3</span> Construction de $G$ (poids positifs ou négatifs) <span class="lvl m">Moyen</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soient $A$ et $B$ deux points tels que $AB=6$ cm. Construire chacun des barycentres suivants en calculant sa distance à $A$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Construire $G_1=\text{Bar}\{(A,1);(B,3)\}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9')">Voir la solution</button>
+                    <div id="sol9" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $a+b=4\neq 0$ et $\overrightarrow{AG_1}=\dfrac34\overrightarrow{AB}$, donc $AG_1=\dfrac34\times6=4{,}5$ cm.</div><div class="step"><span class="step-num">Construction :</span> on partage $[AB]$ en $|a+b|=4$ parts égales de $1{,}5$ cm ; comme $\dfrac{b}{a+b}>0$ on avance de $A$ vers $B$ de $3$ parts.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G_1\in[AB]$ avec $AG_1=4{,}5$ cm (poids de même signe).</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Construire $G_2=\text{Bar}\{(A,3);(B,-1)\}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10')">Voir la solution</button>
+                    <div id="sol10" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $a+b=2\neq 0$ et $\overrightarrow{AG_2}=\dfrac{-1}{2}\overrightarrow{AB}$, donc $AG_2=\dfrac12\times 6=3$ cm.</div><div class="step"><span class="step-num">Sens :</span> le coefficient $-\dfrac12$ est négatif : $G_2$ est du côté de $A$ <b>opposé</b> à $B$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G_2\in(AB)$, $G_2\notin[AB]$, à $3$ cm de $A$, en dehors du segment (poids de signes contraires).</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Construire $G_3=\text{Bar}\{(A,-2);(B,5)\}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11')">Voir la solution</button>
+                    <div id="sol11" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $a+b=3\neq 0$ et $\overrightarrow{AG_3}=\dfrac{5}{3}\overrightarrow{AB}$, donc $AG_3=\dfrac53\times6=10$ cm.</div><div class="step"><span class="step-num">Donc :</span> $BG_3=AG_3-AB=10-6=4$ cm, et $G_3$ est au-delà de $B$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G_3\in(AB)$, $G_3\notin[AB]$, avec $AG_3=10$ cm.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Placer les trois points sur une même figure.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12')">Voir la solution</button>
+                    <div id="sol12" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $AG_1=4{,}5$ cm, $AG_2=-3$ cm (de l'autre côté de $A$) et $AG_3=10$ cm.</div><div class="graph-container"><svg id="g2a" width="400" height="250"></svg><p>$AB=6$ cm : positions de $G_1$, $G_2$ et $G_3$ sur la droite $(AB)$</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">2.4</span> Position du barycentre selon les poids <span class="lvl d">Difficile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soient $A$ et $B$ deux points distincts, $a$ et $b$ deux réels tels que $a+b\neq0$, et $G=\text{Bar}\{(A,a);(B,b)\}$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $G\in[AB]\iff ab\geqslant 0$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13')">Voir la solution</button>
+                    <div id="sol13" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="highlight-box yellow"><span class="label rappel">Rappel du cours</span><p>$G\in[AB]\iff\overrightarrow{AG}=t\overrightarrow{AB}$ avec $0\leqslant t\leqslant 1$. Ici $t=\dfrac{b}{a+b}$.</p></div><div class="step"><span class="step-num">Cas $a+b>0$ :</span> $0\leqslant\dfrac{b}{a+b}\leqslant1\iff 0\leqslant b\leqslant a+b\iff b\geqslant 0$ et $a\geqslant0$.</div><div class="step"><span class="step-num">Cas $a+b<0$ :</span> en multipliant par $(a+b)<0$, les inégalités changent de sens : $0\geqslant b\geqslant a+b\iff b\leqslant0$ et $a\leqslant 0$.</div><div class="step"><span class="step-num">Réunion :</span> $G\in[AB]\iff(a\geqslant0\text{ et }b\geqslant0)$ ou $(a\leqslant0\text{ et }b\leqslant0)$, c'est-à-dire $ab\geqslant0$ (le cas $a=b=0$ est exclu car $a+b\neq0$).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G\in[AB]\iff ab\geqslant0$ : le barycentre est sur le segment quand les poids ont le <b>même signe</b>, et en dehors quand ils sont de signes contraires.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Pour $m\in\mathbb{R}$, on pose $G_m=\text{Bar}\{(A,m);(B,2-m)\}$. Montrer que $G_m$ existe pour tout $m$ et exprimer $\overrightarrow{AG_m}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14')">Voir la solution</button>
+                    <div id="sol14" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $m+(2-m)=2\neq0$ pour tout réel $m$ : $G_m$ existe toujours.</div><div class="step"><span class="step-num">Donc :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overrightarrow{AG_m}=\frac{2-m}{2}\overrightarrow{AB}$$</div></div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G_m$ existe pour tout $m\in\mathbb{R}$ et $\overrightarrow{AG_m}=\dfrac{2-m}{2}\overrightarrow{AB}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Déterminer les valeurs de $m$ pour lesquelles $G_m\in[AB]$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol15')">Voir la solution</button>
+                    <div id="sol15" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $G_m\in[AB]\iff0\leqslant\dfrac{2-m}{2}\leqslant1\iff0\leqslant2-m\leqslant2$.</div><div class="step"><span class="step-num">Donc :</span> $2-m\geqslant0\iff m\leqslant2$ et $2-m\leqslant2\iff m\geqslant0$.</div><div class="step"><span class="step-num">Vérification avec 1) :</span> $ab=m(2-m)\geqslant 0\iff m\in[0,2]$ ✔</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G_m\in[AB]\iff m\in[0\,;2]$. En particulier $G_0=B$, $G_1$ est le milieu de $[AB]$ et $G_2=A$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Quel est l'ensemble des points $G_m$ quand $m$ décrit $\mathbb{R}$ ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol16')">Voir la solution</button>
+                    <div id="sol16" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $G_m$ est le point de $(AB)$ tel que $\overrightarrow{AG_m}=t\overrightarrow{AB}$ avec $t=\dfrac{2-m}{2}$.</div><div class="step"><span class="step-num">Or :</span> pour tout réel $t$, l'équation $t=\dfrac{2-m}{2}$ admet la solution $m=2-2t$ : $t$ prend <b>toutes</b> les valeurs réelles.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>L'ensemble des points $G_m$ est la <b>droite $(AB)$ tout entière</b>.</p></div><div class="graph-container"><svg id="g2b" width="400" height="250"></svg><p>Quelques positions de $G_m$ sur $(AB)$ : $m=-2,\,0,\,1,\,2,\,4$</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="nav-buttons">
+                <a href="exercice1.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Section 1</a>
+                <a href="exercice3.html" class="next-btn">Section 3 <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // FIGURES - Section 2
+        // كود الرسمة فـ figuresvg_ex2.js (ملف مستقل بالكامل، بلا مكتبة مشتركة)
+        // ============================================================
+    </script>
+    <script src="figuresvg_ex2.js"></script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+
+<!-- XPERT-SECTIONS-FAB v4 -->
+<style>
+/* ====== زر الأقسام العائم (Glass Pill) -- نفس لغة تصميم .devoir-fab ====== */
+.xpert-sec-fab-btn{position:fixed;left:16px;bottom:20px;z-index:9999;height:48px;min-width:48px;
+  padding:0 8px;border-radius:24px;background:rgba(var(--overlay-rgb),0.06);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(78,205,196,0.28);color:var(--text-primary);
+  box-shadow:0 4px 18px rgba(0,0,0,0.16);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  /* ظهور هادئ (fade + slide) بلا bounce/overshoot اللي كيبان مفاجئ */
+  transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1),
+    background .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.xpert-sec-fab-btn.xpert-fab-show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.xpert-sec-fab-btn:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);
+  box-shadow:0 6px 22px rgba(0,0,0,0.2);}
+.xpert-sec-fab-btn:active{transform:scale(0.94);}
+.xpert-sec-fab-btn .xsf-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;font-size:15px;color:#4ECDC4;transition:transform .3s ease,color .25s ease;}
+.xpert-sec-fab-btn .xsf-label{font-family:var(--font-main);font-size:12.5px;font-weight:600;
+  white-space:nowrap;padding-inline-end:6px;color:var(--text-secondary);}
+.xpert-sec-fab-btn.xpert-fab-open .xsf-icon{transform:rotate(135deg);color:#FF6B6B;}
+/* نبضة ترحيبية خفيفة أول ما يبان الزر، كتوقف ملي يتفتح */
+.xpert-sec-fab-btn.xpert-fab-show::after{content:'';position:absolute;inset:-6px;border-radius:24px;
+  border:2px solid #4ECDC4;opacity:0;animation:xpertFabPulse 2.8s ease-out .6s infinite;pointer-events:none;}
+.xpert-sec-fab-btn.xpert-fab-open::after{animation-play-state:paused;opacity:0;}
+@keyframes xpertFabPulse{0%{transform:scale(0.9);opacity:.5;}70%{transform:scale(1.08);opacity:0;}100%{transform:scale(1.08);opacity:0;}}
+@media (max-width:480px){
+  .xpert-sec-fab-btn{bottom:14px;left:12px;height:44px;}
+  .xpert-sec-fab-btn .xsf-icon{width:28px;height:28px;font-size:14px;}
+  .xpert-sec-fab-btn .xsf-label{font-size:11.5px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .xpert-sec-fab-btn.xpert-fab-show::after{animation:none;display:none;}
+  .xpert-sec-fab-btn .xsf-icon{transition:none;}
+}
+
+/* ====== قائمة الأقسام العائمة (نفس لغة .devoir-fab-menu) ====== */
+.xpert-sec-menu{position:fixed;bottom:78px;left:16px;z-index:9998;
+  display:flex;flex-direction:column;gap:8px;max-height:66vh;overflow-y:auto;
+  padding:2px;opacity:0;visibility:hidden;transform:translateY(10px) scale(0.96);
+  transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s;}
+.xpert-sec-menu.open{opacity:1;visibility:visible;transform:translateY(0) scale(1);}
+.xpert-sec-menu::-webkit-scrollbar{width:4px;}
+.xpert-sec-menu::-webkit-scrollbar-thumb{background:rgba(78,205,196,0.35);border-radius:4px;}
+
+.xpert-sec-item{position:relative;display:flex;align-items:center;gap:10px;min-height:44px;
+  padding:8px 16px;border-radius:22px;background:var(--bg-card);border:1px solid rgba(78,205,196,0.28);
+  color:var(--text-primary);box-shadow:0 4px 18px rgba(0,0,0,0.2);text-decoration:none;
+  font-family:var(--font-main);cursor:pointer;
+  opacity:0;transform:translateY(8px);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease,
+    opacity .32s cubic-bezier(.4,0,.2,1),transform .32s cubic-bezier(.4,0,.2,1);}
+.xpert-sec-menu.open .xpert-sec-item{opacity:1;transform:translateY(0);}
+.xpert-sec-item:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);}
+.xpert-sec-item:active{transform:scale(0.96);}
+.xpert-sec-item .xn{font-weight:700;color:#4ECDC4;font-size:13px;min-width:22px;flex-shrink:0;text-align:center;}
+.xpert-sec-item .xd{font-size:12px;line-height:1.35;color:var(--text-secondary);}
+.xpert-sec-item .xd b{color:var(--text-primary);font-size:12.5px;}
+
+/* العنصر النشط (الصفحة الحالية) */
+.xpert-sec-item.active{background:rgba(78,205,196,0.14);border-color:rgba(78,205,196,0.55);}
+.xpert-sec-item.active .xn{color:#4ECDC4;}
+
+/* ====== "التالي فالترتيب": نبض تحذيري/تشجيعي مثل عداد الفرض فآخر الدقائق ====== */
+@keyframes xpertSecNextPulse{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(78,205,196,0.45);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(78,205,196,0);}
+}
+.xpert-sec-item-next{border-color:rgba(78,205,196,0.65);animation:xpertSecNextPulse 1.6s ease-in-out infinite;}
+.xpert-sec-item-next .xsn-badge{position:absolute;top:-8px;inset-inline-end:10px;
+  background:#4ECDC4;color:#0b0f0e;font-size:9.5px;font-weight:800;line-height:1;
+  padding:3px 7px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+
+/* ====== "ملخص الدرس": بطاقة زجاجية بلون أزرق مميز ====== */
+.xpert-sec-item-summary{background:rgba(77,157,224,0.10);border-color:rgba(77,157,224,0.45);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
+.xpert-sec-item-summary:hover{background:rgba(77,157,224,0.18);border-color:rgba(77,157,224,0.65);}
+.xpert-sec-item-summary .xn{color:#4D9DE0;}
+.xpert-sec-item-summary .xd b{color:#79B8E8;}
+.xpert-sec-item-summary.active{background:rgba(77,157,224,0.20);border-color:rgba(77,157,224,0.7);}
+.xpert-sec-item-summary.xpert-sec-item-next{animation-name:xpertSecNextPulseBlue;}
+@keyframes xpertSecNextPulseBlue{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(77,157,224,0.5);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(77,157,224,0);}
+}
+.xpert-sec-item-summary.xpert-sec-item-next .xsn-badge{background:#4D9DE0;color:#0b0f0e;}
+
+@media (max-width:480px){
+  .xpert-sec-menu{left:12px;bottom:66px;}
+}
+</style>
+<button class="xpert-sec-fab-btn" id="xpertSecFabBtn" aria-label="الأقسام" aria-haspopup="true" aria-expanded="false">
+  <span class="xsf-icon"><i class="fas fa-layer-group"></i></span>
+  <span class="xsf-label">الأقسام</span>
+</button>
+<div class="xpert-sec-menu" id="xpertSecMenu" role="menu"></div>
+<script>
+(function(){
+  var sections = [{"href":"exercice1.html","label":"Section 1","desc":"Définition, existence, vocabulaire - Partie 1 §1-3"},{"href":"exercice2.html","label":"Section 2","desc":"Invariance, propriété caractéristique, construction de G - Partie 1 §4"},{"href":"exercice3.html","label":"Section 3","desc":"Cercles et médiatrices avec 2 points - Partie 1 §5"},{"href":"exercice4.html","label":"Section 4","desc":"Barycentre de 3 points, invariance, caractéristique - Partie 2 §1-2"},{"href":"exercice5.html","label":"Section 5","desc":"Associativité, centre de gravité, alignement et concours - Partie 2 §2-3"},{"href":"exercice6.html","label":"Section 6","desc":"Coordonnées du barycentre (2, 3, 4 points) - Partie 2 §4, Partie 3 §4"},{"href":"exercice7.html","label":"Section 7","desc":"Barycentre de 4 points, parallélogramme, associativité - Partie 3 §1-3"},{"href":"exercice8.html","label":"Section 8","desc":"Ensembles de points : cercles, médiatrices - Partie 4 §7"},{"href":"exercice9.html","label":"Section 9","desc":"Devoir surveillé type (2 h, /20) - synthèse du chapitre"}];
+  var current = "exercice2.html";
+  var STAGGER_STEP = 40, STAGGER_MAX = 300;
+  var btn = document.getElementById('xpertSecFabBtn');
+  var menu = document.getElementById('xpertSecMenu');
+  var currentIndex = -1;
+  sections.forEach(function(s,i){ if (s.href === current) currentIndex = i; });
+
+  sections.forEach(function(s, i){
+    var isSummary = /résumé|resume|synthèse|synthese|ملخص|تلخيص/i.test((s.label||'') + ' ' + (s.desc||''));
+    var isNext = (currentIndex !== -1 && i === currentIndex + 1);
+    var a = document.createElement('a');
+    a.href = s.href; // رابط مباشر لصفحة القسم (exerciceN.html / serieN.html / partN.html)
+    a.setAttribute('role', 'menuitem');
+    var cls = 'xpert-sec-item';
+    if (s.href === current) cls += ' active';
+    if (isSummary) cls += ' xpert-sec-item-summary';
+    if (isNext) cls += ' xpert-sec-item-next';
+    a.className = cls;
+    a.innerHTML = '<span class="xn">' + (i+1) + '</span>' +
+      '<span class="xd"><b>' + (s.label||('#'+(i+1))) + '</b><br>' + (s.desc||'') + '</span>' +
+      (isNext ? '<span class="xsn-badge">Suivant</span>' : '');
+    menu.appendChild(a);
+  });
+
+  function staggerIn(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it, i){
+      it.style.transitionDelay = Math.min(i * STAGGER_STEP, STAGGER_MAX) + 'ms';
+    });
+  }
+  function clearStagger(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it){ it.style.transitionDelay = '0ms'; });
+  }
+
+  function openMenu(){
+    staggerIn();
+    menu.classList.add('open');
+    btn.classList.add('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.addEventListener('click', onDocClick, true);
+    document.addEventListener('keydown', onKeydown);
+  }
+  function closeMenu(){
+    clearStagger();
+    menu.classList.remove('open');
+    btn.classList.remove('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('click', onDocClick, true);
+    document.removeEventListener('keydown', onKeydown);
+  }
+  function toggleMenu(){
+    if (menu.classList.contains('open')) closeMenu(); else openMenu();
+  }
+  function onDocClick(e){
+    if (menu.contains(e.target) || btn.contains(e.target)) return;
+    closeMenu();
+  }
+  function onKeydown(e){
+    if (e.key === 'Escape') closeMenu();
+  }
+  btn.addEventListener('click', toggleMenu);
+
+  // ====== التزامن مع اختفاء xpertLoader (الدائرة اللي كتدور) ======
+  // #xpertLoader عندو transition ديالو "opacity .55s" (~500ms) ملي
+  // كيتزاد class="xpert-loader-hide"/"xpert-loaded". اللودر (z-index
+  // عالي جداً) كيبقى فوق كلشي طول هاد المدة وهو كيتلاشى. إيلا بدا الزر
+  // فالظهور دغيا ملي كيتكتشف class="xpert-loaded"، كيبقى مخبي تحت
+  // اللودر اللي مازال باين، وكيبان "طّاح" دفعة وحدة غير ملي يختفي
+  // اللودر بالكامل. الحل: نستناو نفس 500ms (مدة اختفاء اللودر) قبل ما
+  // نبداو أنيميشن ظهور الزر، باش الاثنين يتزامنو بالضبط.
+  var LOADER_FADE_MS = 500;
+  function revealFab(){ requestAnimationFrame(function(){ btn.classList.add('xpert-fab-show'); }); }
+  function revealFabSynced(){ setTimeout(revealFab, LOADER_FADE_MS); }
+  if (!document.getElementById('xpertLoader')) {
+    revealFab(); // الصفحة ماعندهاش لودر أصلا، ما كاين والو نتزامنو معاه
+  } else if (document.body.classList.contains('xpert-loaded')) {
+    revealFabSynced();
+  } else {
+    var mo = new MutationObserver(function(){
+      if (document.body.classList.contains('xpert-loaded')) { revealFabSynced(); mo.disconnect(); }
+    });
+    mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    setTimeout(revealFabSynced, 1500); // حماية إيلا اللودر ما زادش الكلاس لسبب ما
+  }
+})();
+</script>
+
+</body>
+</html>
+
+

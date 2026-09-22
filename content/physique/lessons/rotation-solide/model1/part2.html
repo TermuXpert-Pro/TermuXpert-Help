@@ -457,6 +457,42 @@
 <a class="back-btn" href="../../../../../subject.html?subject=physique"><i class="fas fa-arrow-right"></i> Retour</a>
 <div class="lesson-container">
 <h1 class="lesson-title"><i class="fas fa-ruler" style="color:#FF6B6B;"></i> Partie 2 : Abscisse angulaire - Abscisse curviligne</h1>
+
+<!-- XPERT-PDF-BUTTON:START -->
+<div class="xpert-pdf-bar">
+  <a href="Rotation_Solide_Xpert.pdf" download class="xpert-pdf-btn">
+    <svg viewBox="0 0 24 24" class="xpert-pdf-btn-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+    <span>Télécharger le cours en PDF</span>
+  </a>
+</div>
+
+<style>
+  .xpert-pdf-bar{ display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 20px; }
+  .xpert-pdf-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--bg-card,#1F2833); border:1px solid var(--border,#2A3340);
+    color:var(--accent-light,#66FCF1); padding:9px 16px; border-radius:10px;
+    text-decoration:none; font-family:var(--font-main,'Inter','Cairo',sans-serif);
+    font-size:12.5px; font-weight:700; box-shadow:0 2px 10px rgba(0,0,0,.18);
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+  }
+  .xpert-pdf-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 18px rgba(69,162,158,.30);
+    background:rgba(69,162,158,.12);
+    border-color:rgba(69,162,158,.45);
+  }
+  .xpert-pdf-btn-icon{ width:15px; height:15px; flex-shrink:0; }
+  .xpert-pdf-btn.variant-corrige{ color:#A8FF78; }
+  .xpert-pdf-btn.variant-corrige:hover{ background:rgba(168,255,120,.10); border-color:rgba(168,255,120,.4); }
+  .xpert-pdf-btn.variant-enonce{ color:#FF6B6B; }
+  .xpert-pdf-btn.variant-enonce:hover{ background:rgba(255,107,107,.10); border-color:rgba(255,107,107,.4); }
+  @media (max-width:480px){
+    .xpert-pdf-btn{ padding:8px 13px; font-size:12px; }
+  }
+</style>
+<!-- XPERT-PDF-BUTTON:END -->
+
 <!-- ====== TABLE DES MATIÈRES (auto) ====== -->
 <div class="toc">
 <h3><i class="fas fa-list"></i> Table des matières</h3>
@@ -793,5 +829,64 @@ function toggleSolution(id) {
         }
     }
 }
-</script></body>
+</script>
+<!-- XPERT-QUIZ-FAB (خاص بدرس Rotation d'un solide فقط) -->
+<style>
+.xpert-quiz-fab-btn{position:fixed;right:16px;bottom:20px;z-index:9999;height:48px;min-width:48px;
+  padding:0 8px;border-radius:24px;background:rgba(var(--overlay-rgb),0.06);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(244,208,63,0.35);color:var(--text-primary);
+  box-shadow:0 4px 18px rgba(0,0,0,0.16);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1),
+    background .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.xpert-quiz-fab-btn.xpert-fab-show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.xpert-quiz-fab-btn:hover{background:rgba(244,208,63,0.12);border-color:rgba(244,208,63,0.6);
+  box-shadow:0 6px 22px rgba(0,0,0,0.2);}
+.xpert-quiz-fab-btn:active{transform:scale(0.94);}
+.xpert-quiz-fab-btn .xqf-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;font-size:15px;color:var(--gold-text);}
+.xpert-quiz-fab-btn .xqf-label{font-family:var(--font-main);font-size:12.5px;font-weight:700;
+  white-space:nowrap;padding-inline-start:6px;color:var(--text-secondary);}
+.xpert-quiz-fab-btn.xpert-fab-show::after{content:'';position:absolute;inset:-6px;border-radius:24px;
+  border:2px solid var(--gold-text);opacity:0;animation:xpertQuizFabPulse 2.8s ease-out 1.2s infinite;pointer-events:none;}
+@keyframes xpertQuizFabPulse{0%{transform:scale(0.9);opacity:.5;}70%{transform:scale(1.08);opacity:0;}100%{transform:scale(1.08);opacity:0;}}
+@media (max-width:480px){
+  .xpert-quiz-fab-btn{bottom:14px;right:12px;height:44px;}
+  .xpert-quiz-fab-btn .xqf-icon{width:28px;height:28px;font-size:14px;}
+  .xpert-quiz-fab-btn .xqf-label{font-size:11.5px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .xpert-quiz-fab-btn.xpert-fab-show::after{animation:none;display:none;}
+}
+</style>
+<button class="xpert-quiz-fab-btn" id="xpertQuizFabBtn" aria-label="اختبار الدرس"
+  onclick="location.href='quiz.html'">
+  <span class="xqf-icon"><i class="fas fa-clipboard-question"></i></span>
+  <span class="xqf-label">اختبار الدرس</span>
+</button>
+<script>
+(function(){
+  var btn = document.getElementById('xpertQuizFabBtn');
+  if (!btn) return;
+  var LOADER_FADE_MS = 500;
+  function reveal(){ requestAnimationFrame(function(){ btn.classList.add('xpert-fab-show'); }); }
+  function revealSynced(){ setTimeout(reveal, LOADER_FADE_MS); }
+  if (!document.getElementById('xpertLoader')) {
+    reveal();
+  } else if (document.body.classList.contains('xpert-loaded')) {
+    revealSynced();
+  } else {
+    var mo = new MutationObserver(function(){
+      if (document.body.classList.contains('xpert-loaded')) { revealSynced(); mo.disconnect(); }
+    });
+    mo.observe(document.body, { attributes:true, attributeFilter:['class'] });
+    setTimeout(revealSynced, 1500);
+  }
+})();
+</script>
+<!-- /XPERT-QUIZ-FAB -->
+
+</body>
 </html>

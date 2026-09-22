@@ -1,0 +1,804 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Exercices et séries de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Section 9 - Raisonnement direct et raisonnement par contraposée - Logique (modèle 2) | Xpert</title>
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+@media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+
+    <style>
+        /* ====== Modèle 2 : sections du cours -> séries d'exercices ====== */
+        .section h2 .num { width: auto; min-width: 22px; padding: 0 7px; border-radius: 11px; }
+        .lvl { display: inline-block; padding: 1px 9px; border-radius: 10px; font-size: 10.5px; font-weight: 700; margin-inline-start: 4px; white-space: nowrap; }
+        .lvl.f { background: rgba(78,205,196,0.15); color: #4ECDC4; }
+        .lvl.m { background: rgba(244,208,63,0.15); color: var(--gold-text); }
+        .lvl.d { background: rgba(255,107,107,0.15); color: #FF6B6B; }
+        .section h2 { flex-wrap: wrap; }
+        .pts { color: var(--text-muted); font-size: 11px; font-weight: 600; margin-inline-start: 4px; }
+        .sub-question .letter .pts { font-size: 10.5px; }
+        .recap-cours { margin-bottom: 10px; }
+        .recap-cours .highlight-box p { font-size: 11.5px; }
+        .sub-question ol, .sub-question ul { font-size: 11.5px; padding-right: 18px; margin: 4px 0; color: var(--text-secondary); }
+        .sub-question li { margin-bottom: 2px; }
+        .graph-container svg { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">55 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">26 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">22 exercices</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../../../../../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Section 9 : Raisonnement direct et raisonnement par contraposée</h1>
+            <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-book-open"></i> Cours : Partie 4 · §1 et §2</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Du plus simple au plus difficile</span>
+            </p>
+<div class="recap-cours"><div class="highlight-box green"><span class="label def">À retenir du cours</span><p><b>Raisonnement direct :</b> pour montrer $P\Rightarrow Q$, on suppose $P$ vraie et on en déduit, par une suite d'implications ou d'équivalences, que $Q$ est vraie.</p><p><b>Raisonnement par contraposée :</b> comme $P\Rightarrow Q\iff\overline Q\Rightarrow\overline P$, on peut montrer $P\Rightarrow Q$ en supposant $\overline Q$ vraie et en en déduisant $\overline P$.</p><p><b>Quand l'utiliser :</b> la contraposée est utile quand l'hypothèse $\overline Q$ (souvent une négation d'égalité ou de propriété) est plus facile à exploiter que $P$ directement.</p></div></div>
+            <div class="section">
+                <h2><span class="num">9.1</span> Parité : raisonnement direct <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">On étudie la parité de $n^2$ selon celle de $n$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit $n\in\mathbb{N}$. Montrer directement que si $n$ est pair, alors $n^2$ est pair.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $n$ pair, c'est-à-dire $n=2k$ avec $k\in\mathbb{N}$.</div><div class="step"><span class="step-num">Alors :</span> $n^2=(2k)^2=4k^2=2\times(2k^2)$.</div><div class="step"><span class="step-num">Or :</span> $2k^2\in\mathbb{N}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$n^2$ s'écrit $2\times(\text{entier})$ : $n^2$ est pair.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer directement que si $n$ est impair, alors $n^2$ est impair.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $n$ impair, c'est-à-dire $n=2k+1$ avec $k\in\mathbb{N}$.</div><div class="step"><span class="step-num">Alors :</span> $n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1$.</div><div class="step"><span class="step-num">Or :</span> $2k^2+2k\in\mathbb{N}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$n^2$ s'écrit $2\times(\text{entier})+1$ : $n^2$ est impair.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire, sans nouvelle démonstration, la valeur de vérité de « $n$ est pair $\iff n^2$ est pair ».</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> tout entier est soit pair, soit impair (jamais les deux).</div><div class="step"><span class="step-num">D'après 1) :</span> $n$ pair $\Rightarrow n^2$ pair.</div><div class="step"><span class="step-num">D'après 2), par contraposée :</span> si $n^2$ est pair, alors $n$ ne peut pas être impair (sinon $n^2$ serait impair d'après 2) : donc $n$ est pair.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>« $n$ pair » $\iff$ « $n^2$ pair » est <b>vraie</b> : c'est une équivalence utile en arithmétique.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">9.2</span> Quand utiliser la contraposée <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $n\in\mathbb{N}$. On considère $P$ : « si $n^2$ est pair, alors $n$ est pair ».</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire la contraposée de $P$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Règle :</span> la contraposée de « si $A$ alors $B$ » est « si non $B$ alors non $A$ ».</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Contraposée : « si $n$ est impair, alors $n^2$ est impair ».</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer $P$ en utilisant sa contraposée.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
+                    <div id="sol5" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $n$ impair, donc $n=2k+1$ avec $k\in\mathbb{N}$.</div><div class="step"><span class="step-num">Alors :</span> $n^2=4k^2+4k+1=2(2k^2+2k)+1$, qui est impair.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>La contraposée est vraie, donc $P$ est vraie : si $n^2$ est pair, alors $n$ est pair.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Pourquoi est-il difficile de démontrer $P$ directement (en partant de « $n^2$ est pair ») ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6')">Voir la solution</button>
+                    <div id="sol6" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Difficulté :</span> si $n^2=2k$, il n'est pas immédiat d'en extraire une écriture $n=2m$ : il faudrait déjà savoir que $\sqrt{2k}$ est un entier pair, ce qui est ce qu'on cherche à prouver.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>La contraposée transforme une hypothèse « difficile à exploiter » ($n^2$ pair) en une hypothèse « facile à exploiter » ($n$ impair, qui se met sous forme $2k+1$).</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">9.3</span> Contraposée et divisibilité <span class="lvl m">Moyen</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $x\in\mathbb{R}$. On veut montrer : $x^2=4\Rightarrow(x=2\ \text{ou}\ x=-2)$ — sous la forme équivalente $x^2-4=0\Rightarrow(x=2\ \text{ou}\ x=-2)$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire la contraposée de cette implication.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7')">Voir la solution</button>
+                    <div id="sol7" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Contraposée : « si $x\neq2$ et $x\neq-2$, alors $x^2-4\neq0$ », c'est-à-dire (Morgan) : « si $x\neq2$ et $x\neq-2$, alors $x^2\neq4$ ».</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer l'implication par contraposée.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8')">Voir la solution</button>
+                    <div id="sol8" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $x\neq2$ et $x\neq-2$.</div><div class="step"><span class="step-num">On a :</span> $x^2-4=(x-2)(x+2)$.</div><div class="step"><span class="step-num">Or :</span> $x-2\neq0$ et $x+2\neq0$ : un produit de deux facteurs non nuls est non nul.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$x^2-4\neq0$ : la contraposée est démontrée, donc l'implication initiale est vraie.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit $n\in\mathbb{N}^*$. Montrer par contraposée que si $n^2$ n'est pas divisible par $3$, alors $n$ n'est pas divisible par $3$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9')">Voir la solution</button>
+                    <div id="sol9" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Contraposée à démontrer :</span> si $n$ est divisible par $3$, alors $n^2$ est divisible par $3$.</div><div class="step"><span class="step-num">On suppose :</span> $n=3k$ avec $k\in\mathbb{N}^*$.</div><div class="step"><span class="step-num">Alors :</span> $n^2=9k^2=3\times(3k^2)$, avec $3k^2\in\mathbb{N}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$n^2$ est divisible par $3$ : la contraposée est vraie, donc la propriété initiale l'est aussi.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Application numérique : $99$ est-il divisible par $3$ ? Que peut-on dire de $99^2$ sans le calculer ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10')">Voir la solution</button>
+                    <div id="sol10" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $99=9\times11=3\times33$ : $99$ est divisible par $3$.</div><div class="step"><span class="step-num">D'après 3) :</span> $n$ divisible par $3$ $\Rightarrow$ $n^2$ divisible par $3$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$99^2$ est divisible par $3$, sans avoir besoin de calculer $99^2=9801$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">9.4</span> Contraposée : somme de deux entiers <span class="lvl m">Moyen</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soient $a,b\in\mathbb{Z}$. On note $P$ : « si $a$ et $b$ ont la même parité, alors $\dfrac{a+b}{2}$ est un entier ».</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Écrire la contraposée de $P$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11')">Voir la solution</button>
+                    <div id="sol11" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Contraposée : « si $\dfrac{a+b}{2}$ n'est pas un entier, alors $a$ et $b$ n'ont pas la même parité », c'est-à-dire « si $a$ et $b$ sont de parités différentes, alors $\dfrac{a+b}2$ n'est pas un entier ».</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Démontrer la contraposée (donc $P$).</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12')">Voir la solution</button>
+                    <div id="sol12" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $a$ et $b$ de parités différentes ; par exemple $a=2k$ (pair) et $b=2m+1$ (impair), $k,m\in\mathbb{Z}$.</div><div class="step"><span class="step-num">Alors :</span> $\dfrac{a+b}{2}=\dfrac{2k+2m+1}{2}=k+m+\dfrac12$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$k+m$ est un entier et $\dfrac12$ n'en est pas un : $\dfrac{a+b}{2}$ n'est pas un entier. La contraposée est démontrée, donc $P$ est vraie.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">La réciproque de $P$ est-elle vraie ? (« si $\dfrac{a+b}{2}$ est un entier, alors $a$ et $b$ ont la même parité »)</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13')">Voir la solution</button>
+                    <div id="sol13" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On suppose :</span> $\dfrac{a+b}2=k\in\mathbb{Z}$, donc $a+b=2k$ est pair.</div><div class="step"><span class="step-num">Or :</span> $a+b$ pair $\iff a$ et $b$ ont la même parité (si $a=2p+r_a$ et $b=2q+r_b$ avec $r_a,r_b\in\{0,1\}$, alors $a+b$ pair $\iff r_a+r_b$ pair $\iff r_a=r_b$).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>La réciproque est <b>vraie</b> : on a en fait une équivalence, $\dfrac{a+b}2\in\mathbb{Z}\iff a$ et $b$ de même parité.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="nav-buttons">
+                <a href="exercice8.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Section 8</a>
+                <a href="exercice10.html" class="next-btn">Section 10 <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+
+<!-- XPERT-SECTIONS-FAB v4 -->
+<style>
+/* ====== زر الأقسام العائم (Glass Pill) -- نفس لغة تصميم .devoir-fab ====== */
+.xpert-sec-fab-btn{position:fixed;left:16px;bottom:20px;z-index:9999;height:48px;min-width:48px;
+  padding:0 8px;border-radius:24px;background:rgba(var(--overlay-rgb),0.06);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(78,205,196,0.28);color:var(--text-primary);
+  box-shadow:0 4px 18px rgba(0,0,0,0.16);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  /* ظهور هادئ (fade + slide) بلا bounce/overshoot اللي كيبان مفاجئ */
+  transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1),
+    background .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.xpert-sec-fab-btn.xpert-fab-show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.xpert-sec-fab-btn:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);
+  box-shadow:0 6px 22px rgba(0,0,0,0.2);}
+.xpert-sec-fab-btn:active{transform:scale(0.94);}
+.xpert-sec-fab-btn .xsf-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;font-size:15px;color:#4ECDC4;transition:transform .3s ease,color .25s ease;}
+.xpert-sec-fab-btn .xsf-label{font-family:var(--font-main);font-size:12.5px;font-weight:600;
+  white-space:nowrap;padding-inline-end:6px;color:var(--text-secondary);}
+.xpert-sec-fab-btn.xpert-fab-open .xsf-icon{transform:rotate(135deg);color:#FF6B6B;}
+/* نبضة ترحيبية خفيفة أول ما يبان الزر، كتوقف ملي يتفتح */
+.xpert-sec-fab-btn.xpert-fab-show::after{content:'';position:absolute;inset:-6px;border-radius:24px;
+  border:2px solid #4ECDC4;opacity:0;animation:xpertFabPulse 2.8s ease-out .6s infinite;pointer-events:none;}
+.xpert-sec-fab-btn.xpert-fab-open::after{animation-play-state:paused;opacity:0;}
+@keyframes xpertFabPulse{0%{transform:scale(0.9);opacity:.5;}70%{transform:scale(1.08);opacity:0;}100%{transform:scale(1.08);opacity:0;}}
+@media (max-width:480px){
+  .xpert-sec-fab-btn{bottom:14px;left:12px;height:44px;}
+  .xpert-sec-fab-btn .xsf-icon{width:28px;height:28px;font-size:14px;}
+  .xpert-sec-fab-btn .xsf-label{font-size:11.5px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .xpert-sec-fab-btn.xpert-fab-show::after{animation:none;display:none;}
+  .xpert-sec-fab-btn .xsf-icon{transition:none;}
+}
+
+/* ====== قائمة الأقسام العائمة (نفس لغة .devoir-fab-menu) ====== */
+.xpert-sec-menu{position:fixed;bottom:78px;left:16px;z-index:9998;
+  display:flex;flex-direction:column;gap:8px;max-height:66vh;overflow-y:auto;
+  padding:2px;opacity:0;visibility:hidden;transform:translateY(10px) scale(0.96);
+  transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s;}
+.xpert-sec-menu.open{opacity:1;visibility:visible;transform:translateY(0) scale(1);}
+.xpert-sec-menu::-webkit-scrollbar{width:4px;}
+.xpert-sec-menu::-webkit-scrollbar-thumb{background:rgba(78,205,196,0.35);border-radius:4px;}
+
+.xpert-sec-item{position:relative;display:flex;align-items:center;gap:10px;min-height:44px;
+  padding:8px 16px;border-radius:22px;background:var(--bg-card);border:1px solid rgba(78,205,196,0.28);
+  color:var(--text-primary);box-shadow:0 4px 18px rgba(0,0,0,0.2);text-decoration:none;
+  font-family:var(--font-main);cursor:pointer;
+  opacity:0;transform:translateY(8px);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease,
+    opacity .32s cubic-bezier(.4,0,.2,1),transform .32s cubic-bezier(.4,0,.2,1);}
+.xpert-sec-menu.open .xpert-sec-item{opacity:1;transform:translateY(0);}
+.xpert-sec-item:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);}
+.xpert-sec-item:active{transform:scale(0.96);}
+.xpert-sec-item .xn{font-weight:700;color:#4ECDC4;font-size:13px;min-width:22px;flex-shrink:0;text-align:center;}
+.xpert-sec-item .xd{font-size:12px;line-height:1.35;color:var(--text-secondary);}
+.xpert-sec-item .xd b{color:var(--text-primary);font-size:12.5px;}
+
+/* العنصر النشط (الصفحة الحالية) */
+.xpert-sec-item.active{background:rgba(78,205,196,0.14);border-color:rgba(78,205,196,0.55);}
+.xpert-sec-item.active .xn{color:#4ECDC4;}
+
+/* ====== "التالي فالترتيب": نبض تحذيري/تشجيعي مثل عداد الفرض فآخر الدقائق ====== */
+@keyframes xpertSecNextPulse{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(78,205,196,0.45);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(78,205,196,0);}
+}
+.xpert-sec-item-next{border-color:rgba(78,205,196,0.65);animation:xpertSecNextPulse 1.6s ease-in-out infinite;}
+.xpert-sec-item-next .xsn-badge{position:absolute;top:-8px;inset-inline-end:10px;
+  background:#4ECDC4;color:#0b0f0e;font-size:9.5px;font-weight:800;line-height:1;
+  padding:3px 7px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+
+/* ====== "ملخص الدرس": بطاقة زجاجية بلون أزرق مميز ====== */
+.xpert-sec-item-summary{background:rgba(77,157,224,0.10);border-color:rgba(77,157,224,0.45);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
+.xpert-sec-item-summary:hover{background:rgba(77,157,224,0.18);border-color:rgba(77,157,224,0.65);}
+.xpert-sec-item-summary .xn{color:#4D9DE0;}
+.xpert-sec-item-summary .xd b{color:#79B8E8;}
+.xpert-sec-item-summary.active{background:rgba(77,157,224,0.20);border-color:rgba(77,157,224,0.7);}
+.xpert-sec-item-summary.xpert-sec-item-next{animation-name:xpertSecNextPulseBlue;}
+@keyframes xpertSecNextPulseBlue{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(77,157,224,0.5);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(77,157,224,0);}
+}
+.xpert-sec-item-summary.xpert-sec-item-next .xsn-badge{background:#4D9DE0;color:#0b0f0e;}
+
+@media (max-width:480px){
+  .xpert-sec-menu{left:12px;bottom:66px;}
+}
+</style>
+<button class="xpert-sec-fab-btn" id="xpertSecFabBtn" aria-label="Sections" aria-haspopup="true" aria-expanded="false">
+  <span class="xsf-icon"><i class="fas fa-layer-group"></i></span>
+  <span class="xsf-label">Sections</span>
+</button>
+<div class="xpert-sec-menu" id="xpertSecMenu" role="menu"></div>
+<script>
+(function(){
+  var sections = [{"href":"exercice1.html","label":"Section 1","desc":"Proposition, valeur de vérité, fonction propositionnelle - Partie 1 §1-2"},{"href":"exercice2.html","label":"Section 2","desc":"Quantificateurs universel, existentiel, ∃!, ordre des quantificateurs - Partie 1 §3"},{"href":"exercice3.html","label":"Section 3","desc":"Négation, négation avec quantificateurs - Partie 2 §1"},{"href":"exercice4.html","label":"Section 4","desc":"P∧Q, P∨Q, tables de vérité, lois de Morgan, distributivité - Partie 2 §2"},{"href":"exercice5.html","label":"Section 5","desc":"Implication, réciproque, contraposée, négation - Partie 2 §3"},{"href":"exercice6.html","label":"Section 6","desc":"Équivalence, double implication, propriétés - Partie 2 §4"},{"href":"exercice7.html","label":"Section 7","desc":"Lois logiques, tautologies, preuves par table et par équivalences - Partie 3 §1"},{"href":"exercice8.html","label":"Section 8","desc":"Contre-exemple, équivalences successives - Partie 3 §2-3"},{"href":"exercice9.html","label":"Section 9","desc":"Raisonnement direct, contraposée - Partie 4 §1-2"},{"href":"exercice10.html","label":"Section 10","desc":"Raisonnement par l'absurde, irrationalité de √2 - Partie 4 §3"},{"href":"exercice11.html","label":"Section 11","desc":"Disjonction des cas, valeur absolue, parité - Partie 4 §4"},{"href":"exercice12.html","label":"Section 12","desc":"Récurrence simple : initialisation, hérédité, conclusion - Partie 4 §5"},{"href":"exercice13.html","label":"Section 13","desc":"Devoir surveillé type (2 h, /20) - synthèse du chapitre logique"}];
+  var current = "exercice9.html";
+  var STAGGER_STEP = 40, STAGGER_MAX = 300;
+  var btn = document.getElementById('xpertSecFabBtn');
+  var menu = document.getElementById('xpertSecMenu');
+  var currentIndex = -1;
+  sections.forEach(function(s,i){ if (s.href === current) currentIndex = i; });
+
+  sections.forEach(function(s, i){
+    var isSummary = /résumé|resume|synthèse|synthese|ملخص|تلخيص/i.test((s.label||'') + ' ' + (s.desc||''));
+    var isNext = (currentIndex !== -1 && i === currentIndex + 1);
+    var a = document.createElement('a');
+    a.href = s.href; // رابط مباشر لصفحة القسم (exerciceN.html / serieN.html / partN.html)
+    a.setAttribute('role', 'menuitem');
+    var cls = 'xpert-sec-item';
+    if (s.href === current) cls += ' active';
+    if (isSummary) cls += ' xpert-sec-item-summary';
+    if (isNext) cls += ' xpert-sec-item-next';
+    a.className = cls;
+    a.innerHTML = '<span class="xn">' + (i+1) + '</span>' +
+      '<span class="xd"><b>' + (s.label||('#'+(i+1))) + '</b><br>' + (s.desc||'') + '</span>' +
+      (isNext ? '<span class="xsn-badge">Suivant</span>' : '');
+    menu.appendChild(a);
+  });
+
+  function staggerIn(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it, i){
+      it.style.transitionDelay = Math.min(i * STAGGER_STEP, STAGGER_MAX) + 'ms';
+    });
+  }
+  function clearStagger(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it){ it.style.transitionDelay = '0ms'; });
+  }
+
+  function openMenu(){
+    staggerIn();
+    menu.classList.add('open');
+    btn.classList.add('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.addEventListener('click', onDocClick, true);
+    document.addEventListener('keydown', onKeydown);
+  }
+  function closeMenu(){
+    clearStagger();
+    menu.classList.remove('open');
+    btn.classList.remove('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('click', onDocClick, true);
+    document.removeEventListener('keydown', onKeydown);
+  }
+  function toggleMenu(){
+    if (menu.classList.contains('open')) closeMenu(); else openMenu();
+  }
+  function onDocClick(e){
+    if (menu.contains(e.target) || btn.contains(e.target)) return;
+    closeMenu();
+  }
+  function onKeydown(e){
+    if (e.key === 'Escape') closeMenu();
+  }
+  btn.addEventListener('click', toggleMenu);
+
+  // ====== التزامن مع اختفاء xpertLoader (الدائرة اللي كتدور) ======
+  // #xpertLoader عندو transition ديالو "opacity .55s" (~500ms) ملي
+  // كيتزاد class="xpert-loader-hide"/"xpert-loaded". اللودر (z-index
+  // عالي جداً) كيبقى فوق كلشي طول هاد المدة وهو كيتلاشى. إيلا بدا الزر
+  // فالظهور دغيا ملي كيتكتشف class="xpert-loaded"، كيبقى مخبي تحت
+  // اللودر اللي مازال باين، وكيبان "طّاح" دفعة وحدة غير ملي يختفي
+  // اللودر بالكامل. الحل: نستناو نفس 500ms (مدة اختفاء اللودر) قبل ما
+  // نبداو أنيميشن ظهور الزر، باش الاثنين يتزامنو بالضبط.
+  var LOADER_FADE_MS = 500;
+  function revealFab(){ requestAnimationFrame(function(){ btn.classList.add('xpert-fab-show'); }); }
+  function revealFabSynced(){ setTimeout(revealFab, LOADER_FADE_MS); }
+  if (!document.getElementById('xpertLoader')) {
+    revealFab(); // الصفحة ماعندهاش لودر أصلا، ما كاين والو نتزامنو معاه
+  } else if (document.body.classList.contains('xpert-loaded')) {
+    revealFabSynced();
+  } else {
+    var mo = new MutationObserver(function(){
+      if (document.body.classList.contains('xpert-loaded')) { revealFabSynced(); mo.disconnect(); }
+    });
+    mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    setTimeout(revealFabSynced, 1500); // حماية إيلا اللودر ما زادش الكلاس لسبب ما
+  }
+})();
+</script>
+
+</body>
+</html>
+
+

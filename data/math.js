@@ -1,3 +1,4 @@
+
 // ============================================================
 // بيانات مادة الرياضيات
 // لإضافة تمرين/سلسلة جديدة: زيد سطر جديد فمصفوفة exercices
@@ -25,12 +26,14 @@ window.subjectsData.math = {
     exercices: [
         { semester: 1, title: "Logique mathématique",
           exercice: { file: "content/math/exercises/logique/model1/exercice1.html", desc: "8 exercices avec solutions" },
+          exercice2: { file: "content/math/exercises/logique/model2/exercice1.html", desc: "13 sections, 51 exercices corrigés" },
           serie: { file: "content/math/series/logique/model1/serie1.html", desc: "5 séries" } },
         { semester: 1, title: "Généralités sur les fonctions",
           exercice: { file: "content/math/exercises/fonctions/model1/exercice1.html", desc: "10 exercices avec solutions" },
           serie: { file: "content/math/series/fonctions/model1/serie1.html", desc: "7 séries" } },
         { semester: 1, title: "Barycentre dans le plan",
           exercice: { file: "content/math/exercises/barycentre/model1/exercice1.html", desc: "8 exercices avec solutions" },
+          exercice2: { file: "content/math/exercises/barycentre/model2/exercice1.html", desc: "9 sections, 35 exercices corrigés" },
           serie: { file: "content/math/series/barycentre/model1/serie1.html", desc: "6 séries" } },
         { semester: 1, title: "Le produit scalaire et ses applications",
           exercice: { file: "content/math/exercises/produit-scalaire/model1/exercice1.html", desc: "11 exercices avec solutions" } }
@@ -63,3 +66,5 @@ window.subjectsData.math = {
         }
     ]
 };
+
+

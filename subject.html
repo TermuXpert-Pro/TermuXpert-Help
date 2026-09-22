@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -145,7 +146,10 @@
             position: relative;
             z-index: 1;
         }
-        #tabContent .card-modes.single-mode { grid-template-columns: 1fr; }
+        #tabContent .card-modes.single-mode,
+        #tabContent .card-modes.modes-1 { grid-template-columns: 1fr; }
+        #tabContent .card-modes.modes-2 { grid-template-columns: repeat(2, 1fr); }
+        #tabContent .card-modes.modes-3 { grid-template-columns: repeat(3, 1fr); }
         #tabContent .card-mode-btn {
             display: flex;
             align-items: center;
@@ -170,7 +174,10 @@
         #tabContent .card-mode-btn:active { transform: scale(0.95); }
         @media (max-width: 480px) {
             #tabContent .card-modes { gap: 6px; margin-top: 10px; padding-top: 10px; }
-            #tabContent .card-mode-btn { padding: 9px 4px; font-size: 10.5px; border-radius: 11px; }
+            #tabContent .card-mode-btn { padding: 9px 4px; font-size: 10.5px; border-radius: 11px; white-space: nowrap; }
+        }
+        @media (max-width: 380px) {
+            #tabContent .card-modes.modes-3 .card-mode-btn i { display: none; }
         }
     </style>
 </head>
@@ -667,19 +674,24 @@
                 }).join('');
             } else if (tab === 'exercices') {
                 html = currentSubject.exercices.map((e, i) => {
-                    const descParts = [];
-                    if (e.exercice && e.exercice.desc) descParts.push(e.exercice.desc);
-                    if (e.serie && e.serie.desc) descParts.push(e.serie.desc);
-                    const desc = descParts.join(' • ');
+                    // ✅ الأزرار مرقمة: Exercice 1 (model1) / Exercice 2 (model2، اختياري) / Série 1
+                    // لإضافة Exercice 2 لدرس: زيد الحقل exercice2: { file: ".../model2/exercice1.html", desc: "..." } فـ data/<matière>.js
+                    const modes = [];
+                    if (e.exercice)  modes.push({ ref: e.exercice,  label: 'Exercice 1', icon: 'fa-pencil',     color: '#E8873A' });
+                    if (e.exercice2) modes.push({ ref: e.exercice2, label: 'Exercice 2', icon: 'fa-pencil',     color: '#F0A35E' });
+                    if (e.serie)     modes.push({ ref: e.serie,     label: 'Série 1',    icon: 'fa-list-check', color: '#F4D03F' });
+                    const desc = modes.map(m => m.ref.desc).filter(Boolean).join(' • ');
+                    const btns = modes.map(m =>
+                        `<button type="button" class="card-mode-btn" style="--mode-color:${m.color};" onclick="saveCurrentTab('${tab}'); location.href='${m.ref.file}'"><i class="fas ${m.icon}"></i> ${m.label}</button>`
+                    ).join('');
                     return `
                     <div class="command-card" style="cursor:default;">
                         <div class="command-title">
                             <span class="num">${i+1}</span> ${e.title}
                         </div>
                         <p>${desc}</p>
-                        <div class="card-modes${e.serie ? '' : ' single-mode'}" role="group" aria-label="Accès rapide - ${e.title}">
-                            <button type="button" class="card-mode-btn" style="--mode-color:#E8873A;" onclick="saveCurrentTab('${tab}'); location.href='${e.exercice.file}'"><i class="fas fa-pencil"></i> Exercices</button>
-                            ${e.serie ? `<button type="button" class="card-mode-btn" style="--mode-color:#F4D03F;" onclick="saveCurrentTab('${tab}'); location.href='${e.serie.file}'"><i class="fas fa-list-check"></i> Séries</button>` : ''}
+                        <div class="card-modes modes-${modes.length}" role="group" aria-label="Accès rapide - ${e.title}">
+                            ${btns}
                         </div>
                     </div>
                 `;
@@ -877,3 +889,5 @@
     </script>
 </body>
 </html>
+
+

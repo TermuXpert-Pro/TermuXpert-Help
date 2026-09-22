@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Section 5 - Associativité et centre de gravité d'un triangle - Barycentre (modèle 2) | Xpert</title>
+    <link rel="canonical" href="https://jdxpert.pages.dev/content/math/exercises/barycentre/model2/exercice5.html">
+    <meta name="description" content="Exercices corrigés : Barycentre dans le plan (modèle 2) — Associativité et centre de gravité d'un triangle. Mathématiques, 1ère Bac Sciences Expérimentales. Du plus simple au plus difficile, corrigé détaillé sur Xpert.">
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    
+    
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+<script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <script src="../../../../../assets/js/vendor/gsap.min.js"></script>
+    
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .highlight-box .label.def { background: #4ECDC422; color: #4ECDC4; }
+        .highlight-box .label.ex { background: #F4D03F22; color:var(--gold-text); }
+        .highlight-box .label.rem { background: #BB8FCE22; color: #BB8FCE; }
+        .highlight-box .label.resume { background: #4ECDC444; color: #4ECDC4; }
+        .highlight-box .label.prop { background: #FF6B6B22; color: #FF6B6B; }
+        .highlight-box .label.rappel { background: #F4D03F44; color:var(--gold-text); }
+        .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .highlight-box.red { border-color: #FF6B6B; background: rgba(255, 107, 107, 0.08); }
+        .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .table-wrap { overflow-x: auto; margin: 4px 0; }
+        .table-wrap table { width: 100%; border-collapse: collapse; background: var(--bg-primary); border-radius: 6px; overflow: hidden; max-width: 300px; margin: 0 auto; }
+        .table-wrap th { background: var(--bg-card); color: var(--accent-light); padding: 3px 8px; border: 1px solid var(--border); font-weight: 700; text-align: center; font-size: 11px; }
+        .table-wrap td { padding: 3px 8px; border: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 11px; }
+        .formula-block { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; margin: 4px 0; text-align: center; overflow-x: auto; font-size: 13px; }
+        .formula-block .math { color: var(--accent-light); font-family: var(--font-mono); }
+        .step { background: var(--bg-primary); border-right: 3px solid #4ECDC4; padding: 3px 10px; margin: 3px 0; border-radius: 4px; color: var(--text-secondary); font-size: 11px; }
+        .step .step-num { color: #4ECDC4; font-weight: 700; margin-left: 6px; font-size: 11px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .solution-box .sol-content .step {
+            background: var(--bg-primary);
+            border-right: 3px solid #4ECDC4;
+            padding: 3px 10px;
+            margin: 3px 0;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+        .solution-box .sol-content .step .step-num {
+            color: #4ECDC4;
+            font-weight: 700;
+            margin-left: 6px;
+            font-size: 11px;
+        }
+        .solution-box .sol-content .formula-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin: 3px 0;
+            text-align: center;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .solution-box .sol-content .highlight-box {
+            padding: 4px 8px;
+            margin: 4px 0;
+            border-right-width: 3px;
+        }
+        .solution-box .sol-content .highlight-box .label {
+            font-size: 11px;
+            padding: 1px 8px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content .highlight-box.green { border-color: #4ECDC4; background: rgba(78, 205, 196, 0.08); }
+        .solution-box .sol-content .highlight-box.yellow { border-color: #F4D03F; background: rgba(244, 208, 63, 0.08); }
+        .solution-box .sol-content .highlight-box.purple { border-color: #BB8FCE; background: rgba(187, 143, 206, 0.08); }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+.next-btn, .prev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--bg-primary);
+            background: var(--gradient);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+.graph-container {
+            background: #0D1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: center;
+        }
+        .graph-container canvas {
+            max-width: 100%;
+            border-radius: 4px;
+            background: #0D1117;
+        }
+        .graph-container p {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+    <script src="../../../../../assets/js/shared-inline.js"></script>
+
+    <style>
+        /* ====== Modèle 2 : sections du cours -> séries d'exercices ====== */
+        .section h2 .num { width: auto; min-width: 22px; padding: 0 7px; border-radius: 11px; }
+        .lvl { display: inline-block; padding: 1px 9px; border-radius: 10px; font-size: 10.5px; font-weight: 700; margin-inline-start: 4px; white-space: nowrap; }
+        .lvl.f { background: rgba(78,205,196,0.15); color: #4ECDC4; }
+        .lvl.m { background: rgba(244,208,63,0.15); color: var(--gold-text); }
+        .lvl.d { background: rgba(255,107,107,0.15); color: #FF6B6B; }
+        .section h2 { flex-wrap: wrap; }
+        .pts { color: var(--text-muted); font-size: 11px; font-weight: 600; margin-inline-start: 4px; }
+        .sub-question .letter .pts { font-size: 10.5px; }
+        .recap-cours { margin-bottom: 10px; }
+        .recap-cours .highlight-box p { font-size: 11.5px; }
+        .sub-question ol, .sub-question ul { font-size: 11.5px; padding-right: 18px; margin: 4px 0; color: var(--text-secondary); }
+        .sub-question li { margin-bottom: 2px; }
+        .graph-container svg { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">55 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">26 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">22 exercices</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../../../../../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Section 5 : Associativité et centre de gravité d'un triangle</h1>
+            <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-book-open"></i> Cours : Partie 2 · §2 (2-3) et §3</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Du plus simple au plus difficile</span>
+            </p>
+<div class="recap-cours"><div class="highlight-box green"><span class="label def">À retenir du cours</span><p><b>Associativité :</b> si $G_2=\text{Bar}\{(A,a);(B,b)\}$ (avec $a+b\neq0$), alors $\text{Bar}\{(A,a);(B,b);(C,c)\}=\text{Bar}\{(G_2,a+b);(C,c)\}$ : on peut remplacer deux points par leur barycentre affecté de la <b>somme</b> de leurs poids.</p><p><b>Centre de gravité :</b> $G=\text{Bar}\{(A,1);(B,1);(C,1)\}$ ; $\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\overrightarrow{0}$ ; $\overrightarrow{AG}=\dfrac23\overrightarrow{AA'}$ où $A'$ est le milieu de $[BC]$.</p></div></div>
+            <div class="section">
+                <h2><span class="num">5.1</span> Centre de gravité : démonstration et applications <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $ABC$ un triangle, $G$ son centre de gravité, et $A'$, $B'$, $C'$ les milieux respectifs de $[BC]$, $[CA]$, $[AB]$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\overrightarrow{0}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> par définition, $G=\text{Bar}\{(A,1);(B,1);(C,1)\}$, et $1+1+1=3\neq0$.</div><div class="step"><span class="step-num">Donc :</span> $1\times\overrightarrow{GA}+1\times\overrightarrow{GB}+1\times\overrightarrow{GC}=\overrightarrow{0}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\overrightarrow{0}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Justifier que $\overrightarrow{GB}+\overrightarrow{GC}=2\overrightarrow{GA'}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $A'$ est le milieu de $[BC]$, donc $A'=\text{Bar}\{(B,1);(C,1)\}$.</div><div class="step"><span class="step-num">Propriété caractéristique (avec $M=G$) :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overrightarrow{GB}+\overrightarrow{GC}=(1+1)\overrightarrow{GA'}=2\overrightarrow{GA'}$$</div></div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overrightarrow{GB}+\overrightarrow{GC}=2\overrightarrow{GA'}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire que $G\in(AA')$ et que $\overrightarrow{AG}=\dfrac23\overrightarrow{AA'}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> d'après 1) et 2) : $\overrightarrow{GA}+2\overrightarrow{GA'}=\overrightarrow{0}$, donc $\overrightarrow{GA}=-2\overrightarrow{GA'}$, soit $\overrightarrow{AG}=2\overrightarrow{GA'}$.</div><div class="step"><span class="step-num">Donc :</span> $\overrightarrow{AG}$ et $\overrightarrow{GA'}$ sont colinéaires : $A$, $G$, $A'$ sont alignés, c'est-à-dire $G\in(AA')$.</div><div class="step"><span class="step-num">Chasles :</span> $\overrightarrow{AA'}=\overrightarrow{AG}+\overrightarrow{GA'}=2\overrightarrow{GA'}+\overrightarrow{GA'}=3\overrightarrow{GA'}$, donc $\overrightarrow{GA'}=\dfrac13\overrightarrow{AA'}$.</div><div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overrightarrow{AG}=2\overrightarrow{GA'}=\frac23\overrightarrow{AA'}$$</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G\in(AA')$ et $\overrightarrow{AG}=\dfrac23\overrightarrow{AA'}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Que peut-on dire de $G$ par rapport aux trois médianes ? Si $AA'=9$ cm, calculer $AG$ et $GA'$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Par symétrie des rôles :</span> le même raisonnement avec $B$ puis $C$ donne $G\in(BB')$ avec $\overrightarrow{BG}=\dfrac23\overrightarrow{BB'}$ et $G\in(CC')$ avec $\overrightarrow{CG}=\dfrac23\overrightarrow{CC'}$.</div><div class="step"><span class="step-num">Application numérique :</span> $AG=\dfrac23\times9=6$ cm et $GA'=\dfrac13\times9=3$ cm.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Les trois médianes sont concourantes en $G$, situé aux deux tiers de chaque médiane à partir du sommet.</p></div><div class="graph-container"><svg id="g5a" width="400" height="250"></svg><p>Le centre de gravité $G$ : $\overrightarrow{AG}=\dfrac23\overrightarrow{AA'}$, $\overrightarrow{BG}=\dfrac23\overrightarrow{BB'}$, $\overrightarrow{CG}=\dfrac23\overrightarrow{CC'}$</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">5.2</span> Associativité et construction du barycentre <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $ABC$ un triangle et $G=\text{Bar}\{(A,1);(B,2);(C,3)\}$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit $G'=\text{Bar}\{(A,1);(B,2)\}$. Exprimer $\overrightarrow{AG'}$ en fonction de $\overrightarrow{AB}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
+                    <div id="sol5" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $1+2=3\neq0$, donc $G'$ existe.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overrightarrow{AG'}=\dfrac{2}{3}\overrightarrow{AB}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $G=\text{Bar}\{(G',3);(C,3)\}$. En déduire que $G$ est le milieu de $[G'C]$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6')">Voir la solution</button>
+                    <div id="sol6" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Associativité :</span> comme $G'=\text{Bar}\{(A,1);(B,2)\}$, on peut remplacer $(A,1)$ et $(B,2)$ par $(G',1+2)=(G',3)$.</div><div class="step"><span class="step-num">Donc :</span> $G=\text{Bar}\{(G',3);(C,3)\}$.</div><div class="step"><span class="step-num">Or :</span> les deux poids sont égaux et non nuls : $G$ est l'isobarycentre de $G'$ et $C$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G$ est le milieu de $[G'C]$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit $G''=\text{Bar}\{(B,2);(C,3)\}$. Montrer que $G=\text{Bar}\{(A,1);(G'',5)\}$ et exprimer $\overrightarrow{AG}$ en fonction de $\overrightarrow{AG''}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7')">Voir la solution</button>
+                    <div id="sol7" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Associativité :</span> $(B,2)$ et $(C,3)$ sont remplacés par $(G'',2+3)=(G'',5)$ ; donc $G=\text{Bar}\{(A,1);(G'',5)\}$.</div><div class="step"><span class="step-num">Donc :</span> $1+5=6\neq0$ et<div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overrightarrow{AG}=\frac{5}{1+5}\overrightarrow{AG''}=\frac56\overrightarrow{AG''}$$</div></div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G\in(AG'')$ et $\overrightarrow{AG}=\dfrac56\overrightarrow{AG''}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire une construction de $G$ à la règle et au compas.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8')">Voir la solution</button>
+                    <div id="sol8" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $G\in(CG')$ (milieu de $[G'C]$) et $G\in(AG'')$.</div><div class="step"><span class="step-num">Comme :</span> ces deux droites ne sont pas parallèles, $G$ est leur <b>point d'intersection</b>.</div><div class="step"><span class="step-num">Construction :</span> on place $G'$ aux $\dfrac23$ de $[AB]$ à partir de $A$ ; on trace $(CG')$ et on prend son milieu $G$ (ou on construit aussi $G''$ aux $\dfrac35$ de $[BC]$ à partir de $B$, et $G\in(AG'')$).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G$ est le milieu de $[G'C]$, avec $G'$ aux deux tiers de $[AB]$.</p></div><div class="graph-container"><svg id="g5b" width="400" height="250"></svg><p>$G'=\text{Bar}\{(A,1);(B,2)\}$, $G''=\text{Bar}\{(B,2);(C,3)\}$ et $G=\text{Bar}\{(A,1);(B,2);(C,3)\}$</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">5.3</span> Alignement et concours grâce à l'associativité <span class="lvl m">Moyen</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $ABC$ un triangle, $I$ le milieu de $[BC]$ et $G=\text{Bar}\{(A,2);(B,1);(C,1)\}$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $G$ est le milieu de $[AI]$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9')">Voir la solution</button>
+                    <div id="sol9" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $I$ est le milieu de $[BC]$ donc $I=\text{Bar}\{(B,1);(C,1)\}$.</div><div class="step"><span class="step-num">Associativité :</span> on remplace $(B,1)$ et $(C,1)$ par $(I,2)$ : $G=\text{Bar}\{(A,2);(I,2)\}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Les poids de $A$ et $I$ sont égaux : $G$ est le milieu de $[AI]$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Soit $J=\text{Bar}\{(A,2);(C,1)\}$. Exprimer $\overrightarrow{AJ}$ en fonction de $\overrightarrow{AC}$, puis montrer que $B$, $G$, $J$ sont alignés et que $\overrightarrow{BG}=\dfrac34\overrightarrow{BJ}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10')">Voir la solution</button>
+                    <div id="sol10" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Position de $J$ :</span> $2+1=3\neq0$ et $\overrightarrow{AJ}=\dfrac13\overrightarrow{AC}$.</div><div class="step"><span class="step-num">Associativité :</span> on remplace $(A,2)$ et $(C,1)$ par $(J,3)$ : $G=\text{Bar}\{(J,3);(B,1)\}$.</div><div class="step"><span class="step-num">Donc :</span> $G\in(BJ)$ et, avec $B$ comme origine, $\overrightarrow{BG}=\dfrac{3}{3+1}\overrightarrow{BJ}=\dfrac34\overrightarrow{BJ}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$B$, $G$, $J$ sont alignés, et $\overrightarrow{BG}=\dfrac34\overrightarrow{BJ}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">De même, soit $K=\text{Bar}\{(A,2);(B,1)\}$. Montrer que $C$, $G$, $K$ sont alignés et que $\overrightarrow{CG}=\dfrac34\overrightarrow{CK}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11')">Voir la solution</button>
+                    <div id="sol11" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Position de $K$ :</span> $2+1=3\neq0$ et $\overrightarrow{AK}=\dfrac13\overrightarrow{AB}$.</div><div class="step"><span class="step-num">Associativité :</span> $G=\text{Bar}\{(K,3);(C,1)\}$, donc $G\in(CK)$.</div><div class="step"><span class="step-num">Donc :</span> $\overrightarrow{CG}=\dfrac{3}{3+1}\overrightarrow{CK}=\dfrac34\overrightarrow{CK}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$C$, $G$, $K$ sont alignés et $\overrightarrow{CG}=\dfrac34\overrightarrow{CK}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Que peut-on dire des droites $(AI)$, $(BJ)$ et $(CK)$ ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12')">Voir la solution</button>
+                    <div id="sol12" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">On a :</span> $G\in(AI)$ d'après 1), $G\in(BJ)$ d'après 2) et $G\in(CK)$ d'après 3).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Les droites $(AI)$, $(BJ)$ et $(CK)$ sont <b>concourantes</b> en $G$.</p></div><div class="graph-container"><svg id="g5c" width="400" height="250"></svg><p>$G=\text{Bar}\{(A,2);(B,1);(C,1)\}$ : $G$ milieu de $[AI]$ ; $(AI)$, $(BJ)$, $(CK)$ concourantes en $G$</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">5.4</span> Problème de synthèse : trois droites concourantes <span class="lvl d">Difficile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Soit $ABC$ un triangle. On considère $G=\text{Bar}\{(A,1);(B,2);(C,3)\}$ et les points $A'=\text{Bar}\{(B,2);(C,3)\}$, $B'=\text{Bar}\{(A,1);(C,3)\}$, $C'=\text{Bar}\{(A,1);(B,2)\}$.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Exprimer $\overrightarrow{BA'}$ en fonction de $\overrightarrow{BC}$, $\overrightarrow{AB'}$ en fonction de $\overrightarrow{AC}$ et $\overrightarrow{AC'}$ en fonction de $\overrightarrow{AB}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13')">Voir la solution</button>
+                    <div id="sol13" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Pour $A'$ :</span> $2+3=5\neq0$ et $\overrightarrow{BA'}=\dfrac{3}{5}\overrightarrow{BC}$ (origine $B$, poids de $C$ : $3$).</div><div class="step"><span class="step-num">Pour $B'$ :</span> $1+3=4\neq0$ et $\overrightarrow{AB'}=\dfrac{3}{4}\overrightarrow{AC}$ (origine $A$, poids de $C$ : $3$).</div><div class="step"><span class="step-num">Pour $C'$ :</span> $1+2=3\neq0$ et $\overrightarrow{AC'}=\dfrac{2}{3}\overrightarrow{AB}$ (origine $A$, poids de $B$ : $2$).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overrightarrow{BA'}=\dfrac35\overrightarrow{BC}$ ; $\overrightarrow{AB'}=\dfrac34\overrightarrow{AC}$ ; $\overrightarrow{AC'}=\dfrac23\overrightarrow{AB}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Montrer que $G=\text{Bar}\{(A,1);(A',5)\}$, $G=\text{Bar}\{(B,2);(B',4)\}$ et $G=\text{Bar}\{(C,3);(C',3)\}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14')">Voir la solution</button>
+                    <div id="sol14" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Première égalité :</span> on remplace $(B,2)$ et $(C,3)$ par $(A',5)$ : $G=\text{Bar}\{(A,1);(A',5)\}$.</div><div class="step"><span class="step-num">Deuxième égalité :</span> on remplace $(A,1)$ et $(C,3)$ par $(B',4)$ : $G=\text{Bar}\{(B,2);(B',4)\}$.</div><div class="step"><span class="step-num">Troisième égalité :</span> on remplace $(A,1)$ et $(B,2)$ par $(C',3)$ : $G=\text{Bar}\{(C,3);(C',3)\}$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>On a bien $G=\text{Bar}\{(A,1);(A',5)\}=\text{Bar}\{(B,2);(B',4)\}=\text{Bar}\{(C,3);(C',3)\}$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">En déduire que les droites $(AA')$, $(BB')$ et $(CC')$ sont concourantes, puis calculer les rapports $\dfrac{AG}{AA'}$, $\dfrac{BG}{BB'}$ et $\dfrac{CG}{CC'}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol15')">Voir la solution</button>
+                    <div id="sol15" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Alignements :</span> d'après 2), $G\in(AA')$, $G\in(BB')$ et $G\in(CC')$ : les trois droites passent par $G$.</div><div class="step"><span class="step-num">Rapports :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overrightarrow{AG}=\frac{5}{6}\overrightarrow{AA'}\ ;\quad\overrightarrow{BG}=\frac{4}{6}\overrightarrow{BB'}=\frac23\overrightarrow{BB'}\ ;\quad\overrightarrow{CG}=\frac{3}{6}\overrightarrow{CC'}=\frac12\overrightarrow{CC'}$$</div></div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Les trois droites sont concourantes en $G$, avec $\dfrac{AG}{AA'}=\dfrac56$, $\dfrac{BG}{BB'}=\dfrac23$ et $\dfrac{CG}{CC'}=\dfrac12$ ($G$ est le milieu de $[CC']$).</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Dans le repère $(A\,;\overrightarrow{AB}\,,\overrightarrow{AC})$, déterminer les coordonnées de $G$, $A'$, $B'$, $C'$ et vérifier que $A$, $G$, $A'$ sont alignés.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol16')">Voir la solution</button>
+                    <div id="sol16" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Coordonnées des sommets :</span> $A(0;0)$, $B(1;0)$, $C(0;1)$.</div><div class="step"><span class="step-num">Le point $G$ :</span> $x_G=\dfrac{1\times0+2\times1+3\times0}{6}=\dfrac13$ et $y_G=\dfrac{1\times0+2\times0+3\times1}{6}=\dfrac12$, donc $G\left(\dfrac13;\dfrac12\right)$.</div><div class="step"><span class="step-num">Le point $A'$ :</span> $A'=\text{Bar}\{(B,2);(C,3)\}$ : $x_{A'}=\dfrac{2\times1+3\times0}{5}=\dfrac25$ et $y_{A'}=\dfrac{2\times0+3\times1}{5}=\dfrac35$.</div><div class="step"><span class="step-num">Le point $B'$ :</span> $B'=\text{Bar}\{(A,1);(C,3)\}$ : $x_{B'}=\dfrac{0+0}{4}=0$ et $y_{B'}=\dfrac{0+3}{4}=\dfrac34$.</div><div class="step"><span class="step-num">Le point $C'$ :</span> $C'=\text{Bar}\{(A,1);(B,2)\}$ : $x_{C'}=\dfrac{0+2}{3}=\dfrac23$ et $y_{C'}=0$.</div><div class="step"><span class="step-num">Alignement :</span> $\overrightarrow{AG}=\left(\dfrac13;\dfrac12\right)$ et $\dfrac56\overrightarrow{AA'}=\dfrac56\left(\dfrac25;\dfrac35\right)=\left(\dfrac13;\dfrac12\right)$ ✔</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$G\left(\dfrac13;\dfrac12\right)$, $A'\left(\dfrac25;\dfrac35\right)$, $B'\left(0;\dfrac34\right)$, $C'\left(\dfrac23;0\right)$ ; $\overrightarrow{AG}=\dfrac56\overrightarrow{AA'}$ donc $A$, $G$, $A'$ sont alignés.</p></div><div class="graph-container"><svg id="g5d" width="400" height="250"></svg><p>Les trois droites $(AA')$, $(BB')$, $(CC')$ se coupent en $G$</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="nav-buttons">
+                <a href="exercice4.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Section 4</a>
+                <a href="exercice6.html" class="next-btn">Section 6 <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+
+        // ============================================================
+        // FIGURES - Section 5
+        // كود الرسمة فـ figuresvg_ex5.js (ملف مستقل بالكامل، بلا مكتبة مشتركة)
+        // ============================================================
+    </script>
+    <script src="figuresvg_ex5.js"></script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+
+<!-- XPERT-SECTIONS-FAB v4 -->
+<style>
+/* ====== زر الأقسام العائم (Glass Pill) -- نفس لغة تصميم .devoir-fab ====== */
+.xpert-sec-fab-btn{position:fixed;left:16px;bottom:20px;z-index:9999;height:48px;min-width:48px;
+  padding:0 8px;border-radius:24px;background:rgba(var(--overlay-rgb),0.06);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(78,205,196,0.28);color:var(--text-primary);
+  box-shadow:0 4px 18px rgba(0,0,0,0.16);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  /* ظهور هادئ (fade + slide) بلا bounce/overshoot اللي كيبان مفاجئ */
+  transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1),
+    background .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.xpert-sec-fab-btn.xpert-fab-show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.xpert-sec-fab-btn:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);
+  box-shadow:0 6px 22px rgba(0,0,0,0.2);}
+.xpert-sec-fab-btn:active{transform:scale(0.94);}
+.xpert-sec-fab-btn .xsf-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;font-size:15px;color:#4ECDC4;transition:transform .3s ease,color .25s ease;}
+.xpert-sec-fab-btn .xsf-label{font-family:var(--font-main);font-size:12.5px;font-weight:600;
+  white-space:nowrap;padding-inline-end:6px;color:var(--text-secondary);}
+.xpert-sec-fab-btn.xpert-fab-open .xsf-icon{transform:rotate(135deg);color:#FF6B6B;}
+/* نبضة ترحيبية خفيفة أول ما يبان الزر، كتوقف ملي يتفتح */
+.xpert-sec-fab-btn.xpert-fab-show::after{content:'';position:absolute;inset:-6px;border-radius:24px;
+  border:2px solid #4ECDC4;opacity:0;animation:xpertFabPulse 2.8s ease-out .6s infinite;pointer-events:none;}
+.xpert-sec-fab-btn.xpert-fab-open::after{animation-play-state:paused;opacity:0;}
+@keyframes xpertFabPulse{0%{transform:scale(0.9);opacity:.5;}70%{transform:scale(1.08);opacity:0;}100%{transform:scale(1.08);opacity:0;}}
+@media (max-width:480px){
+  .xpert-sec-fab-btn{bottom:14px;left:12px;height:44px;}
+  .xpert-sec-fab-btn .xsf-icon{width:28px;height:28px;font-size:14px;}
+  .xpert-sec-fab-btn .xsf-label{font-size:11.5px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .xpert-sec-fab-btn.xpert-fab-show::after{animation:none;display:none;}
+  .xpert-sec-fab-btn .xsf-icon{transition:none;}
+}
+
+/* ====== قائمة الأقسام العائمة (نفس لغة .devoir-fab-menu) ====== */
+.xpert-sec-menu{position:fixed;bottom:78px;left:16px;z-index:9998;
+  display:flex;flex-direction:column;gap:8px;max-height:66vh;overflow-y:auto;
+  padding:2px;opacity:0;visibility:hidden;transform:translateY(10px) scale(0.96);
+  transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s;}
+.xpert-sec-menu.open{opacity:1;visibility:visible;transform:translateY(0) scale(1);}
+.xpert-sec-menu::-webkit-scrollbar{width:4px;}
+.xpert-sec-menu::-webkit-scrollbar-thumb{background:rgba(78,205,196,0.35);border-radius:4px;}
+
+.xpert-sec-item{position:relative;display:flex;align-items:center;gap:10px;min-height:44px;
+  padding:8px 16px;border-radius:22px;background:var(--bg-card);border:1px solid rgba(78,205,196,0.28);
+  color:var(--text-primary);box-shadow:0 4px 18px rgba(0,0,0,0.2);text-decoration:none;
+  font-family:var(--font-main);cursor:pointer;
+  opacity:0;transform:translateY(8px);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease,
+    opacity .32s cubic-bezier(.4,0,.2,1),transform .32s cubic-bezier(.4,0,.2,1);}
+.xpert-sec-menu.open .xpert-sec-item{opacity:1;transform:translateY(0);}
+.xpert-sec-item:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);}
+.xpert-sec-item:active{transform:scale(0.96);}
+.xpert-sec-item .xn{font-weight:700;color:#4ECDC4;font-size:13px;min-width:22px;flex-shrink:0;text-align:center;}
+.xpert-sec-item .xd{font-size:12px;line-height:1.35;color:var(--text-secondary);}
+.xpert-sec-item .xd b{color:var(--text-primary);font-size:12.5px;}
+
+/* العنصر النشط (الصفحة الحالية) */
+.xpert-sec-item.active{background:rgba(78,205,196,0.14);border-color:rgba(78,205,196,0.55);}
+.xpert-sec-item.active .xn{color:#4ECDC4;}
+
+/* ====== "التالي فالترتيب": نبض تحذيري/تشجيعي مثل عداد الفرض فآخر الدقائق ====== */
+@keyframes xpertSecNextPulse{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(78,205,196,0.45);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(78,205,196,0);}
+}
+.xpert-sec-item-next{border-color:rgba(78,205,196,0.65);animation:xpertSecNextPulse 1.6s ease-in-out infinite;}
+.xpert-sec-item-next .xsn-badge{position:absolute;top:-8px;inset-inline-end:10px;
+  background:#4ECDC4;color:#0b0f0e;font-size:9.5px;font-weight:800;line-height:1;
+  padding:3px 7px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+
+/* ====== "ملخص الدرس": بطاقة زجاجية بلون أزرق مميز ====== */
+.xpert-sec-item-summary{background:rgba(77,157,224,0.10);border-color:rgba(77,157,224,0.45);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
+.xpert-sec-item-summary:hover{background:rgba(77,157,224,0.18);border-color:rgba(77,157,224,0.65);}
+.xpert-sec-item-summary .xn{color:#4D9DE0;}
+.xpert-sec-item-summary .xd b{color:#79B8E8;}
+.xpert-sec-item-summary.active{background:rgba(77,157,224,0.20);border-color:rgba(77,157,224,0.7);}
+.xpert-sec-item-summary.xpert-sec-item-next{animation-name:xpertSecNextPulseBlue;}
+@keyframes xpertSecNextPulseBlue{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(77,157,224,0.5);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(77,157,224,0);}
+}
+.xpert-sec-item-summary.xpert-sec-item-next .xsn-badge{background:#4D9DE0;color:#0b0f0e;}
+
+@media (max-width:480px){
+  .xpert-sec-menu{left:12px;bottom:66px;}
+}
+</style>
+<button class="xpert-sec-fab-btn" id="xpertSecFabBtn" aria-label="الأقسام" aria-haspopup="true" aria-expanded="false">
+  <span class="xsf-icon"><i class="fas fa-layer-group"></i></span>
+  <span class="xsf-label">الأقسام</span>
+</button>
+<div class="xpert-sec-menu" id="xpertSecMenu" role="menu"></div>
+<script>
+(function(){
+  var sections = [{"href":"exercice1.html","label":"Section 1","desc":"Définition, existence, vocabulaire - Partie 1 §1-3"},{"href":"exercice2.html","label":"Section 2","desc":"Invariance, propriété caractéristique, construction de G - Partie 1 §4"},{"href":"exercice3.html","label":"Section 3","desc":"Cercles et médiatrices avec 2 points - Partie 1 §5"},{"href":"exercice4.html","label":"Section 4","desc":"Barycentre de 3 points, invariance, caractéristique - Partie 2 §1-2"},{"href":"exercice5.html","label":"Section 5","desc":"Associativité, centre de gravité, alignement et concours - Partie 2 §2-3"},{"href":"exercice6.html","label":"Section 6","desc":"Coordonnées du barycentre (2, 3, 4 points) - Partie 2 §4, Partie 3 §4"},{"href":"exercice7.html","label":"Section 7","desc":"Barycentre de 4 points, parallélogramme, associativité - Partie 3 §1-3"},{"href":"exercice8.html","label":"Section 8","desc":"Ensembles de points : cercles, médiatrices - Partie 4 §7"},{"href":"exercice9.html","label":"Section 9","desc":"Devoir surveillé type (2 h, /20) - synthèse du chapitre"}];
+  var current = "exercice5.html";
+  var STAGGER_STEP = 40, STAGGER_MAX = 300;
+  var btn = document.getElementById('xpertSecFabBtn');
+  var menu = document.getElementById('xpertSecMenu');
+  var currentIndex = -1;
+  sections.forEach(function(s,i){ if (s.href === current) currentIndex = i; });
+
+  sections.forEach(function(s, i){
+    var isSummary = /résumé|resume|synthèse|synthese|ملخص|تلخيص/i.test((s.label||'') + ' ' + (s.desc||''));
+    var isNext = (currentIndex !== -1 && i === currentIndex + 1);
+    var a = document.createElement('a');
+    a.href = s.href; // رابط مباشر لصفحة القسم (exerciceN.html / serieN.html / partN.html)
+    a.setAttribute('role', 'menuitem');
+    var cls = 'xpert-sec-item';
+    if (s.href === current) cls += ' active';
+    if (isSummary) cls += ' xpert-sec-item-summary';
+    if (isNext) cls += ' xpert-sec-item-next';
+    a.className = cls;
+    a.innerHTML = '<span class="xn">' + (i+1) + '</span>' +
+      '<span class="xd"><b>' + (s.label||('#'+(i+1))) + '</b><br>' + (s.desc||'') + '</span>' +
+      (isNext ? '<span class="xsn-badge">Suivant</span>' : '');
+    menu.appendChild(a);
+  });
+
+  function staggerIn(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it, i){
+      it.style.transitionDelay = Math.min(i * STAGGER_STEP, STAGGER_MAX) + 'ms';
+    });
+  }
+  function clearStagger(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it){ it.style.transitionDelay = '0ms'; });
+  }
+
+  function openMenu(){
+    staggerIn();
+    menu.classList.add('open');
+    btn.classList.add('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.addEventListener('click', onDocClick, true);
+    document.addEventListener('keydown', onKeydown);
+  }
+  function closeMenu(){
+    clearStagger();
+    menu.classList.remove('open');
+    btn.classList.remove('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('click', onDocClick, true);
+    document.removeEventListener('keydown', onKeydown);
+  }
+  function toggleMenu(){
+    if (menu.classList.contains('open')) closeMenu(); else openMenu();
+  }
+  function onDocClick(e){
+    if (menu.contains(e.target) || btn.contains(e.target)) return;
+    closeMenu();
+  }
+  function onKeydown(e){
+    if (e.key === 'Escape') closeMenu();
+  }
+  btn.addEventListener('click', toggleMenu);
+
+  // ====== التزامن مع اختفاء xpertLoader (الدائرة اللي كتدور) ======
+  // #xpertLoader عندو transition ديالو "opacity .55s" (~500ms) ملي
+  // كيتزاد class="xpert-loader-hide"/"xpert-loaded". اللودر (z-index
+  // عالي جداً) كيبقى فوق كلشي طول هاد المدة وهو كيتلاشى. إيلا بدا الزر
+  // فالظهور دغيا ملي كيتكتشف class="xpert-loaded"، كيبقى مخبي تحت
+  // اللودر اللي مازال باين، وكيبان "طّاح" دفعة وحدة غير ملي يختفي
+  // اللودر بالكامل. الحل: نستناو نفس 500ms (مدة اختفاء اللودر) قبل ما
+  // نبداو أنيميشن ظهور الزر، باش الاثنين يتزامنو بالضبط.
+  var LOADER_FADE_MS = 500;
+  function revealFab(){ requestAnimationFrame(function(){ btn.classList.add('xpert-fab-show'); }); }
+  function revealFabSynced(){ setTimeout(revealFab, LOADER_FADE_MS); }
+  if (!document.getElementById('xpertLoader')) {
+    revealFab(); // الصفحة ماعندهاش لودر أصلا، ما كاين والو نتزامنو معاه
+  } else if (document.body.classList.contains('xpert-loaded')) {
+    revealFabSynced();
+  } else {
+    var mo = new MutationObserver(function(){
+      if (document.body.classList.contains('xpert-loaded')) { revealFabSynced(); mo.disconnect(); }
+    });
+    mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    setTimeout(revealFabSynced, 1500); // حماية إيلا اللودر ما زادش الكلاس لسبب ما
+  }
+})();
+</script>
+
+</body>
+</html>
+
+

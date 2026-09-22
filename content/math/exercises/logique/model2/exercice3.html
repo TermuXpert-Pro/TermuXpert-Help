@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <script id="theme-init">(function(){try{var t=localStorage.getItem('xpert-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XVMNBPXC9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XVMNBPXC9D');
+</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Xpert",
+        "description": "Exercices et séries de 1 Bac Sciences Expérimentales"
+    }
+    </script>
+    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Section 3 - La négation d'une proposition - Logique (modèle 2) | Xpert</title>
+    <link rel="stylesheet" href="../../../../../assets/css/google-fonts.css">
+    <link rel="stylesheet" href="../../../../../assets/css/fontawesome-subset.css">
+    <link rel="stylesheet" href="../../../../../assets/css/style.css">
+    <link rel="stylesheet" href="../../../../../assets/css/lesson-common.css">
+    <link rel="stylesheet" href="../../../../../assets/css/global-control.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="../../../../../assets/js/vendor/mathjax-tex-svg.js" defer></script>
+    <style>
+        body { font-size: 14px; }
+        .nav-logo-icon { width: 24px; height: 24px; font-size: 14px; }
+        .nav-logo-text { font-size: 14px; }
+        .nav-links a { font-size: 13px; padding: 3px 8px; }
+        .back-btn { font-size: 13px; padding: 4px 12px; margin-bottom: 12px; }
+        .lesson-title { font-size: 20px; padding-bottom: 8px; margin-bottom: 14px; }
+        .section { padding: 10px 12px; margin-bottom: 10px; border-radius: 10px; }
+        .section h2 { font-size: 14px; margin-bottom: 6px; }
+        .section h2 .num { width: 22px; height: 22px; font-size: 13px; }
+        .section p { font-size: 11.5px; margin-bottom: 4px; line-height: 1.5; }
+        .section ul { font-size: 11.5px; padding-right: 14px; margin-bottom: 4px; }
+        .section ul li { margin-bottom: 4px; }
+        .highlight-box { padding: 6px 10px; margin: 4px 0; border-right-width: 3px; }
+        .highlight-box .label { font-size: 13px; padding: 1px 8px; margin-bottom: 2px; }
+        .formula-block { padding: 6px 10px; margin: 4px 0; font-size: 13px; border-radius: 6px; }
+        .footer p { font-size: 13px; }
+        .lesson-container { padding: 8px; }
+        .glow-orb { display: none; }
+        .bg-grid { opacity: 0.3; }
+        .navbar.scrolled { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .progress-bar { display: none; }
+        .scroll-top-btn { display: none; }
+        .badge-exercice {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.15);
+            color: #4ECDC4;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .sub-question {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+        }
+        .sub-question .letter {
+            color: #4ECDC4;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .solution-box {
+            background: var(--solution-bg);
+            border: 1px solid var(--solution-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin: 4px 0;
+            display: none;
+        }
+        .solution-box.show {
+            display: block;
+        }
+        .solution-box .sol-title {
+            color: var(--solution-title);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .solution-box .sol-content {
+            color: var(--text-secondary);
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+        .toggle-sol {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #4ECDC4;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-top: 4px;
+        }
+        .toggle-sol:hover {
+            border-color: #4ECDC4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+@media (max-width: 768px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 17px; }
+            .section { padding: 6px 8px; }
+            .section h2 { font-size: 14px; }
+            .section p { font-size: 10.5px; }
+            .nav-links a { font-size: 13px; padding: 2px 6px; }
+            .sub-question { padding: 6px 8px; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .lesson-title { font-size: 15px; }
+            .section h2 { font-size: 13px; }
+            .section p { font-size: 13px; }
+            .back-btn { font-size: 13px; padding: 3px 10px; }
+            .nav-logo-text { font-size: 14px; }
+            .nav-logo-icon { width: 20px; height: 20px; font-size: 13px; }
+            .sub-question { padding: 4px 6px; }
+            .sub-question .letter { font-size: 13px; }
+        }
+    </style>
+    <link rel="manifest" href="../../../../../manifest.json">
+    <link rel="icon" href="../../../../../favicon.ico" sizes="any">
+    <link rel="icon" href="../../../../../assets/images/icon-16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../../assets/images/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="../../../../../assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#45A29E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Xpert">
+
+    <style>
+        /* ====== Modèle 2 : sections du cours -> séries d'exercices ====== */
+        .section h2 .num { width: auto; min-width: 22px; padding: 0 7px; border-radius: 11px; }
+        .lvl { display: inline-block; padding: 1px 9px; border-radius: 10px; font-size: 10.5px; font-weight: 700; margin-inline-start: 4px; white-space: nowrap; }
+        .lvl.f { background: rgba(78,205,196,0.15); color: #4ECDC4; }
+        .lvl.m { background: rgba(244,208,63,0.15); color: var(--gold-text); }
+        .lvl.d { background: rgba(255,107,107,0.15); color: #FF6B6B; }
+        .section h2 { flex-wrap: wrap; }
+        .pts { color: var(--text-muted); font-size: 11px; font-weight: 600; margin-inline-start: 4px; }
+        .sub-question .letter .pts { font-size: 10.5px; }
+        .recap-cours { margin-bottom: 10px; }
+        .recap-cours .highlight-box p { font-size: 11.5px; }
+        .sub-question ol, .sub-question ul { font-size: 11.5px; padding-right: 18px; margin: 4px 0; color: var(--text-secondary); }
+        .sub-question li { margin-bottom: 2px; }
+        .graph-container svg { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <div id="xpertLoader" role="status" aria-label="جاري التحميل">
+        <div class="xpert-shape-wrap">
+            <div class="xpert-ring"></div>
+            <div class="xpert-orbit"><span class="xpert-orbit-dot"></span></div>
+            <div class="xpert-shape-glow"></div>
+            <div class="xpert-shape"></div>
+        </div>
+    </div>
+
+    <!-- ====== طبقة الحماية غير المرئية ====== -->
+    <div class="overlay-protection" id="overlayProtection"></div>
+
+    <!-- ====== خلفية زليج ====== -->
+    <div class="moroccan-bg" aria-hidden="true">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="zellij" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <rect width="200" height="200" fill="none"/>
+                    <polygon points="100,0 200,100 100,200 0,100" fill="none" stroke="#4ECDC4" stroke-width="0.5" opacity="0.3"/>
+                    <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#66FCF1" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#F4D03F" stroke-width="0.5" opacity="0.2"/>
+                    <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
+                    <text x="100" y="100" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#F4D03F" opacity="0.2">✦</text>
+                    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="50" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="50" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <text x="150" y="150" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#4ECDC4" opacity="0.15">✦</text>
+                    <line x1="0" y1="0" x2="200" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="200" y1="0" x2="0" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.1"/>
+                    <line x1="100" y1="0" x2="100" y2="200" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="#4ECDC4" stroke-width="0.3" opacity="0.05"/>
+                </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#zellij)"/>
+        </svg>
+    </div>
+    <div class="moroccan-shadow" aria-hidden="true"></div>
+    <div class="moroccan-star" aria-hidden="true">✦</div>
+    <div class="geo-pattern geo-pattern-1">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-2">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-3">✦ ✧ ✦ ✧ ✦</div>
+    <div class="geo-pattern geo-pattern-4">✦ ✧ ✦ ✧ ✦</div>
+
+    <div class="bg-grid"></div>
+    <nav class="navbar" role="navigation" aria-label="Navigation principale" id="navbar">
+    <!-- الشعار -->
+    <a href="../../../../../index.html" class="nav-logo" aria-label="Accueil">
+        <div class="nav-logo-icon">X</div>
+        <div class="nav-logo-text"><span>X</span>pert</div>
+    </a>
+
+    <div style="display:flex;align-items:center;gap:6px;">
+
+
+        <!-- أيقونة القائمة الجانبية -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="menu-icon">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </span>
+        </button>
+    </div>
+</nav>
+
+<!-- ====== القائمة الجانبية (Sidebar) ====== -->
+<div id="sidebar" class="sidebar" role="dialog" aria-label="Menu de navigation">
+    
+    <!-- ====== خلفية زليج مبسطة ====== -->
+    <div class="sidebar-bg-pattern" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="sidebarZellij" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="none"/>
+                    <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="rgba(78,205,196,0.08)" stroke-width="0.8"/>
+                    <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="rgba(78,205,196,0.05)" stroke-width="0.8"/>
+                    <text x="40" y="40" text-anchor="middle" dominant-baseline="central" font-size="6" fill="rgba(78,205,196,0.06)">✦</text>
+                    <text x="20" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="20" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="20" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="4" fill="rgba(78,205,196,0.04)">✦</text>
+                    <line x1="0" y1="0" x2="80" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                    <line x1="80" y1="0" x2="0" y2="80" stroke="rgba(78,205,196,0.03)" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="400" height="400" fill="url(#sidebarZellij)"/>
+        </svg>
+    </div>
+    <!-- ====== خلفية رياضية متحركة (CSS خالص) ====== -->
+    <div class="sidebar-math-bg" aria-hidden="true">
+        <span class="math-symbol">∫</span>
+        <span class="math-symbol">π</span>
+        <span class="math-symbol">√</span>
+        <span class="math-symbol">∑</span>
+        <span class="math-symbol">Δ</span>
+        <span class="math-symbol">∞</span>
+        <span class="math-symbol">x²</span>
+        <span class="math-symbol">sinθ</span>
+    </div>
+
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <!-- ====== منطقة السكرول المشتركة (Profile + Nav + Matières) ====== -->
+    <div class="sidebar-scroll">
+
+    <!-- ====== القسم 1: Profil (بسيط) ====== -->
+    <div class="sidebar-section sidebar-section-profile">
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème (clair/sombre)" type="button">
+            <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+            <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
+        <div class="profile-simple">
+            <img src="../../../../../assets/images/profile.webp" alt="Logo Xpert" class="profile-simple-img">
+        </div>
+    </div>
+
+    <!-- ====== القسم 2: Navigation principale ====== -->
+    <div class="sidebar-section sidebar-section-nav">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="../../../../../index.html" class="sidebar-link" data-page="home">
+                        <span class="sidebar-link-icon"><i class="fas fa-house"></i></span>
+                        <span class="sidebar-link-text">Accueil</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../subjects.html" class="sidebar-link" data-page="subjects">
+                        <span class="sidebar-link-icon"><i class="fas fa-book-open"></i></span>
+                        <span class="sidebar-link-text">Matières</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../recherche.html" class="sidebar-link" data-page="recherche">
+                        <span class="sidebar-link-icon"><i class="fas fa-magnifying-glass"></i></span>
+                        <span class="sidebar-link-text">Recherche</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../../../../about.html" class="sidebar-link" data-page="about">
+                        <span class="sidebar-link-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-link-text">À propos</span>
+                        <span class="sidebar-link-arrow"><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ====== القسم 3: Matières ====== -->
+    <div class="sidebar-section sidebar-section-subjects">
+        <div class="sidebar-subjects-header">
+            <span class="sidebar-subjects-label">📚 Mes matières</span>
+            <span class="sidebar-subjects-count">3</span>
+        </div>
+        <div class="sidebar-subjects-grid">
+            <a href="../../../../../subject.html?subject=math" class="subject-card subject-math" data-subject="math">
+                <div class="subject-card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Mathématiques</span>
+                    <span class="subject-card-count">55 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=physique" class="subject-card subject-physique" data-subject="physique">
+                <div class="subject-card-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Physique</span>
+                    <span class="subject-card-count">26 exercices</span>
+                </div>
+            </a>
+            <a href="../../../../../subject.html?subject=chimie" class="subject-card subject-chimie" data-subject="chimie">
+                <div class="subject-card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="subject-card-info">
+                    <span class="subject-card-name">Chimie</span>
+                    <span class="subject-card-count">22 exercices</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+    <!-- ====== نهاية منطقة السكرول المشتركة ====== -->
+
+    <!-- ====== القسم 4: روابط قانونية (ثابت بالأسفل) ====== -->
+    <div class="sidebar-section sidebar-section-legal">
+        <div class="sidebar-legal-links">
+            <a href="../../../../../support.html" data-page="support">Support</a>
+            <span>•</span>
+            <a href="../../../../../installation.html" data-page="installation">Installation</a>
+            <span>•</span>
+            <a href="../../../../../terms.html" data-page="terms">Conditions d'utilisation</a>
+        </div>
+    </div>
+
+    <!-- ====== Footer ====== -->
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <span class="sidebar-copy">Xpert &copy; 2026 - 1 Bac Sciences Expérimentales</span>
+        </div>
+    </div>
+</div>
+
+<!-- ====== Overlay ====== -->
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div style="max-width:900px; margin:0 auto; padding:60px 12px 20px;">
+        <a href="../../../../../subject.html?subject=math" class="back-btn"><i class="fas fa-arrow-right"></i> Retour</a>
+
+        <div class="lesson-container">
+            <h1 class="lesson-title"><i class="fas fa-pencil" style="color:#4ECDC4;"></i> Section 3 : La négation d'une proposition</h1>
+            <p style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; color:var(--text-muted); font-size:12px; margin-bottom:16px;">
+                <span class="badge-exercice"><i class="fas fa-book-open"></i> Cours : Partie 2 · §1</span>
+                <span class="badge-exercice" style="background:rgba(244,208,63,0.15); color:var(--gold-text);"><i class="fas fa-star"></i> Du plus simple au plus difficile</span>
+            </p>
+<div class="recap-cours"><div class="highlight-box green"><span class="label def">À retenir du cours</span><p><b>Négation :</b> $\overline{P}$ (ou $\neg P$) est la proposition de valeur de vérité <b>opposée</b> à celle de $P$ ; $\ \overline{\overline{P}}=P$.</p><p><b>Quantificateurs :</b> $\overline{\forall x\in E,\ P(x)}=\exists x\in E,\ \overline{P(x)}$ &nbsp; et &nbsp; $\overline{\exists x\in E,\ P(x)}=\forall x\in E,\ \overline{P(x)}$.</p><p><b>Attention :</b> la négation de « $>$ » est « $\leqslant$ » (et non « $\lt $ »), celle de « $=$ » est « $\neq$ ».</p></div></div>
+            <div class="section">
+                <h2><span class="num">3.1</span> Négation de propositions simples <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Pour chaque proposition, donner sa valeur de vérité, sa négation et la valeur de vérité de sa négation.</p>
+
+                <div class="sub-question">
+                    <div class="letter">a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$P$ : « $6$ est divisible par $4$ ».</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol1')">Voir la solution</button>
+                    <div id="sol1" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Valeur de vérité de $P$ :</span> $6=4\times1+2$ : $6$ n'est pas divisible par $4$, donc $P$ est F.</div><div class="step"><span class="step-num">Négation :</span> $\overline{P}$ : « $6$ n'est pas divisible par $4$ ».</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$P$ est F et $\overline{P}$ est V.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$Q$ : « $-3\leqslant-5$ ».</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol2')">Voir la solution</button>
+                    <div id="sol2" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Valeur de vérité de $Q$ :</span> $-3$ est à droite de $-5$ sur la droite numérique : $-3>-5$, donc $Q$ est F.</div><div class="step"><span class="step-num">Négation :</span> $\overline{Q}$ : « $-3>-5$ » (la négation de $\leqslant$ est $>$).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$Q$ est F et $\overline{Q}$ est V.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">c)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$R$ : « $\sqrt2\in\mathbb{Q}$ ».</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol3')">Voir la solution</button>
+                    <div id="sol3" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Valeur de vérité de $R$ :</span> $\sqrt2$ est irrationnel : $R$ est F.</div><div class="step"><span class="step-num">Négation :</span> $\overline{R}$ : « $\sqrt2\notin\mathbb{Q}$ ».</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$R$ est F et $\overline{R}$ est V.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">d)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$S$ : « $7$ est un nombre premier ».</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol4')">Voir la solution</button>
+                    <div id="sol4" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Valeur de vérité de $S$ :</span> les seuls diviseurs de $7$ sont $1$ et $7$ : $S$ est V.</div><div class="step"><span class="step-num">Négation :</span> $\overline{S}$ : « $7$ n'est pas un nombre premier ».</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$S$ est V et $\overline{S}$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">e)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$T$ : « $2x+1\neq5$ » pour un réel $x$ fixé. Écrire $\overline{T}$ et $\overline{\overline{T}}$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol5')">Voir la solution</button>
+                    <div id="sol5" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> $\overline{T}$ : « $2x+1=5$ ».</div><div class="step"><span class="step-num">Double négation :</span> $\overline{\overline{T}}$ : « $2x+1\neq5$ », c'est-à-dire $T$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overline{\overline{T}}=T$ : la double négation redonne la proposition initiale.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">3.2</span> Négation d'une proposition quantifiée <span class="lvl f">Facile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Écrire la négation de chaque proposition, puis donner la valeur de vérité de la proposition et celle de sa négation.</p>
+
+                <div class="sub-question">
+                    <div class="letter">a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$A$ : $\forall x\in\mathbb{R},\ x^2\geqslant0$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol6')">Voir la solution</button>
+                    <div id="sol6" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{A}:\ \exists x\in\mathbb{R},\ x^2\lt 0$$</div></div><div class="step"><span class="step-num">Valeurs de vérité :</span> $A$ est V (un carré est positif ou nul) ; donc $\overline{A}$ est F.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>On change $\forall$ en $\exists$ et on nie la propriété ($\geqslant$ devient $\lt $).</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$B$ : $\exists x\in\mathbb{R},\ x^2+1=0$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol7')">Voir la solution</button>
+                    <div id="sol7" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{B}:\ \forall x\in\mathbb{R},\ x^2+1\neq0$$</div></div><div class="step"><span class="step-num">Valeurs de vérité :</span> $x^2+1\geqslant1>0$ pour tout $x$ : $B$ est F et $\overline{B}$ est V.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>On change $\exists$ en $\forall$ et on nie la propriété ($=$ devient $\neq$).</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">c)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$C$ : $\forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ y>x$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol8')">Voir la solution</button>
+                    <div id="sol8" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> on nie de gauche à droite, chaque quantificateur changeant de nature :<div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{C}:\ \exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ y\leqslant x$$</div></div><div class="step"><span class="step-num">Valeurs de vérité :</span> $C$ est V (prendre $y=x+1$) ; donc $\overline{C}$ est F.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Négation de $>$ : $\leqslant$.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">d)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$D$ : $\exists n\in\mathbb{N},\ \forall m\in\mathbb{N},\ n\leqslant m$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol9')">Voir la solution</button>
+                    <div id="sol9" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{D}:\ \forall n\in\mathbb{N},\ \exists m\in\mathbb{N},\ n>m$$</div></div><div class="step"><span class="step-num">Valeurs de vérité :</span> $D$ est V ($n=0$ convient) ; $\overline{D}$ est F (pour $n=0$ il faudrait un entier naturel $m\lt 0$).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$D$ est V et $\overline{D}$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">3.3</span> Négation et étude de la vérité <span class="lvl m">Moyen</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Écrire la négation de chaque proposition. Déterminer laquelle des deux (la proposition ou sa négation) est vraie, en le prouvant.</p>
+
+                <div class="sub-question">
+                    <div class="letter">a)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$A$ : $\forall x\in\mathbb{R},\ |x|\geqslant x$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol10')">Voir la solution</button>
+                    <div id="sol10" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{A}:\ \exists x\in\mathbb{R},\ |x|\lt x$$</div></div><div class="step"><span class="step-num">Valeur de vérité de $A$ :</span> si $x\geqslant0$ : $|x|=x\geqslant x$ ; si $x\lt 0$ : $|x|=-x>0>x$. Dans les deux cas $|x|\geqslant x$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$A$ est V, donc $\overline{A}$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">b)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$B$ : $\exists x\in\mathbb{R}_+^*,\ x+\dfrac1x\lt 2$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol11')">Voir la solution</button>
+                    <div id="sol11" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{B}:\ \forall x\in\mathbb{R}_+^*,\ x+\frac1x\geqslant2$$</div></div><div class="step"><span class="step-num">On étudie $\overline{B}$ :</span> pour $x>0$ : $x+\dfrac1x-2=\dfrac{x^2-2x+1}{x}=\dfrac{(x-1)^2}{x}\geqslant0$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overline{B}$ est V, donc $B$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">c)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$C$ : $\forall x\in[0,1],\ x^2\leqslant x$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol12')">Voir la solution</button>
+                    <div id="sol12" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{C}:\ \exists x\in[0,1],\ x^2>x$$</div></div><div class="step"><span class="step-num">Valeur de vérité de $C$ :</span> $x-x^2=x(1-x)$ avec $x\geqslant0$ et $1-x\geqslant0$ : produit positif ou nul, donc $x^2\leqslant x$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$C$ est V, donc $\overline{C}$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">d)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$D$ : $\exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ xy=y$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol13')">Voir la solution</button>
+                    <div id="sol13" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{D}:\ \forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ xy\neq y$$</div></div><div class="step"><span class="step-num">Valeur de vérité de $D$ :</span> $x=1$ convient : $1\times y=y$ pour tout $y$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$D$ est V, donc $\overline{D}$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h2><span class="num">3.4</span> Plusieurs quantificateurs : négation et preuve <span class="lvl d">Difficile</span></h2>
+                <p style="color:var(--text-muted); font-size:11px; margin-bottom:8px;">Pour chaque proposition, écrire la négation et déterminer la valeur de vérité de la proposition en démontrant.</p>
+
+                <div class="sub-question">
+                    <div class="letter">1)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$A$ : $\forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ y^2=x$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol14')">Voir la solution</button>
+                    <div id="sol14" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{A}:\ \exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ y^2\neq x$$</div></div><div class="step"><span class="step-num">Étude :</span> pour $x=-1$ : $y^2=-1$ n'a pas de solution réelle, donc $y^2\neq-1$ pour tout $y$ : $\overline{A}$ est vraie ($x=-1$ convient).</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overline{A}$ est V, donc $A$ est F. (Il n'existe pas de racine carrée réelle pour un réel négatif.)</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">2)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$B$ : $\forall x\in\mathbb{R}_+,\ \exists y\in\mathbb{R},\ y^2=x$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol15')">Voir la solution</button>
+                    <div id="sol15" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{B}:\ \exists x\in\mathbb{R}_+,\ \forall y\in\mathbb{R},\ y^2\neq x$$</div></div><div class="step"><span class="step-num">Étude :</span> pour tout $x\geqslant0$, $y=\sqrt x$ vérifie $y^2=x$ : $B$ est vraie.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$B$ est V, donc $\overline{B}$ est F. (En restreignant $x$ à $\mathbb{R}_+$, la situation change complètement par rapport à $A$.)</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">3)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$C$ : $\exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ xy=1$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol16')">Voir la solution</button>
+                    <div id="sol16" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{C}:\ \forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ xy\neq1$$</div></div><div class="step"><span class="step-num">Étude de $\overline{C}$ :</span> soit $x\in\mathbb{R}$. Pour $y=0$ : $x\times0=0\neq1$. Donc un $y$ convient toujours.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$\overline{C}$ est V, donc $C$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">4)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">$D$ : $\forall a\in\mathbb{R}_+^*,\ \exists n\in\mathbb{N},\ \dfrac1{n+1}\lt a$.</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol17')">Voir la solution</button>
+                    <div id="sol17" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Négation :</span> <div class="formula-block" style="font-size:13px; margin:4px 0;">$$\overline{D}:\ \exists a\in\mathbb{R}_+^*,\ \forall n\in\mathbb{N},\ \frac{1}{n+1}\geqslant a$$</div></div><div class="step"><span class="step-num">Étude de $D$ :</span> soit $a>0$. On cherche $n$ avec $\dfrac1{n+1}\lt a\iff n+1>\dfrac1a$. Il suffit de prendre un entier $n>\dfrac1a$ (il en existe, d'après l'exercice 2.2 d)) : alors $n+1>n>\dfrac1a$.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>$D$ est V, donc $\overline{D}$ est F.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-question">
+                    <div class="letter">5)</div>
+                    <p style="font-size:11.5px; margin:4px 0;">Que remarque-t-on sur les valeurs de vérité de $P$ et $\overline{P}$ dans les quatre cas ?</p>
+                    <button class="toggle-sol" aria-label="Afficher ou cacher la solution" onclick="toggleSolution('sol18')">Voir la solution</button>
+                    <div id="sol18" class="solution-box">
+                        <div class="sol-title">✅ Solution détaillée</div>
+                        <div class="sol-content">
+                            <div class="step"><span class="step-num">Bilan :</span> $A$ : F, $\overline{A}$ : V ; $B$ : V, $\overline{B}$ : F ; $C$ : F, $\overline{C}$ : V ; $D$ : V, $\overline{D}$ : F.</div><div class="highlight-box green" style="margin-top:6px;"><span class="label resume">Conclusion</span><p>Une proposition et sa négation ont toujours des valeurs de vérité <b>opposées</b>. Pour montrer qu'une proposition est fausse, on peut donc montrer que sa négation est vraie.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="nav-buttons">
+                <a href="exercice2.html" class="prev-btn"><i class="fas fa-arrow-right"></i> Section 2</a>
+                <a href="exercice4.html" class="next-btn">Section 4 <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+    </div>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b3c8217f955148c68aac81e97cbd5f77"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 30);
+            }
+        });
+
+        function toggleSolution(id) {
+            var el = document.getElementById(id);
+            var btn = el.previousElementSibling;
+            if (el.classList.contains('show')) {
+                el.classList.remove('show');
+                btn.textContent = 'Voir la solution';
+            } else {
+                el.classList.add('show');
+                btn.textContent = 'Cacher la solution';
+            }
+        }
+    </script>
+    <script src="../../../../../assets/js/protection.js"></script>
+    <script src="../../../../../assets/js/script.js"></script>
+
+<!-- XPERT-SECTIONS-FAB v4 -->
+<style>
+/* ====== زر الأقسام العائم (Glass Pill) -- نفس لغة تصميم .devoir-fab ====== */
+.xpert-sec-fab-btn{position:fixed;left:16px;bottom:20px;z-index:9999;height:48px;min-width:48px;
+  padding:0 8px;border-radius:24px;background:rgba(var(--overlay-rgb),0.06);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(78,205,196,0.28);color:var(--text-primary);
+  box-shadow:0 4px 18px rgba(0,0,0,0.16);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  /* ظهور هادئ (fade + slide) بلا bounce/overshoot اللي كيبان مفاجئ */
+  transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1),
+    background .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.xpert-sec-fab-btn.xpert-fab-show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.xpert-sec-fab-btn:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);
+  box-shadow:0 6px 22px rgba(0,0,0,0.2);}
+.xpert-sec-fab-btn:active{transform:scale(0.94);}
+.xpert-sec-fab-btn .xsf-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;
+  justify-content:center;font-size:15px;color:#4ECDC4;transition:transform .3s ease,color .25s ease;}
+.xpert-sec-fab-btn .xsf-label{font-family:var(--font-main);font-size:12.5px;font-weight:600;
+  white-space:nowrap;padding-inline-end:6px;color:var(--text-secondary);}
+.xpert-sec-fab-btn.xpert-fab-open .xsf-icon{transform:rotate(135deg);color:#FF6B6B;}
+/* نبضة ترحيبية خفيفة أول ما يبان الزر، كتوقف ملي يتفتح */
+.xpert-sec-fab-btn.xpert-fab-show::after{content:'';position:absolute;inset:-6px;border-radius:24px;
+  border:2px solid #4ECDC4;opacity:0;animation:xpertFabPulse 2.8s ease-out .6s infinite;pointer-events:none;}
+.xpert-sec-fab-btn.xpert-fab-open::after{animation-play-state:paused;opacity:0;}
+@keyframes xpertFabPulse{0%{transform:scale(0.9);opacity:.5;}70%{transform:scale(1.08);opacity:0;}100%{transform:scale(1.08);opacity:0;}}
+@media (max-width:480px){
+  .xpert-sec-fab-btn{bottom:14px;left:12px;height:44px;}
+  .xpert-sec-fab-btn .xsf-icon{width:28px;height:28px;font-size:14px;}
+  .xpert-sec-fab-btn .xsf-label{font-size:11.5px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .xpert-sec-fab-btn.xpert-fab-show::after{animation:none;display:none;}
+  .xpert-sec-fab-btn .xsf-icon{transition:none;}
+}
+
+/* ====== قائمة الأقسام العائمة (نفس لغة .devoir-fab-menu) ====== */
+.xpert-sec-menu{position:fixed;bottom:78px;left:16px;z-index:9998;
+  display:flex;flex-direction:column;gap:8px;max-height:66vh;overflow-y:auto;
+  padding:2px;opacity:0;visibility:hidden;transform:translateY(10px) scale(0.96);
+  transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s;}
+.xpert-sec-menu.open{opacity:1;visibility:visible;transform:translateY(0) scale(1);}
+.xpert-sec-menu::-webkit-scrollbar{width:4px;}
+.xpert-sec-menu::-webkit-scrollbar-thumb{background:rgba(78,205,196,0.35);border-radius:4px;}
+
+.xpert-sec-item{position:relative;display:flex;align-items:center;gap:10px;min-height:44px;
+  padding:8px 16px;border-radius:22px;background:var(--bg-card);border:1px solid rgba(78,205,196,0.28);
+  color:var(--text-primary);box-shadow:0 4px 18px rgba(0,0,0,0.2);text-decoration:none;
+  font-family:var(--font-main);cursor:pointer;
+  opacity:0;transform:translateY(8px);
+  transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease,
+    opacity .32s cubic-bezier(.4,0,.2,1),transform .32s cubic-bezier(.4,0,.2,1);}
+.xpert-sec-menu.open .xpert-sec-item{opacity:1;transform:translateY(0);}
+.xpert-sec-item:hover{background:rgba(78,205,196,0.12);border-color:rgba(78,205,196,0.5);}
+.xpert-sec-item:active{transform:scale(0.96);}
+.xpert-sec-item .xn{font-weight:700;color:#4ECDC4;font-size:13px;min-width:22px;flex-shrink:0;text-align:center;}
+.xpert-sec-item .xd{font-size:12px;line-height:1.35;color:var(--text-secondary);}
+.xpert-sec-item .xd b{color:var(--text-primary);font-size:12.5px;}
+
+/* العنصر النشط (الصفحة الحالية) */
+.xpert-sec-item.active{background:rgba(78,205,196,0.14);border-color:rgba(78,205,196,0.55);}
+.xpert-sec-item.active .xn{color:#4ECDC4;}
+
+/* ====== "التالي فالترتيب": نبض تحذيري/تشجيعي مثل عداد الفرض فآخر الدقائق ====== */
+@keyframes xpertSecNextPulse{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(78,205,196,0.45);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(78,205,196,0);}
+}
+.xpert-sec-item-next{border-color:rgba(78,205,196,0.65);animation:xpertSecNextPulse 1.6s ease-in-out infinite;}
+.xpert-sec-item-next .xsn-badge{position:absolute;top:-8px;inset-inline-end:10px;
+  background:#4ECDC4;color:#0b0f0e;font-size:9.5px;font-weight:800;line-height:1;
+  padding:3px 7px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+
+/* ====== "ملخص الدرس": بطاقة زجاجية بلون أزرق مميز ====== */
+.xpert-sec-item-summary{background:rgba(77,157,224,0.10);border-color:rgba(77,157,224,0.45);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
+.xpert-sec-item-summary:hover{background:rgba(77,157,224,0.18);border-color:rgba(77,157,224,0.65);}
+.xpert-sec-item-summary .xn{color:#4D9DE0;}
+.xpert-sec-item-summary .xd b{color:#79B8E8;}
+.xpert-sec-item-summary.active{background:rgba(77,157,224,0.20);border-color:rgba(77,157,224,0.7);}
+.xpert-sec-item-summary.xpert-sec-item-next{animation-name:xpertSecNextPulseBlue;}
+@keyframes xpertSecNextPulseBlue{
+  0%,100%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 0 rgba(77,157,224,0.5);}
+  50%{box-shadow:0 4px 18px rgba(0,0,0,0.2),0 0 0 7px rgba(77,157,224,0);}
+}
+.xpert-sec-item-summary.xpert-sec-item-next .xsn-badge{background:#4D9DE0;color:#0b0f0e;}
+
+@media (max-width:480px){
+  .xpert-sec-menu{left:12px;bottom:66px;}
+}
+</style>
+<button class="xpert-sec-fab-btn" id="xpertSecFabBtn" aria-label="Sections" aria-haspopup="true" aria-expanded="false">
+  <span class="xsf-icon"><i class="fas fa-layer-group"></i></span>
+  <span class="xsf-label">Sections</span>
+</button>
+<div class="xpert-sec-menu" id="xpertSecMenu" role="menu"></div>
+<script>
+(function(){
+  var sections = [{"href":"exercice1.html","label":"Section 1","desc":"Proposition, valeur de vérité, fonction propositionnelle - Partie 1 §1-2"},{"href":"exercice2.html","label":"Section 2","desc":"Quantificateurs universel, existentiel, ∃!, ordre des quantificateurs - Partie 1 §3"},{"href":"exercice3.html","label":"Section 3","desc":"Négation, négation avec quantificateurs - Partie 2 §1"},{"href":"exercice4.html","label":"Section 4","desc":"P∧Q, P∨Q, tables de vérité, lois de Morgan, distributivité - Partie 2 §2"},{"href":"exercice5.html","label":"Section 5","desc":"Implication, réciproque, contraposée, négation - Partie 2 §3"},{"href":"exercice6.html","label":"Section 6","desc":"Équivalence, double implication, propriétés - Partie 2 §4"},{"href":"exercice7.html","label":"Section 7","desc":"Lois logiques, tautologies, preuves par table et par équivalences - Partie 3 §1"},{"href":"exercice8.html","label":"Section 8","desc":"Contre-exemple, équivalences successives - Partie 3 §2-3"},{"href":"exercice9.html","label":"Section 9","desc":"Raisonnement direct, contraposée - Partie 4 §1-2"},{"href":"exercice10.html","label":"Section 10","desc":"Raisonnement par l'absurde, irrationalité de √2 - Partie 4 §3"},{"href":"exercice11.html","label":"Section 11","desc":"Disjonction des cas, valeur absolue, parité - Partie 4 §4"},{"href":"exercice12.html","label":"Section 12","desc":"Récurrence simple : initialisation, hérédité, conclusion - Partie 4 §5"},{"href":"exercice13.html","label":"Section 13","desc":"Devoir surveillé type (2 h, /20) - synthèse du chapitre logique"}];
+  var current = "exercice3.html";
+  var STAGGER_STEP = 40, STAGGER_MAX = 300;
+  var btn = document.getElementById('xpertSecFabBtn');
+  var menu = document.getElementById('xpertSecMenu');
+  var currentIndex = -1;
+  sections.forEach(function(s,i){ if (s.href === current) currentIndex = i; });
+
+  sections.forEach(function(s, i){
+    var isSummary = /résumé|resume|synthèse|synthese|ملخص|تلخيص/i.test((s.label||'') + ' ' + (s.desc||''));
+    var isNext = (currentIndex !== -1 && i === currentIndex + 1);
+    var a = document.createElement('a');
+    a.href = s.href; // رابط مباشر لصفحة القسم (exerciceN.html / serieN.html / partN.html)
+    a.setAttribute('role', 'menuitem');
+    var cls = 'xpert-sec-item';
+    if (s.href === current) cls += ' active';
+    if (isSummary) cls += ' xpert-sec-item-summary';
+    if (isNext) cls += ' xpert-sec-item-next';
+    a.className = cls;
+    a.innerHTML = '<span class="xn">' + (i+1) + '</span>' +
+      '<span class="xd"><b>' + (s.label||('#'+(i+1))) + '</b><br>' + (s.desc||'') + '</span>' +
+      (isNext ? '<span class="xsn-badge">Suivant</span>' : '');
+    menu.appendChild(a);
+  });
+
+  function staggerIn(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it, i){
+      it.style.transitionDelay = Math.min(i * STAGGER_STEP, STAGGER_MAX) + 'ms';
+    });
+  }
+  function clearStagger(){
+    var items = menu.querySelectorAll('.xpert-sec-item');
+    items.forEach(function(it){ it.style.transitionDelay = '0ms'; });
+  }
+
+  function openMenu(){
+    staggerIn();
+    menu.classList.add('open');
+    btn.classList.add('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.addEventListener('click', onDocClick, true);
+    document.addEventListener('keydown', onKeydown);
+  }
+  function closeMenu(){
+    clearStagger();
+    menu.classList.remove('open');
+    btn.classList.remove('xpert-fab-open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('click', onDocClick, true);
+    document.removeEventListener('keydown', onKeydown);
+  }
+  function toggleMenu(){
+    if (menu.classList.contains('open')) closeMenu(); else openMenu();
+  }
+  function onDocClick(e){
+    if (menu.contains(e.target) || btn.contains(e.target)) return;
+    closeMenu();
+  }
+  function onKeydown(e){
+    if (e.key === 'Escape') closeMenu();
+  }
+  btn.addEventListener('click', toggleMenu);
+
+  // ====== التزامن مع اختفاء xpertLoader (الدائرة اللي كتدور) ======
+  // #xpertLoader عندو transition ديالو "opacity .55s" (~500ms) ملي
+  // كيتزاد class="xpert-loader-hide"/"xpert-loaded". اللودر (z-index
+  // عالي جداً) كيبقى فوق كلشي طول هاد المدة وهو كيتلاشى. إيلا بدا الزر
+  // فالظهور دغيا ملي كيتكتشف class="xpert-loaded"، كيبقى مخبي تحت
+  // اللودر اللي مازال باين، وكيبان "طّاح" دفعة وحدة غير ملي يختفي
+  // اللودر بالكامل. الحل: نستناو نفس 500ms (مدة اختفاء اللودر) قبل ما
+  // نبداو أنيميشن ظهور الزر، باش الاثنين يتزامنو بالضبط.
+  var LOADER_FADE_MS = 500;
+  function revealFab(){ requestAnimationFrame(function(){ btn.classList.add('xpert-fab-show'); }); }
+  function revealFabSynced(){ setTimeout(revealFab, LOADER_FADE_MS); }
+  if (!document.getElementById('xpertLoader')) {
+    revealFab(); // الصفحة ماعندهاش لودر أصلا، ما كاين والو نتزامنو معاه
+  } else if (document.body.classList.contains('xpert-loaded')) {
+    revealFabSynced();
+  } else {
+    var mo = new MutationObserver(function(){
+      if (document.body.classList.contains('xpert-loaded')) { revealFabSynced(); mo.disconnect(); }
+    });
+    mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    setTimeout(revealFabSynced, 1500); // حماية إيلا اللودر ما زادش الكلاس لسبب ما
+  }
+})();
+</script>
+
+</body>
+</html>
+
+

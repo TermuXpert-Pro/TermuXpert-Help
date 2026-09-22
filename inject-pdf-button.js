@@ -44,13 +44,40 @@ const CONFIG = [
     },
   },
   {
-    label: 'السلاسل (Séries)',
+    label: 'السلاسل (Séries) - Logique',
     dir: 'content/math/series/logique/model1',
     match: /^(serie\d+|index)\.html$/i,
     mode: 'dual',
     files: {
       enonce: 'Series_Logique_1_Enonces.pdf',
       corrige: 'Series_Logique_2_Corrige.pdf',
+    },
+  },
+  {
+    label: 'الدرس (Lesson) - Physique / Rotation solide',
+    dir: 'content/physique/lessons/rotation-solide/model1',
+    match: /^(part\d+|index)\.html$/i,
+    mode: 'single',
+    files: { pdf: 'Rotation_Solide_Xpert.pdf' },
+  },
+  {
+    label: 'التمارين (Exercises) - Physique / Rotation solide',
+    dir: 'content/physique/exercises/rotation-solide/model1',
+    match: /^(exercice\d+|index)\.html$/i,
+    mode: 'dual',
+    files: {
+      enonce: 'Exercices_Rotation_1_Enonces.pdf',
+      corrige: 'Exercices_Rotation_2_Corrige.pdf',
+    },
+  },
+  {
+    label: 'السلاسل (Séries) - Physique / Rotation solide',
+    dir: 'content/physique/series/rotation-solide/model1',
+    match: /^(serie\d+|index)\.html$/i,
+    mode: 'dual',
+    files: {
+      enonce: 'Serie_Rotation_1_Enonces.pdf',
+      corrige: 'Serie_Rotation_2_Corrige.pdf',
     },
   },
 ];

@@ -18,8 +18,8 @@ window.subjectsData.physique = {
         {
             semester: 1,
             title: "Travail et puissance d'une force",
-            file: "content/physique/lessons/travail-puissance/model1/part1.html",
-            desc: "Travail d'une force, puissance, couple de forces"
+            file: "content/physique/lessons/travail-puissance/model1/index.html",
+            desc: "قيد الإعداد 🔧"
         },
         {
             semester: 1,
