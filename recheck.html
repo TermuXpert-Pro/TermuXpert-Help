@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>وصول مقيّد | Xpert</title>
+<title>تأكيد الاستمرار | Xpert</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
     --text-secondary:#C5C6C7;
     --text-muted:#8A8D93;
     --gradient:linear-gradient(135deg, #45A29E, #66FCF1);
-    --danger:#E5534B;
+    --warn:#E5A54B;
     --font-main:'Cairo','Inter',sans-serif;
     --font-mono:'JetBrains Mono', monospace;
   }
@@ -30,18 +30,11 @@
   html,body{height:100%;margin:0;}
 
   body{
-    min-height:100dvh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
+    min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px;
     padding-top:calc(24px + env(safe-area-inset-top,0px));
     padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));
-    background:var(--bg-primary);
-    color:var(--text-primary);
-    font-family:var(--font-main);
-    position:relative;
-    overflow:hidden;
+    background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-main);
+    position:relative;overflow:hidden;
   }
 
   .glow-orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:0.16;z-index:0;pointer-events:none;}
@@ -50,13 +43,13 @@
 
   .gate-card{
     position:relative;z-index:1;width:min(92vw, 420px);
-    background:var(--bg-card);border:1px solid var(--border);border-right:3px solid var(--danger);
+    background:var(--bg-card);border:1px solid var(--border);border-right:3px solid var(--warn);
     border-radius:14px;padding:34px 28px;box-shadow:0 20px 50px -20px rgba(0,0,0,0.6);
   }
 
   .status-tag{
-    display:inline-flex;align-items:center;gap:6px;background:rgba(229,83,75,0.1);
-    border:1px solid rgba(229,83,75,0.3);color:var(--danger);padding:5px 12px;border-radius:50px;
+    display:inline-flex;align-items:center;gap:6px;background:rgba(229,165,75,0.1);
+    border:1px solid rgba(229,165,75,0.3);color:var(--warn);padding:5px 12px;border-radius:50px;
     font-size:12px;font-weight:600;margin-bottom:16px;
   }
   .status-tag svg{width:12px;height:12px;flex-shrink:0;}
@@ -86,8 +79,8 @@
   button:disabled{background:var(--border);color:var(--text-muted);box-shadow:none;cursor:not-allowed;}
 
   .msg{min-height:18px;font-size:13px;margin-top:2px;font-weight:600;}
-  .msg.error{color:var(--danger);}
-  .msg.wait{color:#E5A54B;}
+  .msg.error{color:#E5534B;}
+  .msg.wait{color:var(--warn);}
 
   .shake{animation:shake 400ms ease;}
   @keyframes shake{
@@ -109,20 +102,19 @@
 
   <main class="gate-card" id="gateCard">
     <span class="status-tag">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-      وصول مقيّد
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      انتهت صلاحية الجلسة
     </span>
 
-    <h1>هذه الصفحة محظورة على العموم</h1>
+    <h1>مرت 10 دقائق منذ آخر تحقق</h1>
     <p class="lede">
-      المحتوى غير مخصص للزيارة العامة، ولا يُفتح إلا برمز دخول صحيح.
-      ثلاث محاولات خاطئة تؤدي إلى حظر الدخول لمدة ساعة كاملة.
+      للمتابعة يجب إدخال رمز الاستمرار. ثلاث محاولات خاطئة تؤدي إلى حظر الدخول لمدة ساعة كاملة.
     </p>
 
     <form id="gateForm" autocomplete="off" novalidate>
-      <label for="gateInput">رمز الدخول</label>
+      <label for="gateInput">رمز الاستمرار</label>
       <input id="gateInput" name="gateInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="12" placeholder="••••••••" aria-describedby="gateMsg" required>
-      <button type="submit" id="gateBtn">تحقّق من الرمز</button>
+      <button type="submit" id="gateBtn">متابعة</button>
       <p class="msg" id="gateMsg" role="status" aria-live="polite"></p>
     </form>
 
@@ -133,7 +125,7 @@
 <script src="/gate-core.js"></script>
 <script>
 (function(){
-  var VALID_CODE       = '2008328';
+  var VALID_CODE       = '3282008';
   var DEFAULT_REDIRECT = 'index.html';
 
   var form   = document.getElementById('gateForm');
@@ -186,7 +178,7 @@
     if (value === VALID_CODE){
       XpertGate.markVerified();
       msg.className = 'msg';
-      msg.textContent = 'تم قبول الرمز...';
+      msg.textContent = 'تم القبول، جارٍ المتابعة...';
       location.replace(getNext());
     } else {
       msg.className = 'msg error';
@@ -199,7 +191,7 @@
       if (justLocked){
         setLocked(XpertGate.lockRemainingSeconds());
       } else {
-        msg.textContent = 'رمز خاطئ. الدخول مرفوض.';
+        msg.textContent = 'رمز خاطئ. لا يمكن المتابعة.';
       }
     }
   });
