@@ -47,3 +47,4 @@ git push
 
 echo ""
 echo "🚀 تم النشر بنجاح! (\"$MSG\")"
+

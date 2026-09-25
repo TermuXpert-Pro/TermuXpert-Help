@@ -570,3 +570,4 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.getElementById('graph11svg')) { drawGraph11svg(); }
     }, 500);
 });
+

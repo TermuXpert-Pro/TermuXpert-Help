@@ -410,3 +410,4 @@ const SvgUtils = (function () {
         drawPath
     };
 })();
+

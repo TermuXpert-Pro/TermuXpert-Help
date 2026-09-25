@@ -124,3 +124,4 @@
         setTimeout(drawGraph4, 300);
     });
 })();
+

@@ -91,3 +91,4 @@ for (const file of walk(ROOT)) {
 }
 
 console.log(`\n✅ خلص: ${updated} صفحة تزادت فيها وسوم PWA، ${skipped} صفحة كانت ديجا فيها، ${noHead} بلا </head>.`);
+

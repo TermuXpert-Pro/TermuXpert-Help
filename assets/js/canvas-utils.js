@@ -169,3 +169,4 @@ const CanvasUtils = (function () {
         drawNote
     };
 })();
+

@@ -119,3 +119,4 @@
         // Les SVG sont responsives via viewBox ; rien à recalculer au resize.
     });
 })();
+

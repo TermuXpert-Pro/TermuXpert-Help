@@ -76,3 +76,4 @@ MathJax = {
             },
             svg: { fontCache: 'global' }
         };
+

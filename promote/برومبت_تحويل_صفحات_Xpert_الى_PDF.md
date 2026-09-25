@@ -179,3 +179,4 @@ def render_pdf(html_path, out_path):
 5. أضف تنسيقات الطباعة الموحّدة مع `print-color-adjust: exact` (§5).
 6. حوّل بواسطة Playwright مع انتظار `data-mathjax-done` (§6).
 7. افحص بصريًا قبل التسليم، ثم سمِّ الملفات حسب الاتفاقية (§7).
+

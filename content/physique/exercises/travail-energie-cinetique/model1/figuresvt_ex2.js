@@ -167,3 +167,4 @@
         setTimeout(drawGraph2, 300);
     });
 })();
+

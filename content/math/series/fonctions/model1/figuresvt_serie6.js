@@ -125,3 +125,4 @@
         setTimeout(initFigures, 150);
     });
 })();
+

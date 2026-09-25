@@ -56,3 +56,4 @@ window.subjectsData.chimie = {
     }
 ]
 };
+

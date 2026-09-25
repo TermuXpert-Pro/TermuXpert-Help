@@ -318,3 +318,4 @@ if (!APPLY) {
     console.log('💡 هاد كان dry-run غير. باش يتطبق فعليا:');
     console.log('   node utils/add-xpert-loader.js --apply');
 }
+

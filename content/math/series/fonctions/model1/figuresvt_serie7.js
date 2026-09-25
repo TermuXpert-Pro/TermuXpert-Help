@@ -186,3 +186,4 @@
         setTimeout(initFigures, 150);
     });
 })();
+

@@ -382,3 +382,4 @@
         setTimeout(initFigures, 150);
     });
 })();
+

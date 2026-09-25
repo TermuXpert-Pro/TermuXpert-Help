@@ -183,3 +183,4 @@ console.log(`\n📋 لا تنسى: بدّل السطر فـ robots.txt من`);
 console.log(`   Sitemap: ${SITE}sitemap.xml`);
 console.log(`   لـ`);
 console.log(`   Sitemap: ${SITE}sitemap_index.xml`);
+

@@ -227,3 +227,4 @@ if (flaggedList.length) {
 if (DRY_RUN) {
     console.log('ℹ️  هادي كانت معاينة (dry-run) فقط - حيت تعاود تشغل بلا --dry-run باش تتكتب التعديلات فعلا.');
 }
+

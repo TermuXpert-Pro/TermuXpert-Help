@@ -220,3 +220,4 @@
     document.addEventListener('DOMContentLoaded', function () { g_a(); g_b(); g_c(); g_d(); });
 
 })();
+

@@ -169,3 +169,4 @@
         setTimeout(drawGraph1, 300);
     });
 })();
+

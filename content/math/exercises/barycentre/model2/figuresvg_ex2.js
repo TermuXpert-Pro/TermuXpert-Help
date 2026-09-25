@@ -184,3 +184,4 @@
     document.addEventListener('DOMContentLoaded', function () { graph_a(); graph_b(); });
 
 })();
+

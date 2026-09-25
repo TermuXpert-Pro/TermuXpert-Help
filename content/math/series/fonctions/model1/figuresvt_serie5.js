@@ -224,3 +224,4 @@
         setTimeout(initFigures, 150);
     });
 })();
+

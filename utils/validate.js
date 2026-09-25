@@ -322,3 +322,4 @@ if (errorCount === 0) {
     console.log(`❌ الفحص كامل: ${errorCount} خطأ/أخطاء، ${warnCount} تحذير(ات). خاصك تصلحهم قبل النشر.`);
     process.exit(1);
 }
+

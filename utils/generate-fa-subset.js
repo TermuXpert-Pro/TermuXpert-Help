@@ -258,3 +258,4 @@ ${brandRules.length ? '\n' + brandRules.join('\n') : ''}
     console.log('   node utils/replace-fontawesome-cdn.js --apply');
     console.log('   باش يتبدل رابط CDN بالنسخة المحلية فكل صفحات الموقع.');
 }
+
